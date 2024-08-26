@@ -2,34 +2,35 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2E1FC54732
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B17ABC5472F
 	for <webhook@archiver.kernel.org>; Mon, 26 Aug 2024 19:16:24 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.61245.1724699781725955361
+ by mx.groups.io with SMTP id smtpd.web10.61246.1724699781742952338
  for <meta-arago@lists.yoctoproject.org>;
  Mon, 26 Aug 2024 12:16:21 -0700
 Authentication-Results: mx.groups.io;
  dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 4639840CC4;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6D0C340CC1;
 	Mon, 26 Aug 2024 19:16:20 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id z_XdlfKg_E_W; Mon, 26 Aug 2024 19:16:20 +0000 (UTC)
+	with ESMTP id unrH3nKAb2My; Mon, 26 Aug 2024 19:16:20 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 281F440C67;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 42DC740CCC;
 	Mon, 26 Aug 2024 19:16:18 +0000 (UTC)
 Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id CEDCE164068;
-	Mon, 26 Aug 2024 15:16:16 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 107CF16406E;
+	Mon, 26 Aug 2024 15:16:17 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master][PATCH 08/16] tiovx: deprecate
-Date: Mon, 26 Aug 2024 15:15:57 -0400
-Message-Id: <20240826191605.8190-8-denis@denix.org>
+Cc: Denys Dmytriyenko <denys@konsulko.com>,
+	Andrew Davis <afd@ti.com>
+Subject: [master][PATCH 14/16] opencl: deprecate
+Date: Mon, 26 Aug 2024 15:16:03 -0400
+Message-Id: <20240826191605.8190-14-denis@denix.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240826191605.8190-1-denis@denix.org>
 References: <20240826191605.8190-1-denis@denix.org>
@@ -39,497 +40,834 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Mon, 26 Aug 2024 19:16:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15525
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15527
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-Remove tiovx components as deprecated and not maintained.
+Remove opencl components as deprecated and not maintained.
 
-This component was offloading processing tasks to DSP using heavily
-modified OpenCL/OpenCV forks of old versions of corresponding upstream
-projects on legacy platforms.
-
+Acked-by: Andrew Davis <afd@ti.com>
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- ...r-Yocto-build-and-add-RTOS-build-var.patch | 135 ------------------
- .../recipes-ti/tiovx/files/reload-dsp-fw.sh   |  66 ---------
- .../recipes-ti/tiovx/files/setenv.sh          |   8 --
- .../recipes-ti/tiovx/tiovx-app-host.bb        |  60 --------
- .../recipes-ti/tiovx/tiovx-lib-host.bb        |  42 ------
- .../recipes-ti/tiovx/tiovx-sys-iface.bb       |  51 -------
- .../recipes-ti/tiovx/tiovx-sys.inc            |   5 -
- 7 files changed, 367 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-pat=
-hs-for-Yocto-build-and-add-RTOS-build-var.patch
- delete mode 100755 meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-f=
-w.sh
- delete mode 100644 meta-arago-extras/recipes-ti/tiovx/files/setenv.sh
- delete mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb
- delete mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
- delete mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb
- delete mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc
+ .../conf/distro/include/branding-core.inc     |   4 -
+ .../recipes-core/images/arago-image.inc       |   1 -
+ ...nativesdk-packagegroup-arago-tisdk-host.bb |   1 -
+ meta-arago-extras/recipes-ti/ocl/clocl_git.bb |  43 ------
+ ...-resource-table-for-new-Linux-kernel.patch |  95 ------------
+ meta-arago-extras/recipes-ti/ocl/ocl.inc      |  17 ---
+ ...tmpy-Link-with-libdl-to-resolve-link.patch |  42 -----
+ .../recipes-ti/ocl/opencl-examples_git.bb     | 144 ------------------
+ .../recipes-ti/ocl/opencl-monitor-ipu_git.bb  |  64 --------
+ .../recipes-ti/ocl/opencl-monitor_git.bb      | 103 -------------
+ .../recipes-ti/ocl/opencl-tidl-fw_git.bb      |  39 -----
+ .../recipes-ti/ocl/opencl_git.bb              |  79 ----------
+ 12 files changed, 632 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-ti/ocl/clocl_git.bb
+ delete mode 100644 meta-arago-extras/recipes-ti/ocl/files/0001-Update-VR=
+ING-in-resource-table-for-new-Linux-kernel.patch
+ delete mode 100644 meta-arago-extras/recipes-ti/ocl/ocl.inc
+ delete mode 100644 meta-arago-extras/recipes-ti/ocl/ocl/0001-float_compu=
+te-matmpy-Link-with-libdl-to-resolve-link.patch
+ delete mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-examples_git.=
+bb
+ delete mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_g=
+it.bb
+ delete mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.b=
+b
+ delete mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.b=
+b
+ delete mode 100644 meta-arago-extras/recipes-ti/ocl/opencl_git.bb
 
-diff --git a/meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-for-=
-Yocto-build-and-add-RTOS-build-var.patch b/meta-arago-extras/recipes-ti/t=
-iovx/files/0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/me=
+ta-arago-distro/conf/distro/include/branding-core.inc
+index f183e3a0..1d52ed60 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -5,10 +5,6 @@
+ # The policy is for the "Core" brand to be the default,
+ # hence this file is mostly empty and used as a template
+=20
+-# Lower opencl-monitor priority for now
+-ALTERNATIVE_PRIORITY:pn-opencl-monitor =3D "1"
+-ALTERNATIVE_PRIORITY:pn-opencl-monitor-ipu =3D "1"
+-
+ # Raise priority for sample IPC FW images
+ ALTERNATIVE_PRIORITY:pn-ti-ipc-rtos =3D "15"
+=20
+diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta=
+-arago-distro/recipes-core/images/arago-image.inc
+index 17325619..c4438e5c 100644
+--- a/meta-arago-distro/recipes-core/images/arago-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-image.inc
+@@ -23,7 +23,6 @@ SDK_PACKAGE_ARCHS +=3D "buildtools-dummy-${SDKPKGSUFFIX=
+}"
+=20
+ BAD_RECOMMENDATIONS +=3D " \
+     ti-llvm3.6-dev \
+-    opencl-monitor-dev \
+     libulm-dev \
+     gdbserver-c6x-dev \
+     coreutils \
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packa=
+gegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroup=
+s/nativesdk-packagegroup-arago-tisdk-host.bb
+index ccc8d380..177fa668 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup=
+-arago-tisdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup=
+-arago-tisdk-host.bb
+@@ -10,7 +10,6 @@ PACKAGEGROUP_DISABLE_COMPLEMENTARY =3D "1"
+ EXTRA_TI_TOOLS =3D " \
+     nativesdk-ti-cgt6x \
+     nativesdk-ti-cgt-pru \
+-    nativesdk-clocl \
+     nativesdk-open62541-examples \
+     nativesdk-open62541-tests \
+     nativesdk-gcc-arm-baremetal \
+diff --git a/meta-arago-extras/recipes-ti/ocl/clocl_git.bb b/meta-arago-e=
+xtras/recipes-ti/ocl/clocl_git.bb
 deleted file mode 100644
-index ff80debc..00000000
---- a/meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-for-Yocto-b=
-uild-and-add-RTOS-build-var.patch
+index b6ad9782..00000000
+--- a/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
 +++ /dev/null
-@@ -1,135 +0,0 @@
--From 32bd788608034f5a49d9cd4a0163190ef666d9a2 Mon Sep 17 00:00:00 2001
--From: Djordje Senicic <d-senicic1@ti.com>
--Date: Mon, 14 Aug 2017 10:26:39 -0400
--Subject: [PATCH] Fix paths for Yocto build and add RTOS build var
+@@ -1,43 +0,0 @@
+-DESCRIPTION =3D "TI OpenCL offline C compiler for compute devices"
+-HOMEPAGE =3D "https://downloads.ti.com/mctools/esd/docs/opencl/index.htm=
+l"
+-LICENSE =3D "BSD-3-Clause"
 -
--Upstream-Status: Inappropriate [oe specific]
+-include ocl.inc
 -
--Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
+-PR =3D "${INC_PR}.0"
+-
+-DEPENDS =3D "ti-llvm3.6 ti-llvm3.6-native boost"
+-
+-S =3D "${WORKDIR}/git/host"
+-
+-export WANT_LLVM_RELEASE =3D "3.6-ti"
+-
+-TARGET:class-target =3D "arm"
+-TARGET:class-native =3D "x86"
+-TARGET:class-nativesdk =3D "x86"
+-
+-EXTRA_OEMAKE =3D " -C ${S}/clocl \
+-                 _PRODUCT_VERSION=3D${PV} \
+-                 TARGET=3D${TARGET} \
+-                 LLVM_CONFIG_EXE=3D${STAGING_BINDIR_NATIVE}/llvm-config =
+\
+-"
+-
+-do_compile() {
+-  oe_runmake
+-}
+-
+-do_install() {
+-  install -d ${D}${bindir}
+-  install -m 755 ${S}/clocl/${TARGET}/clocl ${D}${bindir}
+-}
+-
+-RDEPENDS:${PN} +=3D "ti-cgt6x"
+-BBCLASSEXTEND =3D "native nativesdk"
+-
+-# Disable the "buildpaths" check while we figure out how we are
+-# going to address this issue.
+-#
+-# The ti-llvm3.6 compiler is a custom TI compiler that has not
+-# been updated for a number of years.  It does not currently
+-# support reproducible builds.
+-INSANE_SKIP:${PN} +=3D "buildpaths"
+diff --git a/meta-arago-extras/recipes-ti/ocl/files/0001-Update-VRING-in-=
+resource-table-for-new-Linux-kernel.patch b/meta-arago-extras/recipes-ti/=
+ocl/files/0001-Update-VRING-in-resource-table-for-new-Linux-kernel.patch
+deleted file mode 100644
+index fcdb2215..00000000
+--- a/meta-arago-extras/recipes-ti/ocl/files/0001-Update-VRING-in-resourc=
+e-table-for-new-Linux-kernel.patch
++++ /dev/null
+@@ -1,95 +0,0 @@
+-ocl: Update VRING in resource table for new Linux kernel
+-
+-- Mark the vring device addresses as FW_RSC_ADDR_ANY, so that Linux kern=
+el
+-  knows it needs to update these to the actual dynamically allocated
+-  memory locations. The virtqueue driver itself will poll for the
+-  completion status of this update.
+-- The change is backward compatible with 4.19 kernel
+-
+-Upstream-Status: Submitted
+-
+-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 ----
-- Makefile            | 27 +++++++++++++++++++--------
-- psdk_tools_path.mak | 32 ++++++++++++++------------------
-- 2 files changed, 33 insertions(+), 26 deletions(-)
+- monitor/src/custom_rsc_table_tci6638.h       | 7 +++----
+- monitor/src/custom_rsc_table_vayu_dsp.h      | 7 +++----
+- monitor_ipu/src/custom_rsc_table_vayu_ipu1.h | 7 +++----
+- 3 files changed, 9 insertions(+), 12 deletions(-)
 -
--diff --git a/Makefile b/Makefile
--index 0832e07..1be5b0d 100755
----- a/Makefile
--+++ b/Makefile
--@@ -1,6 +1,6 @@
+-diff --git a/monitor/src/custom_rsc_table_tci6638.h b/monitor/src/custom=
+_rsc_table_tci6638.h
+-index db6f686..c9f3f49 100644
+---- a/monitor/src/custom_rsc_table_tci6638.h
+-+++ b/monitor/src/custom_rsc_table_tci6638.h
+-@@ -49,8 +49,7 @@
+- /* flip up bits whose indices represent features we support */
+- #define RPMSG_IPU_C0_FEATURES         1
 -=20
-- # Valid values are: vsdk psdk
---BUILD_SDK=3Dvsdk
--+BUILD_SDK=3Dpsdk
+--#define RPMSG_VRING0_DA     0xA0000000
+--#define RPMSG_VRING1_DA     0xA0004000
+-+#define RPMSG_VRING_ADDR_ANY    FW_RSC_ADDR_ANY
 -=20
-- include $(BUILD_SDK)_tools_path.mak
+- /*
+-  * sizes of the virtqueues (expressed in number of buffers supported,
+-@@ -112,8 +111,8 @@ struct my_resource_table ti_ipc_remoteproc_ResourceT=
+able =3D {
+-         /* no config data */
+-     },
+-     /* the two vrings */
+--    { RPMSG_VRING0_DA, 4096, RPMSG_VQ0_SIZE, 1, 0 },
+--    { RPMSG_VRING1_DA, 4096, RPMSG_VQ1_SIZE, 2, 0 },
+-+    { RPMSG_VRING_ADDR_ANY, 4096, RPMSG_VQ0_SIZE, 1, 0 },
+-+    { RPMSG_VRING_ADDR_ANY, 4096, RPMSG_VQ1_SIZE, 2, 0 },
+- #endif
 -=20
--@@ -8,11 +8,12 @@ BUILD_EMULATION_MODE?=3Dno
-- BUILD_TARGET_MODE?=3Dyes
+-     {
+-diff --git a/monitor/src/custom_rsc_table_vayu_dsp.h b/monitor/src/custo=
+m_rsc_table_vayu_dsp.h
+-index ddcf4a5..f7fe9e7 100644
+---- a/monitor/src/custom_rsc_table_vayu_dsp.h
+-+++ b/monitor/src/custom_rsc_table_vayu_dsp.h
+-@@ -138,8 +138,7 @@
 -=20
-- BUILD_CONFORMANCE_TEST?=3Dyes
---BUILD_IVISION_KERNELS?=3Dyes
--+BUILD_IVISION_KERNELS?=3Dno
-- BUILD_BAM?=3Dyes
-- BUILD_TUTORIAL?=3Dyes
-- BUILD_LINUX_A15?=3Dyes
---BUILD_EVE?=3Dyes
--+BUILD_RTOS?=3Dno
--+BUILD_EVE?=3Dno
+- // Must be marked non-cached by monitor
+- #define DSP_MEM_IPC_VRING       0xFFF00000
+--#define DSP_MEM_RPMSG_VRING0    0xFFF00000
+--#define DSP_MEM_RPMSG_VRING1    0xFFF04000
+-+#define RPMSG_VRING_ADDR_ANY    FW_RSC_ADDR_ANY
+- #define DSP_MEM_VRING_BUFS0     0xFFF40000
+- #define DSP_MEM_VRING_BUFS1     0xFFF80000
 -=20
-- PROFILE?=3Dall
+-@@ -272,8 +271,8 @@ struct my_resource_table ti_ipc_remoteproc_ResourceT=
+able =3D {
+-         /* no config data */
+-     },
+-     /* the two vrings */
+--    { DSP_MEM_RPMSG_VRING0, 4096, DSP_RPMSG_VQ0_SIZE, 1, 0 },
+--    { DSP_MEM_RPMSG_VRING1, 4096, DSP_RPMSG_VQ1_SIZE, 2, 0 },
+-+    { RPMSG_VRING_ADDR_ANY, 4096, DSP_RPMSG_VQ0_SIZE, 1, 0 },
+-+    { RPMSG_VRING_ADDR_ANY, 4096, DSP_RPMSG_VQ1_SIZE, 2, 0 },
 -=20
--@@ -43,12 +44,17 @@ TARGET_COMBOS :=3D
+-     {
+-         TYPE_CARVEOUT,
+-diff --git a/monitor_ipu/src/custom_rsc_table_vayu_ipu1.h b/monitor_ipu/=
+src/custom_rsc_table_vayu_ipu1.h
+-index b06ab86..ab80089 100644
+---- a/monitor_ipu/src/custom_rsc_table_vayu_ipu1.h
+-+++ b/monitor_ipu/src/custom_rsc_table_vayu_ipu1.h
+-@@ -96,8 +96,7 @@
 -=20
-- ifeq ($(BUILD_TARGET_MODE),yes)
--   ifeq ($(PROFILE), $(filter $(PROFILE), debug all))
---	TARGET_COMBOS +=3D TDAX:SYSBIOS:M4:1:debug:TIARMCGT
---	TARGET_COMBOS +=3D TDAX:SYSBIOS:C66:1:debug:CGT6X
--+	ifeq ($(BUILD_RTOS),yes)
--+	  TARGET_COMBOS +=3D TDAX:SYSBIOS:M4:1:debug:TIARMCGT
--+	  TARGET_COMBOS +=3D TDAX:SYSBIOS:C66:1:debug:CGT6X
--+	endif
--+
-- 	ifeq ($(BUILD_EVE),yes)
-- 	TARGET_COMBOS +=3D TDAX:SYSBIOS:EVE:1:debug:ARP32CGT
-- 	endif
--+	ifeq ($(BUILD_RTOS),yes)
-- 	TARGET_COMBOS +=3D TDAX:SYSBIOS:A15:1:debug:GCC
--+	endif
-- 	ifneq ($(OS),Windows_NT)
-- 		ifeq ($(BUILD_LINUX_A15),yes)
-- 		TARGET_COMBOS +=3D TDAX:LINUX:A15:1:debug:GCC_LINARO
--@@ -57,12 +63,17 @@ ifeq ($(BUILD_TARGET_MODE),yes)
--   endif
+- #define IPU_MEM_IPC_VRING       0x60000000
+- #define IPU_PHYS_MEM_IPC_VRING  0x9D000000
+--#define IPU_MEM_RPMSG_VRING0    0x60000000
+--#define IPU_MEM_RPMSG_VRING1    0x60004000
+-+#define RPMSG_VRING_ADDR_ANY    FW_RSC_ADDR_ANY
 -=20
--   ifeq ($(PROFILE), $(filter $(PROFILE), release all))
---	TARGET_COMBOS +=3D TDAX:SYSBIOS:M4:1:release:TIARMCGT
---	TARGET_COMBOS +=3D TDAX:SYSBIOS:C66:1:release:CGT6X
--+	ifeq ($(BUILD_RTOS),yes)
--+	  TARGET_COMBOS +=3D TDAX:SYSBIOS:M4:1:release:TIARMCGT
--+	  TARGET_COMBOS +=3D TDAX:SYSBIOS:C66:1:release:CGT6X
--+	endif
--+
-- 	ifeq ($(BUILD_EVE),yes)
-- 	TARGET_COMBOS +=3D TDAX:SYSBIOS:EVE:1:release:ARP32CGT
-- 	endif
---	TARGET_COMBOS +=3D TDAX:SYSBIOS:A15:1:release:GCC
--+	ifeq ($(BUILD_RTOS),yes)
--+	  TARGET_COMBOS +=3D TDAX:SYSBIOS:A15:1:release:GCC
--+	endif
-- 	ifneq ($(OS),Windows_NT)
-- 		ifeq ($(BUILD_LINUX_A15),yes)
-- 		TARGET_COMBOS +=3D TDAX:LINUX:A15:1:release:GCC_LINARO
--diff --git a/psdk_tools_path.mak b/psdk_tools_path.mak
--index 36394f8..8fd468d 100755
----- a/psdk_tools_path.mak
--+++ b/psdk_tools_path.mak
--@@ -2,7 +2,6 @@
-- TIOVX_PATH =3D $(abspath .)
+- /*
+-  * Sizes of the virtqueues (expressed in number of buffers supported,
+-@@ -206,8 +205,8 @@ struct my_resource_table ti_ipc_remoteproc_ResourceT=
+able =3D {
+-         /* no config data */
+-     },
+-     /* the two vrings */
+--    { IPU_MEM_RPMSG_VRING0, 4096, IPU_RPMSG_VQ0_SIZE, 1, 0 },
+--    { IPU_MEM_RPMSG_VRING1, 4096, IPU_RPMSG_VQ1_SIZE, 2, 0 },
+-+    { RPMSG_VRING_ADDR_ANY, 4096, IPU_RPMSG_VQ0_SIZE, 1, 0 },
+-+    { RPMSG_VRING_ADDR_ANY, 4096, IPU_RPMSG_VQ1_SIZE, 2, 0 },
 -=20
-- PLSDK_PATH :=3D /home/x0157990/ti-processor-sdk-linux-am57xx-evm-04.00.=
-00.04
---PRSDK_PATH :=3D /home/x0157990/ti-processor-sdk-rtos-am57xx-evm-04-00-0=
-0-04
+-     {
+-         TYPE_CARVEOUT,
+---=20
+-2.17.1
+-
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras=
+/recipes-ti/ocl/ocl.inc
+deleted file mode 100644
+index 9a9231a8..00000000
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ /dev/null
+@@ -1,17 +0,0 @@
+-# patch version at the end needs to be in double digits
+-PV =3D "1.2.00.02"
+-INC_PR =3D "r0"
+-
+-LIC_FILES_CHKSUM =3D "file://../debian/copyright;md5=3D2e3965a73a8a49c23=
+836467266120dff"
+-
+-FILESEXTRAPATHS:prepend :=3D "${THISDIR}/ocl:"
+-
+-OCL_GIT_URI =3D "git://git.ti.com/git/opencl/ti-opencl.git"
+-OCL_GIT_PROTOCOL =3D "https"
+-OCL_GIT_BRANCH =3D "master"
+-
+-OCL_SRCREV =3D "b1dfed9af21a1236380b9d643c432e4f0c619fce"
+-
+-BRANCH =3D "${OCL_GIT_BRANCH}"
+-SRC_URI =3D "${OCL_GIT_URI};protocol=3D${OCL_GIT_PROTOCOL};branch=3D${BR=
+ANCH}"
+-SRCREV =3D "${OCL_SRCREV}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl/0001-float_compute-matm=
+py-Link-with-libdl-to-resolve-link.patch b/meta-arago-extras/recipes-ti/o=
+cl/ocl/0001-float_compute-matmpy-Link-with-libdl-to-resolve-link.patch
+deleted file mode 100644
+index 43bc9900..00000000
+--- a/meta-arago-extras/recipes-ti/ocl/ocl/0001-float_compute-matmpy-Link=
+-with-libdl-to-resolve-link.patch
++++ /dev/null
+@@ -1,42 +0,0 @@
+-From 79b7c204cafc2c96716b8e91093f135656820e16 Mon Sep 17 00:00:00 2001
+-From: Jacob Stiffler <j-stiffler@ti.com>
+-Date: Thu, 5 May 2016 08:35:34 -0400
+-Subject: [PATCH] float_compute, matmpy: Link with libdl to resolve linki=
+ng
+- error
+-
+-* with GCC 5.3 toolchain, linking with libgomp also requires linking
+-  with libdl
+-
+-Upstream-Status: Pending
+-
+-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+----
+- examples/float_compute/Makefile | 2 +-
+- examples/matmpy/Makefile        | 2 +-
+- 2 files changed, 2 insertions(+), 2 deletions(-)
+-
+-diff --git a/examples/float_compute/Makefile b/examples/float_compute/Ma=
+kefile
+-index cb129f3..5514e0e 100644
+---- a/examples/float_compute/Makefile
+-+++ b/examples/float_compute/Makefile
+-@@ -5,4 +5,4 @@ CLOCL_FLAGS =3D
+- include ../make.inc
 -=20
-- CROSS_COMPILE_LINARO :=3D arm-linux-gnueabihf-
-- CROSS_COMPILE :=3D arm-none-eabi-
--@@ -16,23 +15,20 @@ ifeq ($(BUILD_OS),Windows_NT)
-- GCC_WINDOWS_ROOT ?=3D C:/CodeBlocks/MinGW
-- endif
+- $(EXE): main.o dsp_compute.out
+--	@$(CPP) $(CPP_FLAGS) main.o $(LD_FLAGS) $(LIBS) -o $@ -lrt
+-+	@$(CPP) $(CPP_FLAGS) main.o $(LD_FLAGS) $(LIBS) -o $@ -lrt -ldl
+-diff --git a/examples/matmpy/Makefile b/examples/matmpy/Makefile
+-index 9b20091..f9e6112 100644
+---- a/examples/matmpy/Makefile
+-+++ b/examples/matmpy/Makefile
+-@@ -6,6 +6,6 @@ CLOCL_FLAGS =3D
+- include ../make.inc
 -=20
---XDC_PATH :=3D $(PRSDK_PATH)/xdctools_3_32_01_22_core/
---TIARMCGT_ROOT :=3D $(PRSDK_PATH)/ti-cgt-arm_16.9.2.LTS
--+XDC_PATH :=3D $(XDC_INSTALL_DIR)
--+TIARMCGT_ROOT :=3D  $(TIARMCGTPATH)
--+GCC_ROOT_LINARO :=3D $(GCCLINARO)
--+XDIAS_PATH :=3D $(XDAISPATH)
--+BIOS_PATH :=3D $(SYSBIOSPATH)
--+PDK_PATH :=3D $(PDKPATH)
--+SDK_PLATFORM_IF_PATH :=3D $(SDKPLATFORMIFPATH)
+- $(EXE): main.o kernel.out
+--	@$(CPP) $(CPP_FLAGS) main.o $(LD_FLAGS) $(LIBS) -lrt -lgomp -o $@
+-+	@$(CPP) $(CPP_FLAGS) main.o $(LD_FLAGS) $(LIBS) -lrt -lgomp -ldl -o $@
 -=20
---GCC_ROOT :=3D $(PRSDK_PATH)/gcc-arm-none-eabi-4_9-2015q3
---GCC_ROOT_LINARO :=3D /home/x0157990/linaro/gcc-linaro-6.2.1-2016.11-x86=
-_64_arm-linux-gnueabihf
---CGT6X_ROOT :=3D $(PRSDK_PATH)/ti-cgt-c6000_8.1.3/
--+GCC_ROOT ?=3D $(GCCARMNONEPATH)
--+CGT6X_ROOT :=3D $(TI_CGT_INSTALL)
-- GCC_LINUX_ROOT ?=3D /usr/
--+VXLIB_PATH ?=3D $(VXLIBPATH)
--+ARP32CGT_ROOT ?=3D $(EVETOOLSPATH}
--+DMAUTILS_PATH ?=3D $(DSPAPPS_PATH)/dmautils
--+ALGFRAMEWORK_PATH ?=3D $(DSPAPPS_PATH)/algframework
--+EDMA3_LLD_PATH :=3D $(EDMA3LLDPATH)
--=20
---
---VXLIB_PATH ?=3D $(PRSDK_PATH)/vxlib_c66x_1_1_0_0
---XDIAS_PATH :=3D $(PRSDK_PATH)/xdais_7_24_00_04
---EDMA3_LLD_PATH :=3D $(PRSDK_PATH)/edma3_lld_2_12_04_28/
---BIOS_PATH :=3D $(PRSDK_PATH)/bios_6_46_05_55/
---
---DMAUTILS_PATH ?=3D $(PRSDK_PATH)/REL.DMAUTILS.00.08.00.02/dmautils
---ALGFRAMEWORK_PATH ?=3D $(PRSDK_PATH)/REL.ALGFRAMEWORK.02.07.00.00/algfr=
-amework
---PDK_PATH :=3D $(PRSDK_PATH)/pdk_am57xx_1_0_7
---CMEM_PATH ?=3D $(PLSDK_INSTALL_PATH)/board-support/extra-drivers/cmem-m=
-od-4.14.00.00+gitAUTOINC+b514a99ac4/
---TARGETFS :=3D $(PLSDK_PATH)/linux-devkit/sysroots/armv7ahf-neon-linux-g=
-nueabi/
---SDK_PLATFORM_IF_PATH ?=3D /home/x0157990/am57/openvx/ex41_forwardmsg/vx
--\ No newline at end of file
+- kernel.out: ccode.obj=20
 ---=20
 -1.9.1
 -
-diff --git a/meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-fw.sh b/=
-meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-fw.sh
-deleted file mode 100755
-index 198fd60f..00000000
---- a/meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-fw.sh
-+++ /dev/null
-@@ -1,66 +0,0 @@
--#!/bin/sh
--usage() {
--    cat << EOF
--
--  Usage:
--         $0 <fw-type: opencl, tiovx>
--
--EOF
--}
--
--if [ "$1" ]; then
--case "$1" in
--    opencl) echo "Reload opencl firmware to DSP"
--        ;;
--    tiovx) echo "Reload tiovx firmware to DSP"
--        ;;
--    *) echo "Wrong argument $1"
--       usage
--       exit
--        ;;
--esac
--else
--       usage
--       exit
--fi
--
--fw=3D"${1}"
--
--if [[ ${fw} =3D=3D opencl ]]; then
--    #Start OpenCL CMEM memory allocation daemon
--    if pgrep -x "ti-mctd" > /dev/null
--    then
--        echo "ti-mctd is running"
--    else
--        echo "Starting ti-mctd..."
--        ti-mctd
--    fi
--    # Link opencl monitor firmware for DSPs
--    ln -s -f /lib/firmware/dra7-dsp1-fw.xe66.opencl-monitor /lib/firmwar=
-e/dra7-dsp1-fw.xe66
--    ln -s -f /lib/firmware/dra7-dsp2-fw.xe66.opencl-monitor /lib/firmwar=
-e/dra7-dsp2-fw.xe66
--fi
--
--if [[ ${fw} =3D=3D tiovx ]]; then
--    # Kill CMEM multi-process daemon. This releases all CMEM memory used=
- by OpenCL memory allocation
--    pkill ti-mctd
--
--    # Link tiovx firmware for DSPs
--    ln -s -f /lib/firmware/dra7-dsp1-fw.xe66.openvx /lib/firmware/dra7-d=
-sp1-fw.xe66
--    ln -s -f /lib/firmware/dra7-dsp2-fw.xe66.openvx /lib/firmware/dra7-d=
-sp2-fw.xe66
--fi
--
--cd /sys/bus/platform/drivers/omap-rproc/
--
--# release DSPs
--echo "Releasing DSPs..."
--echo 40800000.dsp > unbind
--
--echo 41000000.dsp > unbind
--
--# reload firmware for DSPs
--echo "Reloading firmware for DSPs..."
--echo 40800000.dsp > bind
--
--echo 41000000.dsp > bind
--
--cd ~-
-diff --git a/meta-arago-extras/recipes-ti/tiovx/files/setenv.sh b/meta-ar=
-ago-extras/recipes-ti/tiovx/files/setenv.sh
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/me=
+ta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
 deleted file mode 100644
-index dc7bcea3..00000000
---- a/meta-arago-extras/recipes-ti/tiovx/files/setenv.sh
+index 98b6b64d..00000000
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
 +++ /dev/null
-@@ -1,8 +0,0 @@
--#!/bin/bash
+@@ -1,144 +0,0 @@
+-SUMMARY =3D "TI OpenCL example applications"
+-HOMEPAGE =3D "https://downloads.ti.com/mctools/esd/docs/opencl/index.htm=
+l"
+-LICENSE =3D "BSD-3-Clause"
 -
--export PROC_LIST=3D'host khronos_example'
+-include ocl.inc
+-require recipes-ti/includes/ti-paths.inc
 -
--export LINUX_SYSROOT_DIR=3D/
--export TIOVXPATH=3D/usr/include/VX
--export IPCPATH=3D/usr/share/ti/ti-ipc-tree
--export SDKPLATFORMIFPATH=3D/usr/share/ti/ti-tiovx-lib-tree/sys-iface
-diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb b/meta-=
-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb
-deleted file mode 100644
-index ec8355e0..00000000
---- a/meta-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb
-+++ /dev/null
-@@ -1,60 +0,0 @@
--SUMMARY =3D "TI OpenVX HOST (Linux A15) conformance verification applica=
-tion, Khronos tutorial example, and Host side IPC implementation"
--DESCRIPTION =3D "TI OpenVX implementation, TIOVX, includes Khronos defin=
-ed conformance test and tutorial example, as well as additional TI \
--specific tests. This package creates application which runs all the conf=
-ormance tests (7K-8K) and Khronos tutorial exercise1. \
--Same package includes IPC implementation (MessageQ based) needed for com=
-munication with DSP firmware (loaded at boot time)"
+-PR =3D "${INC_PR}.1"
 -
--LICENSE =3D "BSD-3-Clause & MIT"
--LIC_FILES_CHKSUM =3D "file://docs/manifest/TIOVX-APP-HOST_01.00.01.00_ma=
-nifest.html;md5=3D247d7c56d783f583bf802490d5c93db3"
+-COMPATIBLE_MACHINE =3D "dra7xx"
+-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
 -
--FILESEXTRAPATHS:prepend :=3D "${THISDIR}/files:"
+-DEPENDS =3D "opencl opencl-monitor ti-cgt6x-native clocl-native"
 -
--SRC_URI:append =3D "\
--     file://setenv.sh \
+-OCL_PERSISTENT_DEPENDS =3D "ti-xdctools-native ti-ipc-rtos ti-sysbios"
+-
+-DEPENDS:append:dra7xx =3D " ${OCL_PERSISTENT_DEPENDS}"
+-
+-# Split examples into two groups:
+-# - offline-compile: examples who's kernels are precompiled (offline).
+-# - runtime-compile: examples who's kernels are compiled during runtime.
+-PACKAGES =3D+ "${PN}-runtime-compile ${PN}-runtime-compile-dbg ${PN}-off=
+line-compile ${PN}-offline-compile-dbg"
+-
+-RDEPENDS:${PN} =3D "${PN}-runtime-compile ${PN}-offline-compile"
+-RDEPENDS:${PN}-dev +=3D "libgomp-dev"
+-RDEPENDS:${PN}-offline-compile +=3D "opencl-runtime"
+-RDEPENDS:${PN}-runtime-compile +=3D "opencl"
+-
+-S =3D "${WORKDIR}/git/opencl_example_src"
+-B =3D "${S}"
+-
+-OCL_RUNTIME_COMPILE_EXAMPLE_LIST =3D " \
+-    ccode \
+-    null \
+-    ooo_callback \
+-    simple \
+-    vecadd \
+-    vecadd_openmp \
+-    vecadd_openmp_t \
+-    vecadd_subdevice \
 -"
 -
--inherit pkgconfig features_check
+-OCL_EXAMPLE_LIST =3D " abort_exit \
+-                     buffer \
+-                     ccode \
+-                     conv1d \
+-                     dgemm \
+-                     dspheap \
+-                     dsplib_fft \
+-                     edmamgr \
+-                     float_compute \
+-                     matmpy \
+-                     monte_carlo \
+-                     null \
+-                     offline \
+-                     offline_embed \
+-                     ooo_callback \
+-                     platforms \
+-                     sgemm \
+-                     simple \
+-                     timeout \
+-                     vecadd \
+-                     vecadd_openmp \
+-                     vecadd_openmp_t \
+-                     vecadd_subdevice \
+-"
 -
--REQUIRED_DISTRO_FEATURES =3D "opencv"
+-OCL_PERSISTENT_EXAMPLE_LIST =3D " persistent_clock_concurrent \
+-                                persistent_clock_spanning \
+-                                persistent_common \
+-                                persistent_kernel_timeout \
+-                                persistent_messageq_concurrent \
+-                                persistent_task_concurrent \
+-                                persistent_task_spanning \
+-"
 -
--require recipes-ti/includes/arago-paths.inc
--require tiovx-sys.inc
+-OCL_EXAMPLE_LIST:append:dra7xx =3D " ${OCL_PERSISTENT_EXAMPLE_LIST}"
 -
--DEPENDS =3D "tiovx-sys-iface tiovx-lib-host ti-ipc cmem opencv udev"
--RDEPENDS:${PN} =3D "tiovx-sys-iface tiovx-sys-iface-firmware tiovx-lib-h=
-ost ti-ipc cmem"
+-OCL_MPAX_EXAMPLE_LIST =3D " vecadd_mpax \
+-                          vecadd_mpax_openmp \
+-"
 -
--PR =3D "r3"
--
--COMPATIBLE_MACHINE =3D "dra7xx"
--PACKAGE_ARCH =3D "${MACHINE_ARCH}"
--
--PROCLIST =3D "host khronos_example"
--
--S =3D "${WORKDIR}/git"
--
--EXTRA_OEMAKE +=3D " TARGET_ROOTDIR=3D${STAGING_DIR_HOST} "
--EXTRA_OEMAKE +=3D " GCCLINARO=3D${TOOLCHAIN_PATH} TIOVXPATH=3D${TIOVX_IN=
-STALL_DIR} IPCPATH=3D${IPC_INSTALL_DIR} "
--EXTRA_OEMAKE +=3D " SDKPLATFORMIFPATH=3D${TIOVX_INSTALL_DIR}/sys-iface "
--EXTRA_OEMAKE +=3D " PROC_LIST=3D'${PROCLIST}' "
--
--do_install () {
--    install -d ${D}${bindir}/
--    install -m 0755 ${S}/host/bin/debug/app_host ${D}${bindir}/tiovx-app=
-_host
--    install -m 0755 ${S}/khronos_example/bin/debug/opticalflow ${D}${bin=
-dir}/tiovx-opticalflow
--
--    oe_runmake clean
--    install -d ${D}${datadir}/ti/examples/openvx
--    install -m 644 ${S}/products.mak ${D}${datadir}/ti/examples/openvx
--    install -m 644 ${S}/makefile ${D}${datadir}/ti/examples/openvx
--    install -m 644 ${WORKDIR}/setenv.sh ${D}${datadir}/ti/examples/openv=
-x
--    cp -r ${S}/host ${D}${datadir}/ti/examples/openvx
--    cp -r ${S}/khronos_example  ${D}${datadir}/ti/examples/openvx
--    cp -r ${S}/shared ${D}${datadir}/ti/examples/openvx
+-python do_unpack:append() {
+-    s =3D d.getVar("S")
+-    os.makedirs(s)
 -}
 -
--PACKAGES +=3D "${PN}-examples"
--FILES:${PN}-examples =3D "${datadir}/ti/examples/openvx"
--RDEPENDS:${PN}-examples =3D "tiovx-lib-host-staticdev tiovx-lib-host-dev=
-"
--
--FILES:${PN} +=3D "${bindir}/*"
--INSANE_SKIP:${PN} =3D "ldflags"
--INSANE_SKIP:${PN}-examples =3D "dev-deps"
-diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb b/meta-=
-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
-deleted file mode 100644
-index e2ee926e..00000000
---- a/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
-+++ /dev/null
-@@ -1,42 +0,0 @@
--SUMMARY =3D "TI OpenVX HOST (Linux A15) side library"
--DESCRIPTION =3D "TI OpenVX implementation, TIOVX, based on Khronos OpenV=
-X framework implementation including multiple C66 optimized kernels. \
--Khronos defined conformance test is part of this package as well as addi=
-tional TI specific tests. Few tutorial examples are also included. \
--This package creates necessary libraries and header files for Linux Host=
- side only. "
--
--LICENSE =3D "TI-TSPA"
--LIC_FILES_CHKSUM =3D "file://docs/manifest/TIOVX_manifest.html;md5=3Dedd=
-4fbfc6c1f01c20d49def4670efac0"
--
--require recipes-ti/includes/arago-paths.inc
--
--COMPATIBLE_MACHINE =3D "dra7xx"
--PACKAGE_ARCH =3D "${MACHINE_ARCH}"
--
--PV =3D "01.00.00.00"
--PR =3D "r1"
--
--BRANCH =3D "master"
--SRC_URI =3D "git://git.ti.com/git/processor-sdk/tiovx.git;protocol=3Dhtt=
-ps;branch=3D${BRANCH}"
--SRC_URI +=3D "file://0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-v=
-ar.patch "
--SRCREV =3D "2bfa01201804eaf2e675c743e708e88ab612049e"
--
--S =3D "${WORKDIR}/git"
--
--DEPENDS =3D "tiovx-sys-iface"
--
--EXTRA_OEMAKE +=3D " GCCLINARO=3D${TOOLCHAIN_PATH} "
--EXTRA_OEMAKE +=3D " SDKPLATFORMIFPATH=3D${TIOVX_INSTALL_DIR}/sys-iface B=
-UILD_RTOS=3Dno "
--
--do_install () {
--    CP_ARGS=3D"-Prf --preserve=3Dmode,timestamps --no-preserve=3Downersh=
-ip"
--    install -d ${D}${includedir}/VX
--    install -d ${D}${includedir}/VX/TI
--    install -d ${D}${libdir}
--    cp ${CP_ARGS} ${S}/lib/TDAX/A15/LINUX/release/*.a ${D}${libdir}
--    cp ${CP_ARGS} ${S}/include/VX/* ${D}${includedir}/VX
--    cp ${CP_ARGS} ${S}/include/TI/* ${D}${includedir}/VX/TI
+-python do_patch:append() {
+-    import shutil
+-    git_dir =3D d.expand("${WORKDIR}/git/examples")
+-    s =3D d.getVar("S")
+-    shutil.copy(os.path.join(git_dir,"Makefile"),s)
+-    shutil.copy(os.path.join(git_dir,"make.inc"),s)
+-    for example in d.getVar("OCL_EXAMPLE_LIST").split():
+-        shutil.copytree(os.path.join(git_dir,example), os.path.join(s,ex=
+ample))
 -}
 -
--FILES:${PN}-staticdev =3D "${libdir}"
--FILES:${PN}-dev =3D "${includedir}"
+-
+-EXTRA_OEMAKE =3D " TARGET_ROOTDIR=3D${STAGING_DIR_HOST} \
+-                 TI_OCL_CGT_INSTALL=3D${STAGING_DIR_NATIVE}/usr/share/ti=
+/cgt-c6x \
+-"
+-
+-export XDC_DIR =3D "${XDC_INSTALL_DIR}/packages"
+-export IPC_DIR =3D "${IPC_INSTALL_DIR}/packages"
+-export BIOS_DIR =3D "${SYSBIOS_INSTALL_DIR}/packages"
+-
+-do_install() {
+-    install -d ${D}${datadir}/ti/examples/opencl
+-
+-    install ${B}/Makefile ${D}${datadir}/ti/examples/opencl
+-    install ${B}/make.inc ${D}${datadir}/ti/examples/opencl
+-
+-    for ocl_example in ${OCL_EXAMPLE_LIST}; do
+-        install -d ${D}${datadir}/ti/examples/opencl/${ocl_example}
+-        cp -rv ${B}/${ocl_example}/* ${D}${datadir}/ti/examples/opencl/$=
+{ocl_example}
+-    done
+-}
+-
+-# First package the examples which require run-time kernel compilation.
+-FILES:${PN}-runtime-compile +=3D "\
+-    ${@' '.join(['${datadir}/ti/examples/opencl/' + example for example =
+in d.getVar('OCL_RUNTIME_COMPILE_EXAMPLE_LIST').split()])} \
+-"
+-
+-FILES:${PN}-runtime-compile-dbg +=3D "\
+-    ${@' '.join(['${datadir}/ti/examples/opencl/' + example + '/.debug' =
+for example in d.getVar('OCL_RUNTIME_COMPILE_EXAMPLE_LIST').split()])} \
+-"
+-
+-# Remaining examples will fall through to the "offline" package.
+-FILES:${PN}-offline-compile +=3D "\
+-    ${datadir}/ti/examples/opencl/ \
+-"
+-
+-FILES:${PN}-offline-compile-dbg +=3D "\
+-    ${datadir}/ti/examples/opencl/*/.debug \
+-"
+-
+-# Add makefiles to dev package
+-FILES:${PN}-dev =3D "${datadir}/ti/examples/opencl/Makefile \
+-                   ${datadir}/ti/examples/opencl/make.inc"
 -
 -ALLOW_EMPTY:${PN} =3D "1"
-diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb b/meta=
--arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb
+-INSANE_SKIP:${PN} =3D "arch ldflags textrel staticdev"
+-INSANE_SKIP:${PN}-offline-compile =3D "arch ldflags textrel staticdev"
+-INSANE_SKIP:${PN}-runtime-compile =3D "arch ldflags textrel staticdev"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb b=
+/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
 deleted file mode 100644
-index 3a900e5f..00000000
---- a/meta-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb
+index 4ec9a547..00000000
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
 +++ /dev/null
-@@ -1,51 +0,0 @@
--SUMMARY =3D "TI OpenVX interface header files between TIOVX library and =
-HOST, DSP IPC side implementation"
--DESCRIPTION =3D "Collection of header files needed to define interface b=
-etween TIOVX library and HOST and DSP IPC side implementation. \
--In order to maintain source compatibility, directory structure follows V=
-SDK source tree layout."
+@@ -1,64 +0,0 @@
+-DESCRIPTION =3D "TI OpenCL M4/IPU device firmware for AM57x"
+-HOMEPAGE =3D "https://downloads.ti.com/mctools/esd/docs/opencl/index.htm=
+l"
+-LICENSE =3D "BSD-3-Clause"
 -
--LICENSE =3D "TI-TSPA"
--LIC_FILES_CHKSUM =3D "file://iface/VSDK/docs/TIOVX-SYS-IFACE_1.0.0.0_man=
-ifest.html;md5=3D10904cbdb4f065c025a63ca71ae7de2d"
--
+-include ocl.inc
 -require recipes-ti/includes/arago-paths.inc
--require tiovx-sys.inc
 -
--PR =3D "r1"
+-PR =3D "${INC_PR}.1"
+-SRC_URI +=3D "file://0001-Update-VRING-in-resource-table-for-new-Linux-k=
+ernel.patch;patchdir=3D.."
+-
+-inherit update-alternatives
+-
+-DEPENDS =3D " common-csl-ip-rtos \
+-            pm-lld-rtos \
+-            ti-xdctools-native \
+-            ti-ipc-rtos \
+-            ti-sysbios \
+-            ti-pdk-build-rtos \
+-            ti-cgt-arm-native \
+-            util-linux-native \
+-            opencl-tidl-fw \
+-"
 -
 -COMPATIBLE_MACHINE =3D "dra7xx"
 -PACKAGE_ARCH =3D "${MACHINE_ARCH}"
 -
--inherit update-alternatives features_check
+-S =3D "${WORKDIR}/git/monitor_ipu"
 -
--REQUIRED_MACHINE_FEATURES =3D "dsp"
+-export IPC_DIR =3D "${IPC_INSTALL_DIR}"
+-export BIOS_DIR =3D "${SYSBIOS_INSTALL_DIR}"
+-export PDK_DIR =3D "${PDK_INSTALL_DIR}"
+-export XDC_DIR =3D "${XDC_INSTALL_DIR}"
+-export TI_OCL_M4_CGT_INSTALL =3D "${STAGING_DIR_NATIVE}/usr/share/ti/ti-=
+cgt-arm"
+-export CSL_LIB_M4 =3D "${PDK_DIR}/packages/ti/csl/lib/am572x/m4/release/=
+ti.csl.aem4"
+-export PM_HAL_LIB_M4 =3D "$(PDK_DIR)/packages/ti/drv/pm/lib/am572x/m4/re=
+lease/pm_hal.aem4"
+-export OCL_TIDL_FW_DIR =3D "${OCL_TIDL_FW_INSTALL_DIR}"
+-export OCL_FPERMS =3D "664"
+-export OCL_DPERMS =3D "775"
 -
--SRC_URI:append =3D "\
--     file://reload-dsp-fw.sh \
+-EXTRA_OEMAKE +=3D " BUILD_AM57=3D1 \
+-                  WORKING_DIRECTORY=3D${S} \
 -"
 -
--S =3D "${WORKDIR}/git"
--
--do_install () {
--#   Install the header files
--    CP_ARGS=3D"-Prf --preserve=3Dmode,timestamps --no-preserve=3Downersh=
-ip"
--    install -d ${D}${TIOVX_INSTALL_DIR_RECIPE}/sys-iface
--    cp ${CP_ARGS} ${S}/iface/VSDK/* ${D}${TIOVX_INSTALL_DIR_RECIPE}/sys-=
-iface
--#   Install the firmware
--    install -d ${D}/${base_libdir}/firmware
--    install -m 0644 ${S}/firmware/tiovx_dsp1.xe66 ${D}/${base_libdir}/fi=
-rmware/dra7-dsp1-fw.xe66.openvx
--    install -m 0644 ${S}/firmware/tiovx_dsp2.xe66 ${D}/${base_libdir}/fi=
-rmware/dra7-dsp2-fw.xe66.openvx
--#   Install the scripts for loading dsp firmware
--    install -d ${D}${bindir}/
--    install -m 0755 ${WORKDIR}/reload-dsp-fw.sh ${D}${bindir}
+-do_compile() {
+-  oe_runmake -f Makefile
 -}
 -
--ALTERNATIVE:${PN} =3D "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66"
+-do_install() {
+-    install -m ${OCL_DPERMS} -d ${D}${base_libdir}/firmware
+-    install -m ${OCL_FPERMS} bin/release/server_ipu1.xem4 ${D}${base_lib=
+dir}/firmware/dra7-ipu1-fw.xem4.opencl-monitor
+-}
+-
+-ALTERNATIVE:${PN} =3D "dra7-ipu1-fw.xem4"
+-ALTERNATIVE_LINK_NAME[dra7-ipu1-fw.xem4] =3D "${base_libdir}/firmware/dr=
+a7-ipu1-fw.xem4"
+-ALTERNATIVE_TARGET[dra7-ipu1-fw.xem4] =3D "${base_libdir}/firmware/dra7-=
+ipu1-fw.xem4.opencl-monitor"
+-ALTERNATIVE_PRIORITY =3D "100"
+-
+-MONITOR_IPU_FIRMWARE =3D "${base_libdir}/firmware/dra7-ipu1-fw.*"
+-
+-FILES:${PN} +=3D " \
+-    ${MONITOR_IPU_FIRMWARE} \
+-"
+-
+-INSANE_SKIP:${PN} =3D "arch"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/met=
+a-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+deleted file mode 100644
+index c5bfe36a..00000000
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
++++ /dev/null
+@@ -1,103 +0,0 @@
+-DESCRIPTION =3D "TI OpenCL compute device firmware"
+-HOMEPAGE =3D "https://downloads.ti.com/mctools/esd/docs/opencl/index.htm=
+l"
+-LICENSE =3D "BSD-3-Clause"
+-
+-include ocl.inc
+-require recipes-ti/includes/arago-paths.inc
+-
+-inherit features_check
+-
+-REQUIRED_MACHINE_FEATURES =3D "dsp"
+-REQUIRED_DISTRO_FEATURES =3D "opencl openmp"
+-
+-PR =3D "${INC_PR}.2"
+-SRC_URI +=3D "file://0001-Update-VRING-in-resource-table-for-new-Linux-k=
+ernel.patch;patchdir=3D.."
+-
+-inherit update-alternatives
+-
+-DEPENDS =3D " ti-llvm3.6-native \
+-            common-csl-ip-rtos \
+-            ti-xdctools-native \
+-            ti-ipc-rtos \
+-            ti-sysbios \
+-            ti-cgt6x-native \
+-            edma3-lld-rtos \
+-            ti-xdais \
+-            ti-framework-components \
+-            libulm \
+-            gdbserver-c6x \
+-            libaet \
+-            openmp-rtos \
+-"
+-
+-DEPENDS:append:dra7xx =3D " opencl-tidl-fw \
+-"
+-
+-COMPATIBLE_MACHINE =3D "dra7xx"
+-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+-
+-S =3D "${WORKDIR}/git/monitor"
+-
+-BUILD_TARGET:dra7xx =3D "ARM_AM57"
+-
+-export TI_OCL_CGT_INSTALL =3D "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6=
+x"
+-export PDK_DIR =3D "${PDK_INSTALL_DIR}"
+-export IPC_DIR =3D "${IPC_INSTALL_DIR}"
+-export XDC_DIR =3D "${XDC_INSTALL_DIR}"
+-export BIOS_DIR =3D "${SYSBIOS_INSTALL_DIR}"
+-export EDMA3LLD_DIR =3D "${EDMA3_LLD_INSTALL_DIR}"
+-export XDAIS_DIR =3D "${XDAIS_INSTALL_DIR}"
+-export FC_DIR =3D "${FC_INSTALL_DIR}"
+-export MPM_DIR =3D "${MPM_INSTALL_DIR}"
+-export OMP_DIR =3D "${OMP_INSTALL_DIR}"
+-export ULM_DIR =3D"${STAGING_DIR_TARGET}/usr/share/ti/ulm"
+-export GDB_SERVER_DIR =3D "${STAGING_DIR_TARGET}/usr/share/ti/gdbc6x"
+-export AET_DIR =3D "${STAGING_DIR_TARGET}/usr/share/ti/ctoolslib/aet"
+-export X86_LLVM_DIR =3D "${STAGING_DIR_NATIVE}/usr"
+-export XDCPATH =3D "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA=
+3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
+-export OCL_TIDL_FW_DIR =3D "${OCL_TIDL_FW_INSTALL_DIR}"
+-export OCL_FPERMS =3D "664"
+-export OCL_DPERMS =3D "775"
+-export SHARE_PATH=3D"${D}${datadir}/ti/opencl"
+-
+-EXTRA_OEMAKE +=3D " BUILD_OS=3Dlinux \
+-                  WORKING_DIRECTORY=3D${S} \
+-                  BUILD_TARGET=3D${BUILD_TARGET} \
+-"
+-do_compile() {
+-  oe_runmake -f Makefile
+-}
+-
+-do_install() {
+-    install -m ${OCL_DPERMS} -d ${SHARE_PATH}
+-}
+-
+-install_dsp_objs() {
+-    install -m ${OCL_FPERMS} monitor_${1}/dsp0.out ${SHARE_PATH}/dsp.out
+-    install -m ${OCL_FPERMS} monitor_${1}/dsp0.syms.obj ${SHARE_PATH}/ds=
+p_syms.obj
+-    install -m ${OCL_FPERMS} monitor_${1}/dsp0.syms ${SHARE_PATH}/dsp.sy=
+ms
+-}
+-
+-do_install:append:dra7xx() {
+-    install_dsp_objs am57x
+-    install -m ${OCL_DPERMS} -d ${D}${base_libdir}/firmware
+-    install -m ${OCL_FPERMS} monitor_am57x/dsp0.out ${D}${base_libdir}/f=
+irmware/dra7-dsp1-fw.xe66.${BPN}
+-    install -m ${OCL_FPERMS} monitor_am57x/dsp1.out ${D}${base_libdir}/f=
+irmware/dra7-dsp2-fw.xe66.${BPN}
+-}
+-
+-ALTERNATIVE:${PN}:dra7xx =3D "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66"
 -ALTERNATIVE_LINK_NAME[dra7-dsp1-fw.xe66] =3D "${base_libdir}/firmware/dr=
 a7-dsp1-fw.xe66"
 -ALTERNATIVE_TARGET[dra7-dsp1-fw.xe66] =3D "${base_libdir}/firmware/dra7-=
-dsp1-fw.xe66.openvx"
+dsp1-fw.xe66.${BPN}"
 -ALTERNATIVE_LINK_NAME[dra7-dsp2-fw.xe66] =3D "${base_libdir}/firmware/dr=
 a7-dsp2-fw.xe66"
 -ALTERNATIVE_TARGET[dra7-dsp2-fw.xe66] =3D "${base_libdir}/firmware/dra7-=
-dsp2-fw.xe66.openvx"
--ALTERNATIVE_PRIORITY =3D "20"
+dsp2-fw.xe66.${BPN}"
+-ALTERNATIVE_PRIORITY =3D "100"
 -
--FILES:${PN} +=3D "${TIOVX_INSTALL_DIR_RECIPE}/sys-iface/* "
--PACKAGES =3D+ "${PN}-firmware"
--FILES:${PN}-firmware =3D "${base_libdir}/firmware/*"
+-MONITOR_FIRMWARE =3D ""
+-MONITOR_FIRMWARE:dra7xx =3D "${base_libdir}/firmware/*"
 -
--INSANE_SKIP:${PN}-firmware =3D "arch"
-diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc b/meta-arag=
-o-extras/recipes-ti/tiovx/tiovx-sys.inc
+-FILES:${PN} +=3D " \
+-    ${datadir}/ti/opencl/* \
+-    ${MONITOR_FIRMWARE} \
+-"
+-
+-INSANE_SKIP:${PN} =3D "arch"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/met=
+a-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
 deleted file mode 100644
-index 41fc6825..00000000
---- a/meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc
+index 46796147..00000000
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
 +++ /dev/null
-@@ -1,5 +0,0 @@
--PV =3D "01.00.01.00"
+@@ -1,39 +0,0 @@
+-SUMMARY =3D "OpenCL TIDL firmware for AM57xx"
 -
--BRANCH=3D"master"
--SRCREV =3D "5be60aee8d013907a4d8a6cc8af35a517a33b49e"
--SRC_URI =3D "git://git.ti.com/git/processor-sdk/tiovx-app.git;protocol=3D=
-https;branch=3D${BRANCH}"
+-LICENSE =3D "TI-TFL"
+-LIC_FILES_CHKSUM =3D "file://LICENSE.ti;md5=3D082a028431c455252c1e1d3d10=
+21d382"
+-
+-PV =3D "01.02.00.01"
+-PR =3D "r0"
+-
+-require recipes-ti/includes/arago-paths.inc
+-
+-COMPATIBLE_MACHINE =3D "dra7xx"
+-
+-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+-
+-GIT_URI      =3D "git://git.ti.com/git/opencl/opencl-firmware.git"
+-GIT_PROTOCOL =3D "https"
+-BRANCH       =3D "master"
+-SRCREV       =3D "9e3d0b34f604203f275fba4807481a8a763a4f63"
+-
+-SRC_URI      =3D "${GIT_URI};protocol=3D${GIT_PROTOCOL};branch=3D${BRANC=
+H}"
+-
+-S =3D "${WORKDIR}/git"
+-
+-TARGET =3D "eve_firmware.bin ocl_tidl_dsp.lib"
+-
+-do_install() {
+-    install -d ${D}${OCL_TIDL_FW_INSTALL_DIR_RECIPE}
+-    for f in ${TARGET}; do
+-	install -m 0644 ${S}/$f ${D}${OCL_TIDL_FW_INSTALL_DIR_RECIPE}/$f
+-    done
+-}
+-
+-FILES:${PN} +=3D "${OCL_TIDL_FW_INSTALL_DIR_RECIPE}"
+-
+-INSANE_SKIP:${PN} =3D "arch"
+-
+-INHIBIT_PACKAGE_STRIP =3D "1"
+-INHIBIT_SYSROOT_STRIP =3D "1"
+-INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-=
+extras/recipes-ti/ocl/opencl_git.bb
+deleted file mode 100644
+index 0bdbed7e..00000000
+--- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
++++ /dev/null
+@@ -1,79 +0,0 @@
+-DESCRIPTION =3D "TI OpenCL host runtime and development packages"
+-HOMEPAGE =3D "https://downloads.ti.com/mctools/esd/docs/opencl/index.htm=
+l"
+-LICENSE =3D "BSD-3-Clause"
+-
+-include ocl.inc
+-
+-PR =3D "${INC_PR}.3"
+-
+-inherit cmake systemd
+-
+-COMPATIBLE_MACHINE =3D "dra7xx"
+-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+-
+-# Define runtime package for minimal dependencies to run opencl applicat=
+ions
+-# which precompile the offloaded kernels. The base package will provide =
+the
+-# ability to compile kernels (clocl) during runtime.
+-PACKAGES =3D+ "${PN}-runtime"
+-
+-MONITORS                      =3D " opencl-monitor"
+-MONITORS:append:dra7xx        =3D " opencl-monitor-ipu"
+-
+-DEPENDS =3D " virtual/libgl \
+-            ${MONITORS} \
+-            cmake-native \
+-            cmem \
+-            ti-llvm3.6 \
+-            ti-llvm3.6-native \
+-            binutils \
+-            sqlite3 \
+-            libffi \
+-            boost \
+-            boost-native \
+-            libloki \
+-            pkgconfig-native \
+-            libulm \
+-            elfutils \
+-            json-c \
+-"
+-
+-DEPENDS:append:dra7xx =3D " ti-ipc virtual/kernel"
+-
+-RDEPENDS:${PN}-runtime +=3D "bash ${MONITORS}"
+-RDEPENDS:${PN}-dev +=3D "virtual-libgl-dev"
+-RDEPENDS:${PN} +=3D "${PN}-runtime clocl bash"
+-
+-# Use main package to pull in full support
+-ALLOW_EMPTY:${PN} =3D "1"
+-
+-S =3D "${WORKDIR}/git/host"
+-
+-export WANT_LLVM_RELEASE =3D "3.6-ti"
+-
+-OCL_BUILD_TARGET:dra7xx =3D "ARM_AM57"
+-
+-ENABLE_ULM =3D "1"
+-SHMEM_MANAGER =3D "CMEM"
+-
+-EXTRA_OECMAKE +=3D " -DBUILD_TARGET=3D${OCL_BUILD_TARGET} -DBUILD_OUTPUT=
+=3Dlib -DENABLE_ULM=3D${ENABLE_ULM} -DOCL_VERSION=3D${PV} -DSHMEM_MANAGER=
+=3D${SHMEM_MANAGER}"
+-
+-EXTRA_OEMAKE +=3D "KERNEL_INSTALL_DIR=3D${STAGING_KERNEL_DIR} LINUX_DEVK=
+IT_ROOT=3D${STAGING_DIR_HOST}"
+-export KERNEL_INSTALL_DIR =3D "${STAGING_KERNEL_DIR}"
+-
+-MCTD =3D ""
+-MCTD:dra7xx =3D "${S}/mct-daemon/ti-mct-daemon.service.am57x"
+-
+-do_install:append() {
+-    install -d ${D}${systemd_system_unitdir}
+-    install -m0644 ${MCTD} ${D}${systemd_system_unitdir}/ti-mct-daemon.s=
+ervice
+-}
+-
+-SYSTEMD_PACKAGES =3D "${PN}-runtime"
+-SYSTEMD_SERVICE:${PN}-runtime =3D "ti-mct-daemon.service"
+-SYSTEMD_AUTO_ENABLE:${PN}-runtime =3D "${@oe.utils.conditional("RESERVE_=
+CMEM", "1", "enable", "disable", d)}"
+-
+-FILES:${PN}-runtime +=3D "${bindir} ${systemd_system_unitdir} ${sysconfd=
+ir}/ti-mctd ${libdir}/lib*${SOLIBS}"
+-
+-FILES:${PN} +=3D " \
+-    ${datadir}/ti/opencl/* \
+-"
 --=20
 2.25.1
 
