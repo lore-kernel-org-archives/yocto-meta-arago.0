@@ -1,342 +1,283 @@
-Return-Path: <denis@denix.org>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B86D9C5472F
-	for <webhook@archiver.kernel.org>; Mon, 26 Aug 2024 19:16:45 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.61261.1724699797140611969
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58B74C5472F
+	for <webhook@archiver.kernel.org>; Tue, 27 Aug 2024 15:00:13 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web11.79958.1724770812607531819
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 26 Aug 2024 12:16:37 -0700
+ Tue, 27 Aug 2024 08:00:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 80CDC40C67;
-	Mon, 26 Aug 2024 19:16:36 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 76U2ptqN3w-y; Mon, 26 Aug 2024 19:16:36 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5897540CCC;
-	Mon, 26 Aug 2024 19:16:32 +0000 (UTC)
-Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 315C716406C;
-	Mon, 26 Aug 2024 15:16:31 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [scarthgap][PATCH 12/16] gstreamer1.0-plugins-dsp66: deprecate
-Date: Mon, 26 Aug 2024 15:16:21 -0400
-Message-Id: <20240826191625.8267-12-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240826191625.8267-1-denis@denix.org>
-References: <20240826191625.8267-1-denis@denix.org>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=p4GHFwXQ;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47RF0BOJ075342;
+	Tue, 27 Aug 2024 10:00:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724770811;
+	bh=BXAEz+lVbg5k9KGwGAuqmPRb68MTTwFPdFlDcg2pjnI=;
+	h=From:To:Subject:Date;
+	b=p4GHFwXQ+RbxAy0HPaNrllgHrVzq57d2X3KAWdpb76Ip8mJAD61remmaUlEuduHrJ
+	 8Mz5JwdaB2jNuA5UHNHNSVXy6r6M80xzLEeDGng5o0vL18TchaHFOh0L/+3x3gPLUN
+	 GA8/d/HB5/Z+enla9FlnNq/JNDwfn+mK2YjlFqZ4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47RF0B8I004052
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 27 Aug 2024 10:00:11 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 27
+ Aug 2024 10:00:10 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 27 Aug 2024 10:00:10 -0500
+Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47RF0Aim073311;
+	Tue, 27 Aug 2024 10:00:10 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1sixg2-0007f3-Jx; Tue, 27 Aug 2024 10:00:10 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][kirkstone][PATCH] conf/images: Add ARAGO_IMAGE_SUFFIX to image names
+Date: Tue, 27 Aug 2024 10:00:10 -0500
+Message-ID: <20240827150010.29408-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 26 Aug 2024 19:16:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15544
+ <meta-arago@lists.yoctoproject.org>; Tue, 27 Aug 2024 15:00:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15546
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+When attempting to merge the build artifacts from bitbake into a new release
+tarball coupled with running multiple bitbake builds for non-RT and RT kernels,
+the common naming for the image files poses an issue that requires a manual rename
+of the RT image file to make it unique.
 
-Remove gstreamer1.0-plugins-dsp66 component as deprecated and not maintai=
-ned.
+This patch adds a new ARAGO_IMAGE_SUFFIX variable that is normally "", but for RT
+builds is set to "-rt" so that the image files are different.
 
-This component was offloading processing tasks to DSP using heavily
-modified OpenCL/OpenCV forks of old versions of corresponding upstream
-projects on legacy platforms.
+Backport from master: 9e10acff265c4dfcd150329641a71a6cd55c6572
 
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- .../packagegroup-arago-gst-sdk-target.bb      |  5 --
- .../packagegroups/packagegroup-arago-gst.bb   |  5 --
- ...-use-of-CPP-CXX-and-other-standard-v.patch | 89 -------------------
- ...e.ac-stop-using-export-symbols-regex.patch | 30 -------
- .../gstreamer1.0-plugins-dsp66_git.bb         | 50 -----------
- 5 files changed, 179 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/g=
-streamer1.0-plugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-=
-standard-v.patch
- delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/g=
-streamer1.0-plugins-dsp66/0001-configure.ac-stop-using-export-symbols-reg=
-ex.patch
- delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/g=
-streamer1.0-plugins-dsp66_git.bb
+ meta-arago-distro/classes/tisdk-bundle.bbclass            | 4 ++--
+ meta-arago-distro/classes/tisdk-sw-manifest.bbclass       | 8 ++++----
+ meta-arago-distro/conf/distro/arago.conf                  | 2 ++
+ .../recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb  | 2 +-
+ meta-arago-distro/recipes-core/images/arago-image.inc     | 2 +-
+ meta-arago-distro/recipes-core/images/tisdk-base-image.bb | 2 +-
+ .../recipes-core/images/tisdk-bootstrap-base-image.bb     | 2 +-
+ .../recipes-core/images/tisdk-bootstrap-image.bb          | 2 +-
+ .../recipes-core/images/tisdk-core-bundle.bb              | 2 +-
+ .../recipes-core/images/tisdk-default-image.bb            | 2 +-
+ .../recipes-core/images/tisdk-jailhouse-image.bb          | 2 +-
+ .../recipes-core/images/tisdk-jailhouse-inmate.bb         | 2 +-
+ .../recipes-core/images/tisdk-thinlinux-image.bb          | 2 +-
+ meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb | 2 +-
+ .../recipes-core/images/tisdk-tiny-initramfs.bb           | 2 +-
+ 15 files changed, 20 insertions(+), 18 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
-ago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/pack=
-agegroup-arago-gst-sdk-target.bb
-index 845cc7ff..fd749711 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst=
--sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst=
--sdk-target.bb
-@@ -14,13 +14,8 @@ GSTREAMER_DEPS =3D " \
-     gstreamer1.0-libav-dev \
+diff --git a/meta-arago-distro/classes/tisdk-bundle.bbclass b/meta-arago-distro/classes/tisdk-bundle.bbclass
+index 49504089..8050a8ff 100644
+--- a/meta-arago-distro/classes/tisdk-bundle.bbclass
++++ b/meta-arago-distro/classes/tisdk-bundle.bbclass
+@@ -165,9 +165,9 @@ tisdk_image_build () {
+     do
+         for type in ${TARGET_IMAGE_TYPES}
+         do
+-            if [ -e ${DEPLOY_DIR_IMAGE}/${image}-${MACHINE}.${type} ]
++            if [ -e ${DEPLOY_DIR_IMAGE}/${image}${ARAGO_IMAGE_SUFFIX}-${MACHINE}.${type} ]
+             then
+-                cp ${DEPLOY_DIR_IMAGE}/${image}-${MACHINE}.${type} ${IMAGE_ROOTFS}/filesystem/
++                cp ${DEPLOY_DIR_IMAGE}/${image}${ARAGO_IMAGE_SUFFIX}-${MACHINE}.${type} ${IMAGE_ROOTFS}/filesystem/
+             fi
+         done
+     done
+diff --git a/meta-arago-distro/classes/tisdk-sw-manifest.bbclass b/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
+index 14d14f08..7d8602f4 100644
+--- a/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
++++ b/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
+@@ -403,12 +403,12 @@ sw_manifest_target() {
+     for image in ${TARGET_IMAGES}
+     do
+         # Only extract tar.gz or tar.bz2 types
+-        if [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz ]
++        if [ -e ${IMAGE_ROOTFS}/filesystem/${image}${ARAGO_IMAGE_SUFFIX}--${MACHINE}.tar.xz ]
+         then
+-            tar xJf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
+-        elif [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz ]
++            tar xJf ${IMAGE_ROOTFS}/filesystem/${image}${ARAGO_IMAGE_SUFFIX}--${MACHINE}.tar.xz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
++        elif [ -e ${IMAGE_ROOTFS}/filesystem/${image}${ARAGO_IMAGE_SUFFIX}--${MACHINE}.tar.gz ]
+         then
+-            tar xzf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
++            tar xzf ${IMAGE_ROOTFS}/filesystem/${image}${ARAGO_IMAGE_SUFFIX}--${MACHINE}.tar.gz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
+         fi
+     done
+ 
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index e46ebd26..5c680d05 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -147,10 +147,12 @@ PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
+ SKIP_META_GNOME_SANITY_CHECK = "1"
+ 
+ ARAGO_KERNEL_SUFFIX ?= ""
++ARAGO_IMAGE_SUFFIX ?= ""
+ 
+ # Set real-time kernel suffix
+ ARAGO_RT_ENABLE ?= "0"
+ ARAGO_KERNEL_SUFFIX:append = "${@oe.utils.conditional("ARAGO_RT_ENABLE", "1", "-rt", "", d)}"
++ARAGO_IMAGE_SUFFIX:append = "${@oe.utils.conditional("ARAGO_RT_ENABLE", "1", "-rt", "", d)}"
+ 
+ # Set systest kernel suffix
+ ARAGO_SYSTEST_ENABLE ?= "0"
+diff --git a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
+index 92822dc3..cc0111b6 100644
+--- a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
++++ b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
+@@ -14,7 +14,7 @@ TARGET = "bootstrap-rootfs-${MACHINE}.cpio"
+ 
+ do_install() {
+ 	install -d ${D}/boot
+-	install -m 0644 ${DEPLOY_DIR_IMAGE}/${BOOSTRAP_IMAGE}-${MACHINE}.cpio ${D}/boot/${TARGET}
++	install -m 0644 ${DEPLOY_DIR_IMAGE}/${BOOSTRAP_IMAGE}${ARAGO_IMAGE_SUFFIX}-${MACHINE}.cpio ${D}/boot/${TARGET}
+ }
+ 
+ FILES:${PN} = "/boot"
+diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
+index 00308b57..17325619 100644
+--- a/meta-arago-distro/recipes-core/images/arago-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-image.inc
+@@ -14,7 +14,7 @@ IMAGE_INSTALL = " \
+ 	${CORE_IMAGE_EXTRA_INSTALL} \
  "
-=20
--GSTREAMER_DSP =3D " \
--    ${@['','gstreamer1.0-plugins-dsp66-dev'][oe.utils.all_distro_feature=
-s(d, 'opencl', True, False) and bb.utils.contains('MACHINE_FEATURES', 'ds=
-p', True, False, d)]} \
--"
--
- #    gstreamer1.0-plugins-hevc-dev=20
- GSTREAMER_DEPS:append:dra7xx =3D " \
--    ${GSTREAMER_DSP} \
+ 
+-export IMAGE_BASENAME = "arago-image"
++export IMAGE_BASENAME = "arago-image${ARAGO_IMAGE_SUFFIX}"
+ 
+ IMAGE_LINGUAS = ""
+ 
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-base-image.bb b/meta-arago-distro/recipes-core/images/tisdk-base-image.bb
+index 83f1899b..f5d5f29b 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-base-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-base-image.bb
+@@ -16,4 +16,4 @@ IMAGE_INSTALL += "\
+     ${ARAGO_BASE_IMAGE_EXTRA_INSTALL} \
  "
-=20
- RDEPENDS:${PN} =3D " \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
-ago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
-ago-gst.bb
-index e8a639bd..3bc3bfc1 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst=
-.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst=
-.bb
-@@ -17,13 +17,8 @@ GSTREAMER_DEPS =3D " \
-     gstreamer1.0-libav \
+ 
+-export IMAGE_BASENAME = "tisdk-base-image"
++export IMAGE_BASENAME = "tisdk-base-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
+index 8b7f10c9..ce3b008e 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
+@@ -19,4 +19,4 @@ IMAGE_INSTALL += " \
+ 	${ARAGO_BOOTSTRAP_IMAGE_EXTRA_INSTALL} \
  "
-=20
--GSTREAMER_DSP =3D " \
--    ${@['','gstreamer1.0-plugins-dsp66'][oe.utils.all_distro_features(d,=
- 'opencl', True, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp', =
-True, False, d)]} \
--"
--
- #    gstreamer1.0-plugins-hevc=20
- GSTREAMER_DEPS:append:dra7xx =3D " \
--    ${GSTREAMER_DSP} \
+ 
+-export IMAGE_BASENAME = "tisdk-bootstrap-base-image"
++export IMAGE_BASENAME = "tisdk-bootstrap-base-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb
+index b41f09fb..5fe0463d 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb
+@@ -19,4 +19,4 @@ IMAGE_INSTALL += " \
+ 	${ARAGO_BOOTSTRAP_IMAGE_EXTRA_INSTALL} \
  "
-=20
- GSTREAMER_ACCEL_MM =3D ""
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreame=
-r1.0-plugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-standar=
-d-v.patch b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer=
-1.0-plugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-standard=
--v.patch
-deleted file mode 100644
-index 3c913ed4..00000000
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
-ugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-standard-v.pat=
-ch
-+++ /dev/null
-@@ -1,89 +0,0 @@
--From 145964aa34bc2cbf1499de6e14de80a7c2d7e935 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Sun, 26 Mar 2017 15:12:44 -0400
--Subject: [PATCH] Makefile: correct use of CPP/CXX and other standard var=
-iables
--
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-----
-- src/kernels/make.inc         | 16 +++++++---------
-- src/kernels/oclconv/Makefile |  7 +++----
-- 2 files changed, 10 insertions(+), 13 deletions(-)
--
--diff --git a/src/kernels/make.inc b/src/kernels/make.inc
--index 797e64b..f1475a3 100644
----- a/src/kernels/make.inc
--+++ b/src/kernels/make.inc
--@@ -4,7 +4,6 @@ DSP_INCLUDE +=3D -I$(TARGET_ROOTDIR)/usr/share/ti/opencl
-- TI_IMGLIB_DIR=3D${TARGET_ROOTDIR}/usr/share/ti/ti-imglib-c66x-tree
-- TI_VLIB_DIR=3D${TARGET_ROOTDIR}/usr/share/ti/ti-vlib-c66x-tree
--=20
---CPP   =3D g++=20
-- CL6X  =3D cl6x -mv6600 --abi=3Deabi $(DSP_INCLUDE)
-- CLOCL =3D clocl
--=20
--@@ -16,9 +15,9 @@ UNAME_M :=3D$(shell uname -m)
-- # If TI_OCL_INSTALL is set, setup make from that location
-- # ---------------------------------------------------------------------=
--------
-- ifneq ($(TI_OCL_INSTALL),)
---    CPP        =3D g++
---    CPP_FLAGS +=3D -I$(TI_OCL_INSTALL)/usr/include
---    LD_FLAGS  +=3D -L$(TI_OCL_INSTALL)/usr/lib=20
--+    CXX        =3D g++
--+    CXXFLAGS +=3D -I$(TI_OCL_INSTALL)/usr/include
--+    LDFLAGS  +=3D -L$(TI_OCL_INSTALL)/usr/lib
--     LIBS      +=3D -lbfd
--=20
-- # ---------------------------------------------------------------------=
--------
--@@ -38,20 +37,19 @@ else ifneq (,$(findstring 86, $(UNAME_M)))
--=20
--     # gcc ARM cross compiler will not, by default, search the host's
--     # /usr/include.  Explicitly specify here to find dependent vendor h=
-eaders
---    cross: override CPP =3D arm-linux-gnueabihf-g++=20
---    cross: CPP_FLAGS +=3D -I$(TARGET_ROOTDIR)/usr/include -idirafter /u=
-sr/include
--+    cross: CXXFLAGS +=3D -I$(TARGET_ROOTDIR)/usr/include -idirafter /us=
-r/include
--=20
--     # If cross-compilineg, provide path to dependent ARM libraries on t=
-he=20
--     # target filesystem
---    cross: LD_FLAGS =3D -L$(TARGET_ROOTDIR)/lib -L$(TARGET_ROOTDIR)/usr=
-/lib -Wl,-rpath-link,$(TARGET_ROOTDIR)/lib -Wl,-rpath-link,$(TARGET_ROOTD=
-IR)/usr/lib=20
--+    cross: LDFLAGS =3D -L$(TARGET_ROOTDIR)/lib -L$(TARGET_ROOTDIR)/usr/=
-lib -Wl,-rpath-link,$(TARGET_ROOTDIR)/lib -Wl,-rpath-link,$(TARGET_ROOTDI=
-R)/usr/lib
-- endif
--=20
-- %.o: %.cpp
---	@$(CPP) -c $(CPP_FLAGS) $<
--+	@$(CXX) -c $(CXXFLAGS) $<
-- 	@echo Compiling $<
--=20
-- %.o: %.c
---	@$(CPP) -c $(CPP_FLAGS) $<
--+	@$(CXX) -c $(CXXFLAGS) $<
-- 	@echo Compiling $<
--=20
-- %.obj: %.c
--diff --git a/src/kernels/oclconv/Makefile b/src/kernels/oclconv/Makefile
--index e271670..c3774f8 100644
----- a/src/kernels/oclconv/Makefile
--+++ b/src/kernels/oclconv/Makefile
--@@ -1,12 +1,12 @@
-- EXE         =3D liboclconv.so
---CPP_FLAGS   =3D -O3 -shared -fPIC -L.
--+CXXFLAGS   =3D -O3 -shared -fPIC -L.
-- CLOCL_FLAGS =3D=20
-- include ../make.inc
--=20
-- all: ${EXE}
--=20
---$(EXE): oclconv.o=20
---	@$(CPP) $(CPP_FLAGS) oclconv.o $(LD_FLAGS) $(LIBS) -o $@
--+$(EXE): oclconv.o
--+	@$(CXX) $(CXXFLAGS) oclconv.o $(LDFLAGS) $(LIBS) -o $@
--=20
-- oclconv.o: conv.dsp_h
--=20
--@@ -16,4 +16,3 @@ conv.dsp_h: conv.cl ${TI_IMGLIB_DIR}/lib/imglib.ae66 $=
-{TI_VLIB_DIR}/packages/ti/
--=20
-- install:
-- 	  mkdir -p  ${DESTDIR}/usr/lib && install -m 755 ${EXE} ${DESTDIR}/usr=
-/lib/.
---
----=20
--2.7.4
--
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreame=
-r1.0-plugins-dsp66/0001-configure.ac-stop-using-export-symbols-regex.patc=
-h b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plug=
-ins-dsp66/0001-configure.ac-stop-using-export-symbols-regex.patch
-deleted file mode 100644
-index c9721b70..00000000
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
-ugins-dsp66/0001-configure.ac-stop-using-export-symbols-regex.patch
-+++ /dev/null
-@@ -1,30 +0,0 @@
--From 0fcda9d85c96d5c39dffe21d3bdf01a038b911c9 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Tue, 22 Jan 2019 20:39:15 -0500
--Subject: [PATCH] configure.ac: stop using -export-symbols-regex
--
--The old regex is no longer correct for GStreamer 1.14.
--
--Bug-Debian: https://bugs.debian.org/894642
--
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-----
-- configure.ac | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--diff --git a/configure.ac b/configure.ac
--index fee3161..8159c60 100644
----- a/configure.ac
--+++ b/configure.ac
--@@ -81,7 +81,7 @@ fi
-- AC_SUBST(plugindir)
--=20
-- dnl set proper LDFLAGS for plugins
---GST_PLUGIN_LDFLAGS=3D"-module -avoid-version -export-symbols-regex '^[_=
-]*gst_plugin_desc\$\$' $GST_ALL_LDFLAGS"
--+GST_PLUGIN_LDFLAGS=3D"-module -avoid-version $GST_ALL_LDFLAGS"
-- AC_SUBST(GST_PLUGIN_LDFLAGS)
--=20
-- AC_CONFIG_FILES([Makefile src/Makefile])
----=20
--2.7.4
--
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreame=
-r1.0-plugins-dsp66_git.bb b/meta-arago-extras/recipes-multimedia/gst-plug=
-ins-ti/gstreamer1.0-plugins-dsp66_git.bb
-deleted file mode 100644
-index d92efb9b..00000000
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
-ugins-dsp66_git.bb
-+++ /dev/null
-@@ -1,50 +0,0 @@
--DESCRIPTION =3D "GStreamer elements to use the TI DSP C66 in multimedia =
-applications"
--HOMEPAGE =3D "https://git.ti.com/processor-sdk/gst-plugin-dsp66"
--LICENSE =3D "BSD-3-Clause"
--LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D2827f94fc0a1adeff4d9702e97ce2=
-979"
--
--SRC_URI =3D "git://git.ti.com/git/processor-sdk/gst-plugin-dsp66.git;pro=
-tocol=3Dhttps;branch=3Dmaster \
--	file://0001-Makefile-correct-use-of-CPP-CXX-and-other-standard-v.patch =
-\
--	file://0001-configure.ac-stop-using-export-symbols-regex.patch \
--"
--SRCREV =3D "0abedafadbed693592804f23482a9447d81b2dbf"
--
--S =3D "${WORKDIR}/git"
--
--COMPATIBLE_MACHINE =3D "dra7xx"
--
--DEPENDS =3D "gstreamer1.0 gstreamer1.0-plugins-base opencl ti-cgt6x-nati=
-ve clocl-native imglib-c66x vlib-c66x gettext-native"
--
--inherit autotools-brokensep pkgconfig gettext
--inherit features_check
--
--REQUIRED_MACHINE_FEATURES =3D "dsp"
--REQUIRED_DISTRO_FEATURES =3D "opencl"
--
--PR =3D "r1"
--
--RDEPENDS:${PN} +=3D "opencl-runtime"
--
--EXTRA_OEMAKE =3D " TARGET_ROOTDIR=3D${STAGING_DIR_HOST} \
--                 TI_OCL_CGT_INSTALL=3D${STAGING_DIR_NATIVE}/usr/share/ti=
-/cgt-c6x \
--"
--
--do_configure() {
--	cd ${S}
--	chmod +x autogen.sh
--	./autogen.sh --host=3Darm-linux --with-libtool-sysroot=3D${STAGING_DIR_=
-TARGET} --prefix=3D/usr
--}
--
--EXTRA_OECONF +=3D "--enable-maintainer-mode"
--EXTRA_OEMAKE +=3D "'ERROR_CFLAGS=3D-Wno-deprecated-declarations'"
--
--FILES:${PN} +=3D "${libdir}/gstreamer-1.0/*.so"
--FILES:${PN}-dbg +=3D "${libdir}/gstreamer-1.0/.debug"
--FILES:${PN}-dev +=3D "${libdir}/gstreamer-1.0/*.la"
--
--FILES:${PN} +=3D "${libdir}/*.so"
--FILES:${PN}-dbg +=3D "${libdir}/.debug"
--FILES:${PN}-dev +=3D "${libdir}/*.la"
--FILES_SOLIBSDEV =3D ""
--
--INSANE_SKIP:${PN} =3D "ldflags"
---=20
-2.25.1
+ 
+-export IMAGE_BASENAME = "tisdk-bootstrap-image"
++export IMAGE_BASENAME = "tisdk-bootstrap-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
+index 9adb4f93..9c2bb015 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
+@@ -17,4 +17,4 @@ DEPLOY_IMAGES_NAME:append:am65xx-evm = " sysfw-am65x_sr2-gp-evm.itb"
+ DEPLOY_IMAGES_NAME:append:am65xx-hs-evm = " sysfw-am65x_sr2-hs-evm.itb"
+ 
+ ARAGO_TISDK_IMAGE ?= "tisdk-core-bundle"
+-export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
++export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+index 9c3446f3..858a10d4 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+@@ -33,7 +33,7 @@ IMAGE_INSTALL += "\
+     packagegroup-arago-tisdk-sysrepo \
+ "
+ 
+-export IMAGE_BASENAME = "tisdk-default-image"
++export IMAGE_BASENAME = "tisdk-default-image${ARAGO_IMAGE_SUFFIX}"
+ 
+ # Disable ubi/ubifs as the filesystem requires more space than is
+ # available on the HW.
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
+index 339e4895..9240e0b9 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
+@@ -11,6 +11,6 @@ COMPATIBLE_MACHINE = "am62xx|am62pxx"
+ 
+ IMAGE_INSTALL += " jailhouse"
+ 
+-export IMAGE_BASENAME = "tisdk-jailhouse-image"
++export IMAGE_BASENAME = "tisdk-jailhouse-image${ARAGO_IMAGE_SUFFIX}"
+ 
+ WIC_CREATE_EXTRA_ARGS:append = " --no-fstab-update"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb
+index 57efd009..aba5ee13 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb
+@@ -13,4 +13,4 @@ IMAGE_FSTYPES += "cpio"
+ 
+ PACKAGE_INSTALL += "jailhouse-inmate"
+ 
+-export IMAGE_BASENAME = "tisdk-jailhouse-inmate"
++export IMAGE_BASENAME = "tisdk-jailhouse-inmate${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb b/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
+index 13e86902..34494976 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
+@@ -21,7 +21,7 @@ IMAGE_INSTALL += "\
+     ${ARAGO_THIN_IMAGE_EXTRA_INSTALL} \
+ "
+ 
+-export IMAGE_BASENAME = "tisdk-thinlinux-image"
++export IMAGE_BASENAME = "tisdk-thinlinux-image${ARAGO_IMAGE_SUFFIX}"
+ 
+ # Disable ubi/ubifs as the filesystem requires more space than is
+ # available on the HW.
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb b/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
+index c8a584bd..0bb6b798 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
+@@ -20,4 +20,4 @@ IMAGE_INSTALL += " \
+ 
+ DEPENDS += " tisdk-tiny-initramfs"
+ 
+-export IMAGE_BASENAME = "tisdk-tiny-image"
++export IMAGE_BASENAME = "tisdk-tiny-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb b/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
+index 551cf67c..b9dc1550 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
+@@ -22,7 +22,7 @@ IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
+ 
+ PACKAGE_INSTALL = "packagegroup-arago-initramfs"
+ 
+-export IMAGE_BASENAME = "tisdk-tiny-initramfs"
++export IMAGE_BASENAME = "tisdk-tiny-initramfs${ARAGO_IMAGE_SUFFIX}"
+ 
+ # To further reduce the size of the rootfs, remove the /boot directory from
+ # the final image this is usually done by adding RDEPENDS_kernel-base = ""
+-- 
+2.17.1
 
 
