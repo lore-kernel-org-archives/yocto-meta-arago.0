@@ -2,51 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B441CD343B
-	for <webhook@archiver.kernel.org>; Tue,  3 Sep 2024 14:31:41 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web11.24839.1725373894349670875
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F178CD37B1
+	for <webhook@archiver.kernel.org>; Tue,  3 Sep 2024 21:44:23 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web10.35686.1725399859088258378
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 03 Sep 2024 07:31:34 -0700
+ Tue, 03 Sep 2024 14:44:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=nQ8+hTEI;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 483EVXWJ063408;
-	Tue, 3 Sep 2024 09:31:33 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=E1YME0mY;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 483LiIuP061884;
+	Tue, 3 Sep 2024 16:44:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725373893;
-	bh=b6iOFit0U8IYt/wk7eWbJQG1E46YJxlQF7rd9YMhPGM=;
+	s=ti-com-17Q1; t=1725399858;
+	bh=VVu06hZUrxU3pormcq+tUpWWCJpT+Mw/NFcBX4LmoD0=;
 	h=From:To:Subject:Date;
-	b=nQ8+hTEIdN3btsMFGZ0vdDyuLHsfhNCPlW9CyUfO2/tXXyTcVeM+yp32bFPvdX2Dy
-	 7k7oTHP3eKQ1VaL/0X6ugePBMZbem3EoBI7YxDtUeL5QnBjBkYoz9LQzZ2IL5SMZ7/
-	 mO/QhW2ZUMJ7flKIXQ+rNJMUh6lboTtg5Mq8QLX8=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 483EVX7h029809
+	b=E1YME0mYYL4uhpep7JuOhkgzuUi8I5QvSDN7TSdY4J2nYSs9l/bIoOGOPdd8ZCe/v
+	 +zyZJe/yL8qVX+OoAlXf/I+Ltu2qgXiH6uwZFC8eSTvYqqFy5gLtqvX+7GRB/AYo+K
+	 m3kDPMoGuNpQioiDegELd/3ByKruqxz/+WG055mI=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 483LiIU6018319
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 3 Sep 2024 09:31:33 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 3 Sep 2024 16:44:18 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Sep 2024 09:31:32 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2024 16:44:17 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Sep 2024 09:31:32 -0500
+ Frontend Transport; Tue, 3 Sep 2024 16:44:17 -0500
 Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 483EVWmK066954;
-	Tue, 3 Sep 2024 09:31:32 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 483LiH6U051286;
+	Tue, 3 Sep 2024 16:44:17 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1slUZA-00026l-Mw; Tue, 03 Sep 2024 09:31:32 -0500
+	id 1slbJx-0008Gf-Jz; Tue, 03 Sep 2024 16:44:17 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][kirkstone][PATCH v2] conf/images: Add ARAGO_IMAGE_SUFFIX to image names
-Date: Tue, 3 Sep 2024 09:31:32 -0500
-Message-ID: <20240903143132.8063-1-reatmon@ti.com>
+Subject: [meta-arago][master/scarthgap][PATCH] libnl: Move bbappend to match all version
+Date: Tue, 3 Sep 2024 16:44:17 -0500
+Message-ID: <20240903214417.31742-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -54,231 +54,22 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 03 Sep 2024 14:31:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15551
+ <meta-arago@lists.yoctoproject.org>; Tue, 03 Sep 2024 21:44:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15552
 
-When attempting to merge the build artifacts from bitbake into a new release
-tarball coupled with running multiple bitbake builds for non-RT and RT kernels,
-the common naming for the image files poses an issue that requires a manual rename
-of the RT image file to make it unique.
-
-This patch adds a new ARAGO_IMAGE_SUFFIX variable that is normally "", but for RT
-builds is set to "-rt" so that the image files are different.
-
-Backport from master: 9e10acff265c4dfcd150329641a71a6cd55c6572
+To avoid needing to rename this file every time lbnl changes, rename it
+to use the % for the version.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
-v2: Fix "--" copy/paste error in tisdk-sw-manifest.bbclass.
+ .../libnl/{libnl_3.9.0.bbappend => libnl_%.bbappend}              | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename meta-arago-distro/recipes-support/libnl/{libnl_3.9.0.bbappend => libnl_%.bbappend} (100%)
 
- meta-arago-distro/classes/tisdk-bundle.bbclass            | 4 ++--
- meta-arago-distro/classes/tisdk-sw-manifest.bbclass       | 8 ++++----
- meta-arago-distro/conf/distro/arago.conf                  | 2 ++
- .../recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb  | 2 +-
- meta-arago-distro/recipes-core/images/arago-image.inc     | 2 +-
- meta-arago-distro/recipes-core/images/tisdk-base-image.bb | 2 +-
- .../recipes-core/images/tisdk-bootstrap-base-image.bb     | 2 +-
- .../recipes-core/images/tisdk-bootstrap-image.bb          | 2 +-
- .../recipes-core/images/tisdk-core-bundle.bb              | 2 +-
- .../recipes-core/images/tisdk-default-image.bb            | 2 +-
- .../recipes-core/images/tisdk-jailhouse-image.bb          | 2 +-
- .../recipes-core/images/tisdk-jailhouse-inmate.bb         | 2 +-
- .../recipes-core/images/tisdk-thinlinux-image.bb          | 2 +-
- meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb | 2 +-
- .../recipes-core/images/tisdk-tiny-initramfs.bb           | 2 +-
- 15 files changed, 20 insertions(+), 18 deletions(-)
-
-diff --git a/meta-arago-distro/classes/tisdk-bundle.bbclass b/meta-arago-distro/classes/tisdk-bundle.bbclass
-index 49504089..8050a8ff 100644
---- a/meta-arago-distro/classes/tisdk-bundle.bbclass
-+++ b/meta-arago-distro/classes/tisdk-bundle.bbclass
-@@ -165,9 +165,9 @@ tisdk_image_build () {
-     do
-         for type in ${TARGET_IMAGE_TYPES}
-         do
--            if [ -e ${DEPLOY_DIR_IMAGE}/${image}-${MACHINE}.${type} ]
-+            if [ -e ${DEPLOY_DIR_IMAGE}/${image}${ARAGO_IMAGE_SUFFIX}-${MACHINE}.${type} ]
-             then
--                cp ${DEPLOY_DIR_IMAGE}/${image}-${MACHINE}.${type} ${IMAGE_ROOTFS}/filesystem/
-+                cp ${DEPLOY_DIR_IMAGE}/${image}${ARAGO_IMAGE_SUFFIX}-${MACHINE}.${type} ${IMAGE_ROOTFS}/filesystem/
-             fi
-         done
-     done
-diff --git a/meta-arago-distro/classes/tisdk-sw-manifest.bbclass b/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
-index 14d14f08..87b9218b 100644
---- a/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
-+++ b/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
-@@ -403,12 +403,12 @@ sw_manifest_target() {
-     for image in ${TARGET_IMAGES}
-     do
-         # Only extract tar.gz or tar.bz2 types
--        if [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz ]
-+        if [ -e ${IMAGE_ROOTFS}/filesystem/${image}${ARAGO_IMAGE_SUFFIX}-${MACHINE}.tar.xz ]
-         then
--            tar xJf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
--        elif [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz ]
-+            tar xJf ${IMAGE_ROOTFS}/filesystem/${image}${ARAGO_IMAGE_SUFFIX}-${MACHINE}.tar.xz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
-+        elif [ -e ${IMAGE_ROOTFS}/filesystem/${image}${ARAGO_IMAGE_SUFFIX}-${MACHINE}.tar.gz ]
-         then
--            tar xzf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
-+            tar xzf ${IMAGE_ROOTFS}/filesystem/${image}${ARAGO_IMAGE_SUFFIX}-${MACHINE}.tar.gz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
-         fi
-     done
- 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index e46ebd26..5c680d05 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -147,10 +147,12 @@ PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
- SKIP_META_GNOME_SANITY_CHECK = "1"
- 
- ARAGO_KERNEL_SUFFIX ?= ""
-+ARAGO_IMAGE_SUFFIX ?= ""
- 
- # Set real-time kernel suffix
- ARAGO_RT_ENABLE ?= "0"
- ARAGO_KERNEL_SUFFIX:append = "${@oe.utils.conditional("ARAGO_RT_ENABLE", "1", "-rt", "", d)}"
-+ARAGO_IMAGE_SUFFIX:append = "${@oe.utils.conditional("ARAGO_RT_ENABLE", "1", "-rt", "", d)}"
- 
- # Set systest kernel suffix
- ARAGO_SYSTEST_ENABLE ?= "0"
-diff --git a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
-index 92822dc3..cc0111b6 100644
---- a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
-+++ b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
-@@ -14,7 +14,7 @@ TARGET = "bootstrap-rootfs-${MACHINE}.cpio"
- 
- do_install() {
- 	install -d ${D}/boot
--	install -m 0644 ${DEPLOY_DIR_IMAGE}/${BOOSTRAP_IMAGE}-${MACHINE}.cpio ${D}/boot/${TARGET}
-+	install -m 0644 ${DEPLOY_DIR_IMAGE}/${BOOSTRAP_IMAGE}${ARAGO_IMAGE_SUFFIX}-${MACHINE}.cpio ${D}/boot/${TARGET}
- }
- 
- FILES:${PN} = "/boot"
-diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
-index 00308b57..17325619 100644
---- a/meta-arago-distro/recipes-core/images/arago-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-image.inc
-@@ -14,7 +14,7 @@ IMAGE_INSTALL = " \
- 	${CORE_IMAGE_EXTRA_INSTALL} \
- "
- 
--export IMAGE_BASENAME = "arago-image"
-+export IMAGE_BASENAME = "arago-image${ARAGO_IMAGE_SUFFIX}"
- 
- IMAGE_LINGUAS = ""
- 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-base-image.bb b/meta-arago-distro/recipes-core/images/tisdk-base-image.bb
-index 83f1899b..f5d5f29b 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-base-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-base-image.bb
-@@ -16,4 +16,4 @@ IMAGE_INSTALL += "\
-     ${ARAGO_BASE_IMAGE_EXTRA_INSTALL} \
- "
- 
--export IMAGE_BASENAME = "tisdk-base-image"
-+export IMAGE_BASENAME = "tisdk-base-image${ARAGO_IMAGE_SUFFIX}"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
-index 8b7f10c9..ce3b008e 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
-@@ -19,4 +19,4 @@ IMAGE_INSTALL += " \
- 	${ARAGO_BOOTSTRAP_IMAGE_EXTRA_INSTALL} \
- "
- 
--export IMAGE_BASENAME = "tisdk-bootstrap-base-image"
-+export IMAGE_BASENAME = "tisdk-bootstrap-base-image${ARAGO_IMAGE_SUFFIX}"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb
-index b41f09fb..5fe0463d 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb
-@@ -19,4 +19,4 @@ IMAGE_INSTALL += " \
- 	${ARAGO_BOOTSTRAP_IMAGE_EXTRA_INSTALL} \
- "
- 
--export IMAGE_BASENAME = "tisdk-bootstrap-image"
-+export IMAGE_BASENAME = "tisdk-bootstrap-image${ARAGO_IMAGE_SUFFIX}"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-index 9adb4f93..9c2bb015 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-@@ -17,4 +17,4 @@ DEPLOY_IMAGES_NAME:append:am65xx-evm = " sysfw-am65x_sr2-gp-evm.itb"
- DEPLOY_IMAGES_NAME:append:am65xx-hs-evm = " sysfw-am65x_sr2-hs-evm.itb"
- 
- ARAGO_TISDK_IMAGE ?= "tisdk-core-bundle"
--export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
-+export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}${ARAGO_IMAGE_SUFFIX}"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-index 9c3446f3..858a10d4 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-@@ -33,7 +33,7 @@ IMAGE_INSTALL += "\
-     packagegroup-arago-tisdk-sysrepo \
- "
- 
--export IMAGE_BASENAME = "tisdk-default-image"
-+export IMAGE_BASENAME = "tisdk-default-image${ARAGO_IMAGE_SUFFIX}"
- 
- # Disable ubi/ubifs as the filesystem requires more space than is
- # available on the HW.
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
-index 339e4895..9240e0b9 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
-@@ -11,6 +11,6 @@ COMPATIBLE_MACHINE = "am62xx|am62pxx"
- 
- IMAGE_INSTALL += " jailhouse"
- 
--export IMAGE_BASENAME = "tisdk-jailhouse-image"
-+export IMAGE_BASENAME = "tisdk-jailhouse-image${ARAGO_IMAGE_SUFFIX}"
- 
- WIC_CREATE_EXTRA_ARGS:append = " --no-fstab-update"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb
-index 57efd009..aba5ee13 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb
-@@ -13,4 +13,4 @@ IMAGE_FSTYPES += "cpio"
- 
- PACKAGE_INSTALL += "jailhouse-inmate"
- 
--export IMAGE_BASENAME = "tisdk-jailhouse-inmate"
-+export IMAGE_BASENAME = "tisdk-jailhouse-inmate${ARAGO_IMAGE_SUFFIX}"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb b/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
-index 13e86902..34494976 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
-@@ -21,7 +21,7 @@ IMAGE_INSTALL += "\
-     ${ARAGO_THIN_IMAGE_EXTRA_INSTALL} \
- "
- 
--export IMAGE_BASENAME = "tisdk-thinlinux-image"
-+export IMAGE_BASENAME = "tisdk-thinlinux-image${ARAGO_IMAGE_SUFFIX}"
- 
- # Disable ubi/ubifs as the filesystem requires more space than is
- # available on the HW.
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb b/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-index c8a584bd..0bb6b798 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-@@ -20,4 +20,4 @@ IMAGE_INSTALL += " \
- 
- DEPENDS += " tisdk-tiny-initramfs"
- 
--export IMAGE_BASENAME = "tisdk-tiny-image"
-+export IMAGE_BASENAME = "tisdk-tiny-image${ARAGO_IMAGE_SUFFIX}"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb b/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
-index 551cf67c..b9dc1550 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
-@@ -22,7 +22,7 @@ IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
- 
- PACKAGE_INSTALL = "packagegroup-arago-initramfs"
- 
--export IMAGE_BASENAME = "tisdk-tiny-initramfs"
-+export IMAGE_BASENAME = "tisdk-tiny-initramfs${ARAGO_IMAGE_SUFFIX}"
- 
- # To further reduce the size of the rootfs, remove the /boot directory from
- # the final image this is usually done by adding RDEPENDS_kernel-base = ""
+diff --git a/meta-arago-distro/recipes-support/libnl/libnl_3.9.0.bbappend b/meta-arago-distro/recipes-support/libnl/libnl_%.bbappend
+similarity index 100%
+rename from meta-arago-distro/recipes-support/libnl/libnl_3.9.0.bbappend
+rename to meta-arago-distro/recipes-support/libnl/libnl_%.bbappend
 -- 
 2.17.1
 
