@@ -1,92 +1,86 @@
-Return-Path: <s-alam@ti.com>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B6F22CD37AE
-	for <webhook@archiver.kernel.org>; Wed,  4 Sep 2024 05:50:35 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.43482.1725429031118409583
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E324ECE579
+	for <webhook@archiver.kernel.org>; Mon,  9 Sep 2024 13:37:44 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web11.53152.1725889060616850678
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 03 Sep 2024 22:50:31 -0700
+ Mon, 09 Sep 2024 06:37:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=jjvsR00A;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: s-alam@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4845oUbB042344
-	for <meta-arago@lists.yoctoproject.org>; Wed, 4 Sep 2024 00:50:30 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=OlRQUdzH;
+ spf=pass (domain: list.ti.com, ip: 198.47.23.248, mailfrom: lcpdbld@list.ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 489DbdDG050846;
+	Mon, 9 Sep 2024 08:37:39 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1725429030;
-	bh=erw2aD+NMkXukGCrNme4xkO3nooy6eyWUK9mR99oQMs=;
-	h=From:To:CC:Subject:Date;
-	b=jjvsR00Anq5wXnxQBxFL88hqaverSSsp2sHxjx85V10O5aWFkmpWFazg8W4sZwZqZ
-	 F6LacqNSAjiLtZYLfVeRsMcDEF+WgyIRjvFLMh/se4WDnHfkllvPJ0BaBA/Gxx8y2M
-	 8S6GZLl4g0805c8D4j7d8+y4uYk8M+EEqnpehWtA=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4845oUcK037499
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Wed, 4 Sep 2024 00:50:30 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
- Sep 2024 00:50:30 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1725889059; i=@ti.com;
+	bh=oCYdvBMCMfyWn2PP5Ua2BzOl1xsDEk3Zq2QXowtIvl0=;
+	h=From:To:Subject:Date;
+	b=OlRQUdzHKz8y1psTDeF+QakGgGI5tijohRhzHYwRjMaSazxPPeiGN4YdqhVPWsWTE
+	 5t9mrEGq7EKVXCMXuGGt3IoaSxlVNZaVZoXwpKybOGdfTdja9aoZYl/0WY+evGjgRw
+	 CgGsgI7FfPZ7NLMZj9AUFEecqxR2zZvkEIU+VXLc=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 489Dbd6j071980
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 9 Sep 2024 08:37:39 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 9
+ Sep 2024 08:37:38 -0500
+Received: from fllvsmtp8.itg.ti.com (10.64.41.158) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 4 Sep 2024 00:50:30 -0500
-Received: from sonu-hp-ws.dhcp.ti.com (sonu-hp-ws.dhcp.ti.com [10.24.69.21] (may be forged))
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4845oSp5042667;
-	Wed, 4 Sep 2024 00:50:29 -0500
-From: Sonu Alam <s-alam@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: <reatmon@ti.com>, <s-alam@ti.com>
-Subject: [meta-arago][oe-layersetup][PATCH v2] configs: processor-sdk-linux: Add 10.0 release config for J7200
-Date: Wed, 4 Sep 2024 11:20:26 +0530
-Message-ID: <20240904055026.238046-1-s-alam@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Frontend Transport; Mon, 9 Sep 2024 08:37:39 -0500
+Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.248.130.8])
+	by fllvsmtp8.itg.ti.com (8.15.2/8.15.2) with ESMTP id 489Dbdip110092;
+	Mon, 9 Sep 2024 08:37:39 -0500
+Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
+	id 0417211125A8; Mon,  9 Sep 2024 08:37:39 -0500 (CDT)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][scarthgap][PATCH] CI/CD Auto-Merger: cicd.scarthgap.202409090400
+Date: Mon, 9 Sep 2024 08:37:39 -0500
+Message-ID: <1725889059-8177-1-git-send-email-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 04 Sep 2024 05:50:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15553
+ <meta-arago@lists.yoctoproject.org>; Mon, 09 Sep 2024 13:37:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15554
 
-- Add processor-gateway-10_00.txt config used for building J7200.
+Updated the value(s) for:
+  ltp-ddt: SRCREV
 
-Signed-off-by: Sonu Alam <s-alam@ti.com>
+Changelogs:
+  ltp-ddt: https://git.ti.com/cgit/test-automation/ltp-ddt/log/?qt=range&q=dc0a875716fe9b345c86d0679f9638ddf1fbab58..1b26204c86bab410db31088f0eff31a5eb34510b
+
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
 ---
- .../processor-sdk-gateway-10_00.txt           | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
- create mode 100644 configs/processor-sdk-linux/processor-sdk-gateway-10_00.txt
+ meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/configs/processor-sdk-linux/processor-sdk-gateway-10_00.txt b/configs/processor-sdk-linux/processor-sdk-gateway-10_00.txt
-new file mode 100644
-index 0000000..f69645e
---- /dev/null
-+++ b/configs/processor-sdk-linux/processor-sdk-gateway-10_00.txt
-@@ -0,0 +1,19 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,https://git.openembedded.org/bitbake,2.8,11d83170922a2c6b9db1f6e8c23e533526984b2c
-+meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,82833bae8835e06301c23c8833642ae4c02d303a,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-+#meta-browser,https://github.com/OSSystems/meta-browser.git,master,1ed2254d72a4c25879014c98be287a7e3e22904c,layers=meta-chromium
-+meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,eb828418264a49b8d00035cb3d7b12fcea3be801,layers=
-+meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,6a80f140e387621f62964209a2e07d3bcfb125ce,layers=
-+meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,18f939a5fb37528a5415b05077ece383c346a119,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
-+meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,138077349667614f83637c98798c06249615a23e,layers=meta-ti-extras:meta-ti-bsp
-+meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,1b85bbb4cab9658da3cd926c62038b8559c5c64e,layers=meta-arm:meta-arm-toolchain
-+meta-clang,https://github.com/kraj/meta-clang,scarthgap,df21b1563910c80d7e2964971b7c5b79b5186922,layers=
-+oe-core,https://git.openembedded.org/openembedded-core,scarthgap,c00a9a8f25b0042b0723a5d20b88e92d473d22bf,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-+BITBAKE_INCLUSIVE_VARS=yes
-+meta-tisdk,https://git.ti.com/cgit/ti-sdk-linux/meta-tisdk,scarthgap,af81e0d81c5efd005bfc0ef749f690f9748c70f6,layers=
-+LOCALCONF:DISTRO_FEATURES:append = " virtualization"
-+
+diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
+index 3261de5..f4c32bd 100644
+--- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
++++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r1"
+ PV:append = "+git"
+ 
+-SRCREV = "dc0a875716fe9b345c86d0679f9638ddf1fbab58"
++SRCREV = "1b26204c86bab410db31088f0eff31a5eb34510b"
+ BRANCH ?= "master"
+ 
+ SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
 -- 
-2.34.1
+1.8.3.1
 
 
