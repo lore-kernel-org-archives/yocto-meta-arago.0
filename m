@@ -1,129 +1,115 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C4F1D0EE20
-	for <webhook@archiver.kernel.org>; Fri, 11 Oct 2024 18:27:22 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.19190.1728671234559347101
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F41EACF2582
+	for <webhook@archiver.kernel.org>; Sat, 12 Oct 2024 21:17:31 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.19573.1728767847062529110
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 11 Oct 2024 11:27:14 -0700
+ Sat, 12 Oct 2024 14:17:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=nBD+tLIY;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49BIRDUV130522;
-	Fri, 11 Oct 2024 13:27:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1728671233;
-	bh=NiUZ4rHcaqHfuJNWsxBPvSENltfNqBYuLMNC+ErEdsI=;
-	h=From:To:Subject:Date;
-	b=nBD+tLIY9b7ZiCwL958MnxoMowwGGdZ74AGZFKkdVghvipTLSGALFCUoUxxKJXcFC
-	 5Zyo3sxVpMtf9VCcii5XfrjeoOfrJG6cG639I0+Z8IfJLzY5UMSJGkicXM5Jnp+rrM
-	 ycKmsilifyQdny/f52aq/ME5LrFz//6f9weZHH3g=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49BIRDH9099567
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 11 Oct 2024 13:27:13 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 11
- Oct 2024 13:27:13 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 11 Oct 2024 13:27:13 -0500
-Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49BIRD8Q086550;
-	Fri, 11 Oct 2024 13:27:13 -0500
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1szKM5-0003t5-1n; Fri, 11 Oct 2024 13:27:13 -0500
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master/scarthgap][PATCH] kernel-selftest: Enable more tests
-Date: Fri, 11 Oct 2024 13:27:13 -0500
-Message-ID: <20241011182713.14904-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 7200441267;
+	Sat, 12 Oct 2024 21:17:26 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 0L80Z0bAeypv; Sat, 12 Oct 2024 21:17:26 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5C0F041266;
+	Sat, 12 Oct 2024 21:17:25 +0000 (UTC)
+Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 208F416408C;
+	Sat, 12 Oct 2024 17:17:25 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [PATCH] layer.conf: add compatibility with walnascar
+Date: Sat, 12 Oct 2024 17:17:23 -0400
+Message-Id: <20241012211723.54272-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 11 Oct 2024 18:27:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15567
+ <meta-arago@lists.yoctoproject.org>; Sat, 12 Oct 2024 21:17:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15568
 
-Our testing flow is looking to incorporate the kernel-selftests as a
-test.  Enable a large number of selected cases.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-This patch requires a set of corrseponding patches on meta-openembeded
-in upstream:
+The next Yocto Project release is called walnascar and OE-Core master bra=
+nch
+is now marked accordingly. Add layer compatibility with walnascar.
 
-[master] https://lists.openembedded.org/g/openembedded-devel/message/112802
-[scarthgap] https://lists.openembedded.org/g/openembedded-devel/message/112803
-
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- .../kernel-selftest/kernel-selftest.bbappend  | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
- create mode 100644 meta-arago-test/recipes-kernel/kernel-selftest/kernel-selftest.bbappend
+ meta-arago-demos/conf/layer.conf  | 2 +-
+ meta-arago-distro/conf/layer.conf | 2 +-
+ meta-arago-extras/conf/layer.conf | 2 +-
+ meta-arago-test/conf/layer.conf   | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-test/recipes-kernel/kernel-selftest/kernel-selftest.bbappend b/meta-arago-test/recipes-kernel/kernel-selftest/kernel-selftest.bbappend
-new file mode 100644
-index 00000000..68b4b668
---- /dev/null
-+++ b/meta-arago-test/recipes-kernel/kernel-selftest/kernel-selftest.bbappend
-@@ -0,0 +1,45 @@
-+TEST_LIST += "\
-+    arm64 \
-+    breakpoints \
-+    capabilities \
-+    cgroup \
-+    clone3 \
-+    core \
-+    cpu-hotplug \
-+    cpufreq \
-+    efivarfs \
-+    exec \
-+    filesystems \
-+    filesystems/binderfs \
-+    filesystems/epoll \
-+    firmware \
-+    fpu \
-+    ftrace \
-+    futex \
-+    gpio \
-+    intel_pstate \
-+    ipc \
-+    kcmp \
-+    kvm \
-+    livepatch \
-+    membarrier \
-+    memfd \
-+    mqueue \
-+    mincore \
-+    net \
-+    net/mptcp \
-+    openat2 \
-+    ptrace \
-+    resq \
-+    rtc \
-+    seccomp \
-+    sigaltstack \
-+    size \
-+    tc-testing \
-+    timers \
-+    tmpfs \
-+    tpm2 \
-+    user_events \
-+    vDSO \
-+    watchdog \
-+"
--- 
-2.17.1
+diff --git a/meta-arago-demos/conf/layer.conf b/meta-arago-demos/conf/lay=
+er.conf
+index cb18f840..782c5914 100644
+--- a/meta-arago-demos/conf/layer.conf
++++ b/meta-arago-demos/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS +=3D "meta-arago-demos"
+ BBFILE_PATTERN_meta-arago-demos :=3D "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-demos =3D "10"
+=20
+-LAYERSERIES_COMPAT_meta-arago-demos =3D "scarthgap styhead"
++LAYERSERIES_COMPAT_meta-arago-demos =3D "scarthgap styhead walnascar"
+=20
+ LAYERDEPENDS_meta-arago-demos =3D " \
+     core \
+diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/l=
+ayer.conf
+index 3368b8c0..d86da75c 100644
+--- a/meta-arago-distro/conf/layer.conf
++++ b/meta-arago-distro/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS +=3D "meta-arago-distro"
+ BBFILE_PATTERN_meta-arago-distro :=3D "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-distro =3D "10"
+=20
+-LAYERSERIES_COMPAT_meta-arago-distro =3D "scarthgap styhead"
++LAYERSERIES_COMPAT_meta-arago-distro =3D "scarthgap styhead walnascar"
+=20
+ LAYERDEPENDS_meta-arago-distro =3D " \
+     core \
+diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/l=
+ayer.conf
+index 5ab1591f..b7390e44 100644
+--- a/meta-arago-extras/conf/layer.conf
++++ b/meta-arago-extras/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS +=3D "meta-arago-extras"
+ BBFILE_PATTERN_meta-arago-extras :=3D "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-extras =3D "10"
+=20
+-LAYERSERIES_COMPAT_meta-arago-extras =3D "scarthgap styhead"
++LAYERSERIES_COMPAT_meta-arago-extras =3D "scarthgap styhead walnascar"
+=20
+ # Set a variable to get to the top of the metadata location
+ ARAGOBASE :=3D '${@os.path.normpath("${LAYERDIR}/../")}'
+diff --git a/meta-arago-test/conf/layer.conf b/meta-arago-test/conf/layer=
+.conf
+index 20d72c24..da73fb05 100644
+--- a/meta-arago-test/conf/layer.conf
++++ b/meta-arago-test/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS +=3D "meta-arago-test"
+ BBFILE_PATTERN_meta-arago-test :=3D "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-test =3D "10"
+=20
+-LAYERSERIES_COMPAT_meta-arago-test =3D "scarthgap styhead"
++LAYERSERIES_COMPAT_meta-arago-test =3D "scarthgap styhead walnascar"
+=20
+ # Set a variable to get to the top of the metadata location
+ TITESTBASE :=3D '${@os.path.normpath("${LAYERDIR}/")}'
+--=20
+2.25.1
 
 
