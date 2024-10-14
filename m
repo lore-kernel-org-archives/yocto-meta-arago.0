@@ -2,187 +2,96 @@ Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B3579D16263
-	for <webhook@archiver.kernel.org>; Mon, 14 Oct 2024 13:34:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B995CD16265
+	for <webhook@archiver.kernel.org>; Mon, 14 Oct 2024 13:36:56 +0000 (UTC)
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.54991.1728912871670468024
+ by mx.groups.io with SMTP id smtpd.web11.55050.1728913011066893969
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 14 Oct 2024 06:34:31 -0700
+ Mon, 14 Oct 2024 06:36:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=DGcc7ooE;
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=ZMUYbCEr;
  spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: c-shilwant@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49EDYUWI110600;
-	Mon, 14 Oct 2024 08:34:30 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49EDaoJh111152
+	for <meta-arago@lists.yoctoproject.org>; Mon, 14 Oct 2024 08:36:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1728912870;
-	bh=pq74l5Y+yWjTGGNu5BdfkFXH6MuSfoHMMSQnoBqBrts=;
-	h=Date:Subject:To:References:CC:From:In-Reply-To;
-	b=DGcc7ooEtJajQEItRPU8XfKaPPiosm1A7aOdIupqSDPY7odiiMzwTYmT7pL09U/Jg
-	 WVGQLxXgUlo9tpLUlZMyW9/v0JmGXJlxTV9QMvZiB6ObiEzGJPPaepCzrrURhenKNZ
-	 WTaPJsKryuM86FvntKlqSZOZyBGfmXi57EZ4Ifpk=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49EDYUoF050543
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 14 Oct 2024 08:34:30 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1728913010;
+	bh=Mbt+n9h2BauMsDdL883xsStEIzTSLTKIf7KWwNpF2SY=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=ZMUYbCErlaOG70TYZHmdzZlNkd383EVkLyHzzrAZOSJ3FVHjS3LrF+GORtnmGpfXH
+	 uac3svzwdH9Kblweb8bv4a+GHUGrXayTSXd0v4JTdkH5tVUvw3N3wj5VzMyo6YJ3Vl
+	 NJFn0y/YpD330rDtXYe5LwSH5kfPo2jtJ99xT9PI=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49EDaoJS112386
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Mon, 14 Oct 2024 08:36:50 -0500
+Received: from lewvowa02.ent.ti.com (10.180.75.80) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 14
- Oct 2024 08:34:30 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2024 08:36:50 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by lewvowa02.ent.ti.com
+ (10.180.75.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2507.34; Mon, 14 Oct
+ 2024 08:36:50 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 14 Oct 2024 08:34:30 -0500
+ Frontend Transport; Mon, 14 Oct 2024 08:36:50 -0500
 Received: from [172.24.227.238] (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49EDYSRI051082;
-	Mon, 14 Oct 2024 08:34:29 -0500
-Message-ID: <915225e0-4000-41ff-81d7-8bb647ff113e@ti.com>
-Date: Mon, 14 Oct 2024 19:04:27 +0530
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49EDanI6053711
+	for <meta-arago@lists.yoctoproject.org>; Mon, 14 Oct 2024 08:36:49 -0500
+Message-ID: <e52c4670-23e3-4759-be50-db0da611f05c@ti.com>
+Date: Mon, 14 Oct 2024 19:06:48 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] [meta-arago][master/scarthgap][PATCH] kernel-selftest:
- Enable more tests
+Subject: Re: [EXTERNAL] [meta-arago] [master][PATCH] layer.conf: add
+ compatibility with walnascar
 To: <meta-arago@lists.yoctoproject.org>
-References: <20241011182713.14904-1-reatmon@ti.com>
+References: <20241012211925.54869-1-denis@denix.org>
 Content-Language: en-US
-CC: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>, <reatmon@ti.com>
 From: Chirag Shilwant <c-shilwant@ti.com>
-In-Reply-To: <20241011182713.14904-1-reatmon@ti.com>
+In-Reply-To: <20241012211925.54869-1-denis@denix.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by lelv0142.ext.ti.com id 49EDYUWI110600
+X-MIME-Autoconverted: from 8bit to quoted-printable by lelv0142.ext.ti.com id 49EDaoJh111152
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 14 Oct 2024 13:34:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15571
+ <meta-arago@lists.yoctoproject.org>; Mon, 14 Oct 2024 13:36:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15572
 
-Hi Ryan,
-On 11/10/24 23:57, Ryan Eatmon via lists.yoctoproject.org wrote:
-> Our testing flow is looking to incorporate the kernel-selftests as a=20
-> test. Enable a large number of selected cases. This patch requires a=20
-> set of corrseponding patches on meta-openembeded in upstream: [master]=20
-> https:=E2=80=8A//urldefense.=E2=80=8Acom/v3/__https:=E2=80=8A//lists.=E2=
-=80=8Aopenembedded.=E2=80=8Aorg/g/openembedded-devel/message/112802__;!!G=
-3vK!SR7zVae3hhFFVplhWtl3dPzwmzA-fwFMlpz3lr7FA611OmO3Or3jYueFIp9jIXP6duIBn=
-KARWIdkuwjcSQ3a3gF3Y9CkRYUwtA$
+Hi,
+On 13/10/24 02:49, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@=E2=80=8Akonsulko.=E2=80=8Acom> The next=
+ Yocto Project=20
+> release is called walnascar and OE-Core master branch is now marked=20
+> accordingly. Add layer compatibility with walnascar. Signed-off-by:=20
+> Denys Dmytriyenko <denys@=E2=80=8Akonsulko.=E2=80=8Acom>
 > ZjQcmQRYFpfptBannerStart
 > This message was sent from outside of Texas Instruments.
 > Do not click links or open attachments unless you recognize the source=20
 > of this email and know the content is safe.
 > Report=C2=A0Suspicious
-> <https://us-phishalarm-ewt.proofpoint.com/EWT/v1/G3vK!uFdqXRfP9k0bCiZFP=
-JNj_MlZpVwu06fq9NvXRpfEf2O5Vx8jNtMvuUY5nddhxJbS3K0P_MbX07TzwgpxLR4$>=20
+> <https://us-phishalarm-ewt.proofpoint.com/EWT/v1/G3vK!ubdqXRfP9k0bCkYkH=
+PKjnFCqm-DVtifwp_4B7wsFMAJ4PQh4r-qpBCRU96ATv6uuYEnFvM8KI_7fDI2Cg6JD$>=20
 >
 > ZjQcmQRYFpfptBannerEnd
-> Our testing flow is looking to incorporate the kernel-selftests as a
-> test.  Enable a large number of selected cases.
+> From: Denys Dmytriyenko <denys@konsulko.com>
 >
-> This patch requires a set of corrseponding patches on meta-openembeded
-> in upstream:
+> The next Yocto Project release is called walnascar and OE-Core master b=
+ranch
+> is now marked accordingly. Add layer compatibility with walnascar.
 >
-> [master]https://urldefense.com/v3/__https://lists.openembedded.org/g/op=
-enembedded-devel/message/112802__;!!G3vK!SR7zVae3hhFFVplhWtl3dPzwmzA-fwFM=
-lpz3lr7FA611OmO3Or3jYueFIp9jIXP6duIBnKARWIdkuwjcSQ3a3gF3Y9CkRYUwtA$
-> [scarthgap]https://urldefense.com/v3/__https://lists.openembedded.org/g=
-/openembedded-devel/message/112803__;!!G3vK!SR7zVae3hhFFVplhWtl3dPzwmzA-f=
-wFMlpz3lr7FA611OmO3Or3jYueFIp9jIXP6duIBnKARWIdkuwjcSQ3a3gF3Y9DCycNl7g$
+> Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 
 
+Acked-by: Chirag Shilwant <c-shilwant@ti.com>
 
-On a side note, by any chance does using TARGETS provided by the=20
-kernel-selftest Makefile
-resolves the yocto build issue observed with testptp & kernel 6.12-rc1?
-
-
-
-
->
-> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 > ---
->   .../kernel-selftest/kernel-selftest.bbappend  | 45 ++++++++++++++++++=
-+
->   1 file changed, 45 insertions(+)
->   create mode 100644 meta-arago-test/recipes-kernel/kernel-selftest/ker=
-nel-selftest.bbappend
->
-> diff --git a/meta-arago-test/recipes-kernel/kernel-selftest/kernel-self=
-test.bbappend b/meta-arago-test/recipes-kernel/kernel-selftest/kernel-sel=
-ftest.bbappend
-> new file mode 100644
-> index 00000000..68b4b668
-> --- /dev/null
-> +++ b/meta-arago-test/recipes-kernel/kernel-selftest/kernel-selftest.bb=
-append
-> @@ -0,0 +1,45 @@
-> +TEST_LIST +=3D "\
-> +    arm64 \
-> +    breakpoints \
-> +    capabilities \
-> +    cgroup \
-> +    clone3 \
-> +    core \
-> +    cpu-hotplug \
-> +    cpufreq \
-> +    efivarfs \
-> +    exec \
-> +    filesystems \
-> +    filesystems/binderfs \
-> +    filesystems/epoll \
-> +    firmware \
-> +    fpu \
-> +    ftrace \
-> +    futex \
-> +    gpio \
-> +    intel_pstate \
-> +    ipc \
-> +    kcmp \
-> +    kvm \
-> +    livepatch \
-> +    membarrier \
-> +    memfd \
-> +    mqueue \
-> +    mincore \
-> +    net \
-> +    net/mptcp \
-> +    openat2 \
-> +    ptrace \
-> +    resq \
-> +    rtc \
-> +    seccomp \
-> +    sigaltstack \
-> +    size \
-> +    tc-testing \
-> +    timers \
-> +    tmpfs \
-> +    tpm2 \
-> +    user_events \
-> +    vDSO \
-> +    watchdog \
-> +"
-> --=20
-> 2.17.1
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#15567):https://urldefense.com/v3/__https://lists.yo=
-ctoproject.org/g/meta-arago/message/15567__;!!G3vK!SR7zVae3hhFFVplhWtl3dP=
-zwmzA-fwFMlpz3lr7FA611OmO3Or3jYueFIp9jIXP6duIBnKARWIdkuwjcSQ3a3gF3Y9D9Xq8=
-OYA$
-> Mute This Topic:https://urldefense.com/v3/__https://lists.yoctoproject.=
-org/mt/108954456/7030289__;!!G3vK!SR7zVae3hhFFVplhWtl3dPzwmzA-fwFMlpz3lr7=
-FA611OmO3Or3jYueFIp9jIXP6duIBnKARWIdkuwjcSQ3a3gF3Y9C3ArvQgw$
-> Group Owner: meta-arago+owner@lists.yoctoproject.org
-> Unsubscribe:https://urldefense.com/v3/__https://lists.yoctoproject.org/=
-g/meta-arago/unsub__;!!G3vK!SR7zVae3hhFFVplhWtl3dPzwmzA-fwFMlpz3lr7FA611O=
-mO3Or3jYueFIp9jIXP6duIBnKARWIdkuwjcSQ3a3gF3Y9CQCK5gXQ$  [c-shilwant@ti.co=
-m]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+>   meta-arago-demos/conf/layer.conf  | 2 +-
+>   meta-arago-distro/conf/layer.conf | 2 +-
+>   meta-arago-extras/conf/layer.conf | 2 +-
+>   meta-arago-test/conf/layer.conf   | 2 +-
+>   4 files changed, 4 insertions(+), 4 deletions(-)
 
