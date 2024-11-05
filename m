@@ -1,133 +1,440 @@
-Return-Path: <rs@ti.com>
+Return-Path: <jm@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E59FD1CA0E
-	for <webhook@archiver.kernel.org>; Tue,  5 Nov 2024 00:10:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5E2DD3E76B
+	for <webhook@archiver.kernel.org>; Tue,  5 Nov 2024 21:07:38 +0000 (UTC)
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web11.5898.1730765444244910295
+ by mx.groups.io with SMTP id smtpd.web10.31338.1730840856990794431
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 04 Nov 2024 16:10:44 -0800
+ Tue, 05 Nov 2024 13:07:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=as1uCjPm;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: rs@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A50AfRE039869;
-	Mon, 4 Nov 2024 18:10:41 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=qOG1gXkX;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: jm@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4A5L7alq112381;
+	Tue, 5 Nov 2024 15:07:36 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1730765441;
-	bh=pRhqL+Y3yLeOpbH4dZidNancAOL/AF09OwBVa3YvaBo=;
-	h=From:To:CC:Subject:Date;
-	b=as1uCjPmL42ujWfRQDFmK+q818lAidiLgPGGVy1jHJ5usGVMQBC+GQdGXQ88EZBL6
-	 /7XHk9royUEF+io08ggUcQ2eOcIRoncs2z2bV4PPxKBtC/wsYjyc6u3D3ERtqEdgoy
-	 aghpQ0gMJGBSiGlrG24egmqs7HyfArR7YBHTxZfg=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A50Af0H061286;
-	Mon, 4 Nov 2024 18:10:41 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE104.ent.ti.com
+	s=ti-com-17Q1; t=1730840856;
+	bh=+PI4Ba15BWWPtrojrBGDRlfeLixmhVATrNJn94FwAM8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=qOG1gXkXKoCrT1HvO2plu8bPBqReI1c2BXn5vdvFZm2/uFazkLOKHI6nEx2Y48y7M
+	 yHC0JyUy9AIMX/yl8FiRbjwc6RpKh1c+fvs6pnrxn2nwieHHc1QeAGwcgmDkAc8rJy
+	 sb3zWSX4721RfeQKCkPKlPSx3LGK1rTiuC4RZL9A=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4A5L7aXn002588
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 5 Nov 2024 15:07:36 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
+ Nov 2024 15:07:36 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
  (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 4
- Nov 2024 18:10:40 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 4 Nov 2024 18:10:41 -0600
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A50AfYk053391;
-	Mon, 4 Nov 2024 18:10:41 -0600
-From: <rs@ti.com>
-To: <denis@denix.org>, <reatmon@ti.com>
-CC: <detheridge@ti.com>, <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap/master][PATCH] mesa: enable llvmpipe and pull in meta-clang
-Date: Mon, 4 Nov 2024 18:10:29 -0600
-Message-ID: <20241105001029.3716418-1-rs@ti.com>
-X-Mailer: git-send-email 2.47.0
+ Frontend Transport; Tue, 5 Nov 2024 15:07:35 -0600
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4A5L7ZhQ029774;
+	Tue, 5 Nov 2024 15:07:35 -0600
+Message-ID: <8ee77c90-786a-476f-bb9d-6ebf852ca1f7@ti.com>
+Date: Tue, 5 Nov 2024 15:07:35 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][master/kirkstone/scarthgap][PATCH] ti-test: Add
+ hwspinlocktest
+To: Ryan Eatmon <reatmon@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>, Randolph Sapp <rs@ti.com>,
+        Praneeth Bajjuri
+	<praneeth@ti.com>
+References: <20241101222330.1900615-1-jm@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20241101222330.1900615-1-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 05 Nov 2024 00:10:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15591
+ <meta-arago@lists.yoctoproject.org>; Tue, 05 Nov 2024 21:07:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15592
 
-From: Randolph Sapp <rs@ti.com>
+Hi all,
 
-In the 1 year since I initially enabled llvmpipe for mesa in this layer,
-oe-core added their own version of clang and made it easier to enable
-for most devices.
+Is there anything missing/pending for this patch?
 
-Unfortunately, we do not fall under the category of most devices,
-considering we allow meta-browser. Meta-browser requires meta-clang,
-which provides conflicting versions of clang at runtime. This causes the
-mesa GLSL JIT to fail, among other things.
+~ Judith
 
-As a result this patch now pulls in meta-clang as a dependency and
-configures the default clang provider to be the version provided by
-meta-clang.
-
-This reverts commit 90389044489ac8813098e5d6314f568440ff64ec.
-
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf              | 8 ++++----
- meta-arago-distro/conf/distro/include/arago-prefs.inc | 8 ++++++++
- meta-arago-distro/conf/layer.conf                     | 2 +-
- 3 files changed, 13 insertions(+), 5 deletions(-)
-
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 5316ce81..8e094e02 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -104,10 +104,10 @@ PACKAGECONFIG:pn-vulkan-cts = "${@bb.utils.contains("DISTRO_FEATURES", "wayland"
- 
- # Use llvmpipe for better performance with software rendering
- # Only available for armv6+ devices
--#MESA_GALLIUM_LLVM_PACKAGECONFIG = "gallium-llvm"
--#MESA_GALLIUM_LLVM_PACKAGECONFIG:omapl138 = ""
--#PACKAGECONFIG:append:pn-mesa = " ${MESA_GALLIUM_LLVM_PACKAGECONFIG}"
--#PACKAGECONFIG:append:pn-mesa-pvr = " ${MESA_GALLIUM_LLVM_PACKAGECONFIG}"
-+MESA_GALLIUM_LLVM_PACKAGECONFIG = "gallium-llvm"
-+MESA_GALLIUM_LLVM_PACKAGECONFIG:omapl138 = ""
-+PACKAGECONFIG:append:pn-mesa = " ${MESA_GALLIUM_LLVM_PACKAGECONFIG}"
-+PACKAGECONFIG:append:pn-mesa-pvr = " ${MESA_GALLIUM_LLVM_PACKAGECONFIG}"
- 
- # Enable netperf intervals/pacing and histogram
- PACKAGECONFIG:append:pn-netperf = " intervals histogram"
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 34c3c539..a518a857 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -19,3 +19,11 @@ PREFERRED_PROVIDER_wpa-supplicant = "wpa-supplicant"
- #PREFERRED_PROVIDER_wpa-supplicant:ti33x = "wpa-supplicant-wl18xx"
- #PREFERRED_PROVIDER_wpa-supplicant:ti43x = "wpa-supplicant-wl18xx"
- #PREFERRED_PROVIDER_wpa-supplicant:omap-a15 = "wpa-supplicant-wl18xx"
-+
-+# Select meta-clang providers
-+PREFERRED_PROVIDER_llvm = "clang"
-+PREFERRED_PROVIDER_llvm-native = "clang-native"
-+PREFERRED_PROVIDER_nativesdk-llvm = "nativesdk-clang"
-+PROVIDES:pn-clang = "llvm"
-+PROVIDES:pn-clang-native = "llvm-native"
-+PROVIDES:pn-nativesdk-clang = "nativesdk-llvm"
-diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
-index 04e553b4..00afb5b2 100644
---- a/meta-arago-distro/conf/layer.conf
-+++ b/meta-arago-distro/conf/layer.conf
-@@ -19,10 +19,10 @@ LAYERDEPENDS_meta-arago-distro = " \
-     multimedia-layer \
-     meta-python \
-     qt5-layer \
-+    clang-layer \
-     meta-arago-extras \
-     meta-arago-test \
- "
--# clang-layer
- 
- LAYERRECOMMENDS_meta-arago-distro = " \
-     chromium-browser-layer \
--- 
-2.47.0
+On 11/1/24 5:23 PM, Judith Mendez wrote:
+> Add hwspinlock recipe to build out of tree module hwspinlock test.
+> 
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+>   .../recipes-core/packagegroups/ti-test.bb     |   1 +
+>   .../hwspinlocktest/files/LICENSE              |  29 ++
+>   .../hwspinlocktest/files/Makefile             |  19 ++
+>   .../files/omap_hwspinlock_test.c              | 251 ++++++++++++++++++
+>   .../hwspinlocktest/hwspinlocktest_0.1.bb      |  18 ++
+>   5 files changed, 318 insertions(+)
+>   create mode 100644 meta-arago-test/recipes-kernel/hwspinlocktest/files/LICENSE
+>   create mode 100644 meta-arago-test/recipes-kernel/hwspinlocktest/files/Makefile
+>   create mode 100644 meta-arago-test/recipes-kernel/hwspinlocktest/files/omap_hwspinlock_test.c
+>   create mode 100644 meta-arago-test/recipes-kernel/hwspinlocktest/hwspinlocktest_0.1.bb
+> 
+> diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> index 85398eaf..98fd0f56 100644
+> --- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> +++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> @@ -18,6 +18,7 @@ TI_TEST_BASE = "\
+>       evtest \
+>       fio \
+>       git \
+> +    hwspinlocktest \
+>       hdparm \
+>       i2c-tools \
+>       iozone3 \
+> diff --git a/meta-arago-test/recipes-kernel/hwspinlocktest/files/LICENSE b/meta-arago-test/recipes-kernel/hwspinlocktest/files/LICENSE
+> new file mode 100644
+> index 00000000..f5351a25
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-kernel/hwspinlocktest/files/LICENSE
+> @@ -0,0 +1,29 @@
+> +BSD 3-Clause License
+> +
+> +Copyright (c) 2019, Suman Anna
+> +All rights reserved.
+> +
+> +Redistribution and use in source and binary forms, with or without
+> +modification, are permitted provided that the following conditions are met:
+> +
+> +1. Redistributions of source code must retain the above copyright notice, this
+> +   list of conditions and the following disclaimer.
+> +
+> +2. Redistributions in binary form must reproduce the above copyright notice,
+> +   this list of conditions and the following disclaimer in the documentation
+> +   and/or other materials provided with the distribution.
+> +
+> +3. Neither the name of the copyright holder nor the names of its
+> +   contributors may be used to endorse or promote products derived from
+> +   this software without specific prior written permission.
+> +
+> +THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+> +AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+> +IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+> +DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+> +FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+> +DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+> +SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+> +CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+> +OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+> +OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+> diff --git a/meta-arago-test/recipes-kernel/hwspinlocktest/files/Makefile b/meta-arago-test/recipes-kernel/hwspinlocktest/files/Makefile
+> new file mode 100644
+> index 00000000..d8fe76dc
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-kernel/hwspinlocktest/files/Makefile
+> @@ -0,0 +1,19 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
+> +#
+> +# TI OMAP HwSpinlock Unit Test
+> +#
+> +
+> +obj-m := omap_hwspinlock_test.o
+> +
+> +SRC := $(shell pwd)
+> +
+> +all:
+> +	$(MAKE) -C $(KERNEL_SRC) M=$(SRC)
+> +
+> +modules_install:
+> +	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install
+> +
+> +clean:
+> +	rm -f *.o *~ core .depend .*.cmd *.ko *.mod.c
+> +	rm -f Module.markers Module.symvers modules.order
+> +	rm -rf .tmp_versions Modules.symvers
+> diff --git a/meta-arago-test/recipes-kernel/hwspinlocktest/files/omap_hwspinlock_test.c b/meta-arago-test/recipes-kernel/hwspinlocktest/files/omap_hwspinlock_test.c
+> new file mode 100644
+> index 00000000..b1801389
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-kernel/hwspinlocktest/files/omap_hwspinlock_test.c
+> @@ -0,0 +1,251 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
+> +/*
+> + * OMAP hardware spinlock test driver
+> + *
+> + * Copyright (C) 2014-2021 Texas Instruments Incorporated - https://www.ti.com
+> + *	Suman Anna <s-anna@ti.com>
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/init.h>
+> +#include <linux/err.h>
+> +#include <linux/sched.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +
+> +#include <linux/hwspinlock.h>
+> +
+> +/* load-time options */
+> +static int count = 2;
+> +module_param(count, int, 0444);
+> +
+> +struct hwspinlock_data {
+> +	const char *compatible;
+> +	const unsigned int max_locks;
+> +};
+> +
+> +static int hwspin_lock_test(struct hwspinlock *hwlock)
+> +{
+> +	int i;
+> +	int ret;
+> +
+> +	pr_err("\nTesting lock %d\n", hwspin_lock_get_id(hwlock));
+> +	for (i = 0; i < count; i++) {
+> +		ret = hwspin_trylock(hwlock);
+> +		if (ret) {
+> +			pr_err("%s: Initial lock failed\n", __func__);
+> +			return -EFAULT;
+> +		}
+> +		pr_err("trylock #1 status[%d] = %d\n", i, ret);
+> +
+> +		/* Verify lock actually works - re-acquiring it should fail */
+> +		ret = hwspin_trylock(hwlock);
+> +		pr_err("trylock #2 status[%d] = %d\n", i, ret);
+> +		if (!ret) {
+> +			/* Keep locks balanced even in failure cases */
+> +			hwspin_unlock(hwlock);
+> +			hwspin_unlock(hwlock);
+> +			pr_err("%s: Recursive lock succeeded unexpectedly\n",
+> +			       __func__);
+> +			return -EFAULT;
+> +		}
+> +
+> +		/* Verify unlock by re-acquiring the lock after releasing it */
+> +		hwspin_unlock(hwlock);
+> +		ret = hwspin_trylock(hwlock);
+> +		pr_err("trylock after unlock status[%d] = %d\n", i, ret);
+> +		if (ret) {
+> +			pr_err("%s: Unlock failed\n", __func__);
+> +			return -EINVAL;
+> +		}
+> +
+> +		hwspin_unlock(hwlock);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int hwspin_lock_test_all_locks(unsigned int max_locks)
+> +{
+> +	int i;
+> +	int ret = 0, ret1 = 0;
+> +	struct hwspinlock *hwlock = NULL;
+> +
+> +	pr_err("Testing %d locks\n", max_locks);
+> +	for (i = 0; i < max_locks; i++) {
+> +		hwlock = hwspin_lock_request_specific(i);
+> +		if (!hwlock) {
+> +			pr_err("request lock %d failed\n", i);
+> +			ret = -EIO;
+> +			continue;
+> +		}
+> +
+> +		ret1 = hwspin_lock_test(hwlock);
+> +		if (ret1) {
+> +			pr_err("hwspinlock tests failed on lock %d\n", i);
+> +			ret = ret1;
+> +			goto free_lock;
+> +		}
+> +
+> +free_lock:
+> +		ret1 = hwspin_lock_free(hwlock);
+> +		if (ret1) {
+> +			pr_err("hwspin_lock_free failed on lock %d\n", i);
+> +			ret = ret1;
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct of_device_id omap_hwspinlock_test_of_match[] = {
+> +	{ .compatible = "ti,omap-hwspinlock-test",   },
+> +	{ .compatible = "ti,omap4-hwspinlock-test",  },
+> +	{ .compatible = "ti,omap5-hwspinlock-test",  },
+> +	{ .compatible = "ti,dra7-hwspinlock-test",   },
+> +	{ .compatible = "ti,am33xx-hwspinlock-test", },
+> +	{ .compatible = "ti,am43xx-hwspinlock-test", },
+> +	{ .compatible = "ti,am654-hwspinlock-test",  },
+> +	{ /* end */ },
+> +};
+> +
+> +static int hwspin_lock_test_all_phandle_locks(unsigned int max_locks)
+> +{
+> +	struct device_node *np = NULL;
+> +	struct hwspinlock *hwlock = NULL;
+> +	int ret = 0, ret1 = 0;
+> +	unsigned int i;
+> +	int num_locks;
+> +	int hwlock_id;
+> +
+> +	np = of_find_matching_node_and_match(NULL,
+> +					     omap_hwspinlock_test_of_match,
+> +					     NULL);
+> +	if (!np) {
+> +		pr_err("\nNo test node provided\n");
+> +		return 0;
+> +	}
+> +
+> +	num_locks = of_count_phandle_with_args(np, "hwlocks", "#hwlock-cells");
+> +	pr_err("Number of phandles = %d max_locks = %d\n",
+> +	       num_locks, max_locks);
+> +
+> +	for (i = 0; i < num_locks; i++) {
+> +		hwlock_id = of_hwspin_lock_get_id(np, i);
+> +		if (hwlock_id < 0) {
+> +			pr_err("unable to get hwlock_id : %d\n", hwlock_id);
+> +			ret = -EINVAL;
+> +			continue;
+> +		};
+> +
+> +		hwlock = hwspin_lock_request_specific(hwlock_id);
+> +		if (!hwlock) {
+> +			pr_err("unable to get hwlock\n");
+> +			ret = -EINVAL;
+> +			continue;
+> +		}
+> +
+> +		ret1 = hwspin_lock_test(hwlock);
+> +		if (ret1) {
+> +			pr_err("hwspinlock test failed on DT lock %d, ret = %d\n",
+> +			       hwspin_lock_get_id(hwlock), ret1);
+> +			ret = ret1;
+> +		}
+> +
+> +		ret1 = hwspin_lock_free(hwlock);
+> +		if (ret1) {
+> +			pr_err("hwspin_lock_free failed on lock %d\n",
+> +			       hwspin_lock_get_id(hwlock));
+> +			ret = ret1;
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static
+> +unsigned int omap_hwspinlock_get_locks(const struct hwspinlock_data *data)
+> +{
+> +	unsigned int locks = 0;
+> +
+> +	while (data->compatible) {
+> +		if (of_machine_is_compatible(data->compatible)) {
+> +			locks = data->max_locks;
+> +			break;
+> +		}
+> +		data++;
+> +	}
+> +
+> +	return locks;
+> +}
+> +
+> +static const struct of_device_id omap_hwspinlock_of_match[] = {
+> +	{ .compatible = "ti,omap4-hwspinlock", },
+> +	{ .compatible = "ti,am654-hwspinlock", },
+> +	{ .compatible = "ti,am64-hwspinlock",  },
+> +	{ /* end */ },
+> +};
+> +
+> +static const struct hwspinlock_data soc_data[] = {
+> +	{ "ti,omap4",	32, },
+> +	{ "ti,omap5",	32, },
+> +	{ "ti,dra7",	256, },
+> +	{ "ti,am33xx",	128, },
+> +	{ "ti,am43",	128, },
+> +	{ "ti,am654",	256, },
+> +	{ "ti,j721e",	256, },
+> +	{ "ti,j7200",	256, },
+> +	{ "ti,am642",	256, },
+> +	{ "ti,j721s2",	256, },
+> +	{ /* sentinel */ },
+> +};
+> +
+> +static int omap_hwspinlock_test_init(void)
+> +{
+> +	struct device_node *np;
+> +	unsigned int max_locks;
+> +	int ret;
+> +
+> +	pr_err("\n** HwSpinLock Unit Test Module initiated **\n");
+> +
+> +	max_locks = omap_hwspinlock_get_locks(soc_data);
+> +	if (!max_locks) {
+> +		pr_err("\nNot a compatible platform\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	np = of_find_matching_node_and_match(NULL, omap_hwspinlock_of_match,
+> +					     NULL);
+> +	if (!np || !of_device_is_available(np)) {
+> +		pr_err("\nNo HwSpinlock node provided/enabled\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	pr_err("\n***** Begin - Test All Locks ****\n");
+> +	ret = hwspin_lock_test_all_locks(max_locks);
+> +	if (ret)
+> +		pr_err("hwspin_lock_test_all_locks failed, ret = %d\n", ret);
+> +	pr_err("\n***** End - Test All Locks ****\n");
+> +
+> +	pr_err("\n***** Begin - Test All pHandle Locks ****\n");
+> +	ret = hwspin_lock_test_all_phandle_locks(max_locks);
+> +	if (ret)
+> +		pr_err("hwspin_lock_test_all_locks failed, ret = %d\n", ret);
+> +	pr_err("\n***** End - Test All pHandle Locks ****\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static void omap_hwspinlock_test_exit(void)
+> +{
+> +	pr_err("\n** HwSpinLock Unit Test Module finished **\n");
+> +}
+> +
+> +module_init(omap_hwspinlock_test_init);
+> +module_exit(omap_hwspinlock_test_exit);
+> +
+> +MODULE_LICENSE("Dual BSD/GPL");
+> +MODULE_DESCRIPTION("Hardware spinlock Test driver for TI SoCs");
+> +MODULE_AUTHOR("Suman Anna <s-anna@ti.com>");
+> diff --git a/meta-arago-test/recipes-kernel/hwspinlocktest/hwspinlocktest_0.1.bb b/meta-arago-test/recipes-kernel/hwspinlocktest/hwspinlocktest_0.1.bb
+> new file mode 100644
+> index 00000000..2edd93f6
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-kernel/hwspinlocktest/hwspinlocktest_0.1.bb
+> @@ -0,0 +1,18 @@
+> +SUMMARY = "Build hwspinlock test as an external Linux kernel module"
+> +DESCRIPTION = "${SUMMARY}"
+> +LICENSE = "GPL-2.0-only | BSD-3-Clause"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=bfa02c83df161e37647ee23a2c7eacd4"
+> +
+> +inherit module
+> +
+> +SRC_URI = "file://Makefile \
+> +           file://omap_hwspinlock_test.c \
+> +           file://LICENSE \
+> +          "
+> +
+> +S = "${WORKDIR}"
+> +
+> +# The inherit of module.bbclass will automatically name module packages with
+> +# "kernel-module-" prefix as required by the oe-core build environment.
+> +
+> +RPROVIDES:${PN} += "kernel-module-hwspinlocktest"
 
 
