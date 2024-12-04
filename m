@@ -1,86 +1,129 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6EA7BE64A8D
-	for <webhook@archiver.kernel.org>; Tue,  3 Dec 2024 13:22:54 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web10.18951.1733232167458126505
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8111EE7716E
+	for <webhook@archiver.kernel.org>; Wed,  4 Dec 2024 15:10:34 +0000 (UTC)
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web10.16923.1733325024807603371
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 03 Dec 2024 05:22:47 -0800
+ Wed, 04 Dec 2024 07:10:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=fC1L0Id6;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: reatmon@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4B3DMkhe1889239
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=oY5PlVlw;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: c-shilwant@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4B4FAJSL1807006
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 3 Dec 2024 07:22:46 -0600
+	Wed, 4 Dec 2024 09:10:19 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1733232166;
-	bh=qKD+Ue8zpp45QwlB0hBc2eXkKlwkpX+SZuc3Davv1Ps=;
-	h=From:To:Subject:Date;
-	b=fC1L0Id6t/WvhGHgiOXedLmRcBk44q1jEETNCrtQHVgClIgzxc5DG5oCWwTDRh2/o
-	 bIDBWXJHjuuV/HN/r/lsDHLWqDr1VZ7O0E5z8TQ9sx3uc9rarqqiKrCb6XL1CF6jVM
-	 Jc0cCOGlUQP7XWlfz6BIajWm95wKwITk5t+a6bwk=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B3DMk7Q073463
+	s=ti-com-17Q1; t=1733325019;
+	bh=jb4W+eDqgtDXj+Rqt1p90+bFqFU3PUlHhJ18ZrGTjxs=;
+	h=From:To:CC:Subject:Date;
+	b=oY5PlVlwteg9fxodHBCxSw3sQWx1XdeXOQnM4iXOAGYIYS1SsjwTwAZZTomnOgrbp
+	 FMZTVUSp91sD48jjyIyX7evdFinZ/ebKGgHLYBYBNYk/AHVTlrhT3U1C94c/HUJdA3
+	 +K+dcoANZr1KusFs/7lJIAXEaA6KSLIb52TI7V5o=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B4FAJqf041570
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 3 Dec 2024 07:22:46 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Dec 2024 07:22:46 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 4 Dec 2024 09:10:19 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
+ Dec 2024 09:10:19 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Dec 2024 07:22:46 -0600
-Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B3DMk5J052897;
-	Tue, 3 Dec 2024 07:22:46 -0600
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1tISrV-0007jj-Th; Tue, 03 Dec 2024 07:22:45 -0600
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH v2 1/4] conf: layer.conf: Remove BB_DANGLINGAPPENDS_WARNONLY
-Date: Tue, 3 Dec 2024 07:22:42 -0600
-Message-ID: <20241203132245.29696-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ Frontend Transport; Wed, 4 Dec 2024 09:10:19 -0600
+Received: from localhost (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B4FAIPf068726;
+	Wed, 4 Dec 2024 09:10:19 -0600
+From: Chirag Shilwant <c-shilwant@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: Denys <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>
+Subject: [meta-arago][master][PATCH] conf: layer.conf: Drop scarthgap from LAYERSERIES_COMPAT
+Date: Wed, 4 Dec 2024 20:40:09 +0530
+Message-ID: <20241204151009.3427132-1-c-shilwant@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 03 Dec 2024 13:22:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15636
+ <meta-arago@lists.yoctoproject.org>; Wed, 04 Dec 2024 15:10:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15640
 
-Bitbake has dropped support for BB_DANGLINGAPPENDS_WARNONLY [1].
+After scarthgap release, oe-core switched to use UNPACKDIR instead
+of WORKDIR [1]. Post this change, meta-arago updated all references of
+WORKDIR to UNPACKDIR in master branch.
 
-[1] https://git.openembedded.org/bitbake/commit/?id=fca9c9e3cb6f8e9f99bf51dc5e8a8d83f4c84c69
+Since, UNPACKDIR changes aren't backported to oe-core:scarthgap, we need to
+drop it from LAYERSERIES_COMPAT in meta-arago.
 
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+[1]: https://git.openembedded.org/openembedded-core/commit/?id=e022d62ba917790af2121da57646271ef17c03fa
+
+Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
 ---
- meta-arago-distro/conf/layer.conf | 2 --
- 1 file changed, 2 deletions(-)
+ meta-arago-demos/conf/layer.conf  | 2 +-
+ meta-arago-distro/conf/layer.conf | 2 +-
+ meta-arago-extras/conf/layer.conf | 2 +-
+ meta-arago-test/conf/layer.conf   | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
+diff --git a/meta-arago-demos/conf/layer.conf b/meta-arago-demos/conf/layer.conf
+index 782c5914..df774b74 100644
+--- a/meta-arago-demos/conf/layer.conf
++++ b/meta-arago-demos/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-demos"
+ BBFILE_PATTERN_meta-arago-demos := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-demos = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-demos = "scarthgap styhead walnascar"
++LAYERSERIES_COMPAT_meta-arago-demos = "styhead walnascar"
+ 
+ LAYERDEPENDS_meta-arago-demos = " \
+     core \
 diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
-index 08684834..2342f702 100644
+index e6e3817f..d097afa0 100644
 --- a/meta-arago-distro/conf/layer.conf
 +++ b/meta-arago-distro/conf/layer.conf
-@@ -34,8 +34,6 @@ BBFILES_DYNAMIC += " \
-     selinux:${LAYERDIR}/dynamic-layers/selinux/recipes*/*/*.bbappend \
- "
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
+ BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-distro = "10"
  
--BB_DANGLINGAPPENDS_WARNONLY = "true"
--
- SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += " \
-     weston-init->weston \
-     weston-init->kbd \
+-LAYERSERIES_COMPAT_meta-arago-distro = "scarthgap styhead walnascar"
++LAYERSERIES_COMPAT_meta-arago-distro = "styhead walnascar"
+ 
+ LAYERDEPENDS_meta-arago-distro = " \
+     core \
+diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
+index b7390e44..7f976657 100644
+--- a/meta-arago-extras/conf/layer.conf
++++ b/meta-arago-extras/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
+ BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-extras = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-extras = "scarthgap styhead walnascar"
++LAYERSERIES_COMPAT_meta-arago-extras = "styhead walnascar"
+ 
+ # Set a variable to get to the top of the metadata location
+ ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
+diff --git a/meta-arago-test/conf/layer.conf b/meta-arago-test/conf/layer.conf
+index da73fb05..1e94c30d 100644
+--- a/meta-arago-test/conf/layer.conf
++++ b/meta-arago-test/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-test"
+ BBFILE_PATTERN_meta-arago-test := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-test = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-test = "scarthgap styhead walnascar"
++LAYERSERIES_COMPAT_meta-arago-test = "styhead walnascar"
+ 
+ # Set a variable to get to the top of the metadata location
+ TITESTBASE := '${@os.path.normpath("${LAYERDIR}/")}'
 -- 
-2.17.1
+2.34.1
 
 
