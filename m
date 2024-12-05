@@ -1,122 +1,88 @@
-Return-Path: <denis@denix.org>
+Return-Path: <jm@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 10563E7716D
-	for <webhook@archiver.kernel.org>; Wed,  4 Dec 2024 17:32:15 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.20779.1733333527853728876
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 76258E7716E
+	for <webhook@archiver.kernel.org>; Thu,  5 Dec 2024 20:12:15 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web11.21520.1733429533921912640
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 04 Dec 2024 09:32:08 -0800
+ Thu, 05 Dec 2024 12:12:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5264D40A2F;
-	Wed,  4 Dec 2024 17:32:07 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 0GpN2LYzk7Av; Wed,  4 Dec 2024 17:32:07 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2D82F40023;
-	Wed,  4 Dec 2024 17:32:05 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id ED7BB1640F2; Wed,  4 Dec 2024 12:32:04 -0500 (EST)
-Date: Wed, 4 Dec 2024 12:32:04 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Chirag Shilwant <c-shilwant@ti.com>
-Cc: meta-arago@lists.yoctoproject.org, Ryan Eatmon <reatmon@ti.com>
-Subject: Re: [meta-arago][master][PATCH] conf: layer.conf: Drop scarthgap
- from LAYERSERIES_COMPAT
-Message-ID: <20241204173202.GB23825@denix.org>
-References: <20241204151009.3427132-1-c-shilwant@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=SltP6nwd;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: jm@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4B5KCCd9053381;
+	Thu, 5 Dec 2024 14:12:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1733429532;
+	bh=IokEgs9htGqM3uuWXm0WXgd0RPf3hAVW3xDP+rYJscs=;
+	h=From:To:CC:Subject:Date;
+	b=SltP6nwdcFdc2fX3dnl+uBe1A2Ehyl42zyR3vGJ/ZSC8zur3k2n5vBo3+7WKIOIjG
+	 o9w2Ds/0jEaV0HIboc5dV84hIBGamkIue9BOi/mP2cox6KZJT0c++tFNYRlq17LNCy
+	 ZbQsP1s6Vjp34KXe/dLZB2crqVDjlspVWN80tyN4=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B5KCCB4051206
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 5 Dec 2024 14:12:12 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
+ Dec 2024 14:12:12 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 5 Dec 2024 14:12:12 -0600
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B5KCCO8090449;
+	Thu, 5 Dec 2024 14:12:12 -0600
+From: Judith Mendez <jm@ti.com>
+To: Ryan Eatmon <reatmon@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>, Randolph Sapp <rs@ti.com>,
+        Praneeth Bajjuri
+	<praneeth@ti.com>, Judith Mendez <jm@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH] ti-test: Add rng-tools
+Date: Thu, 5 Dec 2024 14:12:12 -0600
+Message-ID: <20241205201212.1114249-1-jm@ti.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241204151009.3427132-1-c-shilwant@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 04 Dec 2024 17:32:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15641
+ <meta-arago@lists.yoctoproject.org>; Thu, 05 Dec 2024 20:12:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15642
 
-On Wed, Dec 04, 2024 at 08:40:09PM +0530, Chirag Shilwant wrote:
-> After scarthgap release, oe-core switched to use UNPACKDIR instead
-> of WORKDIR [1]. Post this change, meta-arago updated all references of
-> WORKDIR to UNPACKDIR in master branch.
-> 
-> Since, UNPACKDIR changes aren't backported to oe-core:scarthgap, we need to
-> drop it from LAYERSERIES_COMPAT in meta-arago.
-> 
-> [1]: https://git.openembedded.org/openembedded-core/commit/?id=e022d62ba917790af2121da57646271ef17c03fa
-> 
-> Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
+Add rng-tools to the ti-test tool list.
 
-Acked-by: Denys Dmytriyenko <denys@konsulko.com>
+RNG testcases are failing since they require
+rngtest, so add rng-tools to ti-test only.
 
+Signed-off-by: Judith Mendez <jm@ti.com>
+---
+This patch has been previously sent and merged to scarthgap
+branch, but is also required for kirkstone
+---
+ meta-arago-test/recipes-core/packagegroups/ti-test.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-> ---
->  meta-arago-demos/conf/layer.conf  | 2 +-
->  meta-arago-distro/conf/layer.conf | 2 +-
->  meta-arago-extras/conf/layer.conf | 2 +-
->  meta-arago-test/conf/layer.conf   | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/meta-arago-demos/conf/layer.conf b/meta-arago-demos/conf/layer.conf
-> index 782c5914..df774b74 100644
-> --- a/meta-arago-demos/conf/layer.conf
-> +++ b/meta-arago-demos/conf/layer.conf
-> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-demos"
->  BBFILE_PATTERN_meta-arago-demos := "^${LAYERDIR}/"
->  BBFILE_PRIORITY_meta-arago-demos = "10"
->  
-> -LAYERSERIES_COMPAT_meta-arago-demos = "scarthgap styhead walnascar"
-> +LAYERSERIES_COMPAT_meta-arago-demos = "styhead walnascar"
->  
->  LAYERDEPENDS_meta-arago-demos = " \
->      core \
-> diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
-> index e6e3817f..d097afa0 100644
-> --- a/meta-arago-distro/conf/layer.conf
-> +++ b/meta-arago-distro/conf/layer.conf
-> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
->  BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
->  BBFILE_PRIORITY_meta-arago-distro = "10"
->  
-> -LAYERSERIES_COMPAT_meta-arago-distro = "scarthgap styhead walnascar"
-> +LAYERSERIES_COMPAT_meta-arago-distro = "styhead walnascar"
->  
->  LAYERDEPENDS_meta-arago-distro = " \
->      core \
-> diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
-> index b7390e44..7f976657 100644
-> --- a/meta-arago-extras/conf/layer.conf
-> +++ b/meta-arago-extras/conf/layer.conf
-> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
->  BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
->  BBFILE_PRIORITY_meta-arago-extras = "10"
->  
-> -LAYERSERIES_COMPAT_meta-arago-extras = "scarthgap styhead walnascar"
-> +LAYERSERIES_COMPAT_meta-arago-extras = "styhead walnascar"
->  
->  # Set a variable to get to the top of the metadata location
->  ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
-> diff --git a/meta-arago-test/conf/layer.conf b/meta-arago-test/conf/layer.conf
-> index da73fb05..1e94c30d 100644
-> --- a/meta-arago-test/conf/layer.conf
-> +++ b/meta-arago-test/conf/layer.conf
-> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-test"
->  BBFILE_PATTERN_meta-arago-test := "^${LAYERDIR}/"
->  BBFILE_PRIORITY_meta-arago-test = "10"
->  
-> -LAYERSERIES_COMPAT_meta-arago-test = "scarthgap styhead walnascar"
-> +LAYERSERIES_COMPAT_meta-arago-test = "styhead walnascar"
->  
->  # Set a variable to get to the top of the metadata location
->  TITESTBASE := '${@os.path.normpath("${LAYERDIR}/")}'
-> -- 
-> 2.34.1
-> 
+diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+index a80b943b..85398eaf 100644
+--- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+@@ -44,6 +44,7 @@ TI_TEST_BASE = "\
+     powertop \
+     procps \
+     pulseaudio-misc \
++    rng-tools \
+     rt-tests \
+     rwmem \
+     smcroute \
+-- 
+2.46.0
+
 
