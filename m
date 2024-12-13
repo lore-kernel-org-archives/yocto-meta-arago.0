@@ -1,139 +1,108 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BCF5CE7717F
-	for <webhook@archiver.kernel.org>; Thu, 12 Dec 2024 17:21:12 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.24932.1734024068742599759
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ADDF0E7717D
+	for <webhook@archiver.kernel.org>; Fri, 13 Dec 2024 15:04:33 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web11.17435.1734102272869464290
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 12 Dec 2024 09:21:08 -0800
+ Fri, 13 Dec 2024 07:04:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=iA+e32g6;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4BCHL7eG2964210
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 12 Dec 2024 11:21:07 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=MFrV0voz;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: afd@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4BDF4UIv079637;
+	Fri, 13 Dec 2024 09:04:30 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1734024067;
-	bh=y6YyJEPtww/BJBK/hU8Vl7Gxiyp7lytpsXB4wF65lzw=;
-	h=From:To:Subject:Date;
-	b=iA+e32g6moru20HcT7x1HR/4QJCJsGNr0qq2wAM+AldCd9LIRqjaSR199Xju+Qkf4
-	 qhtBgdc+/lJXieC2WKL9afK9WHP7Y4vf5pkLEBDx7OcPv3Yq7SsFxrEhSLlHuaD2Vg
-	 gFf43QwTjqHD8z1emS+8LObOlqvwEwW/9tCghDsE=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4BCHL6kb089702
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 12 Dec 2024 11:21:06 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 12
- Dec 2024 11:21:06 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1734102270;
+	bh=z+QOUHGpKSmjDgA19PJDuoCIeBuqJSN0ECbWcJ5vLko=;
+	h=From:To:CC:Subject:Date;
+	b=MFrV0vozeaJ9w/rPhRfH5N3p+ERCkKMNE5AcEmaowQGIpdH6938tCUjiiuKFJhfy6
+	 EiqwRMCxVOU6WN28ucw4UhlqkzQylqQUib+N/59qOhc/9wcndW7jKu9aNjxWyAVy5t
+	 4+hX4jT2b/SDRgDpsGaLx6a+GWWPfoMcjKNWMldA=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BDF4UAI031344;
+	Fri, 13 Dec 2024 09:04:30 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 13
+ Dec 2024 09:04:30 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 12 Dec 2024 11:21:06 -0600
-Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BCHL6wv030575;
-	Thu, 12 Dec 2024 11:21:06 -0600
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1tLms5-0002P4-Vm; Thu, 12 Dec 2024 11:21:06 -0600
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
+ Frontend Transport; Fri, 13 Dec 2024 09:04:30 -0600
+Received: from ula0226330.dhcp.ti.com (ula0226330.dhcp.ti.com [128.247.81.224] (may be forged))
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BDF4U7v038590;
+	Fri, 13 Dec 2024 09:04:30 -0600
+From: Andrew Davis <afd@ti.com>
+To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [oe-layersetup][master][PATCH] README: Update instructions for adding new config
-Date: Thu, 12 Dec 2024 11:21:05 -0600
-Message-ID: <20241212172105.9198-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+CC: Andrew Davis <afd@ti.com>
+Subject: [meta-arago][master][PATCH] flatbuffers: Remove this recipe
+Date: Fri, 13 Dec 2024 09:04:30 -0600
+Message-ID: <20241213150430.53396-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 12 Dec 2024 17:21:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15654
+ <meta-arago@lists.yoctoproject.org>; Fri, 13 Dec 2024 15:04:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15655
 
-Add in the requirements for make and xsltproc, and document the newly
-modified convert.pl script.
+This was used for TFlite and ARMNN before it was included in meta-oe.
+A newer better maintained version of this is in meta-oe now.
 
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- README | 47 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ .../flatbuffers/flatbuffers_1.11.0.bb         | 34 -------------------
+ 1 file changed, 34 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers_1.11.0.bb
 
-diff --git a/README b/README
-index 040d308..8928211 100644
---- a/README
-+++ b/README
-@@ -1,4 +1,7 @@
- 
-+History
-+===============================================================================
-+
- The oe-layersetup repository was created by Texas Instruments back in 2012
- as both a tool for configuring OpenEmbedded builds and the place to house
- the configuration files for rebuilding all of the releases of our software.
-@@ -29,6 +32,24 @@ need.  Additionally, we have created a Makefile and XSLT files that can
- generate the various configuration files for oe-layersetup, kas, and
- bitbake-setup.
- 
-+
-+Adding New Configurations
-+===============================================================================
-+
-+There are only two tool requirements for adding a new config:
-+  - make
-+  - xsltproc
-+
-+Both tools should be readily available on all distributions, but you might need
-+to install the packages.
-+
-+There are two methods for adding a new configuration: Adding XML directly, or
-+converting an oe-layersetup config.
-+
-+
-+Adding XML directly
-+-------------------
-+
- If you want to add a new configuration, you need to create the appropriate XML
- file in src/configs, run make in src, and then commit all of the new files.
- 
-@@ -37,3 +58,29 @@ file in src/configs, run make in src, and then commit all of the new files.
- - make
- - git status
- 
-+
-+Converting oe-layersetup config
-+-------------------------------
-+
-+If the flow you are working with already is using a modified oe-layersetup
-+config, or generates a locked down oe-layersetup config as an artifact, then
-+you can run the convert.pl script to translate that file into the XML config.
-+
-+./src/bin/convert.pl --input <file> --config-name <name>
-+
-+The <file> is simply the file you want to import, and the <name> is the name
-+of the config to import to.  The name should also include any subdirectories
-+under configs where the file should go.  For example:
-+
-+./src/bin/convert.pl \
-+        --input saved-config.txt \
-+        --config-name coresdk/coresdk-10.01.08-config
-+
-+This will create the XML file: src/configs/coresdk/coresdk-10.01.08-config.xml
-+
-+From there you run the same steps as if you had added the XML config yourself:
-+
-+- cd src
-+- make
-+- git status
-+
+diff --git a/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers_1.11.0.bb b/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers_1.11.0.bb
+deleted file mode 100644
+index 7f7b8b99..00000000
+--- a/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers_1.11.0.bb
++++ /dev/null
+@@ -1,34 +0,0 @@
+-SUMMARY = "Memory Efficient Serialization Library"
+-HOMEPAGE = "https://github.com/google/flatbuffers"
+-SECTION = "console/tools"
+-LICENSE = "Apache-2.0"
+-
+-PACKAGE_BEFORE_PN = "${PN}-compiler"
+-
+-RDEPENDS:${PN}-compiler = "${PN}"
+-RDEPENDS:${PN}-dev += "${PN}-compiler"
+-
+-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=a873c5645c184d51e0f9b34e1d7cf559"
+-
+-SRCREV = "bf9eb67ab9371755c6bcece13cadc7693bcbf264"
+-
+-SRC_URI = "git://github.com/google/flatbuffers.git;protocol=https;branch=master"
+-
+-# Make sure C++11 is used, required for example for GCC 4.9
+-CXXFLAGS += "-std=c++11"
+-BUILD_CXXFLAGS += "-std=c++11"
+-
+-# BUILD_TYPE=Release is required, otherwise flatc is not installed
+-EXTRA_OECMAKE += "\
+-    -DCMAKE_BUILD_TYPE=Release \
+-    -DFLATBUFFERS_BUILD_TESTS=OFF \    
+-    -DFLATBUFFERS_BUILD_SHAREDLIB=ON \
+-"
+-
+-inherit cmake
+-
+-S = "${WORKDIR}/git"
+-
+-FILES:${PN}-compiler = "${bindir}"
+-
+-BBCLASSEXTEND = "native nativesdk"
 -- 
-2.17.1
+2.39.2
 
 
