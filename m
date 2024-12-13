@@ -2,46 +2,47 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ADDF0E7717D
-	for <webhook@archiver.kernel.org>; Fri, 13 Dec 2024 15:04:33 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.17435.1734102272869464290
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B8213E7717D
+	for <webhook@archiver.kernel.org>; Fri, 13 Dec 2024 15:20:03 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web11.17843.1734103193495825358
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 13 Dec 2024 07:04:33 -0800
+ Fri, 13 Dec 2024 07:19:53 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=MFrV0voz;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: afd@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4BDF4UIv079637;
-	Fri, 13 Dec 2024 09:04:30 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=m3eAu6J4;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: afd@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4BDFJqLr050189;
+	Fri, 13 Dec 2024 09:19:52 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1734102270;
-	bh=z+QOUHGpKSmjDgA19PJDuoCIeBuqJSN0ECbWcJ5vLko=;
+	s=ti-com-17Q1; t=1734103192;
+	bh=x1P+HdGGDQZ4j/xzRSxafTR0GbhBCBNBvGFtQJQllhQ=;
 	h=From:To:CC:Subject:Date;
-	b=MFrV0vozeaJ9w/rPhRfH5N3p+ERCkKMNE5AcEmaowQGIpdH6938tCUjiiuKFJhfy6
-	 EiqwRMCxVOU6WN28ucw4UhlqkzQylqQUib+N/59qOhc/9wcndW7jKu9aNjxWyAVy5t
-	 4+hX4jT2b/SDRgDpsGaLx6a+GWWPfoMcjKNWMldA=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BDF4UAI031344;
-	Fri, 13 Dec 2024 09:04:30 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	b=m3eAu6J4l+DtudV7vtOj9Ba/1cBeF4zmGUMQozy3fYRoPmcjJWaBP+vJPrikhR+2w
+	 Yxky2LcTPFT6pKFtS4UHZLMCZz6TrWdNfidyvpe/SskJbmtEcxLOUEH3frJEiNGI/R
+	 S1o7jE6onp2Id2Bm21VS7Go0+0izoFGcMFQCrKZ8=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4BDFJqqw020968
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 13 Dec 2024 09:19:52 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 13
- Dec 2024 09:04:30 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ Dec 2024 09:19:52 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 13 Dec 2024 09:04:30 -0600
+ Frontend Transport; Fri, 13 Dec 2024 09:19:51 -0600
 Received: from ula0226330.dhcp.ti.com (ula0226330.dhcp.ti.com [128.247.81.224] (may be forged))
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BDF4U7v038590;
-	Fri, 13 Dec 2024 09:04:30 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BDFJpbK120159;
+	Fri, 13 Dec 2024 09:19:51 -0600
 From: Andrew Davis <afd@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
 CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][master][PATCH] flatbuffers: Remove this recipe
-Date: Fri, 13 Dec 2024 09:04:30 -0600
-Message-ID: <20241213150430.53396-1-afd@ti.com>
+Subject: [meta-arago][master][PATCH] tisdk-uenv: Remove OMAP5 and AM437 specific uEnv.txt
+Date: Fri, 13 Dec 2024 09:19:51 -0600
+Message-ID: <20241213151951.55228-1-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -50,58 +51,73 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 13 Dec 2024 15:04:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15655
+ <meta-arago@lists.yoctoproject.org>; Fri, 13 Dec 2024 15:20:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15656
 
-This was used for TFlite and ARMNN before it was included in meta-oe.
-A newer better maintained version of this is in meta-oe now.
+OMAP5 is not supported and the changes for AM437 are no longer valid.
+Remove those.
+
+As the package is now no longer different based on machine, remove
+PACKAGE_ARCH setting from recipe.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- .../flatbuffers/flatbuffers_1.11.0.bb         | 34 -------------------
- 1 file changed, 34 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers_1.11.0.bb
+ .../recipes-tisdk/tisdk-uenv/tisdk-uenv.bb          |  2 --
+ .../tisdk-uenv/tisdk-uenv/am437x-evm/uEnv.txt       | 13 -------------
+ .../tisdk-uenv/tisdk-uenv/omap5-evm/uEnv.txt        | 11 -----------
+ 3 files changed, 26 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am437x-evm/uEnv.txt
+ delete mode 100644 meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/omap5-evm/uEnv.txt
 
-diff --git a/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers_1.11.0.bb b/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers_1.11.0.bb
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb
+index 7bd601a0..08289822 100644
+--- a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb
++++ b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv.bb
+@@ -9,8 +9,6 @@ SRC_URI = "\
+ PR = "r3"
+ PV = "1.0"
+ 
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+ S = "${WORKDIR}/sources"
+ UNPACKDIR = "${S}"
+ 
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am437x-evm/uEnv.txt b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am437x-evm/uEnv.txt
 deleted file mode 100644
-index 7f7b8b99..00000000
---- a/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers_1.11.0.bb
+index 89f89f0d..00000000
+--- a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/am437x-evm/uEnv.txt
 +++ /dev/null
-@@ -1,34 +0,0 @@
--SUMMARY = "Memory Efficient Serialization Library"
--HOMEPAGE = "https://github.com/google/flatbuffers"
--SECTION = "console/tools"
--LICENSE = "Apache-2.0"
+@@ -1,13 +0,0 @@
+-# This uEnv.txt file can contain additional environment settings that you
+-# want to set in U-Boot at boot time.  This can be simple variables such
+-# as the serverip or custom variables.  The format of this file is:
+-#    variable=value
+-# NOTE: This file will be evaluated after the bootcmd is run and the
+-#       bootcmd must be set to load this file if it exists (this is the
+-#       default on all newer U-Boot images.  This also means that some
+-#       variables such as bootdelay cannot be changed by this file since
+-#       it is not evaluated until the bootcmd is run.
+-optargs=video=HDMI-A-1:800x600
 -
--PACKAGE_BEFORE_PN = "${PN}-compiler"
--
--RDEPENDS:${PN}-compiler = "${PN}"
--RDEPENDS:${PN}-dev += "${PN}-compiler"
--
--LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=a873c5645c184d51e0f9b34e1d7cf559"
--
--SRCREV = "bf9eb67ab9371755c6bcece13cadc7693bcbf264"
--
--SRC_URI = "git://github.com/google/flatbuffers.git;protocol=https;branch=master"
--
--# Make sure C++11 is used, required for example for GCC 4.9
--CXXFLAGS += "-std=c++11"
--BUILD_CXXFLAGS += "-std=c++11"
--
--# BUILD_TYPE=Release is required, otherwise flatc is not installed
--EXTRA_OECMAKE += "\
--    -DCMAKE_BUILD_TYPE=Release \
--    -DFLATBUFFERS_BUILD_TESTS=OFF \    
--    -DFLATBUFFERS_BUILD_SHAREDLIB=ON \
--"
--
--inherit cmake
--
--S = "${WORKDIR}/git"
--
--FILES:${PN}-compiler = "${bindir}"
--
--BBCLASSEXTEND = "native nativesdk"
+-# Uncomment the following line to enable HDMI display and disable LCD display.
+-#fdtfile=am437x-gp-evm-hdmi.dtb
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/omap5-evm/uEnv.txt b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/omap5-evm/uEnv.txt
+deleted file mode 100644
+index 6f726f58..00000000
+--- a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/omap5-evm/uEnv.txt
++++ /dev/null
+@@ -1,11 +0,0 @@
+-# This uEnv.txt file can contain additional environment settings that you
+-# want to set in U-Boot at boot time.  This can be simple variables such
+-# as the serverip or custom variables.  The format of this file is:
+-#    variable=value
+-# NOTE: This file will be evaluated after the bootcmd is run and the
+-#       bootcmd must be set to load this file if it exists (this is the
+-#       default on all newer U-Boot images.  This also means that some
+-#       variables such as bootdelay cannot be changed by this file since
+-#       it is not evaluated until the bootcmd is run.
+-bootdir=/boot
+-bootpart=0:2
 -- 
 2.39.2
 
