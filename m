@@ -2,655 +2,962 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 49939E77183
-	for <webhook@archiver.kernel.org>; Mon, 16 Dec 2024 14:18:20 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web10.57547.1734358698900388982
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 70FD8E7717F
+	for <webhook@archiver.kernel.org>; Mon, 16 Dec 2024 14:53:40 +0000 (UTC)
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web10.58337.1734360816855095746
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 16 Dec 2024 06:18:19 -0800
+ Mon, 16 Dec 2024 06:53:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=tuPoIACK;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4BGEIG1A3332400
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=lhBL4N/C;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: reatmon@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4BGErZP73562441
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 16 Dec 2024 08:18:16 -0600
+	Mon, 16 Dec 2024 08:53:35 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1734358696;
-	bh=i/NZS7xAMur4pmw3pbAJ2ccM3Uf5Xxg3B7Fg+4Fp0Tw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=tuPoIACKTv+aa7vnCql94U2L/CNLSbsU++OMqeZomHoc2r+ma3oqWouW5H3I9HRPi
-	 Q9oz/MBSFBzj4IPFjxLcHkqXzvhflpOmOggJLDbzGXqSwSXTzvBYnRqqT+DNkwwapG
-	 QZrhUX7Jfe0wtm+1QmpRfBjEVILNAepFxNSeHzuA=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4BGEIGnL004958
+	s=ti-com-17Q1; t=1734360815;
+	bh=2Dk8RqtYmrBXvZ7QXz7ZhWYuWayjbFPoICgjs2ars2Y=;
+	h=From:To:Subject:Date;
+	b=lhBL4N/CsY2eGOgj4ERbE75fkm1K6RBbXdkPTH2o/BRTfv1dJPSOF2m6qDETO+JjD
+	 wDFaCiz3e6L7TVZxKEUzBv2yhSgbdE2WYo3ZcIguK/n7RfKymbidBJnHHOW/fZSIVv
+	 C7uOIzyDuRiziMlvMoypwJY992rEvkDGBHsYCXjU=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4BGErZHe052684
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 16 Dec 2024 08:18:16 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 16 Dec 2024 08:53:35 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 16
- Dec 2024 08:18:15 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Dec 2024 08:53:35 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 16 Dec 2024 08:18:15 -0600
-Received: from [10.249.33.244] ([10.249.33.244])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BGEIFEx040454;
-	Mon, 16 Dec 2024 08:18:15 -0600
-Message-ID: <d585bdb0-8418-4769-a456-c4362d9341de@ti.com>
-Date: Mon, 16 Dec 2024 08:18:15 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][oe-layersetup][master][PATCH] configs:
- processor-sdk: Add new config for AM335x, AM437x, AM65x
-To: Denys Dmytriyenko <denis@denix.org>, <c-shilwant@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, Khasim <khasim@ti.com>
-References: <20241212123002.3191734-1-c-shilwant@ti.com>
- <20241214022347.GG23825@denix.org>
-Content-Language: en-US
+ Frontend Transport; Mon, 16 Dec 2024 08:53:35 -0600
+Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BGErZCq079072;
+	Mon, 16 Dec 2024 08:53:35 -0600
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1tNCTX-0002ap-7K; Mon, 16 Dec 2024 08:53:35 -0600
 From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <20241214022347.GG23825@denix.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [oe-layersetup][master][PATCH] xslt/bitbake-setup: Fix branch of oe-layersetup
+Date: Mon, 16 Dec 2024 08:53:35 -0600
+Message-ID: <20241216145335.9928-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 16 Dec 2024 14:18:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15660
+ <meta-arago@lists.yoctoproject.org>; Mon, 16 Dec 2024 14:53:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15661
 
+The branch was set to wip for testing and we forgot to update the branch
+to master once testing was complete.
 
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ bitbake-setup/arago-kirkstone-chromium-config.json              | 2 +-
+ bitbake-setup/arago-kirkstone-config.json                       | 2 +-
+ bitbake-setup/arago-kirkstone-next-config.json                  | 2 +-
+ bitbake-setup/arago-kirkstone-wip-config.json                   | 2 +-
+ bitbake-setup/arago-master-chromium-config.json                 | 2 +-
+ bitbake-setup/arago-master-config.json                          | 2 +-
+ bitbake-setup/arago-master-next-config.json                     | 2 +-
+ bitbake-setup/arago-master-selinux-config.json                  | 2 +-
+ bitbake-setup/arago-master-wip-config.json                      | 2 +-
+ bitbake-setup/arago-scarthgap-chromium-config.json              | 2 +-
+ bitbake-setup/arago-scarthgap-config.json                       | 2 +-
+ bitbake-setup/arago-scarthgap-next-config.json                  | 2 +-
+ bitbake-setup/arago-scarthgap-selinux-config.json               | 2 +-
+ bitbake-setup/arago-scarthgap-wip-config.json                   | 2 +-
+ bitbake-setup/coresdk_coresdk-09.00.00.006-config.json          | 2 +-
+ bitbake-setup/coresdk_coresdk-09.00.00.007-config.json          | 2 +-
+ bitbake-setup/coresdk_coresdk-09.00.00.011-config.json          | 2 +-
+ bitbake-setup/coresdk_coresdk-09.01.00.001-config.json          | 2 +-
+ bitbake-setup/coresdk_coresdk-09.01.00.003-config.json          | 2 +-
+ bitbake-setup/coresdk_coresdk-09.01.00.007-config.json          | 2 +-
+ bitbake-setup/coresdk_coresdk-09.01.00.008-config.json          | 2 +-
+ bitbake-setup/coresdk_coresdk-09.02.00.008-config.json          | 2 +-
+ bitbake-setup/coresdk_coresdk-09.02.00.009-config.json          | 2 +-
+ bitbake-setup/coresdk_coresdk-09.02.00.010-config.json          | 2 +-
+ bitbake-setup/coresdk_coresdk-09.03.05-config.json              | 2 +-
+ bitbake-setup/coresdk_coresdk-10.00.07-config.json              | 2 +-
+ bitbake-setup/coresdk_coresdk-10.01.08-config.json              | 2 +-
+ bitbake-setup/coresdk_coresdk-10.01.10-config.json              | 2 +-
+ bitbake-setup/distroless-kirkstone-config.json                  | 2 +-
+ bitbake-setup/distroless-master-config.json                     | 2 +-
+ bitbake-setup/distroless-scarthgap-config.json                  | 2 +-
+ bitbake-setup/poky-kirkstone-config.json                        | 2 +-
+ bitbake-setup/poky-master-config.json                           | 2 +-
+ bitbake-setup/poky-master-wip-config.json                       | 2 +-
+ bitbake-setup/poky-scarthgap-config.json                        | 2 +-
+ ...r-sdk-analytics_processor-sdk-analytics-09.00.00-config.json | 2 +-
+ ...r-sdk-analytics_processor-sdk-analytics-09.00.01-config.json | 2 +-
+ ...r-sdk-analytics_processor-sdk-analytics-09.01.00-config.json | 2 +-
+ ...r-sdk-analytics_processor-sdk-analytics-09.02.00-config.json | 2 +-
+ ...r-sdk-analytics_processor-sdk-analytics-10.00.00-config.json | 2 +-
+ .../processor-sdk-linux_processor-sdk-gateway-10_00.json        | 2 +-
+ .../processor-sdk-linux_processor-sdk-linux-09_00_00_06.json    | 2 +-
+ .../processor-sdk-linux_processor-sdk-linux-09_00_00_07.json    | 2 +-
+ .../processor-sdk-linux_processor-sdk-linux-09_01_00_06.json    | 2 +-
+ .../processor-sdk-linux_processor-sdk-linux-09_01_00_07.json    | 2 +-
+ .../processor-sdk-linux_processor-sdk-linux-09_02_00_04.json    | 2 +-
+ .../processor-sdk-linux_processor-sdk-linux-09_02_00_05.json    | 2 +-
+ .../processor-sdk-linux_processor-sdk-linux-10_00_07_06.json    | 2 +-
+ .../processor-sdk-linux_processor-sdk-linux-10_00_08_06.json    | 2 +-
+ .../processor-sdk_processor-sdk-09.00.00-am62xxsip-config.json  | 2 +-
+ bitbake-setup/processor-sdk_processor-sdk-09.00.00-config.json  | 2 +-
+ .../processor-sdk_processor-sdk-09.01.00-am65xx-config.json     | 2 +-
+ bitbake-setup/processor-sdk_processor-sdk-09.01.00-config.json  | 2 +-
+ .../processor-sdk_processor-sdk-09.01.00-legacy-config.json     | 2 +-
+ .../processor-sdk_processor-sdk-09.02.00.08-am64x-config.json   | 2 +-
+ .../processor-sdk_processor-sdk-09.03.05.02-legacy-config.json  | 2 +-
+ ...rocessor-sdk_processor-sdk-kirkstone-09.02.01.09-config.json | 2 +-
+ ...rocessor-sdk_processor-sdk-kirkstone-09.02.01.10-config.json | 2 +-
+ ...sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config.json | 2 +-
+ ...sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config.json | 2 +-
+ ...rocessor-sdk_processor-sdk-scarthgap-10.00.07.04-config.json | 2 +-
+ ...sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config.json | 2 +-
+ kas/processor-sdk/processor-sdk-09.03.05.02-legacy-config.yml   | 1 +
+ src/xslt/bitbake-setup.xslt                                     | 2 +-
+ 64 files changed, 64 insertions(+), 63 deletions(-)
 
-On 12/13/2024 8:23 PM, Denys Dmytriyenko wrote:
-> On Thu, Dec 12, 2024 at 06:00:02PM +0530, Chirag Shilwant via lists.yoctoproject.org wrote:
->> From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
->>
->> - Add processor-sdk-09.03.05.02-legacy-config.txt used for building AM335x, AM437x, AM65x.
->>
->> Signed-off-by: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
->> Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
->> ---
->>   ...ocessor-sdk-09.03.05.02-legacy-config.json | 125 +++++++++++++
->>   .../bblayers.conf.sample                      |  31 ++++
->>   .../conf-notes.txt                            |  22 +++
->>   .../conf-summary.txt                          |   1 +
->>   .../local.conf.sample                         | 175 ++++++++++++++++++
->>   ...rocessor-sdk-09.03.05.02-legacy-config.txt |  16 ++
->>   ...rocessor-sdk-09.03.05.02-legacy-config.yml |  69 +++++++
->>   ...rocessor-sdk-09.03.05.02-legacy-config.xml |  63 +++++++
->>   8 files changed, 502 insertions(+)
->>   create mode 100644 bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json
->>   create mode 100644 conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/bblayers.conf.sample
->>   create mode 100644 conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/conf-notes.txt
->>   create mode 100644 conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/conf-summary.txt
->>   create mode 100644 conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/local.conf.sample
->>   create mode 100644 configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.txt
->>   create mode 100644 kas/processor-sdk/processor-sdk-09.03.05.02-legacy-config.yml
->>   create mode 100644 src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml
->>
->> diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json b/bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json
->> new file mode 100644
->> index 0000000..08ff325
->> --- /dev/null
->> +++ b/bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json
->> @@ -0,0 +1,125 @@
->> +{
->> +  "version": "1.0",
->> +  "description": "TI Processor SDK v09.03.05.02-legacy",
->> +  "sources": {
->> +    "oe-layersetup": {
->> +      "git-remote": {
->> +        "remotes": {
->> +          "origin": {
->> +            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
->> +          }
->> +        },
->> +        "rev": "wip"
-> 
-> Why wip? Should it be master?
-
-I think that's an issue with the templates.  I forgot to change that 
-once I was done testing.  I'll fix it.
-
-
-> 
->> +      },
->> +      "path": "oe-layersetup"
->> +    },
->> +    "bitbake": {
->> +      "git-remote": {
->> +        "remotes": {
->> +          "origin": {
->> +            "uri": "https://git.openembedded.org/bitbake"
->> +          }
->> +        },
->> +        "rev": "2.0"
->> +      },
->> +      "path": "bitbake"
->> +    },
->> +    "meta-tisdk": {
->> +      "git-remote": {
->> +        "remotes": {
->> +          "origin": {
->> +            "uri": "https://github.com/TexasInstruments/meta-tisdk.git"
->> +          }
->> +        },
->> +        "rev": "kirkstone"
->> +      },
->> +      "path": "meta-tisdk"
->> +    },
->> +    "meta-arago": {
->> +      "git-remote": {
->> +        "remotes": {
->> +          "origin": {
->> +            "uri": "https://git.yoctoproject.org/meta-arago"
->> +          }
->> +        },
->> +        "rev": "kirkstone"
->> +      },
->> +      "path": "meta-arago"
->> +    },
->> +    "meta-qt5": {
->> +      "git-remote": {
->> +        "remotes": {
->> +          "origin": {
->> +            "uri": "https://github.com/meta-qt5/meta-qt5.git"
->> +          }
->> +        },
->> +        "rev": "kirkstone"
->> +      },
->> +      "path": "meta-qt5"
->> +    },
->> +    "meta-virtualization": {
->> +      "git-remote": {
->> +        "remotes": {
->> +          "origin": {
->> +            "uri": "https://git.yoctoproject.org/meta-virtualization"
->> +          }
->> +        },
->> +        "rev": "kirkstone"
->> +      },
->> +      "path": "meta-virtualization"
->> +    },
->> +    "meta-openembedded": {
->> +      "git-remote": {
->> +        "remotes": {
->> +          "origin": {
->> +            "uri": "https://git.openembedded.org/meta-openembedded"
->> +          }
->> +        },
->> +        "rev": "kirkstone"
->> +      },
->> +      "path": "meta-openembedded"
->> +    },
->> +    "meta-ti": {
->> +      "git-remote": {
->> +        "remotes": {
->> +          "origin": {
->> +            "uri": "https://git.yoctoproject.org/meta-ti"
->> +          }
->> +        },
->> +        "rev": "kirkstone"
->> +      },
->> +      "path": "meta-ti"
->> +    },
->> +    "meta-arm": {
->> +      "git-remote": {
->> +        "remotes": {
->> +          "origin": {
->> +            "uri": "https://git.yoctoproject.org/meta-arm"
->> +          }
->> +        },
->> +        "rev": "kirkstone"
->> +      },
->> +      "path": "meta-arm"
->> +    },
->> +    "oe-core": {
->> +      "git-remote": {
->> +        "remotes": {
->> +          "origin": {
->> +            "uri": "https://git.openembedded.org/openembedded-core"
->> +          }
->> +        },
->> +        "rev": "kirkstone"
->> +      },
->> +      "path": "oe-core"
->> +    }
->> +  },
->> +  "configuration": {
->> +    "bitbake-setup": {
->> +      "default": {
->> +        "description": "Default build configuration",
->> +         "template": "oe-layersetup-processor-sdk_processor-sdk-09.03.05.02-legacy-config",
->> +         "targets": [ "bitbake -k tisdk-default-image" ]
->> +      }
->> +    }
->> +  }
->> +}
->> diff --git a/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/bblayers.conf.sample b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/bblayers.conf.sample
->> new file mode 100644
->> index 0000000..a888c1c
->> --- /dev/null
->> +++ b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/bblayers.conf.sample
->> @@ -0,0 +1,31 @@
->> +# This template file was created by taking the oe-core/meta/conf/bblayers.conf
->> +# file and removing the BBLAYERS section at the end.
->> +
->> +# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
->> +# changes incompatibly
->> +LCONF_VERSION = "5"
->> +
->> +BBPATH = "${TOPDIR}"
->> +BBFILES ?= ""
->> +
->> +BBLAYERS ?= " \
->> +    ##OEROOT##/../meta-tisdk
->> +    ##OEROOT##/../meta-arago/meta-arago-distro
->> +    ##OEROOT##/../meta-arago/meta-arago-extras
->> +    ##OEROOT##/../meta-arago/meta-arago-demos
->> +    ##OEROOT##/../meta-arago/meta-arago-test
->> +    ##OEROOT##/../meta-qt5
->> +    ##OEROOT##/../meta-virtualization
->> +    ##OEROOT##/../meta-openembedded/meta-networking
->> +    ##OEROOT##/../meta-openembedded/meta-python
->> +    ##OEROOT##/../meta-openembedded/meta-oe
->> +    ##OEROOT##/../meta-openembedded/meta-gnome
->> +    ##OEROOT##/../meta-openembedded/meta-filesystems
->> +    ##OEROOT##/../meta-openembedded/meta-multimedia
->> +    ##OEROOT##/../meta-ti/meta-ti-extras
->> +    ##OEROOT##/../meta-ti/meta-ti-bsp
->> +    ##OEROOT##/../meta-arm/meta-arm
->> +    ##OEROOT##/../meta-arm/meta-arm-toolchain
->> +    ##OEROOT##/../oe-core/meta
->> +    ##OEROOT##/../oe-layersetup
->> +"
->> diff --git a/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/conf-notes.txt b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/conf-notes.txt
->> new file mode 100644
->> index 0000000..1880460
->> --- /dev/null
->> +++ b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/conf-notes.txt
->> @@ -0,0 +1,22 @@
->> +
->> +### Shell environment set up for builds. ###
->> +
->> +You can now run 'bitbake <target>'
->> +
->> +If you have not set MACHINE in your local.conf you can run
->> +'MACHINE=xxxxx bitbake <target>'
->> +
->> +Common targets are:
->> +    tisdk-default-image
->> +    tisdk-base-image
->> +    tisdk-bootstrap-base-image
->> +    tisdk-bootstrap-image
->> +    tisdk-thinlinux-image
->> +    tisdk-tiny-image
->> +
->> +You can also run generated qemu images with a command like 'runqemu qemux86-64'.
->> +
->> +Other commonly useful commands are:
->> + - 'devtool' and 'recipetool' handle common recipe tasks
->> + - 'bitbake-layers' handles common layer tasks
->> + - 'oe-pkgdata-util' handles common target package tasks
->> diff --git a/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/conf-summary.txt b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/conf-summary.txt
->> new file mode 100644
->> index 0000000..5d87e2e
->> --- /dev/null
->> +++ b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/conf-summary.txt
->> @@ -0,0 +1 @@
->> +TI Processor SDK v09.03.05.02-legacy
->> diff --git a/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/local.conf.sample
->> new file mode 100644
->> index 0000000..7575b4b
->> --- /dev/null
->> +++ b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/local.conf.sample
->> @@ -0,0 +1,175 @@
->> +# CONF_VERSION is increased each time build/conf/ changes incompatibly
->> +CONF_VERSION = "2"
->> +
->> +#
->> +# Where to place downloads
->> +#
->> +# During a first build the system will download many different source code
->> +# tarballs from various upstream projects. This can take a while, particularly
->> +# if your network connection is slow. These are all stored in DL_DIR. When
->> +# wiping and rebuilding you can preserve this directory to speed up this part
->> +# of subsequent builds. This directory is safe to share between multiple builds
->> +# on the same machine too.
->> +DL_DIR = "${TOPDIR}/downloads"
->> +
->> +#
->> +# Where to place shared-state files
->> +#
->> +# BitBake has the capability to accelerate builds based on previously built
->> +# output. This is done using "shared state" files which can be thought of as
->> +# cache objects and this option determines where those files are placed.
->> +#
->> +# You can wipe out TMPDIR leaving this directory intact and the build would
->> +# regenerate from these files if no changes were made to the configuration.
->> +# If changes were made to the configuration, only shared state files where the
->> +# state was still valid would be used (done using checksums).
->> +SSTATE_DIR = "${TOPDIR}/build/sstate-cache"
->> +
->> +#
->> +# Shared-state files from other locations
->> +#
->> +# As mentioned above, shared state files are prebuilt cache data objects which
->> +# can be used to accelerate build time. This variable can be used to configure
->> +# the system to search other mirror locations for these objects before it
->> +# builds the data itself.
->> +#
->> +# This can be a filesystem directory, or a remote url such as http or ftp.
->> +# These would contain the sstate-cache results from previous builds (possibly
->> +# from other machines). This variable works like fetcher MIRRORS/PREMIRRORS
->> +# and points to the cache locations to check for the shared objects.
->> +#SSTATE_MIRRORS ?= "\
->> +#file://.* http://someserver.tld/share/sstate/ \n \
->> +#file://.* file:///some/local/dir/sstate/"
->> +
->> +#
->> +# Where to place the build output
->> +#
->> +# This option specifies where the bulk of the building work should be done and
->> +# where BitBake should place its temporary files and output. Keep in mind that
->> +# this includes the extraction and compilation of many applications and the toolchain
->> +# which can use Gigabytes of hard disk space.
->> +TMPDIR = "${TOPDIR}/arago-tmp"
->> +
->> +# By default, DEPLOY_DIR is inside TMPDIR, but can be changed here to be outside
->> +#DEPLOY_DIR = "${TOPDIR}/deploy"
->> +
->> +#
->> +# Machine Selection
->> +#
->> +# You need to select a specific machine to target the build with. There are a selection
->> +# of emulated machines available which can boot and run in the QEMU emulator:
->> +#
->> +#MACHINE ?= "arago"
->> +
->> +#
->> +# Package Management configuration
->> +#
->> +# This variable lists which packaging formats to enable. Multiple package backends
->> +# can be enabled at once and the first item listed in the variable will be used
->> +# to generate the root filesystems.
->> +# Options are:
->> +#  - 'package_deb' for debian style deb files
->> +#  - 'package_ipk' for ipk files are used by opkg (a debian style embedded package manager)
->> +#  - 'package_rpm' for rpm style packages
->> +# E.g.: PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"
->> +# We default to ipk:
->> +PACKAGE_CLASSES ?= "package_ipk"
->> +
->> +#
->> +# SDK/ADT target architecture
->> +#
->> +# This variable specified the architecture to build SDK/ADT items for and means
->> +# you can build the SDK packages for architectures other than the machine you are
->> +# running the build on (i.e. building i686 packages on an x86_64 host._
->> +# Supported values are i686 and x86_64
->> +SDKMACHINE ?= "x86_64"
->> +
->> +#
->> +# Extra image configuration defaults
->> +#
->> +# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated
->> +# images. Some of these options are added to certain image types automatically. The
->> +# variable can contain the following options:
->> +#  "dbg-pkgs"       - add -dbg packages for all installed packages
->> +#                     (adds symbol information for debugging/profiling)
->> +#  "dev-pkgs"       - add -dev packages for all installed packages
->> +#                     (useful if you want to develop against libs in the image)
->> +#  "tools-sdk"      - add development tools (gcc, make, pkgconfig etc.)
->> +#  "tools-debug"    - add debugging tools (gdb, strace)
->> +#  "tools-profile"  - add profiling tools (oprofile, exmap, lttng valgrind (x86 only))
->> +#  "tools-testapps" - add useful testing tools (ts_print, aplay, arecord etc.)
->> +#  "debug-tweaks"   - make an image suitable for development
->> +#                     e.g. ssh root access has a blank password
->> +# There are other application targets that can be used here too, see
->> +# meta/classes/image.bbclass and meta/classes/core-image.bbclass for more details.
->> +# We default to enabling the debugging tweaks.
->> +EXTRA_IMAGE_FEATURES = "debug-tweaks"
->> +
->> +#
->> +# Additional image features
->> +#
->> +# The following is a list of additional classes to use when building images which
->> +# enable extra features. Some available options which can be included in this variable
->> +# are:
->> +#   - 'buildstats' collect build statistics
->> +#   - 'image-swab' to perform host system intrusion detection
->> +# NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
->> +USER_CLASSES ?= "buildstats"
->> +
->> +# By default disable interactive patch resolution (tasks will just fail instead):
->> +PATCHRESOLVE = "noop"
->> +
->> +# By default the machine configuration file sets the IMAGE_FSTYPES.  But if you
->> +# would like to add additional file system types you can uncomment the
->> +# following line and add the additional IMAGE_FSTYPES you want created
->> +# as part of the build flow.  Some common types are listed below and you
->> +# can remove the ones you do not want.
->> +# IMAGE_FSTYPES += "jffs2 cramfs ext2.gz ext3.gz squashfs ubi tar.gz tar.bz2 cpio"
->> +
->> +#
->> +# Parallelism Options
->> +#
->> +# These two options control how much parallelism BitBake should use. The first
->> +# option determines how many tasks bitbake should run in parallel:
->> +#
->> +# BB_NUMBER_THREADS ?= "1"
->> +#
->> +# The second option controls how many processes make should run in parallel when
->> +# running compile tasks:
->> +#
->> +# PARALLEL_MAKE ?= "-j 1"
->> +#
->> +# For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
->> +# be appropriate for example
->> +#
->> +# NOTE: By default, bitbake will choose the number of processeors on your host
->> +# so you should not need to set this unless you are wanting to lower the number
->> +# allowed.
->> +#
->> +
->> +DISTRO   = "arago"
->> +
->> +# Set terminal types by default it expects gnome-terminal
->> +# but we chose xterm
->> +TERMCMD = "${XTERM_TERMCMD}"
->> +TERMCMDRUN = "${XTERM_TERMCMDRUN}"
->> +
->> +# Don't generate the mirror tarball for SCM repos, the snapshot is enough
->> +BB_GENERATE_MIRROR_TARBALLS = "0"
->> +
->> +# Uncomment this to remove work directory after packaging to save disk space
->> +#INHERIT += "rm_work"
->> +
->> +# Keep one set of images by default
->> +RM_OLD_IMAGE = "1"
->> +
->> +# Enable local PR service for binary feeds
->> +PRSERV_HOST = "localhost:0"
->> +
->> +# Enable hash equiv server
->> +BB_SIGNATURE_HANDLER = "OEEquivHash"
->> +BB_HASHSERVE = "auto"
->> +
->> +# It is recommended to activate "buildhistory" for testing the PR service
->> +INHERIT += "buildhistory"
->> +BUILDHISTORY_COMMIT = "1"
->> diff --git a/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.txt b/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.txt
->> new file mode 100644
->> index 0000000..d3ef62d
->> --- /dev/null
->> +++ b/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.txt
->> @@ -0,0 +1,16 @@
->> +# This file takes repo entries in the format
->> +# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->> +
->> +bitbake,https://git.openembedded.org/bitbake,2.0,3f88b005244a0afb5d5c7260e54a94a453ec9b3e
->> +meta-tisdk,https://github.com/TexasInstruments/meta-tisdk.git,kirkstone,09.03.05.02,layers=
->> +meta-arago,https://git.yoctoproject.org/meta-arago,kirkstone,09.03.05,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
->> +meta-qt5,https://github.com/meta-qt5/meta-qt5.git,kirkstone,644ebf220245bdc06e7696ccc90acc97a0dd2566,layers=
->> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,kirkstone,460ea78d7f8d5d16799d0b7334b95d8170c9e338,layers=
->> +meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,4ad41baed6236d499804cbfc4f174042d84fce97,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
->> +meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone,09.03.05,layers=meta-ti-extras:meta-ti-bsp
->> +meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,936c02ec13661bd86a05f7f90e1b920d5092d670,layers=meta-arm:meta-arm-toolchain
->> +oe-core,https://git.openembedded.org/openembedded-core,kirkstone,e42b6a40a3a01e328966bb5ee1bb3e0993975b15,layers=meta
->> +
->> +OECORELAYERCONF=./sample-files/bblayers.conf.sample
->> +OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
->> +BITBAKE_INCLUSIVE_VARS=yes
->> diff --git a/kas/processor-sdk/processor-sdk-09.03.05.02-legacy-config.yml b/kas/processor-sdk/processor-sdk-09.03.05.02-legacy-config.yml
->> new file mode 100644
->> index 0000000..e3bb5b1
->> --- /dev/null
->> +++ b/kas/processor-sdk/processor-sdk-09.03.05.02-legacy-config.yml
->> @@ -0,0 +1,69 @@
->> +header:
->> +  version: 17
->> +  includes:
->> +    - ../templates/bblayers.conf.yml
->> +    - ../templates/local-arago64-v2.conf.yml
->> +
->> +target: tisdk-default-image
->> +
->> +repos:
->> +  meta-tisdk:
->> +    url: "https://github.com/TexasInstruments/meta-tisdk.git"
->> +    branch: "kirkstone"
->> +    commit: "09.03.05.02"
->> +
->> +  meta-arago:
->> +    url: "https://git.yoctoproject.org/meta-arago"
->> +    branch: "kirkstone"
->> +    commit: "09.03.05"
->> +    layers:
->> +      meta-arago-distro:
->> +      meta-arago-extras:
->> +      meta-arago-demos:
->> +      meta-arago-test:
->> +
->> +  meta-qt5:
->> +    url: "https://github.com/meta-qt5/meta-qt5.git"
->> +    branch: "kirkstone"
->> +    commit: "644ebf220245bdc06e7696ccc90acc97a0dd2566"
->> +
->> +  meta-virtualization:
->> +    url: "https://git.yoctoproject.org/meta-virtualization"
->> +    branch: "kirkstone"
->> +    commit: "460ea78d7f8d5d16799d0b7334b95d8170c9e338"
->> +
->> +  meta-openembedded:
->> +    url: "https://git.openembedded.org/meta-openembedded"
->> +    branch: "kirkstone"
->> +    commit: "4ad41baed6236d499804cbfc4f174042d84fce97"
->> +    layers:
->> +      meta-networking:
->> +      meta-python:
->> +      meta-oe:
->> +      meta-gnome:
->> +      meta-filesystems:
->> +      meta-multimedia:
->> +
->> +  meta-ti:
->> +    url: "https://git.yoctoproject.org/meta-ti"
->> +    branch: "kirkstone"
->> +    commit: "09.03.05"
->> +    layers:
->> +      meta-ti-extras:
->> +      meta-ti-bsp:
->> +
->> +  meta-arm:
->> +    url: "https://git.yoctoproject.org/meta-arm"
->> +    branch: "kirkstone"
->> +    commit: "936c02ec13661bd86a05f7f90e1b920d5092d670"
->> +    layers:
->> +      meta-arm:
->> +      meta-arm-toolchain:
->> +
->> +  oe-core:
->> +    url: "https://git.openembedded.org/openembedded-core"
->> +    branch: "kirkstone"
->> +    commit: "e42b6a40a3a01e328966bb5ee1bb3e0993975b15"
->> +    layers:
->> +      meta:
->> +
->> diff --git a/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml b/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml
->> new file mode 100644
->> index 0000000..71bd067
->> --- /dev/null
->> +++ b/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml
->> @@ -0,0 +1,63 @@
->> +<?xml version='1.0'?>
->> +<config>
->> +    <description>TI Processor SDK v09.03.05.02-legacy</description>
->> +
->> +    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
->> +    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
->> +    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
->> +
->> +    <bitbake url='https://git.openembedded.org/bitbake' branch='2.0' commit='3f88b005244a0afb5d5c7260e54a94a453ec9b3e'/>
->> +
->> +    <repos>
->> +        <repo name='meta-tisdk' url='https://github.com/TexasInstruments/meta-tisdk.git' branch='kirkstone' commit='09.03.05.02'>
->> +            <layers/>
->> +        </repo>
->> +        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='kirkstone' commit='09.03.05'>
->> +            <layers>
->> +                <layer>meta-arago-distro</layer>
->> +                <layer>meta-arago-extras</layer>
->> +                <layer>meta-arago-demos</layer>
->> +                <layer>meta-arago-test</layer>
->> +            </layers>
->> +        </repo>
->> +        <repo name='meta-qt5' url='https://github.com/meta-qt5/meta-qt5.git' branch='kirkstone' commit='644ebf220245bdc06e7696ccc90acc97a0dd2566'>
->> +            <layers/>
->> +        </repo>
->> +        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='kirkstone' commit='460ea78d7f8d5d16799d0b7334b95d8170c9e338'>
->> +            <layers/>
->> +        </repo>
->> +        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='kirkstone' commit='4ad41baed6236d499804cbfc4f174042d84fce97'>
->> +            <layers>
->> +                <layer>meta-networking</layer>
->> +                <layer>meta-python</layer>
->> +                <layer>meta-oe</layer>
->> +                <layer>meta-gnome</layer>
->> +                <layer>meta-filesystems</layer>
->> +                <layer>meta-multimedia</layer>
->> +            </layers>
->> +        </repo>
->> +        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='kirkstone' commit='09.03.05'>
->> +            <layers>
->> +                <layer>meta-ti-extras</layer>
->> +                <layer>meta-ti-bsp</layer>
->> +            </layers>
->> +        </repo>
->> +        <repo name='meta-arm' url='https://git.yoctoproject.org/meta-arm' branch='kirkstone' commit='936c02ec13661bd86a05f7f90e1b920d5092d670'>
->> +            <layers>
->> +                <layer>meta-arm</layer>
->> +                <layer>meta-arm-toolchain</layer>
->> +            </layers>
->> +        </repo>
->> +        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='kirkstone' commit='e42b6a40a3a01e328966bb5ee1bb3e0993975b15'>
->> +            <layers>
->> +                <layer>meta</layer>
->> +            </layers>
->> +        </repo>
->> +    </repos>
->> +
->> +    <tools>
->> +        <tool type='oe-layersetup'>
->> +            <var name='BITBAKE_INCLUSIVE_VARS' value='yes'/>
->> +        </tool>
->> +    </tools>
->> +</config>
->> -- 
->> 2.34.1
-
+diff --git a/bitbake-setup/arago-kirkstone-chromium-config.json b/bitbake-setup/arago-kirkstone-chromium-config.json
+index 1ca5b5a..977b95d 100644
+--- a/bitbake-setup/arago-kirkstone-chromium-config.json
++++ b/bitbake-setup/arago-kirkstone-chromium-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-kirkstone-config.json b/bitbake-setup/arago-kirkstone-config.json
+index 2ae277f..4921baf 100644
+--- a/bitbake-setup/arago-kirkstone-config.json
++++ b/bitbake-setup/arago-kirkstone-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-kirkstone-next-config.json b/bitbake-setup/arago-kirkstone-next-config.json
+index f52706f..0865573 100644
+--- a/bitbake-setup/arago-kirkstone-next-config.json
++++ b/bitbake-setup/arago-kirkstone-next-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-kirkstone-wip-config.json b/bitbake-setup/arago-kirkstone-wip-config.json
+index 4c47186..99cca73 100644
+--- a/bitbake-setup/arago-kirkstone-wip-config.json
++++ b/bitbake-setup/arago-kirkstone-wip-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-master-chromium-config.json b/bitbake-setup/arago-master-chromium-config.json
+index 0ae8a76..29deaa9 100644
+--- a/bitbake-setup/arago-master-chromium-config.json
++++ b/bitbake-setup/arago-master-chromium-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-master-config.json b/bitbake-setup/arago-master-config.json
+index f9232e9..4881f08 100644
+--- a/bitbake-setup/arago-master-config.json
++++ b/bitbake-setup/arago-master-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-master-next-config.json b/bitbake-setup/arago-master-next-config.json
+index 7ed1751..1b9238d 100644
+--- a/bitbake-setup/arago-master-next-config.json
++++ b/bitbake-setup/arago-master-next-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-master-selinux-config.json b/bitbake-setup/arago-master-selinux-config.json
+index a06000f..27f049c 100644
+--- a/bitbake-setup/arago-master-selinux-config.json
++++ b/bitbake-setup/arago-master-selinux-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-master-wip-config.json b/bitbake-setup/arago-master-wip-config.json
+index 79a2aa2..42885ed 100644
+--- a/bitbake-setup/arago-master-wip-config.json
++++ b/bitbake-setup/arago-master-wip-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-scarthgap-chromium-config.json b/bitbake-setup/arago-scarthgap-chromium-config.json
+index ddbe225..ad18b57 100644
+--- a/bitbake-setup/arago-scarthgap-chromium-config.json
++++ b/bitbake-setup/arago-scarthgap-chromium-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-scarthgap-config.json b/bitbake-setup/arago-scarthgap-config.json
+index acc15e2..d732a67 100644
+--- a/bitbake-setup/arago-scarthgap-config.json
++++ b/bitbake-setup/arago-scarthgap-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-scarthgap-next-config.json b/bitbake-setup/arago-scarthgap-next-config.json
+index 9fc1613..fa2fdfe 100644
+--- a/bitbake-setup/arago-scarthgap-next-config.json
++++ b/bitbake-setup/arago-scarthgap-next-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-scarthgap-selinux-config.json b/bitbake-setup/arago-scarthgap-selinux-config.json
+index 3cfb0dc..304cf22 100644
+--- a/bitbake-setup/arago-scarthgap-selinux-config.json
++++ b/bitbake-setup/arago-scarthgap-selinux-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/arago-scarthgap-wip-config.json b/bitbake-setup/arago-scarthgap-wip-config.json
+index f49791a..4c6d8ce 100644
+--- a/bitbake-setup/arago-scarthgap-wip-config.json
++++ b/bitbake-setup/arago-scarthgap-wip-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.00.00.006-config.json b/bitbake-setup/coresdk_coresdk-09.00.00.006-config.json
+index b7e5df6..4a577ff 100644
+--- a/bitbake-setup/coresdk_coresdk-09.00.00.006-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.00.00.006-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.00.00.007-config.json b/bitbake-setup/coresdk_coresdk-09.00.00.007-config.json
+index 467d24a..4e0637c 100644
+--- a/bitbake-setup/coresdk_coresdk-09.00.00.007-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.00.00.007-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.00.00.011-config.json b/bitbake-setup/coresdk_coresdk-09.00.00.011-config.json
+index 17b8635..ebe82de 100644
+--- a/bitbake-setup/coresdk_coresdk-09.00.00.011-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.00.00.011-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.01.00.001-config.json b/bitbake-setup/coresdk_coresdk-09.01.00.001-config.json
+index 9b0c9ef..9e53b3a 100644
+--- a/bitbake-setup/coresdk_coresdk-09.01.00.001-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.01.00.001-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.01.00.003-config.json b/bitbake-setup/coresdk_coresdk-09.01.00.003-config.json
+index 04221a1..6934a0d 100644
+--- a/bitbake-setup/coresdk_coresdk-09.01.00.003-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.01.00.003-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.01.00.007-config.json b/bitbake-setup/coresdk_coresdk-09.01.00.007-config.json
+index ad5728e..74fd9cc 100644
+--- a/bitbake-setup/coresdk_coresdk-09.01.00.007-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.01.00.007-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.01.00.008-config.json b/bitbake-setup/coresdk_coresdk-09.01.00.008-config.json
+index 541f25e..631d6cf 100644
+--- a/bitbake-setup/coresdk_coresdk-09.01.00.008-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.01.00.008-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.02.00.008-config.json b/bitbake-setup/coresdk_coresdk-09.02.00.008-config.json
+index a5aab79..e0ef11c 100644
+--- a/bitbake-setup/coresdk_coresdk-09.02.00.008-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.02.00.008-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.02.00.009-config.json b/bitbake-setup/coresdk_coresdk-09.02.00.009-config.json
+index 6d9b9a6..529c2df 100644
+--- a/bitbake-setup/coresdk_coresdk-09.02.00.009-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.02.00.009-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.02.00.010-config.json b/bitbake-setup/coresdk_coresdk-09.02.00.010-config.json
+index 6943852..99d9ae1 100644
+--- a/bitbake-setup/coresdk_coresdk-09.02.00.010-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.02.00.010-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-09.03.05-config.json b/bitbake-setup/coresdk_coresdk-09.03.05-config.json
+index c3f1422..45df6f7 100644
+--- a/bitbake-setup/coresdk_coresdk-09.03.05-config.json
++++ b/bitbake-setup/coresdk_coresdk-09.03.05-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-10.00.07-config.json b/bitbake-setup/coresdk_coresdk-10.00.07-config.json
+index e2a23dc..2564285 100644
+--- a/bitbake-setup/coresdk_coresdk-10.00.07-config.json
++++ b/bitbake-setup/coresdk_coresdk-10.00.07-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-10.01.08-config.json b/bitbake-setup/coresdk_coresdk-10.01.08-config.json
+index 685ab63..7fb45d7 100644
+--- a/bitbake-setup/coresdk_coresdk-10.01.08-config.json
++++ b/bitbake-setup/coresdk_coresdk-10.01.08-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/coresdk_coresdk-10.01.10-config.json b/bitbake-setup/coresdk_coresdk-10.01.10-config.json
+index dbd156c..6a1a840 100644
+--- a/bitbake-setup/coresdk_coresdk-10.01.10-config.json
++++ b/bitbake-setup/coresdk_coresdk-10.01.10-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/distroless-kirkstone-config.json b/bitbake-setup/distroless-kirkstone-config.json
+index a1e2090..b0ca7e7 100644
+--- a/bitbake-setup/distroless-kirkstone-config.json
++++ b/bitbake-setup/distroless-kirkstone-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/distroless-master-config.json b/bitbake-setup/distroless-master-config.json
+index 3f43de1..1479e27 100644
+--- a/bitbake-setup/distroless-master-config.json
++++ b/bitbake-setup/distroless-master-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/distroless-scarthgap-config.json b/bitbake-setup/distroless-scarthgap-config.json
+index ca73e99..bc34f7f 100644
+--- a/bitbake-setup/distroless-scarthgap-config.json
++++ b/bitbake-setup/distroless-scarthgap-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/poky-kirkstone-config.json b/bitbake-setup/poky-kirkstone-config.json
+index 3482e69..f577d85 100644
+--- a/bitbake-setup/poky-kirkstone-config.json
++++ b/bitbake-setup/poky-kirkstone-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/poky-master-config.json b/bitbake-setup/poky-master-config.json
+index a504ef2..7e99bd4 100644
+--- a/bitbake-setup/poky-master-config.json
++++ b/bitbake-setup/poky-master-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/poky-master-wip-config.json b/bitbake-setup/poky-master-wip-config.json
+index 6b36d59..063df20 100644
+--- a/bitbake-setup/poky-master-wip-config.json
++++ b/bitbake-setup/poky-master-wip-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/poky-scarthgap-config.json b/bitbake-setup/poky-scarthgap-config.json
+index 81c7f61..7d4cb50 100644
+--- a/bitbake-setup/poky-scarthgap-config.json
++++ b/bitbake-setup/poky-scarthgap-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config.json b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config.json
+index 9ea8929..a371d64 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config.json
++++ b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config.json b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config.json
+index e297fef..f6a90fc 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config.json
++++ b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config.json b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config.json
+index 12fccda..880511e 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config.json
++++ b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config.json b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config.json
+index 86c66d6..edf3114 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config.json
++++ b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config.json b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config.json
+index cb9d341..c8979db 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config.json
++++ b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-gateway-10_00.json b/bitbake-setup/processor-sdk-linux_processor-sdk-gateway-10_00.json
+index e52a127..0496660 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-gateway-10_00.json
++++ b/bitbake-setup/processor-sdk-linux_processor-sdk-gateway-10_00.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_06.json b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_06.json
+index 7784653..27b1c73 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_06.json
++++ b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_06.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_07.json b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_07.json
+index cafe87a..1b65b00 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_07.json
++++ b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_07.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_06.json b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_06.json
+index 853f6ed..df3bf13 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_06.json
++++ b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_06.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_07.json b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_07.json
+index 1957d1b..b349a19 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_07.json
++++ b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_07.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_04.json b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_04.json
+index 5862b37..f90a776 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_04.json
++++ b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_04.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_05.json b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_05.json
+index 64ad14d..ae0d18a 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_05.json
++++ b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_05.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_07_06.json b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_07_06.json
+index 746a9ca..0f49f93 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_07_06.json
++++ b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_07_06.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_08_06.json b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_08_06.json
+index e54895c..213b129 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_08_06.json
++++ b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_08_06.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.00.00-am62xxsip-config.json b/bitbake-setup/processor-sdk_processor-sdk-09.00.00-am62xxsip-config.json
+index c8751e3..55ba7a4 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.00.00-am62xxsip-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-09.00.00-am62xxsip-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.00.00-config.json b/bitbake-setup/processor-sdk_processor-sdk-09.00.00-config.json
+index afd3e0d..95fd87e 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.00.00-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-09.00.00-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-am65xx-config.json b/bitbake-setup/processor-sdk_processor-sdk-09.01.00-am65xx-config.json
+index 7e6497d..bbc816a 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-am65xx-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-09.01.00-am65xx-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-config.json b/bitbake-setup/processor-sdk_processor-sdk-09.01.00-config.json
+index 8e82698..daec1ba 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-09.01.00-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-legacy-config.json b/bitbake-setup/processor-sdk_processor-sdk-09.01.00-legacy-config.json
+index 813e35c..0ea7a01 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-legacy-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-09.01.00-legacy-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.02.00.08-am64x-config.json b/bitbake-setup/processor-sdk_processor-sdk-09.02.00.08-am64x-config.json
+index c999c69..3ab024e 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.02.00.08-am64x-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-09.02.00.08-am64x-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json b/bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json
+index 08ff325..8424253 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config.json b/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config.json
+index 4817671..ce27119 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config.json b/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config.json
+index 3697aa3..24d8391 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config.json b/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config.json
+index eb5e8fd..f408a5c 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config.json b/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config.json
+index 0a9e6f8..808b637 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config.json b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config.json
+index 9a52e21..dfed0b4 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config.json b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config.json
+index bbdc378..0b4a703 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config.json
++++ b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config.json
+@@ -9,7 +9,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
+diff --git a/kas/processor-sdk/processor-sdk-09.03.05.02-legacy-config.yml b/kas/processor-sdk/processor-sdk-09.03.05.02-legacy-config.yml
+index 70f8c84..e3bb5b1 100644
+--- a/kas/processor-sdk/processor-sdk-09.03.05.02-legacy-config.yml
++++ b/kas/processor-sdk/processor-sdk-09.03.05.02-legacy-config.yml
+@@ -66,3 +66,4 @@ repos:
+     commit: "e42b6a40a3a01e328966bb5ee1bb3e0993975b15"
+     layers:
+       meta:
++
+diff --git a/src/xslt/bitbake-setup.xslt b/src/xslt/bitbake-setup.xslt
+index 5385c1f..5f25a04 100644
+--- a/src/xslt/bitbake-setup.xslt
++++ b/src/xslt/bitbake-setup.xslt
+@@ -29,7 +29,7 @@
+             "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
+           }
+         },
+-        "rev": "wip"
++        "rev": "master"
+       },
+       "path": "oe-layersetup"
+     },
 -- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+2.17.1
+
 
