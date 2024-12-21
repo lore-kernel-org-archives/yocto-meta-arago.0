@@ -1,104 +1,82 @@
-Return-Path: <denis@denix.org>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F4086E77188
-	for <webhook@archiver.kernel.org>; Fri, 20 Dec 2024 18:04:21 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.1311.1734717861129774587
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D856E7718B
+	for <webhook@archiver.kernel.org>; Sat, 21 Dec 2024 19:50:12 +0000 (UTC)
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+ by mx.groups.io with SMTP id smtpd.web10.13137.1734810610791978995
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 20 Dec 2024 10:04:21 -0800
+ Sat, 21 Dec 2024 11:50:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3680340C8F;
-	Fri, 20 Dec 2024 18:04:20 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id uje4HGU3CImH; Fri, 20 Dec 2024 18:04:20 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0961C40A03;
-	Fri, 20 Dec 2024 18:04:16 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id C47EA164142; Fri, 20 Dec 2024 13:04:16 -0500 (EST)
-Date: Fri, 20 Dec 2024 13:04:16 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: afd@ti.com
-Cc: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][scarthgap/master][PATCH 0/2] Add ARM Compute
- Library
-Message-ID: <20241220180416.GM23825@denix.org>
-References: <20241220164910.318809-1-afd@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=S1275Fnc;
+ spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: afd@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4BLJo8jN631521
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sat, 21 Dec 2024 13:50:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1734810608;
+	bh=CLCVN63d8j+ISnsOCMOUyeAK3wNca8PuT9of1Bkf2DU=;
+	h=From:To:CC:Subject:Date;
+	b=S1275FncCjfN6sXHN6Q2Rr9CW8WQ6ymDNwWEljuyfgvW4IfcX62e0eTZat5bw3WT5
+	 RVJPGtfUiyaUWFH7CuhQTwZ61LtoLe5EpwUeKEJ7BfOVsS+ExX5Bn1zG2pUENXxPVU
+	 BIPqgAdQJ5X2YZkYZYOXNBEj0jt9w9leooM7i+2U=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4BLJo8EP053784
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 21 Dec 2024 13:50:08 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 21
+ Dec 2024 13:50:07 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 21 Dec 2024 13:50:08 -0600
+Received: from lelvsmtp5.itg.ti.com ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BLJo79L125173;
+	Sat, 21 Dec 2024 13:50:07 -0600
+From: Andrew Davis <afd@ti.com>
+To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+CC: Andrew Davis <afd@ti.com>
+Subject: [meta-arago][scarthgap/master][PATCH 0/1] Add Arm NN
+Date: Sat, 21 Dec 2024 13:50:05 -0600
+Message-ID: <20241221195006.395991-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241220164910.318809-1-afd@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 20 Dec 2024 18:04:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15680
+ <meta-arago@lists.yoctoproject.org>; Sat, 21 Dec 2024 19:50:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15681
 
-Andrew,
+Hello all,
 
-We used to have older versions of arm-compute-library and ARMNN in meta-arago, 
-but those were unmaintained and removed not long ago...
+This builds on ARM Compute Library to add an API for building and
+running neural networks. This will be an intermederay for higher
+level libraries such as ONNX Runtime and a TFLite Delegate.
+These will be posted next.
 
-Just a quick look around, there's a meta-machinelearning layer from Witekio, 
-that hasn't been updated for 5.5 years.
+Like the ACL recipe this really belongs in meta-arm, but will
+live here as we work that, they can be dropped out when they
+land in meta-arm.
 
-Also, meta-webos has a bit newer versions of both in rather curiously named 
-recipes-upstreamable directory:
+Thanks,
+Andrew
 
-https://github.com/webosose/meta-webosose/blob/master/meta-webos/recipes-upstreamable/arm-compute-library/arm-compute-library_22.08.bb
-https://github.com/webosose/meta-webosose/blob/master/meta-webos/recipes-upstreamable/armnn/armnn_22.08.bb
+Andrew Davis (1):
+  meta-arago-extras: Add recipe for Arm NN
 
-Maybe you can find anything useful there?
+ .../recipes-devtools/armnn/armnn_24.11.bb     | 82 +++++++++++++++++++
+ 1 file changed, 82 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/armnn/armnn_24.11.bb
 
+-- 
+2.39.2
 
-
-On Fri, Dec 20, 2024 at 10:49:08AM -0600, Andrew Davis via lists.yoctoproject.org wrote:
-> Hello all,
-> 
-> This series adds support for arm-compute-library which will be used
-> as the base for several other ARM based ML frameworks and apps.
-> 
-> This package will be sent for inclusion in meta-arm as it is ARM
-> produced and supported software. This will be done after the patches
-> here for ACL are taken into the project's upstream. We can drop
-> this out of meta-arago master after that.
-> 
-> Thanks,
-> Andrew
-> 
-> Andrew Davis (2):
->   flatbuffers: Remove this recipe
->   meta-arago-extras: Add recipe for arm-compute-library
-> 
->  ...-indention-in-cmake-generator-script.patch | 130 ++++++++++++
->  ...ENABLE_NEON-in-code-for-checking-NEO.patch | 114 ++++++++++
->  ...ENABLE_SVE-in-code-for-checking-SVE-.patch | 197 ++++++++++++++++++
->  ...rce-files-at-library-definition-time.patch | 167 +++++++++++++++
->  ...ptions-for-SVE-SVE2-and-BF16-support.patch | 112 ++++++++++
->  ...SVE2-support-to-be-disabled-in-CMake.patch |  91 ++++++++
->  .../0007-Allow-ARMv7-builds-using-CMake.patch |  86 ++++++++
->  ...ymbol-error-when-building-TensorInfo.patch |  46 ++++
->  .../arm-compute-library_24.12.bb              |  79 +++++++
->  .../flatbuffers/flatbuffers_1.11.0.bb         |  34 ---
->  .../recipes-core/packagegroups/ti-test.bb     |   1 +
->  11 files changed, 1023 insertions(+), 34 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0001-fix-Fix-indention-in-cmake-generator-script.patch
->  create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
->  create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patch
->  create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0004-Add-source-files-at-library-definition-time.patch
->  create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.patch
->  create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake.patch
->  create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0007-Allow-ARMv7-builds-using-CMake.patch
->  create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch
->  create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library_24.12.bb
->  delete mode 100644 meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers_1.11.0.bb
 
