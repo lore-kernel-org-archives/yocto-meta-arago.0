@@ -1,74 +1,90 @@
-Return-Path: <denis@denix.org>
+Return-Path: <d-mittal@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78F7EC02183
-	for <webhook@archiver.kernel.org>; Tue, 14 Jan 2025 18:22:32 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.1260.1736878941661971795
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C0ECC02183
+	for <webhook@archiver.kernel.org>; Thu, 16 Jan 2025 13:54:50 +0000 (UTC)
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+ by mx.groups.io with SMTP id smtpd.web11.49598.1737035686938379662
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 14 Jan 2025 10:22:22 -0800
+ Thu, 16 Jan 2025 05:54:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 90D1240C86;
-	Tue, 14 Jan 2025 18:22:20 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id pdQJJ1HIOYX9; Tue, 14 Jan 2025 18:22:20 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 76B3440A28;
-	Tue, 14 Jan 2025 18:22:19 +0000 (UTC)
-Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 9C987164152;
-	Tue, 14 Jan 2025 13:22:18 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master/scarthgap][PATCH] gstreamer1.0-plugins-vpe: set branch explicitly
-Date: Tue, 14 Jan 2025 13:22:18 -0500
-Message-Id: <20250114182218.2138921-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=F9+XpGYg;
+ spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: d-mittal@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50GDsjAT023666
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+	for <meta-arago@lists.yoctoproject.org>; Thu, 16 Jan 2025 07:54:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1737035686;
+	bh=Rrz4VwDtlAU2Tc/n1xyvI4u6tOXklYx5UXo84dEy19c=;
+	h=From:To:CC:Subject:Date;
+	b=F9+XpGYgquKUg2va3UQ681PDZKBEwIkVDv9R6qh8mAdas95AO6wjGZwgyQGj4snGg
+	 ynW5h1vpx42K60dPFeN3bAVhZ5ke0xwSzTF7zWr3X4ixenCNjNHjd3Sw8vT5qBr3av
+	 l4xV6cnqWvSI6MPk6bq1fkyRRqQ7ntTt33ZHCZP4=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50GDsjGE016303
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Thu, 16 Jan 2025 07:54:45 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 16
+ Jan 2025 07:54:45 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 16 Jan 2025 07:54:45 -0600
+Received: from a0507040local.dhcp.ti.com (a0507040local.dhcp.ti.com [172.24.227.68])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50GDsghw102384;
+	Thu, 16 Jan 2025 07:54:43 -0600
+From: Divyansh Mittal <d-mittal@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: Ryan Eatmon <reatmon@ti.com>, Karan Saxena <karan@ti.com>,
+        Krunal Bhargav
+	<k-bhargav@ti.com>,
+        Chirag Shilwant <c-shilwant@ti.com>,
+        Divyansh Mittal
+	<d-mittal@ti.com>
+Subject: [meta-arago][master/scarthgap][PATCH] packagegroup-arago-base: Add mosquitto packages
+Date: Thu, 16 Jan 2025 19:24:31 +0530
+Message-ID: <20250116135431.1937360-1-d-mittal@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 14 Jan 2025 18:22:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15692
+ <meta-arago@lists.yoctoproject.org>; Thu, 16 Jan 2025 13:54:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15693
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+Mosquitto is an open source (Eclipse licensed) message broker that
+implements the MQ Telemetry Transport protocol providing both an MQTT
+broker and several command-line clients.
 
-Set git branch explicitly to fix the corresponding QA warning.
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Divyansh Mittal <d-mittal@ti.com>
 ---
- .../gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb              | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-base.bb    | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreame=
-r1.0-plugins-vpe_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugin=
-s-ti/gstreamer1.0-plugins-vpe_git.bb
-index 2038e2b1..6d1f720d 100644
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
-ugins-vpe_git.bb
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
-ugins-vpe_git.bb
-@@ -12,7 +12,7 @@ REQUIRED_MACHINE_FEATURES =3D "mmip"
- PR =3D "${INC_PR}.20"
- SRCREV =3D "b9dba5a8bc7d14d55125abdce04672e3dc30bbdf"
-=20
--SRC_URI =3D "git://git.ti.com/git/glsdk/gst-plugin-vpe.git;protocol=3Dht=
-tps \
-+SRC_URI =3D "git://git.ti.com/git/glsdk/gst-plugin-vpe.git;protocol=3Dht=
-tps;branch=3Dmaster \
-            file://0001-gstvpe-configure.ac-stop-using-export-symbols-reg=
-ex.patch \
-            file://0001-Switch-submodule-common-to-github.patch \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+index 121fa432..7634cb0c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+@@ -50,6 +50,11 @@ ARAGO_EXTRA = "\
+     cifs-utils \
+     phytool \
+     lldpd \
++    mosquitto \
++    libmosquitto1 \
++    libmosquittopp1 \
++    mosquitto-clients \
++    mosquitto-dev \
  "
---=20
-2.25.1
+ 
+ OPTEE_PKGS = " \
+-- 
+2.34.1
 
 
