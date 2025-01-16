@@ -1,337 +1,206 @@
-Return-Path: <rs@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B2E3BC02183
-	for <webhook@archiver.kernel.org>; Thu, 16 Jan 2025 19:54:34 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web11.2090.1737057264860304574
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F4239C02183
+	for <webhook@archiver.kernel.org>; Thu, 16 Jan 2025 20:59:14 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.3664.1737061148514374456
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 16 Jan 2025 11:54:25 -0800
+ Thu, 16 Jan 2025 12:59:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=P2EsR54b;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: rs@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50GJsMn3059225
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Thu, 16 Jan 2025 13:54:22 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1737057262;
-	bh=YcsKtB4givSapciJbZ1bxzOsjynAZEMRLJWp35g1xDA=;
-	h=From:To:CC:Subject:Date;
-	b=P2EsR54bJyvb9eJEoFHr0z9WJfqpX5CnfwhgtdLrcrZSlcxUpNz62YL3S2Zdp6krZ
-	 G6KYdcP3q6+1AWBFaIjB8uDqfZjdt1K4zrOhKx+tYMfhP8eGUQmHl1VPEYHMJhLL9r
-	 JK0jegC/yQ0mZUX5MOA+BIXgnrU0znXOrtMgntio=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50GJsMBI041302;
-	Thu, 16 Jan 2025 13:54:22 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 16
- Jan 2025 13:54:22 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 16 Jan 2025 13:54:22 -0600
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50GJsMoW119232;
-	Thu, 16 Jan 2025 13:54:22 -0600
-From: <rs@ti.com>
-To: <reatmon@ti.com>, <denis@denix.org>, <c-shilwant@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][oe-layersetup][PATCH] configs/arago-master-*-config: Remove meta-arago-demos
-Date: Thu, 16 Jan 2025 13:54:14 -0600
-Message-ID: <20250116195414.3395100-1-rs@ti.com>
-X-Mailer: git-send-email 2.47.1
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 7761640C6B;
+	Thu, 16 Jan 2025 20:59:07 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id hsl-5a0q5B6X; Thu, 16 Jan 2025 20:59:07 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 31AFB40A3D;
+	Thu, 16 Jan 2025 20:59:02 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 8F1F916415B; Thu, 16 Jan 2025 15:59:01 -0500 (EST)
+Date: Thu, 16 Jan 2025 15:59:01 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: d-mittal@ti.com
+Cc: meta-arago@lists.yoctoproject.org, Ryan Eatmon <reatmon@ti.com>,
+	Karan Saxena <karan@ti.com>, Krunal Bhargav <k-bhargav@ti.com>,
+	Chirag Shilwant <c-shilwant@ti.com>
+Subject: Re: [meta-arago][master/scarthgap][PATCH] packagegroup-arago-base:
+ Add mosquitto packages
+Message-ID: <20250116205901.GG21836@denix.org>
+References: <20250116135431.1937360-1-d-mittal@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250116135431.1937360-1-d-mittal@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 16 Jan 2025 19:54:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15695
+ <meta-arago@lists.yoctoproject.org>; Thu, 16 Jan 2025 20:59:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15696
 
-From: Randolph Sapp <rs@ti.com>
+On Thu, Jan 16, 2025 at 07:24:31PM +0530, Divyansh Mittal via lists.yoctoproject.org wrote:
+> Mosquitto is an open source (Eclipse licensed) message broker that
+> implements the MQ Telemetry Transport protocol providing both an MQTT
+> broker and several command-line clients.
+> 
+> Signed-off-by: Divyansh Mittal <d-mittal@ti.com>
+> ---
+>  .../recipes-core/packagegroups/packagegroup-arago-base.bb    | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+> index 121fa432..7634cb0c 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+> @@ -50,6 +50,11 @@ ARAGO_EXTRA = "\
+>      cifs-utils \
+>      phytool \
+>      lldpd \
+> +    mosquitto \
+> +    libmosquitto1 \
+> +    libmosquittopp1 \
 
-Remove the meta-arago-demos layer to help break the dependency on
-meta-qt5.
+You don't need to explicitly list the libraries here. I haven't checked the 
+mosquitto packaging, but I'm pretty sure either the main package or the 
+clients one have the necessary dependencies. You do want to avoid explicitly 
+listing libraries in here, especially since they contain the version number 
+in their names when Debian renaming is enabled, or have completely different 
+names otherwise.
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
 
-Requires the following patch in meta-arago:
-https://lists.yoctoproject.org/g/meta-arago/topic/master_patch_meta_arago/110653645
+> +    mosquitto-clients \
+> +    mosquitto-dev \
 
- .../templates/arago-master-chromium-config/bblayers.conf.sample | 1 -
- conf/templates/arago-master-config/bblayers.conf.sample         | 1 -
- conf/templates/arago-master-next-config/bblayers.conf.sample    | 1 -
- conf/templates/arago-master-selinux-config/bblayers.conf.sample | 1 -
- conf/templates/arago-master-wip-config/bblayers.conf.sample     | 1 -
- configs/arago-master-chromium-config.txt                        | 2 +-
- configs/arago-master-config.txt                                 | 2 +-
- configs/arago-master-next-config.txt                            | 2 +-
- configs/arago-master-selinux-config.txt                         | 2 +-
- configs/arago-master-wip-config.txt                             | 2 +-
- kas/arago-master-chromium-config.yml                            | 1 -
- kas/arago-master-config.yml                                     | 1 -
- kas/arago-master-next-config.yml                                | 1 -
- kas/arago-master-selinux-config.yml                             | 1 -
- kas/arago-master-wip-config.yml                                 | 1 -
- src/configs/arago-master-chromium-config.xml                    | 1 -
- src/configs/arago-master-config.xml                             | 1 -
- src/configs/arago-master-next-config.xml                        | 1 -
- src/configs/arago-master-selinux-config.xml                     | 1 -
- src/configs/arago-master-wip-config.xml                         | 1 -
- 20 files changed, 5 insertions(+), 20 deletions(-)
+Do you really need the development package here. Especially in the "base" 
+packagegroup, which is meant to be used for minimal and bootstrapping images.
 
-diff --git a/conf/templates/arago-master-chromium-config/bblayers.conf.sample b/conf/templates/arago-master-chromium-config/bblayers.conf.sample
-index 3e5edee..29beb7d 100644
---- a/conf/templates/arago-master-chromium-config/bblayers.conf.sample
-+++ b/conf/templates/arago-master-chromium-config/bblayers.conf.sample
-@@ -11,7 +11,6 @@ BBFILES ?= ""
- BBLAYERS ?= " \
-     ##OEROOT##/../meta-arago/meta-arago-distro
-     ##OEROOT##/../meta-arago/meta-arago-extras
--    ##OEROOT##/../meta-arago/meta-arago-demos
-     ##OEROOT##/../meta-arago/meta-arago-test
-     ##OEROOT##/../meta-browser/meta-chromium
-     ##OEROOT##/../meta-qt5
-diff --git a/conf/templates/arago-master-config/bblayers.conf.sample b/conf/templates/arago-master-config/bblayers.conf.sample
-index adbccbd..f70b6af 100644
---- a/conf/templates/arago-master-config/bblayers.conf.sample
-+++ b/conf/templates/arago-master-config/bblayers.conf.sample
-@@ -11,7 +11,6 @@ BBFILES ?= ""
- BBLAYERS ?= " \
-     ##OEROOT##/../meta-arago/meta-arago-distro
-     ##OEROOT##/../meta-arago/meta-arago-extras
--    ##OEROOT##/../meta-arago/meta-arago-demos
-     ##OEROOT##/../meta-arago/meta-arago-test
-     ##OEROOT##/../meta-qt5
-     ##OEROOT##/../meta-virtualization
-diff --git a/conf/templates/arago-master-next-config/bblayers.conf.sample b/conf/templates/arago-master-next-config/bblayers.conf.sample
-index adbccbd..f70b6af 100644
---- a/conf/templates/arago-master-next-config/bblayers.conf.sample
-+++ b/conf/templates/arago-master-next-config/bblayers.conf.sample
-@@ -11,7 +11,6 @@ BBFILES ?= ""
- BBLAYERS ?= " \
-     ##OEROOT##/../meta-arago/meta-arago-distro
-     ##OEROOT##/../meta-arago/meta-arago-extras
--    ##OEROOT##/../meta-arago/meta-arago-demos
-     ##OEROOT##/../meta-arago/meta-arago-test
-     ##OEROOT##/../meta-qt5
-     ##OEROOT##/../meta-virtualization
-diff --git a/conf/templates/arago-master-selinux-config/bblayers.conf.sample b/conf/templates/arago-master-selinux-config/bblayers.conf.sample
-index 51b8551..094ec81 100644
---- a/conf/templates/arago-master-selinux-config/bblayers.conf.sample
-+++ b/conf/templates/arago-master-selinux-config/bblayers.conf.sample
-@@ -11,7 +11,6 @@ BBFILES ?= ""
- BBLAYERS ?= " \
-     ##OEROOT##/../meta-arago/meta-arago-distro
-     ##OEROOT##/../meta-arago/meta-arago-extras
--    ##OEROOT##/../meta-arago/meta-arago-demos
-     ##OEROOT##/../meta-arago/meta-arago-test
-     ##OEROOT##/../meta-selinux
-     ##OEROOT##/../meta-qt5
-diff --git a/conf/templates/arago-master-wip-config/bblayers.conf.sample b/conf/templates/arago-master-wip-config/bblayers.conf.sample
-index adbccbd..f70b6af 100644
---- a/conf/templates/arago-master-wip-config/bblayers.conf.sample
-+++ b/conf/templates/arago-master-wip-config/bblayers.conf.sample
-@@ -11,7 +11,6 @@ BBFILES ?= ""
- BBLAYERS ?= " \
-     ##OEROOT##/../meta-arago/meta-arago-distro
-     ##OEROOT##/../meta-arago/meta-arago-extras
--    ##OEROOT##/../meta-arago/meta-arago-demos
-     ##OEROOT##/../meta-arago/meta-arago-test
-     ##OEROOT##/../meta-qt5
-     ##OEROOT##/../meta-virtualization
-diff --git a/configs/arago-master-chromium-config.txt b/configs/arago-master-chromium-config.txt
-index f15ab67..df3f0ba 100644
---- a/configs/arago-master-chromium-config.txt
-+++ b/configs/arago-master-chromium-config.txt
-@@ -2,7 +2,7 @@
- # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
- 
- bitbake,https://git.openembedded.org/bitbake,master,HEAD
--meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-+meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
- meta-browser,https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=meta-chromium
- #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
- meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
-diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
-index 1cde5d9..7a1a481 100644
---- a/configs/arago-master-config.txt
-+++ b/configs/arago-master-config.txt
-@@ -2,7 +2,7 @@
- # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
- 
- bitbake,https://git.openembedded.org/bitbake,master,HEAD
--meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-+meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
- #meta-browser,https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=meta-chromium
- #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
- meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
-diff --git a/configs/arago-master-next-config.txt b/configs/arago-master-next-config.txt
-index 210bd68..0868327 100644
---- a/configs/arago-master-next-config.txt
-+++ b/configs/arago-master-next-config.txt
-@@ -10,7 +10,7 @@ MOTD: NOTE: to point the recipe to the appropriate cicd/next branch for that rec
- MOTD: NOTE:
- 
- bitbake,https://git.openembedded.org/bitbake,master,HEAD
--meta-arago,https://git.yoctoproject.org/meta-arago,master-next,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-+meta-arago,https://git.yoctoproject.org/meta-arago,master-next,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
- #meta-browser,https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=meta-chromium
- #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
- meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
-diff --git a/configs/arago-master-selinux-config.txt b/configs/arago-master-selinux-config.txt
-index ed4ecdd..5cf0631 100644
---- a/configs/arago-master-selinux-config.txt
-+++ b/configs/arago-master-selinux-config.txt
-@@ -2,7 +2,7 @@
- # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
- 
- bitbake,https://git.openembedded.org/bitbake,master,HEAD
--meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-+meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
- #meta-browser,https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=meta-chromium
- meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
- meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
-diff --git a/configs/arago-master-wip-config.txt b/configs/arago-master-wip-config.txt
-index a85e1fb..eb9c49d 100644
---- a/configs/arago-master-wip-config.txt
-+++ b/configs/arago-master-wip-config.txt
-@@ -2,7 +2,7 @@
- # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
- 
- bitbake,https://git.openembedded.org/bitbake,master,HEAD
--meta-arago,https://git.yoctoproject.org/meta-arago,master-wip,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-+meta-arago,https://git.yoctoproject.org/meta-arago,master-wip,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
- #meta-browser,https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=meta-chromium
- #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
- meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
-diff --git a/kas/arago-master-chromium-config.yml b/kas/arago-master-chromium-config.yml
-index bf8c5f3..837ef0e 100644
---- a/kas/arago-master-chromium-config.yml
-+++ b/kas/arago-master-chromium-config.yml
-@@ -13,7 +13,6 @@ repos:
-     layers:
-       meta-arago-distro:
-       meta-arago-extras:
--      meta-arago-demos:
-       meta-arago-test:
- 
-   meta-browser:
-diff --git a/kas/arago-master-config.yml b/kas/arago-master-config.yml
-index 6a21d96..5434891 100644
---- a/kas/arago-master-config.yml
-+++ b/kas/arago-master-config.yml
-@@ -13,7 +13,6 @@ repos:
-     layers:
-       meta-arago-distro:
-       meta-arago-extras:
--      meta-arago-demos:
-       meta-arago-test:
- 
-   meta-qt5:
-diff --git a/kas/arago-master-next-config.yml b/kas/arago-master-next-config.yml
-index 6514b9d..03dadec 100644
---- a/kas/arago-master-next-config.yml
-+++ b/kas/arago-master-next-config.yml
-@@ -13,7 +13,6 @@ repos:
-     layers:
-       meta-arago-distro:
-       meta-arago-extras:
--      meta-arago-demos:
-       meta-arago-test:
- 
-   meta-qt5:
-diff --git a/kas/arago-master-selinux-config.yml b/kas/arago-master-selinux-config.yml
-index 922ab89..46b32c7 100644
---- a/kas/arago-master-selinux-config.yml
-+++ b/kas/arago-master-selinux-config.yml
-@@ -13,7 +13,6 @@ repos:
-     layers:
-       meta-arago-distro:
-       meta-arago-extras:
--      meta-arago-demos:
-       meta-arago-test:
- 
-   meta-selinux:
-diff --git a/kas/arago-master-wip-config.yml b/kas/arago-master-wip-config.yml
-index 429bb06..f994926 100644
---- a/kas/arago-master-wip-config.yml
-+++ b/kas/arago-master-wip-config.yml
-@@ -13,7 +13,6 @@ repos:
-     layers:
-       meta-arago-distro:
-       meta-arago-extras:
--      meta-arago-demos:
-       meta-arago-test:
- 
-   meta-qt5:
-diff --git a/src/configs/arago-master-chromium-config.xml b/src/configs/arago-master-chromium-config.xml
-index 9abaf97..ec58ea9 100644
---- a/src/configs/arago-master-chromium-config.xml
-+++ b/src/configs/arago-master-chromium-config.xml
-@@ -13,7 +13,6 @@
-             <layers>
-                 <layer>meta-arago-distro</layer>
-                 <layer>meta-arago-extras</layer>
--                <layer>meta-arago-demos</layer>
-                 <layer>meta-arago-test</layer>
-             </layers>
-         </repo>
-diff --git a/src/configs/arago-master-config.xml b/src/configs/arago-master-config.xml
-index 8380a57..94f3ac1 100644
---- a/src/configs/arago-master-config.xml
-+++ b/src/configs/arago-master-config.xml
-@@ -13,7 +13,6 @@
-             <layers>
-                 <layer>meta-arago-distro</layer>
-                 <layer>meta-arago-extras</layer>
--                <layer>meta-arago-demos</layer>
-                 <layer>meta-arago-test</layer>
-             </layers>
-         </repo>
-diff --git a/src/configs/arago-master-next-config.xml b/src/configs/arago-master-next-config.xml
-index 0eee296..122258f 100644
---- a/src/configs/arago-master-next-config.xml
-+++ b/src/configs/arago-master-next-config.xml
-@@ -14,7 +14,6 @@
-             <layers>
-                 <layer>meta-arago-distro</layer>
-                 <layer>meta-arago-extras</layer>
--                <layer>meta-arago-demos</layer>
-                 <layer>meta-arago-test</layer>
-             </layers>
-         </repo>
-diff --git a/src/configs/arago-master-selinux-config.xml b/src/configs/arago-master-selinux-config.xml
-index 6ecea87..0c5019f 100644
---- a/src/configs/arago-master-selinux-config.xml
-+++ b/src/configs/arago-master-selinux-config.xml
-@@ -13,7 +13,6 @@
-             <layers>
-                 <layer>meta-arago-distro</layer>
-                 <layer>meta-arago-extras</layer>
--                <layer>meta-arago-demos</layer>
-                 <layer>meta-arago-test</layer>
-             </layers>
-         </repo>
-diff --git a/src/configs/arago-master-wip-config.xml b/src/configs/arago-master-wip-config.xml
-index 74718d5..ded9e5a 100644
---- a/src/configs/arago-master-wip-config.xml
-+++ b/src/configs/arago-master-wip-config.xml
-@@ -13,7 +13,6 @@
-             <layers>
-                 <layer>meta-arago-distro</layer>
-                 <layer>meta-arago-extras</layer>
--                <layer>meta-arago-demos</layer>
-                 <layer>meta-arago-test</layer>
-             </layers>
-         </repo>
+Just pulling a single -dev package like this will have a snowball effect and 
+will explode the dependency tree with hundreds of other development packages, 
+making the image suitable for runtime "development".
+
+I just did a quick experiment with tisdk-base-image, just adding mosquitto-dev 
+the number of packages increased by 112 and the size grew by 20%. And I also 
+see both mosquitto libraries being added automatically. Here's the list:
+
+acl
+acl-dev
+attr
+attr-dev
+base-files-dev
+base-passwd-dev
+bash-completion-dev
+bash-dev
+bzip2
+bzip2-dev
+cjson
+cjson-dev
+cryptodev-linux
+cryptodev-linux-dev
+dbus-dev
+kbd-dev
+kmod-dev
+libc-malloc-debug0
+libc6-dev
+libc6-extra-nss
+libc6-thread-db
+libc6-utils
+libcap-dev
+libcap-ng-dev
+libcrypt-dev
+libedit-dev
+libexpat-dev
+libffi-dev
+libform5
+libgcc-s-dev
+libgdbm-compat4
+libgdbm-dev
+libgdbm6
+libgirepository-1.0-1
+libgirepository-1.0-dev
+libglib-2.0-dev
+libmenu5
+libmosquitto1
+libmosquittopp1
+libnsl-dev
+libnsl3
+libnss-db2
+libpam-dev
+libpanel5
+libpcre2-16-0
+libpcre2-32-0
+libpcre2-dev
+libseccomp-dev
+libsqlite3-dev
+libstdc++-dev
+libticw5
+libtirpc-dev
+libuuid-dev
+libuv-dev
+libuv1
+libwebsockets-dev
+libwebsockets-evlib-uv
+libwebsockets19
+libxml2-dev
+libz-dev
+linux-libc-headers-dev
+mosquitto
+mosquitto-dev
+ncurses-dev
+openssl-dev
+perl
+perl-dev
+perl-module-config-heavy
+python3-asyncio
+python3-compile
+python3-crypt
+python3-ctypes
+python3-datetime
+python3-dev
+python3-difflib
+python3-email
+python3-html
+python3-io
+python3-json
+python3-logging
+python3-math
+python3-mime
+python3-netclient
+python3-netserver
+python3-numbers
+python3-packaging
+python3-packaging-dev
+python3-pickle
+python3-pkg-resources
+python3-pkgutil
+python3-plistlib
+python3-pprint
+python3-profile
+python3-setuptools
+python3-setuptools-dev
+python3-shell
+python3-stringold
+python3-threading
+python3-unittest
+python3-unixadmin
+python3-xml
+shadow-dev
+shadow-securetty-dev
+shared-mime-info-dev
+systemd-dev
+uthash-dev
+util-linux-dev
+volatile-binds-dev
+xz
+xz-dev
+zstd
+zstd-dev
+
 -- 
-2.47.1
-
+Denys
 
