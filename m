@@ -2,49 +2,48 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 34D0CC02187
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46C0DC0218A
 	for <webhook@archiver.kernel.org>; Fri, 17 Jan 2025 00:25:25 +0000 (UTC)
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web10.656.1737073524553376722
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+ by mx.groups.io with SMTP id smtpd.web11.602.1737073524632657718
  for <meta-arago@lists.yoctoproject.org>;
  Thu, 16 Jan 2025 16:25:24 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=IfOwsYom;
- spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: afd@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50H0PNbk235679
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=ujZXxX9z;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: afd@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50H0PNen090603
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
 	Thu, 16 Jan 2025 18:25:23 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1737073523;
-	bh=zDygtLJUI9GsMOTLjLvi0V6qv7OuWoy9XcKszjDND9Y=;
+	bh=SoyhIUfNfz/9ZjT63G35W+T4dx2wzKHytF4wP03lYbU=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=IfOwsYom2S9Y08jckRhjXMiv1EoLqAWJql86/gpiwn5d0tZlbFFRT4Y1wQ3NJ5jKH
-	 ju9jXYIhVVe0DFb6s/mtOausigQ4MjI/TE88KIaz5hgO7bCjxkKMSaRlNj+9wQqNB0
-	 l5Bo/xt5XRL7kuhgWk1f8z8WTMSO+6Cy+jx1TlkI=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50H0PNYr031835
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	b=ujZXxX9zfTizhShZ5Qdp1n/qFiytg3GND/JEqMlbvejgUD+kX2lKBvm9NMfrO7BGm
+	 DF+UmxWQxFd/ppJ6h57eZnzJK+rD4rp3dcmZN5TCWa4UVncXw21fx82KlAvkMKMNIa
+	 v6xY1s/KFPg4OmHFV7n+xAhlvn5e68YbVs9sswlA=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50H0PNFw094668;
 	Thu, 16 Jan 2025 18:25:23 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 16
- Jan 2025 18:25:23 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2025 18:25:22 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Thu, 16 Jan 2025 18:25:23 -0600
 Received: from lelvsmtp5.itg.ti.com ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50H0PLnt007059;
-	Thu, 16 Jan 2025 18:25:23 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50H0PLns007059;
+	Thu, 16 Jan 2025 18:25:22 -0600
 From: Andrew Davis <afd@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         Chirag Shilwant <c-shilwant@ti.com>,
         <meta-arago@lists.yoctoproject.org>
 CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][scarthgap/master][PATCH 4/6] meta-arago-extras: Backport abseil-cpp from meta-oe master
-Date: Thu, 16 Jan 2025 18:25:18 -0600
-Message-ID: <20250117002520.627504-5-afd@ti.com>
+Subject: [meta-arago][scarthgap/master][PATCH 3/6] meta-arago-extras: Add recipe for Arm NN
+Date: Thu, 16 Jan 2025 18:25:17 -0600
+Message-ID: <20250117002520.627504-4-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20250117002520.627504-1-afd@ti.com>
 References: <20250117002520.627504-1-afd@ti.com>
@@ -56,381 +55,156 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Fri, 17 Jan 2025 00:25:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15701
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15702
 
-ONNX and ONNX Runtime depend on a very specific version of Abseil that
-is not the version included with meta-oe scarthgap. But it just so
-happens to be the version provided in current meta-oe master.
-Backport this version for our use in scarthgap.
-
-This patch is not needed for meta-arago master branch. If meta-oe
-master at some point moves to a newer incompatible version of
-Abseil we will deal with this dependency in a different way.
+Arm NN is a performant machine learning inference engine for Linux,
+accelerating ML on Arm Cortex-A CPUs.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- .../0001-absl-always-use-asm-sgidefs.h.patch  |  38 +++++++
- ...e-maes-option-from-cross-compilation.patch |  38 +++++++
- ...e-neon-option-from-cross-compilation.patch |  49 +++++++++
- .../abseil-cpp/0004-abseil-ppc-fixes.patch    | 103 ++++++++++++++++++
- ...-virtual-dtor-in-the-flags-are-neede.patch |  30 +++++
- .../abseil-cpp/abseil-cpp_20240722.0.bb       |  54 +++++++++
- 6 files changed, 312 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0001-absl-always-use-asm-sgidefs.h.patch
- create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0002-Remove-maes-option-from-cross-compilation.patch
- create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0003-Remove-neon-option-from-cross-compilation.patch
- create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0004-abseil-ppc-fixes.patch
- create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch
- create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb
+ ...01-Fix-type-casting-for-32bit-builds.patch | 40 +++++++++
+ .../recipes-devtools/armnn/armnn_24.11.bb     | 85 +++++++++++++++++++
+ 2 files changed, 125 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/armnn/armnn/0001-Fix-type-casting-for-32bit-builds.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/armnn/armnn_24.11.bb
 
-diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0001-absl-always-use-asm-sgidefs.h.patch b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0001-absl-always-use-asm-sgidefs.h.patch
+diff --git a/meta-arago-extras/recipes-devtools/armnn/armnn/0001-Fix-type-casting-for-32bit-builds.patch b/meta-arago-extras/recipes-devtools/armnn/armnn/0001-Fix-type-casting-for-32bit-builds.patch
 new file mode 100644
-index 00000000..6fecf256
+index 00000000..8e3cf34d
 --- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0001-absl-always-use-asm-sgidefs.h.patch
-@@ -0,0 +1,38 @@
-+From 11faa06436fdeb0c9948080a11f9a99d3b5ba16c Mon Sep 17 00:00:00 2001
-+From: Khem Raj <raj.khem@gmail.com>
-+Date: Thu, 9 Apr 2020 13:06:27 -0700
-+Subject: [PATCH] absl: always use <asm/sgidefs.h>
-+
-+Fixes mips/musl build, since sgidefs.h is not present on all C libraries
-+but on linux asm/sgidefs.h is there and contains same definitions, using
-+that makes it portable.
++++ b/meta-arago-extras/recipes-devtools/armnn/armnn/0001-Fix-type-casting-for-32bit-builds.patch
+@@ -0,0 +1,40 @@
++From 10953c25a77989709bcbd065489700314fe0c8c6 Mon Sep 17 00:00:00 2001
++From: Andrew Davis <afd@ti.com>
++Date: Thu, 16 Jan 2025 11:11:28 -0600
++Subject: [PATCH] Fix type casting for 32bit builds
 +
 +Upstream-Status: Pending
 +
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
++Signed-off-by: Andrew Davis <afd@ti.com>
++Change-Id: Id68274e68e7832b827050a2e417053e88e7a6728
 +---
-+ absl/base/internal/direct_mmap.h | 6 +-----
-+ 1 file changed, 1 insertion(+), 5 deletions(-)
++ include/armnn/Numpy.hpp                         | 2 +-
++ tests/ExecuteNetwork/FileComparisonExecutor.cpp | 2 +-
++ 2 files changed, 2 insertions(+), 2 deletions(-)
 +
-+diff --git a/absl/base/internal/direct_mmap.h b/absl/base/internal/direct_mmap.h
-+index 1beb2ee4..140b0697 100644
-+--- a/absl/base/internal/direct_mmap.h
-++++ b/absl/base/internal/direct_mmap.h
-+@@ -41,13 +41,9 @@
++diff --git a/include/armnn/Numpy.hpp b/include/armnn/Numpy.hpp
++index a4154b434..f77b065ca 100644
++--- a/include/armnn/Numpy.hpp
+++++ b/include/armnn/Numpy.hpp
++@@ -209,7 +209,7 @@ namespace armnnNumpy
++     template<typename T>
++     inline void ReadData(std::ifstream& ifStream, T* tensor, const unsigned int& numElements)
++     {
++-        ifStream.read(reinterpret_cast<char *>(tensor), sizeof(T) * numElements);
+++        ifStream.read(reinterpret_cast<char *>(tensor), static_cast<std::streamsize>(sizeof(T) * numElements));
++     }
 + 
-+ #ifdef __mips__
-+ // Include definitions of the ABI currently in use.
-+-#if defined(__BIONIC__) || !defined(__GLIBC__)
-+-// Android doesn't have sgidefs.h, but does have asm/sgidefs.h, which has the
-++// bionic/musl C libs don't have sgidefs.h, but do have asm/sgidefs.h, which has the
-+ // definitions we need.
-+ #include <asm/sgidefs.h>
-+-#else
-+-#include <sgidefs.h>
-+-#endif  // __BIONIC__ || !__GLIBC__
-+ #endif  // __mips__
 + 
-+ // SYS_mmap and SYS_munmap are not defined in Android.
-+-- 
-+2.25.1
-+
-diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0002-Remove-maes-option-from-cross-compilation.patch b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0002-Remove-maes-option-from-cross-compilation.patch
++diff --git a/tests/ExecuteNetwork/FileComparisonExecutor.cpp b/tests/ExecuteNetwork/FileComparisonExecutor.cpp
++index 903ed0362..4617ebe4a 100644
++--- a/tests/ExecuteNetwork/FileComparisonExecutor.cpp
+++++ b/tests/ExecuteNetwork/FileComparisonExecutor.cpp
++@@ -187,7 +187,7 @@ Tensor ReadTensorFromFile(const std::string fileName)
++ 
++     // We'll read the entire file into one buffer.
++     std::ifstream file(fileName, std::ios::binary);
++-    std::vector<char> buffer(fileSize);
+++    std::vector<char> buffer(static_cast<std::size_t>(fileSize));
++     if (file.read(buffer.data(), static_cast<std::streamsize>(fileSize)))
++     {
++         std::string tensorName;
+diff --git a/meta-arago-extras/recipes-devtools/armnn/armnn_24.11.bb b/meta-arago-extras/recipes-devtools/armnn/armnn_24.11.bb
 new file mode 100644
-index 00000000..d49e860f
+index 00000000..3ba914da
 --- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0002-Remove-maes-option-from-cross-compilation.patch
-@@ -0,0 +1,38 @@
-+From a573ccd57e713486e7d8e782d6b3b34fde01ff9e Mon Sep 17 00:00:00 2001
-+From: Sinan Kaya <sinan.kaya@microsoft.com>
-+Date: Mon, 3 Feb 2020 03:25:57 +0000
-+Subject: [PATCH] Remove maes option from cross-compilation
++++ b/meta-arago-extras/recipes-devtools/armnn/armnn_24.11.bb
+@@ -0,0 +1,85 @@
++SUMMARY = "ARM Neural Network SDK"
++DESCRIPTION = "Linux software and tools to enable machine learning workloads on power-efficient devices"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=3e14a924c16f7d828b8335a59da64074"
 +
-+Upstream-Status: Pending
-+---
-+ absl/copts/GENERATED_AbseilCopts.cmake | 4 ----
-+ absl/copts/GENERATED_copts.bzl         | 4 ----
-+ 2 files changed, 8 deletions(-)
++FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 +
-+diff --git a/absl/copts/GENERATED_AbseilCopts.cmake b/absl/copts/GENERATED_AbseilCopts.cmake
-+index da2282fe..5e0e8dfd 100644
-+--- a/absl/copts/GENERATED_AbseilCopts.cmake
-++++ b/absl/copts/GENERATED_AbseilCopts.cmake
-+@@ -229,7 +229,3 @@ list(APPEND ABSL_RANDOM_HWAES_ARM64_FLAGS
-+ list(APPEND ABSL_RANDOM_HWAES_MSVC_X64_FLAGS
-+ )
-+ 
-+-list(APPEND ABSL_RANDOM_HWAES_X64_FLAGS
-+-    "-maes"
-+-    "-msse4.1"
-+-)
-+diff --git a/absl/copts/GENERATED_copts.bzl b/absl/copts/GENERATED_copts.bzl
-+index b9e0071e..0072008c 100644
-+--- a/absl/copts/GENERATED_copts.bzl
-++++ b/absl/copts/GENERATED_copts.bzl
-+@@ -230,7 +230,3 @@ ABSL_RANDOM_HWAES_ARM64_FLAGS = [
-+ ABSL_RANDOM_HWAES_MSVC_X64_FLAGS = [
-+ ]
-+ 
-+-ABSL_RANDOM_HWAES_X64_FLAGS = [
-+-    "-maes",
-+-    "-msse4.1",
-+-]
-+-- 
-+2.25.1
++BRANCH = "branches/armnn_24_11"
++SRC_URI = "git://github.com/ARM-software/armnn.git;branch=${BRANCH};protocol=https"
++SRC_URI += "file://0001-Fix-type-casting-for-32bit-builds.patch"
 +
-diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0003-Remove-neon-option-from-cross-compilation.patch b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0003-Remove-neon-option-from-cross-compilation.patch
-new file mode 100644
-index 00000000..c82b9e1b
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0003-Remove-neon-option-from-cross-compilation.patch
-@@ -0,0 +1,49 @@
-+From 632632508daf8bb3a5800dac937ffc33c6d85973 Mon Sep 17 00:00:00 2001
-+From: Jonas Gorski <jonas.gorski@bisdn.de>
-+Date: Thu, 16 Jun 2022 11:46:31 +0000
-+Subject: [PATCH] Remove neon option from cross compilation
-+
-+Not every arm platform supports neon instructions, so do not enforce
-+them.
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Jonas Gorski <jonas.gorski@bisdn.de>
-+---
-+ absl/copts/GENERATED_AbseilCopts.cmake | 4 ----
-+ absl/copts/GENERATED_copts.bzl         | 4 ----
-+ 2 files changed, 8 deletions(-)
-+
-+diff --git a/absl/copts/GENERATED_AbseilCopts.cmake b/absl/copts/GENERATED_AbseilCopts.cmake
-+index 5e0e8dfd..57cfc4d3 100644
-+--- a/absl/copts/GENERATED_AbseilCopts.cmake
-++++ b/absl/copts/GENERATED_AbseilCopts.cmake
-+@@ -218,10 +218,6 @@ list(APPEND ABSL_MSVC_TEST_FLAGS
-+     "/DNOMINMAX"
-+ )
-+ 
-+-list(APPEND ABSL_RANDOM_HWAES_ARM32_FLAGS
-+-    "-mfpu=neon"
-+-)
-+-
-+ list(APPEND ABSL_RANDOM_HWAES_ARM64_FLAGS
-+     "-march=armv8-a+crypto"
-+ )
-+diff --git a/absl/copts/GENERATED_copts.bzl b/absl/copts/GENERATED_copts.bzl
-+index 0072008c..72840fda 100644
-+--- a/absl/copts/GENERATED_copts.bzl
-++++ b/absl/copts/GENERATED_copts.bzl
-+@@ -219,10 +219,6 @@ ABSL_MSVC_TEST_FLAGS = [
-+     "/DNOMINMAX",
-+ ]
-+ 
-+-ABSL_RANDOM_HWAES_ARM32_FLAGS = [
-+-    "-mfpu=neon",
-+-]
-+-
-+ ABSL_RANDOM_HWAES_ARM64_FLAGS = [
-+     "-march=armv8-a+crypto",
-+ ]
-+-- 
-+2.25.1
-+
-diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0004-abseil-ppc-fixes.patch b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0004-abseil-ppc-fixes.patch
-new file mode 100644
-index 00000000..ba0cd669
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0004-abseil-ppc-fixes.patch
-@@ -0,0 +1,103 @@
-+From f9607924225ca59fb6c60222e6424b84e6f70029 Mon Sep 17 00:00:00 2001
-+From: Khem Raj <raj.khem@gmail.com>
-+Date: Sat, 21 Sep 2024 20:53:06 +0800
-+Subject: [PATCH] abseil: ppc fixes
-+
-+An all-in-one patch that fixes several issues:
-+
-+1) UnscaledCycleClock not fully implemented for ppc*-musl (disabled on musl)
-+2) powerpc stacktrace implementation only works on glibc (disabled on musl)
-+3) powerpc stacktrace implementation has ppc64 assumptions (fixed)
-+4) examine_stack.cpp makes glibc assumptions on powerpc (fixed)
-+
-+Sourced from void linux
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
-+---
-+ absl/base/internal/unscaledcycleclock.cc       | 4 ++--
-+ absl/base/internal/unscaledcycleclock_config.h | 3 ++-
-+ absl/debugging/internal/examine_stack.cc       | 8 +++++++-
-+ absl/debugging/internal/stacktrace_config.h    | 2 +-
-+ 4 files changed, 12 insertions(+), 5 deletions(-)
-+
-+diff --git a/absl/base/internal/unscaledcycleclock.cc b/absl/base/internal/unscaledcycleclock.cc
-+index a0bf3a65..103b4f6a 100644
-+--- a/absl/base/internal/unscaledcycleclock.cc
-++++ b/absl/base/internal/unscaledcycleclock.cc
-+@@ -20,7 +20,7 @@
-+ #include <intrin.h>
-+ #endif
-+ 
-+-#if defined(__powerpc__) || defined(__ppc__)
-++#if (defined(__powerpc__) || defined(__ppc__)) && defined(__GLIBC__)
-+ #ifdef __GLIBC__
-+ #include <sys/platform/ppc.h>
-+ #elif defined(__FreeBSD__)
-+@@ -58,7 +58,7 @@ double UnscaledCycleClock::Frequency() {
-+   return base_internal::NominalCPUFrequency();
-+ }
-+ 
-+-#elif defined(__powerpc__) || defined(__ppc__)
-++#elif (defined(__powerpc__) || defined(__ppc__)) && defined(__GLIBC__)
-+ 
-+ int64_t UnscaledCycleClock::Now() {
-+ #ifdef __GLIBC__
-+diff --git a/absl/base/internal/unscaledcycleclock_config.h b/absl/base/internal/unscaledcycleclock_config.h
-+index 43a3dabe..196a8535 100644
-+--- a/absl/base/internal/unscaledcycleclock_config.h
-++++ b/absl/base/internal/unscaledcycleclock_config.h
-+@@ -21,7 +21,8 @@
-+ 
-+ // The following platforms have an implementation of a hardware counter.
-+ #if defined(__i386__) || defined(__x86_64__) || defined(__aarch64__) || \
-+-    defined(__powerpc__) || defined(__ppc__) || defined(_M_IX86) ||     \
-++    ((defined(__powerpc__) || defined(__ppc__)) && defined(__GLIBC__)) || \
-++    defined(_M_IX86) ||     \
-+     (defined(_M_X64) && !defined(_M_ARM64EC))
-+ #define ABSL_HAVE_UNSCALED_CYCLECLOCK_IMPLEMENTATION 1
-+ #else
-+diff --git a/absl/debugging/internal/examine_stack.cc b/absl/debugging/internal/examine_stack.cc
-+index 3dd6ba1a..f923b055 100644
-+--- a/absl/debugging/internal/examine_stack.cc
-++++ b/absl/debugging/internal/examine_stack.cc
-+@@ -36,6 +36,10 @@
-+ #include <csignal>
-+ #include <cstdio>
-+ 
-++#if defined(__powerpc__)
-++#include <asm/ptrace.h>
-++#endif
-++
-+ #include "absl/base/attributes.h"
-+ #include "absl/base/internal/raw_logging.h"
-+ #include "absl/base/macros.h"
-+@@ -177,8 +181,10 @@ void* GetProgramCounter(void* const vuc) {
-+     return reinterpret_cast<void*>(context->uc_mcontext.pc);
-+ #elif defined(__powerpc64__)
-+     return reinterpret_cast<void*>(context->uc_mcontext.gp_regs[32]);
-+-#elif defined(__powerpc__)
-++#elif defined(__powerpc__) && defined(__GLIBC__)
-+     return reinterpret_cast<void*>(context->uc_mcontext.uc_regs->gregs[32]);
-++#elif defined(__powerpc__)
-++    return reinterpret_cast<void*>((context->uc_regs)->gregs[32]);
-+ #elif defined(__riscv)
-+     return reinterpret_cast<void*>(context->uc_mcontext.__gregs[REG_PC]);
-+ #elif defined(__s390__) && !defined(__s390x__)
-+diff --git a/absl/debugging/internal/stacktrace_config.h b/absl/debugging/internal/stacktrace_config.h
-+index 3929b1b7..23d5e504 100644
-+--- a/absl/debugging/internal/stacktrace_config.h
-++++ b/absl/debugging/internal/stacktrace_config.h
-+@@ -60,7 +60,7 @@
-+ #elif defined(__i386__) || defined(__x86_64__)
-+ #define ABSL_STACKTRACE_INL_HEADER \
-+   "absl/debugging/internal/stacktrace_x86-inl.inc"
-+-#elif defined(__ppc__) || defined(__PPC__)
-++#elif (defined(__ppc__) || defined(__PPC__)) && defined(__GLIBC__)
-+ #define ABSL_STACKTRACE_INL_HEADER \
-+   "absl/debugging/internal/stacktrace_powerpc-inl.inc"
-+ #elif defined(__aarch64__)
-+-- 
-+2.25.1
-+
-diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch
-new file mode 100644
-index 00000000..9a4fc0b4
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch
-@@ -0,0 +1,30 @@
-+From 9cb5e5d15c142e5cc43a2c1db87c8e4e5b6d38a5 Mon Sep 17 00:00:00 2001
-+From: Derek Mauro <dmauro@google.com>
-+Date: Mon, 5 Aug 2024 07:35:05 -0700
-+Subject: [PATCH] Don't match -Wnon-virtual-dtor in the "flags are needed to
-+ suppress warnings in headers". It should fall through to the "don't impose
-+ our warnings on others" case. Do this by matching on "-Wno-*" instead of
-+ "-Wno*".
-+
-+Fixes #1737
-+
-+PiperOrigin-RevId: 659548798
-+Change-Id: I49d7ba7ddcd7be30f946fca90ba9be467181e854
-+Upstream-Status: Backport [https://github.com/abseil/abseil-cpp/commit/9cb5e5d15c142e5cc43a2c1db87c8e4e5b6d38a5]
-+---
-+ CMake/AbseilHelpers.cmake | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/CMake/AbseilHelpers.cmake b/CMake/AbseilHelpers.cmake
-+index b177e590..3c4c92fe 100644
-+--- a/CMake/AbseilHelpers.cmake
-++++ b/CMake/AbseilHelpers.cmake
-+@@ -195,7 +195,7 @@ function(absl_cc_library)
-+         # specified platform. Filter both of them out before the successor
-+         # reaches the "^-m" filter.
-+         set(skip_next_cflag ON)
-+-      elseif(${cflag} MATCHES "^(-Wno|/wd)")
-++      elseif(${cflag} MATCHES "^(-Wno-|/wd)")
-+         # These flags are needed to suppress warnings that might fire in our headers.
-+         set(PC_CFLAGS "${PC_CFLAGS} ${cflag}")
-+       elseif(${cflag} MATCHES "^(-W|/w[1234eo])")
-diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb
-new file mode 100644
-index 00000000..4bfc2100
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb
-@@ -0,0 +1,54 @@
-+SUMMARY = "Abseil is a cpp library like STL"
-+DESCRIPTION = "Abseil provides pieces missing from the C++ standard. Contains \
-+additional useful libraries like algorithm, container, debugging, hash, memory, \
-+meta, numeric, strings, synchronization, time, types and utility."
-+HOMEPAGE = "https://abseil.io/"
-+SECTION = "libs"
-+LICENSE = "Apache-2.0"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=df52c6edb7adc22e533b2bacc3bd3915"
-+
-+SRCREV = "4447c7562e3bc702ade25105912dce503f0c4010"
-+BRANCH = "lts_2024_07_22"
-+SRC_URI = "git://github.com/abseil/abseil-cpp;branch=${BRANCH};protocol=https \
-+           file://0001-absl-always-use-asm-sgidefs.h.patch             \
-+           file://0002-Remove-maes-option-from-cross-compilation.patch \
-+           file://0003-Remove-neon-option-from-cross-compilation.patch \
-+           file://0004-abseil-ppc-fixes.patch \
-+           file://0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch \
-+          "
++# v24.11
++SRCREV = "3ed70c005559d409feff2c578a1a39cf8fec8804"
 +
 +S = "${WORKDIR}/git"
 +
 +inherit cmake
++inherit pkgconfig
 +
-+EXTRA_OECMAKE = "-DBUILD_SHARED_LIBS=ON \
-+                 -DBUILD_TESTING=OFF    \
-+                 -DABSL_ENABLE_INSTALL=ON \
-+                "
++DEPENDS = " \
++    boost \
++    protobuf \
++    xxd-native \
++    arm-compute-library \
++"
 +
-+SYSROOT_DIRS:append:class-nativesdk:mingw32 = " ${bindir}"
++RDEPENDS:${PN} = " \
++    arm-compute-library \
++    protobuf \
++    boost \
++"
 +
-+PACKAGES_DYNAMIC += "^libabsl-*"
-+PACKAGES_DYNAMIC:class-native = ""
++PACKAGECONFIG += "unit-tests tests ref"
++PACKAGECONFIG += "${@bb.utils.contains('TARGET_ARCH', 'aarch64', 'neon', '', d)}"
++PACKAGECONFIG += "${@bb.utils.contains('TARGET_ARCH', 'arm', 'neon', '', d)}"
 +
-+PACKAGESPLITFUNCS =+ "split_dynamic_packages"
++PACKAGECONFIG[neon] = " \
++    -DARMCOMPUTENEON=1, \
++    -DARMCOMPUTENEON=0 \
++"
 +
-+python split_dynamic_packages() {
-+    libdir = d.getVar('libdir')
++PACKAGECONFIG[unit-tests] = " \
++    -DBUILD_UNIT_TESTS=1, \
++    -DBUILD_UNIT_TESTS=0 \
++"
 +
-+    libpackages = do_split_packages(
-+        d,
-+        root=libdir,
-+        file_regex=r'^libabsl_(.*)\.so\..*$',
-+        output_pattern='libabsl-%s',
-+        description="abseil shared library %s",
-+        prepend=True,
-+        extra_depends='',
-+    )
-+    if libpackages:
-+        d.appendVar('RDEPENDS:' + d.getVar('PN'), ' ' + ' '.join(libpackages))
++PACKAGECONFIG[tests] = " \
++    -DBUILD_TESTS=1, \
++    -DBUILD_TESTS=0 \
++"
++
++PACKAGECONFIG[ref] = " \
++    -DARMNNREF=1, \
++    -DARMNNREF=0 \
++"
++
++EXTRA_OECMAKE += " \
++    -DHALF_INCLUDE=${STAGING_DIR_TARGET} \
++"
++
++do_install:append() {
++    CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
++
++    if ${@bb.utils.contains('PACKAGECONFIG', 'tests', 'true', 'false', d)}; then
++        install -d ${D}${bindir}/${P}
++        find ${B}/tests -maxdepth 1 -type f -executable -exec cp $CP_ARGS {} ${D}${bindir}/${P} \;
++    fi
++
++    if ${@bb.utils.contains('PACKAGECONFIG', 'unit-tests', 'true', 'false', d)}; then
++        install -d ${D}${bindir}/${P}
++        cp $CP_ARGS ${B}/UnitTests ${D}${bindir}/${P}
++    fi
++
++    if ${@bb.utils.contains('PACKAGECONFIG', 'tensorflow-lite', 'false', 'true', d)}; then
++        rm -rf ${D}${includedir}/armnnTfLiteParser
++    fi
 +}
 +
-+ALLOW_EMPTY:${PN} = "1"
++CXXFLAGS += "-Wno-error=array-bounds -Wno-error=deprecated-declarations -Wno-error=nonnull"
 +
-+BBCLASSEXTEND = "native nativesdk"
++FILES:${PN} += "${libdir}/*"
++FILES:${PN}-dev += "${includedir}/* ${libdir}/cmake/armnn/* ${libdir}/pkgconfig/*.pc ${bindir}/*"
++
++INSANE_SKIP:${PN} = "dev-so buildpaths"
++INSANE_SKIP:${PN}-dev += "dev-elf buildpaths"
 -- 
 2.39.2
 
