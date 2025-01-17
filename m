@@ -2,49 +2,50 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 55905C0218B
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4643EC02183
 	for <webhook@archiver.kernel.org>; Fri, 17 Jan 2025 21:20:03 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.5926.1737148794479019604
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+ by mx.groups.io with SMTP id smtpd.web10.5927.1737148794598542079
  for <meta-arago@lists.yoctoproject.org>;
  Fri, 17 Jan 2025 13:19:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=o6ZigAbp;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: afd@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50HLJqIm261018
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 17 Jan 2025 15:19:52 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=nZ+KQKUb;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: afd@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50HLJrMI252483
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Fri, 17 Jan 2025 15:19:53 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1737148793;
-	bh=fSX9jGM54Mavd0M/h6ZufGrYjxEhDzUl8T3qh0zRLKo=;
-	h=From:To:CC:Subject:Date;
-	b=o6ZigAbp7IsQ2Eomhy+aGmlKVIodLxr8Eqsh9ZSxBd7w8KwQyjhCb2t2mTW35walt
-	 jjXC4YpDmRL3rEjXi8Cb1pQUWi9cEE77wscX8ksyQQHQjOQ6tpUUG2heSIcfMiBWUQ
-	 50Z4aO9s5Sy8ubObQuXUkjOSyMq9Te2ML3OhzUJY=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50HLJqLw112891
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 17 Jan 2025 15:19:52 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	bh=i/vAMqIj++VAahgy74KI0MDgp+iJ1rjU03vdlFJyYb4=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=nZ+KQKUb0+gO/jz1QMgIzPwDtJzsFiOnyu2yGvUo6Ft/wUAnZW1lAKfgszqatNNvo
+	 8KPvI5XwHZJyxQMJ3vboJeSci7RMYvGuftR8CSG2dPUfXadx0Lga70RGMcp+7St4IA
+	 jRAa1xgRQvk8NsoNq7kOWUpCUZ672Pwm4UvlzR/M=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50HLJrFY075175;
+	Fri, 17 Jan 2025 15:19:53 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 17
- Jan 2025 15:19:52 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2025 15:19:53 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 17 Jan 2025 15:19:51 -0600
+ Frontend Transport; Fri, 17 Jan 2025 15:19:53 -0600
 Received: from fllvsmtp7.itg.ti.com ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50HLJp5e030757;
-	Fri, 17 Jan 2025 15:19:51 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50HLJp5i030757;
+	Fri, 17 Jan 2025 15:19:52 -0600
 From: Andrew Davis <afd@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
 CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][scarthgap/master][PATCH 1/5] arago.conf: Remove old and unused config flags
-Date: Fri, 17 Jan 2025 15:19:47 -0600
-Message-ID: <20250117211951.698377-1-afd@ti.com>
+Subject: [meta-arago][scarthgap/master][PATCH 5/5] ffmpeg: Remove bbappend to disable x264
+Date: Fri, 17 Jan 2025 15:19:51 -0600
+Message-ID: <20250117211951.698377-5-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20250117211951.698377-1-afd@ti.com>
+References: <20250117211951.698377-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -53,47 +54,52 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Fri, 17 Jan 2025 21:20:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15709
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15711
 
-These are no longer used in any layer, remove these.
+The x264 codec is no longer enabled by default in oe-core, remove the
+extra disabling. The x264 codec is not the only codec that makes this
+package license flag commercial, so removing that flag after only
+disabling one codec is not correct. All potentially troublesome codecs
+should be evaluated before setting LICENSE_FLAGS_ACCEPTED to approve
+of the license flags.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 11 -----------
- 1 file changed, 11 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf                 | 9 ++++-----
+ .../recipes-multimedia/ffmpeg/ffmpeg_%.bbappend          | 4 ----
+ 2 files changed, 4 insertions(+), 9 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-multimedia/ffmpeg/ffmpeg_%.bbappend
 
 diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 8e094e02..6e8c6cb9 100644
+index baa526a9..85c7ddd1 100644
 --- a/meta-arago-distro/conf/distro/arago.conf
 +++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -140,9 +140,6 @@ JH_RAMFS_IMAGE = "tisdk-jailhouse-inmate"
- # Enable UI and scripting for perf
- PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
- 
--# Do not warn on meta-gnome w/o x11
--SKIP_META_GNOME_SANITY_CHECK = "1"
--
- ARAGO_KERNEL_SUFFIX ?= ""
- ARAGO_IMAGE_SUFFIX ?= ""
- 
-@@ -169,17 +166,9 @@ ARAGO_BRAND ??= "core"
- 
- require conf/distro/include/branding-${ARAGO_BRAND}.inc
- 
--# Disable polkit's systemd configuration from meta-oe
--POLKITAUTH = ""
--
+@@ -164,11 +164,10 @@ require conf/distro/include/branding-${ARAGO_BRAND}.inc
  # Disable meta-virtualization sanity check and warning
  SKIP_META_VIRT_SANITY_CHECK = "1"
  
--# Set ENTERPRISE_DISTRO flag to ensure that recipes that have been flagged
--# do not attempt to enable features that have potential commercial
--# licensing issues.
--ENTERPRISE_DISTRO = "1"
+-# oe-core uses external libav instead of internal libav for gst-ffmpeg. We
+-# disable by default the codecs in libav that causes issues with shipping an
+-# Arago based SDK. No need to prevent gst-ffmpeg from being used since we
+-# disable troublesome software.
+-LICENSE_FLAGS_ACCEPTED = "commercial_gst-ffmpeg commercial_gstreamer1.0-libav commercial_faad2 non-commercial_netperf"
++# Codecs in libav and ffmpeg with questionable patent statuses are not
++# included by default. If you enable any of those codecs you should check
++# if the below acceptance flags still work for your software distribution
++LICENSE_FLAGS_ACCEPTED = "commercial_ffmpeg commercial_gstreamer1.0-libav"
+ 
+ # Do not package own copy of perl into devkit, rely on host one
+ ASSUME_PROVIDED += "nativesdk-perl"
+diff --git a/meta-arago-distro/recipes-multimedia/ffmpeg/ffmpeg_%.bbappend b/meta-arago-distro/recipes-multimedia/ffmpeg/ffmpeg_%.bbappend
+deleted file mode 100644
+index d2f22d8e..00000000
+--- a/meta-arago-distro/recipes-multimedia/ffmpeg/ffmpeg_%.bbappend
++++ /dev/null
+@@ -1,4 +0,0 @@
+-PR:append = ".arago0"
 -
- # oe-core uses external libav instead of internal libav for gst-ffmpeg. We
- # disable by default the codecs in libav that causes issues with shipping an
- # Arago based SDK. No need to prevent gst-ffmpeg from being used since we
+-PACKAGECONFIG:remove = "x264"
+-LICENSE_FLAGS = ""
 -- 
 2.39.2
 
