@@ -2,267 +2,131 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 76D62C02183
-	for <webhook@archiver.kernel.org>; Fri, 17 Jan 2025 00:32:35 +0000 (UTC)
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web10.799.1737073945840700648
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C244C02183
+	for <webhook@archiver.kernel.org>; Fri, 17 Jan 2025 19:04:12 +0000 (UTC)
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+ by mx.groups.io with SMTP id smtpd.web10.2869.1737140645768975315
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 16 Jan 2025 16:32:26 -0800
+ Fri, 17 Jan 2025 11:04:05 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=wZ2M9Kxl;
- spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: afd@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50H0WNf6236574
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=ndAn/zLK;
+ spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: afd@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50HJ44ge240137
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 16 Jan 2025 18:32:23 -0600
+	Fri, 17 Jan 2025 13:04:04 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1737073943;
-	bh=GouQglGlT2y2497UhqW6PqcYUO7SAndrrlgT/hjYspo=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=wZ2M9KxlYy09WcZReN8e1iCiauc8k6vDwMP6lzquCzTTHaILe7kHurL5nnvLnbetw
-	 7zzo5gpT+x2DbXvYM5ZNAvZjxIwmklpUWrI7PsVBImlWO/DAlgfRixRUnP/Ml2hzdX
-	 zm0bSg/pyWHK3XkWpHyPY+Gpky1gO/VcKYsY/rR0=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50H0WNxX036602
+	s=ti-com-17Q1; t=1737140644;
+	bh=sJmjaaYkBuX+POH7Wb0i6tVlXrNsU3+ZIGqX6SX/GsU=;
+	h=From:To:CC:Subject:Date;
+	b=ndAn/zLKgbtthxNMM4fS4dnaOqFtY1T8bAKJAmFNHMZZ8kfUyrRoEtDdmLMOp2g0E
+	 LQ/RUV+BHfXZYcQB5rTsAHeRRBKvcICNi2Ua2vy7cyjvTCkfJ3Hs4llIoLhCDyPiIv
+	 d3ym17JUC6nDSnAfKsccHQlTIeVq0CG1gi7Uk3L4=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50HJ44An039504
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 16 Jan 2025 18:32:23 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 16
- Jan 2025 18:32:22 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
+	Fri, 17 Jan 2025 13:04:04 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 17
+ Jan 2025 13:04:04 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
  (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 16 Jan 2025 18:32:22 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50H0WMpn015092;
-	Thu, 16 Jan 2025 18:32:22 -0600
-Message-ID: <550e7244-1664-40a3-b48e-c98b52d67978@ti.com>
-Date: Thu, 16 Jan 2025 18:32:22 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH] meta-arago: break dependency on
- meta-arago-demos
-To: <rs@ti.com>, <reatmon@ti.com>, <denis@denix.org>, <c-shilwant@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>
-References: <20250116192950.3391293-2-rs@ti.com>
-Content-Language: en-US
+ Frontend Transport; Fri, 17 Jan 2025 13:04:04 -0600
+Received: from lelvsmtp5.itg.ti.com ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50HJ43eK024103;
+	Fri, 17 Jan 2025 13:04:03 -0600
 From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250116192950.3391293-2-rs@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+CC: Andrew Davis <afd@ti.com>
+Subject: [meta-arago][scarthgap/master][PATCH] amsdk-av-files: Remove this recipe
+Date: Fri, 17 Jan 2025 13:04:02 -0600
+Message-ID: <20250117190402.686979-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 17 Jan 2025 00:32:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15705
+ <meta-arago@lists.yoctoproject.org>; Fri, 17 Jan 2025 19:04:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15706
 
-On 1/16/25 1:29 PM, Randolph Sapp via lists.yoctoproject.org wrote:
-> From: Randolph Sapp <rs@ti.com>
-> 
-> Remove any explicit dependencies on meta-arago-demos. These were the
-> last of the "demos" in this layer and they were only being built for
-> legacy devices. Demos should primarily be in layers above this unless
-> they are used for functionality testing.
-> 
-> Signed-off-by: Randolph Sapp <rs@ti.com>
-> ---
-> 
-> Trying to do this gracefully. Break the dependency first, then update the
-> oe-layersetup configs, then drop the layer entirely.
-> 
+These video files were used in a couple demos for multimedia decoders.
+They add +50MB at minimum to images that include them and ~200MB of
+git download to build. They are unused now so remove this recipe.
 
-Acked-by: Andrew Davis <afd@ti.com>
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ .../packagegroup-arago-tisdk-multimedia.bb    |  1 -
+ .../amsdk-av-files/amsdk-av-files_1.4.bb      | 42 -------------------
+ 2 files changed, 43 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
 
->   .../images/tisdk-default-image.bb             | 14 +-------
->   ...kagegroup-arago-tisdk-addons-sdk-target.bb | 17 ---------
->   .../packagegroup-arago-tisdk-addons.bb        |  2 --
->   .../packagegroup-arago-tisdk-hmi.bb           | 36 -------------------
->   .../recipes-core/packagegroups/ti-demos.bb    | 18 ----------
->   .../recipes-core/packagegroups/ti-world.bb    | 10 +-----
->   6 files changed, 2 insertions(+), 95 deletions(-)
->   delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
->   delete mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-> 
-> diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-> index 6c46c423..10493415 100644
-> --- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-> +++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-> @@ -23,24 +23,13 @@ IMAGE_INSTALL += "\
->       packagegroup-arago-tisdk-multimedia \
->       packagegroup-arago-tisdk-addons \
->       packagegroup-arago-tisdk-addons-extra \
-> -    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
-> -    ti-demos \
-> +    ${@bb.utils.contains('DISTRO_FEATURES','opengl','','packagegroup-arago-base-tisdk-server-extra',d)} \
->       ${ARAGO_DEFAULT_IMAGE_EXTRA_INSTALL} \
->       packagegroup-arago-tisdk-sysrepo \
->   "
->   
->   export IMAGE_BASENAME = "tisdk-default-image${ARAGO_IMAGE_SUFFIX}"
->   
-> -EXTRABROWSERS = " \
-> -    qtwebbrowser-examples \
-> -    qtwebengine-qmlplugins \
-> -    qtwebengine-examples \
-> -"
-> -
-> -PYTHON2APPS = " \
-> -    ${@bb.utils.contains('DISTRO_FEATURES','opengl',"${EXTRABROWSERS}",'',d)} \
-> -"
-> -
->   DEVTOOLS = " \
->       linux-libc-headers-dev \
->       build-essential \
-> @@ -50,7 +39,6 @@ DEVTOOLS = " \
->   "
->   
->   IMAGE_INSTALL += "\
-> -    ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "${PYTHON2APPS}", "", d)} \
->       ${DEVTOOLS} \
->       ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
->       docker \
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-> index 3e0a2720..8690a874 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-> @@ -31,24 +31,7 @@ EXTRA_LIBS:append:dra7xx = " libulm-dev \
->                                gdbserver-c6x-dev \
->   "
->   
-> -PDM_ANOMALY_PKG_DEV = "\
-> -    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'pdm-anomaly-detection-dev', '', d)} \
-> -"
-> -
-> -
->   EXTRA_PACKAGES = ""
-> -#EXTRA_PACKAGES:append:ti33x = " \
-> -#                                ${PDM_ANOMALY_PKG_DEV} \
-> -#"
-> -#EXTRA_PACKAGES:append:ti43x = " \
-> -#                                ${PDM_ANOMALY_PKG_DEV} \
-> -#"
-> -#EXTRA_PACKAGES:append:omap-a15 = " \
-> -#                                ${PDM_ANOMALY_PKG_DEV} \
-> -#"
-> -#EXTRA_PACKAGES:append:am65xx = " \
-> -#                             ${PDM_ANOMALY_PKG_DEV} \
-> -#"
->   
->   IPCDEV = " \
->   	ti-ipc-dev \
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> index 6b6533f5..b0d76b28 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> @@ -85,10 +85,8 @@ EXTRA_PACKAGES:omapl138 = " \
->       protobuf \
->   "
->   
-> -# acontis-atemsys
->   #EXTRA_PACKAGES:append:am335x-evm = " pruss-lld-apps"
->   #EXTRA_PACKAGES:append:am437x-evm = " pruss-lld-apps"
-> -# acontis-atemsys
->   #EXTRA_PACKAGES:append:am57xx-evm = " pruss-lld-apps"
->   
->   RDEPENDS:${PN} = "\
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-> deleted file mode 100644
-> index a8261bf2..00000000
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-> +++ /dev/null
-> @@ -1,36 +0,0 @@
-> -SUMMARY = "Task to add HMI related packages"
-> -LICENSE = "MIT"
-> -PR = "r0"
-> -
-> -PACKAGE_ARCH = "${MACHINE_ARCH}"
-> -
-> -inherit packagegroup
-> -
-> -HMI = " \
-> -"
-> -
-> -
-> -HMI:append:ti33x = " \
-> -    evse-hmi \
-> -    protection-relays-hmi \
-> -    mmwavegesture-hmi \
-> -"
-> -
-> -HMI:append:ti43x = " \
-> -    evse-hmi \
-> -    mmwavegesture-hmi \
-> -"
-> -
-> -HMI:append:omap-a15 = " \
-> -    evse-hmi \
-> -    mmwavegesture-hmi \
-> -"
-> -
-> -HMI:append:am65xx = " \
-> -    evse-hmi \
-> -    mmwavegesture-hmi \
-> -"
-> -
-> -RDEPENDS:${PN} = "\
-> -	${HMI} \
-> -"
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb b/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-> deleted file mode 100644
-> index 7bccb4de..00000000
-> --- a/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-> +++ /dev/null
-> @@ -1,18 +0,0 @@
-> -SUMMARY = "TI World packagegroup"
-> -LICENSE = "MIT"
-> -
-> -PACKAGE_ARCH = "${MACHINE_ARCH}"
-> -
-> -inherit packagegroup
-> -
-> -PDM_ANOMALY_PKG = "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'pdm-anomaly-detection', '', d)}"
-> -
-> -PDM_ANOMALY = ""
-> -PDM_ANOMALY:ti33x = "${PDM_ANOMALY_PKG}"
-> -PDM_ANOMALY:ti43x = "${PDM_ANOMALY_PKG}"
-> -PDM_ANOMALY:omap-a15 = "${PDM_ANOMALY_PKG}"
-> -PDM_ANOMALY:am65xx = "${PDM_ANOMALY_PKG}"
-> -
-> -RDEPENDS:${PN} = "\
-> -    ${PDM_ANOMALY} \
-> -"
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-> index 438dd8d0..fc3eac74 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-> @@ -15,14 +15,7 @@ CHROMIUM:append:k3 = "\
->       chromium-ozone-wayland \
->   "
->   
-> -EXTRABROWSERS = " \
-> -    qtwebbrowser-examples \
-> -    qtwebengine-qmlplugins \
-> -    qtwebengine-examples \
-> -"
-> -
->   PYTHON2APPS = " \
-> -    ${@bb.utils.contains('DISTRO_FEATURES','opengl',"${EXTRABROWSERS}",'',d)} \
->       ${@bb.utils.contains("BBFILE_COLLECTIONS","browser-layer",bb.utils.contains('DISTRO_FEATURES','wayland',"${CHROMIUM}",'',d),'',d)} \
->   "
->   
-> @@ -45,11 +38,10 @@ RDEPENDS:${PN} = "\
->       packagegroup-arago-tisdk-multimedia \
->       packagegroup-arago-tisdk-addons \
->       packagegroup-arago-tisdk-addons-extra \
-> -    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
-> +    ${@bb.utils.contains('DISTRO_FEATURES','opengl','','packagegroup-arago-base-tisdk-server-extra',d)} \
->       ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "${PYTHON2APPS}", "", d)} \
->       ${DEVTOOLS} \
->       ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
->       packagegroup-arago-misc \
-> -    ti-demos \
->       ${PREFERRED_PROVIDER_virtual/docker} \
->   "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+index c6e39aa1..6a1b25b6 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+@@ -7,7 +7,6 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ inherit packagegroup
+ 
+ MULTIMEDIA = " \
+-    amsdk-av-files \
+     ffmpeg \
+     libcamera \
+     libcamera-gst \
+diff --git a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
+deleted file mode 100644
+index 7267668b..00000000
+--- a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
++++ /dev/null
+@@ -1,42 +0,0 @@
+-DESCRIPTION = "AMSDK multimedia support files"
+-HOMEPAGE = "https://git.ti.com/processor-sdk/amsdk-av-files/"
+-LICENSE = "CC-BY-NC-ND-3.0 & CC-BY-3.0"
+-SECTION = "multimedia"
+-LIC_FILES_CHKSUM = "file://Multimedia_Data_Files_Manifest.doc;md5=fe154d291c69c51495a5bb4a456403b5"
+-PR = "r2"
+-
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+-VIDEO_FILES = "video_480p "
+-
+-VIDEO_FILES:append:ti33x       = "video_wvga \
+-                                  video_wqvga"
+-VIDEO_FILES:append:ti43x       = "video_wqvga"
+-VIDEO_FILES:append:dra7xx      = "video_wvga \
+-                                  video_1080p \
+-                                  video_720p \
+-                                  video_yuv"
+-VIDEO_FILES:append:k3          = "video_720p"
+-
+-BRANCH = "master"
+-
+-SRC_URI = "git://git.ti.com/git/processor-sdk/amsdk-av-files.git;protocol=https;branch=${BRANCH}"
+-SRCREV = "1b73009090265328ebaf1b6c880dfeccae5a8f19"
+-
+-S = "${WORKDIR}/git"
+-
+-do_compile() {
+-    :
+-}
+-
+-do_install() {
+-    install -d ${D}${datadir}/ti \
+-       ${D}${datadir}/ti/audio \
+-       ${D}${datadir}/ti/video
+-    install -m 0644 ${S}/audio/* ${D}${datadir}/ti/audio/
+-    for file in ${VIDEO_FILES}; do
+-	install -m 0644 ${S}/${file}/* ${D}${datadir}/ti/video/
+-    done
+-}
+-
+-FILES:${PN} += "${datadir}/ti/*"
+-- 
+2.39.2
+
 
