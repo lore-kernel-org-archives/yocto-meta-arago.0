@@ -2,49 +2,50 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 91DE6C02182
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB70AC0218C
 	for <webhook@archiver.kernel.org>; Tue, 21 Jan 2025 17:52:34 +0000 (UTC)
 Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web11.21961.1737481953680401692
+ by mx.groups.io with SMTP id smtpd.web11.21964.1737481953949845763
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 21 Jan 2025 09:52:33 -0800
+ Tue, 21 Jan 2025 09:52:34 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=hv1r6MRY;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=KpWQazdW;
  spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: afd@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50LHqWYk046359
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 21 Jan 2025 11:52:32 -0600
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50LHqXXN046365
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Tue, 21 Jan 2025 11:52:33 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1737481952;
-	bh=pYxd+jbQD3tPoSmnWic+ZqAMLKaByD1wXoy9vlqiTj4=;
-	h=From:To:CC:Subject:Date;
-	b=hv1r6MRY92r+sKiVcSKSoyN6kKyCjJ26hiuZvkGsb8K4SyyzWlcOM19fdXtLU4ncu
-	 x6qfo2OloZWzXCzxc+XRk6FjTfr1n0xOLfAA7+9F0Mq0hIExJif4RT0S+H4wYGdz9+
-	 IHAPv9hgNUFPFyJIQoGm1PHboMeJyt9I4yKn3aoY=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50LHqWGw026834
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 21 Jan 2025 11:52:32 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1737481953;
+	bh=9zXOD+XkZSe6W4lLqWEd06lTuN9PrzzrCz1uyufXAYQ=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=KpWQazdWifFvBUx49K5nosmrjQ+7bT5S49rf3gfYKxIbb4xfSaZ6b017aBaZAnHPH
+	 LkD+aqtctyf/hPIZuc5VBTM7rPVd1QskfOzktfSX4hvwocMD4avu/Z/K1ybQZV7iCq
+	 2Qom+9wo9pXRLEzDq4aw4J7Ej21Cp5WWJakyfw6s=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50LHqXQP043544;
+	Tue, 21 Jan 2025 11:52:33 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 21
  Jan 2025 11:52:32 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Tue, 21 Jan 2025 11:52:32 -0600
 Received: from fllvsmtp8.itg.ti.com ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50LHqV98097709;
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50LHqV9B097709;
 	Tue, 21 Jan 2025 11:52:32 -0600
 From: Andrew Davis <afd@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
 CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][scarthgap/master][PATCH v2 1/7] arago.conf: Remove old and unused config flags
-Date: Tue, 21 Jan 2025 11:52:25 -0600
-Message-ID: <20250121175231.27183-1-afd@ti.com>
+Subject: [meta-arago][scarthgap/master][PATCH v2 4/7] opencv: Remove OpenCV customization and DISTRO_FEATURE
+Date: Tue, 21 Jan 2025 11:52:28 -0600
+Message-ID: <20250121175231.27183-4-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20250121175231.27183-1-afd@ti.com>
+References: <20250121175231.27183-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -53,51 +54,127 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Tue, 21 Jan 2025 17:52:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15720
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15723
 
-These are no longer used in any layer, remove these.
+These customizations are leftover from when we had DSP acceleration
+for OpenCV. Remove these.
+
+Also, If you need OpenCV for a package you should just DEPEND on it in
+the recipe, not check for it as a DISTRO_FEATURE. Fix that.
+
+This then means "opencv" is no longer used as a DISTRO_FEATURE anywhere
+in Arago or other lower layer, so drop it from DISTRO_FEATUREs.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
 
 Changes for v2:
- - No changes
+ - Clarify commit message
+ - point-cloud-viewer fix DEPENDS
 
- meta-arago-distro/conf/distro/arago.conf | 11 -----------
- 1 file changed, 11 deletions(-)
+ .../point-cloud-viewer/point-cloud-viewer_git.bb           | 7 ++-----
+ meta-arago-distro/conf/distro/arago.conf                   | 5 ++---
+ .../recipes-support/opencv/opencv/am57xx-evm/setupEnv.sh   | 3 ---
+ .../recipes-support/opencv/opencv/dra7xx-evm/setupEnv.sh   | 3 ---
+ .../recipes-support/opencv/opencv/keystone/setupEnv.sh     | 3 ---
+ .../recipes-support/opencv/opencv/setupEnv.sh              | 2 --
+ meta-arago-distro/recipes-support/opencv/opencv_%.bbappend | 3 ---
+ 7 files changed, 4 insertions(+), 22 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-support/opencv/opencv/am57xx-evm/setupEnv.sh
+ delete mode 100644 meta-arago-distro/recipes-support/opencv/opencv/dra7xx-evm/setupEnv.sh
+ delete mode 100644 meta-arago-distro/recipes-support/opencv/opencv/keystone/setupEnv.sh
+ delete mode 100644 meta-arago-distro/recipes-support/opencv/opencv/setupEnv.sh
+ delete mode 100644 meta-arago-distro/recipes-support/opencv/opencv_%.bbappend
 
+diff --git a/meta-arago-demos/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb b/meta-arago-demos/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+index 0388a2e0..9211c653 100644
+--- a/meta-arago-demos/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
++++ b/meta-arago-demos/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+@@ -3,10 +3,6 @@ HOMEPAGE = "https://git.ti.com/processor-sdk/point-cloud-viewer/"
+ LICENSE = "TI-TSPA"
+ LIC_FILES_CHKSUM := "file://PointCloudViewer_manifest.html;md5=7ea694db2dd8d82fd91a18cab8c2c2db"
+ 
+-inherit features_check
+-
+-REQUIRED_DISTRO_FEATURES = "opencv"
+-
+ PR = "r2"
+ 
+ COMPATIBLE_MACHINE = "dra7xx"
+@@ -21,7 +17,8 @@ PV = "2.2"
+ 
+ S = "${WORKDIR}/git"
+ 
+-RDEPENDS:${PN} = "opencv libxkbcommon"
++DEPENDS += "opencv"
++RDEPENDS:${PN} = "libxkbcommon"
+ 
+ do_install() {
+     install -d ${D}${bindir}
 diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 8e094e02..6e8c6cb9 100644
+index f1948523..baa526a9 100644
 --- a/meta-arago-distro/conf/distro/arago.conf
 +++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -140,9 +140,6 @@ JH_RAMFS_IMAGE = "tisdk-jailhouse-inmate"
- # Enable UI and scripting for perf
- PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
+@@ -50,13 +50,12 @@ DISTRO_FEATURES:append = " pam wayland opengl"
+ DISTRO_FEATURES:remove = "x11"
+ #DISTRO_FEATURES:append = " opencl"
+ DISTRO_FEATURES:append = " vulkan"
+-DISTRO_FEATURES:append = " opencv"
+ DISTRO_FEATURES:append = " openmp"
  
--# Do not warn on meta-gnome w/o x11
--SKIP_META_GNOME_SANITY_CHECK = "1"
+ # Normally target distro features will not be applied to native builds:
+ # Native distro features on this list will use the target feature value
+-DISTRO_FEATURES_FILTER_NATIVE:append = " opencl opencv openmp"
+-DISTRO_FEATURES_FILTER_NATIVESDK:append = " opencl opencv openmp"
++DISTRO_FEATURES_FILTER_NATIVE:append = " opencl openmp"
++DISTRO_FEATURES_FILTER_NATIVESDK:append = " opencl openmp"
+ 
+ # Set global runtime providers for major components
+ ARAGO_SYSVINIT ??= "0"
+diff --git a/meta-arago-distro/recipes-support/opencv/opencv/am57xx-evm/setupEnv.sh b/meta-arago-distro/recipes-support/opencv/opencv/am57xx-evm/setupEnv.sh
+deleted file mode 100644
+index 3ad25601..00000000
+--- a/meta-arago-distro/recipes-support/opencv/opencv/am57xx-evm/setupEnv.sh
++++ /dev/null
+@@ -1,3 +0,0 @@
+-export OPENCV_BUILDDIR=/usr/share/OpenCV/samples
+-export OPENCV_TEST_DATA_PATH=/usr/share/OpenCV/testdata
+-export OPENCV_OPENCL_DEVICE='TI AM57:ACCELERATOR:TI Multicore C66 DSP'
+diff --git a/meta-arago-distro/recipes-support/opencv/opencv/dra7xx-evm/setupEnv.sh b/meta-arago-distro/recipes-support/opencv/opencv/dra7xx-evm/setupEnv.sh
+deleted file mode 100644
+index 3ad25601..00000000
+--- a/meta-arago-distro/recipes-support/opencv/opencv/dra7xx-evm/setupEnv.sh
++++ /dev/null
+@@ -1,3 +0,0 @@
+-export OPENCV_BUILDDIR=/usr/share/OpenCV/samples
+-export OPENCV_TEST_DATA_PATH=/usr/share/OpenCV/testdata
+-export OPENCV_OPENCL_DEVICE='TI AM57:ACCELERATOR:TI Multicore C66 DSP'
+diff --git a/meta-arago-distro/recipes-support/opencv/opencv/keystone/setupEnv.sh b/meta-arago-distro/recipes-support/opencv/opencv/keystone/setupEnv.sh
+deleted file mode 100644
+index 5b6bdb78..00000000
+--- a/meta-arago-distro/recipes-support/opencv/opencv/keystone/setupEnv.sh
++++ /dev/null
+@@ -1,3 +0,0 @@
+-export OPENCV_BUILDDIR=/usr/share/OpenCV/samples
+-export OPENCV_TEST_DATA_PATH=/usr/share/OpenCV/testdata
+-export OPENCV_OPENCL_DEVICE='TI KeyStone II:ACCELERATOR:TI Multicore C66 DSP'
+diff --git a/meta-arago-distro/recipes-support/opencv/opencv/setupEnv.sh b/meta-arago-distro/recipes-support/opencv/opencv/setupEnv.sh
+deleted file mode 100644
+index 5bf7afd3..00000000
+--- a/meta-arago-distro/recipes-support/opencv/opencv/setupEnv.sh
++++ /dev/null
+@@ -1,2 +0,0 @@
+-export OPENCV_BUILDDIR=/usr/share/OpenCV/samples
+-export OPENCV_TEST_DATA_PATH=/usr/share/OpenCV/testdata
+diff --git a/meta-arago-distro/recipes-support/opencv/opencv_%.bbappend b/meta-arago-distro/recipes-support/opencv/opencv_%.bbappend
+deleted file mode 100644
+index 2ee6bff7..00000000
+--- a/meta-arago-distro/recipes-support/opencv/opencv_%.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-inherit features_check
 -
- ARAGO_KERNEL_SUFFIX ?= ""
- ARAGO_IMAGE_SUFFIX ?= ""
- 
-@@ -169,17 +166,9 @@ ARAGO_BRAND ??= "core"
- 
- require conf/distro/include/branding-${ARAGO_BRAND}.inc
- 
--# Disable polkit's systemd configuration from meta-oe
--POLKITAUTH = ""
--
- # Disable meta-virtualization sanity check and warning
- SKIP_META_VIRT_SANITY_CHECK = "1"
- 
--# Set ENTERPRISE_DISTRO flag to ensure that recipes that have been flagged
--# do not attempt to enable features that have potential commercial
--# licensing issues.
--ENTERPRISE_DISTRO = "1"
--
- # oe-core uses external libav instead of internal libav for gst-ffmpeg. We
- # disable by default the codecs in libav that causes issues with shipping an
- # Arago based SDK. No need to prevent gst-ffmpeg from being used since we
+-REQUIRED_DISTRO_FEATURES = "opencv"
 -- 
 2.39.2
 
