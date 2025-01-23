@@ -1,50 +1,49 @@
-Return-Path: <c-shilwant@ti.com>
+Return-Path: <detheridge@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 57B70C02182
-	for <webhook@archiver.kernel.org>; Thu, 23 Jan 2025 17:25:52 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.16417.1737653146060265080
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E430C02182
+	for <webhook@archiver.kernel.org>; Thu, 23 Jan 2025 20:12:33 +0000 (UTC)
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+ by mx.groups.io with SMTP id smtpd.web11.21583.1737663146259768917
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 23 Jan 2025 09:25:46 -0800
+ Thu, 23 Jan 2025 12:12:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=bUzIhn4X;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: c-shilwant@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50NHPiHZ406988
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Thu, 23 Jan 2025 11:25:44 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=YI/TS30A;
+ spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: detheridge@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50NKCOjl1257432
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 23 Jan 2025 14:12:24 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1737653144;
-	bh=PNYMWnzsqguEYSGPLwBIZiRXacxkyGX7xuG1JKSz0Pk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=bUzIhn4XLPfo3jrfzM0Aza2DSC/MDobMEZ2rwJQr1rONcvvAob9CcCZKLKbspAOC5
-	 dfMz4bPxGbTnLfnzU+yswEjnZ5dckU2iShzpGg4s06t+dvHLiZEI9wPak0PZYrnEwh
-	 2Hd0nJDpo4/N6BRhAqo4eE28l61CA3x6pvQRrbQE=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50NHPiBg012272;
-	Thu, 23 Jan 2025 11:25:44 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1737663144;
+	bh=hhddIHMT2CUvADN4FyJgiVWRM7s04FBwQAzni5IxlkY=;
+	h=From:To:Subject:Date;
+	b=YI/TS30A4zfjH1efnmT3pzXuCH0nrhGIX3THMAhNl/Z0jHMITPL/5itPVBOzszswo
+	 PoCUir5yIjCq2g/JQsuEfxTtb6FC/4a+keKBJjP3cEmagRJU84j8/QUfcbWlpqTJjb
+	 CwAcP4jDMlu/PzQlngIaPyK7NKm8vDqENhq6v+Tc=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50NKCOfh092546
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 23 Jan 2025 14:12:24 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 23
- Jan 2025 11:25:44 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2025 14:12:24 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 23 Jan 2025 11:25:44 -0600
-Received: from localhost (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50NHPhhK111123;
-	Thu, 23 Jan 2025 11:25:44 -0600
-From: Chirag <c-shilwant@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: Andrew <afd@ti.com>, Ryan <reatmon@ti.com>, Denys <denis@denix.org>
-Subject: [meta-arago][scarthgap][PATCH 1/1] meta-arago-extras: Add recipe for TFLite Runtime
-Date: Thu, 23 Jan 2025 22:55:09 +0530
-Message-ID: <20250123172509.445473-2-c-shilwant@ti.com>
+ Frontend Transport; Thu, 23 Jan 2025 14:12:24 -0600
+Received: from uda0867391-2.dhcp.ti.com (uda0867391-2.dhcp.ti.com [128.247.81.58])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50NKCOU8030736;
+	Thu, 23 Jan 2025 14:12:24 -0600
+From: Darren Etheridge <detheridge@ti.com>
+To: <rs@ti.com>, <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>,
+        <denys@konsulko.com>
+Subject: [meta-arago][oe-layersetup][PATCH] configs: scarthgap update meta-browser layer sha
+Date: Thu, 23 Jan 2025 14:12:15 -0600
+Message-ID: <20250123201215.2812931-1-detheridge@ti.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250123172509.445473-1-c-shilwant@ti.com>
-References: <20250123172509.445473-1-c-shilwant@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -52,390 +51,170 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 23 Jan 2025 17:25:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15744
+ <meta-arago@lists.yoctoproject.org>; Thu, 23 Jan 2025 20:12:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15745
 
-From: Chirag Shilwant <c-shilwant@ti.com>
+Update the various Scarthgap config files to point the meta-browser layer at the
+correct sha for Chromium 130.0.6723.91.
 
-- TensorFlow Lite is TensorFlow's lightweight solution for mobile
-and embedded devices. It enables low-latency inference of on-device
-machine learning models with a small binary size.
-
-- The tensorflow-lite v2.16 recipe in meta-arago currently supports,
-
-  - CPU delegate (with RUY enabled), XNNPACK delegate & ArmNN
-    via external delegate for ARMv8 based Cortex-A platforms.
-
-  - CPU delegate (with RUY enabled) & ArmNN via external delegate
-    for ARMv7 based Cortex-A platforms.
-
-Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
+Signed-off-by: Darren Etheridge <detheridge@ti.com>
 ---
- ...eLists-for-building-_pywrap_tensorfl.patch |  37 ++++
- ...eLists-for-building-shared-object-li.patch |  55 +++++
- ...uild-issues-observed-in-TFlite-v2.16.patch |  36 ++++
- .../tensorflow-lite/tensorflow-lite_2.16.bb   | 203 ++++++++++++++++++
- 4 files changed, 331 insertions(+)
- create mode 100644 meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch
- create mode 100644 meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0002-lite-Update-CMakeLists-for-building-shared-object-li.patch
- create mode 100644 meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.16.patch
- create mode 100644 meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite_2.16.bb
+ configs/arago-scarthgap-chromium-config.txt     | 2 +-
+ configs/arago-scarthgap-config.txt              | 2 +-
+ configs/arago-scarthgap-next-config.txt         | 2 +-
+ configs/arago-scarthgap-selinux-config.txt      | 2 +-
+ configs/arago-scarthgap-wip-config.txt          | 2 +-
+ kas/arago-scarthgap-chromium-config.yml         | 2 +-
+ src/configs/arago-scarthgap-chromium-config.xml | 2 +-
+ src/configs/arago-scarthgap-config.xml          | 2 +-
+ src/configs/arago-scarthgap-next-config.xml     | 2 +-
+ src/configs/arago-scarthgap-selinux-config.xml  | 2 +-
+ src/configs/arago-scarthgap-wip-config.xml      | 2 +-
+ 11 files changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch
-new file mode 100644
-index 00000000..0eed77f9
---- /dev/null
-+++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch
-@@ -0,0 +1,37 @@
-+From 64b8e731309f1ee9ad41bd65d7661854d5c3106c Mon Sep 17 00:00:00 2001
-+From: Chirag Shilwant <c-shilwant@ti.com>
-+Date: Sun, 19 Jan 2025 14:54:25 +0530
-+Subject: [PATCH 1/2] lite: Update CMakeLists for building
-+ _pywrap_tensorflow_interpreter_wrapper
-+
-+- Update the CMakeLists.txt file for TensorFlow Lite to include the paths for
-+PYTHON, Numpy, and PYBIND11 headers.
-+
-+- This ensures that these headers are available during the build process,
-+which is necessary for building the _pywrap_tensorflow_interpreter_wrapper
-+target that relies on these dependencies.
-+
-+Upstream-Status: Inappropriate [configuration]
-+
-+Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-+---
-+ tensorflow/lite/CMakeLists.txt | 3 +++
-+ 1 file changed, 3 insertions(+)
-+
-+diff --git a/tensorflow/lite/CMakeLists.txt b/tensorflow/lite/CMakeLists.txt
-+index a61f537365a..f41e57d9155 100644
-+--- a/tensorflow/lite/CMakeLists.txt
-++++ b/tensorflow/lite/CMakeLists.txt
-+@@ -727,6 +727,9 @@ set_target_properties(_pywrap_tensorflow_interpreter_wrapper PROPERTIES PREFIX "
-+ target_include_directories(_pywrap_tensorflow_interpreter_wrapper
-+   PUBLIC
-+     ${TENSORFLOW_SOURCE_DIR}
-++    ${PYTHON_TARGET_INCLUDE}
-++    ${NUMPY_TARGET_INCLUDE}
-++    ${PYBIND11_TARGET_INCLUDE}
-+ )
-+ 
-+ target_link_libraries(_pywrap_tensorflow_interpreter_wrapper
-+-- 
-+2.34.1
-+
-diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0002-lite-Update-CMakeLists-for-building-shared-object-li.patch b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0002-lite-Update-CMakeLists-for-building-shared-object-li.patch
-new file mode 100644
-index 00000000..a8c4f2ba
---- /dev/null
-+++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0002-lite-Update-CMakeLists-for-building-shared-object-li.patch
-@@ -0,0 +1,55 @@
-+From 92adea5bb011ed36c9b63bd442bf147fad96a5bb Mon Sep 17 00:00:00 2001
-+From: Chirag Shilwant <c-shilwant@ti.com>
-+Date: Sun, 19 Jan 2025 15:08:59 +0530
-+Subject: [PATCH 2/2] lite: Update CMakeLists for building shared object
-+ library
-+
-+- When building TFLite with CMake, it builds static library
-+(i.e. libtensorflow-lite.a) by default which isn't self-contained
-+since all the transitive dependencies are not included [1]
-+
-+- As documented in [1], there's an update needed in CMake build steps
-+inorder to generate a shared object library (i.e. libtensorflow-lite.so)
-+
-+- This patch adds schema_conversion_utils.cc to TFLite source files
-+& updates CMakeLists.txt to build TFLite as a shared library. Additionally,
-+it ensures that the properties are set correctly to manage the shared
-+object version.
-+
-+[1]: https://ai.google.dev/edge/litert/build/cmake#step_5_build_litert
-+
-+Upstream-Status: Inappropriate [enable feature]
-+
-+Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-+---
-+ tensorflow/lite/CMakeLists.txt | 6 +++++-
-+ 1 file changed, 5 insertions(+), 1 deletion(-)
-+
-+diff --git a/tensorflow/lite/CMakeLists.txt b/tensorflow/lite/CMakeLists.txt
-+index f41e57d9155..923c673d623 100644
-+--- a/tensorflow/lite/CMakeLists.txt
-++++ b/tensorflow/lite/CMakeLists.txt
-+@@ -622,8 +622,9 @@ set(_ALL_TFLITE_SRCS
-+   ${TFLITE_SOURCE_DIR}/schema/conversion_metadata_generated.h
-+   ${TFLITE_SOURCE_DIR}/schema/schema_utils.cc
-+   ${TFLITE_SOURCE_DIR}/schema/schema_generated.h
-++  ${TFLITE_SOURCE_DIR}/schema/schema_conversion_utils.cc
-+ )
-+-add_library(tensorflow-lite
-++add_library(tensorflow-lite SHARED EXCLUDE_FROM_ALL
-+   ${_ALL_TFLITE_SRCS}
-+ )
-+ set(_ALL_TFLITE_HDRS ${_ALL_TFLITE_SRCS})
-+@@ -700,6 +701,9 @@ if(TFLITE_ENABLE_INSTALL)
-+   )
-+ endif()
-+ 
-++# Manage version for shared object (dynamic) library
-++set_target_properties(tensorflow-lite PROPERTIES VERSION "${TFLITE_VERSION_MAJOR}")
-++
-+ # The kernel tests.
-+ if(TFLITE_KERNEL_TEST)
-+   enable_testing()
-+-- 
-+2.34.1
-+
-diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.16.patch b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.16.patch
-new file mode 100644
-index 00000000..d38a3cdd
---- /dev/null
-+++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.16.patch
-@@ -0,0 +1,36 @@
-+From 1b93fb907b3436edf2b64db94f74b1db724943ae Mon Sep 17 00:00:00 2001
-+From: Chirag Shilwant <c-shilwant@ti.com>
-+Date: Mon, 20 Jan 2025 19:51:20 +0530
-+Subject: [PATCH] CMakeLists: Fix build issues observed in TFlite v2.16
-+
-+- Improve regular expression for filtering neon and sse
-+related sources. The improved expression avoids missing files
-+in case the absolute path contains the terms neon or sse.
-+
-+- Fixes [1]
-+
-+[1]: https://github.com/tensorflow/tensorflow/issues/70730
-+
-+Upstream-Status: Backport from master
-+
-+Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-+---
-+ tensorflow/lite/CMakeLists.txt | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/tensorflow/lite/CMakeLists.txt b/tensorflow/lite/CMakeLists.txt
-+index 923c673d623..3e2fb501bde 100644
-+--- a/tensorflow/lite/CMakeLists.txt
-++++ b/tensorflow/lite/CMakeLists.txt
-+@@ -554,7 +554,7 @@ populate_tflite_source_vars("kernels/internal/reference/sparse_ops"
-+ )
-+ populate_tflite_source_vars("kernels/internal/optimized/4bit"
-+   TFLITE_KERNEL_INTERNAL_OPT_4BIT_SRCS
-+-  FILTER "(.*neon.*|.*sse.*)\\.(cc|h)"
-++  FILTER "(.*neon_.*|.*sse_.*)\\.(cc|h)"
-+ )
-+ set(TFLITE_PROFILER_SRCS
-+   ${TFLITE_SOURCE_DIR}/profiling/platform_profiler.cc
-+-- 
-+2.34.1
-+
-diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite_2.16.bb b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite_2.16.bb
-new file mode 100644
-index 00000000..ca51d6dc
---- /dev/null
-+++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite_2.16.bb
-@@ -0,0 +1,203 @@
-+DESCRIPTION = "TensorFlow Lite is an open source deep learning framework for \
-+on-device inference."
-+AUTHOR = "Google Inc. and Yuan Tang"
-+SUMMARY = "TensorFlow Lite C++ Library, Python interpreter & Benchmark Model"
-+HOMEPAGE = "https://www.tensorflow.org/lite"
-+
-+LICENSE = "Apache-2.0"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=4158a261ca7f2525513e31ba9c50ae98"
-+
-+PV = "2.16.2"
-+
-+# Get major of the PV variable
-+MAJOR = "${@d.getVar('PV').split('.')[0]}"
-+
-+# Matches v${PV} tag
-+SRCREV = "810f233968cec850915324948bbbc338c97cf57f"
-+
-+SRC_URI = " \
-+    git://github.com/tensorflow/tensorflow;protocol=https;branch=r2.16 \
-+    file://0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch \
-+    file://0002-lite-Update-CMakeLists-for-building-shared-object-li.patch \
-+    file://0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.16.patch \
-+"
-+
-+S = "${WORKDIR}/git"
-+
-+inherit setuptools3 cmake
-+
-+DEPENDS = " \
-+    zlib \
-+    python3-numpy-native \
-+    python3-pybind11-native \
-+    python3-wheel-native \
-+    python3-pybind11 \
-+    python3-numpy \
-+    swig-native \
-+    python3 \
-+    gzip-native \
-+"
-+
-+# Set building environment variables
-+TENSORFLOW_TARGET="linux"
-+TENSORFLOW_TARGET_ARCH:aarch64="aarch64"
-+
-+OECMAKE_SOURCEPATH = "${S}/tensorflow/lite"
-+
-+# The -O3 flag enables high-level optimizations for performance
-+# and the -DNDEBUG flag disables debugging code, such as assertions
-+# to further optimize the build for production use.
-+# Hence, activate -O3 optimization and disable debug symbols.
-+OECMAKE_C_FLAGS_RELEASE = "-O3 -DNDEBUG"
-+OECMAKE_CXX_FLAGS_RELEASE = "-O3 -DNDEBUG"
-+
-+OECMAKE_C_FLAGS_RELEASE:append:arm = " -march=armv7-a -mfpu=neon"
-+OECMAKE_CXX_FLAGS_RELEASE:append:arm = " -march=armv7-a -mfpu=neon"
-+
-+# Build tensorflow-lite.so library, _pywrap_tensorflow_interpreter_wrapper.so library and the benchmark_model application
-+OECMAKE_TARGET_COMPILE =  "tensorflow-lite _pywrap_tensorflow_interpreter_wrapper benchmark_model"
-+
-+do_generate_toolchain_file:append:arm() {
-+    # XNNPACK does not recognize this when CMAKE_SYSTEM_PROCESSOR is arm.
-+    # Instead, you need to change it to armv7.
-+    sed -i 's:CMAKE_SYSTEM_PROCESSOR arm:CMAKE_SYSTEM_PROCESSOR armv7:g' ${WORKDIR}/toolchain.cmake
-+}
-+
-+EXTRA_OECMAKE:append = " \
-+    -DFETCHCONTENT_FULLY_DISCONNECTED=OFF \
-+    -DTFLITE_ENABLE_RUY=ON \
-+    -DPYTHON_TARGET_INCLUDE=${RECIPE_SYSROOT}${includedir}/${PYTHON_DIR} \
-+    -DNUMPY_TARGET_INCLUDE=${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR}/numpy/core/include \
-+    -DPYBIND11_TARGET_INCLUDE=${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR}/pybind11/include \
-+    -DCMAKE_SYSTEM_NAME=${TENSORFLOW_TARGET} \
-+    -DTFLITE_VERSION_MAJOR=${MAJOR}  \
-+"
-+
-+EXTRA_OECMAKE:append:aarch64 = " \
-+    -DTFLITE_ENABLE_XNNPACK=ON \
-+    -DCMAKE_SYSTEM_PROCESSOR=${TENSORFLOW_TARGET_ARCH} \
-+"
-+
-+# XNNPACK is not supported in Linux armv7-a [https://github.com/tensorflow/tensorflow/issues/64358]
-+# Hence, turning it off
-+EXTRA_OECMAKE:append:arm = " \
-+    -DTFLITE_ENABLE_XNNPACK=OFF \
-+"
-+
-+do_configure[network] = "1"
-+
-+do_configure:prepend() {
-+    if [ -n "${http_proxy}" ]; then
-+        export HTTP_PROXY=${http_proxy}
-+        export http_proxy=${http_proxy}
-+    fi
-+
-+    if [ -n "${https_proxy}" ]; then
-+        export HTTPS_PROXY=${https_proxy}
-+        export https_proxy=${https_proxy}
-+    fi
-+
-+    # There is no Fortran compiler in the toolchain, but bitbake sets this variable anyway with unavailable
-+    # binary & it leads to "CMake Error: Could not find compiler set in environment variable FC:"
-+    unset FC
-+}
-+
-+do_compile[network] = "1"
-+
-+do_compile:prepend() {
-+    # Used to download cmake dependencies when behind a proxy
-+    if [ -n "${http_proxy}" ]; then
-+        export HTTP_PROXY=${http_proxy}
-+        export http_proxy=${http_proxy}
-+    fi
-+
-+    if [ -n "${https_proxy}" ]; then
-+        export HTTPS_PROXY=${https_proxy}
-+        export https_proxy=${https_proxy}
-+    fi
-+}
-+
-+SETUPTOOLS_SETUP_PATH = "${B}"
-+
-+do_compile:append() {
-+    # Build the python wheel (procedure extract form the build_pip_package_with_cmake.sh)
-+    BUILD_DIR=${B}
-+    TENSORFLOW_DIR=${S}
-+    TENSORFLOW_LITE_DIR="${TENSORFLOW_DIR}/tensorflow/lite"
-+    TENSORFLOW_VERSION=$(grep "_VERSION = " "${TENSORFLOW_DIR}/tensorflow/tools/pip_package/setup.py" | cut -d= -f2 | sed "s/[ '-]//g")
-+    mkdir -p "${B}/tflite_runtime"
-+    cp -r "${TENSORFLOW_LITE_DIR}/tools/pip_package/debian" \
-+          "${TENSORFLOW_LITE_DIR}/tools/pip_package/MANIFEST.in" \
-+          "${B}"
-+    cp -r "${TENSORFLOW_LITE_DIR}/python/interpreter_wrapper" "${B}"
-+    cp "${TENSORFLOW_LITE_DIR}/tools/pip_package/setup_with_binary.py" "${B}/setup.py"
-+    cp "${TENSORFLOW_LITE_DIR}/python/interpreter.py" \
-+       "${TENSORFLOW_LITE_DIR}/python/metrics/metrics_interface.py" \
-+       "${TENSORFLOW_LITE_DIR}/python/metrics/metrics_portable.py" \
-+       "${B}/tflite_runtime"
-+    echo "__version__ = '${TENSORFLOW_VERSION}'" >> "${BUILD_DIR}/tflite_runtime/__init__.py"
-+    echo "__git_version__ = '$(git -C "${TENSORFLOW_DIR}" describe)'" >> "${BUILD_DIR}/tflite_runtime/__init__.py"
-+
-+    export PACKAGE_VERSION="${TENSORFLOW_VERSION}"
-+    export PROJECT_NAME="tflite_runtime"
-+    cp "${B}/_pywrap_tensorflow_interpreter_wrapper.so" "tflite_runtime"
-+
-+    setuptools3_do_compile
-+}
-+
-+do_install() {
-+    # Install tensorflow-lite dynamic library
-+    install -d ${D}${libdir}
-+    install -m 0644 ${B}/libtensorflow-lite.so.${MAJOR} ${D}${libdir}/libtensorflow-lite.so.${PV}
-+
-+    ln -sf libtensorflow-lite.so.${PV} ${D}${libdir}/libtensorflow-lite.so.${MAJOR}
-+    ln -sf libtensorflow-lite.so.${PV} ${D}${libdir}/libtensorflow-lite.so
-+
-+    # armnn expects the the dynamic library of tensorflow lite to be named as "libtensorflowlite.so"
-+    # Eg - https://github.com/ARM-software/armnn/blob/branches/armnn_24_11/delegate/cmake/Modules/FindTfLite.cmake#L19
-+    # Hence, create a symbolic link to handle the same
-+    ln -snf libtensorflow-lite.so ${D}${libdir}/libtensorflowlite.so
-+
-+    # Install benchmark_model
-+    install -d ${D}/opt/${PN}/tools/
-+    install -m 0755 ${B}/tools/benchmark/benchmark_model ${D}/opt/${PN}/tools/
-+    # chrpath -r '$ORIGIN' ${D}/opt/${PN}/tools/benchmark_model
-+
-+    # Install header files
-+    install -d ${D}${includedir}/tensorflow/lite
-+    cd ${S}/tensorflow/lite
-+    cp --parents $(find . -name "*.h*" -not -path "*cmake_build/*") ${D}${includedir}/tensorflow/lite
-+    cd ${B}
-+    cp --parents $(find . -name "*.h*") ${D}${includedir}/tensorflow/lite
-+
-+    # Install Tflite python3 interpreter
-+    install -d ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime
-+    install -d ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime.egg-info
-+    install -m 0755  ${B}/tflite_runtime/* ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime
-+    install -m 0755  ${B}/tflite_runtime.egg-info/* ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime.egg-info
-+    # chrpath -r '$ORIGIN' ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime/*.so
-+}
-+
-+PACKAGES += "${PN}-tools python3-${PN}"
-+
-+RDEPENDS:${PN} += " \
-+    ${PN}-tools \
-+    python3-${PN} \
-+"
-+
-+FILES:${PN} = " \
-+    ${libdir}/lib*.so* \
-+"
-+
-+FILES:${PN}-tools = " \
-+    /opt/* \
-+"
-+
-+FILES:python3-${PN} = " \
-+    ${PYTHON_SITEPACKAGES_DIR}/tflite_runtime \
-+    ${PYTHON_SITEPACKAGES_DIR}/tflite_runtime.egg-info \
-+"
-+
-+RDEPENDS:python3-${PN} += " python3-ctypes python3-numpy "
-+
-+PROVIDES += "python3-${PN}"
+diff --git a/configs/arago-scarthgap-chromium-config.txt b/configs/arago-scarthgap-chromium-config.txt
+index 9a1bd08..61d0bdb 100644
+--- a/configs/arago-scarthgap-chromium-config.txt
++++ b/configs/arago-scarthgap-chromium-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
+ meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
+-meta-browser,https://github.com/OSSystems/meta-browser.git,master,1ed2254d72a4c25879014c98be287a7e3e22904c,layers=meta-chromium
++meta-browser,https://github.com/OSSystems/meta-browser.git,master,68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4,layers=meta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
+ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,HEAD,layers=
+ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
+diff --git a/configs/arago-scarthgap-config.txt b/configs/arago-scarthgap-config.txt
+index 3275f35..5c7adcb 100644
+--- a/configs/arago-scarthgap-config.txt
++++ b/configs/arago-scarthgap-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
+ meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
+-#meta-browser,https://github.com/OSSystems/meta-browser.git,master,1ed2254d72a4c25879014c98be287a7e3e22904c,layers=meta-chromium
++#meta-browser,https://github.com/OSSystems/meta-browser.git,master,68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4,layers=meta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
+ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,HEAD,layers=
+ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
+diff --git a/configs/arago-scarthgap-next-config.txt b/configs/arago-scarthgap-next-config.txt
+index 58e8f96..8e96289 100644
+--- a/configs/arago-scarthgap-next-config.txt
++++ b/configs/arago-scarthgap-next-config.txt
+@@ -11,7 +11,7 @@ MOTD: NOTE:
+ 
+ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
+ meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap-next,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
+-#meta-browser,https://github.com/OSSystems/meta-browser.git,master,1ed2254d72a4c25879014c98be287a7e3e22904c,layers=meta-chromium
++#meta-browser,https://github.com/OSSystems/meta-browser.git,master,68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4,layers=meta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
+ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,HEAD,layers=
+ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
+diff --git a/configs/arago-scarthgap-selinux-config.txt b/configs/arago-scarthgap-selinux-config.txt
+index 17dc6a4..79a1136 100644
+--- a/configs/arago-scarthgap-selinux-config.txt
++++ b/configs/arago-scarthgap-selinux-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
+ meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
+-#meta-browser,https://github.com/OSSystems/meta-browser.git,master,1ed2254d72a4c25879014c98be287a7e3e22904c,layers=meta-chromium
++#meta-browser,https://github.com/OSSystems/meta-browser.git,master,68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4,layers=meta-chromium
+ meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
+ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,HEAD,layers=
+ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
+diff --git a/configs/arago-scarthgap-wip-config.txt b/configs/arago-scarthgap-wip-config.txt
+index 8dd69c8..4cc4556 100644
+--- a/configs/arago-scarthgap-wip-config.txt
++++ b/configs/arago-scarthgap-wip-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
+ meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap-wip,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
+-#meta-browser,https://github.com/OSSystems/meta-browser.git,master,1ed2254d72a4c25879014c98be287a7e3e22904c,layers=meta-chromium
++#meta-browser,https://github.com/OSSystems/meta-browser.git,master,68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4,layers=meta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
+ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,HEAD,layers=
+ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
+diff --git a/kas/arago-scarthgap-chromium-config.yml b/kas/arago-scarthgap-chromium-config.yml
+index 35e9e36..a6d5a51 100644
+--- a/kas/arago-scarthgap-chromium-config.yml
++++ b/kas/arago-scarthgap-chromium-config.yml
+@@ -19,7 +19,7 @@ repos:
+   meta-browser:
+     url: "https://github.com/OSSystems/meta-browser.git"
+     branch: "master"
+-    commit: "1ed2254d72a4c25879014c98be287a7e3e22904c"
++    commit: "68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4"
+     layers:
+       meta-chromium:
+ 
+diff --git a/src/configs/arago-scarthgap-chromium-config.xml b/src/configs/arago-scarthgap-chromium-config.xml
+index 6ccf049..739ab88 100644
+--- a/src/configs/arago-scarthgap-chromium-config.xml
++++ b/src/configs/arago-scarthgap-chromium-config.xml
+@@ -17,7 +17,7 @@
+                 <layer>meta-arago-test</layer>
+             </layers>
+         </repo>
+-        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='1ed2254d72a4c25879014c98be287a7e3e22904c'>
++        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4'>
+             <layers>
+                 <layer>meta-chromium</layer>
+             </layers>
+diff --git a/src/configs/arago-scarthgap-config.xml b/src/configs/arago-scarthgap-config.xml
+index 5efd7cc..dc960b4 100644
+--- a/src/configs/arago-scarthgap-config.xml
++++ b/src/configs/arago-scarthgap-config.xml
+@@ -17,7 +17,7 @@
+                 <layer>meta-arago-test</layer>
+             </layers>
+         </repo>
+-        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='1ed2254d72a4c25879014c98be287a7e3e22904c' disabled='true'>
++        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4' disabled='true'>
+             <layers>
+                 <layer>meta-chromium</layer>
+             </layers>
+diff --git a/src/configs/arago-scarthgap-next-config.xml b/src/configs/arago-scarthgap-next-config.xml
+index f31c917..b8c096d 100644
+--- a/src/configs/arago-scarthgap-next-config.xml
++++ b/src/configs/arago-scarthgap-next-config.xml
+@@ -18,7 +18,7 @@
+                 <layer>meta-arago-test</layer>
+             </layers>
+         </repo>
+-        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='1ed2254d72a4c25879014c98be287a7e3e22904c' disabled='true'>
++        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4' disabled='true'>
+             <layers>
+                 <layer>meta-chromium</layer>
+             </layers>
+diff --git a/src/configs/arago-scarthgap-selinux-config.xml b/src/configs/arago-scarthgap-selinux-config.xml
+index f0d8f14..e580d4c 100644
+--- a/src/configs/arago-scarthgap-selinux-config.xml
++++ b/src/configs/arago-scarthgap-selinux-config.xml
+@@ -17,7 +17,7 @@
+                 <layer>meta-arago-test</layer>
+             </layers>
+         </repo>
+-        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='1ed2254d72a4c25879014c98be287a7e3e22904c' disabled='true'>
++        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4' disabled='true'>
+             <layers>
+                 <layer>meta-chromium</layer>
+             </layers>
+diff --git a/src/configs/arago-scarthgap-wip-config.xml b/src/configs/arago-scarthgap-wip-config.xml
+index 667bf89..d330ef2 100644
+--- a/src/configs/arago-scarthgap-wip-config.xml
++++ b/src/configs/arago-scarthgap-wip-config.xml
+@@ -17,7 +17,7 @@
+                 <layer>meta-arago-test</layer>
+             </layers>
+         </repo>
+-        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='1ed2254d72a4c25879014c98be287a7e3e22904c' disabled='true'>
++        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4' disabled='true'>
+             <layers>
+                 <layer>meta-chromium</layer>
+             </layers>
 -- 
 2.34.1
 
