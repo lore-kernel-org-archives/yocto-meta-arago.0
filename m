@@ -1,94 +1,98 @@
-Return-Path: <afd@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F340C02182
-	for <webhook@archiver.kernel.org>; Thu, 23 Jan 2025 22:16:35 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web11.24633.1737670590391927139
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92D3DC02182
+	for <webhook@archiver.kernel.org>; Thu, 23 Jan 2025 22:35:45 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.24329.1737671733954851991
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 23 Jan 2025 14:16:30 -0800
+ Thu, 23 Jan 2025 14:35:34 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=NP9DOI/s;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: afd@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50NMGSHF1272101
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 23 Jan 2025 16:16:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1737670588;
-	bh=F6x4/kesSRTdxIyynki5ZXak9wU3wD+IbpynNjwfxwc=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=NP9DOI/siuId6hpVqulfkid6ttAVWpeU0p+SlieA4MJ7orQ1MdTH1uNPWEzitrvMN
-	 2LIMpIuXupJe54mVmT7xomnAWmyJYGSqx/0d5H3pyUte1Q9j+TBxK7U3g61f7rA4nM
-	 2NI+zpImVz/Kf6Yb2+kzyfgZdGD5ApwXjKK89/Ek=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50NMGSx0000594
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 23 Jan 2025 16:16:28 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 23
- Jan 2025 16:16:28 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 23 Jan 2025 16:16:27 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50NMGRAL016754;
-	Thu, 23 Jan 2025 16:16:27 -0600
-Message-ID: <15576ead-29f2-46e0-b07f-15746d55e446@ti.com>
-Date: Thu, 23 Jan 2025 16:16:27 -0600
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 239C140C86;
+	Thu, 23 Jan 2025 22:35:33 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id M2J2Lfa7qQgf; Thu, 23 Jan 2025 22:35:33 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id F159F40A22;
+	Thu, 23 Jan 2025 22:35:29 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 433E91641A2; Thu, 23 Jan 2025 17:35:29 -0500 (EST)
+Date: Thu, 23 Jan 2025 17:35:29 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: Andrew Davis <afd@ti.com>
+Cc: Chirag <c-shilwant@ti.com>, meta-arago@lists.yoctoproject.org,
+	Ryan <reatmon@ti.com>
+Subject: Re: [meta-arago][scarthgap][PATCH 1/1] meta-arago-extras: Add
+ recipe for TFLite Runtime
+Message-ID: <20250123223529.GA21836@denix.org>
+References: <20250123172509.445473-1-c-shilwant@ti.com>
+ <20250123172509.445473-2-c-shilwant@ti.com>
+ <068aa65b-e965-4dec-a779-e9baa0a1f11b@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH] arago.conf: enable opencl distro
- feature
-To: <rs@ti.com>, <denis@denix.org>, <reatmon@ti.com>, <c-shilwant@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, <detheridge@ti.com>
-References: <20250123202259.2846410-1-rs@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250123202259.2846410-1-rs@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <068aa65b-e965-4dec-a779-e9baa0a1f11b@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 23 Jan 2025 22:16:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15751
+ <meta-arago@lists.yoctoproject.org>; Thu, 23 Jan 2025 22:35:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15752
 
-On 1/23/25 2:22 PM, rs@ti.com wrote:
-> From: Randolph Sapp <rs@ti.com>
+> >+do_configure[network] = "1"
+> >+
+> >+do_configure:prepend() {
+> >+    if [ -n "${http_proxy}" ]; then
+> >+        export HTTP_PROXY=${http_proxy}
+> >+        export http_proxy=${http_proxy}
+> >+    fi
+> >+
+> >+    if [ -n "${https_proxy}" ]; then
+> >+        export HTTPS_PROXY=${https_proxy}
+> >+        export https_proxy=${https_proxy}
+> >+    fi
 > 
-> The GPU (for rogue devices) is now capable of supplying required OpenCL
-> libraries. Additional tests for this feature will be pulled in later.
 > 
-> This was previously disabled due to an outdated opencl library on legacy
-> devices. The offending library has since been removed.
+> Are these checks needed? If it is unset then exporting doesn't hurt,
+> could replace all this with:
 > 
-> Signed-off-by: Randolph Sapp <rs@ti.com>
-> ---
+> export http_proxy
+> export https_proxy
+> do_configure[network] = "1"
+> 
+> >+do_compile[network] = "1"
+> >+
+> >+do_compile:prepend() {
+> >+    # Used to download cmake dependencies when behind a proxy
+> >+    if [ -n "${http_proxy}" ]; then
+> >+        export HTTP_PROXY=${http_proxy}
+> >+        export http_proxy=${http_proxy}
+> >+    fi
+> >+
+> >+    if [ -n "${https_proxy}" ]; then
+> >+        export HTTPS_PROXY=${https_proxy}
+> >+        export https_proxy=${https_proxy}
+> >+    fi
+> 
+> Do you need network during compile? Seems to only be used in configure.
 
-Been testing with this enabled locally for a while now and so far
-has been working great,
+Both of the above will get you in trouble later on - these are considered a 
+very bad antisocial behavior and an almost sure way to strip off of any Yocto 
+Project Compatible status...
 
-Acked-by: Andrew Davis <afd@ti.com>
+I'd suggest spending some time trying to find a way to do any and all 
+downloads inside the do_fetch() task, which is the only one allowed to have 
+network access.
 
->   meta-arago-distro/conf/distro/arago.conf | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-> index 79d2208d..178b43d3 100644
-> --- a/meta-arago-distro/conf/distro/arago.conf
-> +++ b/meta-arago-distro/conf/distro/arago.conf
-> @@ -48,7 +48,7 @@ DISTRO_FEATURES = "${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LIBC}"
->   # Add additional distro features
->   DISTRO_FEATURES:append = " pam wayland opengl"
->   DISTRO_FEATURES:remove = "x11"
-> -#DISTRO_FEATURES:append = " opencl"
-> +DISTRO_FEATURES:append = " opencl"
->   DISTRO_FEATURES:append = " vulkan"
->   
->   # Normally target distro features will not be applied to native builds:
+In other words - do_configure() and do_compile() are definitely not the right 
+places to do any network fetching...
+
+-- 
+Denys
 
