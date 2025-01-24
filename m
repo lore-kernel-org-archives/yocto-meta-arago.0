@@ -1,98 +1,204 @@
-Return-Path: <denis@denix.org>
+Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 92D3DC02182
-	for <webhook@archiver.kernel.org>; Thu, 23 Jan 2025 22:35:45 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.24329.1737671733954851991
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A02D4C02182
+	for <webhook@archiver.kernel.org>; Fri, 24 Jan 2025 00:26:38 +0000 (UTC)
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+ by mx.groups.io with SMTP id smtpd.web11.854.1737678393853073839
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 23 Jan 2025 14:35:34 -0800
+ Thu, 23 Jan 2025 16:26:34 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 239C140C86;
-	Thu, 23 Jan 2025 22:35:33 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id M2J2Lfa7qQgf; Thu, 23 Jan 2025 22:35:33 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id F159F40A22;
-	Thu, 23 Jan 2025 22:35:29 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 433E91641A2; Thu, 23 Jan 2025 17:35:29 -0500 (EST)
-Date: Thu, 23 Jan 2025 17:35:29 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Andrew Davis <afd@ti.com>
-Cc: Chirag <c-shilwant@ti.com>, meta-arago@lists.yoctoproject.org,
-	Ryan <reatmon@ti.com>
-Subject: Re: [meta-arago][scarthgap][PATCH 1/1] meta-arago-extras: Add
- recipe for TFLite Runtime
-Message-ID: <20250123223529.GA21836@denix.org>
-References: <20250123172509.445473-1-c-shilwant@ti.com>
- <20250123172509.445473-2-c-shilwant@ti.com>
- <068aa65b-e965-4dec-a779-e9baa0a1f11b@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=DFNbr69P;
+ spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: rs@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50O0QU1M454518
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 23 Jan 2025 18:26:30 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1737678390;
+	bh=qoCUsYJPGtdI7/Fldto3eLcuBrkOEKkSUTVYkyjxs2A=;
+	h=From:To:CC:Subject:Date;
+	b=DFNbr69PV4+8lKRFg4ZTVl/3geKKVAzM7RLxVBbQBf4R0nNHG+tiNr2HKawAa2ihS
+	 QPgS0xESc2ZY9cWeQ7sPhINzpZC9AEMTyqC3c6CldoOwMimQvuu8XUNG4RzxDvJwx2
+	 o6qEmjnTjHvB/4wku9Qq/1XI4lix8uJN2EXvjGp0=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50O0QUwN107190
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 23 Jan 2025 18:26:30 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 23
+ Jan 2025 18:26:30 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 23 Jan 2025 18:26:30 -0600
+Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50O0QUUV034466;
+	Thu, 23 Jan 2025 18:26:30 -0600
+From: <rs@ti.com>
+To: <denis@denix.org>, <reatmon@ti.com>, <afd@ti.com>, <c-shilwant@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master][PATCHv2] meta-arago: remove dependency on meta-arago-demos
+Date: Thu, 23 Jan 2025 18:26:14 -0600
+Message-ID: <20250124002614.1650739-1-rs@ti.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <068aa65b-e965-4dec-a779-e9baa0a1f11b@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 23 Jan 2025 22:35:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15752
+ <meta-arago@lists.yoctoproject.org>; Fri, 24 Jan 2025 00:26:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15753
 
-> >+do_configure[network] = "1"
-> >+
-> >+do_configure:prepend() {
-> >+    if [ -n "${http_proxy}" ]; then
-> >+        export HTTP_PROXY=${http_proxy}
-> >+        export http_proxy=${http_proxy}
-> >+    fi
-> >+
-> >+    if [ -n "${https_proxy}" ]; then
-> >+        export HTTPS_PROXY=${https_proxy}
-> >+        export https_proxy=${https_proxy}
-> >+    fi
-> 
-> 
-> Are these checks needed? If it is unset then exporting doesn't hurt,
-> could replace all this with:
-> 
-> export http_proxy
-> export https_proxy
-> do_configure[network] = "1"
-> 
-> >+do_compile[network] = "1"
-> >+
-> >+do_compile:prepend() {
-> >+    # Used to download cmake dependencies when behind a proxy
-> >+    if [ -n "${http_proxy}" ]; then
-> >+        export HTTP_PROXY=${http_proxy}
-> >+        export http_proxy=${http_proxy}
-> >+    fi
-> >+
-> >+    if [ -n "${https_proxy}" ]; then
-> >+        export HTTPS_PROXY=${https_proxy}
-> >+        export https_proxy=${https_proxy}
-> >+    fi
-> 
-> Do you need network during compile? Seems to only be used in configure.
+From: Randolph Sapp <rs@ti.com>
 
-Both of the above will get you in trouble later on - these are considered a 
-very bad antisocial behavior and an almost sure way to strip off of any Yocto 
-Project Compatible status...
+Remove any explicit dependencies on meta-arago-demos. These were the
+last of the "demos" in this layer and they were only being built for
+legacy devices. Demos should primarily be in layers above this unless
+they are used for functionality testing.
 
-I'd suggest spending some time trying to find a way to do any and all 
-downloads inside the do_fetch() task, which is the only one allowed to have 
-network access.
+This patch does not modify this layer's dependency list because
+meta-arago-demos was not previously listed as an explicit dependency,
+despite default package groups requiring it.
 
-In other words - do_configure() and do_compile() are definitely not the right 
-places to do any network fetching...
+These modifications are required as part of the effort to make this
+layer less dependent on meta-qt5. Moving forward TI builds of arago will
+enable and test Qt6 by default, but unlike before this will not be done
+in a way that creates an explicit dependency in this layer. This should
+allow customers and layers that consume or extend this layer to toggle
+Qt support more easily.
 
+A corresponding patch will be sent following this to remove
+meta-arago-demos from master oe-layersetup configs and then one more
+patch will be submitted to delete the now unreachable contents of
+meta-arago-demos.
+
+Signed-off-by: Randolph Sapp <rs@ti.com>
+---
+
+v2: Update commit message to be more verbose about planed actions here following
+feedback on v1
+
+ .../recipes-core/images/tisdk-default-image.bb  | 12 ------------
+ ...ackagegroup-arago-tisdk-addons-sdk-target.bb | 17 -----------------
+ .../packagegroup-arago-tisdk-addons.bb          |  2 --
+ .../recipes-core/packagegroups/ti-world.bb      |  9 +--------
+ 4 files changed, 1 insertion(+), 39 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+index 3d689c04..422b34ff 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+@@ -23,7 +23,6 @@ IMAGE_INSTALL += "\
+     packagegroup-arago-tisdk-multimedia \
+     packagegroup-arago-tisdk-addons \
+     packagegroup-arago-tisdk-addons-extra \
+-    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
+     ${@bb.utils.contains('DISTRO_FEATURES','opengl','pdm-anomaly-detection','', d)} \
+     ${ARAGO_DEFAULT_IMAGE_EXTRA_INSTALL} \
+     packagegroup-arago-tisdk-sysrepo \
+@@ -31,16 +30,6 @@ IMAGE_INSTALL += "\
+ 
+ export IMAGE_BASENAME = "tisdk-default-image${ARAGO_IMAGE_SUFFIX}"
+ 
+-EXTRABROWSERS = " \
+-    qtwebbrowser-examples \
+-    qtwebengine-qmlplugins \
+-    qtwebengine-examples \
+-"
+-
+-PYTHON2APPS = " \
+-    ${@bb.utils.contains('DISTRO_FEATURES','opengl',"${EXTRABROWSERS}",'',d)} \
+-"
+-
+ DEVTOOLS = " \
+     linux-libc-headers-dev \
+     build-essential \
+@@ -50,7 +39,6 @@ DEVTOOLS = " \
+ "
+ 
+ IMAGE_INSTALL += "\
+-    ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "${PYTHON2APPS}", "", d)} \
+     ${DEVTOOLS} \
+     ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
+     docker \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 3e0a2720..8690a874 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -31,24 +31,7 @@ EXTRA_LIBS:append:dra7xx = " libulm-dev \
+                              gdbserver-c6x-dev \
+ "
+ 
+-PDM_ANOMALY_PKG_DEV = "\
+-    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'pdm-anomaly-detection-dev', '', d)} \
+-"
+-
+-
+ EXTRA_PACKAGES = ""
+-#EXTRA_PACKAGES:append:ti33x = " \
+-#                                ${PDM_ANOMALY_PKG_DEV} \
+-#"
+-#EXTRA_PACKAGES:append:ti43x = " \
+-#                                ${PDM_ANOMALY_PKG_DEV} \
+-#"
+-#EXTRA_PACKAGES:append:omap-a15 = " \
+-#                                ${PDM_ANOMALY_PKG_DEV} \
+-#"
+-#EXTRA_PACKAGES:append:am65xx = " \
+-#                             ${PDM_ANOMALY_PKG_DEV} \
+-#"
+ 
+ IPCDEV = " \
+ 	ti-ipc-dev \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 6b6533f5..b0d76b28 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -85,10 +85,8 @@ EXTRA_PACKAGES:omapl138 = " \
+     protobuf \
+ "
+ 
+-# acontis-atemsys
+ #EXTRA_PACKAGES:append:am335x-evm = " pruss-lld-apps"
+ #EXTRA_PACKAGES:append:am437x-evm = " pruss-lld-apps"
+-# acontis-atemsys
+ #EXTRA_PACKAGES:append:am57xx-evm = " pruss-lld-apps"
+ 
+ RDEPENDS:${PN} = "\
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+index 96bfcac8..71952b5c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+@@ -15,14 +15,7 @@ CHROMIUM:append:k3 = "\
+     chromium-ozone-wayland \
+ "
+ 
+-EXTRABROWSERS = " \
+-    qtwebbrowser-examples \
+-    qtwebengine-qmlplugins \
+-    qtwebengine-examples \
+-"
+-
+ PYTHON2APPS = " \
+-    ${@bb.utils.contains('DISTRO_FEATURES','opengl',"${EXTRABROWSERS}",'',d)} \
+     ${@bb.utils.contains("BBFILE_COLLECTIONS","browser-layer",bb.utils.contains('DISTRO_FEATURES','wayland',"${CHROMIUM}",'',d),'',d)} \
+ "
+ 
+@@ -45,7 +38,7 @@ RDEPENDS:${PN} = "\
+     packagegroup-arago-tisdk-multimedia \
+     packagegroup-arago-tisdk-addons \
+     packagegroup-arago-tisdk-addons-extra \
+-    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
++    ${@bb.utils.contains('DISTRO_FEATURES','opengl','','packagegroup-arago-base-tisdk-server-extra',d)} \
+     ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "${PYTHON2APPS}", "", d)} \
+     ${DEVTOOLS} \
+     ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
 -- 
-Denys
+2.47.1
+
 
