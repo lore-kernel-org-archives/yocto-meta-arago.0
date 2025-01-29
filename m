@@ -1,210 +1,169 @@
-Return-Path: <afd@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AFD50C0218D
-	for <webhook@archiver.kernel.org>; Wed, 29 Jan 2025 19:58:28 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.22257.1738180706635229065
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A7A9C0218D
+	for <webhook@archiver.kernel.org>; Wed, 29 Jan 2025 21:13:25 +0000 (UTC)
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+ by mx.groups.io with SMTP id smtpd.web10.976.1738185200830483703
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 29 Jan 2025 11:58:26 -0800
+ Wed, 29 Jan 2025 13:13:21 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=WQlkmjYQ;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: afd@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50TJwPSY1372007
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=WEMLFyll;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50TLDJoL2194241
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 29 Jan 2025 13:58:25 -0600
+	Wed, 29 Jan 2025 15:13:19 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738180705;
-	bh=h84tVGc7KLYZnGn5iUwDR9YHwQw5P4CVdQi9+MFbOC4=;
+	s=ti-com-17Q1; t=1738185199;
+	bh=xHYVyVLPnfwGBa+v+3cB2Enwaf/KCBVNyCRSUzaYwT0=;
 	h=Date:Subject:To:References:From:In-Reply-To;
-	b=WQlkmjYQxnmK8fgi487aKC2/hznhAwFBSJefEg69YTft7y+GzBK/0Rbveo+L74isQ
-	 bQI//QPplV+FR6ZVODYCXMkdET4SLwgZDi57LJ8/GnH7MhNblCGeCItwkdZLC9t7dn
-	 WxyLzWSPabCRZjVR2GbaJAiWh3jRd1YUmGU+8bC0=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50TJwPY3056259
+	b=WEMLFyllOZOxBchntfDwbXK0E3JKx4ExYmVykHq908cRO/4odKxr8bec/Sl/vWOPh
+	 JBE5NUsFy1XuPapVGev08bXacd3XPhS8J4VGzJFfCJp6VmyoLoynpz0KITTZXNAMJH
+	 IPOz9CMfG+qJMSLqQuGJXyse7YsvDR7y+Nm7uzWo=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50TLDJYY025374
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 29 Jan 2025 13:58:25 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 29 Jan 2025 15:13:19 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 29
- Jan 2025 13:58:25 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2025 15:13:18 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 29 Jan 2025 13:58:25 -0600
-Received: from [10.250.32.214] ([10.250.32.214])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50TJwOXi043836;
-	Wed, 29 Jan 2025 13:58:25 -0600
-Message-ID: <37d24d06-8648-40d8-8e35-eef8b134c235@ti.com>
-Date: Wed, 29 Jan 2025 13:58:24 -0600
+ Frontend Transport; Wed, 29 Jan 2025 15:13:18 -0600
+Received: from [10.249.32.48] ([10.249.32.48])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50TLDIKb018149;
+	Wed, 29 Jan 2025 15:13:18 -0600
+Message-ID: <f1590a2b-3b88-43e2-9281-4d8eb1f4f582@ti.com>
+Date: Wed, 29 Jan 2025 15:13:18 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [meta-arago][scarthgap/master][PATCH] amsdk-av-files: Remove this
  recipe
-To: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
+To: Andrew Davis <afd@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
 References: <20250117190402.686979-1-afd@ti.com>
  <dc794822-0979-4e4e-ae94-cdbbbc75de34@ti.com>
+ <37d24d06-8648-40d8-8e35-eef8b134c235@ti.com>
 Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <dc794822-0979-4e4e-ae94-cdbbbc75de34@ti.com>
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <37d24d06-8648-40d8-8e35-eef8b134c235@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: base64
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by fllvem-ot04.ext.ti.com id 50TJwPSY1372007
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 29 Jan 2025 19:58:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15779
+ <meta-arago@lists.yoctoproject.org>; Wed, 29 Jan 2025 21:13:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15780
 
-On 1/29/25 1:10 PM, Ryan Eatmon wrote:
->=20
-> For some reason this patch breaks two of our builds on master...
->=20
-> am69-sk - rt
-> j784s4-evm - rt
->=20
-> It gives the error during tisdk-default-image do_rootfs:
->=20
-> ERROR: Unable to install packages. Command '/scratch/jenkins_builds/ara=
-go-master-next/build/build/arago-tmp-default/work/am69_sk-oe-linux/tisdk-=
-default-image/1.0/recipe-sysroot-native/usr/bin/opkg --volatile-cache -f =
-/scratch/jenkins_builds/arago-master-next/build/build/arago-tmp-default/w=
-ork/am69_sk-oe-linux/tisdk-default-image/1.0/opkg.conf -t /scratch/jenkin=
-s_builds/arago-master-next/build/build/arago-tmp-default/work/am69_sk-oe-=
-linux/tisdk-default-image/1.0/temp/ipktemp/ -o /scratch/jenkins_builds/ar=
-ago-master-next/build/build/arago-tmp-default/work/am69_sk-oe-linux/tisdk=
--default-image/1.0/rootfs =C2=A0--force_postinstall=C2=A0=C2=A0=C2=A0 --a=
-dd-ignore-recommends busybox-syslog --add-ignore-recommends coreutils --a=
-dd-ignore-recommends coreutils-dev --add-ignore-recommends gdbserver-c6x-=
-dev --add-ignore-recommends libulm-dev install build-essential docker dtc=
- git linux-libc-headers-dev opkg packagegroup-arago-base packagegroup-ara=
-go-console packagegroup-arago-tisdk-addons=20
-> packagegroup-arago-tisdk-addons-extra packagegroup-arago-tisdk-connecti=
-vity packagegroup-arago-tisdk-crypto packagegroup-arago-tisdk-graphics pa=
-ckagegroup-arago-tisdk-gtk packagegroup-arago-tisdk-hmi packagegroup-arag=
-o-tisdk-multimedia packagegroup-arago-tisdk-qte packagegroup-arago-tisdk-=
-sysrepo packagegroup-core-boot packagegroup-core-tools-debug pdm-anomaly-=
-detection psplash run-postinsts ti-test ti-test-extras' returned -11:
->=20
-> DEBUG: Python function do_rootfs finished
->=20
->=20
-> Which is annoying because it doesn't say why it failed, just that it fa=
-iled...
->=20
-> I bisected it down to this patch.
->=20
-> All other platform/variant combinations work, and scarthgap works...
->=20
-
-That seems really odd then, maybe some stale sstate for the multimedia
-packagegroup those specific platform/variant combos that still has
-amsdk-av-files as a dep?
-
-Andrew
-
->=20
->=20
-> On 1/17/2025 1:04 PM, Andrew Davis wrote:
->> These video files were used in a couple demos for multimedia decoders.
->> They add +50MB at minimum to images that include them and ~200MB of
->> git download to build. They are unused now so remove this recipe.
->>
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> ---
->> =C2=A0 .../packagegroup-arago-tisdk-multimedia.bb=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 1 -
->> =C2=A0 .../amsdk-av-files/amsdk-av-files_1.4.bb=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 42 -------------------
->> =C2=A0 2 files changed, 43 deletions(-)
->> =C2=A0 delete mode 100644 meta-arago-extras/recipes-multimedia/amsdk-a=
-v-files/amsdk-av-files_1.4.bb
->>
->> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup=
--arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups=
-/packagegroup-arago-tisdk-multimedia.bb
->> index c6e39aa1..6a1b25b6 100644
->> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-=
-tisdk-multimedia.bb
->> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-=
-tisdk-multimedia.bb
->> @@ -7,7 +7,6 @@ PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->> =C2=A0 inherit packagegroup
->> =C2=A0 MULTIMEDIA =3D " \
->> -=C2=A0=C2=A0=C2=A0 amsdk-av-files \
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ffmpeg \
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 libcamera \
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 libcamera-gst \
->> diff --git a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk=
--av-files_1.4.bb b/meta-arago-extras/recipes-multimedia/amsdk-av-files/am=
-sdk-av-files_1.4.bb
->> deleted file mode 100644
->> index 7267668b..00000000
->> --- a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-fil=
-es_1.4.bb
->> +++ /dev/null
->> @@ -1,42 +0,0 @@
->> -DESCRIPTION =3D "AMSDK multimedia support files"
->> -HOMEPAGE =3D "https://git.ti.com/processor-sdk/amsdk-av-files/"
->> -LICENSE =3D "CC-BY-NC-ND-3.0 & CC-BY-3.0"
->> -SECTION =3D "multimedia"
->> -LIC_FILES_CHKSUM =3D "file://Multimedia_Data_Files_Manifest.doc;md5=3D=
-fe154d291c69c51495a5bb4a456403b5"
->> -PR =3D "r2"
->> -
->> -PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->> -
->> -VIDEO_FILES =3D "video_480p "
->> -
->> -VIDEO_FILES:append:ti33x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "vid=
-eo_wvga \
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 video_wqvga"
->> -VIDEO_FILES:append:ti43x=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "vid=
-eo_wqvga"
->> -VIDEO_FILES:append:dra7xx=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "video_wv=
-ga \
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 video_1080p \
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 video_720p \
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 video_yuv"
->> -VIDEO_FILES:append:k3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 =3D "video_720p"
->> -
->> -BRANCH =3D "master"
->> -
->> -SRC_URI =3D "git://git.ti.com/git/processor-sdk/amsdk-av-files.git;pr=
-otocol=3Dhttps;branch=3D${BRANCH}"
->> -SRCREV =3D "1b73009090265328ebaf1b6c880dfeccae5a8f19"
->> -
->> -S =3D "${WORKDIR}/git"
->> -
->> -do_compile() {
->> -=C2=A0=C2=A0=C2=A0 :
->> -}
->> -
->> -do_install() {
->> -=C2=A0=C2=A0=C2=A0 install -d ${D}${datadir}/ti \
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${D}${datadir}/ti/audio \
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${D}${datadir}/ti/video
->> -=C2=A0=C2=A0=C2=A0 install -m 0644 ${S}/audio/* ${D}${datadir}/ti/aud=
-io/
->> -=C2=A0=C2=A0=C2=A0 for file in ${VIDEO_FILES}; do
->> -=C2=A0=C2=A0=C2=A0 install -m 0644 ${S}/${file}/* ${D}${datadir}/ti/v=
-ideo/
->> -=C2=A0=C2=A0=C2=A0 done
->> -}
->> -
->> -FILES:${PN} +=3D "${datadir}/ti/*"
->=20
+DQoNCk9uIDEvMjkvMjAyNSAxOjU4IFBNLCBBbmRyZXcgRGF2aXMgd3JvdGU6DQo+IE9uIDEv
+MjkvMjUgMToxMCBQTSwgUnlhbiBFYXRtb24gd3JvdGU6DQo+Pg0KPj4gRm9yIHNvbWUgcmVh
+c29uIHRoaXMgcGF0Y2ggYnJlYWtzIHR3byBvZiBvdXIgYnVpbGRzIG9uIG1hc3Rlci4uLg0K
+Pj4NCj4+IGFtNjktc2sgLSBydA0KPj4gajc4NHM0LWV2bSAtIHJ0DQo+Pg0KPj4gSXQgZ2l2
+ZXMgdGhlIGVycm9yIGR1cmluZyB0aXNkay1kZWZhdWx0LWltYWdlIGRvX3Jvb3RmczoNCj4+
+DQo+PiBFUlJPUjogVW5hYmxlIHRvIGluc3RhbGwgcGFja2FnZXMuIENvbW1hbmQgDQo+PiAn
+L3NjcmF0Y2gvamVua2luc19idWlsZHMvYXJhZ28tbWFzdGVyLW5leHQvYnVpbGQvYnVpbGQv
+YXJhZ28tdG1wLWRlZmF1bHQvd29yay9hbTY5X3NrLW9lLWxpbnV4L3Rpc2RrLWRlZmF1bHQt
+aW1hZ2UvMS4wL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvYmluL29wa2cgLS12b2xhdGls
+ZS1jYWNoZSAtZiAvc2NyYXRjaC9qZW5raW5zX2J1aWxkcy9hcmFnby1tYXN0ZXItbmV4dC9i
+dWlsZC9idWlsZC9hcmFnby10bXAtZGVmYXVsdC93b3JrL2FtNjlfc2stb2UtbGludXgvdGlz
+ZGstZGVmYXVsdC1pbWFnZS8xLjAvb3BrZy5jb25mIC10IC9zY3JhdGNoL2plbmtpbnNfYnVp
+bGRzL2FyYWdvLW1hc3Rlci1uZXh0L2J1aWxkL2J1aWxkL2FyYWdvLXRtcC1kZWZhdWx0L3dv
+cmsvYW02OV9zay1vZS1saW51eC90aXNkay1kZWZhdWx0LWltYWdlLzEuMC90ZW1wL2lwa3Rl
+bXAvIC1vIC9zY3JhdGNoL2plbmtpbnNfYnVpbGRzL2FyYWdvLW1hc3Rlci1uZXh0L2J1aWxk
+L2J1aWxkL2FyYWdvLXRtcC1kZWZhdWx0L3dvcmsvYW02OV9zay1vZS1saW51eC90aXNkay1k
+ZWZhdWx0LWltYWdlLzEuMC9yb290ZnMgwqAtLWZvcmNlX3Bvc3RpbnN0YWxswqDCoMKgIC0t
+YWRkLWlnbm9yZS1yZWNvbW1lbmRzIGJ1c3lib3gtc3lzbG9nIC0tYWRkLWlnbm9yZS1yZWNv
+bW1lbmRzIGNvcmV1dGlscyAtLWFkZC1pZ25vcmUtcmVjb21tZW5kcyBjb3JldXRpbHMtZGV2
+IC0tYWRkLWlnbm9yZS1yZWNvbW1lbmRzIGdkYnNlcnZlci1jNngtZGV2IC0tYWRkLWlnbm9y
+ZS1yZWNvbW1lbmRzIGxpYnVsbS1kZXYgaW5zdGFsbCBidWlsZC1lc3NlbnRpYWwgZG9ja2Vy
+IGR0YyBnaXQgbGludXgtbGliYy1oZWFkZXJzLWRldiBvcGtnIHBhY2thZ2Vncm91cC1hcmFn
+by1iYXNlIHBhY2thZ2Vncm91cC1hcmFnby1jb25zb2xlIHBhY2thZ2Vncm91cC1hcmFnby10
+aXNkay1hZGRvbnMgcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWFkZG9ucy1leHRyYSBwYWNr
+YWdlZ3JvdXAtYXJhZ28tdGlzZGstY29ubmVjdGl2aXR5IHBhY2thZ2Vncm91cC1hcmFnby10
+aXNkay1jcnlwdG8gcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWdyYXBoaWNzIHBhY2thZ2Vn
+cm91cC1hcmFnby10aXNkay1ndGsgcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWhtaSBwYWNr
+YWdlZ3JvdXAtYXJhZ28tdGlzZGstbXVsdGltZWRpYSBwYWNrYWdlZ3JvdXAtYXJhZ28tdGlz
+ZGstcXRlIHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1zeXNyZXBvIHBhY2thZ2Vncm91cC1j
+b3JlLWJvb3QgcGFja2FnZWdyb3VwLWNvcmUtdG9vbHMtZGVidWcgcGRtLWFub21hbHktZGV0
+ZWN0aW9uIHBzcGxhc2ggcnVuLXBvc3RpbnN0cyB0aS10ZXN0IHRpLXRlc3QtZXh0cmFzJyBy
+ZXR1cm5lZCAtMTE6DQo+Pg0KPj4gREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBkb19yb290ZnMg
+ZmluaXNoZWQNCj4+DQo+Pg0KPj4gV2hpY2ggaXMgYW5ub3lpbmcgYmVjYXVzZSBpdCBkb2Vz
+bid0IHNheSB3aHkgaXQgZmFpbGVkLCBqdXN0IHRoYXQgaXQgDQo+PiBmYWlsZWQuLi4NCj4+
+DQo+PiBJIGJpc2VjdGVkIGl0IGRvd24gdG8gdGhpcyBwYXRjaC4NCj4+DQo+PiBBbGwgb3Ro
+ZXIgcGxhdGZvcm0vdmFyaWFudCBjb21iaW5hdGlvbnMgd29yaywgYW5kIHNjYXJ0aGdhcCB3
+b3Jrcy4uLg0KPj4NCj4gDQo+IFRoYXQgc2VlbXMgcmVhbGx5IG9kZCB0aGVuLCBtYXliZSBz
+b21lIHN0YWxlIHNzdGF0ZSBmb3IgdGhlIG11bHRpbWVkaWENCj4gcGFja2FnZWdyb3VwIHRo
+b3NlIHNwZWNpZmljIHBsYXRmb3JtL3ZhcmlhbnQgY29tYm9zIHRoYXQgc3RpbGwgaGFzDQo+
+IGFtc2RrLWF2LWZpbGVzIGFzIGEgZGVwPw0KDQpJIGRpZCBhIGJ1aWxkIHdpdGggbm8gc3N0
+YXRlIGFuZCBzdGlsbCBnb3QgdGhlIGlzc3VlLg0KDQoNCj4gQW5kcmV3DQo+IA0KPj4NCj4+
+DQo+PiBPbiAxLzE3LzIwMjUgMTowNCBQTSwgQW5kcmV3IERhdmlzIHdyb3RlOg0KPj4+IFRo
+ZXNlIHZpZGVvIGZpbGVzIHdlcmUgdXNlZCBpbiBhIGNvdXBsZSBkZW1vcyBmb3IgbXVsdGlt
+ZWRpYSBkZWNvZGVycy4NCj4+PiBUaGV5IGFkZCArNTBNQiBhdCBtaW5pbXVtIHRvIGltYWdl
+cyB0aGF0IGluY2x1ZGUgdGhlbSBhbmQgfjIwME1CIG9mDQo+Pj4gZ2l0IGRvd25sb2FkIHRv
+IGJ1aWxkLiBUaGV5IGFyZSB1bnVzZWQgbm93IHNvIHJlbW92ZSB0aGlzIHJlY2lwZS4NCj4+
+Pg0KPj4+IFNpZ25lZC1vZmYtYnk6IEFuZHJldyBEYXZpcyA8YWZkQHRpLmNvbT4NCj4+PiAt
+LS0NCj4+PiDCoCAuLi4vcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLW11bHRpbWVkaWEuYmLC
+oMKgwqAgfMKgIDEgLQ0KPj4+IMKgIC4uLi9hbXNkay1hdi1maWxlcy9hbXNkay1hdi1maWxl
+c18xLjQuYmLCoMKgwqDCoMKgIHwgNDIgLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4+IMKgIDIg
+ZmlsZXMgY2hhbmdlZCwgNDMgZGVsZXRpb25zKC0pDQo+Pj4gwqAgZGVsZXRlIG1vZGUgMTAw
+NjQ0IA0KPj4+IG1ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtbXVsdGltZWRpYS9hbXNkay1h
+di1maWxlcy9hbXNkay1hdi1maWxlc18xLjQuYmINCj4+Pg0KPj4+IGRpZmYgLS1naXQgDQo+
+Pj4gYS9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvcGFja2FnZWdyb3Vwcy9wYWNr
+YWdlZ3JvdXAtYXJhZ28tdGlzZGstbXVsdGltZWRpYS5iYiBiL21ldGEtYXJhZ28tZGlzdHJv
+L3JlY2lwZXMtY29yZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby10aXNkay1t
+dWx0aW1lZGlhLmJiDQo+Pj4gaW5kZXggYzZlMzlhYTEuLjZhMWIyNWI2IDEwMDY0NA0KPj4+
+IC0tLSANCj4+PiBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9wYWNrYWdlZ3Jv
+dXBzL3BhY2thZ2Vncm91cC1hcmFnby10aXNkay1tdWx0aW1lZGlhLmJiDQo+Pj4gKysrIA0K
+Pj4+IGIvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFj
+a2FnZWdyb3VwLWFyYWdvLXRpc2RrLW11bHRpbWVkaWEuYmINCj4+PiBAQCAtNyw3ICs3LDYg
+QEAgUEFDS0FHRV9BUkNIID0gIiR7TUFDSElORV9BUkNIfSINCj4+PiDCoCBpbmhlcml0IHBh
+Y2thZ2Vncm91cA0KPj4+IMKgIE1VTFRJTUVESUEgPSAiIFwNCj4+PiAtwqDCoMKgIGFtc2Rr
+LWF2LWZpbGVzIFwNCj4+PiDCoMKgwqDCoMKgIGZmbXBlZyBcDQo+Pj4gwqDCoMKgwqDCoCBs
+aWJjYW1lcmEgXA0KPj4+IMKgwqDCoMKgwqAgbGliY2FtZXJhLWdzdCBcDQo+Pj4gZGlmZiAt
+LWdpdCANCj4+PiBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtbXVsdGltZWRpYS9hbXNk
+ay1hdi1maWxlcy9hbXNkay1hdi1maWxlc18xLjQuYmIgYi9tZXRhLWFyYWdvLWV4dHJhcy9y
+ZWNpcGVzLW11bHRpbWVkaWEvYW1zZGstYXYtZmlsZXMvYW1zZGstYXYtZmlsZXNfMS40LmJi
+DQo+Pj4gZGVsZXRlZCBmaWxlIG1vZGUgMTAwNjQ0DQo+Pj4gaW5kZXggNzI2NzY2OGIuLjAw
+MDAwMDAwDQo+Pj4gLS0tIA0KPj4+IGEvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1tdWx0
+aW1lZGlhL2Ftc2RrLWF2LWZpbGVzL2Ftc2RrLWF2LWZpbGVzXzEuNC5iYg0KPj4+ICsrKyAv
+ZGV2L251bGwNCj4+PiBAQCAtMSw0MiArMCwwIEBADQo+Pj4gLURFU0NSSVBUSU9OID0gIkFN
+U0RLIG11bHRpbWVkaWEgc3VwcG9ydCBmaWxlcyINCj4+PiAtSE9NRVBBR0UgPSAiaHR0cHM6
+Ly9naXQudGkuY29tL3Byb2Nlc3Nvci1zZGsvYW1zZGstYXYtZmlsZXMvIg0KPj4+IC1MSUNF
+TlNFID0gIkNDLUJZLU5DLU5ELTMuMCAmIENDLUJZLTMuMCINCj4+PiAtU0VDVElPTiA9ICJt
+dWx0aW1lZGlhIg0KPj4+IC1MSUNfRklMRVNfQ0hLU1VNID0gDQo+Pj4gImZpbGU6Ly9NdWx0
+aW1lZGlhX0RhdGFfRmlsZXNfTWFuaWZlc3QuZG9jO21kNT1mZTE1NGQyOTFjNjljNTE0OTVh
+NWJiNGE0NTY0MDNiNSINCj4+PiAtUFIgPSAicjIiDQo+Pj4gLQ0KPj4+IC1QQUNLQUdFX0FS
+Q0ggPSAiJHtNQUNISU5FX0FSQ0h9Ig0KPj4+IC0NCj4+PiAtVklERU9fRklMRVMgPSAidmlk
+ZW9fNDgwcCAiDQo+Pj4gLQ0KPj4+IC1WSURFT19GSUxFUzphcHBlbmQ6dGkzM3jCoMKgwqDC
+oMKgwqAgPSAidmlkZW9fd3ZnYSBcDQo+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB2aWRlb193cXZnYSIN
+Cj4+PiAtVklERU9fRklMRVM6YXBwZW5kOnRpNDN4wqDCoMKgwqDCoMKgID0gInZpZGVvX3dx
+dmdhIg0KPj4+IC1WSURFT19GSUxFUzphcHBlbmQ6ZHJhN3h4wqDCoMKgwqDCoCA9ICJ2aWRl
+b193dmdhIFwNCj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHZpZGVvXzEwODBwIFwNCj4+PiAtwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHZpZGVvXzcyMHAgXA0KPj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdmlkZW9feXV2Ig0KPj4+
+IC1WSURFT19GSUxFUzphcHBlbmQ6azPCoMKgwqDCoMKgwqDCoMKgwqAgPSAidmlkZW9fNzIw
+cCINCj4+PiAtDQo+Pj4gLUJSQU5DSCA9ICJtYXN0ZXIiDQo+Pj4gLQ0KPj4+IC1TUkNfVVJJ
+ID0gDQo+Pj4gImdpdDovL2dpdC50aS5jb20vZ2l0L3Byb2Nlc3Nvci1zZGsvYW1zZGstYXYt
+ZmlsZXMuZ2l0O3Byb3RvY29sPWh0dHBzO2JyYW5jaD0ke0JSQU5DSH0iDQo+Pj4gLVNSQ1JF
+ViA9ICIxYjczMDA5MDkwMjY1MzI4ZWJhZjFiNmM4ODBkZmVjY2FlNWE4ZjE5Ig0KPj4+IC0N
+Cj4+PiAtUyA9ICIke1dPUktESVJ9L2dpdCINCj4+PiAtDQo+Pj4gLWRvX2NvbXBpbGUoKSB7
+DQo+Pj4gLcKgwqDCoCA6DQo+Pj4gLX0NCj4+PiAtDQo+Pj4gLWRvX2luc3RhbGwoKSB7DQo+
+Pj4gLcKgwqDCoCBpbnN0YWxsIC1kICR7RH0ke2RhdGFkaXJ9L3RpIFwNCj4+PiAtwqDCoMKg
+wqDCoMKgICR7RH0ke2RhdGFkaXJ9L3RpL2F1ZGlvIFwNCj4+PiAtwqDCoMKgwqDCoMKgICR7
+RH0ke2RhdGFkaXJ9L3RpL3ZpZGVvDQo+Pj4gLcKgwqDCoCBpbnN0YWxsIC1tIDA2NDQgJHtT
+fS9hdWRpby8qICR7RH0ke2RhdGFkaXJ9L3RpL2F1ZGlvLw0KPj4+IC3CoMKgwqAgZm9yIGZp
+bGUgaW4gJHtWSURFT19GSUxFU307IGRvDQo+Pj4gLcKgwqDCoCBpbnN0YWxsIC1tIDA2NDQg
+JHtTfS8ke2ZpbGV9LyogJHtEfSR7ZGF0YWRpcn0vdGkvdmlkZW8vDQo+Pj4gLcKgwqDCoCBk
+b25lDQo+Pj4gLX0NCj4+PiAtDQo+Pj4gLUZJTEVTOiR7UE59ICs9ICIke2RhdGFkaXJ9L3Rp
+LyoiDQo+Pg0KDQotLSANClJ5YW4gRWF0bW9uICAgICAgICAgICAgICAgIHJlYXRtb25AdGku
+Y29tDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KVGV4YXMg
+SW5zdHJ1bWVudHMsIEluYy4gIC0gIExDUEQgIC0gIE1HVFMNCg==
 
