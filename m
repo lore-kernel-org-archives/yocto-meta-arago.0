@@ -1,169 +1,211 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A7A9C0218D
-	for <webhook@archiver.kernel.org>; Wed, 29 Jan 2025 21:13:25 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web10.976.1738185200830483703
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 48BB2C02192
+	for <webhook@archiver.kernel.org>; Thu, 30 Jan 2025 01:46:06 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.6686.1738201558501788902
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 29 Jan 2025 13:13:21 -0800
+ Wed, 29 Jan 2025 17:45:59 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=WEMLFyll;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50TLDJoL2194241
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 29 Jan 2025 15:13:19 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738185199;
-	bh=xHYVyVLPnfwGBa+v+3cB2Enwaf/KCBVNyCRSUzaYwT0=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=WEMLFyllOZOxBchntfDwbXK0E3JKx4ExYmVykHq908cRO/4odKxr8bec/Sl/vWOPh
-	 JBE5NUsFy1XuPapVGev08bXacd3XPhS8J4VGzJFfCJp6VmyoLoynpz0KITTZXNAMJH
-	 IPOz9CMfG+qJMSLqQuGJXyse7YsvDR7y+Nm7uzWo=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50TLDJYY025374
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 29 Jan 2025 15:13:19 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 29
- Jan 2025 15:13:18 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 29 Jan 2025 15:13:18 -0600
-Received: from [10.249.32.48] ([10.249.32.48])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50TLDIKb018149;
-	Wed, 29 Jan 2025 15:13:18 -0600
-Message-ID: <f1590a2b-3b88-43e2-9281-4d8eb1f4f582@ti.com>
-Date: Wed, 29 Jan 2025 15:13:18 -0600
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 647DE40C83;
+	Thu, 30 Jan 2025 01:45:57 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Yu3x86vGgiem; Thu, 30 Jan 2025 01:45:57 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1D08C409EB;
+	Thu, 30 Jan 2025 01:45:52 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 405D21641D9; Wed, 29 Jan 2025 20:45:51 -0500 (EST)
+Date: Wed, 29 Jan 2025 20:45:51 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: Chirag Shilwant <c-shilwant@ti.com>
+Cc: meta-arago@lists.yoctoproject.org, Ryan <reatmon@ti.com>,
+	v-singh1@ti.com, Khasim <khasim@ti.com>, Andrew Davis <afd@ti.com>
+Subject: Re: [EXTERNAL] Re: [meta-arago][scarthgap][PATCH 1/1]
+ meta-arago-extras: Add recipe for TFLite Runtime
+Message-ID: <20250130014551.GK21836@denix.org>
+References: <20250123172509.445473-1-c-shilwant@ti.com>
+ <20250123172509.445473-2-c-shilwant@ti.com>
+ <068aa65b-e965-4dec-a779-e9baa0a1f11b@ti.com>
+ <20250123223529.GA21836@denix.org>
+ <8f4738fd-a741-478c-ae31-e1afb2ec5ba2@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][scarthgap/master][PATCH] amsdk-av-files: Remove this
- recipe
-To: Andrew Davis <afd@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <20250117190402.686979-1-afd@ti.com>
- <dc794822-0979-4e4e-ae94-cdbbbc75de34@ti.com>
- <37d24d06-8648-40d8-8e35-eef8b134c235@ti.com>
-Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <37d24d06-8648-40d8-8e35-eef8b134c235@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: base64
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <8f4738fd-a741-478c-ae31-e1afb2ec5ba2@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 29 Jan 2025 21:13:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15780
+ <meta-arago@lists.yoctoproject.org>; Thu, 30 Jan 2025 01:46:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15781
 
-DQoNCk9uIDEvMjkvMjAyNSAxOjU4IFBNLCBBbmRyZXcgRGF2aXMgd3JvdGU6DQo+IE9uIDEv
-MjkvMjUgMToxMCBQTSwgUnlhbiBFYXRtb24gd3JvdGU6DQo+Pg0KPj4gRm9yIHNvbWUgcmVh
-c29uIHRoaXMgcGF0Y2ggYnJlYWtzIHR3byBvZiBvdXIgYnVpbGRzIG9uIG1hc3Rlci4uLg0K
-Pj4NCj4+IGFtNjktc2sgLSBydA0KPj4gajc4NHM0LWV2bSAtIHJ0DQo+Pg0KPj4gSXQgZ2l2
-ZXMgdGhlIGVycm9yIGR1cmluZyB0aXNkay1kZWZhdWx0LWltYWdlIGRvX3Jvb3RmczoNCj4+
-DQo+PiBFUlJPUjogVW5hYmxlIHRvIGluc3RhbGwgcGFja2FnZXMuIENvbW1hbmQgDQo+PiAn
-L3NjcmF0Y2gvamVua2luc19idWlsZHMvYXJhZ28tbWFzdGVyLW5leHQvYnVpbGQvYnVpbGQv
-YXJhZ28tdG1wLWRlZmF1bHQvd29yay9hbTY5X3NrLW9lLWxpbnV4L3Rpc2RrLWRlZmF1bHQt
-aW1hZ2UvMS4wL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvYmluL29wa2cgLS12b2xhdGls
-ZS1jYWNoZSAtZiAvc2NyYXRjaC9qZW5raW5zX2J1aWxkcy9hcmFnby1tYXN0ZXItbmV4dC9i
-dWlsZC9idWlsZC9hcmFnby10bXAtZGVmYXVsdC93b3JrL2FtNjlfc2stb2UtbGludXgvdGlz
-ZGstZGVmYXVsdC1pbWFnZS8xLjAvb3BrZy5jb25mIC10IC9zY3JhdGNoL2plbmtpbnNfYnVp
-bGRzL2FyYWdvLW1hc3Rlci1uZXh0L2J1aWxkL2J1aWxkL2FyYWdvLXRtcC1kZWZhdWx0L3dv
-cmsvYW02OV9zay1vZS1saW51eC90aXNkay1kZWZhdWx0LWltYWdlLzEuMC90ZW1wL2lwa3Rl
-bXAvIC1vIC9zY3JhdGNoL2plbmtpbnNfYnVpbGRzL2FyYWdvLW1hc3Rlci1uZXh0L2J1aWxk
-L2J1aWxkL2FyYWdvLXRtcC1kZWZhdWx0L3dvcmsvYW02OV9zay1vZS1saW51eC90aXNkay1k
-ZWZhdWx0LWltYWdlLzEuMC9yb290ZnMgwqAtLWZvcmNlX3Bvc3RpbnN0YWxswqDCoMKgIC0t
-YWRkLWlnbm9yZS1yZWNvbW1lbmRzIGJ1c3lib3gtc3lzbG9nIC0tYWRkLWlnbm9yZS1yZWNv
-bW1lbmRzIGNvcmV1dGlscyAtLWFkZC1pZ25vcmUtcmVjb21tZW5kcyBjb3JldXRpbHMtZGV2
-IC0tYWRkLWlnbm9yZS1yZWNvbW1lbmRzIGdkYnNlcnZlci1jNngtZGV2IC0tYWRkLWlnbm9y
-ZS1yZWNvbW1lbmRzIGxpYnVsbS1kZXYgaW5zdGFsbCBidWlsZC1lc3NlbnRpYWwgZG9ja2Vy
-IGR0YyBnaXQgbGludXgtbGliYy1oZWFkZXJzLWRldiBvcGtnIHBhY2thZ2Vncm91cC1hcmFn
-by1iYXNlIHBhY2thZ2Vncm91cC1hcmFnby1jb25zb2xlIHBhY2thZ2Vncm91cC1hcmFnby10
-aXNkay1hZGRvbnMgcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWFkZG9ucy1leHRyYSBwYWNr
-YWdlZ3JvdXAtYXJhZ28tdGlzZGstY29ubmVjdGl2aXR5IHBhY2thZ2Vncm91cC1hcmFnby10
-aXNkay1jcnlwdG8gcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWdyYXBoaWNzIHBhY2thZ2Vn
-cm91cC1hcmFnby10aXNkay1ndGsgcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWhtaSBwYWNr
-YWdlZ3JvdXAtYXJhZ28tdGlzZGstbXVsdGltZWRpYSBwYWNrYWdlZ3JvdXAtYXJhZ28tdGlz
-ZGstcXRlIHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1zeXNyZXBvIHBhY2thZ2Vncm91cC1j
-b3JlLWJvb3QgcGFja2FnZWdyb3VwLWNvcmUtdG9vbHMtZGVidWcgcGRtLWFub21hbHktZGV0
-ZWN0aW9uIHBzcGxhc2ggcnVuLXBvc3RpbnN0cyB0aS10ZXN0IHRpLXRlc3QtZXh0cmFzJyBy
-ZXR1cm5lZCAtMTE6DQo+Pg0KPj4gREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBkb19yb290ZnMg
-ZmluaXNoZWQNCj4+DQo+Pg0KPj4gV2hpY2ggaXMgYW5ub3lpbmcgYmVjYXVzZSBpdCBkb2Vz
-bid0IHNheSB3aHkgaXQgZmFpbGVkLCBqdXN0IHRoYXQgaXQgDQo+PiBmYWlsZWQuLi4NCj4+
-DQo+PiBJIGJpc2VjdGVkIGl0IGRvd24gdG8gdGhpcyBwYXRjaC4NCj4+DQo+PiBBbGwgb3Ro
-ZXIgcGxhdGZvcm0vdmFyaWFudCBjb21iaW5hdGlvbnMgd29yaywgYW5kIHNjYXJ0aGdhcCB3
-b3Jrcy4uLg0KPj4NCj4gDQo+IFRoYXQgc2VlbXMgcmVhbGx5IG9kZCB0aGVuLCBtYXliZSBz
-b21lIHN0YWxlIHNzdGF0ZSBmb3IgdGhlIG11bHRpbWVkaWENCj4gcGFja2FnZWdyb3VwIHRo
-b3NlIHNwZWNpZmljIHBsYXRmb3JtL3ZhcmlhbnQgY29tYm9zIHRoYXQgc3RpbGwgaGFzDQo+
-IGFtc2RrLWF2LWZpbGVzIGFzIGEgZGVwPw0KDQpJIGRpZCBhIGJ1aWxkIHdpdGggbm8gc3N0
-YXRlIGFuZCBzdGlsbCBnb3QgdGhlIGlzc3VlLg0KDQoNCj4gQW5kcmV3DQo+IA0KPj4NCj4+
-DQo+PiBPbiAxLzE3LzIwMjUgMTowNCBQTSwgQW5kcmV3IERhdmlzIHdyb3RlOg0KPj4+IFRo
-ZXNlIHZpZGVvIGZpbGVzIHdlcmUgdXNlZCBpbiBhIGNvdXBsZSBkZW1vcyBmb3IgbXVsdGlt
-ZWRpYSBkZWNvZGVycy4NCj4+PiBUaGV5IGFkZCArNTBNQiBhdCBtaW5pbXVtIHRvIGltYWdl
-cyB0aGF0IGluY2x1ZGUgdGhlbSBhbmQgfjIwME1CIG9mDQo+Pj4gZ2l0IGRvd25sb2FkIHRv
-IGJ1aWxkLiBUaGV5IGFyZSB1bnVzZWQgbm93IHNvIHJlbW92ZSB0aGlzIHJlY2lwZS4NCj4+
-Pg0KPj4+IFNpZ25lZC1vZmYtYnk6IEFuZHJldyBEYXZpcyA8YWZkQHRpLmNvbT4NCj4+PiAt
-LS0NCj4+PiDCoCAuLi4vcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLW11bHRpbWVkaWEuYmLC
-oMKgwqAgfMKgIDEgLQ0KPj4+IMKgIC4uLi9hbXNkay1hdi1maWxlcy9hbXNkay1hdi1maWxl
-c18xLjQuYmLCoMKgwqDCoMKgIHwgNDIgLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4+IMKgIDIg
-ZmlsZXMgY2hhbmdlZCwgNDMgZGVsZXRpb25zKC0pDQo+Pj4gwqAgZGVsZXRlIG1vZGUgMTAw
-NjQ0IA0KPj4+IG1ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtbXVsdGltZWRpYS9hbXNkay1h
-di1maWxlcy9hbXNkay1hdi1maWxlc18xLjQuYmINCj4+Pg0KPj4+IGRpZmYgLS1naXQgDQo+
-Pj4gYS9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvcGFja2FnZWdyb3Vwcy9wYWNr
-YWdlZ3JvdXAtYXJhZ28tdGlzZGstbXVsdGltZWRpYS5iYiBiL21ldGEtYXJhZ28tZGlzdHJv
-L3JlY2lwZXMtY29yZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby10aXNkay1t
-dWx0aW1lZGlhLmJiDQo+Pj4gaW5kZXggYzZlMzlhYTEuLjZhMWIyNWI2IDEwMDY0NA0KPj4+
-IC0tLSANCj4+PiBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9wYWNrYWdlZ3Jv
-dXBzL3BhY2thZ2Vncm91cC1hcmFnby10aXNkay1tdWx0aW1lZGlhLmJiDQo+Pj4gKysrIA0K
-Pj4+IGIvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFj
-a2FnZWdyb3VwLWFyYWdvLXRpc2RrLW11bHRpbWVkaWEuYmINCj4+PiBAQCAtNyw3ICs3LDYg
-QEAgUEFDS0FHRV9BUkNIID0gIiR7TUFDSElORV9BUkNIfSINCj4+PiDCoCBpbmhlcml0IHBh
-Y2thZ2Vncm91cA0KPj4+IMKgIE1VTFRJTUVESUEgPSAiIFwNCj4+PiAtwqDCoMKgIGFtc2Rr
-LWF2LWZpbGVzIFwNCj4+PiDCoMKgwqDCoMKgIGZmbXBlZyBcDQo+Pj4gwqDCoMKgwqDCoCBs
-aWJjYW1lcmEgXA0KPj4+IMKgwqDCoMKgwqAgbGliY2FtZXJhLWdzdCBcDQo+Pj4gZGlmZiAt
-LWdpdCANCj4+PiBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtbXVsdGltZWRpYS9hbXNk
-ay1hdi1maWxlcy9hbXNkay1hdi1maWxlc18xLjQuYmIgYi9tZXRhLWFyYWdvLWV4dHJhcy9y
-ZWNpcGVzLW11bHRpbWVkaWEvYW1zZGstYXYtZmlsZXMvYW1zZGstYXYtZmlsZXNfMS40LmJi
-DQo+Pj4gZGVsZXRlZCBmaWxlIG1vZGUgMTAwNjQ0DQo+Pj4gaW5kZXggNzI2NzY2OGIuLjAw
-MDAwMDAwDQo+Pj4gLS0tIA0KPj4+IGEvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1tdWx0
-aW1lZGlhL2Ftc2RrLWF2LWZpbGVzL2Ftc2RrLWF2LWZpbGVzXzEuNC5iYg0KPj4+ICsrKyAv
-ZGV2L251bGwNCj4+PiBAQCAtMSw0MiArMCwwIEBADQo+Pj4gLURFU0NSSVBUSU9OID0gIkFN
-U0RLIG11bHRpbWVkaWEgc3VwcG9ydCBmaWxlcyINCj4+PiAtSE9NRVBBR0UgPSAiaHR0cHM6
-Ly9naXQudGkuY29tL3Byb2Nlc3Nvci1zZGsvYW1zZGstYXYtZmlsZXMvIg0KPj4+IC1MSUNF
-TlNFID0gIkNDLUJZLU5DLU5ELTMuMCAmIENDLUJZLTMuMCINCj4+PiAtU0VDVElPTiA9ICJt
-dWx0aW1lZGlhIg0KPj4+IC1MSUNfRklMRVNfQ0hLU1VNID0gDQo+Pj4gImZpbGU6Ly9NdWx0
-aW1lZGlhX0RhdGFfRmlsZXNfTWFuaWZlc3QuZG9jO21kNT1mZTE1NGQyOTFjNjljNTE0OTVh
-NWJiNGE0NTY0MDNiNSINCj4+PiAtUFIgPSAicjIiDQo+Pj4gLQ0KPj4+IC1QQUNLQUdFX0FS
-Q0ggPSAiJHtNQUNISU5FX0FSQ0h9Ig0KPj4+IC0NCj4+PiAtVklERU9fRklMRVMgPSAidmlk
-ZW9fNDgwcCAiDQo+Pj4gLQ0KPj4+IC1WSURFT19GSUxFUzphcHBlbmQ6dGkzM3jCoMKgwqDC
-oMKgwqAgPSAidmlkZW9fd3ZnYSBcDQo+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB2aWRlb193cXZnYSIN
-Cj4+PiAtVklERU9fRklMRVM6YXBwZW5kOnRpNDN4wqDCoMKgwqDCoMKgID0gInZpZGVvX3dx
-dmdhIg0KPj4+IC1WSURFT19GSUxFUzphcHBlbmQ6ZHJhN3h4wqDCoMKgwqDCoCA9ICJ2aWRl
-b193dmdhIFwNCj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHZpZGVvXzEwODBwIFwNCj4+PiAtwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHZpZGVvXzcyMHAgXA0KPj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdmlkZW9feXV2Ig0KPj4+
-IC1WSURFT19GSUxFUzphcHBlbmQ6azPCoMKgwqDCoMKgwqDCoMKgwqAgPSAidmlkZW9fNzIw
-cCINCj4+PiAtDQo+Pj4gLUJSQU5DSCA9ICJtYXN0ZXIiDQo+Pj4gLQ0KPj4+IC1TUkNfVVJJ
-ID0gDQo+Pj4gImdpdDovL2dpdC50aS5jb20vZ2l0L3Byb2Nlc3Nvci1zZGsvYW1zZGstYXYt
-ZmlsZXMuZ2l0O3Byb3RvY29sPWh0dHBzO2JyYW5jaD0ke0JSQU5DSH0iDQo+Pj4gLVNSQ1JF
-ViA9ICIxYjczMDA5MDkwMjY1MzI4ZWJhZjFiNmM4ODBkZmVjY2FlNWE4ZjE5Ig0KPj4+IC0N
-Cj4+PiAtUyA9ICIke1dPUktESVJ9L2dpdCINCj4+PiAtDQo+Pj4gLWRvX2NvbXBpbGUoKSB7
-DQo+Pj4gLcKgwqDCoCA6DQo+Pj4gLX0NCj4+PiAtDQo+Pj4gLWRvX2luc3RhbGwoKSB7DQo+
-Pj4gLcKgwqDCoCBpbnN0YWxsIC1kICR7RH0ke2RhdGFkaXJ9L3RpIFwNCj4+PiAtwqDCoMKg
-wqDCoMKgICR7RH0ke2RhdGFkaXJ9L3RpL2F1ZGlvIFwNCj4+PiAtwqDCoMKgwqDCoMKgICR7
-RH0ke2RhdGFkaXJ9L3RpL3ZpZGVvDQo+Pj4gLcKgwqDCoCBpbnN0YWxsIC1tIDA2NDQgJHtT
-fS9hdWRpby8qICR7RH0ke2RhdGFkaXJ9L3RpL2F1ZGlvLw0KPj4+IC3CoMKgwqAgZm9yIGZp
-bGUgaW4gJHtWSURFT19GSUxFU307IGRvDQo+Pj4gLcKgwqDCoCBpbnN0YWxsIC1tIDA2NDQg
-JHtTfS8ke2ZpbGV9LyogJHtEfSR7ZGF0YWRpcn0vdGkvdmlkZW8vDQo+Pj4gLcKgwqDCoCBk
-b25lDQo+Pj4gLX0NCj4+PiAtDQo+Pj4gLUZJTEVTOiR7UE59ICs9ICIke2RhdGFkaXJ9L3Rp
-LyoiDQo+Pg0KDQotLSANClJ5YW4gRWF0bW9uICAgICAgICAgICAgICAgIHJlYXRtb25AdGku
-Y29tDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KVGV4YXMg
-SW5zdHJ1bWVudHMsIEluYy4gIC0gIExDUEQgIC0gIE1HVFMNCg==
+On Fri, Jan 24, 2025 at 08:01:03PM +0530, Chirag Shilwant wrote:
+> Hi Denys,
+>=20
+> On 24/01/25 04:05, Denys Dmytriyenko wrote:
+> >> >+do_configure[network] =3D "1" > >+ > >+do_configure:=E2=80=8Aprepe=
+nd() {
+> >> >+ if [ -n "${http_proxy}" ]; then > >+ export
+> >HTTP_PROXY=3D${http_proxy} > >+ export http_proxy=3D${http_proxy} > >+
+> >fi > >+ >
+> >ZjQcmQRYFpfptBannerStart
+> >This message was sent from outside of Texas Instruments.
+> >Do not click links or open attachments unless you recognize the
+> >source of this email and know the content is safe.
+> >Report=C2=A0Suspicious
+> ><https://us-phishalarm-ewt.proofpoint.com/EWT/v1/G3vK!uPdqXRfP1m07amYk=
+fLMjnW_0WPoGAUc_xiEhDJ8PA6NpT0xA8jTf-KB9808zSr3fgbwdqDV_S4_t$>
+> >
+> >ZjQcmQRYFpfptBannerEnd
+> >> >+do_configure[network] =3D "1"
+> >> >+
+> >> >+do_configure:prepend() {
+> >> >+    if [ -n "${http_proxy}" ]; then
+> >> >+        export HTTP_PROXY=3D${http_proxy}
+> >> >+        export http_proxy=3D${http_proxy}
+> >> >+    fi
+> >> >+
+> >> >+    if [ -n "${https_proxy}" ]; then
+> >> >+        export HTTPS_PROXY=3D${https_proxy}
+> >> >+        export https_proxy=3D${https_proxy}
+> >> >+    fi
+> >> > > Are these checks needed? If it is unset then exporting
+> >doesn't hurt,
+> >> could replace all this with:
+> >> > export http_proxy
+> >> export https_proxy
+> >> do_configure[network] =3D "1"
+> >> > >+do_compile[network] =3D "1"
+> >> >+
+> >> >+do_compile:prepend() {
+> >> >+    # Used to download cmake dependencies when behind a proxy
+> >> >+    if [ -n "${http_proxy}" ]; then
+> >> >+        export HTTP_PROXY=3D${http_proxy}
+> >> >+        export http_proxy=3D${http_proxy}
+> >> >+    fi
+> >> >+
+> >> >+    if [ -n "${https_proxy}" ]; then
+> >> >+        export HTTPS_PROXY=3D${https_proxy}
+> >> >+        export https_proxy=3D${https_proxy}
+> >> >+    fi
+> >> > Do you need network during compile? Seems to only be used in
+> >configure.
+> >
+> >Both of the above will get you in trouble later on - these are conside=
+red a
+> >very bad antisocial behavior and an almost sure way to strip off of an=
+y Yocto
+> >Project Compatible status...
+>=20
+> I completely understand your concerns about following best practices
+> in Yocto.
+> I was aware that the Yocto documentation now recommends limiting
+> network access
+> to the do_fetch task. However, I'd like to point out that many
+> official Yocto Project
+> layers still enable network access after do_fetch.
+
+You are missing my point...
+
+"Yocto Project Compatible" is not merely saying a layer works with the Yo=
+cto=20
+Project.
+
+It is a compliance and badging program that tests layers against a set of=
+=20
+defined criterias, recognizing those that pass as "Yocto Project Compatib=
+le".
+
+For example, meta-ti layers are Yocto Project Compatible since very early=
+ days=20
+and we kept it that way - it's being checked nightly on the YP autobuilde=
+r.
+
+On the other hand, meta-arago layers never had Yocto Project Compatible=20
+designation.
+
+Moreover, except meta-oe, none of the other layers you linked to are Yoct=
+o=20
+Project Compatible!
+
+
+The "YP Compatible" program was "on hiatus" for quite some time, but is b=
+eing=20
+revamped now to re-launch some time in the near future - the Yocto Projec=
+t=20
+Technical Steering Committee has worked hard on the changes and I've been=
+=20
+closely involved - check the Technical Leadership tab here:
+https://www.yoctoproject.org/about/leadership/
+
+A wider range and more stricter criterias coming with this revamp are a d=
+irect=20
+result of misbehaving layers and all the pain they cause to the community=
+.
+
+For example, most of the QA checks are becoming mandatory:
+https://git.openembedded.org/openembedded-core/commit/?id=3Dce2e42ace2d15=
+fb6745437cf0a7f07d28398ca12
+
+We'll be catching layers that try to skip those QA checks with INSANE_SKI=
+P:
+https://git.openembedded.org/openembedded-core/commit/?id=3D9c3ba88628853=
+b20fb4c98c99cf3fe8349024016
+
+And catching layers that use network outside of do_fetch() is in the work=
+s:
+https://git.yoctoproject.org/poky-contrib/tree/meta/classes-global/yocto-=
+check-layer.bbclass?h=3Dross/checknetwork
+
+All the corresponding documentation will be updated in due time...
+
+
+You can find a rather short list of the past Yocto Project Compatible lay=
+ers=20
+that were recognzied and designated under the old program (new applicatio=
+ns=20
+are currently closed until the revamped program is out):
+https://www.yoctoproject.org/development/yocto-project-compatible-layers/
+
+For comparison, here's a much longer (but still not exhaustive) list of=20
+registered YP layers - note how few of them have a little "YP Compatible"=
+=20
+badge next to their names:
+https://layers.openembedded.org/layerindex/branch/master/layers/
+
+And last week I also talked here on this list about efforts led by Ryan t=
+o=20
+improve meta-arago layers quality to potentially seek YP Compatible statu=
+s=20
+some time in the future:
+https://lists.yoctoproject.org/g/meta-arago/message/15738
+
+That's why in my reply to you I pointed out problematic areas and suggest=
+ed=20
+looking for better alternatives early on, before those become bigger issu=
+es:
+
+
+> >I'd suggest spending some time trying to find a way to do any and all
+> >downloads inside the do_fetch() task, which is the only one allowed to=
+ have
+> >network access.
+> >
+> >In other words - do_configure() and do_compile() are definitely not th=
+e right
+> >places to do any network fetching...
+
+But you are free to dismiss my recommendations...
+
+--=20
+Denys
 
