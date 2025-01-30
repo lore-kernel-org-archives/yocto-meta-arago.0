@@ -1,176 +1,438 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1A31C0218F
-	for <webhook@archiver.kernel.org>; Thu, 30 Jan 2025 16:02:10 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web10.18726.1738252928501467287
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E2A0C0218A
+	for <webhook@archiver.kernel.org>; Thu, 30 Jan 2025 16:31:21 +0000 (UTC)
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web11.19599.1738254678927676082
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 30 Jan 2025 08:02:08 -0800
+ Thu, 30 Jan 2025 08:31:19 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=YKecRbGy;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50UG24DB2371156
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=kE+JxE3f;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: afd@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50UGVH5w1555259
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 30 Jan 2025 10:02:04 -0600
+	Thu, 30 Jan 2025 10:31:17 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738252924;
-	bh=g3ArpdXzkTQ657o8iAvch6/GqgggQEgL2dTJYCfbtxY=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=YKecRbGyXb70pMylfXIrvErx0SCQD/N0V9h8EG3d5Qk0V4L6Ii3ydjU1+ZgnrgOAz
-	 yRGaj2c5BYT4Nv1Av7iOYH9RsbIXOqhmh9wT6q/K/CsSZsEBULPpMQcW67ce7IRmBA
-	 +g2vTYdlwjVlRlVgqDAgYnaqU3ZfGb7W5ZDnGPks=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50UG24tP021970
+	s=ti-com-17Q1; t=1738254677;
+	bh=fWNlaSdEvo7fHcI96IB2PJMSjjDLoOp2g0D0XOgXadE=;
+	h=From:To:CC:Subject:Date;
+	b=kE+JxE3fd17E4X2KPy1hmsZ5MCoO/IC9lGEOjR5gX9I9Xme2xif1NirYv177rku8c
+	 HEeZc+jgoStZeDOu2C5S0/+v0X502ABXU1KQaE3jqxvi4xVx5h1DvMgMCdpORQ44Dq
+	 fhBRDqovlqf1M1uJ2jm9+GzKrNLqch1cOGtvxO10=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50UGVHMZ095727
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 30 Jan 2025 10:02:04 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 30 Jan 2025 10:31:17 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 30
- Jan 2025 10:02:04 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2025 10:31:17 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 30 Jan 2025 10:02:04 -0600
-Received: from [10.249.32.48] ([10.249.32.48])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50UG24jh123028;
-	Thu, 30 Jan 2025 10:02:04 -0600
-Message-ID: <eaebd148-f445-4130-9db8-cc1c9a94b7d1@ti.com>
-Date: Thu, 30 Jan 2025 10:02:04 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][scarthgap/master][PATCH] amsdk-av-files: Remove this
- recipe
-To: Andrew Davis <afd@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
+ Frontend Transport; Thu, 30 Jan 2025 10:31:17 -0600
+Received: from fllvsmtp8.itg.ti.com ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50UGVH59026167;
+	Thu, 30 Jan 2025 10:31:17 -0600
+From: Andrew Davis <afd@ti.com>
+To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
-References: <20250117190402.686979-1-afd@ti.com>
- <dc794822-0979-4e4e-ae94-cdbbbc75de34@ti.com>
- <37d24d06-8648-40d8-8e35-eef8b134c235@ti.com>
- <181F463B2D9CFF40.27573@lists.yoctoproject.org>
-Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <181F463B2D9CFF40.27573@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: base64
+CC: Andrew Davis <afd@ti.com>
+Subject: [meta-arago][scarthgap][PATCH v2] meta-arago-extras: Backport abseil-cpp from meta-oe master
+Date: Thu, 30 Jan 2025 10:31:16 -0600
+Message-ID: <20250130163116.10248-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 30 Jan 2025 16:02:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15784
+ <meta-arago@lists.yoctoproject.org>; Thu, 30 Jan 2025 16:31:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15785
 
-DQoNCk9uIDEvMjkvMjAyNSAzOjEzIFBNLCBSeWFuIEVhdG1vbiB2aWEgbGlzdHMueW9jdG9w
-cm9qZWN0Lm9yZyB3cm90ZToNCj4gDQo+IA0KPiBPbiAxLzI5LzIwMjUgMTo1OCBQTSwgQW5k
-cmV3IERhdmlzIHdyb3RlOg0KPj4gT24gMS8yOS8yNSAxOjEwIFBNLCBSeWFuIEVhdG1vbiB3
-cm90ZToNCj4+Pg0KPj4+IEZvciBzb21lIHJlYXNvbiB0aGlzIHBhdGNoIGJyZWFrcyB0d28g
-b2Ygb3VyIGJ1aWxkcyBvbiBtYXN0ZXIuLi4NCj4+Pg0KPj4+IGFtNjktc2sgLSBydA0KPj4+
-IGo3ODRzNC1ldm0gLSBydA0KPj4+DQo+Pj4gSXQgZ2l2ZXMgdGhlIGVycm9yIGR1cmluZyB0
-aXNkay1kZWZhdWx0LWltYWdlIGRvX3Jvb3RmczoNCj4+Pg0KPj4+IEVSUk9SOiBVbmFibGUg
-dG8gaW5zdGFsbCBwYWNrYWdlcy4gQ29tbWFuZCANCj4+PiAnL3NjcmF0Y2gvamVua2luc19i
-dWlsZHMvYXJhZ28tbWFzdGVyLW5leHQvYnVpbGQvYnVpbGQvYXJhZ28tdG1wLWRlZmF1bHQv
-d29yay9hbTY5X3NrLW9lLWxpbnV4L3Rpc2RrLWRlZmF1bHQtaW1hZ2UvMS4wL3JlY2lwZS1z
-eXNyb290LW5hdGl2ZS91c3IvYmluL29wa2cgLS12b2xhdGlsZS1jYWNoZSAtZiAvc2NyYXRj
-aC9qZW5raW5zX2J1aWxkcy9hcmFnby1tYXN0ZXItbmV4dC9idWlsZC9idWlsZC9hcmFnby10
-bXAtZGVmYXVsdC93b3JrL2FtNjlfc2stb2UtbGludXgvdGlzZGstZGVmYXVsdC1pbWFnZS8x
-LjAvb3BrZy5jb25mIC10IC9zY3JhdGNoL2plbmtpbnNfYnVpbGRzL2FyYWdvLW1hc3Rlci1u
-ZXh0L2J1aWxkL2J1aWxkL2FyYWdvLXRtcC1kZWZhdWx0L3dvcmsvYW02OV9zay1vZS1saW51
-eC90aXNkay1kZWZhdWx0LWltYWdlLzEuMC90ZW1wL2lwa3RlbXAvIC1vIC9zY3JhdGNoL2pl
-bmtpbnNfYnVpbGRzL2FyYWdvLW1hc3Rlci1uZXh0L2J1aWxkL2J1aWxkL2FyYWdvLXRtcC1k
-ZWZhdWx0L3dvcmsvYW02OV9zay1vZS1saW51eC90aXNkay1kZWZhdWx0LWltYWdlLzEuMC9y
-b290ZnMgwqAtLWZvcmNlX3Bvc3RpbnN0YWxswqDCoMKgIC0tYWRkLWlnbm9yZS1yZWNvbW1l
-bmRzIGJ1c3lib3gtc3lzbG9nIC0tYWRkLWlnbm9yZS1yZWNvbW1lbmRzIGNvcmV1dGlscyAt
-LWFkZC1pZ25vcmUtcmVjb21tZW5kcyBjb3JldXRpbHMtZGV2IC0tYWRkLWlnbm9yZS1yZWNv
-bW1lbmRzIGdkYnNlcnZlci1jNngtZGV2IC0tYWRkLWlnbm9yZS1yZWNvbW1lbmRzIGxpYnVs
-bS1kZXYgaW5zdGFsbCBidWlsZC1lc3NlbnRpYWwgZG9ja2VyIGR0YyBnaXQgbGludXgtbGli
-Yy1oZWFkZXJzLWRldiBvcGtnIHBhY2thZ2Vncm91cC1hcmFnby1iYXNlIHBhY2thZ2Vncm91
-cC1hcmFnby1jb25zb2xlIHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1hZGRvbnMgcGFja2Fn
-ZWdyb3VwLWFyYWdvLXRpc2RrLWFkZG9ucy1leHRyYSBwYWNrYWdlZ3JvdXAtYXJhZ28tdGlz
-ZGstY29ubmVjdGl2aXR5IHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1jcnlwdG8gcGFja2Fn
-ZWdyb3VwLWFyYWdvLXRpc2RrLWdyYXBoaWNzIHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1n
-dGsgcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWhtaSBwYWNrYWdlZ3JvdXAtYXJhZ28tdGlz
-ZGstbXVsdGltZWRpYSBwYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGstcXRlIHBhY2thZ2Vncm91
-cC1hcmFnby10aXNkay1zeXNyZXBvIHBhY2thZ2Vncm91cC1jb3JlLWJvb3QgcGFja2FnZWdy
-b3VwLWNvcmUtdG9vbHMtZGVidWcgcGRtLWFub21hbHktZGV0ZWN0aW9uIHBzcGxhc2ggcnVu
-LXBvc3RpbnN0cyB0aS10ZXN0IHRpLXRlc3QtZXh0cmFzJyByZXR1cm5lZCAtMTE6DQo+Pj4N
-Cj4+PiBERUJVRzogUHl0aG9uIGZ1bmN0aW9uIGRvX3Jvb3RmcyBmaW5pc2hlZA0KPj4+DQo+
-Pj4NCj4+PiBXaGljaCBpcyBhbm5veWluZyBiZWNhdXNlIGl0IGRvZXNuJ3Qgc2F5IHdoeSBp
-dCBmYWlsZWQsIGp1c3QgdGhhdCBpdCANCj4+PiBmYWlsZWQuLi4NCj4+Pg0KPj4+IEkgYmlz
-ZWN0ZWQgaXQgZG93biB0byB0aGlzIHBhdGNoLg0KPj4+DQo+Pj4gQWxsIG90aGVyIHBsYXRm
-b3JtL3ZhcmlhbnQgY29tYmluYXRpb25zIHdvcmssIGFuZCBzY2FydGhnYXAgd29ya3MuLi4N
-Cj4+Pg0KPj4NCj4+IFRoYXQgc2VlbXMgcmVhbGx5IG9kZCB0aGVuLCBtYXliZSBzb21lIHN0
-YWxlIHNzdGF0ZSBmb3IgdGhlIG11bHRpbWVkaWENCj4+IHBhY2thZ2Vncm91cCB0aG9zZSBz
-cGVjaWZpYyBwbGF0Zm9ybS92YXJpYW50IGNvbWJvcyB0aGF0IHN0aWxsIGhhcw0KPj4gYW1z
-ZGstYXYtZmlsZXMgYXMgYSBkZXA/DQo+IA0KPiBJIGRpZCBhIGJ1aWxkIHdpdGggbm8gc3N0
-YXRlIGFuZCBzdGlsbCBnb3QgdGhlIGlzc3VlLg0KDQpBbmQgdGhleSBib3RoIHN0YXJ0ZWQg
-cGFzc2luZyBsYXN0IG5pZ2h0Li4uIEkgd2lsbCBuZXZlciB1bmRlcnN0YW5kIA0KdGhlc2Ug
-aXNzdWVzIHNvbWV0aW1lcy4uLg0KDQoNCj4gDQo+PiBBbmRyZXcNCj4+DQo+Pj4NCj4+Pg0K
-Pj4+IE9uIDEvMTcvMjAyNSAxOjA0IFBNLCBBbmRyZXcgRGF2aXMgd3JvdGU6DQo+Pj4+IFRo
-ZXNlIHZpZGVvIGZpbGVzIHdlcmUgdXNlZCBpbiBhIGNvdXBsZSBkZW1vcyBmb3IgbXVsdGlt
-ZWRpYSBkZWNvZGVycy4NCj4+Pj4gVGhleSBhZGQgKzUwTUIgYXQgbWluaW11bSB0byBpbWFn
-ZXMgdGhhdCBpbmNsdWRlIHRoZW0gYW5kIH4yMDBNQiBvZg0KPj4+PiBnaXQgZG93bmxvYWQg
-dG8gYnVpbGQuIFRoZXkgYXJlIHVudXNlZCBub3cgc28gcmVtb3ZlIHRoaXMgcmVjaXBlLg0K
-Pj4+Pg0KPj4+PiBTaWduZWQtb2ZmLWJ5OiBBbmRyZXcgRGF2aXMgPGFmZEB0aS5jb20+DQo+
-Pj4+IC0tLQ0KPj4+PiDCoCAuLi4vcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLW11bHRpbWVk
-aWEuYmLCoMKgwqAgfMKgIDEgLQ0KPj4+PiDCoCAuLi4vYW1zZGstYXYtZmlsZXMvYW1zZGst
-YXYtZmlsZXNfMS40LmJiwqDCoMKgwqDCoCB8IDQyIA0KPj4+PiAtLS0tLS0tLS0tLS0tLS0t
-LS0tDQo+Pj4+IMKgIDIgZmlsZXMgY2hhbmdlZCwgNDMgZGVsZXRpb25zKC0pDQo+Pj4+IMKg
-IGRlbGV0ZSBtb2RlIDEwMDY0NCANCj4+Pj4gbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1t
-dWx0aW1lZGlhL2Ftc2RrLWF2LWZpbGVzL2Ftc2RrLWF2LWZpbGVzXzEuNC5iYg0KPj4+Pg0K
-Pj4+PiBkaWZmIC0tZ2l0IA0KPj4+PiBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29y
-ZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby10aXNkay1tdWx0aW1lZGlhLmJi
-IGIvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2Fn
-ZWdyb3VwLWFyYWdvLXRpc2RrLW11bHRpbWVkaWEuYmINCj4+Pj4gaW5kZXggYzZlMzlhYTEu
-LjZhMWIyNWI2IDEwMDY0NA0KPj4+PiAtLS0gDQo+Pj4+IGEvbWV0YS1hcmFnby1kaXN0cm8v
-cmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLW11
-bHRpbWVkaWEuYmINCj4+Pj4gKysrIA0KPj4+PiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lw
-ZXMtY29yZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby10aXNkay1tdWx0aW1l
-ZGlhLmJiDQo+Pj4+IEBAIC03LDcgKzcsNiBAQCBQQUNLQUdFX0FSQ0ggPSAiJHtNQUNISU5F
-X0FSQ0h9Ig0KPj4+PiDCoCBpbmhlcml0IHBhY2thZ2Vncm91cA0KPj4+PiDCoCBNVUxUSU1F
-RElBID0gIiBcDQo+Pj4+IC3CoMKgwqAgYW1zZGstYXYtZmlsZXMgXA0KPj4+PiDCoMKgwqDC
-oMKgIGZmbXBlZyBcDQo+Pj4+IMKgwqDCoMKgwqAgbGliY2FtZXJhIFwNCj4+Pj4gwqDCoMKg
-wqDCoCBsaWJjYW1lcmEtZ3N0IFwNCj4+Pj4gZGlmZiAtLWdpdCANCj4+Pj4gYS9tZXRhLWFy
-YWdvLWV4dHJhcy9yZWNpcGVzLW11bHRpbWVkaWEvYW1zZGstYXYtZmlsZXMvYW1zZGstYXYt
-ZmlsZXNfMS40LmJiIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1tdWx0aW1lZGlhL2Ft
-c2RrLWF2LWZpbGVzL2Ftc2RrLWF2LWZpbGVzXzEuNC5iYg0KPj4+PiBkZWxldGVkIGZpbGUg
-bW9kZSAxMDA2NDQNCj4+Pj4gaW5kZXggNzI2NzY2OGIuLjAwMDAwMDAwDQo+Pj4+IC0tLSAN
-Cj4+Pj4gYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLW11bHRpbWVkaWEvYW1zZGstYXYt
-ZmlsZXMvYW1zZGstYXYtZmlsZXNfMS40LmJiDQo+Pj4+ICsrKyAvZGV2L251bGwNCj4+Pj4g
-QEAgLTEsNDIgKzAsMCBAQA0KPj4+PiAtREVTQ1JJUFRJT04gPSAiQU1TREsgbXVsdGltZWRp
-YSBzdXBwb3J0IGZpbGVzIg0KPj4+PiAtSE9NRVBBR0UgPSAiaHR0cHM6Ly9naXQudGkuY29t
-L3Byb2Nlc3Nvci1zZGsvYW1zZGstYXYtZmlsZXMvIg0KPj4+PiAtTElDRU5TRSA9ICJDQy1C
-WS1OQy1ORC0zLjAgJiBDQy1CWS0zLjAiDQo+Pj4+IC1TRUNUSU9OID0gIm11bHRpbWVkaWEi
-DQo+Pj4+IC1MSUNfRklMRVNfQ0hLU1VNID0gDQo+Pj4+ICJmaWxlOi8vTXVsdGltZWRpYV9E
-YXRhX0ZpbGVzX01hbmlmZXN0LmRvYzttZDU9ZmUxNTRkMjkxYzY5YzUxNDk1YTViYjRhNDU2
-NDAzYjUiDQo+Pj4+IC1QUiA9ICJyMiINCj4+Pj4gLQ0KPj4+PiAtUEFDS0FHRV9BUkNIID0g
-IiR7TUFDSElORV9BUkNIfSINCj4+Pj4gLQ0KPj4+PiAtVklERU9fRklMRVMgPSAidmlkZW9f
-NDgwcCAiDQo+Pj4+IC0NCj4+Pj4gLVZJREVPX0ZJTEVTOmFwcGVuZDp0aTMzeMKgwqDCoMKg
-wqDCoCA9ICJ2aWRlb193dmdhIFwNCj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB2aWRlb193cXZnYSIN
-Cj4+Pj4gLVZJREVPX0ZJTEVTOmFwcGVuZDp0aTQzeMKgwqDCoMKgwqDCoCA9ICJ2aWRlb193
-cXZnYSINCj4+Pj4gLVZJREVPX0ZJTEVTOmFwcGVuZDpkcmE3eHjCoMKgwqDCoMKgID0gInZp
-ZGVvX3d2Z2EgXA0KPj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHZpZGVvXzEwODBwIFwNCj4+Pj4gLcKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCB2aWRlb183MjBwIFwNCj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB2aWRlb195dXYi
-DQo+Pj4+IC1WSURFT19GSUxFUzphcHBlbmQ6azPCoMKgwqDCoMKgwqDCoMKgwqAgPSAidmlk
-ZW9fNzIwcCINCj4+Pj4gLQ0KPj4+PiAtQlJBTkNIID0gIm1hc3RlciINCj4+Pj4gLQ0KPj4+
-PiAtU1JDX1VSSSA9IA0KPj4+PiAiZ2l0Oi8vZ2l0LnRpLmNvbS9naXQvcHJvY2Vzc29yLXNk
-ay9hbXNkay1hdi1maWxlcy5naXQ7cHJvdG9jb2w9aHR0cHM7YnJhbmNoPSR7QlJBTkNIfSIN
-Cj4+Pj4gLVNSQ1JFViA9ICIxYjczMDA5MDkwMjY1MzI4ZWJhZjFiNmM4ODBkZmVjY2FlNWE4
-ZjE5Ig0KPj4+PiAtDQo+Pj4+IC1TID0gIiR7V09SS0RJUn0vZ2l0Ig0KPj4+PiAtDQo+Pj4+
-IC1kb19jb21waWxlKCkgew0KPj4+PiAtwqDCoMKgIDoNCj4+Pj4gLX0NCj4+Pj4gLQ0KPj4+
-PiAtZG9faW5zdGFsbCgpIHsNCj4+Pj4gLcKgwqDCoCBpbnN0YWxsIC1kICR7RH0ke2RhdGFk
-aXJ9L3RpIFwNCj4+Pj4gLcKgwqDCoMKgwqDCoCAke0R9JHtkYXRhZGlyfS90aS9hdWRpbyBc
-DQo+Pj4+IC3CoMKgwqDCoMKgwqAgJHtEfSR7ZGF0YWRpcn0vdGkvdmlkZW8NCj4+Pj4gLcKg
-wqDCoCBpbnN0YWxsIC1tIDA2NDQgJHtTfS9hdWRpby8qICR7RH0ke2RhdGFkaXJ9L3RpL2F1
-ZGlvLw0KPj4+PiAtwqDCoMKgIGZvciBmaWxlIGluICR7VklERU9fRklMRVN9OyBkbw0KPj4+
-PiAtwqDCoMKgIGluc3RhbGwgLW0gMDY0NCAke1N9LyR7ZmlsZX0vKiAke0R9JHtkYXRhZGly
-fS90aS92aWRlby8NCj4+Pj4gLcKgwqDCoCBkb25lDQo+Pj4+IC19DQo+Pj4+IC0NCj4+Pj4g
-LUZJTEVTOiR7UE59ICs9ICIke2RhdGFkaXJ9L3RpLyoiDQo+Pj4NCj4gDQoNCi0tIA0KUnlh
-biBFYXRtb24gICAgICAgICAgICAgICAgcmVhdG1vbkB0aS5jb20NCi0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpUZXhhcyBJbnN0cnVtZW50cywgSW5jLiAg
-LSAgTENQRCAgLSAgTUdUUw0K
+ONNX and ONNX Runtime depend on a very specific version of Abseil that
+is not the version included with meta-oe scarthgap. But it just so
+happens to be the version provided in current meta-oe master.
+Backport this version for our use in scarthgap.
+
+This patch is not needed for meta-arago master branch. If meta-oe
+master at some point moves to a newer incompatible version of
+Abseil we will deal with this dependency in a different way.
+
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+
+Changes for v2:
+ - Split from the ONNX series as this one is only needed on scarthgap
+
+ .../0001-absl-always-use-asm-sgidefs.h.patch  |  38 +++++++
+ ...e-maes-option-from-cross-compilation.patch |  38 +++++++
+ ...e-neon-option-from-cross-compilation.patch |  49 +++++++++
+ .../abseil-cpp/0004-abseil-ppc-fixes.patch    | 103 ++++++++++++++++++
+ ...-virtual-dtor-in-the-flags-are-neede.patch |  30 +++++
+ .../abseil-cpp/abseil-cpp_20240722.0.bb       |  54 +++++++++
+ 6 files changed, 312 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0001-absl-always-use-asm-sgidefs.h.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0002-Remove-maes-option-from-cross-compilation.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0003-Remove-neon-option-from-cross-compilation.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0004-abseil-ppc-fixes.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb
+
+diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0001-absl-always-use-asm-sgidefs.h.patch b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0001-absl-always-use-asm-sgidefs.h.patch
+new file mode 100644
+index 00000000..6fecf256
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0001-absl-always-use-asm-sgidefs.h.patch
+@@ -0,0 +1,38 @@
++From 11faa06436fdeb0c9948080a11f9a99d3b5ba16c Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Thu, 9 Apr 2020 13:06:27 -0700
++Subject: [PATCH] absl: always use <asm/sgidefs.h>
++
++Fixes mips/musl build, since sgidefs.h is not present on all C libraries
++but on linux asm/sgidefs.h is there and contains same definitions, using
++that makes it portable.
++
++Upstream-Status: Pending
++
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++ absl/base/internal/direct_mmap.h | 6 +-----
++ 1 file changed, 1 insertion(+), 5 deletions(-)
++
++diff --git a/absl/base/internal/direct_mmap.h b/absl/base/internal/direct_mmap.h
++index 1beb2ee4..140b0697 100644
++--- a/absl/base/internal/direct_mmap.h
+++++ b/absl/base/internal/direct_mmap.h
++@@ -41,13 +41,9 @@
++ 
++ #ifdef __mips__
++ // Include definitions of the ABI currently in use.
++-#if defined(__BIONIC__) || !defined(__GLIBC__)
++-// Android doesn't have sgidefs.h, but does have asm/sgidefs.h, which has the
+++// bionic/musl C libs don't have sgidefs.h, but do have asm/sgidefs.h, which has the
++ // definitions we need.
++ #include <asm/sgidefs.h>
++-#else
++-#include <sgidefs.h>
++-#endif  // __BIONIC__ || !__GLIBC__
++ #endif  // __mips__
++ 
++ // SYS_mmap and SYS_munmap are not defined in Android.
++-- 
++2.25.1
++
+diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0002-Remove-maes-option-from-cross-compilation.patch b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0002-Remove-maes-option-from-cross-compilation.patch
+new file mode 100644
+index 00000000..d49e860f
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0002-Remove-maes-option-from-cross-compilation.patch
+@@ -0,0 +1,38 @@
++From a573ccd57e713486e7d8e782d6b3b34fde01ff9e Mon Sep 17 00:00:00 2001
++From: Sinan Kaya <sinan.kaya@microsoft.com>
++Date: Mon, 3 Feb 2020 03:25:57 +0000
++Subject: [PATCH] Remove maes option from cross-compilation
++
++Upstream-Status: Pending
++---
++ absl/copts/GENERATED_AbseilCopts.cmake | 4 ----
++ absl/copts/GENERATED_copts.bzl         | 4 ----
++ 2 files changed, 8 deletions(-)
++
++diff --git a/absl/copts/GENERATED_AbseilCopts.cmake b/absl/copts/GENERATED_AbseilCopts.cmake
++index da2282fe..5e0e8dfd 100644
++--- a/absl/copts/GENERATED_AbseilCopts.cmake
+++++ b/absl/copts/GENERATED_AbseilCopts.cmake
++@@ -229,7 +229,3 @@ list(APPEND ABSL_RANDOM_HWAES_ARM64_FLAGS
++ list(APPEND ABSL_RANDOM_HWAES_MSVC_X64_FLAGS
++ )
++ 
++-list(APPEND ABSL_RANDOM_HWAES_X64_FLAGS
++-    "-maes"
++-    "-msse4.1"
++-)
++diff --git a/absl/copts/GENERATED_copts.bzl b/absl/copts/GENERATED_copts.bzl
++index b9e0071e..0072008c 100644
++--- a/absl/copts/GENERATED_copts.bzl
+++++ b/absl/copts/GENERATED_copts.bzl
++@@ -230,7 +230,3 @@ ABSL_RANDOM_HWAES_ARM64_FLAGS = [
++ ABSL_RANDOM_HWAES_MSVC_X64_FLAGS = [
++ ]
++ 
++-ABSL_RANDOM_HWAES_X64_FLAGS = [
++-    "-maes",
++-    "-msse4.1",
++-]
++-- 
++2.25.1
++
+diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0003-Remove-neon-option-from-cross-compilation.patch b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0003-Remove-neon-option-from-cross-compilation.patch
+new file mode 100644
+index 00000000..c82b9e1b
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0003-Remove-neon-option-from-cross-compilation.patch
+@@ -0,0 +1,49 @@
++From 632632508daf8bb3a5800dac937ffc33c6d85973 Mon Sep 17 00:00:00 2001
++From: Jonas Gorski <jonas.gorski@bisdn.de>
++Date: Thu, 16 Jun 2022 11:46:31 +0000
++Subject: [PATCH] Remove neon option from cross compilation
++
++Not every arm platform supports neon instructions, so do not enforce
++them.
++
++Upstream-Status: Pending
++
++Signed-off-by: Jonas Gorski <jonas.gorski@bisdn.de>
++---
++ absl/copts/GENERATED_AbseilCopts.cmake | 4 ----
++ absl/copts/GENERATED_copts.bzl         | 4 ----
++ 2 files changed, 8 deletions(-)
++
++diff --git a/absl/copts/GENERATED_AbseilCopts.cmake b/absl/copts/GENERATED_AbseilCopts.cmake
++index 5e0e8dfd..57cfc4d3 100644
++--- a/absl/copts/GENERATED_AbseilCopts.cmake
+++++ b/absl/copts/GENERATED_AbseilCopts.cmake
++@@ -218,10 +218,6 @@ list(APPEND ABSL_MSVC_TEST_FLAGS
++     "/DNOMINMAX"
++ )
++ 
++-list(APPEND ABSL_RANDOM_HWAES_ARM32_FLAGS
++-    "-mfpu=neon"
++-)
++-
++ list(APPEND ABSL_RANDOM_HWAES_ARM64_FLAGS
++     "-march=armv8-a+crypto"
++ )
++diff --git a/absl/copts/GENERATED_copts.bzl b/absl/copts/GENERATED_copts.bzl
++index 0072008c..72840fda 100644
++--- a/absl/copts/GENERATED_copts.bzl
+++++ b/absl/copts/GENERATED_copts.bzl
++@@ -219,10 +219,6 @@ ABSL_MSVC_TEST_FLAGS = [
++     "/DNOMINMAX",
++ ]
++ 
++-ABSL_RANDOM_HWAES_ARM32_FLAGS = [
++-    "-mfpu=neon",
++-]
++-
++ ABSL_RANDOM_HWAES_ARM64_FLAGS = [
++     "-march=armv8-a+crypto",
++ ]
++-- 
++2.25.1
++
+diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0004-abseil-ppc-fixes.patch b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0004-abseil-ppc-fixes.patch
+new file mode 100644
+index 00000000..ba0cd669
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0004-abseil-ppc-fixes.patch
+@@ -0,0 +1,103 @@
++From f9607924225ca59fb6c60222e6424b84e6f70029 Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Sat, 21 Sep 2024 20:53:06 +0800
++Subject: [PATCH] abseil: ppc fixes
++
++An all-in-one patch that fixes several issues:
++
++1) UnscaledCycleClock not fully implemented for ppc*-musl (disabled on musl)
++2) powerpc stacktrace implementation only works on glibc (disabled on musl)
++3) powerpc stacktrace implementation has ppc64 assumptions (fixed)
++4) examine_stack.cpp makes glibc assumptions on powerpc (fixed)
++
++Sourced from void linux
++
++Upstream-Status: Pending
++
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++ absl/base/internal/unscaledcycleclock.cc       | 4 ++--
++ absl/base/internal/unscaledcycleclock_config.h | 3 ++-
++ absl/debugging/internal/examine_stack.cc       | 8 +++++++-
++ absl/debugging/internal/stacktrace_config.h    | 2 +-
++ 4 files changed, 12 insertions(+), 5 deletions(-)
++
++diff --git a/absl/base/internal/unscaledcycleclock.cc b/absl/base/internal/unscaledcycleclock.cc
++index a0bf3a65..103b4f6a 100644
++--- a/absl/base/internal/unscaledcycleclock.cc
+++++ b/absl/base/internal/unscaledcycleclock.cc
++@@ -20,7 +20,7 @@
++ #include <intrin.h>
++ #endif
++ 
++-#if defined(__powerpc__) || defined(__ppc__)
+++#if (defined(__powerpc__) || defined(__ppc__)) && defined(__GLIBC__)
++ #ifdef __GLIBC__
++ #include <sys/platform/ppc.h>
++ #elif defined(__FreeBSD__)
++@@ -58,7 +58,7 @@ double UnscaledCycleClock::Frequency() {
++   return base_internal::NominalCPUFrequency();
++ }
++ 
++-#elif defined(__powerpc__) || defined(__ppc__)
+++#elif (defined(__powerpc__) || defined(__ppc__)) && defined(__GLIBC__)
++ 
++ int64_t UnscaledCycleClock::Now() {
++ #ifdef __GLIBC__
++diff --git a/absl/base/internal/unscaledcycleclock_config.h b/absl/base/internal/unscaledcycleclock_config.h
++index 43a3dabe..196a8535 100644
++--- a/absl/base/internal/unscaledcycleclock_config.h
+++++ b/absl/base/internal/unscaledcycleclock_config.h
++@@ -21,7 +21,8 @@
++ 
++ // The following platforms have an implementation of a hardware counter.
++ #if defined(__i386__) || defined(__x86_64__) || defined(__aarch64__) || \
++-    defined(__powerpc__) || defined(__ppc__) || defined(_M_IX86) ||     \
+++    ((defined(__powerpc__) || defined(__ppc__)) && defined(__GLIBC__)) || \
+++    defined(_M_IX86) ||     \
++     (defined(_M_X64) && !defined(_M_ARM64EC))
++ #define ABSL_HAVE_UNSCALED_CYCLECLOCK_IMPLEMENTATION 1
++ #else
++diff --git a/absl/debugging/internal/examine_stack.cc b/absl/debugging/internal/examine_stack.cc
++index 3dd6ba1a..f923b055 100644
++--- a/absl/debugging/internal/examine_stack.cc
+++++ b/absl/debugging/internal/examine_stack.cc
++@@ -36,6 +36,10 @@
++ #include <csignal>
++ #include <cstdio>
++ 
+++#if defined(__powerpc__)
+++#include <asm/ptrace.h>
+++#endif
+++
++ #include "absl/base/attributes.h"
++ #include "absl/base/internal/raw_logging.h"
++ #include "absl/base/macros.h"
++@@ -177,8 +181,10 @@ void* GetProgramCounter(void* const vuc) {
++     return reinterpret_cast<void*>(context->uc_mcontext.pc);
++ #elif defined(__powerpc64__)
++     return reinterpret_cast<void*>(context->uc_mcontext.gp_regs[32]);
++-#elif defined(__powerpc__)
+++#elif defined(__powerpc__) && defined(__GLIBC__)
++     return reinterpret_cast<void*>(context->uc_mcontext.uc_regs->gregs[32]);
+++#elif defined(__powerpc__)
+++    return reinterpret_cast<void*>((context->uc_regs)->gregs[32]);
++ #elif defined(__riscv)
++     return reinterpret_cast<void*>(context->uc_mcontext.__gregs[REG_PC]);
++ #elif defined(__s390__) && !defined(__s390x__)
++diff --git a/absl/debugging/internal/stacktrace_config.h b/absl/debugging/internal/stacktrace_config.h
++index 3929b1b7..23d5e504 100644
++--- a/absl/debugging/internal/stacktrace_config.h
+++++ b/absl/debugging/internal/stacktrace_config.h
++@@ -60,7 +60,7 @@
++ #elif defined(__i386__) || defined(__x86_64__)
++ #define ABSL_STACKTRACE_INL_HEADER \
++   "absl/debugging/internal/stacktrace_x86-inl.inc"
++-#elif defined(__ppc__) || defined(__PPC__)
+++#elif (defined(__ppc__) || defined(__PPC__)) && defined(__GLIBC__)
++ #define ABSL_STACKTRACE_INL_HEADER \
++   "absl/debugging/internal/stacktrace_powerpc-inl.inc"
++ #elif defined(__aarch64__)
++-- 
++2.25.1
++
+diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch
+new file mode 100644
+index 00000000..9a4fc0b4
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp/0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch
+@@ -0,0 +1,30 @@
++From 9cb5e5d15c142e5cc43a2c1db87c8e4e5b6d38a5 Mon Sep 17 00:00:00 2001
++From: Derek Mauro <dmauro@google.com>
++Date: Mon, 5 Aug 2024 07:35:05 -0700
++Subject: [PATCH] Don't match -Wnon-virtual-dtor in the "flags are needed to
++ suppress warnings in headers". It should fall through to the "don't impose
++ our warnings on others" case. Do this by matching on "-Wno-*" instead of
++ "-Wno*".
++
++Fixes #1737
++
++PiperOrigin-RevId: 659548798
++Change-Id: I49d7ba7ddcd7be30f946fca90ba9be467181e854
++Upstream-Status: Backport [https://github.com/abseil/abseil-cpp/commit/9cb5e5d15c142e5cc43a2c1db87c8e4e5b6d38a5]
++---
++ CMake/AbseilHelpers.cmake | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/CMake/AbseilHelpers.cmake b/CMake/AbseilHelpers.cmake
++index b177e590..3c4c92fe 100644
++--- a/CMake/AbseilHelpers.cmake
+++++ b/CMake/AbseilHelpers.cmake
++@@ -195,7 +195,7 @@ function(absl_cc_library)
++         # specified platform. Filter both of them out before the successor
++         # reaches the "^-m" filter.
++         set(skip_next_cflag ON)
++-      elseif(${cflag} MATCHES "^(-Wno|/wd)")
+++      elseif(${cflag} MATCHES "^(-Wno-|/wd)")
++         # These flags are needed to suppress warnings that might fire in our headers.
++         set(PC_CFLAGS "${PC_CFLAGS} ${cflag}")
++       elseif(${cflag} MATCHES "^(-W|/w[1234eo])")
+diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb
+new file mode 100644
+index 00000000..4bfc2100
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb
+@@ -0,0 +1,54 @@
++SUMMARY = "Abseil is a cpp library like STL"
++DESCRIPTION = "Abseil provides pieces missing from the C++ standard. Contains \
++additional useful libraries like algorithm, container, debugging, hash, memory, \
++meta, numeric, strings, synchronization, time, types and utility."
++HOMEPAGE = "https://abseil.io/"
++SECTION = "libs"
++LICENSE = "Apache-2.0"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=df52c6edb7adc22e533b2bacc3bd3915"
++
++SRCREV = "4447c7562e3bc702ade25105912dce503f0c4010"
++BRANCH = "lts_2024_07_22"
++SRC_URI = "git://github.com/abseil/abseil-cpp;branch=${BRANCH};protocol=https \
++           file://0001-absl-always-use-asm-sgidefs.h.patch             \
++           file://0002-Remove-maes-option-from-cross-compilation.patch \
++           file://0003-Remove-neon-option-from-cross-compilation.patch \
++           file://0004-abseil-ppc-fixes.patch \
++           file://0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch \
++          "
++
++S = "${WORKDIR}/git"
++
++inherit cmake
++
++EXTRA_OECMAKE = "-DBUILD_SHARED_LIBS=ON \
++                 -DBUILD_TESTING=OFF    \
++                 -DABSL_ENABLE_INSTALL=ON \
++                "
++
++SYSROOT_DIRS:append:class-nativesdk:mingw32 = " ${bindir}"
++
++PACKAGES_DYNAMIC += "^libabsl-*"
++PACKAGES_DYNAMIC:class-native = ""
++
++PACKAGESPLITFUNCS =+ "split_dynamic_packages"
++
++python split_dynamic_packages() {
++    libdir = d.getVar('libdir')
++
++    libpackages = do_split_packages(
++        d,
++        root=libdir,
++        file_regex=r'^libabsl_(.*)\.so\..*$',
++        output_pattern='libabsl-%s',
++        description="abseil shared library %s",
++        prepend=True,
++        extra_depends='',
++    )
++    if libpackages:
++        d.appendVar('RDEPENDS:' + d.getVar('PN'), ' ' + ' '.join(libpackages))
++}
++
++ALLOW_EMPTY:${PN} = "1"
++
++BBCLASSEXTEND = "native nativesdk"
+-- 
+2.39.2
+
 
