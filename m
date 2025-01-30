@@ -1,233 +1,176 @@
-Return-Path: <a-limaye@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 508B2C0218A
-	for <webhook@archiver.kernel.org>; Thu, 30 Jan 2025 10:01:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F1A31C0218F
+	for <webhook@archiver.kernel.org>; Thu, 30 Jan 2025 16:02:10 +0000 (UTC)
 Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web11.12265.1738231271624612704
+ by mx.groups.io with SMTP id smtpd.web10.18726.1738252928501467287
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 30 Jan 2025 02:01:11 -0800
+ Thu, 30 Jan 2025 08:02:08 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=sC6EFomA;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: a-limaye@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50UA1BdA2327338
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
-	for <meta-arago@lists.yoctoproject.org>; Thu, 30 Jan 2025 04:01:11 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=YKecRbGy;
+ spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50UG24DB2371156
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 30 Jan 2025 10:02:04 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738231271;
-	bh=KOYkbPYK2+AR0eR6g3WF5JEjWStfSny9B/gcSnFGBc8=;
-	h=From:To:CC:Subject:Date;
-	b=sC6EFomApx7FcXmHJsPxQ3VUbIGcbuVprM7lUSGTDpoQ/Qnb5qWxD7LUluzxjaRdu
-	 baXX6id8vI7DLI7FmmgJTYJaHRBgFNqfuwPHw1qhrtp1gTzmo+Jn/C+gsbskoe6ZQa
-	 O6JqIPdkwdllmj/DUtdOFNdQ0wvQekaDB2r4GeQQ=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50UA1BX8079979
-	for <meta-arago@lists.yoctoproject.org>; Thu, 30 Jan 2025 04:01:11 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1738252924;
+	bh=g3ArpdXzkTQ657o8iAvch6/GqgggQEgL2dTJYCfbtxY=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=YKecRbGyXb70pMylfXIrvErx0SCQD/N0V9h8EG3d5Qk0V4L6Ii3ydjU1+ZgnrgOAz
+	 yRGaj2c5BYT4Nv1Av7iOYH9RsbIXOqhmh9wT6q/K/CsSZsEBULPpMQcW67ce7IRmBA
+	 +g2vTYdlwjVlRlVgqDAgYnaqU3ZfGb7W5ZDnGPks=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50UG24tP021970
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 30 Jan 2025 10:02:04 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 30
- Jan 2025 04:01:10 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2025 10:02:04 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 30 Jan 2025 04:01:10 -0600
-Received: from psdkl-workstation0.dhcp.ti.com (psdkl-workstation0.dhcp.ti.com [172.24.227.91])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50UA18Tp030975;
-	Thu, 30 Jan 2025 04:01:09 -0600
-From: Aniket Limaye <a-limaye@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: <reatmon@ti.com>, <u-kumar1@ti.com>, Aniket Limaye <a-limaye@ti.com>
-Subject: [meta-arago][master][PATCH] ti-test: Add mcrc64 test application
-Date: Thu, 30 Jan 2025 15:30:48 +0530
-Message-ID: <20250130100105.507586-1-a-limaye@ti.com>
-X-Mailer: git-send-email 2.48.1
+ Frontend Transport; Thu, 30 Jan 2025 10:02:04 -0600
+Received: from [10.249.32.48] ([10.249.32.48])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50UG24jh123028;
+	Thu, 30 Jan 2025 10:02:04 -0600
+Message-ID: <eaebd148-f445-4130-9db8-cc1c9a94b7d1@ti.com>
+Date: Thu, 30 Jan 2025 10:02:04 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][scarthgap/master][PATCH] amsdk-av-files: Remove this
+ recipe
+To: Andrew Davis <afd@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+References: <20250117190402.686979-1-afd@ti.com>
+ <dc794822-0979-4e4e-ae94-cdbbbc75de34@ti.com>
+ <37d24d06-8648-40d8-8e35-eef8b134c235@ti.com>
+ <181F463B2D9CFF40.27573@lists.yoctoproject.org>
+Content-Language: en-US
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <181F463B2D9CFF40.27573@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: base64
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 30 Jan 2025 10:01:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15783
+ <meta-arago@lists.yoctoproject.org>; Thu, 30 Jan 2025 16:02:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15784
 
-From: Udit Kumar <u-kumar1@ti.com>
-
-Add mcrc64 test application recipe.
-This application is documented at[0].
-
-[0]: https://software-dl.ti.com/jacinto7/esd/processor-sdk-linux-j722s/10_01_00_04/exports/docs/linux/Foundational_Components/Kernel/Kernel_Drivers/MCRC64.html
-
-Signed-off-by: Aniket Limaye <a-limaye@ti.com>
-Signed-off-by: Udit Kumar <u-kumar1@ti.com>
----
- .../recipes-core/packagegroups/ti-test.bb     |   1 +
- .../recipes-kernel/mcrc64/files/mcrc64.c      | 114 ++++++++++++++++++
- .../recipes-kernel/mcrc64/mcrc64.bb           |  19 +++
- 3 files changed, 134 insertions(+)
- create mode 100644 meta-arago-test/recipes-kernel/mcrc64/files/mcrc64.c
- create mode 100644 meta-arago-test/recipes-kernel/mcrc64/mcrc64.bb
-
-diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-index 814e3ea6..1399a267 100644
---- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-@@ -55,6 +55,7 @@ TI_TEST_BASE = "\
-     tcpdump \
-     v4l-utils \
-     yavta \
-+    mcrc64 \
- "
- 
- TI_TEST_EXTRAS = " \
-diff --git a/meta-arago-test/recipes-kernel/mcrc64/files/mcrc64.c b/meta-arago-test/recipes-kernel/mcrc64/files/mcrc64.c
-new file mode 100644
-index 00000000..fc7a75d6
---- /dev/null
-+++ b/meta-arago-test/recipes-kernel/mcrc64/files/mcrc64.c
-@@ -0,0 +1,114 @@
-+/*
-+ * Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
-+ *
-+ *
-+ *  Redistribution and use in source and binary forms, with or without
-+ *  modification, are permitted provided that the following conditions
-+ *  are met:
-+ *
-+ *    Redistributions of source code must retain the above copyright
-+ *    notice, this list of conditions and the following disclaimer.
-+ *
-+ *    Redistributions in binary form must reproduce the above copyright
-+ *    notice, this list of conditions and the following disclaimer in the
-+ *    documentation and/or other materials provided with the
-+ *    distribution.
-+ *
-+ *    Neither the name of Texas Instruments Incorporated nor the names of
-+ *    its contributors may be used to endorse or promote products derived
-+ *    from this software without specific prior written permission.
-+ *
-+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-+ *
-+*/
-+
-+#include <unistd.h>
-+#include <stdio.h>
-+#include <stdlib.h>
-+#include <sys/socket.h>
-+#include <linux/if_alg.h>
-+#include <string.h>
-+
-+#define BUFFER_SIZE 4096
-+#define SECTOR 4096
-+
-+int main (int argc, char **argv) {
-+
-+    int desc[2] = { -1, -1 };
-+
-+    struct sockaddr_alg sock = {
-+        .salg_family = AF_ALG,
-+        .salg_type   = "hash",
-+        .salg_name   = "crc64-iso3309"
-+    };
-+
-+    if ((desc[0] = socket(AF_ALG, SOCK_SEQPACKET, 0)) == -1 ) {
-+        perror("socket");
-+        return -1;
-+    }
-+
-+    if( bind(desc[0], (struct sockaddr *) &sock, sizeof(sock)) != 0 ) {
-+        perror("bind");
-+        return -1;
-+    }
-+
-+    if( (desc[1] = accept(desc[0], NULL, 0)) == -1 )
-+        return -1;
-+
-+    if (argc != 2 || strlen(argv[1]) == 0) {
-+        printf("Please specify filename\n");
-+        return -1; // empty string
-+    }
-+
-+    FILE* file;
-+    unsigned char *buffer;
-+    if(posix_memalign((void *)&buffer, SECTOR, BUFFER_SIZE)) {
-+        perror("posix_memalign failed");
-+        return -1;
-+    }
-+
-+    file = fopen(argv[1], "rb");
-+    if(file == NULL)
-+    {
-+        printf("An error occured while opening file: %s\n", argv[1]);
-+        free(buffer);
-+        return -1;
-+    }
-+
-+    while(!feof(file))
-+    {
-+        unsigned int count = fread(buffer, sizeof(char), BUFFER_SIZE, file);
-+        if(ferror(file))
-+        {
-+            printf("An error occurred while accessing the file: %s\n", argv[1]);
-+            fclose(file);
-+            free(buffer);
-+            return -1;
-+        }
-+
-+        if (send(desc[1], buffer, count, MSG_MORE) != count) {
-+            free(buffer);
-+            return -1;
-+        }
-+    }
-+
-+    long int crc64 = 0x0000000000000000;
-+    if(read(desc[1], &crc64, 8) != 8) {
-+        free(buffer);
-+        return -1;
-+    }
-+
-+    printf("0x%llx\n", crc64);
-+    free(buffer);
-+    return 0;
-+}
-diff --git a/meta-arago-test/recipes-kernel/mcrc64/mcrc64.bb b/meta-arago-test/recipes-kernel/mcrc64/mcrc64.bb
-new file mode 100644
-index 00000000..b0352585
---- /dev/null
-+++ b/meta-arago-test/recipes-kernel/mcrc64/mcrc64.bb
-@@ -0,0 +1,19 @@
-+DESCRIPTION = "Application to test MCRC64 driver"
-+
-+LICENSE = "BSD-3-Clause"
-+LIC_FILES_CHKSUM = "file://mcrc64.c;beginline=1;endline=33;md5=070547e79367134fcfdf7fdb5e3ef7e3"
-+
-+SRC_URI = "file://mcrc64.c"
-+
-+S = "${WORKDIR}/sources"
-+UNPACKDIR = "${S}"
-+
-+do_compile() {
-+	${CC} ${CFLAGS} ${LDFLAGS} ${UNPACKDIR}/mcrc64.c -o mcrc64
-+}
-+
-+
-+do_install() {
-+	install -d ${D}${bindir}
-+	install -m 0755 mcrc64 ${D}${bindir}
-+}
--- 
-2.48.1
-
+DQoNCk9uIDEvMjkvMjAyNSAzOjEzIFBNLCBSeWFuIEVhdG1vbiB2aWEgbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZyB3cm90ZToNCj4gDQo+IA0KPiBPbiAxLzI5LzIwMjUgMTo1OCBQTSwgQW5k
+cmV3IERhdmlzIHdyb3RlOg0KPj4gT24gMS8yOS8yNSAxOjEwIFBNLCBSeWFuIEVhdG1vbiB3
+cm90ZToNCj4+Pg0KPj4+IEZvciBzb21lIHJlYXNvbiB0aGlzIHBhdGNoIGJyZWFrcyB0d28g
+b2Ygb3VyIGJ1aWxkcyBvbiBtYXN0ZXIuLi4NCj4+Pg0KPj4+IGFtNjktc2sgLSBydA0KPj4+
+IGo3ODRzNC1ldm0gLSBydA0KPj4+DQo+Pj4gSXQgZ2l2ZXMgdGhlIGVycm9yIGR1cmluZyB0
+aXNkay1kZWZhdWx0LWltYWdlIGRvX3Jvb3RmczoNCj4+Pg0KPj4+IEVSUk9SOiBVbmFibGUg
+dG8gaW5zdGFsbCBwYWNrYWdlcy4gQ29tbWFuZCANCj4+PiAnL3NjcmF0Y2gvamVua2luc19i
+dWlsZHMvYXJhZ28tbWFzdGVyLW5leHQvYnVpbGQvYnVpbGQvYXJhZ28tdG1wLWRlZmF1bHQv
+d29yay9hbTY5X3NrLW9lLWxpbnV4L3Rpc2RrLWRlZmF1bHQtaW1hZ2UvMS4wL3JlY2lwZS1z
+eXNyb290LW5hdGl2ZS91c3IvYmluL29wa2cgLS12b2xhdGlsZS1jYWNoZSAtZiAvc2NyYXRj
+aC9qZW5raW5zX2J1aWxkcy9hcmFnby1tYXN0ZXItbmV4dC9idWlsZC9idWlsZC9hcmFnby10
+bXAtZGVmYXVsdC93b3JrL2FtNjlfc2stb2UtbGludXgvdGlzZGstZGVmYXVsdC1pbWFnZS8x
+LjAvb3BrZy5jb25mIC10IC9zY3JhdGNoL2plbmtpbnNfYnVpbGRzL2FyYWdvLW1hc3Rlci1u
+ZXh0L2J1aWxkL2J1aWxkL2FyYWdvLXRtcC1kZWZhdWx0L3dvcmsvYW02OV9zay1vZS1saW51
+eC90aXNkay1kZWZhdWx0LWltYWdlLzEuMC90ZW1wL2lwa3RlbXAvIC1vIC9zY3JhdGNoL2pl
+bmtpbnNfYnVpbGRzL2FyYWdvLW1hc3Rlci1uZXh0L2J1aWxkL2J1aWxkL2FyYWdvLXRtcC1k
+ZWZhdWx0L3dvcmsvYW02OV9zay1vZS1saW51eC90aXNkay1kZWZhdWx0LWltYWdlLzEuMC9y
+b290ZnMgwqAtLWZvcmNlX3Bvc3RpbnN0YWxswqDCoMKgIC0tYWRkLWlnbm9yZS1yZWNvbW1l
+bmRzIGJ1c3lib3gtc3lzbG9nIC0tYWRkLWlnbm9yZS1yZWNvbW1lbmRzIGNvcmV1dGlscyAt
+LWFkZC1pZ25vcmUtcmVjb21tZW5kcyBjb3JldXRpbHMtZGV2IC0tYWRkLWlnbm9yZS1yZWNv
+bW1lbmRzIGdkYnNlcnZlci1jNngtZGV2IC0tYWRkLWlnbm9yZS1yZWNvbW1lbmRzIGxpYnVs
+bS1kZXYgaW5zdGFsbCBidWlsZC1lc3NlbnRpYWwgZG9ja2VyIGR0YyBnaXQgbGludXgtbGli
+Yy1oZWFkZXJzLWRldiBvcGtnIHBhY2thZ2Vncm91cC1hcmFnby1iYXNlIHBhY2thZ2Vncm91
+cC1hcmFnby1jb25zb2xlIHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1hZGRvbnMgcGFja2Fn
+ZWdyb3VwLWFyYWdvLXRpc2RrLWFkZG9ucy1leHRyYSBwYWNrYWdlZ3JvdXAtYXJhZ28tdGlz
+ZGstY29ubmVjdGl2aXR5IHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1jcnlwdG8gcGFja2Fn
+ZWdyb3VwLWFyYWdvLXRpc2RrLWdyYXBoaWNzIHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1n
+dGsgcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWhtaSBwYWNrYWdlZ3JvdXAtYXJhZ28tdGlz
+ZGstbXVsdGltZWRpYSBwYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGstcXRlIHBhY2thZ2Vncm91
+cC1hcmFnby10aXNkay1zeXNyZXBvIHBhY2thZ2Vncm91cC1jb3JlLWJvb3QgcGFja2FnZWdy
+b3VwLWNvcmUtdG9vbHMtZGVidWcgcGRtLWFub21hbHktZGV0ZWN0aW9uIHBzcGxhc2ggcnVu
+LXBvc3RpbnN0cyB0aS10ZXN0IHRpLXRlc3QtZXh0cmFzJyByZXR1cm5lZCAtMTE6DQo+Pj4N
+Cj4+PiBERUJVRzogUHl0aG9uIGZ1bmN0aW9uIGRvX3Jvb3RmcyBmaW5pc2hlZA0KPj4+DQo+
+Pj4NCj4+PiBXaGljaCBpcyBhbm5veWluZyBiZWNhdXNlIGl0IGRvZXNuJ3Qgc2F5IHdoeSBp
+dCBmYWlsZWQsIGp1c3QgdGhhdCBpdCANCj4+PiBmYWlsZWQuLi4NCj4+Pg0KPj4+IEkgYmlz
+ZWN0ZWQgaXQgZG93biB0byB0aGlzIHBhdGNoLg0KPj4+DQo+Pj4gQWxsIG90aGVyIHBsYXRm
+b3JtL3ZhcmlhbnQgY29tYmluYXRpb25zIHdvcmssIGFuZCBzY2FydGhnYXAgd29ya3MuLi4N
+Cj4+Pg0KPj4NCj4+IFRoYXQgc2VlbXMgcmVhbGx5IG9kZCB0aGVuLCBtYXliZSBzb21lIHN0
+YWxlIHNzdGF0ZSBmb3IgdGhlIG11bHRpbWVkaWENCj4+IHBhY2thZ2Vncm91cCB0aG9zZSBz
+cGVjaWZpYyBwbGF0Zm9ybS92YXJpYW50IGNvbWJvcyB0aGF0IHN0aWxsIGhhcw0KPj4gYW1z
+ZGstYXYtZmlsZXMgYXMgYSBkZXA/DQo+IA0KPiBJIGRpZCBhIGJ1aWxkIHdpdGggbm8gc3N0
+YXRlIGFuZCBzdGlsbCBnb3QgdGhlIGlzc3VlLg0KDQpBbmQgdGhleSBib3RoIHN0YXJ0ZWQg
+cGFzc2luZyBsYXN0IG5pZ2h0Li4uIEkgd2lsbCBuZXZlciB1bmRlcnN0YW5kIA0KdGhlc2Ug
+aXNzdWVzIHNvbWV0aW1lcy4uLg0KDQoNCj4gDQo+PiBBbmRyZXcNCj4+DQo+Pj4NCj4+Pg0K
+Pj4+IE9uIDEvMTcvMjAyNSAxOjA0IFBNLCBBbmRyZXcgRGF2aXMgd3JvdGU6DQo+Pj4+IFRo
+ZXNlIHZpZGVvIGZpbGVzIHdlcmUgdXNlZCBpbiBhIGNvdXBsZSBkZW1vcyBmb3IgbXVsdGlt
+ZWRpYSBkZWNvZGVycy4NCj4+Pj4gVGhleSBhZGQgKzUwTUIgYXQgbWluaW11bSB0byBpbWFn
+ZXMgdGhhdCBpbmNsdWRlIHRoZW0gYW5kIH4yMDBNQiBvZg0KPj4+PiBnaXQgZG93bmxvYWQg
+dG8gYnVpbGQuIFRoZXkgYXJlIHVudXNlZCBub3cgc28gcmVtb3ZlIHRoaXMgcmVjaXBlLg0K
+Pj4+Pg0KPj4+PiBTaWduZWQtb2ZmLWJ5OiBBbmRyZXcgRGF2aXMgPGFmZEB0aS5jb20+DQo+
+Pj4+IC0tLQ0KPj4+PiDCoCAuLi4vcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLW11bHRpbWVk
+aWEuYmLCoMKgwqAgfMKgIDEgLQ0KPj4+PiDCoCAuLi4vYW1zZGstYXYtZmlsZXMvYW1zZGst
+YXYtZmlsZXNfMS40LmJiwqDCoMKgwqDCoCB8IDQyIA0KPj4+PiAtLS0tLS0tLS0tLS0tLS0t
+LS0tDQo+Pj4+IMKgIDIgZmlsZXMgY2hhbmdlZCwgNDMgZGVsZXRpb25zKC0pDQo+Pj4+IMKg
+IGRlbGV0ZSBtb2RlIDEwMDY0NCANCj4+Pj4gbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1t
+dWx0aW1lZGlhL2Ftc2RrLWF2LWZpbGVzL2Ftc2RrLWF2LWZpbGVzXzEuNC5iYg0KPj4+Pg0K
+Pj4+PiBkaWZmIC0tZ2l0IA0KPj4+PiBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29y
+ZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby10aXNkay1tdWx0aW1lZGlhLmJi
+IGIvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2Fn
+ZWdyb3VwLWFyYWdvLXRpc2RrLW11bHRpbWVkaWEuYmINCj4+Pj4gaW5kZXggYzZlMzlhYTEu
+LjZhMWIyNWI2IDEwMDY0NA0KPj4+PiAtLS0gDQo+Pj4+IGEvbWV0YS1hcmFnby1kaXN0cm8v
+cmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLW11
+bHRpbWVkaWEuYmINCj4+Pj4gKysrIA0KPj4+PiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lw
+ZXMtY29yZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby10aXNkay1tdWx0aW1l
+ZGlhLmJiDQo+Pj4+IEBAIC03LDcgKzcsNiBAQCBQQUNLQUdFX0FSQ0ggPSAiJHtNQUNISU5F
+X0FSQ0h9Ig0KPj4+PiDCoCBpbmhlcml0IHBhY2thZ2Vncm91cA0KPj4+PiDCoCBNVUxUSU1F
+RElBID0gIiBcDQo+Pj4+IC3CoMKgwqAgYW1zZGstYXYtZmlsZXMgXA0KPj4+PiDCoMKgwqDC
+oMKgIGZmbXBlZyBcDQo+Pj4+IMKgwqDCoMKgwqAgbGliY2FtZXJhIFwNCj4+Pj4gwqDCoMKg
+wqDCoCBsaWJjYW1lcmEtZ3N0IFwNCj4+Pj4gZGlmZiAtLWdpdCANCj4+Pj4gYS9tZXRhLWFy
+YWdvLWV4dHJhcy9yZWNpcGVzLW11bHRpbWVkaWEvYW1zZGstYXYtZmlsZXMvYW1zZGstYXYt
+ZmlsZXNfMS40LmJiIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1tdWx0aW1lZGlhL2Ft
+c2RrLWF2LWZpbGVzL2Ftc2RrLWF2LWZpbGVzXzEuNC5iYg0KPj4+PiBkZWxldGVkIGZpbGUg
+bW9kZSAxMDA2NDQNCj4+Pj4gaW5kZXggNzI2NzY2OGIuLjAwMDAwMDAwDQo+Pj4+IC0tLSAN
+Cj4+Pj4gYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLW11bHRpbWVkaWEvYW1zZGstYXYt
+ZmlsZXMvYW1zZGstYXYtZmlsZXNfMS40LmJiDQo+Pj4+ICsrKyAvZGV2L251bGwNCj4+Pj4g
+QEAgLTEsNDIgKzAsMCBAQA0KPj4+PiAtREVTQ1JJUFRJT04gPSAiQU1TREsgbXVsdGltZWRp
+YSBzdXBwb3J0IGZpbGVzIg0KPj4+PiAtSE9NRVBBR0UgPSAiaHR0cHM6Ly9naXQudGkuY29t
+L3Byb2Nlc3Nvci1zZGsvYW1zZGstYXYtZmlsZXMvIg0KPj4+PiAtTElDRU5TRSA9ICJDQy1C
+WS1OQy1ORC0zLjAgJiBDQy1CWS0zLjAiDQo+Pj4+IC1TRUNUSU9OID0gIm11bHRpbWVkaWEi
+DQo+Pj4+IC1MSUNfRklMRVNfQ0hLU1VNID0gDQo+Pj4+ICJmaWxlOi8vTXVsdGltZWRpYV9E
+YXRhX0ZpbGVzX01hbmlmZXN0LmRvYzttZDU9ZmUxNTRkMjkxYzY5YzUxNDk1YTViYjRhNDU2
+NDAzYjUiDQo+Pj4+IC1QUiA9ICJyMiINCj4+Pj4gLQ0KPj4+PiAtUEFDS0FHRV9BUkNIID0g
+IiR7TUFDSElORV9BUkNIfSINCj4+Pj4gLQ0KPj4+PiAtVklERU9fRklMRVMgPSAidmlkZW9f
+NDgwcCAiDQo+Pj4+IC0NCj4+Pj4gLVZJREVPX0ZJTEVTOmFwcGVuZDp0aTMzeMKgwqDCoMKg
+wqDCoCA9ICJ2aWRlb193dmdhIFwNCj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB2aWRlb193cXZnYSIN
+Cj4+Pj4gLVZJREVPX0ZJTEVTOmFwcGVuZDp0aTQzeMKgwqDCoMKgwqDCoCA9ICJ2aWRlb193
+cXZnYSINCj4+Pj4gLVZJREVPX0ZJTEVTOmFwcGVuZDpkcmE3eHjCoMKgwqDCoMKgID0gInZp
+ZGVvX3d2Z2EgXA0KPj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHZpZGVvXzEwODBwIFwNCj4+Pj4gLcKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCB2aWRlb183MjBwIFwNCj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB2aWRlb195dXYi
+DQo+Pj4+IC1WSURFT19GSUxFUzphcHBlbmQ6azPCoMKgwqDCoMKgwqDCoMKgwqAgPSAidmlk
+ZW9fNzIwcCINCj4+Pj4gLQ0KPj4+PiAtQlJBTkNIID0gIm1hc3RlciINCj4+Pj4gLQ0KPj4+
+PiAtU1JDX1VSSSA9IA0KPj4+PiAiZ2l0Oi8vZ2l0LnRpLmNvbS9naXQvcHJvY2Vzc29yLXNk
+ay9hbXNkay1hdi1maWxlcy5naXQ7cHJvdG9jb2w9aHR0cHM7YnJhbmNoPSR7QlJBTkNIfSIN
+Cj4+Pj4gLVNSQ1JFViA9ICIxYjczMDA5MDkwMjY1MzI4ZWJhZjFiNmM4ODBkZmVjY2FlNWE4
+ZjE5Ig0KPj4+PiAtDQo+Pj4+IC1TID0gIiR7V09SS0RJUn0vZ2l0Ig0KPj4+PiAtDQo+Pj4+
+IC1kb19jb21waWxlKCkgew0KPj4+PiAtwqDCoMKgIDoNCj4+Pj4gLX0NCj4+Pj4gLQ0KPj4+
+PiAtZG9faW5zdGFsbCgpIHsNCj4+Pj4gLcKgwqDCoCBpbnN0YWxsIC1kICR7RH0ke2RhdGFk
+aXJ9L3RpIFwNCj4+Pj4gLcKgwqDCoMKgwqDCoCAke0R9JHtkYXRhZGlyfS90aS9hdWRpbyBc
+DQo+Pj4+IC3CoMKgwqDCoMKgwqAgJHtEfSR7ZGF0YWRpcn0vdGkvdmlkZW8NCj4+Pj4gLcKg
+wqDCoCBpbnN0YWxsIC1tIDA2NDQgJHtTfS9hdWRpby8qICR7RH0ke2RhdGFkaXJ9L3RpL2F1
+ZGlvLw0KPj4+PiAtwqDCoMKgIGZvciBmaWxlIGluICR7VklERU9fRklMRVN9OyBkbw0KPj4+
+PiAtwqDCoMKgIGluc3RhbGwgLW0gMDY0NCAke1N9LyR7ZmlsZX0vKiAke0R9JHtkYXRhZGly
+fS90aS92aWRlby8NCj4+Pj4gLcKgwqDCoCBkb25lDQo+Pj4+IC19DQo+Pj4+IC0NCj4+Pj4g
+LUZJTEVTOiR7UE59ICs9ICIke2RhdGFkaXJ9L3RpLyoiDQo+Pj4NCj4gDQoNCi0tIA0KUnlh
+biBFYXRtb24gICAgICAgICAgICAgICAgcmVhdG1vbkB0aS5jb20NCi0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpUZXhhcyBJbnN0cnVtZW50cywgSW5jLiAg
+LSAgTENQRCAgLSAgTUdUUw0K
 
