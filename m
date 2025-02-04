@@ -2,47 +2,47 @@ Return-Path: <a-limaye@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C8F6C0218F
-	for <webhook@archiver.kernel.org>; Tue,  4 Feb 2025 07:19:26 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web10.110958.1738653561936882838
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D3B0BC02194
+	for <webhook@archiver.kernel.org>; Tue,  4 Feb 2025 13:24:57 +0000 (UTC)
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+ by mx.groups.io with SMTP id smtpd.web10.116203.1738675491097049061
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 03 Feb 2025 23:19:22 -0800
+ Tue, 04 Feb 2025 05:24:51 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=ZddWrqAT;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: a-limaye@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5147JLvq3174201
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=Po5qDVRq;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: a-limaye@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 514DOo9c3155797
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
-	for <meta-arago@lists.yoctoproject.org>; Tue, 4 Feb 2025 01:19:21 -0600
+	for <meta-arago@lists.yoctoproject.org>; Tue, 4 Feb 2025 07:24:50 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738653561;
-	bh=9CgEyp7GwWnLf7JYyW00bC7GViTKWBjivWaFqy+h+is=;
+	s=ti-com-17Q1; t=1738675490;
+	bh=fZnSJ0HnFJmO66nSFF/1rl3IWiWxCCb9ztxM9c1kji0=;
 	h=From:To:CC:Subject:Date;
-	b=ZddWrqATt1jGa/fFA/2/2Ddy8eOEDFcIgYMymRB1FUvhNYuweSjCJJcs3CG9aiHJe
-	 bFRUKZS8fmtwSYUNUEUzGRB9FRAYrWUTn5V8t940aoJq3AzT0220TNLreMM0al0W00
-	 ofzqHIZ4t2LHNWdhLpzdhk4mYEvi4lmQAV1wl0J0=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5147JL50092870
+	b=Po5qDVRq2sSAy/faslAE2Qv8mQyxsPYodHFiu5ZmPmqSWMCp8XWSEtiXRcQ5T+uCz
+	 hiCtsBjdZELAwwWJ2n7jSyN4HLKIYL2EbBszl6aZvjFxCXQh1WlWU+6rwLi7pEqmyK
+	 vg8YnXMRZt/OR77KvY7G/kN1lIehE/Sk3wRfhyhE=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 514DOoGB012361
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Tue, 4 Feb 2025 01:19:21 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Tue, 4 Feb 2025 07:24:50 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
- Feb 2025 01:19:20 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2025 07:24:49 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 4 Feb 2025 01:19:20 -0600
+ Frontend Transport; Tue, 4 Feb 2025 07:24:49 -0600
 Received: from psdkl-workstation0.dhcp.ti.com (psdkl-workstation0.dhcp.ti.com [172.24.227.91])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5147HNKC017079;
-	Tue, 4 Feb 2025 01:17:24 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 514DOloX018067;
+	Tue, 4 Feb 2025 07:24:48 -0600
 From: Aniket Limaye <a-limaye@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
 CC: <reatmon@ti.com>, <u-kumar1@ti.com>, Aniket Limaye <a-limaye@ti.com>
-Subject: [meta-arago][master][PATCH v3] ti-test: Add mcrc64 test application
-Date: Tue, 4 Feb 2025 12:46:30 +0530
-Message-ID: <20250204071637.4141957-1-a-limaye@ti.com>
+Subject: [meta-arago][scarthgap][PATCH v3] ti-test: Add mcrc64 test application
+Date: Tue, 4 Feb 2025 18:54:14 +0530
+Message-ID: <20250204132444.299276-1-a-limaye@ti.com>
 X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -51,8 +51,8 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 04 Feb 2025 07:19:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15799
+ <meta-arago@lists.yoctoproject.org>; Tue, 04 Feb 2025 13:24:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15800
 
 From: Udit Kumar <u-kumar1@ti.com>
 
@@ -66,7 +66,7 @@ Signed-off-by: Aniket Limaye <a-limaye@ti.com>
 ---
 v3:
 * Ryan:
-- Maintain aplhabetical ordering of ti-test packages
+- Maintain alphabetical ordering of ti-test packages
 
 v2:
 * Denys:
@@ -74,16 +74,16 @@ v2:
 ---
  .../recipes-core/packagegroups/ti-test.bb     |   1 +
  .../recipes-kernel/mcrc64/files/mcrc64.c      | 114 ++++++++++++++++++
- .../recipes-kernel/mcrc64/mcrc64.bb           |  18 +++
- 3 files changed, 133 insertions(+)
+ .../recipes-kernel/mcrc64/mcrc64.bb           |  17 +++
+ 3 files changed, 132 insertions(+)
  create mode 100644 meta-arago-test/recipes-kernel/mcrc64/files/mcrc64.c
  create mode 100644 meta-arago-test/recipes-kernel/mcrc64/mcrc64.bb
 
 diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-index 814e3ea6..857e06fb 100644
+index 8099198d..d6d68d51 100644
 --- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
 +++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-@@ -31,6 +31,7 @@ TI_TEST_BASE = "\
+@@ -33,6 +33,7 @@ TI_TEST_BASE = "\
      linuxptp \
      lmbench \
      lsof \
@@ -213,21 +213,20 @@ index 00000000..fc7a75d6
 +}
 diff --git a/meta-arago-test/recipes-kernel/mcrc64/mcrc64.bb b/meta-arago-test/recipes-kernel/mcrc64/mcrc64.bb
 new file mode 100644
-index 00000000..a707430d
+index 00000000..c0e60d80
 --- /dev/null
 +++ b/meta-arago-test/recipes-kernel/mcrc64/mcrc64.bb
-@@ -0,0 +1,18 @@
+@@ -0,0 +1,17 @@
 +SUMMARY = "Application to test MCRC64 driver"
 +LICENSE = "BSD-3-Clause"
 +LIC_FILES_CHKSUM = "file://mcrc64.c;beginline=1;endline=33;md5=070547e79367134fcfdf7fdb5e3ef7e3"
 +
 +SRC_URI = "file://mcrc64.c"
 +
-+S = "${WORKDIR}/sources"
-+UNPACKDIR = "${S}"
++S = "${WORKDIR}"
 +
 +do_compile() {
-+	${CC} ${CFLAGS} ${LDFLAGS} ${UNPACKDIR}/mcrc64.c -o mcrc64
++	${CC} ${CFLAGS} ${LDFLAGS} ${WORKDIR}/mcrc64.c -o mcrc64
 +}
 +
 +
