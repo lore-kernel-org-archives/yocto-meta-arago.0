@@ -1,131 +1,93 @@
-Return-Path: <c-shilwant@ti.com>
+Return-Path: <devarsht@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 497F1C02194
-	for <webhook@archiver.kernel.org>; Thu,  6 Feb 2025 19:32:07 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web11.51166.1738870321953695365
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E462C0219B
+	for <webhook@archiver.kernel.org>; Tue, 11 Feb 2025 13:26:40 +0000 (UTC)
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+ by mx.groups.io with SMTP id smtpd.web10.12083.1739280392001695117
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 06 Feb 2025 11:32:02 -0800
+ Tue, 11 Feb 2025 05:26:32 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=s7eskICr;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: c-shilwant@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=RzRAhlTp;
+ spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: devarsht@ti.com)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 516JW0RD3610883
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 6 Feb 2025 13:32:00 -0600
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51BDQVUY3608164
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+	for <meta-arago@lists.yoctoproject.org>; Tue, 11 Feb 2025 07:26:31 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738870320;
-	bh=m1vCplZxJq2kRuLH4kDl/mXR41N+upxI9SpPhCWMI0M=;
-	h=Date:Subject:To:References:CC:From:In-Reply-To;
-	b=s7eskICrtNRYtcI1rjjV0QZb0rUzLrG5WVvM3JKm8tDIg1S5JhWZjTiis2AKr4reb
-	 i3MC6cHkuEP7v1aVQvdCCdw/cM2BDzzDg0a0MZl/D0hxZ1XODipRJMkcnoUNmkRMXD
-	 E6vtaEFHU68TEu4d4f7x4mu/2i529rMsKo0mMktQ=
+	s=ti-com-17Q1; t=1739280391;
+	bh=vI8rNdPro2NYOka6uMZmDT+YOQaOkZvYVrQ5MKAsb5Y=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=RzRAhlTpdGSaY+tHyCeMz9buCRPF5hWizv1PW1pgr1rRcQFdPFwYNylzb9YzYwQ5Q
+	 kbs0/ccX9NzYWZql8gGPsD4IDNPv/UYpWn77JOWdf278PGQINQ83qzaBf815Fj00oQ
+	 HMAAB+f/1UbnZDLPw8VnK86uwB8bLZE0kejm5dak=
 Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 516JW0pU001680
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 6 Feb 2025 13:32:00 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51BDQUlE007664
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Tue, 11 Feb 2025 07:26:30 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
  (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 6
- Feb 2025 13:32:00 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
+ Feb 2025 07:26:30 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 6 Feb 2025 13:32:00 -0600
-Received: from [172.24.227.238] (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 516JVwGV007413;
-	Thu, 6 Feb 2025 13:31:59 -0600
-Message-ID: <a90482b5-a0f0-4bc1-9bf5-9c5f07c8cb7a@ti.com>
-Date: Fri, 7 Feb 2025 01:01:57 +0530
+ Frontend Transport; Tue, 11 Feb 2025 07:26:30 -0600
+Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193] (may be forged))
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51BDQRpq034768;
+	Tue, 11 Feb 2025 07:26:28 -0600
+Message-ID: <ab9c781b-4d61-d664-798d-27a910856396@ti.com>
+Date: Tue, 11 Feb 2025 18:56:27 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] [meta-arago][scarthgap/master][PATCH 1/5]
- meta-arago-extras: armnn: Remove default FILESEXTRAPATHS
-To: <meta-arago@lists.yoctoproject.org>
-References: <20250206190700.1190499-1-afd@ti.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [meta-arago][master/scarthgap][PATCH] meta-arago-extras:
+ v4l-utils: Add recipe for v1.28.1
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+CC: <reatmon@ti.com>, <vaishnav.a@ti.com>, <u-kumar1@ti.com>,
+        <r-donadkar@ti.com>, <a-limaye@ti.com>
+References: <20250211075813.970579-1-y-abhilashchandra@ti.com>
 Content-Language: en-US
-CC: <afd@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
-        Ryan Eatmon
-	<reatmon@ti.com>
-From: Chirag Shilwant <c-shilwant@ti.com>
-In-Reply-To: <20250206190700.1190499-1-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <20250211075813.970579-1-y-abhilashchandra@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by fllvem-ot03.ext.ti.com id 516JW0RD3610883
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 06 Feb 2025 19:32:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15835
+ <meta-arago@lists.yoctoproject.org>; Tue, 11 Feb 2025 13:26:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15836
 
-On 07/02/25 00:36, Andrew Davis via lists.yoctoproject.org wrote:
-> This is being set to the default value, remove this. Signed-off-by:=20
-> Andrew Davis <afd@=E2=80=8Ati.=E2=80=8Acom> ---=20
-> meta-arago-extras/recipes-devtools/armnn/armnn_24.=E2=80=8A11.=E2=80=8A=
-bb | 2 -- 1=20
-> file changed, 2 deletions(-) diff --git=20
-> a/meta-arago-extras/recipes-devtools/armnn/armnn_24.=E2=80=8A11.=E2=80=8A=
-bb
-> ZjQcmQRYFpfptBannerStart
-> This message was sent from outside of Texas Instruments.
-> Do not click links or open attachments unless you recognize the source=20
-> of this email and know the content is safe.
-> Report=C2=A0Suspicious
-> <https://us-phishalarm-ewt.proofpoint.com/EWT/v1/G3vK!uBdqXRfP1m1bKsZFH=
-NNj3FzquS10oFN33DBLJpsHaAydWL3eq_jWrBjaCvlRkuO7-pDU6-Le3IOCQHtf$>=20
->
-> ZjQcmQRYFpfptBannerEnd
-> This is being set to the default value, remove this.
->
-> Signed-off-by: Andrew Davis <afd@ti.com>
+Hi Abhilash,
 
-For the entire series,
-
-
-Acked-by: Chirag Shilwant <c-shilwant@ti.com>
-
+Thanks for the patch.
+On 11/02/25 13:28, Yemike Abhilash Chandra wrote:
+> An older recipe of v4l-utils (v1.26.1) is present in the meta-oe layer
+> for scarthgap.
+> 
+> TI's 6.12 based kernel has backported multistream routing APIs from
+> upstream kernel, which requires v4l-utils to be the latest released
+> version (v1.28.1).
+> 
+> Thus we override the recipe in this layer to the latest release of
+> v4l-utils.
+> 
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
 > ---
->   meta-arago-extras/recipes-devtools/armnn/armnn_24.11.bb | 2 --
->   1 file changed, 2 deletions(-)
->
-> diff --git a/meta-arago-extras/recipes-devtools/armnn/armnn_24.11.bb b/=
-meta-arago-extras/recipes-devtools/armnn/armnn_24.11.bb
-> index e965382a..d13057c0 100644
-> --- a/meta-arago-extras/recipes-devtools/armnn/armnn_24.11.bb
-> +++ b/meta-arago-extras/recipes-devtools/armnn/armnn_24.11.bb
-> @@ -3,8 +3,6 @@ DESCRIPTION =3D "Linux software and tools to enable mac=
-hine learning workloads on
->   LICENSE =3D "MIT"
->   LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D3e14a924c16f7d828b8335a59d=
-a64074"
->  =20
-> -FILESEXTRAPATHS:prepend :=3D "${THISDIR}/${PN}:"
-> -
->   BRANCH =3D "branches/armnn_24_11"
->   SRC_URI =3D "git://github.com/ARM-software/armnn.git;branch=3D${BRANC=
-H};protocol=3Dhttps"
->   SRC_URI +=3D "file://0001-Fix-type-casting-for-32bit-builds.patch"
-> --=20
-> 2.39.2
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#15830):https://urldefense.com/v3/__https://lists.yo=
-ctoproject.org/g/meta-arago/message/15830__;!!G3vK!WYWQ2ul8JjmprGwRM2OlBV=
-8CCuQzz-VTGJ5dCflugGYUi8Hm6ZIqK55S9GmIomfi9WEXEZ11MPxHHsuf8wOqyTEhPPkG$
-> Mute This Topic:https://urldefense.com/v3/__https://lists.yoctoproject.=
-org/mt/111038540/7030289__;!!G3vK!WYWQ2ul8JjmprGwRM2OlBV8CCuQzz-VTGJ5dCfl=
-ugGYUi8Hm6ZIqK55S9GmIomfi9WEXEZ11MPxHHsuf8wOqyddlLUiz$
-> Group Owner: meta-arago+owner@lists.yoctoproject.org
-> Unsubscribe:https://urldefense.com/v3/__https://lists.yoctoproject.org/=
-g/meta-arago/unsub__;!!G3vK!WYWQ2ul8JjmprGwRM2OlBV8CCuQzz-VTGJ5dCflugGYUi=
-8Hm6ZIqK55S9GmIomfi9WEXEZ11MPxHHsuf8wOqyQy3Fods$  [c-shilwant@ti.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+> Single camera setup logs: http://serenity.dal.design.ti.com:7777/ohidowecig.yaml
+> Multi camera setup logs: http://serenity.dal.design.ti.com:7777/oqowimumeh.yaml
+
+The above links are not public. You may use gist.github.com for hosting test
+logs and maybe mention those in commit message itself as done here [1]. But
+otherwise, the patch looks good to me, feel free to add :
+
+Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+
+[1]: https://lore.kernel.org/all/20240607132806.3550564-1-devarsht@ti.com/
+
+Regards
+Devarsh
 
