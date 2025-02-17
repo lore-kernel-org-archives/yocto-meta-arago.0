@@ -1,136 +1,138 @@
-Return-Path: <rs@ti.com>
+Return-Path: <y-abhilashchandra@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E0D5C021A4
-	for <webhook@archiver.kernel.org>; Fri, 14 Feb 2025 22:25:12 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.33657.1739571909002113162
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E37AEC021A0
+	for <webhook@archiver.kernel.org>; Mon, 17 Feb 2025 05:48:47 +0000 (UTC)
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web11.45080.1739771322283108244
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 14 Feb 2025 14:25:09 -0800
+ Sun, 16 Feb 2025 21:48:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=SYpi6KNG;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: rs@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51EMP5AQ105129
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 14 Feb 2025 16:25:05 -0600
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=udExgecy;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: y-abhilashchandra@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51H5mdpq594268
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Sun, 16 Feb 2025 23:48:39 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1739571905;
-	bh=8ZyxA/YEsUy9jqWme5fOmVVSWAKBdvymmIXJJvu9beU=;
-	h=From:To:CC:Subject:Date;
-	b=SYpi6KNGaCyMNcHPNENRbN9b5WkfhfM3vkdT19cR5x8yIUVQBvTEsps+XD9NO1NUW
-	 RY6E7i5Qar7143iakGZ2EuHNLgEOZ9DFmFO29P1PzpgkIDzNY2JXPH+AA8wPzmwbHW
-	 ifek1zNdoxiRBfVBYR9ecbRlAttuz/kQt6Qh/8Lk=
+	s=ti-com-17Q1; t=1739771319;
+	bh=n2K3nhFDRVva54E0R4eYfStkkwK1OOsoPy8lzhWuGP4=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=udExgecyEF2h22NVa7RnMW/0TVBZxM/nh6ZJVr3YKbJ87kZ6dga32AKehQ0alSRLr
+	 xqc2j5pPTmqMWvFq6XNkhVRf7a1XEPsLT9qJVEW3GZuV/eVRSqhQA8OnsNyAZB2LSs
+	 lkgV7lXejjQSfuVYH6itgePZSN92bSQjJ2LGEN64=
 Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51EMP5PF000968
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 14 Feb 2025 16:25:05 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE105.ent.ti.com
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51H5mdP2054126;
+	Sun, 16 Feb 2025 23:48:39 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
  (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 14
- Feb 2025 16:25:05 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 16
+ Feb 2025 23:48:38 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 14 Feb 2025 16:25:05 -0600
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51EMP5RY126866;
-	Fri, 14 Feb 2025 16:25:05 -0600
-From: <rs@ti.com>
-To: <denis@denix.org>, <reatmon@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][oe-layersetup][PATCH]  configs/arago-scarthgap-wip-config: Remove meta-arago-demos
-Date: Fri, 14 Feb 2025 16:24:58 -0600
-Message-ID: <20250214222458.420631-1-rs@ti.com>
-X-Mailer: git-send-email 2.48.1
+ Frontend Transport; Sun, 16 Feb 2025 23:48:38 -0600
+Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51H5mZgT071065;
+	Sun, 16 Feb 2025 23:48:36 -0600
+Message-ID: <fc8cc93c-32bc-4bf5-ab5e-92010d32f44a@ti.com>
+Date: Mon, 17 Feb 2025 11:18:35 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][master/scarthgap][PATCH] meta-arago-extras:
+ v4l-utils: Add recipe for v1.28.1
+To: Denys Dmytriyenko <denis@denix.org>
+CC: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>, <devarsht@ti.com>,
+        <vaishnav.a@ti.com>, <u-kumar1@ti.com>, <r-donadkar@ti.com>,
+        <a-limaye@ti.com>
+References: <20250211075813.970579-1-y-abhilashchandra@ti.com>
+ <20250211205111.GU21608@denix.org>
+ <f5658e67-238d-4532-ac69-d99755808300@ti.com>
+Content-Language: en-US
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+In-Reply-To: <f5658e67-238d-4532-ac69-d99755808300@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by lelvem-ot02.ext.ti.com id 51H5mdpq594268
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 14 Feb 2025 22:25:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15851
+ <meta-arago@lists.yoctoproject.org>; Mon, 17 Feb 2025 05:48:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15852
 
-From: Randolph Sapp <rs@ti.com>
+Hello everyone,
 
-Remove the meta-arago-demos layer to help break the dependency on
-meta-qt5. This comes after a patch in meta-arago-distro that removed all
-of the packages from meta-arago-demos. These were the last of the
-"demos" in meta-arago and they were only being built for legacy devices.
-Demos should primarily be in layers above arago unless they are used for
-functionality testing.
+I have provided my response regarding the concerns raised.
+Since I haven=E2=80=99t heard back, I wanted to check if you had
+any further thoughts.
 
-These modifications are required as part of the effort to make arago
-less dependent on meta-qt5. Moving forward TI builds of arago will
-enable and test Qt6 by default, but unlike before this will not be done
-in a way that creates an explicit dependency. This should allow
-customers and layers that consume or extend arago to toggle Qt support
-more easily.
+Please let me know how you'd like to proceed.
 
-The changes to scarthgap-next and scarthgap will come as the removal
-patch in meta-arago makes it way through the CICD process.
+Thanks and Regards,
+Yemike Abhilash Chandra.
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
- conf/templates/arago-scarthgap-wip-config/bblayers.conf.sample | 1 -
- configs/arago-scarthgap-wip-config.txt                         | 2 +-
- kas/arago-scarthgap-wip-config.yml                             | 1 -
- src/configs/arago-scarthgap-wip-config.xml                     | 1 -
- 4 files changed, 1 insertion(+), 4 deletions(-)
-
-diff --git a/conf/templates/arago-scarthgap-wip-config/bblayers.conf.sample b/conf/templates/arago-scarthgap-wip-config/bblayers.conf.sample
-index adbccbd..f70b6af 100644
---- a/conf/templates/arago-scarthgap-wip-config/bblayers.conf.sample
-+++ b/conf/templates/arago-scarthgap-wip-config/bblayers.conf.sample
-@@ -11,7 +11,6 @@ BBFILES ?= ""
- BBLAYERS ?= " \
-     ##OEROOT##/../meta-arago/meta-arago-distro
-     ##OEROOT##/../meta-arago/meta-arago-extras
--    ##OEROOT##/../meta-arago/meta-arago-demos
-     ##OEROOT##/../meta-arago/meta-arago-test
-     ##OEROOT##/../meta-qt5
-     ##OEROOT##/../meta-virtualization
-diff --git a/configs/arago-scarthgap-wip-config.txt b/configs/arago-scarthgap-wip-config.txt
-index 4cc4556..dfa65b0 100644
---- a/configs/arago-scarthgap-wip-config.txt
-+++ b/configs/arago-scarthgap-wip-config.txt
-@@ -2,7 +2,7 @@
- # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
- 
- bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
--meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap-wip,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-+meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap-wip,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
- #meta-browser,https://github.com/OSSystems/meta-browser.git,master,68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4,layers=meta-chromium
- #meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
- meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,HEAD,layers=
-diff --git a/kas/arago-scarthgap-wip-config.yml b/kas/arago-scarthgap-wip-config.yml
-index 4614b81..7f4fc3f 100644
---- a/kas/arago-scarthgap-wip-config.yml
-+++ b/kas/arago-scarthgap-wip-config.yml
-@@ -13,7 +13,6 @@ repos:
-     layers:
-       meta-arago-distro:
-       meta-arago-extras:
--      meta-arago-demos:
-       meta-arago-test:
- 
-   meta-qt5:
-diff --git a/src/configs/arago-scarthgap-wip-config.xml b/src/configs/arago-scarthgap-wip-config.xml
-index d330ef2..031ed52 100644
---- a/src/configs/arago-scarthgap-wip-config.xml
-+++ b/src/configs/arago-scarthgap-wip-config.xml
-@@ -13,7 +13,6 @@
-             <layers>
-                 <layer>meta-arago-distro</layer>
-                 <layer>meta-arago-extras</layer>
--                <layer>meta-arago-demos</layer>
-                 <layer>meta-arago-test</layer>
-             </layers>
-         </repo>
--- 
-2.48.1
-
+On 12/02/25 13:46, Yemike Abhilash Chandra wrote:
+>=20
+>=20
+> On 12/02/25 02:21, Denys Dmytriyenko wrote:
+>> On Tue, Feb 11, 2025 at 01:28:13PM +0530, Yemike Abhilash Chandra via=20
+>> lists.yoctoproject.org wrote:
+>>> An older recipe of v4l-utils (v1.26.1) is present in the meta-oe laye=
+r
+>>> for scarthgap.
+>>>
+>>> TI's 6.12 based kernel has backported multistream routing APIs from
+>>> upstream kernel, which requires v4l-utils to be the latest released
+>>> version (v1.28.1).
+>>>
+>>> Thus we override the recipe in this layer to the latest release of
+>>> v4l-utils.
+>>
+>> There are few issues with this...
+>>
+>> Do you really need to override the entire recipe? The old .bbappend wa=
+s
+>> applying a patch already - can you add a new patch to that and bump=20
+>> SRCREV?
+>>
+>=20
+> We are not only updating the SRCREV, but also moving to a newer branch
+> (stable-1.28), which is why we considered overriding the entire recipe.
+> This approach aligns with how we have handled previously, including
+> 6.1 timeline, where we followed a similar process.[1]
+>=20
+> Given that the original recipe package still references an older versio=
+n,
+> do you suggest that we update the branch in the existing .bbappend,
+> even though the base recipe remains on an older version?
+>=20
+> Please let me know if you want me to do that way.
+>=20
+> [1]: https://lore.kernel.org/all/20230525104036.2050245-1-j-luthra@ti.c=
+om/
+>=20
+> Thanks,
+> Yemike Abhilash Chandra
+>=20
+>> If you do need to override the entire recipe, then you first need to=20
+>> clearly
+>> articulate your reason in the commit log - wanting a newer commit=20
+>> isn't such
+>> a reason
+>>
+>> Then you need to do it in 2 steps/patches - first you copy over the=20
+>> existing
+>> recipe verbatim w/o any modifications, and in a separate step make you=
+r
+>> modifications
+>>
+>> Also, having own copy of an upstream recipe requires special attention=
+=20
+>> to not
+>> violate the Yocto Project Compatible guidelines. I've explained this=20
+>> recently
+>> in another thread here on the list
+>>
 
