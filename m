@@ -1,138 +1,301 @@
-Return-Path: <y-abhilashchandra@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E37AEC021A0
-	for <webhook@archiver.kernel.org>; Mon, 17 Feb 2025 05:48:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A2FA8C021AA
+	for <webhook@archiver.kernel.org>; Tue, 18 Feb 2025 16:33:36 +0000 (UTC)
 Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web11.45080.1739771322283108244
+ by mx.groups.io with SMTP id smtpd.web11.67.1739896406300195764
  for <meta-arago@lists.yoctoproject.org>;
- Sun, 16 Feb 2025 21:48:42 -0800
+ Tue, 18 Feb 2025 08:33:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=udExgecy;
- spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: y-abhilashchandra@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51H5mdpq594268
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Sun, 16 Feb 2025 23:48:39 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=nWaQ+HFK;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51IGXPag040928
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 18 Feb 2025 10:33:25 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1739771319;
-	bh=n2K3nhFDRVva54E0R4eYfStkkwK1OOsoPy8lzhWuGP4=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=udExgecyEF2h22NVa7RnMW/0TVBZxM/nh6ZJVr3YKbJ87kZ6dga32AKehQ0alSRLr
-	 xqc2j5pPTmqMWvFq6XNkhVRf7a1XEPsLT9qJVEW3GZuV/eVRSqhQA8OnsNyAZB2LSs
-	 lkgV7lXejjQSfuVYH6itgePZSN92bSQjJ2LGEN64=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51H5mdP2054126;
-	Sun, 16 Feb 2025 23:48:39 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 16
- Feb 2025 23:48:38 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1739896405;
+	bh=G4whZ9tycx+7liPoP7i1LqM06j5WV9aMQZVBLo+LVbk=;
+	h=From:To:Subject:Date;
+	b=nWaQ+HFKPHIPOOazJasylOvlen3mfi6msEhzaZxa3ledK2VOLCjt1k8sE7Qira0Ad
+	 qgC+FuZt7tMJSteAilena1trXKwfsAxqfG/a7V21gUO4oCEQfPvO249zqiIkRgtsp0
+	 XUy4or8L+/s0QuEhax28tri+UCsyIqfSOxsaDCOo=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51IGXPXP032761
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 18 Feb 2025 10:33:25 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 18
+ Feb 2025 10:33:25 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 16 Feb 2025 23:48:38 -0600
-Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51H5mZgT071065;
-	Sun, 16 Feb 2025 23:48:36 -0600
-Message-ID: <fc8cc93c-32bc-4bf5-ab5e-92010d32f44a@ti.com>
-Date: Mon, 17 Feb 2025 11:18:35 +0530
+ Frontend Transport; Tue, 18 Feb 2025 10:33:25 -0600
+Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51IGXOj5097132;
+	Tue, 18 Feb 2025 10:33:24 -0600
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1tkQXE-000721-NK; Tue, 18 Feb 2025 10:33:24 -0600
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [oe-layersetup][master][PATCH] configs/arago-scarthgap-*-config: Remove meta-arago-demos
+Date: Tue, 18 Feb 2025 10:33:24 -0600
+Message-ID: <20250218163324.26990-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master/scarthgap][PATCH] meta-arago-extras:
- v4l-utils: Add recipe for v1.28.1
-To: Denys Dmytriyenko <denis@denix.org>
-CC: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>, <devarsht@ti.com>,
-        <vaishnav.a@ti.com>, <u-kumar1@ti.com>, <r-donadkar@ti.com>,
-        <a-limaye@ti.com>
-References: <20250211075813.970579-1-y-abhilashchandra@ti.com>
- <20250211205111.GU21608@denix.org>
- <f5658e67-238d-4532-ac69-d99755808300@ti.com>
-Content-Language: en-US
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-In-Reply-To: <f5658e67-238d-4532-ac69-d99755808300@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by lelvem-ot02.ext.ti.com id 51H5mdpq594268
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 17 Feb 2025 05:48:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15852
+ <meta-arago@lists.yoctoproject.org>; Tue, 18 Feb 2025 16:33:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15853
 
-Hello everyone,
+Now that initial testing for removing meta-arago-demos has completed and
+it has been accepted onto scarthgap-next, we need to remove it from
+oe-layersetup as well for scarthgap-next and scarthgap so that the CICD flow
+has a chance to build correctly.
 
-I have provided my response regarding the concerns raised.
-Since I haven=E2=80=99t heard back, I wanted to check if you had
-any further thoughts.
+Signed-off-by: Randolph Sapp <rs@ti.com>
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ .../arago-scarthgap-chromium-config/bblayers.conf.sample     | 1 -
+ conf/templates/arago-scarthgap-config/bblayers.conf.sample   | 1 -
+ .../arago-scarthgap-next-config/bblayers.conf.sample         | 1 -
+ .../arago-scarthgap-selinux-config/bblayers.conf.sample      | 1 -
+ configs/arago-scarthgap-chromium-config.txt                  | 2 +-
+ configs/arago-scarthgap-config.txt                           | 2 +-
+ configs/arago-scarthgap-next-config.txt                      | 5 +++--
+ configs/arago-scarthgap-selinux-config.txt                   | 2 +-
+ kas/arago-scarthgap-chromium-config.yml                      | 1 -
+ kas/arago-scarthgap-config.yml                               | 1 -
+ kas/arago-scarthgap-next-config.yml                          | 1 -
+ kas/arago-scarthgap-selinux-config.yml                       | 1 -
+ src/configs/arago-scarthgap-chromium-config.xml              | 1 -
+ src/configs/arago-scarthgap-config.xml                       | 1 -
+ src/configs/arago-scarthgap-next-config.xml                  | 1 -
+ src/configs/arago-scarthgap-selinux-config.xml               | 1 -
+ 16 files changed, 6 insertions(+), 17 deletions(-)
 
-Please let me know how you'd like to proceed.
+diff --git a/conf/templates/arago-scarthgap-chromium-config/bblayers.conf.sample b/conf/templates/arago-scarthgap-chromium-config/bblayers.conf.sample
+index 3e5edee..29beb7d 100644
+--- a/conf/templates/arago-scarthgap-chromium-config/bblayers.conf.sample
++++ b/conf/templates/arago-scarthgap-chromium-config/bblayers.conf.sample
+@@ -11,7 +11,6 @@ BBFILES ?= ""
+ BBLAYERS ?= " \
+     ##OEROOT##/../meta-arago/meta-arago-distro
+     ##OEROOT##/../meta-arago/meta-arago-extras
+-    ##OEROOT##/../meta-arago/meta-arago-demos
+     ##OEROOT##/../meta-arago/meta-arago-test
+     ##OEROOT##/../meta-browser/meta-chromium
+     ##OEROOT##/../meta-qt5
+diff --git a/conf/templates/arago-scarthgap-config/bblayers.conf.sample b/conf/templates/arago-scarthgap-config/bblayers.conf.sample
+index adbccbd..f70b6af 100644
+--- a/conf/templates/arago-scarthgap-config/bblayers.conf.sample
++++ b/conf/templates/arago-scarthgap-config/bblayers.conf.sample
+@@ -11,7 +11,6 @@ BBFILES ?= ""
+ BBLAYERS ?= " \
+     ##OEROOT##/../meta-arago/meta-arago-distro
+     ##OEROOT##/../meta-arago/meta-arago-extras
+-    ##OEROOT##/../meta-arago/meta-arago-demos
+     ##OEROOT##/../meta-arago/meta-arago-test
+     ##OEROOT##/../meta-qt5
+     ##OEROOT##/../meta-virtualization
+diff --git a/conf/templates/arago-scarthgap-next-config/bblayers.conf.sample b/conf/templates/arago-scarthgap-next-config/bblayers.conf.sample
+index adbccbd..f70b6af 100644
+--- a/conf/templates/arago-scarthgap-next-config/bblayers.conf.sample
++++ b/conf/templates/arago-scarthgap-next-config/bblayers.conf.sample
+@@ -11,7 +11,6 @@ BBFILES ?= ""
+ BBLAYERS ?= " \
+     ##OEROOT##/../meta-arago/meta-arago-distro
+     ##OEROOT##/../meta-arago/meta-arago-extras
+-    ##OEROOT##/../meta-arago/meta-arago-demos
+     ##OEROOT##/../meta-arago/meta-arago-test
+     ##OEROOT##/../meta-qt5
+     ##OEROOT##/../meta-virtualization
+diff --git a/conf/templates/arago-scarthgap-selinux-config/bblayers.conf.sample b/conf/templates/arago-scarthgap-selinux-config/bblayers.conf.sample
+index 51b8551..094ec81 100644
+--- a/conf/templates/arago-scarthgap-selinux-config/bblayers.conf.sample
++++ b/conf/templates/arago-scarthgap-selinux-config/bblayers.conf.sample
+@@ -11,7 +11,6 @@ BBFILES ?= ""
+ BBLAYERS ?= " \
+     ##OEROOT##/../meta-arago/meta-arago-distro
+     ##OEROOT##/../meta-arago/meta-arago-extras
+-    ##OEROOT##/../meta-arago/meta-arago-demos
+     ##OEROOT##/../meta-arago/meta-arago-test
+     ##OEROOT##/../meta-selinux
+     ##OEROOT##/../meta-qt5
+diff --git a/configs/arago-scarthgap-chromium-config.txt b/configs/arago-scarthgap-chromium-config.txt
+index 61d0bdb..9f500fa 100644
+--- a/configs/arago-scarthgap-chromium-config.txt
++++ b/configs/arago-scarthgap-chromium-config.txt
+@@ -2,7 +2,7 @@
+ # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+ 
+ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
+-meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
+ meta-browser,https://github.com/OSSystems/meta-browser.git,master,68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4,layers=meta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
+ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,HEAD,layers=
+diff --git a/configs/arago-scarthgap-config.txt b/configs/arago-scarthgap-config.txt
+index 5c7adcb..6513be5 100644
+--- a/configs/arago-scarthgap-config.txt
++++ b/configs/arago-scarthgap-config.txt
+@@ -2,7 +2,7 @@
+ # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+ 
+ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
+-meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
+ #meta-browser,https://github.com/OSSystems/meta-browser.git,master,68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4,layers=meta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
+ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,HEAD,layers=
+diff --git a/configs/arago-scarthgap-next-config.txt b/configs/arago-scarthgap-next-config.txt
+index 69fee39..5d0915b 100644
+--- a/configs/arago-scarthgap-next-config.txt
++++ b/configs/arago-scarthgap-next-config.txt
+@@ -10,7 +10,7 @@ MOTD: NOTE: to point the recipe to the appropriate cicd/next branch for that rec
+ MOTD: NOTE:
+ 
+ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
+-meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap-next,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap-next,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
+ #meta-browser,https://github.com/OSSystems/meta-browser.git,master,68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4,layers=meta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
+ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,HEAD,layers=
+@@ -26,12 +26,13 @@ OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
+ BITBAKE_INCLUSIVE_VARS=yes
+ 
+ LOCALCONF:OVERRIDES:append = ":recipe-${@os.path.basename(d.getVar('FILE'))}"
+-LOCALCONF:BRANCH:recipe-ltp-ddt_20250130.bb = "cicd"
++LOCALCONF:BRANCH:recipe-ltp-ddt_20240129.bb = "cicd"
+ LOCALCONF:BRANCH:recipe-cadence-mhdp-fw_git.bb = "ti-linux-firmware-next"
+ LOCALCONF:BRANCH:recipe-cnm-wave-fw_git.bb = "ti-linux-firmware-next"
+ LOCALCONF:BRANCH:recipe-goodix-fw_git.bb = "ti-linux-firmware-next"
+ LOCALCONF:BRANCH:recipe-linux-ti-staging_6.12.bb = "ti-linux-6.12.y-cicd"
+ LOCALCONF:BRANCH:recipe-linux-ti-staging-rt_6.12.bb = "ti-linux-6.12.y-cicd"
++LOCALCONF:BRANCH:recipe-linux-ti-staging-systest_6.12.bb = "ti-linux-6.12.y-cicd"
+ LOCALCONF:BRANCH:recipe-prueth-fw_5.6.15.bb = "ti-linux-firmware-next"
+ LOCALCONF:BRANCH:recipe-pruhsr-fw_2.17.25.bb = "ti-linux-firmware-next"
+ LOCALCONF:BRANCH:recipe-pruprp-fw_2.17.25.bb = "ti-linux-firmware-next"
+diff --git a/configs/arago-scarthgap-selinux-config.txt b/configs/arago-scarthgap-selinux-config.txt
+index 79a1136..d27bada 100644
+--- a/configs/arago-scarthgap-selinux-config.txt
++++ b/configs/arago-scarthgap-selinux-config.txt
+@@ -2,7 +2,7 @@
+ # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+ 
+ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
+-meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
+ #meta-browser,https://github.com/OSSystems/meta-browser.git,master,68e8cbf51ac46c8c1b3923ee2b20e27ba9d3faa4,layers=meta-chromium
+ meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
+ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,scarthgap,HEAD,layers=
+diff --git a/kas/arago-scarthgap-chromium-config.yml b/kas/arago-scarthgap-chromium-config.yml
+index a6d5a51..9e2bbb0 100644
+--- a/kas/arago-scarthgap-chromium-config.yml
++++ b/kas/arago-scarthgap-chromium-config.yml
+@@ -13,7 +13,6 @@ repos:
+     layers:
+       meta-arago-distro:
+       meta-arago-extras:
+-      meta-arago-demos:
+       meta-arago-test:
+ 
+   meta-browser:
+diff --git a/kas/arago-scarthgap-config.yml b/kas/arago-scarthgap-config.yml
+index 5ce2d76..87864ec 100644
+--- a/kas/arago-scarthgap-config.yml
++++ b/kas/arago-scarthgap-config.yml
+@@ -13,7 +13,6 @@ repos:
+     layers:
+       meta-arago-distro:
+       meta-arago-extras:
+-      meta-arago-demos:
+       meta-arago-test:
+ 
+   meta-qt5:
+diff --git a/kas/arago-scarthgap-next-config.yml b/kas/arago-scarthgap-next-config.yml
+index 75d6cf7..c6dc88c 100644
+--- a/kas/arago-scarthgap-next-config.yml
++++ b/kas/arago-scarthgap-next-config.yml
+@@ -13,7 +13,6 @@ repos:
+     layers:
+       meta-arago-distro:
+       meta-arago-extras:
+-      meta-arago-demos:
+       meta-arago-test:
+ 
+   meta-qt5:
+diff --git a/kas/arago-scarthgap-selinux-config.yml b/kas/arago-scarthgap-selinux-config.yml
+index 16235e8..ea839f3 100644
+--- a/kas/arago-scarthgap-selinux-config.yml
++++ b/kas/arago-scarthgap-selinux-config.yml
+@@ -13,7 +13,6 @@ repos:
+     layers:
+       meta-arago-distro:
+       meta-arago-extras:
+-      meta-arago-demos:
+       meta-arago-test:
+ 
+   meta-selinux:
+diff --git a/src/configs/arago-scarthgap-chromium-config.xml b/src/configs/arago-scarthgap-chromium-config.xml
+index 739ab88..c581453 100644
+--- a/src/configs/arago-scarthgap-chromium-config.xml
++++ b/src/configs/arago-scarthgap-chromium-config.xml
+@@ -13,7 +13,6 @@
+             <layers>
+                 <layer>meta-arago-distro</layer>
+                 <layer>meta-arago-extras</layer>
+-                <layer>meta-arago-demos</layer>
+                 <layer>meta-arago-test</layer>
+             </layers>
+         </repo>
+diff --git a/src/configs/arago-scarthgap-config.xml b/src/configs/arago-scarthgap-config.xml
+index dc960b4..3f5d6b0 100644
+--- a/src/configs/arago-scarthgap-config.xml
++++ b/src/configs/arago-scarthgap-config.xml
+@@ -13,7 +13,6 @@
+             <layers>
+                 <layer>meta-arago-distro</layer>
+                 <layer>meta-arago-extras</layer>
+-                <layer>meta-arago-demos</layer>
+                 <layer>meta-arago-test</layer>
+             </layers>
+         </repo>
+diff --git a/src/configs/arago-scarthgap-next-config.xml b/src/configs/arago-scarthgap-next-config.xml
+index b8c096d..f98a1a8 100644
+--- a/src/configs/arago-scarthgap-next-config.xml
++++ b/src/configs/arago-scarthgap-next-config.xml
+@@ -14,7 +14,6 @@
+             <layers>
+                 <layer>meta-arago-distro</layer>
+                 <layer>meta-arago-extras</layer>
+-                <layer>meta-arago-demos</layer>
+                 <layer>meta-arago-test</layer>
+             </layers>
+         </repo>
+diff --git a/src/configs/arago-scarthgap-selinux-config.xml b/src/configs/arago-scarthgap-selinux-config.xml
+index e580d4c..1246f61 100644
+--- a/src/configs/arago-scarthgap-selinux-config.xml
++++ b/src/configs/arago-scarthgap-selinux-config.xml
+@@ -13,7 +13,6 @@
+             <layers>
+                 <layer>meta-arago-distro</layer>
+                 <layer>meta-arago-extras</layer>
+-                <layer>meta-arago-demos</layer>
+                 <layer>meta-arago-test</layer>
+             </layers>
+         </repo>
+-- 
+2.17.1
 
-Thanks and Regards,
-Yemike Abhilash Chandra.
-
-On 12/02/25 13:46, Yemike Abhilash Chandra wrote:
->=20
->=20
-> On 12/02/25 02:21, Denys Dmytriyenko wrote:
->> On Tue, Feb 11, 2025 at 01:28:13PM +0530, Yemike Abhilash Chandra via=20
->> lists.yoctoproject.org wrote:
->>> An older recipe of v4l-utils (v1.26.1) is present in the meta-oe laye=
-r
->>> for scarthgap.
->>>
->>> TI's 6.12 based kernel has backported multistream routing APIs from
->>> upstream kernel, which requires v4l-utils to be the latest released
->>> version (v1.28.1).
->>>
->>> Thus we override the recipe in this layer to the latest release of
->>> v4l-utils.
->>
->> There are few issues with this...
->>
->> Do you really need to override the entire recipe? The old .bbappend wa=
-s
->> applying a patch already - can you add a new patch to that and bump=20
->> SRCREV?
->>
->=20
-> We are not only updating the SRCREV, but also moving to a newer branch
-> (stable-1.28), which is why we considered overriding the entire recipe.
-> This approach aligns with how we have handled previously, including
-> 6.1 timeline, where we followed a similar process.[1]
->=20
-> Given that the original recipe package still references an older versio=
-n,
-> do you suggest that we update the branch in the existing .bbappend,
-> even though the base recipe remains on an older version?
->=20
-> Please let me know if you want me to do that way.
->=20
-> [1]: https://lore.kernel.org/all/20230525104036.2050245-1-j-luthra@ti.c=
-om/
->=20
-> Thanks,
-> Yemike Abhilash Chandra
->=20
->> If you do need to override the entire recipe, then you first need to=20
->> clearly
->> articulate your reason in the commit log - wanting a newer commit=20
->> isn't such
->> a reason
->>
->> Then you need to do it in 2 steps/patches - first you copy over the=20
->> existing
->> recipe verbatim w/o any modifications, and in a separate step make you=
-r
->> modifications
->>
->> Also, having own copy of an upstream recipe requires special attention=
-=20
->> to not
->> violate the Yocto Project Compatible guidelines. I've explained this=20
->> recently
->> in another thread here on the list
->>
 
