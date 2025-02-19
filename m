@@ -2,47 +2,47 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C0205C021B2
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0262C021B3
 	for <webhook@archiver.kernel.org>; Wed, 19 Feb 2025 21:39:17 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web10.34936.1740001152982826742
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web11.34932.1740001152922852898
  for <meta-arago@lists.yoctoproject.org>;
  Wed, 19 Feb 2025 13:39:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=ONbrpx8y;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: rs@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=KZ/Pt727;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: rs@ti.com)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51JLdATx1940792
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51JLdA9d401333
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
 	Wed, 19 Feb 2025 15:39:10 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1740001150;
-	bh=MB3mpIArLtrgVwSRHBcDBaLqxtxhNxXEGqrYXutUL1M=;
+	bh=XTWtd5gyydJFbFtacNUmBY2KFLeCjF/SRbxaGZ1lrsg=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=ONbrpx8yb00yyrSHPWorfnvq9gvQe0XitCapzb0K8QxVTMeWU66KRCR0GVIzWN7gs
-	 /nG2py5GIn8ONMFCcqDKncTjpIV59ln6Qiwo5RD8HE9dOGaQrgcoqw2TmlCH1GoSTU
-	 IPw99x2uJz5cR/x0WMBCDJ7sWoGiiP3Q1yHSiU3s=
+	b=KZ/Pt727qQUo/KNInAmQo2e14oGDEmQDFZaZnirTWxaBEGie3I+rDoRrmVfGvhNzc
+	 /BXbnmgnLt5kRorEOc4uMcIiNHZ7Z+McOJTbS0EpUU1KSNbOEHah+lPc+OQTQ/f3AV
+	 u8TRMqDHMSvCglhVeqffz57OVVok6quwk2sd8w3M=
 Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51JLdAt4023553
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51JLdAAa023556
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Wed, 19 Feb 2025 15:39:10 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE102.ent.ti.com
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
  (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 19
  Feb 2025 15:39:09 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Wed, 19 Feb 2025 15:39:09 -0600
 Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51JLd9gq116844;
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51JLd9gr116844;
 	Wed, 19 Feb 2025 15:39:09 -0600
 From: <rs@ti.com>
 To: <reatmon@ti.com>, <denis@denix.org>
 CC: <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap][PATCHv2 1/3] meta-arago-demos: remove this layer due to qt5 dep
-Date: Wed, 19 Feb 2025 15:39:04 -0600
-Message-ID: <20250219213906.2561811-2-rs@ti.com>
+Subject: [meta-arago][scarthgap][PATCHv2 2/3] meta-arago-*: remove all qt5 configs
+Date: Wed, 19 Feb 2025 15:39:05 -0600
+Message-ID: <20250219213906.2561811-3-rs@ti.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250219213906.2561811-1-rs@ti.com>
 References: <20250219213906.2561811-1-rs@ti.com>
@@ -54,426 +54,1531 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Wed, 19 Feb 2025 21:39:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15866
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15865
 
 From: Randolph Sapp <rs@ti.com>
 
-Remove this layer now that the current recipes are unreachable. These
-were the last of the "demos" in this layer and they were only being
-built for legacy devices. Demos should primarily be in layers above this
-unless they are used for functionality testing.
+Remove all the Qt5 specific configs, recipes, and package groups to
+prepare for Qt6. Some of these package configs will still work, but they
+are unecessary.
 
-These modifications are required as part of the effort to make this
-layer less dependent on meta-qt5. Moving forward TI builds of arago will
-enable and test Qt6 by default, but unlike before this will not be done
-in a way that creates an explicit dependency in this layer. This should
-allow customers and layers that consume or extend this layer to toggle
-Qt support more easily.
-
-This should come after a patch to remove this layer from the
-oe-layersetup configs. If you run into any build issues, be sure to
-update your bblayers.conf accordingly.
+All of the conditional logic in meta-qt6 toggles the important flags
+automatically for us right now. This behavior will only change if X11 is
+enabled, which we currently disable.
 
 Signed-off-by: Randolph Sapp <rs@ti.com>
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- meta-arago-demos/COPYING.MIT                  | 17 -------
- meta-arago-demos/README                       | 38 --------------
- meta-arago-demos/SECURITY                     | 20 --------
- meta-arago-demos/conf/layer.conf              | 26 ----------
- .../acontis-atemsys_3.0.1.28.bb               | 18 -------
- .../recipes-apps/evse-hmi/evse-hmi_git.bb     | 25 ----------
- .../mmwavegesture-hmi_git.bb                  | 25 ----------
- .../pdm-anomaly-detection_git.bb              | 29 -----------
- .../point-cloud-viewer_git.bb                 | 35 -------------
- .../protection-relays-hmi_git.bb              | 25 ----------
- .../examples/qtwebbrowser_5.15.1.bb           | 49 -------------------
- 11 files changed, 307 deletions(-)
- delete mode 100644 meta-arago-demos/COPYING.MIT
- delete mode 100644 meta-arago-demos/README
- delete mode 100644 meta-arago-demos/SECURITY
- delete mode 100644 meta-arago-demos/conf/layer.conf
- delete mode 100644 meta-arago-demos/recipes-apps/acontis-ethercat-demo/acontis-atemsys_3.0.1.28.bb
- delete mode 100644 meta-arago-demos/recipes-apps/evse-hmi/evse-hmi_git.bb
- delete mode 100644 meta-arago-demos/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
- delete mode 100644 meta-arago-demos/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
- delete mode 100644 meta-arago-demos/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
- delete mode 100644 meta-arago-demos/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
- delete mode 100644 meta-arago-demos/recipes-qt/examples/qtwebbrowser_5.15.1.bb
+ meta-arago-distro/README                      |   4 -
+ meta-arago-distro/conf/distro/arago.conf      |  24 --
+ meta-arago-distro/conf/layer.conf             |   2 -
+ .../images/tisdk-default-image.bb             |   1 -
+ .../meta/meta-toolchain-arago-tisdk.bb        |   3 +-
+ .../packagegroups/packagegroup-arago-qte.bb   |  26 --
+ .../packagegroup-arago-tisdk-qte.bb           |  21 --
+ ...ckagegroup-arago-toolchain-tisdk-target.bb |   1 -
+ .../recipes-core/packagegroups/ti-world.bb    |   1 -
+ .../qt5/qtbase-conf/eglfs_kms_cfg.json        |   5 -
+ .../recipes-qt/qt5/qtbase-conf/qt_env.sh      |  16 --
+ .../qt5/qtbase-conf/ti33x/qt_env.sh           |  14 -
+ .../recipes-qt/qt5/qtbase-conf_1.0.bb         |  20 --
+ ...xit-button-for-non-window-environmen.patch |  60 ----
+ ...01-deform-Fix-how-controls-are-shown.patch |  33 ---
+ ...fs-Force-888-format-only-on-env-flag.patch |  44 ---
+ ...latforms-eglfs_kms-fix-compiler-erro.patch |  29 --
+ ...d-exit-button-for-non-window-environ.patch |  81 ------
+ .../0002-deform-disable-opengl-button.patch   |  71 -----
+ .../recipes-qt/qt5/qtbase/quit.png            | Bin 645 -> 0 bytes
+ .../recipes-qt/qt5/qtbase_%.bbappend          |  46 ---
+ ...touchinteraction.qml-Add-exit-button.patch |  60 ----
+ .../recipes-qt/qt5/qtdeclarative_git.bbappend |  10 -
+ ...atform.h-add-define-MESA_EGL_NO_X11_.patch |  30 --
+ ...e-to-use-GL_NoX-version-of-GraphicsS.patch |  29 --
+ .../qtwebkit/GraphicsContext3DQt.cpp.patch    |  26 --
+ .../qtwebkit/GraphicsSurfaceGL_NoX.cpp.patch  | 270 ------------------
+ .../qt5/qtwebkit/GraphicsSurfaceToken.h.patch |  33 ---
+ .../recipes-qt/qt5/qtwebkit/WebCore.pri.patch |  17 --
+ .../qt5/qtwebkit/qttestbrowser.cpp.patch      |  24 --
+ .../recipes-qt/qt5/qtwebkit_%.bbappend        |  18 --
+ meta-arago-extras/README                      |   4 -
+ .../meta/meta-toolchain-arago-qte.bb          |  54 ----
+ ...k-packagegroup-arago-qte-toolchain-host.bb |  12 -
+ ...packagegroup-arago-qte-toolchain-target.bb |  35 ---
+ .../cmake/extra-cmake-modules.bb              |   1 -
+ ..._QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch |  26 --
+ 37 files changed, 2 insertions(+), 1149 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+ delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0001-calculator-Add-exit-button-for-non-window-environmen.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0001-deform-Fix-how-controls-are-shown.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0001-eglfs-Force-888-format-only-on-env-flag.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0001-qtbase-plugins-platforms-eglfs_kms-fix-compiler-erro.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0002-animatedtiles-Add-exit-button-for-non-window-environ.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0002-deform-disable-opengl-button.patch
+ delete mode 100755 meta-arago-distro/recipes-qt/qt5/qtbase/quit.png
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtdeclarative/0001-touchinteraction.qml-Add-exit-button.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtdeclarative_git.bbappend
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsContext3DQt.cpp.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceGL_NoX.cpp.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/qttestbrowser.cpp.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+ delete mode 100644 meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+ delete mode 100644 meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
+ delete mode 100644 meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
+ delete mode 100644 meta-arago-extras/recipes-devtools/cmake/extra-cmake-modules/0001-Search-within-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch
 
-diff --git a/meta-arago-demos/COPYING.MIT b/meta-arago-demos/COPYING.MIT
-deleted file mode 100644
-index fb950dc6..00000000
---- a/meta-arago-demos/COPYING.MIT
-+++ /dev/null
-@@ -1,17 +0,0 @@
--Permission is hereby granted, free of charge, to any person obtaining a copy 
--of this software and associated documentation files (the "Software"), to deal 
--in the Software without restriction, including without limitation the rights 
--to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
--copies of the Software, and to permit persons to whom the Software is 
--furnished to do so, subject to the following conditions:
--
--The above copyright notice and this permission notice shall be included in 
--all copies or substantial portions of the Software.
--
--THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
--IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
--FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
--AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
--LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
--OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
--THE SOFTWARE.
-diff --git a/meta-arago-demos/README b/meta-arago-demos/README
-deleted file mode 100644
-index b6181c73..00000000
---- a/meta-arago-demos/README
-+++ /dev/null
-@@ -1,38 +0,0 @@
--meta-arago-demos provides demo applications to showcase in TI SDK products
--
--This layer works with the latest Yocto Project release (currently 5.0+) and tracks
--the stable/maintenance branches (currently "scarthgap") of the corresponding layers:
--
--URI: git://git.openembedded.org/openembedded-core
--branch: scarthgap
--revision: HEAD
--layers: meta
--
--URI: git://git.yoctoproject.org/meta-ti
--branch: scarthgap
--revision: HEAD
--layers: meta-ti-bsp, meta-ti-extras
--
--URI: git://git.yoctoproject.org/meta-arm
--branch: scarthgap
--revision: HEAD
--layers: meta-arm, meta-arm-toolchain
--
--URI: git://git.openembedded.org/meta-openembedded
--branch: scarthgap
--revision: HEAD
--layers: meta-oe, meta-networking, meta-python
--
+diff --git a/meta-arago-distro/README b/meta-arago-distro/README
+index 1656c609..28937e1f 100644
+--- a/meta-arago-distro/README
++++ b/meta-arago-distro/README
+@@ -23,10 +23,6 @@ branch: scarthgap
+ revision: HEAD
+ layers: meta-oe, meta-networking, meta-python
+ 
 -URI: https://github.com/meta-qt5/meta-qt5
 -branch: scarthgap
 -revision: HEAD
 -
--Send pull requests, patches, comments or questions to:
--meta-arago@lists.yoctoproject.org
+ URI: git://git.yoctoproject.org/meta-arago
+ branch: scarthgap
+ revision: HEAD
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 91c67d4b..24d8b005 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -63,26 +63,6 @@ INIT_MANAGER ?= "${@['systemd','sysvinit'][int(d.getVar('ARAGO_SYSVINIT'))]}"
+ # Distro-specific package configuration
+ PACKAGECONFIG:append:pn-systemd = " coredump networkd resolved serial-getty-generator"
+ 
+-# Configure Qt5 flags (GLES is still required for qtdeclarative and qtwebkit)
+-PACKAGECONFIG_GL:pn-qtbase = "gles2 linuxfb"
+-PACKAGECONFIG_DISTRO:pn-qtbase = "icu examples accessibility gif gbm kms libinput xkbcommon"
+-PACKAGECONFIG_FONTS:pn-qtbase = "fontconfig"
+-PACKAGECONFIG:remove:pn-qtwayland = "xcomposite-egl xcomposite-glx"
 -
--Please note - meta-arago mailing list requires subscription for posting:
--https://lists.yoctoproject.org/g/meta-arago
+-# Add gstreamer in package configuration to enable video
+-PACKAGECONFIG:append:pn-qtmultimedia = " gstreamer"
 -
--Layer maintainers:
--Ryan Eatmon <reatmon@ti.com>
--Denys Dmytriyenko <denys@konsulko.com>
-diff --git a/meta-arago-demos/SECURITY b/meta-arago-demos/SECURITY
+-# Add examples in Qt5 package configurations
+-PACKAGECONFIG:append:pn-qtcharts = " examples"
+-#PACKAGECONFIG:append:pn-qtdeclarative = " examples"
+-PACKAGECONFIG:append:pn-qtlocation = " examples"
+-PACKAGECONFIG:append:pn-qtmultimedia = " examples"
+-PACKAGECONFIG:append:pn-qtscript = " examples"
+-PACKAGECONFIG:append:pn-qtserialport = " examples"
+-PACKAGECONFIG:append:pn-qtsvg = " examples"
+-PACKAGECONFIG:append:pn-qtwayland = " examples"
+-PACKAGECONFIG:append:pn-qtwebengine = " examples"
+-
+ # Prefer OpenSSL over GnuTLS for curl due to TSU exemptions
+ PACKAGECONFIG:pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)} proxy openssl verbose zlib"
+ 
+@@ -171,7 +151,3 @@ INSANE_SKIP:nativesdk-openssl-misc += "build-deps"
+ 
+ # https://bugzilla.yoctoproject.org/show_bug.cgi?id=15553
+ INSANE_SKIP:nativesdk-qemu-user-mips += "build-deps"
+-
+-# https://github.com/meta-qt5/meta-qt5/issues/575
+-ERROR_QA:remove:layer-qt5-layer = "buildpaths"
+-WARN_QA:append:layer-qt5-layer = " buildpaths"
+diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
+index 824c5773..4a0e424d 100644
+--- a/meta-arago-distro/conf/layer.conf
++++ b/meta-arago-distro/conf/layer.conf
+@@ -18,7 +18,6 @@ LAYERDEPENDS_meta-arago-distro = " \
+     networking-layer \
+     multimedia-layer \
+     meta-python \
+-    qt5-layer \
+     clang-layer \
+     meta-arago-extras \
+     meta-arago-test \
+@@ -45,7 +44,6 @@ SIGGEN_EXCLUDERECIPES_ABISAFE += " \
+     udev \
+     eudev \
+     weston-conf \
+-    qtbase-conf \
+     cryptodev-module \
+ "
+ 
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+index 335ee5c2..e0f085ff 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+@@ -17,7 +17,6 @@ IMAGE_INSTALL += "\
+     ti-test-extras \
+     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-graphics','',d)} \
+     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-gtk','',d)} \
+-    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-qte','',d)} \
+     packagegroup-arago-tisdk-connectivity \
+     packagegroup-arago-tisdk-crypto \
+     packagegroup-arago-tisdk-multimedia \
+diff --git a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
+index 4f272a52..0ab541d3 100644
+--- a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
++++ b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
+@@ -1,6 +1,7 @@
+ TOOLCHAIN_SUFFIX ?= "-tisdk"
++LICENSE = "MIT"
+ 
+ require meta-toolchain-arago-tisdk.inc
+-require recipes-core/meta/meta-toolchain-arago-qte.bb
++require recipes-core/meta/meta-toolchain-arago.bb
+ 
+ PR = "${INC_PR}.0"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
 deleted file mode 100644
-index 2e38d80e..00000000
---- a/meta-arago-demos/SECURITY
-+++ /dev/null
-@@ -1,20 +0,0 @@
--How to Report a Potential Vulnerability?
--========================================
--
--If you would like to report a public issue (for example, one with a released
--CVE number), please report it to the mailing list:
--
--  https://lists.yoctoproject.org/g/meta-arago
--
--If you are dealing with a not-yet released or urgent issue, please send a
--message to one of the maintainers listed in the README.  Include as many
--details as possible:
--  - the layer or software module affected
--  - the recipe and its version
--  - any example code, if available
--
--Branches maintained with security fixes
-----------------------------------------
--
--See https://wiki.yoctoproject.org/wiki/Releases for the list of current
--releases.  We only accept patches for the LTS releases and the master branch.
-diff --git a/meta-arago-demos/conf/layer.conf b/meta-arago-demos/conf/layer.conf
-deleted file mode 100644
-index f551af28..00000000
---- a/meta-arago-demos/conf/layer.conf
+index 8ea830fd..00000000
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
 +++ /dev/null
 @@ -1,26 +0,0 @@
--# We have a conf and classes directory, append to BBPATH
--BBPATH .= ":${LAYERDIR}"
+-DESCRIPTION = "Task to add Qt embedded related packages"
+-LICENSE = "MIT"
+-PR = "r16"
 -
--# We have a recipes directory, add to BBFILES
--BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
 -
--BBFILE_COLLECTIONS += "meta-arago-demos"
--BBFILE_PATTERN_meta-arago-demos := "^${LAYERDIR}/"
--BBFILE_PRIORITY_meta-arago-demos = "10"
+-inherit packagegroup
 -
--LAYERSERIES_COMPAT_meta-arago-demos = "scarthgap"
--
--LAYERDEPENDS_meta-arago-demos = " \
--    core \
--    meta-ti-bsp \
--    meta-ti-extras \
--    openembedded-layer \
--    networking-layer \
--    meta-python \
--    arm-toolchain \
--    qt5-layer \
+-RDEPENDS:${PN} = "\
+-    qtbase-plugins \
+-    qtdeclarative-qmlplugins \
+-    qtlocation-plugins \
+-    qtlocation-qmlplugins \
+-    qtmultimedia-plugins \
+-    qtmultimedia-qmlplugins \
+-    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-plugins', '', d)} \
+-    qt3d-qmlplugins \
+-    qtquickcontrols-qmlplugins \
+-    qtquickcontrols2-qmlplugins \
+-    qtgraphicaleffects-qmlplugins \
+-    qtvirtualkeyboard-plugins \
+-    qtvirtualkeyboard-qmlplugins \
+-    liberation-fonts \
+-    qtconnectivity \
+-    qtconnectivity-qmlplugins \
 -"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+deleted file mode 100644
+index be851944..00000000
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
++++ /dev/null
+@@ -1,21 +0,0 @@
+-DESCRIPTION = "Task to add Qt embedded related packages"
+-LICENSE = "MIT"
+-PR = "r22"
 -
--SIGGEN_EXCLUDERECIPES_ABISAFE += " \
--    gstreamer1.0-plugins-bad \
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+-inherit packagegroup
+-
+-#    qtdeclarative-examples
+-RDEPENDS:${PN} = "\
+-    packagegroup-arago-qte \
+-    qtbase-examples \
+-    qtdeclarative-tools \
+-    qtlocation-examples \
+-    qtmultimedia-examples \
+-    qtscript-examples \
+-    qtsvg-examples \
+-    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-examples', '', d)} \
+-    qtserialport-examples \
+-    qtcharts-examples \
 -"
-diff --git a/meta-arago-demos/recipes-apps/acontis-ethercat-demo/acontis-atemsys_3.0.1.28.bb b/meta-arago-demos/recipes-apps/acontis-ethercat-demo/acontis-atemsys_3.0.1.28.bb
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
+index 43cd9c59..fc0a0241 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
+@@ -18,7 +18,6 @@ TISDK_TOOLCHAIN_EXTRA_TARGET = "\
+ TISDK_TOOLCHAIN_EXTRA_TARGET:omapl138 = ""
+ 
+ RDEPENDS:${PN} = "\
+-    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-qte-toolchain-target','',d)} \
+     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-gtk-sdk-target','',d)} \
+     ${TISDK_TOOLCHAIN_BASE_TARGET} \
+     ${TISDK_TOOLCHAIN_EXTRA_TARGET} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+index fc3eac74..64af6d93 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+@@ -32,7 +32,6 @@ RDEPENDS:${PN} = "\
+     ti-test \
+     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-graphics','',d)} \
+     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-gtk','',d)} \
+-    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-qte qt3d-examples','',d)} \
+     packagegroup-arago-tisdk-connectivity \
+     packagegroup-arago-tisdk-crypto \
+     packagegroup-arago-tisdk-multimedia \
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
 deleted file mode 100644
-index 897db273..00000000
---- a/meta-arago-demos/recipes-apps/acontis-ethercat-demo/acontis-atemsys_3.0.1.28.bb
+index 5667d11f..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
 +++ /dev/null
-@@ -1,18 +0,0 @@
--SUMMARY = "acontis atemsys kernel module for EtherCAT master"
--HOMEPAGE = "https://www.acontis.com/en/ethercat-for-ti-processors.html"
--LICENSE = "GPL-2.0-only"
--LIC_FILES_CHKSUM = "file://COPYING;md5=65dd37ccb3e888dc57e47d925b80b38a"
--
--SRC_URI = "https://www.acontis.com/files/support/ethercat/EC-Master-Atemsys-V${PV}-Linux.tar.gz;subdir=${P}"
--SRC_URI[md5sum] = "d8d92ae671c5cf78ae22bc5386d7f44f"
--SRC_URI[sha256sum] = "dd3d83eb984b17b8378e0a5e5dfae8c77e25c5428a26319f59f44f805aff9e89"
--
--COMPATIBLE_MACHINE = "am335x-evm|am57xx-evm"
--
--PR = "r0"
--
--S = "${WORKDIR}/${P}/yocto/meta-acontis/recipes-kernel/atemsys/files"
--
--inherit module
--
--EXTRA_OEMAKE += 'KERNELDIR="${STAGING_KERNEL_DIR}"'
-diff --git a/meta-arago-demos/recipes-apps/evse-hmi/evse-hmi_git.bb b/meta-arago-demos/recipes-apps/evse-hmi/evse-hmi_git.bb
-deleted file mode 100644
-index 3550a3e7..00000000
---- a/meta-arago-demos/recipes-apps/evse-hmi/evse-hmi_git.bb
-+++ /dev/null
-@@ -1,25 +0,0 @@
--SUMMARY = "HMI demo for electronic vehicle charging station (EVSE) using QT QWidget tools"
--LICENSE = "BSD-3-Clause"
--LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=33;md5=a9cde3921a8be42ed79ab74661799104"
--
--DEPENDS += "qtbase"
--
--inherit qmake5
--
--# Qt uses atomic instructions not supported in thumb mode
--ARM_INSTRUCTION_SET = "arm"
--
--PV = "1.0"
--PR = "r1"
--
--BRANCH = "master"
--SRC_URI = "git://git.ti.com/git/sitara-linux/evse-hmi.git;protocol=https;branch=${BRANCH}"
--
--SRCREV = "d8c309d2832735f8df84db9993a01d861fdc02d7"
--
--S = "${WORKDIR}/git"
--
--do_install() {
--    install -d ${D}${bindir}
--    install -m 755 evse_hmi ${D}${bindir}
+@@ -1,5 +0,0 @@
+-{
+-  "device": "/dev/dri/card0",
+-  "hwcursor": false,
+-  "pbuffers": true
 -}
-diff --git a/meta-arago-demos/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb b/meta-arago-demos/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
 deleted file mode 100644
-index ec7d5c3f..00000000
---- a/meta-arago-demos/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
+index 5180c8e4..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
 +++ /dev/null
-@@ -1,25 +0,0 @@
--SUMMARY = "Gesture baed HMI demo using mmWave IWR1642 chip and Sitara AM device"
--LICENSE = "BSD-3-Clause"
--LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=33;md5=e7e749ff1989b18db836e5d9910a37e9"
+@@ -1,16 +0,0 @@
+-#!/bin/sh
 -
--inherit qmake5
+-### QT Environment Variables ###
+-export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+-export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
+-export QT_QPA_EGLFS_INTEGRATION=eglfs_kms
+-export QT_QPA_EGLFS_ALWAYS_SET_MODE=1
+-export QT_WAYLAND_SHELL_INTEGRATION=xdg-shell
 -
--# Qt uses atomic instructions not supported in thumb mode
--ARM_INSTRUCTION_SET = "arm"
+-# SECCOMP-BPF Sandbox does not work due to unexpected FUTEX_UNLOCK_PI call
+-# from the pthread implementation. Disable this feature temporarily until
+-# those issues are resolved.
+-export QTWEBENGINE_CHROMIUM_FLAGS="--disable-seccomp-filter-sandbox"
 -
--PV = "1.0"
--PR = "r0"
--
--BRANCH = "master"
--SRC_URI = "git://git.ti.com/git/sitara-linux/mmwavegesture-hmi.git;protocol=https;branch=${BRANCH}"
--
--SRCREV = "0881fc8bc5b3c3411af7b69c3837a8b3a1fbedc5"
--
--S = "${WORKDIR}/git"
--
--DEPENDS += "qtbase qtdeclarative qtserialport"
--
--do_install() {
--    install -d ${D}${bindir}
--    install -m 755 mmwavegesture_hmi ${D}${bindir}
--}
-diff --git a/meta-arago-demos/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb b/meta-arago-demos/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
+-export QTWEBENGINE_DISABLE_SANDBOX=1
+-#export QT_QPA_PLATFORM=eglfs
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
 deleted file mode 100644
-index 1ed29577..00000000
---- a/meta-arago-demos/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
+index ef49b124..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
++++ /dev/null
+@@ -1,14 +0,0 @@
+-#!/bin/sh
+-
+-### QT Environment Variables ###
+-export QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS="rotate=180"
+-export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+-export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
+-export QT_QPA_EGLFS_INTEGRATION=eglfs_kms
+-export QT_QPA_EGLFS_ALWAYS_SET_MODE=1
+-export QT_WAYLAND_SHELL_INTEGRATION=xdg-shell
+-
+-# SECCOMP-BPF Sandbox does not work due to unexpected FUTEX_UNLOCK_PI call
+-# from the pthread implementation. Disable this feature temporarily until
+-# those issues are resolved.
+-export QTWEBENGINE_CHROMIUM_FLAGS="--disable-seccomp-filter-sandbox"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb b/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb
+deleted file mode 100644
+index 63894c47..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb
++++ /dev/null
+@@ -1,20 +0,0 @@
+-SUMMARY = "qtbase configuration files"
+-HOMEPAGE = "http://www.qt.io/"
+-LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+-SRC_URI = "file://qt_env.sh \
+-           file://eglfs_kms_cfg.json \
+-          "
+-
+-# Add custom Arago qtbase Environment script and eglfs_kms configuration file
+-do_install () {
+-    install -d ${D}${sysconfdir}/profile.d
+-    install -m 0644 ${WORKDIR}/qt_env.sh ${D}${sysconfdir}/profile.d/
+-    install -d ${D}${sysconfdir}/qt5
+-    install -m 0644 ${WORKDIR}/eglfs_kms_cfg.json ${D}${sysconfdir}/qt5/
+-}
+-
+-FILES:${PN} += "${sysconfdir}/profile.d/* ${sysconfdir}/qt5/*"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-calculator-Add-exit-button-for-non-window-environmen.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-calculator-Add-exit-button-for-non-window-environmen.patch
+deleted file mode 100644
+index e123df57..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-calculator-Add-exit-button-for-non-window-environmen.patch
++++ /dev/null
+@@ -1,60 +0,0 @@
+-From b0cb70d35131643dce61fa5a8ce9f652dc63e963 Mon Sep 17 00:00:00 2001
+-From: Jake Stiffler <jake@mcsdk-hpc-test.(none)>
+-Date: Thu, 19 Mar 2015 15:21:08 -0400
+-Subject: [PATCH 1/2] calculator: Add exit button for non-window environment.
+-
+-Signed-off-by: Jake Stiffler <jake@mcsdk-hpc-test.(none)>
+----
+- examples/widgets/widgets/calculator/calculator.cpp |    9 ++++++++-
+- examples/widgets/widgets/calculator/calculator.h   |    1 +
+- 2 files changed, 9 insertions(+), 1 deletion(-)
+-
+-diff --git a/examples/widgets/widgets/calculator/calculator.cpp b/examples/widgets/widgets/calculator/calculator.cpp
+-index bb3836b..afe0bba 100644
+---- a/examples/widgets/widgets/calculator/calculator.cpp
+-+++ b/examples/widgets/widgets/calculator/calculator.cpp
+-@@ -78,6 +78,7 @@ Calculator::Calculator(QWidget *parent)
+-     Button *backspaceButton = createButton(tr("Backspace"), SLOT(backspaceClicked()));
+-     Button *clearButton = createButton(tr("Clear"), SLOT(clear()));
+-     Button *clearAllButton = createButton(tr("Clear All"), SLOT(clearAll()));
+-+    Button *quitButton = createButton(tr("Quit"), SLOT(quitClicked()));
+- 
+-     Button *clearMemoryButton = createButton(tr("MC"), SLOT(clearMemory()));
+-     Button *readMemoryButton = createButton(tr("MR"), SLOT(readMemory()));
+-@@ -100,7 +101,8 @@ Calculator::Calculator(QWidget *parent)
+- //! [5] //! [6]
+-     mainLayout->setSizeConstraint(QLayout::SetFixedSize);
+-     mainLayout->addWidget(display, 0, 0, 1, 6);
+--    mainLayout->addWidget(backspaceButton, 1, 0, 1, 2);
+-+    mainLayout->addWidget(quitButton, 1, 0, 1, 1);
+-+    mainLayout->addWidget(backspaceButton, 1, 1, 1, 1);
+-     mainLayout->addWidget(clearButton, 1, 2, 1, 2);
+-     mainLayout->addWidget(clearAllButton, 1, 4, 1, 2);
+- 
+-@@ -297,6 +299,11 @@ void Calculator::changeSignClicked()
+- }
+- //! [24]
+- 
+-+void Calculator::quitClicked()
+-+{
+-+    qApp->quit();
+-+}
+-+
+- //! [26]
+- void Calculator::backspaceClicked()
+- {
+-diff --git a/examples/widgets/widgets/calculator/calculator.h b/examples/widgets/widgets/calculator/calculator.h
+-index 76cf048..5e5c52e 100644
+---- a/examples/widgets/widgets/calculator/calculator.h
+-+++ b/examples/widgets/widgets/calculator/calculator.h
+-@@ -64,6 +64,7 @@ private slots:
+-     void equalClicked();
+-     void pointClicked();
+-     void changeSignClicked();
+-+    void quitClicked();
+-     void backspaceClicked();
+-     void clear();
+-     void clearAll();
+--- 
+-1.7.9.5
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-deform-Fix-how-controls-are-shown.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-deform-Fix-how-controls-are-shown.patch
+deleted file mode 100644
+index 076becaa..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-deform-Fix-how-controls-are-shown.patch
++++ /dev/null
+@@ -1,33 +0,0 @@
+-From adad036a785f6b3910e6305181e7711c2bac0df6 Mon Sep 17 00:00:00 2001
+-From: Jacob Stiffler <j-stiffler@ti.com>
+-Date: Fri, 12 Jun 2015 08:34:17 -0400
+-Subject: [PATCH 1/2] deform: Fix how controls are shown.
+-
+-* Workaround for issue when controls are full screen, and user clicks
+-  OK, black surface remains covering the entire screen.
+-* If controls are not full screen, then they must retain focus while
+-  opened.
+-
+-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+----
+- examples/widgets/painting/deform/pathdeform.cpp |    4 +++-
+- 1 file changed, 3 insertions(+), 1 deletion(-)
+-
+-diff --git a/examples/widgets/painting/deform/pathdeform.cpp b/examples/widgets/painting/deform/pathdeform.cpp
+-index 287f700..f8ecc3b 100644
+---- a/examples/widgets/painting/deform/pathdeform.cpp
+-+++ b/examples/widgets/painting/deform/pathdeform.cpp
+-@@ -266,7 +266,9 @@ PathDeformWidget::PathDeformWidget(QWidget *parent, bool smallScreen)
+- 
+- void PathDeformWidget::showControls()
+- {
+--    m_controls->showFullScreen();
+-+    // Hide first to keep controls in foreground.
+-+    m_controls->hide();
+-+    m_controls->show();
+- }
+- 
+- void PathDeformWidget::hideControls()
+--- 
+-1.7.9.5
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-eglfs-Force-888-format-only-on-env-flag.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-eglfs-Force-888-format-only-on-env-flag.patch
+deleted file mode 100644
+index b6f0eec8..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-eglfs-Force-888-format-only-on-env-flag.patch
++++ /dev/null
+@@ -1,44 +0,0 @@
+-From 7288496d08108b8b6514f9fb20c575fd42f8027e Mon Sep 17 00:00:00 2001
+-From: Gowtham Tammana <g-tammana@ti.com>
+-Date: Mon, 6 Jul 2020 12:47:23 -0500
+-Subject: [PATCH] eglfs: Force 888 format only on env flag
+-
+-[ChangeLog][Platform Specific Changes][eglfs] In the case of elgfs
+-platform the surface format is being forced to RGB888 format which
+-conflicts if a different default format is specified in the json config
+-file. Force the surface format to be of RGB888 only when the environment
+-flag QT_QPA_EGLFS_FORCE888 is set.
+-set.
+-
+-Upstream-Status: Pending
+-
+-Change-Id: Id63f11eed2f41b322a95e103860888694ccd44db
+----
+- .../eglfs_kms_support/qeglfskmsintegration.cpp        | 11 ++++++++---
+- 1 file changed, 8 insertions(+), 3 deletions(-)
+-
+-diff --git a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms_support/qeglfskmsintegration.cpp b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms_support/qeglfskmsintegration.cpp
+-index 06bc272050..41f2265208 100644
+---- a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms_support/qeglfskmsintegration.cpp
+-+++ b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms_support/qeglfskmsintegration.cpp
+-@@ -102,9 +102,14 @@ QSurfaceFormat QEglFSKmsIntegration::surfaceFormatFor(const QSurfaceFormat &inpu
+-     QSurfaceFormat format(inputFormat);
+-     format.setRenderableType(QSurfaceFormat::OpenGLES);
+-     format.setSwapBehavior(QSurfaceFormat::DoubleBuffer);
+--    format.setRedBufferSize(8);
+--    format.setGreenBufferSize(8);
+--    format.setBlueBufferSize(8);
+-+
+-+    static const bool force888 = qEnvironmentVariableIntValue("QT_QPA_EGLFS_FORCE888");
+-+    if (force888) {
+-+        format.setRedBufferSize(8);
+-+        format.setGreenBufferSize(8);
+-+        format.setBlueBufferSize(8);
+-+    }
+-+
+-     return format;
+- }
+-
+---
+-2.17.1
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-qtbase-plugins-platforms-eglfs_kms-fix-compiler-erro.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-qtbase-plugins-platforms-eglfs_kms-fix-compiler-erro.patch
+deleted file mode 100644
+index 16006aac..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-qtbase-plugins-platforms-eglfs_kms-fix-compiler-erro.patch
 +++ /dev/null
 @@ -1,29 +0,0 @@
--SUMMARY = "Predictive maintenance demo for anomaly detection using Recurrent Neural Network (RNN)"
--LICENSE = "BSD-3-Clause & MIT & GPL-3.0-only"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=e88016d2cbc82d0d2efbb0865891e9d6"
+-From 7e1d01d4dc022f4da117f87a993d03b084134018 Mon Sep 17 00:00:00 2001
+-From: Eric Ruei <e-ruei1@ti.com>
+-Date: Fri, 8 Mar 2019 17:02:38 -0500
+-Subject: [PATCH] qtbase: plugins: platforms: eglfs_kms: fix compiler error
 -
--inherit qmake5
+-Upstream_Status: Pending
 -
--# Qt uses atomic instructions not supported in thumb mode
--ARM_INSTRUCTION_SET = "arm"
+-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+----
+- .../eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.cpp  | 7 +------
+- .../eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.h    | 5 +++++
+- 2 files changed, 6 insertions(+), 6 deletions(-)
 -
--PV = "1.0"
--PR = "r2"
+-diff --git a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.cpp b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.cpp
+-index 4023381..eb24175 100644
+---- a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.cpp
+-+++ b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.cpp
+-@@ -83,7 +78,7 @@ EGLDisplay QEglFSKmsGbmIntegration::createDisplay(EGLNativeDisplayType nativeDis
+-     }
+- 
+-     if (getPlatformDisplay) {
+--        display = getPlatformDisplay(EGL_PLATFORM_GBM_KHR, nativeDisplay, nullptr);
+-+        display = getPlatformDisplay(EGL_PLATFORM_GBM_KHR, (void *)nativeDisplay, nullptr);
+-     } else {
+-         qCDebug(qLcEglfsKmsDebug, "No eglGetPlatformDisplay for GBM, falling back to eglGetDisplay");
+-         display = eglGetDisplay(nativeDisplay);
+--- 
+-1.9.1
 -
--BRANCH = "master"
--SRC_URI  = "git://git.ti.com/git/apps/pdm-anomaly-detection.git;protocol=https;branch=${BRANCH}"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0002-animatedtiles-Add-exit-button-for-non-window-environ.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0002-animatedtiles-Add-exit-button-for-non-window-environ.patch
+deleted file mode 100644
+index 7b7ab3c2..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase/0002-animatedtiles-Add-exit-button-for-non-window-environ.patch
++++ /dev/null
+@@ -1,81 +0,0 @@
+-From 98476756ed6313c13adadf9d86bb921008c61eff Mon Sep 17 00:00:00 2001
+-From: Jake Stiffler <jake@mcsdk-hpc-test.(none)>
+-Date: Fri, 20 Mar 2015 15:00:51 -0400
+-Subject: [PATCH 2/2] animatedtiles: Add exit button for non-window
+- environment.
 -
--SRCREV = "2ccf0e5e5aaac73166d52374650a25652bd6aed2"
+-Signed-off-by: Jake Stiffler <jake@mcsdk-hpc-test.(none)>
+----
+- .../animation/animatedtiles/animatedtiles.qrc      |    1 +
+- examples/widgets/animation/animatedtiles/main.cpp  |   13 ++++++++++++-
+- 2 files changed, 13 insertions(+), 1 deletion(-)
 -
--S = "${WORKDIR}/git"
+-diff --git a/examples/widgets/animation/animatedtiles/animatedtiles.qrc b/examples/widgets/animation/animatedtiles/animatedtiles.qrc
+-index c43a979..3675345 100644
+---- a/examples/widgets/animation/animatedtiles/animatedtiles.qrc
+-+++ b/examples/widgets/animation/animatedtiles/animatedtiles.qrc
+-@@ -6,6 +6,7 @@
+-     <file>images/figure8.png</file>
+-     <file>images/kinetic.png</file>
+-     <file>images/random.png</file>
+-+    <file>images/quit.png</file>
+-     <file>images/tile.png</file>
+- </qresource>
+- </RCC>
+-diff --git a/examples/widgets/animation/animatedtiles/main.cpp b/examples/widgets/animation/animatedtiles/main.cpp
+-index 09e9790..d8491d7 100644
+---- a/examples/widgets/animation/animatedtiles/main.cpp
+-+++ b/examples/widgets/animation/animatedtiles/main.cpp
+-@@ -97,6 +97,12 @@ public:
+-         painter->drawPixmap(-_pix.width()/2, -_pix.height()/2, _pix);
+-     }
+- 
+-+public slots:
+-+    void quitClicked()
+-+    {
+-+        qApp->quit();
+-+    }
+-+
+- signals:
+-     void pressed();
+- 
+-@@ -121,6 +127,7 @@ class View : public QGraphicsView
+- public:
+-     View(QGraphicsScene *scene) : QGraphicsView(scene) { }
+- 
+-+
+- protected:
+-     void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE
+-     {
+-@@ -156,16 +163,18 @@ int main(int argc, char **argv)
+-     Button *randomButton = new Button(QPixmap(":/images/random.png"), buttonParent);
+-     Button *tiledButton = new Button(QPixmap(":/images/tile.png"), buttonParent);
+-     Button *centeredButton = new Button(QPixmap(":/images/centered.png"), buttonParent);
+-+    Button *quitButton = new Button(QPixmap(":/images/quit.png"), buttonParent);
+- 
+-     ellipseButton->setPos(-100, -100);
+-     figure8Button->setPos(100, -100);
+-     randomButton->setPos(0, 0);
+-     tiledButton->setPos(-100, 100);
+-     centeredButton->setPos(100, 100);
+-+    quitButton->setPos(100, -600);
+- 
+-     scene.addItem(buttonParent);
+-     buttonParent->setTransform(QTransform::fromScale(0.75, 0.75), true);
+--    buttonParent->setPos(200, 200);
+-+    buttonParent->setPos(400, 200);
+-     buttonParent->setZValue(65);
+- 
+-     // States
+-@@ -239,6 +248,8 @@ int main(int argc, char **argv)
+-     trans = rootState->addTransition(centeredButton, SIGNAL(pressed()), centeredState);
+-     trans->addAnimation(group);
+- 
+-+    QObject::connect(quitButton, SIGNAL(pressed()), quitButton, SLOT(quitClicked()));
+-+
+-     QTimer timer;
+-     timer.start(125);
+-     timer.setSingleShot(true);
+--- 
+-1.7.9.5
 -
--DEPENDS += "qtbase qtdeclarative qtcharts"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0002-deform-disable-opengl-button.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0002-deform-disable-opengl-button.patch
+deleted file mode 100644
+index b15324bf..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase/0002-deform-disable-opengl-button.patch
++++ /dev/null
+@@ -1,71 +0,0 @@
+-From 066333592c77ef831286482c7d3636265777a774 Mon Sep 17 00:00:00 2001
+-From: Jacob Stiffler <j-stiffler@ti.com>
+-Date: Fri, 12 Jun 2015 10:24:33 -0400
+-Subject: [PATCH 2/2] deform: disable opengl button.
 -
--do_install() {
--    install -d ${D}${datadir}/ti/examples/pdm
--    install -m 755 RnnPdmAnomalyDetection ${D}${datadir}/ti/examples/pdm
--    install -m 644 ${S}/coeff.bin ${D}${datadir}/ti/examples/pdm
--    install -m 644 ${S}/logs/* ${D}${datadir}/ti/examples/pdm
+-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+----
+- examples/widgets/painting/deform/pathdeform.cpp |   12 ++++++------
+- 1 file changed, 6 insertions(+), 6 deletions(-)
+-
+-diff --git a/examples/widgets/painting/deform/pathdeform.cpp b/examples/widgets/painting/deform/pathdeform.cpp
+-index f8ecc3b..9da6bf3 100644
+---- a/examples/widgets/painting/deform/pathdeform.cpp
+-+++ b/examples/widgets/painting/deform/pathdeform.cpp
+-@@ -91,7 +91,7 @@ void PathDeformControls::layoutForDesktop()
+-     QPushButton *showSourceButton = new QPushButton(mainGroup);
+-     showSourceButton->setText(tr("Show Source"));
+- 
+--#ifdef QT_OPENGL_SUPPORT
+-+#if 0
+-     QPushButton *enableOpenGLButton = new QPushButton(mainGroup);
+-     enableOpenGLButton->setText(tr("Use OpenGL"));
+-     enableOpenGLButton->setCheckable(true);
+-@@ -114,7 +114,7 @@ void PathDeformControls::layoutForDesktop()
+-     mainGroupLayout->addWidget(textGroup);
+-     mainGroupLayout->addWidget(animateButton);
+-     mainGroupLayout->addStretch(1);
+--#ifdef QT_OPENGL_SUPPORT
+-+#if 0
+-     mainGroupLayout->addWidget(enableOpenGLButton);
+- #endif
+-     mainGroupLayout->addWidget(showSourceButton);
+-@@ -140,7 +140,7 @@ void PathDeformControls::layoutForDesktop()
+-     connect(deformSlider, SIGNAL(valueChanged(int)), m_renderer, SLOT(setIntensity(int)));
+-     connect(fontSizeSlider, SIGNAL(valueChanged(int)), m_renderer, SLOT(setFontSize(int)));
+-     connect(animateButton, SIGNAL(clicked(bool)), m_renderer, SLOT(setAnimated(bool)));
+--#ifdef QT_OPENGL_SUPPORT
+-+#if 0
+-     connect(enableOpenGLButton, SIGNAL(clicked(bool)), m_renderer, SLOT(enableOpenGL(bool)));
+- #endif
+- 
+-@@ -183,7 +183,7 @@ void PathDeformControls::layoutForSmallScreen()
+-     QPushButton *animateButton = new QPushButton(tr("Animated"), mainGroup);
+-     animateButton->setCheckable(true);
+- 
+--#ifdef QT_OPENGL_SUPPORT
+-+#if 0
+-     QPushButton *enableOpenGLButton = new QPushButton(mainGroup);
+-     enableOpenGLButton->setText(tr("Use OpenGL"));
+-     enableOpenGLButton->setCheckable(mainGroup);
+-@@ -205,7 +205,7 @@ void PathDeformControls::layoutForSmallScreen()
+-     mainGroupLayout->addWidget(fontSizeLabel, 2, 0, Qt::AlignRight);
+-     mainGroupLayout->addWidget(fontSizeSlider, 2, 1);
+-     mainGroupLayout->addWidget(animateButton, 3,0, 1,2);
+--#ifdef QT_OPENGL_SUPPORT
+-+#if 0
+-     mainGroupLayout->addWidget(enableOpenGLButton, 4,0, 1,2);
+- #endif
+- 
+-@@ -221,7 +221,7 @@ void PathDeformControls::layoutForSmallScreen()
+-     connect(deformSlider, SIGNAL(valueChanged(int)), m_renderer, SLOT(setIntensity(int)));
+-     connect(fontSizeSlider, SIGNAL(valueChanged(int)), m_renderer, SLOT(setFontSize(int)));
+-     connect(animateButton, SIGNAL(clicked(bool)), m_renderer, SLOT(setAnimated(bool)));
+--#ifdef QT_OPENGL_SUPPORT
+-+#if 0
+-     connect(enableOpenGLButton, SIGNAL(clicked(bool)), m_renderer, SLOT(enableOpenGL(bool)));
+- #endif
+- 
+--- 
+-1.7.9.5
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/quit.png b/meta-arago-distro/recipes-qt/qt5/qtbase/quit.png
+deleted file mode 100755
+index b9eb270c97306679f991669992d18a5f37e4ce22..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 645
+zcmeAS@N?(olHy`uVBq!ia0vp^DIm<j0wiy}j=c}0SkfJR9T^xl_H+M9WCijSl0AZa
+z85pY67#JE_7#My5g&JNkFq9fFFuY1&V6d9Oz#v{QXIG#NP=YDR+ueoXe|!I#{XiaP
+zfk$L90|Vb-5N14{zXE6%W4EV^V@SoVx3i+xF)Q*ox4)}DU&4IYN6u`^wDaMiFVzZ<
+zwk8zC9+OD!F$57Jk4qT6)7BlEGa;p*qbFgTzu^y`Ke6F%9X%7uHWfW_Shq`H+LYZZ
+z9xUDJ>}8qc&k=R1*5uW?(0<3RdAd#NOC>GincTgsvz9XK5pg&YRkcRMW6R=`6DPjn
+zW(sC_!*02IQ=|8m?YF;hHU3*Z_qN%=>iGW}t3_GvA38thWQ()tW%Z|Ai@&h_mbMGp
+z-nP5?IM))>xgNp~_j)`sWq93YBkr~L?1J36r5o>fOCFqmDyFXSrlebR2$zZZal;-D
+z#`Ltv`T0Q)Dl6sQO%`zqTPC@8lGDkXrZ4K)^w+lWc*W)K_m%u`CoeF_=-;|bk<7=g
+zdSOc8v4Wo+kMIc@zHreA78H(t66yG4q5G4UzE2E8o>WGqBsiqBIH#;|OF7e7bNqE`
+zhjdAeWOUV9S)*$+PaK{p<DbK_uaWEF%(Y8Tgeu;d_-W%09t{oK)qDv>d`D`T|4BdS
+z`z8$yS<92+A6>FNSfU-gfN`Z-;u=wsl30>zm0Xkxq!^403{7<njCBnyLktbA49%>J
+pjI|96tqctMnb}UEXvob^$xN%nt>ItXzA~T&22WQ%mvv4FO#o;X_JaTb
+
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+deleted file mode 100644
+index 8ae8110b..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
++++ /dev/null
+@@ -1,46 +0,0 @@
+-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+-
+-GLES_EXTRA_DEPS = "libdrm wayland"
+-
+-PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
+-
+-PR:append = ".arago17"
+-
+-QT_CONFIG_FLAGS += "-qpa ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
+-
+-QT_EGLFS_PATCHES = "\
+-    file://0001-calculator-Add-exit-button-for-non-window-environmen.patch \
+-    file://0002-animatedtiles-Add-exit-button-for-non-window-environ.patch \
+-    file://quit.png \
+-"
+-
+-#    file://0002-deform-disable-opengl-button.patch
+-
+-SRC_URI += "\
+-    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', '', "${QT_EGLFS_PATCHES}", d)}\
+-    file://0001-deform-Fix-how-controls-are-shown.patch \
+-    file://0001-qtbase-plugins-platforms-eglfs_kms-fix-compiler-erro.patch \
+-    file://0001-eglfs-Force-888-format-only-on-env-flag.patch \
+-"
+-
+-python do_patch:append() {
+-    import shutil
+-
+-    work_dir = d.getVar("WORKDIR")
+-    s = d.getVar("S")
+-
+-    if not bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d):
+-        shutil.copy(os.path.join(work_dir,"quit.png"),os.path.join(s,"examples/widgets/animation/animatedtiles/images/"))
 -}
 -
--FILES:${PN} += "${datadir}/ti/examples/pdm"
-diff --git a/meta-arago-demos/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb b/meta-arago-demos/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+-# Add symbolic link qt5/examples for backward compatibility
+-do_install:append () {
+-
+-    install -d ${D}${datadir}/qt5
+-    ln -sf ../examples ${D}${datadir}/qt5/examples
+-}
+-
+-FILES:${PN}-examples +=  "${datadir}/qt5/*"
+-
+-
+-RDEPENDS:${PN} += "${PN}-conf"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtdeclarative/0001-touchinteraction.qml-Add-exit-button.patch b/meta-arago-distro/recipes-qt/qt5/qtdeclarative/0001-touchinteraction.qml-Add-exit-button.patch
 deleted file mode 100644
-index 9211c653..00000000
---- a/meta-arago-demos/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+index c7ae8d1d..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtdeclarative/0001-touchinteraction.qml-Add-exit-button.patch
++++ /dev/null
+@@ -1,60 +0,0 @@
+-From 9048b28bde9bf4375f539885eeaa1f92dd2eb258 Mon Sep 17 00:00:00 2001
+-From: Eric Ruei <e-ruei1@ti.com>
+-Date: Tue, 16 Aug 2016 15:09:04 -0400
+-Subject: [PATCH] touchinteraction.qml: Add "exit" button
+-
+-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+----
+- .../quick/touchinteraction/touchinteraction.qml    | 38 ++++++++++++++++++++++
+- 1 file changed, 38 insertions(+)
+-
+-diff --git a/examples/quick/touchinteraction/touchinteraction.qml b/examples/quick/touchinteraction/touchinteraction.qml
+-index 2ffb513..2c6934c 100644
+---- a/examples/quick/touchinteraction/touchinteraction.qml
+-+++ b/examples/quick/touchinteraction/touchinteraction.qml
+-@@ -55,4 +55,42 @@ Item {
+-             addExample("Corkboards", "Uses touch input on items inside a Flickable", Qt.resolvedUrl("flickable/corkboards.qml"));
+-         }
+-     }
+-+
+-+    Item {
+-+        id: exit
+-+
+-+        width: parent.width / 10
+-+        height: parent.height /10
+-+
+-+        anchors {
+-+            bottom: parent.bottom
+-+            left: parent.left
+-+            bottomMargin: 40
+-+        }
+-+
+-+        Rectangle {
+-+            id: bgr
+-+            anchors.fill: parent
+-+            color: mouseArea.pressed ? "#757575" : "#212121"
+-+            radius: height / 15
+-+
+-+            Text {
+-+                id: text
+-+                anchors.centerIn: parent
+-+                text: "Exit"
+-+                font.pixelSize: 0.4 * parent.height
+-+                color: mouseArea.pressed ? "black" : "white"
+-+                horizontalAlignment: Text.AlignHCenter
+-+                verticalAlignment: Text.AlignVCenter
+-+            }
+-+
+-+            MouseArea {
+-+                id: mouseArea
+-+                anchors.fill: parent
+-+                onClicked: {
+-+                    Qt.quit()
+-+                }
+-+            }
+-+        }
+-+    }
+- }
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtdeclarative_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtdeclarative_git.bbappend
+deleted file mode 100644
+index 4167ac43..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtdeclarative_git.bbappend
++++ /dev/null
+@@ -1,10 +0,0 @@
+-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+-PR:append = ".tisdk1"
+-
+-CXXFLAGS:append:omap-a15 = " -DQ_OS_BLACKBERRY"
+-
+-
+-SRC_URI += " \
+-    file://0001-touchinteraction.qml-Add-exit-button.patch \
+-"
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+deleted file mode 100644
+index 29521a8e..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
++++ /dev/null
+@@ -1,30 +0,0 @@
+-From 4a21fcedd886772b7e1bd40861835f1b4f33c7ff Mon Sep 17 00:00:00 2001
+-From: Eric Ruei <e-ruei1@ti.com>
+-Date: Fri, 30 Aug 2019 17:41:13 -0400
+-Subject: [PATCH] HACK: ANGLE/khrplatform.h: add #define
+- MESA_EGL_NO_X11_HEADERS
+-
+-Note: Only the KHR/khrplatform.h at sysroot/usr/include should be used.
+-      This patch is a tentative workaround to make both files compatible
+-
+-Upstream-Status: Inappropriate [tentative workaround only]
+-
+-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+----
+- Source/ThirdParty/ANGLE/include/KHR/khrplatform.h | 2 ++
+- 1 file changed, 2 insertions(+)
+-
+-diff --git a/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h b/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
+-index c9e6f17d3..4e3ff69a8 100644
+---- a/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
+-+++ b/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
+-@@ -279,4 +279,6 @@ typedef enum {
+-     KHRONOS_BOOLEAN_ENUM_FORCE_SIZE = KHRONOS_MAX_ENUM
+- } khronos_boolean_enum_t;
+- 
+-+#define MESA_EGL_NO_X11_HEADERS
+-+
+- #endif /* __khrplatform_h_ */
+--- 
+-2.17.1
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch
+deleted file mode 100644
+index 55a4c032..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch
++++ /dev/null
+@@ -1,29 +0,0 @@
+-From 90de2ab42bdd51b92dd00f700d6766ca1ffd23c0 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Thu, 17 Jul 2014 16:11:46 -0400
+-Subject: [PATCH] Target.pri: update to use GL_NoX version of GraphicsSurface
+- sources
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- Source/WebCore/Target.pri | 4 ++++
+- 1 file changed, 4 insertions(+)
+-
+-diff --git a/Source/WebCore/Target.pri b/Source/WebCore/Target.pri
+-index e2044bc..cc9bdd4 100644
+---- a/Source/WebCore/Target.pri
+-+++ b/Source/WebCore/Target.pri
+-@@ -4283,6 +4283,10 @@ use?(GRAPHICS_SURFACE) {
+-             platform/graphics/surfaces/glx/X11Helper.cpp \
+-             platform/graphics/surfaces/glx/GraphicsSurfaceGLX.cpp
+-     }
+-+    contains(QT_CONFIG, opengles2) {
+-+        SOURCES -= platform/graphics/surfaces/qt/GraphicsSurfaceGLX.cpp
+-+        SOURCES += platform/graphics/surfaces/qt/GraphicsSurfaceGL_NoX.cpp
+-+    }
+- }
+- 
+- build?(qttestsupport) {
+--- 
+-2.0.0
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsContext3DQt.cpp.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsContext3DQt.cpp.patch
+deleted file mode 100644
+index aa752bb8..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsContext3DQt.cpp.patch
++++ /dev/null
+@@ -1,26 +0,0 @@
+---- qtwebkit/Source/WebCore/platform/graphics/qt/GraphicsContext3DQt.cpp.orig	2013-09-07 13:41:19.946858466 +0530
+-+++ qtwebkit/Source/WebCore/platform/graphics/qt/GraphicsContext3DQt.cpp	2013-09-07 17:48:13.958979770 +0530
+-@@ -383,21 +383,23 @@ GraphicsContext3D::GraphicsContext3D(Gra
+-     , m_boundTexture0(0)
+-     , m_multisampleFBO(0)
+-     , m_multisampleDepthStencilBuffer(0)
+-     , m_multisampleColorBuffer(0)
+-     , m_private(adoptPtr(new GraphicsContext3DPrivate(this, hostWindow, renderStyle)))
+- {
+-     validateAttributes();
+- 
+-+#if USE(GLX)
+-     if (!m_private->m_surface || !m_private->m_platformContext) {
+-         LOG_ERROR("GraphicsContext3D: GL context creation failed.");
+-         m_private = nullptr;
+-         return;
+-     }
+-+#endif
+- 
+-     static bool initialized = false;
+-     static bool success = true;
+-     if (!initialized) {
+-         success = initializeOpenGLShims();
+-         initialized = true;
+-     }
+-     if (!success) {
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceGL_NoX.cpp.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceGL_NoX.cpp.patch
+deleted file mode 100644
+index 89712a8b..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceGL_NoX.cpp.patch
++++ /dev/null
+@@ -1,270 +0,0 @@
+-diff -Nurp8 Source/WebCore/platform/graphics/surfaces/qt/GraphicsSurfaceGL_NoX.cpp Source-new/WebCore/platform/graphics/surfaces/qt/GraphicsSurfaceGL_NoX.cpp
+---- qtwebkit/Source/WebCore/platform/graphics/surfaces/qt/GraphicsSurfaceGL_NoX.cpp	1970-01-01 05:30:00.000000000 +0530
+-+++ qtwebkit-new/Source/WebCore/platform/graphics/surfaces/qt/GraphicsSurfaceGL_NoX.cpp	2013-09-07 13:43:55.186851650 +0530
+-@@ -0,0 +1,266 @@
+-+/*
+-+ Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies)
+-+
+-+ This library is free software; you can redistribute it and/or
+-+ modify it under the terms of the GNU Library General Public
+-+ License as published by the Free Software Foundation; either
+-+ version 2 of the License, or (at your option) any later version.
+-+
+-+ This library is distributed in the hope that it will be useful,
+-+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ Library General Public License for more details.
+-+
+-+ You should have received a copy of the GNU Library General Public License
+-+ along with this library; see the file COPYING.LIB.  If not, write to
+-+ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+-+ Boston, MA 02110-1301, USA.
+-+ */
+-+
+-+#include "config.h"
+-+#include "GraphicsSurface.h"
+-+
+-+#if USE(GRAPHICS_SURFACE)
+-+
+-+#include "NotImplemented.h"
+-+#include "TextureMapperGL.h"
+-+
+-+#if PLATFORM(QT)
+-+// Qt headers must be included before gl headers.
+-+#include <QGuiApplication>
+-+#include <QOpenGLContext>
+-+#include <qpa/qplatformnativeinterface.h>
+-+#elif PLATFORM(EFL)
+-+#include <GL/gl.h>
+-+#endif
+-+
+-+ #include <GLES2/gl2.h>
+-+
+-+namespace WebCore {
+-+
+-+class OffScreenRootWindow {
+-+public:
+-+    OffScreenRootWindow()
+-+    {
+-+        ++m_refCount;
+-+    }
+-+
+-+    ~OffScreenRootWindow()
+-+    {
+-+        if (--m_refCount)
+-+            return;
+-+    }
+-+
+-+private:
+-+    static int m_refCount;
+-+};
+-+
+-+int OffScreenRootWindow::m_refCount = 0;
+-+
+-+
+-+struct GraphicsSurfacePrivate {
+-+    GraphicsSurfacePrivate(const PlatformGraphicsContext3D shareContext = 0)
+-+        : m_textureIsYInverted(false)
+-+        , m_hasAlpha(false)
+-+        , m_isReceiver(false)
+-+    {
+-+
+-+#if PLATFORM(QT)
+-+        if (shareContext) {
+-+#if 0
+-+            // This code path requires QXcbNativeInterface::nativeResourceForContext() which is not availble in Qt5 on the build bots yet.
+-+            QPlatformNativeInterface* nativeInterface = QGuiApplication::platformNativeInterface();
+-+            shareContextObject = static_cast<GLXContext>(nativeInterface->nativeResourceForContext(QByteArrayLiteral("glxcontext"), shareContext));
+-+            if (!shareContextObject)
+-+                return;
+-+#else
+-+            // This code path should be removed as soon as QXcbNativeInterface::nativeResourceForContext() can provide the GLXContext.
+-+            QOpenGLContext* previousContext = QOpenGLContext::currentContext();
+-+            QSurface* previousSurface = previousContext->surface();
+-+            QSurface* currentSurface = shareContext->surface();
+-+            shareContext->makeCurrent(currentSurface);
+-+
+-+
+-+            previousContext->makeCurrent(previousSurface);
+-+#endif
+-+        }
+-+#else
+-+        UNUSED_PARAM(shareContext);
+-+#endif
+-+
+-+
+-+    }
+-+
+-+    GraphicsSurfacePrivate(uint32_t winId)
+-+        : m_textureIsYInverted(false)
+-+        , m_hasAlpha(false)
+-+        , m_isReceiver(true)
+-+    { }
+-+
+-+    ~GraphicsSurfacePrivate()
+-+    {
+-+    }
+-+
+-+    uint32_t createSurface(const IntSize& size)
+-+    {
+-+        return 0;
+-+    }
+-+
+-+    void createPixmap(uint32_t winId)
+-+    {
+-+    }
+-+
+-+    bool textureIsYInverted()
+-+    {
+-+        return m_textureIsYInverted;
+-+    }
+-+
+-+    void makeCurrent()
+-+    {
+-+    }
+-+
+-+    void doneCurrent()
+-+    {
+-+    }
+-+
+-+    void swapBuffers()
+-+    {
+-+    }
+-+
+-+    void copyFromTexture(uint32_t texture, const IntRect& sourceRect)
+-+    {
+-+        makeCurrent();
+-+
+-+        swapBuffers();
+-+        doneCurrent();
+-+    }
+-+
+-+    void* display() const { return 0; }
+-+
+-+    IntSize size() const
+-+    {
+-+        return IntSize(0, 0);
+-+    }
+-+
+-+private:
+-+    OffScreenRootWindow m_offScreenWindow;
+-+    IntSize m_size;
+-+    bool m_textureIsYInverted;
+-+    bool m_hasAlpha;
+-+    bool m_isReceiver;
+-+};
+-+
+-+static bool resolveGLMethods()
+-+{
+-+    return true;
+-+}
+-+
+-+GraphicsSurfaceToken GraphicsSurface::platformExport()
+-+{
+-+    return GraphicsSurfaceToken();
+-+}
+-+
+-+uint32_t GraphicsSurface::platformGetTextureID()
+-+{
+-+    return 0;
+-+}
+-+
+-+void GraphicsSurface::platformCopyToGLTexture(uint32_t /*target*/, uint32_t /*id*/, const IntRect& /*targetRect*/, const IntPoint& /*offset*/)
+-+{
+-+    // This is not supported by NoX
+-+}
+-+
+-+void GraphicsSurface::platformCopyFromTexture(uint32_t texture, const IntRect& sourceRect)
+-+{
+-+    m_private->copyFromTexture(texture, sourceRect);
+-+}
+-+
+-+
+-+void GraphicsSurface::platformPaintToTextureMapper(TextureMapper* textureMapper, const FloatRect& targetRect, const TransformationMatrix& transform, float opacity, BitmapTexture* mask)
+-+{
+-+    TextureMapperGL* texMapGL = static_cast<TextureMapperGL*>(textureMapper);
+-+    TransformationMatrix adjustedTransform = transform;
+-+    adjustedTransform.multiply(TransformationMatrix::rectToRect(FloatRect(FloatPoint::zero(), m_private->size()), targetRect));
+-+    TextureMapperGL::Flags flags = m_private->textureIsYInverted() ? TextureMapperGL::ShouldFlipTexture : 0;
+-+    flags |= TextureMapperGL::SupportsBlending;
+-+    texMapGL->drawTexture(platformGetTextureID(), flags, m_private->size(), targetRect, adjustedTransform, opacity, mask);
+-+}
+-+
+-+uint32_t GraphicsSurface::platformFrontBuffer() const
+-+{
+-+    return 0;
+-+}
+-+
+-+uint32_t GraphicsSurface::platformSwapBuffers()
+-+{
+-+    m_private->swapBuffers();
+-+    return 0;
+-+}
+-+
+-+IntSize GraphicsSurface::platformSize() const
+-+{
+-+    return m_private->size();
+-+}
+-+
+-+PassRefPtr<GraphicsSurface> GraphicsSurface::platformCreate(const IntSize& size, Flags flags, const PlatformGraphicsContext3D shareContext)
+-+{
+-+    if (flags & SupportsCopyToTexture || flags & SupportsSingleBuffered)
+-+        return PassRefPtr<GraphicsSurface>();
+-+
+-+    RefPtr<GraphicsSurface> surface = adoptRef(new GraphicsSurface(size, flags));
+-+
+-+    surface->m_private = new GraphicsSurfacePrivate(shareContext);
+-+    if (!resolveGLMethods())
+-+        return PassRefPtr<GraphicsSurface>();
+-+
+-+    surface->m_platformSurface = surface->m_private->createSurface(size);
+-+
+-+    return surface;
+-+}
+-+
+-+PassRefPtr<GraphicsSurface> GraphicsSurface::platformImport(const IntSize& size, Flags flags, const GraphicsSurfaceToken& token)
+-+{
+-+    if (flags & SupportsCopyToTexture || flags & SupportsSingleBuffered)
+-+        return PassRefPtr<GraphicsSurface>();
+-+
+-+    RefPtr<GraphicsSurface> surface = adoptRef(new GraphicsSurface(size, flags));
+-+    surface->m_platformSurface = token.frontBufferHandle;
+-+
+-+    surface->m_private = new GraphicsSurfacePrivate(surface->m_platformSurface);
+-+    if (!resolveGLMethods())
+-+        return PassRefPtr<GraphicsSurface>();
+-+
+-+    return surface;
+-+}
+-+
+-+char* GraphicsSurface::platformLock(const IntRect&, int* /*outputStride*/, LockOptions)
+-+{
+-+    // GraphicsSurface is currently only being used for WebGL, which does not require this locking mechanism.
+-+    return 0;
+-+}
+-+
+-+void GraphicsSurface::platformUnlock()
+-+{
+-+    // GraphicsSurface is currently only being used for WebGL, which does not require this locking mechanism.
+-+}
+-+
+-+void GraphicsSurface::platformDestroy()
+-+{
+-+    m_private = 0;
+-+}
+-+
+-+#if !PLATFORM(QT)
+-+PassOwnPtr<GraphicsContext> GraphicsSurface::platformBeginPaint(const IntSize&, char*, int)
+-+{
+-+    notImplemented();
+-+    return nullptr;
+-+}
+-+
+-+PassRefPtr<Image> GraphicsSurface::createReadOnlyImage(const IntRect&)
+-+{
+-+    notImplemented();
+-+    return 0;
+-+}
+-+#endif
+-+}
+-+#endif
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch
+deleted file mode 100644
+index 722df392..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch
++++ /dev/null
+@@ -1,33 +0,0 @@
+---- qtwebkit/Source/WebCore/platform/graphics/surfaces/GraphicsSurfaceToken.h.orig	2013-09-07 13:44:47.906849335 +0530
+-+++ qtwebkit/Source/WebCore/platform/graphics/surfaces/GraphicsSurfaceToken.h	2013-09-07 13:46:12.554845618 +0530
+-@@ -50,17 +50,30 @@ struct GraphicsSurfaceToken {
+-     {
+-         return frontBufferHandle != rhs.frontBufferHandle;
+-     }
+- 
+-     bool isValid() const
+-     {
+-         return frontBufferHandle;
+-     }
+-+#elif PLATFORM(QT)
+-+    GraphicsSurfaceToken(uint32_t windowID = 0)
+-+         : frontBufferHandle(windowID)
+-+    { }
+-+
+-+     bool operator!=(const GraphicsSurfaceToken &rhs) const
+-+     {
+-+         return frontBufferHandle != rhs.frontBufferHandle;
+-+     }
+- 
+-+     bool isValid() const
+-+     {
+-+         return frontBufferHandle;
+-+     }
+- #endif
+- 
+- #if OS(DARWIN) || OS(WINDOWS)
+-     GraphicsSurfaceToken(BufferHandle frontBuffer = 0, BufferHandle backBuffer = 0)
+-         : frontBufferHandle(frontBuffer)
+-         , backBufferHandle(backBuffer)
+-     { }
+- 
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
+deleted file mode 100644
+index 276b3cf8..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
++++ /dev/null
+@@ -1,17 +0,0 @@
+-diff --git a/Source/WebCore/WebCore.pri b/Source/WebCore/WebCore.pri
+-index 0189394..00f7090 100644
+---- a/Source/WebCore/WebCore.pri
+-+++ b/Source/WebCore/WebCore.pri
+-@@ -227,8 +227,10 @@ use?(3D_GRAPHICS) {
+- use?(GRAPHICS_SURFACE) {
+-     mac: LIBS += -framework IOSurface -framework CoreFoundation
+-     linux-*: {
+--        LIBS += -lXcomposite -lXrender
+--        CONFIG *= x11
+-+        xlibAvailable() {
+-+            LIBS += -lXcomposite -lXrender
+-+            CONFIG *= x11
+-+        }
+-     }
+- }
+- 
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/qttestbrowser.cpp.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/qttestbrowser.cpp.patch
+deleted file mode 100644
+index 9a57be22..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/qttestbrowser.cpp.patch
++++ /dev/null
+@@ -1,24 +0,0 @@
+---- qtwebkit/Tools/QtTestBrowser/qttestbrowser.cpp.orig	2013-09-08 17:28:48.633593482 +0530
+-+++ qtwebkit/Tools/QtTestBrowser/qttestbrowser.cpp	2013-09-08 17:29:07.713592964 +0530
+-@@ -235,19 +235,20 @@ void LauncherApplication::handleUserOpti
+-     }
+- 
+-     if (args.contains("-webgl")) {
+-         requiresGraphicsView("-webgl");
+-         windowOptions.useWebGL = true;
+-     }
+- #endif
+- 
+-+#if 0
+-     if (args.contains("-use-test-fonts"))
+-         WebKit::QtTestSupport::initializeTestFonts();
+--
+-+#endif
+-     if (args.contains("-print-loaded-urls"))
+-         windowOptions.printLoadedUrls = true;
+- 
+-     QString inspectorUrlArg("-inspector-url");
+-     int inspectorUrlIndex = args.indexOf(inspectorUrlArg);
+-     if (inspectorUrlIndex != -1)
+-        windowOptions.inspectorUrl = takeOptionValue(&args, inspectorUrlIndex);
+- 
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+deleted file mode 100644
+index 22d2dc70..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
++++ /dev/null
+@@ -1,18 +0,0 @@
+-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+-
+-#	file://GraphicsSurfaceToken.h.patch
+-#	file://0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch
+-#	file://WebCore.pri.patch
+-
+-SRC_URI += " \
+-	file://GraphicsSurfaceGL_NoX.cpp.patch \
+-	file://0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch \
+-"
+-
+-PR:append = ".arago8"
+-
+-EXTRA_OECMAKE:append = " -DCMAKE_BUILD_TYPE=Release"
+-
+-EXTRA_OECMAKE:append:k3 = " -DUSE_SYSTEM_MALLOC=ON"
+-
+-DEPENDS += "flex-native bison-native"
+diff --git a/meta-arago-extras/README b/meta-arago-extras/README
+index 6253e23c..54309a0f 100644
+--- a/meta-arago-extras/README
++++ b/meta-arago-extras/README
+@@ -23,10 +23,6 @@ branch: scarthgap
+ revision: HEAD
+ layers: meta-oe, meta-networking, meta-python
+ 
+-URI: https://github.com/meta-qt5/meta-qt5
+-branch: scarthgap
+-revision: HEAD
+-
+ Send pull requests, patches, comments or questions to:
+ meta-arago@lists.yoctoproject.org
+ 
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+deleted file mode 100644
+index 41dff492..00000000
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
++++ /dev/null
+@@ -1,54 +0,0 @@
+-# Qt Embedded toolchain
+-TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-qte-toolchain-host"
+-TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-qte-toolchain-target"
+-TOOLCHAIN_SUFFIX ?= "-qte-sdk"
+-
+-require meta-toolchain-arago.bb
+-
+-PR = "r20"
+-
+-QT_MKSPECS_LOCATION = "${libdir}"
+-QT_MKSPECS_DIR = "linux-oe-g++"
+-
+-toolchain_create_sdk_env_script:append() {
+-	echo 'export PATH=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_DIR_NAME}:$PATH' >> $script
+-	echo 'export OE_QMAKE_CFLAGS="$CFLAGS"' >> $script
+-	echo 'export OE_QMAKE_CXXFLAGS="$CXXFLAGS"' >> $script
+-	echo 'export OE_QMAKE_LDFLAGS="$LDFLAGS"' >> $script
+-	echo 'export OE_QMAKE_CC="$CC"' >> $script
+-	echo 'export OE_QMAKE_CXX="$CXX"' >> $script
+-	echo 'export OE_QMAKE_LINK="$CXX"' >> $script
+-	echo 'export OE_QMAKE_AR="$AR"' >> $script
+-	echo 'export OE_QMAKE_PREFIX_QT=${prefix}' >> $script
+-	echo 'export OE_QMAKE_LIBDIR_QT=${libdir}' >> $script
+-	echo 'export OE_QMAKE_INCDIR_QT=${includedir}/${QT_DIR_NAME}' >> $script
+-	echo 'export OE_QMAKE_HOST_BINDIR_QT=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}' >> $script
+-	echo 'export OE_QMAKE_MOC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}moc${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_UIC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}uic${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_UIC3=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}uic3${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_RCC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}rcc${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_QDBUSCPP2XML=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}qdbuscpp2xml${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_QDBUSXML2CPP=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}qdbusxml2cpp${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_QT_CONFIG=$SDK_PATH_TARGET${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs/qconfig.pri' >> $script
+-	echo 'export OE_QMAKE_STRIP="echo"' >> $script
+-	echo 'export QMAKESPEC=$SDK_PATH_TARGET${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs/${QT_MKSPECS_DIR}' >> $script
+-	echo 'export QMAKE_DEFAULT_LIBDIRS=${QT_QMAKE_LIBDIR_QT}' >> $script
+-	echo 'export QMAKE_DEFAULT_INCDIRS=${QT_QMAKE_INCDIR_QT}' >> $script
+-
+-	#Adds qt.conf file that points qmake to properly locate Qt library and header files.
+-	#This enables Qt Creator to work properly
+-
+-	qt_conf="${SDK_OUTPUT}/${SDKPATHNATIVE}${bindir_nativesdk}/${QT_BIN_PREFIX}qt.conf"
+-	touch $qt_conf
+-	echo '[Paths]' >> $qt_conf
+-	echo 'Prefix = $(OE_QMAKE_PREFIX_QT)' >> $qt_conf
+-	echo 'Libraries = $(OE_QMAKE_LIBDIR_QT)' >> $qt_conf
+-	echo 'Headers = $(OE_QMAKE_INCDIR_QT)' >> $qt_conf
+-	echo 'HostPrefix = $(SDK_PATH_NATIVE)' >> $qt_conf
+-	echo 'HostBinaries = $(OE_QMAKE_HOST_BINDIR_QT)' >> $qt_conf
+-	echo 'Sysroot = $(SDK_PATH_TARGET)' >> $qt_conf
+-
+-	# make a symbolic link to mkspecs for compatibility with Qt SDK and QTCreator
+-	(cd ${SDK_OUTPUT}/${SDKTARGETSYSROOT}; ln -sf .${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs mkspecs;)
+-	(cd ${SDK_OUTPUT}/${SDKPATHNATIVE}; ln -sf ../${REAL_MULTIMACH_TARGET_SYS}${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs mkspecs;)
+-}
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
+deleted file mode 100644
+index 23c45abf..00000000
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
++++ /dev/null
+@@ -1,12 +0,0 @@
+-DESCRIPTION = "Host packages for Qt Embedded SDK"
+-PR = "r10"
+-LICENSE = "MIT"
+-
+-inherit packagegroup
+-inherit_defer nativesdk
+-
+-RDEPENDS:${PN} = "\
+-    nativesdk-packagegroup-arago-tisdk-host \
+-    nativesdk-qtbase \
+-    nativesdk-qttools \
+-    "
+diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
+deleted file mode 100644
+index 793fcd8f..00000000
+--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
 +++ /dev/null
 @@ -1,35 +0,0 @@
--DESCRIPTION = "Point cloud viewer"
--HOMEPAGE = "https://git.ti.com/processor-sdk/point-cloud-viewer/"
--LICENSE = "TI-TSPA"
--LIC_FILES_CHKSUM := "file://PointCloudViewer_manifest.html;md5=7ea694db2dd8d82fd91a18cab8c2c2db"
+-DESCRIPTION = "Target packages for Qt Embedded SDK"
+-LICENSE = "MIT"
 -
--PR = "r2"
+-PR = "r16"
 -
--COMPATIBLE_MACHINE = "dra7xx"
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
 -
--BRANCH = "master"
--
--SRC_URI = "git://git.ti.com/git/processor-sdk/point-cloud-viewer.git;protocol=https;branch=${BRANCH}"
--
--SRCREV = "f0af54e63a6c802b4f8f0657873e74f1cb486e86"
--
--PV = "2.2"
--
--S = "${WORKDIR}/git"
--
--DEPENDS += "opencv"
--RDEPENDS:${PN} = "libxkbcommon"
--
--do_install() {
--    install -d ${D}${bindir}
--    install -m 755 ${S}/point_cloud_viewer ${D}${bindir}
--
--    install -d ${D}${datadir}/ti/pointclouds
--    install -m 644 ${S}/example_point_cloud.xyz ${D}${datadir}/ti/pointclouds
--}
--
--FILES:${PN} += "\
--    ${datadir}/ti/pointclouds \
--"
--
--INSANE_SKIP:${PN} = "already-stripped file-rdeps"
-diff --git a/meta-arago-demos/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb b/meta-arago-demos/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
-deleted file mode 100644
-index 62770aaa..00000000
---- a/meta-arago-demos/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
-+++ /dev/null
-@@ -1,25 +0,0 @@
--SUMMARY = "HMI demo for Protection Relays using QT  tools"
--LICENSE = "BSD-3-Clause"
--LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=33;md5=a9cde3921a8be42ed79ab74661799104"
--
--DEPENDS += "qtbase"
--
--inherit qmake5
--
--# Qt uses atomic instructions not supported in thumb mode
--ARM_INSTRUCTION_SET = "arm"
--
--PV = "1.0"
--PR = "r0"
--
--BRANCH = "master"
--SRC_URI = "git://git.ti.com/git/sitara-linux/protection-relays-hmi.git;protocol=https;branch=${BRANCH}"
--
--SRCREV = "b116b5628a68ba3b6db88435023cf034504655d3"
--
--S = "${WORKDIR}/git"
--
--do_install() {
--    install -d ${D}${bindir}
--    install -m 755 protection_relays_hmi ${D}${bindir}
--}
-diff --git a/meta-arago-demos/recipes-qt/examples/qtwebbrowser_5.15.1.bb b/meta-arago-demos/recipes-qt/examples/qtwebbrowser_5.15.1.bb
-deleted file mode 100644
-index 9c84870b..00000000
---- a/meta-arago-demos/recipes-qt/examples/qtwebbrowser_5.15.1.bb
-+++ /dev/null
-@@ -1,49 +0,0 @@
--SUMMARY = "Qt Touch-Friendly WebBroswer"
--HOMEPAGE = "http://blog.qt.io/blog/2016/07/18/qt-webbrowser-1-0/"
--SECTION = "multimedia"
--LICENSE = "GPL-3.0-only & GFDL-1.3"
--LIC_FILES_CHKSUM = " \
--    file://LICENSE.GPLv3;md5=a40e2bb02b1ac431f461afd03ff9d1d6 \
--    file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
--"
--
--DEPENDS += "qtbase qtdeclarative qtwebengine"
--PACKAGES += "${PN}-examples"
--
--PR = "r0"
--
--BRANCH = "dev"
--SRC_URI = "git://code.qt.io/qt-apps/qtwebbrowser.git;protocol=git;branch=${BRANCH}"
--SRCREV = "a09ec269e8b296d39d78b45ae251edb3d7bada41"
--
--S = "${WORKDIR}/git"
--
--inherit qmake5
--
--# Qt uses atomic instructions not supported in thumb mode
--ARM_INSTRUCTION_SET = "arm"
--
--do_install() {
--    install -d ${D}${bindir}
--    install -d ${D}${datadir}/examples/webengine/webbrowser/src
--    install -m 0755 src/qtwebbrowser ${D}${bindir}/qtwebbrowser
--    cp -R --no-dereference --preserve=mode,links ${S}/* ${D}${datadir}/examples/webengine/webbrowser/.
--}
--
--FILES:${PN} +=  "${bindir}/qtwebbrowser"
--FILES:${PN}-examples +=  "${datadir}/examples/webengine/webbrowser/*"
+-inherit packagegroup
 -
 -RDEPENDS:${PN} += " \
--    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-qmlplugins', '', d)} \
--    qtvirtualkeyboard-qmlplugins \
--    qtdeclarative-qmlplugins \
--    qtquickcontrols-qmlplugins \
--    qtgraphicaleffects-qmlplugins \
--    qtmultimedia-qmlplugins \
--    qtwebengine-qmlplugins \
--    ttf-dejavu-common \
--    ttf-dejavu-sans \
--    ttf-dejavu-sans-mono \
--    liberation-fonts \
--    ca-certificates \
+-        packagegroup-arago-standalone-sdk-target \
+-        libsqlite3-dev \
+-        qtbase-mkspecs \
+-        qtdeclarative-mkspecs \
+-        qtscript-mkspecs \
+-        qt3d-mkspecs \
+-        qtlocation-mkspecs \
+-        qtsensors-mkspecs \
+-        qtsvg-mkspecs \
+-        qtxmlpatterns-mkspecs \
+-        qtbase-dev \
+-        qtbase-staticdev \
+-        qtdeclarative-dev \
+-        qtscript-dev \
+-        qt3d-dev \
+-        qtlocation-dev \
+-        qtsensors-dev \
+-        qtsvg-dev \
+-        qtxmlpatterns-dev \
+-        ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "qtwebengine-mkspecs qtwebengine-dev", "", d)} \
+-        qtserialport-mkspecs \
+-        qtserialport-dev  \
+-        qtcharts-mkspecs \
+-        qtcharts-dev \
 -"
+diff --git a/meta-arago-extras/recipes-devtools/cmake/extra-cmake-modules.bb b/meta-arago-extras/recipes-devtools/cmake/extra-cmake-modules.bb
+index 297e2152..d5e8872c 100644
+--- a/meta-arago-extras/recipes-devtools/cmake/extra-cmake-modules.bb
++++ b/meta-arago-extras/recipes-devtools/cmake/extra-cmake-modules.bb
+@@ -7,7 +7,6 @@ SRCREV = "8dc36cfa882f07a60b3ebdf16d9aac57871bd382"
+ 
+ SRC_URI = " \
+     git://anongit.kde.org/extra-cmake-modules;protocol=git;branch=master \
+-    file://0001-Search-within-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch \
+ "
+ S = "${WORKDIR}/git"
+ 
+diff --git a/meta-arago-extras/recipes-devtools/cmake/extra-cmake-modules/0001-Search-within-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch b/meta-arago-extras/recipes-devtools/cmake/extra-cmake-modules/0001-Search-within-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch
+deleted file mode 100644
+index 964dbbf9..00000000
+--- a/meta-arago-extras/recipes-devtools/cmake/extra-cmake-modules/0001-Search-within-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch
++++ /dev/null
+@@ -1,26 +0,0 @@
+-From 90d6c2bce5a50d2c05af25978bccbe047705eed7 Mon Sep 17 00:00:00 2001
+-From: Simon Busch <morphis@gravedo.de>
+-Date: Mon, 29 Dec 2014 12:05:20 +0100
+-Subject: [PATCH] Search within OE_QMAKE_PATH_EXTERNAL_HOST_BINS for
+- qtwaylandscanner
+-
+-Signed-off-by: Simon Busch <morphis@gravedo.de>
+----
+- find-modules/FindQtWaylandScanner.cmake | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/find-modules/FindQtWaylandScanner.cmake b/find-modules/FindQtWaylandScanner.cmake
+-index 7fb8a00..f782275 100644
+---- a/find-modules/FindQtWaylandScanner.cmake
+-+++ b/find-modules/FindQtWaylandScanner.cmake
+-@@ -88,7 +88,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/ECMFindModuleHelpersStub.cmake)
+- ecm_find_package_version_check(QtWaylandScanner)
+- 
+- # Find qtwaylandscanner
+--find_program(QtWaylandScanner_EXECUTABLE NAMES qtwaylandscanner)
+-+find_program(QtWaylandScanner_EXECUTABLE NAMES qtwaylandscanner HINTS ${OE_QMAKE_PATH_EXTERNAL_HOST_BINS})
+- 
+- include(FindPackageHandleStandardArgs)
+- find_package_handle_standard_args(QtWaylandScanner
+--- 
+-2.1.0
 -- 
 2.48.1
 
