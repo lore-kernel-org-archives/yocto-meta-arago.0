@@ -1,86 +1,236 @@
-Return-Path: <a-christidis@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C5A1C021B3
-	for <webhook@archiver.kernel.org>; Thu, 20 Feb 2025 21:08:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9FA71C021B2
+	for <webhook@archiver.kernel.org>; Thu, 20 Feb 2025 23:09:29 +0000 (UTC)
 Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web11.8128.1740085722879383036
+ by mx.groups.io with SMTP id smtpd.web11.11020.1740092962565798048
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 20 Feb 2025 13:08:42 -0800
+ Thu, 20 Feb 2025 15:09:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=LEAKpvI+;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: a-christidis@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=tfUrvPng;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: reatmon@ti.com)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51KL8gWm103060
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
-	for <meta-arago@lists.yoctoproject.org>; Thu, 20 Feb 2025 15:08:42 -0600
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51KN9IsY130509
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 20 Feb 2025 17:09:18 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1740085722;
-	bh=5RCSQirujPhdIe5vfLC2ZRnmm9JUISXBkP4dus73kqA=;
-	h=From:To:Subject:Date;
-	b=LEAKpvI+fSpjrUB+NfUPSxZspkr1lEGpqmyTl+KzOstZRTUXmRgGkQuRvY16VbkC6
-	 Zzn3pHwaGFhbXusx00IlsaojDZH2P+FtIqm7lvJ/rInrEsR4LbqCQkhSFZ2WEcBgsN
-	 6JeVK53alNRwVM+V/YmWao4k9E/V0XjKwdIjLUa8=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51KL8gTB031998
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Thu, 20 Feb 2025 15:08:42 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1740092958;
+	bh=fRp87s24g0tXzNSrF7WQjBKeitUAmsXycE9D2MuwYTE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=tfUrvPng6hx2SiepvySepyEUvsu5hRECu/CMDg9SVrBZee9xCT7kzPD6E1dJMeySq
+	 3FjGCbVuUwu9W1urdvBmZNnTpa/pKSRH/KlcotSDaDQ0XgvlNFtn1oXMaqcYYSdCae
+	 NO2vSwYd3r+BYFqKze9xoYSXlXKT1Ep1eVBzd4Do=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51KN9IrV014750
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 20 Feb 2025 17:09:18 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 20
- Feb 2025 15:08:42 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2025 17:09:18 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 20 Feb 2025 15:08:41 -0600
-Received: from antonios-ThinkStation-P3-Tower.dhcp.ti.com (antonios-thinkstation-p3-tower.dhcp.ti.com [128.247.81.112])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51KL8fC9113799
-	for <meta-arago@lists.yoctoproject.org>; Thu, 20 Feb 2025 15:08:41 -0600
-From: <a-christidis@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap/master][PATCH v2] meta-arago-test: adding opencl-cts to ti-test-extra
-Date: Thu, 20 Feb 2025 15:08:41 -0600
-Message-ID: <20250220210841.215364-1-a-christidis@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Frontend Transport; Thu, 20 Feb 2025 17:09:18 -0600
+Received: from [10.249.33.110] ([10.249.33.110])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51KN9IwO064900;
+	Thu, 20 Feb 2025 17:09:18 -0600
+Message-ID: <6bb476d0-bb17-4ebf-a374-f7383af76178@ti.com>
+Date: Thu, 20 Feb 2025 17:09:18 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][oe-layersetup][master][PATCH] processor-sdk: Add new
+ configs for Sitara SDK 10.1 Release
+To: Jon Cormier <jcormier@criticallink.com>
+CC: <c-shilwant@ti.com>, <meta-arago@lists.yoctoproject.org>,
+        Denys
+	<denis@denix.org>
+References: <20241219163417.4155600-1-c-shilwant@ti.com>
+ <CADL8D3b7x9ou1uBcVqwYLUwM2sA-ucLx80NPRMG_tBf3cepGvA@mail.gmail.com>
+ <0863605c-9b7f-4c50-9b64-04f9eef0b44c@ti.com>
+ <CADL8D3ah7Mk3O_TmpQ7MHK7x-tizpLpdz-CQ0Ctncie5AK1hVw@mail.gmail.com>
+Content-Language: en-US
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <CADL8D3ah7Mk3O_TmpQ7MHK7x-tizpLpdz-CQ0Ctncie5AK1hVw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by fllvem-ot03.ext.ti.com id 51KN9IsY130509
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 20 Feb 2025 21:08:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15882
+ <meta-arago@lists.yoctoproject.org>; Thu, 20 Feb 2025 23:09:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15883
 
-From: Antonios Christidis <a-christidis@ti.com>
 
-Adding opencl-cts to the ti-test-extra package group.
 
-In master branch, the recipe linked will be from meta-openembedded. 
-In scarthgap branch, the recipe linked will be from meta-arago. 
+On 2/20/2025 1:19 PM, Jon Cormier wrote:
+> On Thu, Feb 20, 2025 at 12:59=E2=80=AFPM Ryan Eatmon <reatmon@ti.com> w=
+rote:
+>>
+>>
+>> Having refreshed my memory from that time...
+>>
+>> I auto converted OEBASE to TOPDIR because OEBASE is not a defined
+>> variable.  I'm not sure what the history of that variable was, but it =
+is
+>> not being set by any tool in the bitbake universe that I could find.  =
+So
+>> before the conversion that was just getting expanded to "".
+> So it looks like OEBASE is setup by the oe-layersetup script and gets
+> inserted into the build/conf/setenv file:
 
-Signed-off-by: Antonios Christidis <a-christidis@ti.com>
----
-v2:
-- Correction for what branch this is meant, both master and scarthgap
-  now
- meta-arago-test/recipes-core/packagegroups/ti-test.bb | 1 +
- 1 file changed, 1 insertion(+)
+Doh.  All of my searches for OEBASE did not include the setup script=20
+itself...  That's on me.  But I do think that moving to values relative=20
+to TOPDIR instead of OEBASE will be better in the long run.
 
-diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-index 8099198d..3155de1f 100644
---- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-@@ -63,6 +63,7 @@ TI_TEST_EXTRAS = " \
-     piglit \
-     python3-numpy \
-     wayland-utils \
-+    opencl-cts \
- "
- 
- TI_TEST_BASE:append:armv7a = " \
--- 
-2.34.1
 
+> setenv:
+> # Set OEBASE to where the build and source directories reside
+> # NOTE: Do NOT place a trailing / on the end of OEBASE.
+> export OEBASE=3D"/work"
+> ...
+>=20
+> This presumably wouldn't work for the other config systems (kas,
+> bitbake-setup, etc) since they don't run oe-layersetup...
+>=20
+>>
+>> Where as TOPDIR is a defined variable in bitbake that points to the di=
+r
+>> where the build was launched from.
+>>
+>> I didn't even think of it being a side effect, I was just fixing
+>> something that seemed broken.  Our build scripts are explicitly settin=
+g
+>> DL_DIR and SSTATE_DIR because the scripts need to upload the files in
+>> those dirs to our NAS for better reuse, so we were not impacted by thi=
+s
+>> change.
+> Hmm thats a interesting, unrelated: I currently network share our
+> SSTATE_DIR but don't do it for DL_DIR, I just rsync it at the end of
+> the build.  Do you host your own BB_HASHSERVE and PRSERV?
+
+We rsync both the downloads and sstate to a NAS that all of our build=20
+servers can access.  Yes, we run our own BB_HASHSERVE and PRSERV so that=20
+all of the build jobs are aligned on what the values for the PR should be.
+
+>>
+>> I can change it back if people want it, but OEBASE is not even really =
+a
+>> variable as far as I can tell.
+>>
+>> Or I could change it to:
+>>
+>> DL_DIR =3D "${TOPDIR}/../downloads"
+>> SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+>>
+>> Does that match the previous behavior?
+> It does look like TOPDIR points to the build directory instead of one
+> directory up like before.  sstate-cache is currently being put in
+> build/build/sstate-cache
+>=20
+> jcormier@jcormier-MS-7A93:/export/space/jcormier/yocto/yocto_scarthgap/=
+oe-layersetup$
+> ls build/
+> arago-tmp-default-baremetal-k3r5  build         conf
+> arago-tmp-default-glibc           buildhistory  deploy-ti
+> bitbake-cookerdaemon.log          cache         downloads
+> jcormier@jcormier-MS-7A93:/export/space/jcormier/yocto/yocto_scarthgap/=
+oe-layersetup$
+> ls build/build
+> sstate-cache
+>>
+>> Any preferences?
+> I assume keeping OEBASE isn't an option since it won't exist for these
+> other setup systems.  So I guess your second option.
+
+Ok.  I'll post a patch and make this change.
+
+
+>>
+>> On 2/20/2025 10:58 AM, Jon Cormier wrote:
+>>> After build processor-sdk-scarthgap-chromium-10.01.10.04-config, I
+>>> noticed the downloads directory has moved to the build/downloads fold=
+er,
+>>> instead of being at the top of the build directory.  Was this
+>>> intentional?  I suspect it probably happened when everything was
+>>> converted to xml configs. But the commit doesn't mention that as a kn=
+own
+>>> side effect.
+>>>
+>>> commit aea8e0f53cb05e2d80056b3568f3376741c90853
+>>> Author: Ryan Eatmon <reatmon@ti.com <mailto:reatmon@ti.com>>
+>>> Date:   Thu Oct 10 11:43:57 2024 -0500
+>>>
+>>>       Initial conversion of new XML configs
+>>> ...
+>>> -DL_DIR =3D "${OEBASE}/downloads"
+>>> +DL_DIR =3D "${TOPDIR}/downloads"
+>>> ...
+>>> -SSTATE_DIR =3D "${OEBASE}/build/sstate-cache"
+>>> +SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+>>>
+>>> SSTATE_DIR was also updated and it still looks to be put in the same
+>>> place as ever...
+>>>
+>>> On Thu, Dec 19, 2024 at 11:34=E2=80=AFAM Chirag Shilwant via
+>>> lists.yoctoproject.org <http://lists.yoctoproject.org>
+>>> <c-shilwant=3Dti.com@lists.yoctoproject.org
+>>> <mailto:ti.com@lists.yoctoproject.org>> wrote:
+>>>
+>>>      - Add processor-sdk-scarthgap-10.01.10.04-config used for
+>>>      building AM62SIP & AM64x.
+>>>
+>>>      - Add processor-sdk-scarthgap-chromium-10.01.10.04-config
+>>>      used for building AM62P, AM62x, AM62LP & Beagleplay.
+>>>
+>>>      Signed-off-by: Chirag Shilwant <c-shilwant@ti.com
+>>>      <mailto:c-shilwant@ti.com>>
+>>>      ---
+>> ...
+>>>
+>>>
+>>>
+>>>      -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>>      Links: You receive all messages sent to this group.
+>>>      View/Reply Online (#15673):
+>>>      https://lists.yoctoproject.org/g/meta-arago/message/15673
+>>>      <https://lists.yoctoproject.org/g/meta-arago/message/15673>
+>>>      Mute This Topic: https://lists.yoctoproject.org/mt/110200559/790=
+2621
+>>>      <https://lists.yoctoproject.org/mt/110200559/7902621>
+>>>      Group Owner: meta-arago+owner@lists.yoctoproject.org
+>>>      <mailto:meta-arago%2Bowner@lists.yoctoproject.org>
+>>>      Unsubscribe: https://lists.yoctoproject.org/g/meta-arago/unsub
+>>>      <https://lists.yoctoproject.org/g/meta-arago/unsub>
+>>>      [jcormier@criticallink.com <mailto:jcormier@criticallink.com>]
+>>>      -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>>>
+>>>
+>>>
+>>>
+>>> --
+>>> Jonathan Cormier
+>>> Senior Software Engineer
+>>>
+>>> Voice: 315.425.4045 x222
+>>>
+>>> http://www.CriticalLink.com <http://www.criticallink.com/>
+>>> 6712 Brooklawn Parkway, Syracuse, NY 13211
+>>> <https://twitter.com/Critical_Link>
+>>
+>> --
+>> Ryan Eatmon                reatmon@ti.com
+>> -----------------------------------------
+>> Texas Instruments, Inc.  -  LCPD  -  MGTS
+>=20
+>=20
+>=20
+
+--=20
+Ryan Eatmon                reatmon@ti.com
+-----------------------------------------
+Texas Instruments, Inc.  -  LCPD  -  MGTS
 
