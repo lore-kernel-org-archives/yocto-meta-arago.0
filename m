@@ -1,515 +1,5893 @@
-Return-Path: <afd@ti.com>
+Return-Path: <jcormier@criticallink.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E1B6C021B2
-	for <webhook@archiver.kernel.org>; Sat, 22 Feb 2025 17:24:14 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web11.50768.1740245047221519477
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 814BAC021A4
+	for <webhook@archiver.kernel.org>; Mon, 24 Feb 2025 14:53:47 +0000 (UTC)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+ by mx.groups.io with SMTP id smtpd.web11.91756.1740408825045899595
  for <meta-arago@lists.yoctoproject.org>;
- Sat, 22 Feb 2025 09:24:07 -0800
+ Mon, 24 Feb 2025 06:53:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=M7HfL0Jv;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: afd@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51MHO4PX548043
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sat, 22 Feb 2025 11:24:04 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1740245044;
-	bh=xHiZoEa3hpW0KWFxu602/v1nMLP82aZXd5JhizEuus8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=M7HfL0JvYOVrLvRY/DU0xIdyuDoSQ/lOaHFmVmuEcE6c1csqKiqRl+6LFJmJ2YdPc
-	 Xie1Jd0T/BfMjWmYPOEXhk8YihIgaqcCjs7k9Wiem/w+oAgCfvxzrY3CbkLgi4u0I9
-	 mr1ropkULk2hubuCyE433EHsd+LT6igTpH4p79hE=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51MHO4iw066502
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 22 Feb 2025 11:24:04 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 22
- Feb 2025 11:24:03 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 22 Feb 2025 11:24:03 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51MHO3Fd075046;
-	Sat, 22 Feb 2025 11:24:03 -0600
-Message-ID: <0fbdf01d-c1d5-43d3-8f6f-3f45a3708599@ti.com>
-Date: Sat, 22 Feb 2025 11:24:03 -0600
+ dkim=pass header.i=@criticallink.com header.s=google header.b=D/rUzW47;
+ spf=pass (domain: criticallink.com, ip: 209.85.208.174, mailfrom: jcormier@criticallink.com)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-30a2594435dso55044001fa.1
+        for <meta-arago@lists.yoctoproject.org>; Mon, 24 Feb 2025 06:53:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=criticallink.com; s=google; t=1740408823; x=1741013623; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=KM5clvH02ClhbpjpZ5JedMXcSzzg5ThaOkmFVyqX4UQ=;
+        b=D/rUzW47RV+qM0ldmzyV/vkZwWAaSTYdF1xlsVUkivbfCYIhSF62Ft7ARTKvsDvo4j
+         iuuh9gNe5NmAcF+2AGeAZlTuYSv8qc66vGauSn47weZu18vHhPfjoBkwqFQ6E6PVNi+C
+         t9jUVHOwL36R05yU6d9VnqiySGw2shZtAaAubHEg9viPw3KdEO4l2jAM8/4m54sIZGc5
+         Yt6wCqQexbZ4GLX94LmsaD0+up048y93k8u55MOA/w4V3aApIQPJNNtZRXb5w+ijadha
+         9wC2b9M2AZwr6NrS+BY3NOm8ThRhQR+sz3Xno+RLTXfspIcdbuPSuoNilLi7xYcb5x7G
+         z2Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740408823; x=1741013623;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KM5clvH02ClhbpjpZ5JedMXcSzzg5ThaOkmFVyqX4UQ=;
+        b=uMr8qLHXtUDw9XHhVffl2B5IKlaTFWf8xvg2oJ/VI6gvGu4O0MeE/opF1AgJaDQUfC
+         GPBkeZhJTmaBj8gll+rqPlVpHpXoxeNm5bzuBIXA0HnYJxxvBBwu9KZAweoUhB/z03iY
+         t/MBLo70YdgPkP99HArT4mzShncaVQyIczReLh6oswz6dQqxPIow4WOmMFNWOUf+EqwT
+         3MqwHuDwbRV8I7I/M2SCy8vaJEXDbRK8wsEdTPgll6+tXhAmNRIdKb6MSASqHHdnn7yZ
+         L6DrD6JqEFYdbDk6Z2tZzZn+y4VKvn425Q0XwmYiP29YWxrGiwZ/NaoCKkFtiV/yTB7n
+         /9Vg==
+X-Forwarded-Encrypted: i=1; AJvYcCXgMERp61RJEl+q5fk0+FKYp40PKIIOSegfJ3WQbpXLLL6Ku9HHLBzRG+a6FHDe3baOoVR9nmCfguQs@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YwXDSvAO1GaLxjV3ly9IleXqyDKJ39CA9dX0oLslny/BzDDSoQh
+	kt7mmGhZqACCyaVL/tJvvlM55iyx3z/g30akEzjV7cvRzZuMGrDQZa7E8z7vBiMBH0kTbX94HZM
+	yv/7V6qNcS9304/UI8R1Wgt7GyRFZP63zwf0l
+X-Gm-Gg: ASbGncuQMDytNAhyq16QMcKAqodCmX1ODVVAqt7kV9HKvTqvOi/Eex2iyarnzFf+9Ph
+	ObN/KOeNbVG8oWFJNjhR9jnICiUroEU4gSrLuTtnIPX3l7siNfbDXGP/gSI7WVXWxveiL/6qoxy
+	YvLiTMJA==
+X-Google-Smtp-Source: AGHT+IGJsIJL7sI6RowTCKLlLkSMJAxSZfvNcXlt9I7+L6eCrfK5gXyyvgEqQcoOxMgWrwYS3/VG6qfGzEbZAVKI3Ik=
+X-Received: by 2002:a2e:95ca:0:b0:30a:26cb:f9e9 with SMTP id
+ 38308e7fff4ca-30a5065188bmr61079791fa.17.1740408822438; Mon, 24 Feb 2025
+ 06:53:42 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][scarthgap][PATCH v2 1/1] meta-arago-extras: Add
- recipe for TFLite Runtime
-To: Chirag Shilwant <c-shilwant@ti.com>, <meta-arago@lists.yoctoproject.org>
-CC: Denys <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>,
-        Vijay
-	<vijayp@ti.com>, Khasim <khasim@ti.com>
-References: <20250221222446.4019819-1-c-shilwant@ti.com>
- <20250221222446.4019819-2-c-shilwant@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250221222446.4019819-2-c-shilwant@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250221163150.3367-1-reatmon@ti.com> <CADL8D3aHkzaCiQQUaSA+L6OkxH=_RkzW07FTs_Yv0gMM7XdR+w@mail.gmail.com>
+In-Reply-To: <CADL8D3aHkzaCiQQUaSA+L6OkxH=_RkzW07FTs_Yv0gMM7XdR+w@mail.gmail.com>
+From: Jon Cormier <jcormier@criticallink.com>
+Date: Mon, 24 Feb 2025 09:53:30 -0500
+X-Gm-Features: AWEUYZkz4nF0G_4RiCdtJt37GuqYnZRQAi02xXv5N1gjgF6xOaw3X0Vla_f4KDY
+Message-ID: <CADL8D3Z6CCEQxFPpTwgnGBwrVOgUTyeS_3NTrZw6r9Q38WPHkA@mail.gmail.com>
+Subject: Re: [meta-arago] [oe-layersetup][master][PATCH v2] templates: Fix
+ paths for DL_DIR and SSTATE_DIR
+To: reatmon@ti.com
+Cc: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko <denys@konsulko.com>, 
+	meta-arago@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000a03bb0062ee48148"
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Sat, 22 Feb 2025 17:24:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15902
+ <meta-arago@lists.yoctoproject.org>; Mon, 24 Feb 2025 14:53:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15903
 
-On 2/21/25 4:24 PM, Chirag Shilwant wrote:
-> - TensorFlow Lite is TensorFlow's lightweight solution for mobile
-> and embedded devices. It enables low-latency inference of on-device
-> machine learning models with a small binary size.
-> 
-> - The tensorflow-lite v2.18 recipe in meta-arago currently supports,
-> 
->    * CPU delegate (with RUY enabled), XNNPACK delegate & ArmNN
->      via external delegate for ARMv8 based Cortex-A platforms.
-> 
->    * CPU delegate (with RUY enabled) & ArmNN via external delegate
->      for ARMv7 based Cortex-A platforms.
-> 
-> Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-> ---
->   ...eLists-for-building-_pywrap_tensorfl.patch |  37 +++
->   ...eLists-for-building-shared-object-li.patch |  61 +++++
->   ...uild-issues-observed-in-TFlite-v2.18.patch |  36 +++
->   .../tensorflow-lite/tensorflow2-lite.pc.in    |   6 +
->   .../tensorflow-lite/tensorflow-lite_2.18.0.bb | 232 ++++++++++++++++++
->   5 files changed, 372 insertions(+)
->   create mode 100644 meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch
->   create mode 100644 meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0002-lite-Update-CMakeLists-for-building-shared-object-li.patch
->   create mode 100644 meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patch
->   create mode 100644 meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/tensorflow2-lite.pc.in
->   create mode 100644 meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite_2.18.0.bb
-> 
-> diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch
-> new file mode 100644
-> index 00000000..e277beb3
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch
-> @@ -0,0 +1,37 @@
-> +From 050127548d7f28464cbe5dc9caa83c8023676d80 Mon Sep 17 00:00:00 2001
-> +From: Chirag Shilwant <c-shilwant@ti.com>
-> +Date: Thu, 13 Feb 2025 14:33:50 +0530
-> +Subject: [PATCH 1/3] lite: Update CMakeLists for building
-> + _pywrap_tensorflow_interpreter_wrapper
-> +
-> +- Update the CMakeLists.txt file for TensorFlow Lite to include the paths for
-> +PYTHON, Numpy, and PYBIND11 headers.
-> +
-> +- This ensures that these headers are available during the build process,
-> +which is necessary for building the _pywrap_tensorflow_interpreter_wrapper
-> +target that relies on these dependencies.
-> +
-> +Upstream-Status: Inappropriate [configuration]
-> +
-> +Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-> +---
-> + tensorflow/lite/CMakeLists.txt | 3 +++
-> + 1 file changed, 3 insertions(+)
-> +
-> +diff --git a/tensorflow/lite/CMakeLists.txt b/tensorflow/lite/CMakeLists.txt
-> +index bce9627fbd3..b7bb39869b5 100644
-> +--- a/tensorflow/lite/CMakeLists.txt
-> ++++ b/tensorflow/lite/CMakeLists.txt
-> +@@ -810,6 +810,9 @@ set_target_properties(_pywrap_tensorflow_interpreter_wrapper PROPERTIES PREFIX "
-> + target_include_directories(_pywrap_tensorflow_interpreter_wrapper
-> +   PUBLIC
-> +     ${TENSORFLOW_SOURCE_DIR}
-> ++    ${PYTHON_TARGET_INCLUDE}
-> ++    ${NUMPY_TARGET_INCLUDE}
-> ++    ${PYBIND11_TARGET_INCLUDE}
-> + )
-> +
-> + target_link_libraries(_pywrap_tensorflow_interpreter_wrapper
-> +--
-> +2.34.1
-> +
-> diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0002-lite-Update-CMakeLists-for-building-shared-object-li.patch b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0002-lite-Update-CMakeLists-for-building-shared-object-li.patch
-> new file mode 100644
-> index 00000000..dce229fd
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0002-lite-Update-CMakeLists-for-building-shared-object-li.patch
-> @@ -0,0 +1,61 @@
-> +From 339b5a7e5f17a60df1e3d6d2ffe607786ce34978 Mon Sep 17 00:00:00 2001
-> +From: Chirag Shilwant <c-shilwant@ti.com>
-> +Date: Thu, 13 Feb 2025 14:38:01 +0530
-> +Subject: [PATCH 2/3] lite: Update CMakeLists for building shared object
-> + library
-> +
-> +- When building TFLite with CMake, it builds static library
-> +(i.e. libtensorflow-lite.a) by default which isn't self-contained
-> +since all the transitive dependencies are not included [1]
-> +
-> +- As documented in [1], there's an update needed in CMake build steps
-> +inorder to generate a shared object library (i.e. libtensorflow-lite.so)
-> +
-> +- This patch adds schema_conversion_utils.cc to TFLite source files
-> +& updates CMakeLists.txt to build TFLite as a shared library. Additionally,
-> +it ensures that the properties are set correctly to manage the shared
-> +object version.
-> +
-> +[1]: https://ai.google.dev/edge/litert/build/cmake#step_5_build_litert
-> +
-> +Upstream-Status: Inappropriate [enable feature]
-> +
-> +Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-> +---
-> + tensorflow/lite/CMakeLists.txt | 6 +++++-
-> + 1 file changed, 5 insertions(+), 1 deletion(-)
-> +
-> +diff --git a/tensorflow/lite/CMakeLists.txt b/tensorflow/lite/CMakeLists.txt
-> +index b7bb39869b5..92b05e42446 100644
-> +--- a/tensorflow/lite/CMakeLists.txt
-> ++++ b/tensorflow/lite/CMakeLists.txt
-> +@@ -671,6 +671,7 @@ set(_ALL_TFLITE_SRCS
-> +   ${TFLITE_SOURCE_DIR}/kernels/internal/utils/sparsity_format_converter.cc
-> +   ${TFLITE_SOURCE_DIR}/schema/conversion_metadata_generated.h
-> +   ${TFLITE_SOURCE_DIR}/schema/schema_generated.h
-> ++  ${TFLITE_SOURCE_DIR}/schema/schema_conversion_utils.h
-> +   ${TF_SOURCE_DIR}/compiler/mlir/lite/schema/schema_utils.cc
-> +   ${TF_SOURCE_DIR}/compiler/mlir/lite/schema/schema_generated.h
-> +   ${TF_SOURCE_DIR}/compiler/mlir/lite/schema/conversion_metadata_generated.h
-> +@@ -697,7 +698,7 @@ else()
-> +   list(FILTER _ALL_TFLITE_SRCS EXCLUDE REGEX ".*mmap_allocation\\.cc$")
-> + endif()
-> +
-> +-add_library(tensorflow-lite
-> ++add_library(tensorflow-lite SHARED EXCLUDE_FROM_ALL
-> +   ${_ALL_TFLITE_SRCS}
-> + )
-> + set(_ALL_TFLITE_HDRS ${_ALL_TFLITE_SRCS})
-> +@@ -773,6 +774,9 @@ if(TFLITE_ENABLE_INSTALL)
-> +   )
-> + endif()
-> +
-> ++# Manage version for shared object (dynamic) library
-> ++set_target_properties(tensorflow-lite PROPERTIES VERSION "${TFLITE_VERSION_MAJOR}")
-> ++
-> + # The kernel tests.
-> + if(TFLITE_KERNEL_TEST)
-> +   enable_testing()
-> +--
-> +2.34.1
-> +
-> diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patch b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patch
-> new file mode 100644
-> index 00000000..0e21b254
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patch
-> @@ -0,0 +1,36 @@
-> +From 577192caa67660f857f2869896d01db3611b4128 Mon Sep 17 00:00:00 2001
-> +From: Chirag Shilwant <c-shilwant@ti.com>
-> +Date: Thu, 13 Feb 2025 14:45:46 +0530
-> +Subject: [PATCH 3/3] CMakeLists: Fix build issues observed in TFlite v2.18
-> +
-> +- Improve regular expression for filtering neon and sse
-> +related sources. The improved expression avoids missing files
-> +in case the absolute path contains the terms neon or sse.
-> +
-> +- Fixes [1]
-> +
-> +[1]: https://github.com/tensorflow/tensorflow/issues/70730
-> +
-> +Upstream-Status: Backport from master
-> +
-> +Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-> +---
-> + tensorflow/lite/CMakeLists.txt | 2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/tensorflow/lite/CMakeLists.txt b/tensorflow/lite/CMakeLists.txt
-> +index 92b05e42446..737f754621f 100644
-> +--- a/tensorflow/lite/CMakeLists.txt
-> ++++ b/tensorflow/lite/CMakeLists.txt
-> +@@ -605,7 +605,7 @@ populate_tflite_source_vars("kernels/internal/reference/sparse_ops"
-> + )
-> + populate_tflite_source_vars("kernels/internal/optimized/4bit"
-> +   TFLITE_KERNEL_INTERNAL_OPT_4BIT_SRCS
-> +-  FILTER "(.*neon.*|.*sse.*)\\.(cc|h)"
-> ++  FILTER "(.*neon_.*|.*sse_.*)\\.(cc|h)"
-> + )
-> + set(TFLITE_PROFILER_SRCS
-> +   ${TFLITE_SOURCE_DIR}/profiling/platform_profiler.cc
-> +--
-> +2.34.1
-> +
-> diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/tensorflow2-lite.pc.in b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/tensorflow2-lite.pc.in
-> new file mode 100644
-> index 00000000..8c5bf2e0
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/tensorflow2-lite.pc.in
-> @@ -0,0 +1,6 @@
-> +Name: tensorflow lite c++ shared library
-> +Description: tensorflow lite c++ shared library
-> +Version: @version@
-> +Requires:
-> +Libs: -L@libdir@ -ltensorflowlite -lrt
-> +Cflags: -I@includedir@
-> diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite_2.18.0.bb b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite_2.18.0.bb
-> new file mode 100644
-> index 00000000..a20c090a
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite_2.18.0.bb
-> @@ -0,0 +1,232 @@
-> +DESCRIPTION = "TensorFlow Lite is an open source deep learning framework for \
-> +on-device inference."
-> +AUTHOR = "Google Inc. and Yuan Tang"
-> +SUMMARY = "TensorFlow Lite C++ Library, Python interpreter & Benchmark Model"
-> +HOMEPAGE = "https://www.tensorflow.org/lite"
-> +
-> +LICENSE = "Apache-2.0"
-> +LIC_FILES_CHKSUM = "file://LICENSE;md5=4158a261ca7f2525513e31ba9c50ae98"
-> +
-> +# Get major of the PV variable
-> +MAJOR = "${@d.getVar('PV').split('.')[0]}"
-> +
-> +SRC_URI = " \
-> +    git://github.com/tensorflow/tensorflow.git;protocol=https;branch=r2.18 \
-> +    file://0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch \
-> +    file://0002-lite-Update-CMakeLists-for-building-shared-object-li.patch \
-> +    file://0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patch \
-> +    file://tensorflow2-lite.pc.in \
-> +"
-> +
-> +SRC_URI += " \
-> +    git://github.com/abseil/abseil-cpp.git;protocol=https;branch=lts_2023_08_02;name=abseil-cpp;destsuffix=${S}/external/abseil-cpp \
-> +    git://gitlab.com/libeigen/eigen.git;protocol=https;branch=master;name=eigen;destsuffix=${S}/external/eigen \
-> +    git://github.com/google/farmhash.git;protocol=https;branch=master;name=farmhash;destsuffix=${S}/external/farmhash \
-> +    git://github.com/petewarden/OouraFFT.git;protocol=https;branch=master;name=fft2d;destsuffix=${S}/external/fft2d \
-> +    git://github.com/google/gemmlowp.git;branch=master;protocol=https;name=gemmlowp;destsuffix=${S}/external/gemmlowp \
-> +    git://github.com/pytorch/cpuinfo.git;branch=main;protocol=https;name=cpuinfo;destsuffix=${S}/external/cpuinfo \
-> +    git://github.com/jax-ml/ml_dtypes.git;branch=main;protocol=https;name=ml_dtypes;destsuffix=${S}/external/ml_dtypes \
-> +    git://github.com/google/ruy.git;branch=master;protocol=https;name=ruy;destsuffix=${S}/external/ruy \
-> +    git://github.com/google/flatbuffers;branch=master;protocol=https;name=flatbuffers;destsuffix=${S}/external/flatbuffers \
-> +    git://github.com/Maratyszcza/pthreadpool.git;branch=master;protocol=https;name=pthreadpool-source;destsuffix=${S}/external/pthreadpool-source \
-> +    git://github.com/google/XNNPACK.git;branch=master;protocol=https;name=xnnpack;destsuffix=${S}/external/xnnpack \
-> +    git://github.com/Maratyszcza/FXdiv.git;branch=master;protocol=https;name=FXdiv-source;destsuffix=${S}/external/FXdiv-source \
-> +    git://github.com/Maratyszcza/FP16.git;branch=master;protocol=https;name=FP16-source;destsuffix=${S}/external/FP16-source \
-> +    git://git.gitlab.arm.com/kleidi/kleidiai.git;branch=main;protocol=https;name=kleidiai;destsuffix=${S}/external/kleidiai \
-> +    git://github.com/Maratyszcza/psimd.git;branch=master;protocol=https;name=psimd;destsuffix=${S}/external/psimd \
-> +    git://github.com/protocolbuffers/protobuf.git;branch=25.x;protocol=https;name=protobuf;destsuffix=${S}/external/protobuf \
-> +"
-> +
-> +SRCREV_FORMAT = "default"
-> +
-> +# Matches v${PV} tag
-> +SRCREV = "6550e4bd80223cdb8be6c3afd1f81e86a4d433c3"
-> +SRCREV_abseil-cpp = "fb3621f4f897824c0dbe0615fa94543df6192f30"
-> +SRCREV_eigen = "33d0937c6bdf5ec999939fb17f2a553183d14a74"
-> +SRCREV_farmhash = "0d859a811870d10f53a594927d0d0b97573ad06d"
-> +SRCREV_fft2d = "c6fd2dd6d21397baa6653139d31d84540d5449a2"
-> +SRCREV_gemmlowp = "16e8662c34917be0065110bfcd9cc27d30f52fdf"
-> +SRCREV_cpuinfo = "b73ae6ce38d5dd0b7fe46dbe0a4b5f4bab91c7ea"
-> +SRCREV_ml_dtypes = "24084d9ed2c3d45bf83b7a9bff833aa185bf9172"
-> +SRCREV_ruy = "3286a34cc8de6149ac6844107dfdffac91531e72"
-> +SRCREV_flatbuffers = "e6463926479bd6b330cbcf673f7e917803fd5831"
-> +SRCREV_pthreadpool-source = "4fe0e1e183925bf8cfa6aae24237e724a96479b8"
-> +SRCREV_xnnpack = "6b83f69d4938da4dc9ad63c00bd13e9695659a51"
-> +SRCREV_FXdiv-source = "63058eff77e11aa15bf531df5dd34395ec3017c8"
-> +SRCREV_FP16-source = "0a92994d729ff76a58f692d3028ca1b64b145d91"
-> +SRCREV_kleidiai = "cddf991af5de49fd34949fa39690e4e906e04074"
-> +SRCREV_psimd = "072586a71b55b7f8c584153d223e95687148a900"
-> +SRCREV_protobuf = "4a2aef570deb2bfb8927426558701e8bfc26f2a4"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +inherit setuptools3 cmake
-> +
-> +DEPENDS = " \
-> +    flatbuffers-native \
-> +    python3-numpy-native \
-> +    python3-pybind11-native \
-> +    python3-numpy \
-> +    python3 \
-> +    gzip-native \
-> +    protobuf-native \
-> +    python3-pybind11 \
-> +"
-> +
-> +# Set building environment variables
-> +TENSORFLOW_TARGET="linux"
-> +TENSORFLOW_TARGET_ARCH:aarch64="aarch64"
-> +TENSORFLOW_TARGET_ARCH:arm="armv7"
-> +
-> +PACKAGECONFIG ??= "xnnpack ruy"
-> +PACKAGECONFIG[xnnpack] = "-DTFLITE_ENABLE_XNNPACK=ON, -DTFLITE_ENABLE_XNNPACK=OFF"
-> +PACKAGECONFIG[ruy] = "-DTFLITE_ENABLE_RUY=ON, -DTFLITE_ENABLE_RUY=OFF"
-> +
-> +# XNNPACK is not supported in Linux armv7-a [https://github.com/tensorflow/tensorflow/issues/64358]
-> +# Hence, turning it off
-> +PACKAGECONFIG:remove:arm = "xnnpack"
-> +
-> +OECMAKE_SOURCEPATH = "${S}/tensorflow/lite"
-> +
-> +# The -O3 flag enables high-level optimizations for performance
-> +# and the -DNDEBUG flag disables debugging code, such as assertions
-> +# to further optimize the build for production use.
-> +# Hence, activate -O3 optimization and disable debug symbols.
-> +OECMAKE_C_FLAGS_RELEASE = "-O3 -DNDEBUG"
-> +OECMAKE_CXX_FLAGS_RELEASE = "-O3 -DNDEBUG -flax-vector-conversions"
-> +
-> +OECMAKE_C_FLAGS_RELEASE:append:arm = " -march=armv7-a -mfpu=neon"
-> +OECMAKE_CXX_FLAGS_RELEASE:append:arm = " -march=armv7-a -mfpu=neon"
-> +
-> +do_generate_toolchain_file:append:arm() {
-> +    # Even if we set TENSORFLOW_TARGET_ARCH:arm as armv7, the TFLite CMake
-> +    # build system still uses CMAKE_SYSTEM_PROCESSOR as arm in toolchain.cmake file
-> +    # which leads to build failures. Hence, change it to armv7.
-> +    sed -i 's:CMAKE_SYSTEM_PROCESSOR arm:CMAKE_SYSTEM_PROCESSOR armv7:g' ${WORKDIR}/toolchain.cmake
-> +}
-> +
-> +# Build tensorflow-lite.so library, _pywrap_tensorflow_interpreter_wrapper.so library and the benchmark_model application
-> +OECMAKE_TARGET_COMPILE =  "tensorflow-lite benchmark_model _pywrap_tensorflow_interpreter_wrapper"
-> +
-> +EXTRA_OECMAKE:append = " \
-> +    -DFETCHCONTENT_FULLY_DISCONNECTED=ON \
-> +    -DCMAKE_SYSTEM_NAME=${TENSORFLOW_TARGET} \
-> +    -DCMAKE_SYSTEM_PROCESSOR=${TENSORFLOW_TARGET_ARCH} \
-> +    -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
-> +    -DPYTHON_TARGET_INCLUDE=${RECIPE_SYSROOT}${includedir}/${PYTHON_DIR} \
-> +    -DNUMPY_TARGET_INCLUDE=${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR}/numpy/core/include \
-> +    -DPYBIND11_TARGET_INCLUDE=${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR}/pybind11/include \
-> +    -DTFLITE_VERSION_MAJOR=${MAJOR}  \
-> +    -DTFLITE_HOST_TOOLS_DIR=${STAGING_BINDIR_NATIVE} \
-> +    -DPTHREADPOOL_SOURCE_DIR=${S}/external/pthreadpool-source \
-> +    -DFXDIV_SOURCE_DIR=${S}/external/FXdiv-source \
-> +    -DFP16_SOURCE_DIR=${S}/external/FP16-source \
-> +    -DCPUINFO_SOURCE_DIR=${S}/external/cpuinfo \
-> +    -DKLEIDIAI_SOURCE_DIR=${S}/external/kleidiai \
-> +    -DPSIMD_SOURCE_DIR=${S}/external/psimd \
-> +    --compile-no-warning-as-error \
-> +    --log-level=VERBOSE \
-> +"
-> +
-> +do_configure:prepend() {
-> +    for i in abseil-cpp cpuinfo eigen farmhash fft2d flatbuffers FP16-source FXdiv-source gemmlowp kleidiai ml_dtypes psimd protobuf pthreadpool-source ruy xnnpack; do
-> +        cp -ra ${S}/external/$i ${B}/$i
-> +    done
-> +
-> +    # There is no Fortran compiler in the toolchain, but bitbake sets this variable anyway with unavailable
-> +    # binary & it leads to "CMake Error: Could not find compiler set in environment variable FC:"
-> +    unset FC
+--000000000000a03bb0062ee48148
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Is this still needed?
+Ryan, I also had a question about the bitbake-setup configs.  Is there some
+documentation on this setup tool?  Googling this is tricky since the name
+is so generic. The other tools docs pop right up in google.
 
-> +}
-> +
-> +SETUPTOOLS_SETUP_PATH = "${B}"
-> +
-> +do_compile:append() {
-> +    # Build the python wheel (procedure extract form the build_pip_package_with_cmake.sh)
-> +    BUILD_DIR=${B}
-> +    TENSORFLOW_DIR=${S}
-> +    TENSORFLOW_LITE_DIR="${TENSORFLOW_DIR}/tensorflow/lite"
-> +    TENSORFLOW_VERSION=$(grep "_VERSION = " "${TENSORFLOW_DIR}/tensorflow/tools/pip_package/setup.py" | cut -d= -f2 | sed "s/[ '-]//g")
-> +    mkdir -p "${B}/tflite_runtime"
-> +    cp -r "${TENSORFLOW_LITE_DIR}/tools/pip_package/debian" \
-> +          "${TENSORFLOW_LITE_DIR}/tools/pip_package/MANIFEST.in" \
-> +          "${B}"
-> +    cp -r "${TENSORFLOW_LITE_DIR}/python/interpreter_wrapper" "${B}"
-> +    cp "${TENSORFLOW_LITE_DIR}/tools/pip_package/setup_with_binary.py" "${B}/setup.py"
-> +    cp "${TENSORFLOW_LITE_DIR}/python/interpreter.py" \
-> +       "${TENSORFLOW_LITE_DIR}/python/metrics/metrics_interface.py" \
-> +       "${TENSORFLOW_LITE_DIR}/python/metrics/metrics_portable.py" \
-> +       "${B}/tflite_runtime"
-> +    echo "__version__ = '${TENSORFLOW_VERSION}'" >> "${BUILD_DIR}/tflite_runtime/__init__.py"
-> +    echo "__git_version__ = '$(git -C "${TENSORFLOW_DIR}" describe)'" >> "${BUILD_DIR}/tflite_runtime/__init__.py"
-> +
-> +    export PACKAGE_VERSION="${TENSORFLOW_VERSION}"
-> +    export PROJECT_NAME="tflite_runtime"
-> +    cp "${B}/_pywrap_tensorflow_interpreter_wrapper.so" "tflite_runtime"
-> +
-> +    setuptools3_do_compile
-> +}
-> +
-> +do_install() {
-> +    # Install tensorflow-lite dynamic library
-> +    install -d ${D}${libdir}
-> +    install -m 0644 ${B}/libtensorflow-lite.so.${MAJOR} ${D}${libdir}/libtensorflow-lite.so.${PV}
-> +
-> +    ln -sf libtensorflow-lite.so.${PV} ${D}${libdir}/libtensorflow-lite.so.${MAJOR}
-> +    ln -sf libtensorflow-lite.so.${PV} ${D}${libdir}/libtensorflow-lite.so
-> +
-> +    # armnn expects the the dynamic library of tensorflow lite to be named as "libtensorflowlite.so"
-> +    # Eg - https://github.com/ARM-software/armnn/blob/branches/armnn_24_11/delegate/cmake/Modules/FindTfLite.cmake#L19
-> +    # Hence, create a symbolic link to handle the same
+On Fri, Feb 21, 2025 at 2:18=E2=80=AFPM Jon Cormier <jcormier@criticallink.=
+com>
+wrote:
 
-We should look into fixing this on the armnn side so we can drop this at some point.
+> Ryan, I think you also need to touch TMPDIR in a few of the local.conf
+> files
+>
+>
+> On Fri, Feb 21, 2025 at 11:31=E2=80=AFAM Ryan Eatmon via
+> lists.yoctoproject.org <reatmon=3Dti.com@lists.yoctoproject.org> wrote:
+> >
+> > When the conversion to the new XML/XSLT system was done, the reference
+> > to OEBASE was converted to TOPDIR.  The value for OEBASE was
+> > historically the directory above the bitbake run dir which is what
+> > TOPDIR is set to.  This made the downloads and sstate_cache directories
+> > appear down a level of directory that was unintended.
+> >
+> > This change updates the values for DL_DIR and SSTATE_DIR to be relative
+> > to TOPDIR but back in the same location they were originally meant to b=
+e
+> > in.
+> >
+> > Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+> > ---
+> > v2: I ran a make clean and make and a lot more configs got updated with
+> > the change.  Clearly I need to rework the make system.
+> >
+> >  bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json    | 2 +-
+> >  .../arago-kirkstone-chromium-config/local.conf.sample         | 4 ++--
+> >  conf/templates/arago-kirkstone-config/local.conf.sample       | 4 ++--
+> >  conf/templates/arago-kirkstone-next-config/local.conf.sample  | 4 ++--
+> >  conf/templates/arago-kirkstone-wip-config/local.conf.sample   | 4 ++--
+> >  conf/templates/arago-master-chromium-config/local.conf.sample | 4 ++--
+> >  conf/templates/arago-master-config/local.conf.sample          | 4 ++--
+> >  conf/templates/arago-master-next-config/local.conf.sample     | 4 ++--
+> >  conf/templates/arago-master-selinux-config/local.conf.sample  | 4 ++--
+> >  conf/templates/arago-master-wip-config/local.conf.sample      | 4 ++--
+> >  .../arago-scarthgap-chromium-config/local.conf.sample         | 4 ++--
+> >  conf/templates/arago-scarthgap-config/local.conf.sample       | 4 ++--
+> >  conf/templates/arago-scarthgap-next-config/local.conf.sample  | 4 ++--
+> >  .../arago-scarthgap-selinux-config/local.conf.sample          | 4 ++--
+> >  conf/templates/arago-scarthgap-wip-config/local.conf.sample   | 4 ++--
+> >  .../coresdk_coresdk-09.00.00.006-config/local.conf.sample     | 4 ++--
+> >  .../coresdk_coresdk-09.00.00.007-config/local.conf.sample     | 4 ++--
+> >  .../coresdk_coresdk-09.00.00.011-config/local.conf.sample     | 4 ++--
+> >  .../coresdk_coresdk-09.01.00.001-config/local.conf.sample     | 4 ++--
+> >  .../coresdk_coresdk-09.01.00.003-config/local.conf.sample     | 4 ++--
+> >  .../coresdk_coresdk-09.01.00.007-config/local.conf.sample     | 4 ++--
+> >  .../coresdk_coresdk-09.01.00.008-config/local.conf.sample     | 4 ++--
+> >  .../coresdk_coresdk-09.02.00.008-config/local.conf.sample     | 4 ++--
+> >  .../coresdk_coresdk-09.02.00.009-config/local.conf.sample     | 4 ++--
+> >  .../coresdk_coresdk-09.02.00.010-config/local.conf.sample     | 4 ++--
+> >  .../coresdk_coresdk-09.03.05-config/local.conf.sample         | 4 ++--
+> >  .../coresdk_coresdk-10.00.07-config/local.conf.sample         | 4 ++--
+> >  .../coresdk_coresdk-10.01.08-config/local.conf.sample         | 4 ++--
+> >  .../coresdk_coresdk-10.01.10-config/local.conf.sample         | 4 ++--
+> >  .../coresdk_coresdk-10.01.10-selinux-config/local.conf.sample | 4 ++--
+> >  conf/templates/distroless-kirkstone-config/local.conf.sample  | 4 ++--
+> >  conf/templates/distroless-master-config/local.conf.sample     | 4 ++--
+> >  conf/templates/distroless-scarthgap-config/local.conf.sample  | 4 ++--
+> >  conf/templates/poky-kirkstone-config/local.conf.sample        | 4 ++--
+> >  conf/templates/poky-master-config/local.conf.sample           | 4 ++--
+> >  conf/templates/poky-master-wip-config/local.conf.sample       | 4 ++--
+> >  conf/templates/poky-scarthgap-config/local.conf.sample        | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  .../local.conf.sample                                         | 4 ++--
+> >  configs/arago-master-wip-config.txt                           | 2 +-
+> >  .../processor-sdk-scarthgap-10.01.10.04-config.yml            | 1 +
+> >  .../processor-sdk-scarthgap-chromium-10.01.10.04-config.yml   | 1 +
+> >  kas/templates/local-arago64-v2.conf.yml                       | 4 ++--
+> >  kas/templates/local-arago64-v3.conf.yml                       | 4 ++--
+> >  kas/templates/local-poky-v2.conf.yml                          | 4 ++--
+> >  kas/templates/local-poky-v3.conf.yml                          | 4 ++--
+> >  kas/templates/local-v2.conf.yml                               | 4 ++--
+> >  kas/templates/local-v3.conf.yml                               | 4 ++--
+> >  sample-files/local-arago64-v2.conf.sample                     | 4 ++--
+> >  sample-files/local-arago64-v3.conf.sample                     | 4 ++--
+> >  sample-files/local-poky-v2.conf.sample                        | 4 ++--
+> >  sample-files/local-poky-v3.conf.sample                        | 4 ++--
+> >  sample-files/local-v2.conf.sample                             | 4 ++--
+> >  sample-files/local-v3.conf.sample                             | 4 ++--
+> >  src/bin/convert.pl                                            | 2 +-
+> >  src/templates/local-arago64-v2.conf.xml                       | 4 ++--
+> >  src/templates/local-arago64-v3.conf.xml                       | 4 ++--
+> >  src/templates/local-poky-v2.conf.xml                          | 4 ++--
+> >  src/templates/local-poky-v3.conf.xml                          | 4 ++--
+> >  src/templates/local-v2.conf.xml                               | 4 ++--
+> >  src/templates/local-v3.conf.xml                               | 4 ++--
+> >  90 files changed, 175 insertions(+), 173 deletions(-)
+> >
+> > diff --git a/bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json
+> b/bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json
+> > index 1cc2962..8acd24a 100644
+> > --- a/bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json
+> > +++ b/bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json
+> > @@ -9,7 +9,7 @@
+> >              "uri": "
+> https://git.ti.com/git/arago-project/oe-layersetup.git"
+> >            }
+> >          },
+> > -        "rev": "wip"
+> > +        "rev": "master"
+> >        },
+> >        "path": "oe-layersetup"
+> >      },
+> > diff --git
+> a/conf/templates/arago-kirkstone-chromium-config/local.conf.sample
+> b/conf/templates/arago-kirkstone-chromium-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/conf/templates/arago-kirkstone-chromium-config/local.conf.sample
+> > +++ b/conf/templates/arago-kirkstone-chromium-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/arago-kirkstone-config/local.conf.sample
+> b/conf/templates/arago-kirkstone-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/conf/templates/arago-kirkstone-config/local.conf.sample
+> > +++ b/conf/templates/arago-kirkstone-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/arago-kirkstone-next-config/local.conf.sample
+> b/conf/templates/arago-kirkstone-next-config/local.conf.sample
+> > index cb76dd8..d97939a 100644
+> > --- a/conf/templates/arago-kirkstone-next-config/local.conf.sample
+> > +++ b/conf/templates/arago-kirkstone-next-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/arago-kirkstone-wip-config/local.conf.sampl=
+e
+> b/conf/templates/arago-kirkstone-wip-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/conf/templates/arago-kirkstone-wip-config/local.conf.sample
+> > +++ b/conf/templates/arago-kirkstone-wip-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/arago-master-chromium-config/local.conf.sample
+> b/conf/templates/arago-master-chromium-config/local.conf.sample
+> > index f2e9587..720ce11 100644
+> > --- a/conf/templates/arago-master-chromium-config/local.conf.sample
+> > +++ b/conf/templates/arago-master-chromium-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/arago-master-config/local.conf.sample
+> b/conf/templates/arago-master-config/local.conf.sample
+> > index f2e9587..720ce11 100644
+> > --- a/conf/templates/arago-master-config/local.conf.sample
+> > +++ b/conf/templates/arago-master-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/arago-master-next-config/local.conf.sample
+> b/conf/templates/arago-master-next-config/local.conf.sample
+> > index 6c32f4b..c1549ac 100644
+> > --- a/conf/templates/arago-master-next-config/local.conf.sample
+> > +++ b/conf/templates/arago-master-next-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/arago-master-selinux-config/local.conf.sample
+> b/conf/templates/arago-master-selinux-config/local.conf.sample
+> > index 5cc19d4..dfb4873 100644
+> > --- a/conf/templates/arago-master-selinux-config/local.conf.sample
+> > +++ b/conf/templates/arago-master-selinux-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/arago-master-wip-config/local.conf.sample
+> b/conf/templates/arago-master-wip-config/local.conf.sample
+> > index f2e9587..720ce11 100644
+> > --- a/conf/templates/arago-master-wip-config/local.conf.sample
+> > +++ b/conf/templates/arago-master-wip-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/arago-scarthgap-chromium-config/local.conf.sample
+> b/conf/templates/arago-scarthgap-chromium-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/conf/templates/arago-scarthgap-chromium-config/local.conf.sample
+> > +++ b/conf/templates/arago-scarthgap-chromium-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/arago-scarthgap-config/local.conf.sample
+> b/conf/templates/arago-scarthgap-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/conf/templates/arago-scarthgap-config/local.conf.sample
+> > +++ b/conf/templates/arago-scarthgap-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/arago-scarthgap-next-config/local.conf.sample
+> b/conf/templates/arago-scarthgap-next-config/local.conf.sample
+> > index dbb184b..3ad6481 100644
+> > --- a/conf/templates/arago-scarthgap-next-config/local.conf.sample
+> > +++ b/conf/templates/arago-scarthgap-next-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/arago-scarthgap-selinux-config/local.conf.sample
+> b/conf/templates/arago-scarthgap-selinux-config/local.conf.sample
+> > index 46869ad..c862657 100644
+> > --- a/conf/templates/arago-scarthgap-selinux-config/local.conf.sample
+> > +++ b/conf/templates/arago-scarthgap-selinux-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/arago-scarthgap-wip-config/local.conf.sampl=
+e
+> b/conf/templates/arago-scarthgap-wip-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/conf/templates/arago-scarthgap-wip-config/local.conf.sample
+> > +++ b/conf/templates/arago-scarthgap-wip-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.00.00.006-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.00.00.006-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-09.00.00.006-config/local.conf.sample
+> > +++
+> b/conf/templates/coresdk_coresdk-09.00.00.006-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.00.00.007-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.00.00.007-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-09.00.00.007-config/local.conf.sample
+> > +++
+> b/conf/templates/coresdk_coresdk-09.00.00.007-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.00.00.011-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.00.00.011-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-09.00.00.011-config/local.conf.sample
+> > +++
+> b/conf/templates/coresdk_coresdk-09.00.00.011-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.01.00.001-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.01.00.001-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-09.01.00.001-config/local.conf.sample
+> > +++
+> b/conf/templates/coresdk_coresdk-09.01.00.001-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.01.00.003-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.01.00.003-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-09.01.00.003-config/local.conf.sample
+> > +++
+> b/conf/templates/coresdk_coresdk-09.01.00.003-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.01.00.007-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.01.00.007-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-09.01.00.007-config/local.conf.sample
+> > +++
+> b/conf/templates/coresdk_coresdk-09.01.00.007-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.01.00.008-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.01.00.008-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-09.01.00.008-config/local.conf.sample
+> > +++
+> b/conf/templates/coresdk_coresdk-09.01.00.008-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.02.00.008-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.02.00.008-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-09.02.00.008-config/local.conf.sample
+> > +++
+> b/conf/templates/coresdk_coresdk-09.02.00.008-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.02.00.009-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.02.00.009-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-09.02.00.009-config/local.conf.sample
+> > +++
+> b/conf/templates/coresdk_coresdk-09.02.00.009-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.02.00.010-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.02.00.010-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-09.02.00.010-config/local.conf.sample
+> > +++
+> b/conf/templates/coresdk_coresdk-09.02.00.010-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-09.03.05-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-09.03.05-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/conf/templates/coresdk_coresdk-09.03.05-config/local.conf.sample
+> > +++ b/conf/templates/coresdk_coresdk-09.03.05-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-10.00.07-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-10.00.07-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/conf/templates/coresdk_coresdk-10.00.07-config/local.conf.sample
+> > +++ b/conf/templates/coresdk_coresdk-10.00.07-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-10.01.08-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-10.01.08-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/conf/templates/coresdk_coresdk-10.01.08-config/local.conf.sample
+> > +++ b/conf/templates/coresdk_coresdk-10.01.08-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-10.01.10-config/local.conf.sample
+> b/conf/templates/coresdk_coresdk-10.01.10-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/conf/templates/coresdk_coresdk-10.01.10-config/local.conf.sample
+> > +++ b/conf/templates/coresdk_coresdk-10.01.10-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/coresdk_coresdk-10.01.10-selinux-config/local.conf.sampl=
+e
+> b/conf/templates/coresdk_coresdk-10.01.10-selinux-config/local.conf.sampl=
+e
+> > index e45417c..27f1704 100644
+> > ---
+> a/conf/templates/coresdk_coresdk-10.01.10-selinux-config/local.conf.sampl=
+e
+> > +++
+> b/conf/templates/coresdk_coresdk-10.01.10-selinux-config/local.conf.sampl=
+e
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/distroless-kirkstone-config/local.conf.sample
+> b/conf/templates/distroless-kirkstone-config/local.conf.sample
+> > index 46cb253..b499977 100644
+> > --- a/conf/templates/distroless-kirkstone-config/local.conf.sample
+> > +++ b/conf/templates/distroless-kirkstone-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/distroless-master-config/local.conf.sample
+> b/conf/templates/distroless-master-config/local.conf.sample
+> > index bcdaaa4..7d218e8 100644
+> > --- a/conf/templates/distroless-master-config/local.conf.sample
+> > +++ b/conf/templates/distroless-master-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/distroless-scarthgap-config/local.conf.sample
+> b/conf/templates/distroless-scarthgap-config/local.conf.sample
+> > index 46cb253..b499977 100644
+> > --- a/conf/templates/distroless-scarthgap-config/local.conf.sample
+> > +++ b/conf/templates/distroless-scarthgap-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/poky-kirkstone-config/local.conf.sample
+> b/conf/templates/poky-kirkstone-config/local.conf.sample
+> > index e67385d..12eacfc 100644
+> > --- a/conf/templates/poky-kirkstone-config/local.conf.sample
+> > +++ b/conf/templates/poky-kirkstone-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/poky-master-config/local.conf.sample
+> b/conf/templates/poky-master-config/local.conf.sample
+> > index 1fe5688..e0112c7 100644
+> > --- a/conf/templates/poky-master-config/local.conf.sample
+> > +++ b/conf/templates/poky-master-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/poky-master-wip-config/local.conf.sample
+> b/conf/templates/poky-master-wip-config/local.conf.sample
+> > index 1fe5688..e0112c7 100644
+> > --- a/conf/templates/poky-master-wip-config/local.conf.sample
+> > +++ b/conf/templates/poky-master-wip-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/conf/templates/poky-scarthgap-config/local.conf.sample
+> b/conf/templates/poky-scarthgap-config/local.conf.sample
+> > index e67385d..12eacfc 100644
+> > --- a/conf/templates/poky-scarthgap-config/local.conf.sample
+> > +++ b/conf/templates/poky-scarthgap-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.00=
+-config/local.conf.sample
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.00=
+-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.00=
+-config/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.00=
+-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.01=
+-config/local.conf.sample
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.01=
+-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.01=
+-config/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.01=
+-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.01.00=
+-config/local.conf.sample
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.01.00=
+-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.01.00=
+-config/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.01.00=
+-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.02.00=
+-config/local.conf.sample
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.02.00=
+-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.02.00=
+-config/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.02.00=
+-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.00.00=
+-config/local.conf.sample
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.00.00=
+-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.00.00=
+-config/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.00.00=
+-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.01.00=
+-config/local.conf.sample
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.01.00=
+-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.01.00=
+-config/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.01.00=
+-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-linux_processor-sdk-gateway-10_00/local.co=
+nf.sample
+> b/conf/templates/processor-sdk-linux_processor-sdk-gateway-10_00/local.co=
+nf.sample
+> > index 6b91881..1149e85 100644
+> > ---
+> a/conf/templates/processor-sdk-linux_processor-sdk-gateway-10_00/local.co=
+nf.sample
+> > +++
+> b/conf/templates/processor-sdk-linux_processor-sdk-gateway-10_00/local.co=
+nf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_06/loca=
+l.conf.sample
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_06/loca=
+l.conf.sample
+> > index e4f04f3..a0d9b30 100644
+> > ---
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_06/loca=
+l.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_06/loca=
+l.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_07/loca=
+l.conf.sample
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_07/loca=
+l.conf.sample
+> > index 32a6cfb..9dd0dfa 100644
+> > ---
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_07/loca=
+l.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_07/loca=
+l.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_06/loca=
+l.conf.sample
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_06/loca=
+l.conf.sample
+> > index ee23c20..a83b490 100644
+> > ---
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_06/loca=
+l.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_06/loca=
+l.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_07/loca=
+l.conf.sample
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_07/loca=
+l.conf.sample
+> > index c29b416..e743654 100644
+> > ---
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_07/loca=
+l.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_07/loca=
+l.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_04/loca=
+l.conf.sample
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_04/loca=
+l.conf.sample
+> > index 34afc91..8096a3b 100644
+> > ---
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_04/loca=
+l.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_04/loca=
+l.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_05/loca=
+l.conf.sample
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_05/loca=
+l.conf.sample
+> > index f592ad9..31bfec8 100644
+> > ---
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_05/loca=
+l.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_05/loca=
+l.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_07_06/loca=
+l.conf.sample
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_07_06/loca=
+l.conf.sample
+> > index 0df5360..145aed2 100644
+> > ---
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_07_06/loca=
+l.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_07_06/loca=
+l.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_08_06/loca=
+l.conf.sample
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_08_06/loca=
+l.conf.sample
+> > index 5e39ec4..016f942 100644
+> > ---
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_08_06/loca=
+l.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_08_06/loca=
+l.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-10_01_08_01/loca=
+l.conf.sample
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-10_01_08_01/loca=
+l.conf.sample
+> > index 689e5d8..e627f36 100644
+> > ---
+> a/conf/templates/processor-sdk-linux_processor-sdk-linux-10_01_08_01/loca=
+l.conf.sample
+> > +++
+> b/conf/templates/processor-sdk-linux_processor-sdk-linux-10_01_08_01/loca=
+l.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-09.00.00-am62xxsip-config/lo=
+cal.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-09.00.00-am62xxsip-config/lo=
+cal.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-09.00.00-am62xxsip-config/lo=
+cal.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-09.00.00-am62xxsip-config/lo=
+cal.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-09.00.00-config/local.conf.s=
+ample
+> b/conf/templates/processor-sdk_processor-sdk-09.00.00-config/local.conf.s=
+ample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-09.00.00-config/local.conf.s=
+ample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-09.00.00-config/local.conf.s=
+ample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-09.01.00-am65xx-config/local=
+.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-09.01.00-am65xx-config/local=
+.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-09.01.00-am65xx-config/local=
+.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-09.01.00-am65xx-config/local=
+.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-09.01.00-config/local.conf.s=
+ample
+> b/conf/templates/processor-sdk_processor-sdk-09.01.00-config/local.conf.s=
+ample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-09.01.00-config/local.conf.s=
+ample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-09.01.00-config/local.conf.s=
+ample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-09.01.00-legacy-config/local=
+.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-09.01.00-legacy-config/local=
+.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-09.01.00-legacy-config/local=
+.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-09.01.00-legacy-config/local=
+.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-09.02.00.08-am64x-config/loc=
+al.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-09.02.00.08-am64x-config/loc=
+al.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-09.02.00.08-am64x-config/loc=
+al.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-09.02.00.08-am64x-config/loc=
+al.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/lo=
+cal.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/lo=
+cal.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/lo=
+cal.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/lo=
+cal.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config=
+/local.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config=
+/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config=
+/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config=
+/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config=
+/local.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config=
+/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config=
+/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config=
+/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.=
+09-config/local.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.=
+09-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.=
+09-config/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.=
+09-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.=
+10-config/local.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.=
+10-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.=
+10-config/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.=
+10-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config=
+/local.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config=
+/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config=
+/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config=
+/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config=
+/local.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config=
+/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config=
+/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config=
+/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.=
+04-config/local.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.=
+04-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.=
+04-config/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.=
+04-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git
+> a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.=
+04-config/local.conf.sample
+> b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.=
+04-config/local.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > ---
+> a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.=
+04-config/local.conf.sample
+> > +++
+> b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.=
+04-config/local.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/configs/arago-master-wip-config.txt
+> b/configs/arago-master-wip-config.txt
+> > index eb9c49d..165a3d1 100644
+> > --- a/configs/arago-master-wip-config.txt
+> > +++ b/configs/arago-master-wip-config.txt
+> > @@ -5,7 +5,7 @@ bitbake,https://git.openembedded.org/bitbake,master,HEA=
+D
+> >  meta-arago,
+> https://git.yoctoproject.org/meta-arago,master-wip,HEAD,layers=3Dmeta-ara=
+go-distro:meta-arago-extras:meta-arago-test
+> >  #meta-browser,
+> https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=3Dmeta-c=
+hromium
+> >  #meta-selinux,
+> https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=3D
+> > -meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
+=3D
+> > +meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
+> >  meta-virtualization,
+> https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=3D
+> >  meta-openembedded,
+> https://git.openembedded.org/meta-openembedded,master,HEAD,layers=3Dmeta-=
+networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
+> >  meta-ti,
+> https://git.yoctoproject.org/meta-ti,master-wip,HEAD,layers=3Dmeta-ti-ext=
+ras:meta-beagle:meta-ti-bsp
+> > diff --git
+> a/kas/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.yml
+> b/kas/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.yml
+> > index 5ced779..2dc2f5c 100644
+> > --- a/kas/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.yml
+> > +++ b/kas/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.yml
+> > @@ -71,3 +71,4 @@ repos:
+> >      commit: "dac630ab5ee7aa6c5c7c294093adbd11b116c765"
+> >      layers:
+> >        meta:
+> > +
+> > diff --git
+> a/kas/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.y=
+ml
+> b/kas/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.y=
+ml
+> > index 405fa3b..351d9ea 100644
+> > ---
+> a/kas/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.y=
+ml
+> > +++
+> b/kas/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.y=
+ml
+> > @@ -83,3 +83,4 @@ repos:
+> >      url: "https://git.ti.com/git/edgeai/meta-edgeai.git"
+> >      branch: "scarthgap"
+> >      commit: "10.01.10.04"
+> > +
+> > diff --git a/kas/templates/local-arago64-v2.conf.yml
+> b/kas/templates/local-arago64-v2.conf.yml
+> > index c79388d..c6781be 100644
+> > --- a/kas/templates/local-arago64-v2.conf.yml
+> > +++ b/kas/templates/local-arago64-v2.conf.yml
+> > @@ -15,7 +15,7 @@ local_conf_header:
+> >      # wiping and rebuilding you can preserve this directory to speed u=
+p
+> this part
+> >      # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >      # on the same machine too.
+> > -    DL_DIR =3D "${TOPDIR}/downloads"
+> > +    DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >      #
+> >      # Where to place shared-state files
+> > @@ -28,7 +28,7 @@ local_conf_header:
+> >      # regenerate from these files if no changes were made to the
+> configuration.
+> >      # If changes were made to the configuration, only shared state
+> files where the
+> >      # state was still valid would be used (done using checksums).
+> > -    SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +    SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >      #
+> >      # Shared-state files from other locations
+> > diff --git a/kas/templates/local-arago64-v3.conf.yml
+> b/kas/templates/local-arago64-v3.conf.yml
+> > index b182483..3fa683e 100644
+> > --- a/kas/templates/local-arago64-v3.conf.yml
+> > +++ b/kas/templates/local-arago64-v3.conf.yml
+> > @@ -15,7 +15,7 @@ local_conf_header:
+> >      # wiping and rebuilding you can preserve this directory to speed u=
+p
+> this part
+> >      # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >      # on the same machine too.
+> > -    DL_DIR =3D "${TOPDIR}/downloads"
+> > +    DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >      #
+> >      # Where to place shared-state files
+> > @@ -28,7 +28,7 @@ local_conf_header:
+> >      # regenerate from these files if no changes were made to the
+> configuration.
+> >      # If changes were made to the configuration, only shared state
+> files where the
+> >      # state was still valid would be used (done using checksums).
+> > -    SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +    SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >      #
+> >      # Shared-state files from other locations
+> > diff --git a/kas/templates/local-poky-v2.conf.yml
+> b/kas/templates/local-poky-v2.conf.yml
+> > index 91995fe..075f535 100644
+> > --- a/kas/templates/local-poky-v2.conf.yml
+> > +++ b/kas/templates/local-poky-v2.conf.yml
+> > @@ -15,7 +15,7 @@ local_conf_header:
+> >      # wiping and rebuilding you can preserve this directory to speed u=
+p
+> this part
+> >      # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >      # on the same machine too.
+> > -    DL_DIR =3D "${TOPDIR}/downloads"
+> > +    DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >      #
+> >      # Where to place shared-state files
+> > @@ -28,7 +28,7 @@ local_conf_header:
+> >      # regenerate from these files if no changes were made to the
+> configuration.
+> >      # If changes were made to the configuration, only shared state
+> files where the
+> >      # state was still valid would be used (done using checksums).
+> > -    SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +    SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >      #
+> >      # Shared-state files from other locations
+> > diff --git a/kas/templates/local-poky-v3.conf.yml
+> b/kas/templates/local-poky-v3.conf.yml
+> > index 7368fb0..193a1ce 100644
+> > --- a/kas/templates/local-poky-v3.conf.yml
+> > +++ b/kas/templates/local-poky-v3.conf.yml
+> > @@ -15,7 +15,7 @@ local_conf_header:
+> >      # wiping and rebuilding you can preserve this directory to speed u=
+p
+> this part
+> >      # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >      # on the same machine too.
+> > -    DL_DIR =3D "${TOPDIR}/downloads"
+> > +    DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >      #
+> >      # Where to place shared-state files
+> > @@ -28,7 +28,7 @@ local_conf_header:
+> >      # regenerate from these files if no changes were made to the
+> configuration.
+> >      # If changes were made to the configuration, only shared state
+> files where the
+> >      # state was still valid would be used (done using checksums).
+> > -    SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +    SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >      #
+> >      # Shared-state files from other locations
+> > diff --git a/kas/templates/local-v2.conf.yml
+> b/kas/templates/local-v2.conf.yml
+> > index 3d666e4..f33fd45 100644
+> > --- a/kas/templates/local-v2.conf.yml
+> > +++ b/kas/templates/local-v2.conf.yml
+> > @@ -15,7 +15,7 @@ local_conf_header:
+> >      # wiping and rebuilding you can preserve this directory to speed u=
+p
+> this part
+> >      # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >      # on the same machine too.
+> > -    DL_DIR =3D "${TOPDIR}/downloads"
+> > +    DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >      #
+> >      # Where to place shared-state files
+> > @@ -28,7 +28,7 @@ local_conf_header:
+> >      # regenerate from these files if no changes were made to the
+> configuration.
+> >      # If changes were made to the configuration, only shared state
+> files where the
+> >      # state was still valid would be used (done using checksums).
+> > -    SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +    SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >      #
+> >      # Shared-state files from other locations
+> > diff --git a/kas/templates/local-v3.conf.yml
+> b/kas/templates/local-v3.conf.yml
+> > index 063b863..07eb5af 100644
+> > --- a/kas/templates/local-v3.conf.yml
+> > +++ b/kas/templates/local-v3.conf.yml
+> > @@ -15,7 +15,7 @@ local_conf_header:
+> >      # wiping and rebuilding you can preserve this directory to speed u=
+p
+> this part
+> >      # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >      # on the same machine too.
+> > -    DL_DIR =3D "${TOPDIR}/downloads"
+> > +    DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >      #
+> >      # Where to place shared-state files
+> > @@ -28,7 +28,7 @@ local_conf_header:
+> >      # regenerate from these files if no changes were made to the
+> configuration.
+> >      # If changes were made to the configuration, only shared state
+> files where the
+> >      # state was still valid would be used (done using checksums).
+> > -    SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +    SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >      #
+> >      # Shared-state files from other locations
+> > diff --git a/sample-files/local-arago64-v2.conf.sample
+> b/sample-files/local-arago64-v2.conf.sample
+> > index 7575b4b..8ad6f26 100644
+> > --- a/sample-files/local-arago64-v2.conf.sample
+> > +++ b/sample-files/local-arago64-v2.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/sample-files/local-arago64-v3.conf.sample
+> b/sample-files/local-arago64-v3.conf.sample
+> > index f2e9587..720ce11 100644
+> > --- a/sample-files/local-arago64-v3.conf.sample
+> > +++ b/sample-files/local-arago64-v3.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/sample-files/local-poky-v2.conf.sample
+> b/sample-files/local-poky-v2.conf.sample
+> > index e67385d..12eacfc 100644
+> > --- a/sample-files/local-poky-v2.conf.sample
+> > +++ b/sample-files/local-poky-v2.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/sample-files/local-poky-v3.conf.sample
+> b/sample-files/local-poky-v3.conf.sample
+> > index 1fe5688..e0112c7 100644
+> > --- a/sample-files/local-poky-v3.conf.sample
+> > +++ b/sample-files/local-poky-v3.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/sample-files/local-v2.conf.sample
+> b/sample-files/local-v2.conf.sample
+> > index 46cb253..b499977 100644
+> > --- a/sample-files/local-v2.conf.sample
+> > +++ b/sample-files/local-v2.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/sample-files/local-v3.conf.sample
+> b/sample-files/local-v3.conf.sample
+> > index bcdaaa4..7d218e8 100644
+> > --- a/sample-files/local-v3.conf.sample
+> > +++ b/sample-files/local-v3.conf.sample
+> > @@ -10,7 +10,7 @@ CONF_VERSION =3D "2"
+> >  # wiping and rebuilding you can preserve this directory to speed up
+> this part
+> >  # of subsequent builds. This directory is safe to share between
+> multiple builds
+> >  # on the same machine too.
+> > -DL_DIR =3D "${TOPDIR}/downloads"
+> > +DL_DIR =3D "${TOPDIR}/../downloads"
+> >
+> >  #
+> >  # Where to place shared-state files
+> > @@ -23,7 +23,7 @@ DL_DIR =3D "${TOPDIR}/downloads"
+> >  # regenerate from these files if no changes were made to the
+> configuration.
+> >  # If changes were made to the configuration, only shared state files
+> where the
+> >  # state was still valid would be used (done using checksums).
+> > -SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"
+> > +SSTATE_DIR =3D "${TOPDIR}/sstate-cache"
+> >
+> >  #
+> >  # Shared-state files from other locations
+> > diff --git a/src/bin/convert.pl b/src/bin/convert.pl
+> > index 2787b86..42b9c2c 100755
+> > --- a/src/bin/convert.pl
+> > +++ b/src/bin/convert.pl
+> > @@ -501,7 +501,7 @@ sub convert_local_conf_template
+> >      {
+> >          chomp($lpLine);
+> >
+> > -        $lpLine =3D~ s/OEBASE/TOPDIR/;
+> > +        $lpLine =3D~ s/OEBASE/TOPDIR\/\.\./;
+> >          $lpLine =3D~ s/^MACHINE/#MACHINE/;
+> >
+> >          $lpLine =3D~ s/&/&amp;/g;
+> > diff --git a/src/templates/local-arago64-v2.conf.xml
+> b/src/templates/local-arago64-v2.conf.xml
+> > index b49f702..d9d2ae7 100644
+> > --- a/src/templates/local-arago64-v2.conf.xml
+> > +++ b/src/templates/local-arago64-v2.conf.xml
+> > @@ -11,7 +11,7 @@
+> >      <line># wiping and rebuilding you can preserve this directory to
+> speed up this part</line>
+> >      <line># of subsequent builds. This directory is safe to share
+> between multiple builds</line>
+> >      <line># on the same machine too.</line>
+> > -    <line>DL_DIR =3D "${TOPDIR}/downloads"</line>
+> > +    <line>DL_DIR =3D "${TOPDIR}/../downloads"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Where to place shared-state files</line>
+> > @@ -24,7 +24,7 @@
+> >      <line># regenerate from these files if no changes were made to the
+> configuration.</line>
+> >      <line># If changes were made to the configuration, only shared
+> state files where the</line>
+> >      <line># state was still valid would be used (done using
+> checksums).</line>
+> > -    <line>SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"</line>
+> > +    <line>SSTATE_DIR =3D "${TOPDIR}/sstate-cache"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Shared-state files from other locations</line>
+> > diff --git a/src/templates/local-arago64-v3.conf.xml
+> b/src/templates/local-arago64-v3.conf.xml
+> > index 35d151f..c8a5d51 100644
+> > --- a/src/templates/local-arago64-v3.conf.xml
+> > +++ b/src/templates/local-arago64-v3.conf.xml
+> > @@ -11,7 +11,7 @@
+> >      <line># wiping and rebuilding you can preserve this directory to
+> speed up this part</line>
+> >      <line># of subsequent builds. This directory is safe to share
+> between multiple builds</line>
+> >      <line># on the same machine too.</line>
+> > -    <line>DL_DIR =3D "${TOPDIR}/downloads"</line>
+> > +    <line>DL_DIR =3D "${TOPDIR}/../downloads"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Where to place shared-state files</line>
+> > @@ -24,7 +24,7 @@
+> >      <line># regenerate from these files if no changes were made to the
+> configuration.</line>
+> >      <line># If changes were made to the configuration, only shared
+> state files where the</line>
+> >      <line># state was still valid would be used (done using
+> checksums).</line>
+> > -    <line>SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"</line>
+> > +    <line>SSTATE_DIR =3D "${TOPDIR}/sstate-cache"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Shared-state files from other locations</line>
+> > diff --git a/src/templates/local-poky-v2.conf.xml
+> b/src/templates/local-poky-v2.conf.xml
+> > index 72160c9..b45d6c2 100644
+> > --- a/src/templates/local-poky-v2.conf.xml
+> > +++ b/src/templates/local-poky-v2.conf.xml
+> > @@ -11,7 +11,7 @@
+> >      <line># wiping and rebuilding you can preserve this directory to
+> speed up this part</line>
+> >      <line># of subsequent builds. This directory is safe to share
+> between multiple builds</line>
+> >      <line># on the same machine too.</line>
+> > -    <line>DL_DIR =3D "${TOPDIR}/downloads"</line>
+> > +    <line>DL_DIR =3D "${TOPDIR}/../downloads"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Where to place shared-state files</line>
+> > @@ -24,7 +24,7 @@
+> >      <line># regenerate from these files if no changes were made to the
+> configuration.</line>
+> >      <line># If changes were made to the configuration, only shared
+> state files where the</line>
+> >      <line># state was still valid would be used (done using
+> checksums).</line>
+> > -    <line>SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"</line>
+> > +    <line>SSTATE_DIR =3D "${TOPDIR}/sstate-cache"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Shared-state files from other locations</line>
+> > diff --git a/src/templates/local-poky-v3.conf.xml
+> b/src/templates/local-poky-v3.conf.xml
+> > index 1e66478..fa313eb 100644
+> > --- a/src/templates/local-poky-v3.conf.xml
+> > +++ b/src/templates/local-poky-v3.conf.xml
+> > @@ -11,7 +11,7 @@
+> >      <line># wiping and rebuilding you can preserve this directory to
+> speed up this part</line>
+> >      <line># of subsequent builds. This directory is safe to share
+> between multiple builds</line>
+> >      <line># on the same machine too.</line>
+> > -    <line>DL_DIR =3D "${TOPDIR}/downloads"</line>
+> > +    <line>DL_DIR =3D "${TOPDIR}/../downloads"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Where to place shared-state files</line>
+> > @@ -24,7 +24,7 @@
+> >      <line># regenerate from these files if no changes were made to the
+> configuration.</line>
+> >      <line># If changes were made to the configuration, only shared
+> state files where the</line>
+> >      <line># state was still valid would be used (done using
+> checksums).</line>
+> > -    <line>SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"</line>
+> > +    <line>SSTATE_DIR =3D "${TOPDIR}/sstate-cache"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Shared-state files from other locations</line>
+> > diff --git a/src/templates/local-v2.conf.xml
+> b/src/templates/local-v2.conf.xml
+> > index 40f30e7..49e060c 100644
+> > --- a/src/templates/local-v2.conf.xml
+> > +++ b/src/templates/local-v2.conf.xml
+> > @@ -11,7 +11,7 @@
+> >      <line># wiping and rebuilding you can preserve this directory to
+> speed up this part</line>
+> >      <line># of subsequent builds. This directory is safe to share
+> between multiple builds</line>
+> >      <line># on the same machine too.</line>
+> > -    <line>DL_DIR =3D "${TOPDIR}/downloads"</line>
+> > +    <line>DL_DIR =3D "${TOPDIR}/../downloads"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Where to place shared-state files</line>
+> > @@ -24,7 +24,7 @@
+> >      <line># regenerate from these files if no changes were made to the
+> configuration.</line>
+> >      <line># If changes were made to the configuration, only shared
+> state files where the</line>
+> >      <line># state was still valid would be used (done using
+> checksums).</line>
+> > -    <line>SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"</line>
+> > +    <line>SSTATE_DIR =3D "${TOPDIR}/sstate-cache"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Shared-state files from other locations</line>
+> > diff --git a/src/templates/local-v3.conf.xml
+> b/src/templates/local-v3.conf.xml
+> > index d0c9d92..e300aaf 100644
+> > --- a/src/templates/local-v3.conf.xml
+> > +++ b/src/templates/local-v3.conf.xml
+> > @@ -11,7 +11,7 @@
+> >      <line># wiping and rebuilding you can preserve this directory to
+> speed up this part</line>
+> >      <line># of subsequent builds. This directory is safe to share
+> between multiple builds</line>
+> >      <line># on the same machine too.</line>
+> > -    <line>DL_DIR =3D "${TOPDIR}/downloads"</line>
+> > +    <line>DL_DIR =3D "${TOPDIR}/../downloads"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Where to place shared-state files</line>
+> > @@ -24,7 +24,7 @@
+> >      <line># regenerate from these files if no changes were made to the
+> configuration.</line>
+> >      <line># If changes were made to the configuration, only shared
+> state files where the</line>
+> >      <line># state was still valid would be used (done using
+> checksums).</line>
+> > -    <line>SSTATE_DIR =3D "${TOPDIR}/build/sstate-cache"</line>
+> > +    <line>SSTATE_DIR =3D "${TOPDIR}/sstate-cache"</line>
+> >      <line></line>
+> >      <line>#</line>
+> >      <line># Shared-state files from other locations</line>
+> > --
+> > 2.17.1
+> >
+> >
+> >
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> > Links: You receive all messages sent to this group.
+> > View/Reply Online (#15886):
+> https://lists.yoctoproject.org/g/meta-arago/message/15886
+> > Mute This Topic: https://lists.yoctoproject.org/mt/111311276/7902621
+> > Group Owner: meta-arago+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/meta-arago/unsub [
+> jcormier@criticallink.com]
+> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> >
+> >
+>
+>
+> --
+> Jonathan Cormier
+> Senior Software Engineer
+>
+> Voice:  315.425.4045 x222
+>
+> http://www.CriticalLink.com
+> 6712 Brooklawn Parkway, Syracuse, NY 13211
+>
 
-> +    ln -snf libtensorflow-lite.so ${D}${libdir}/libtensorflowlite.so
-> +
-> +    # Install benchmark_model
-> +    install -d ${D}/opt/${PN}/tools/
-> +    install -m 0755 ${B}/tools/benchmark/benchmark_model ${D}/opt/${PN}/tools/
-> +
-> +    # Install header files
-> +    install -d ${D}${includedir}/tensorflow/
-> +    cd ${S}/tensorflow/
-> +    cp --parents $(find ./lite -name "*.h*" -not -path "*cmake_build/*") ${D}${includedir}/tensorflow
-> +    cp --parents $(find ./compiler/mlir/lite -name "*.h*" -not -path "*cmake_build/*") ${D}${includedir}/tensorflow
-> +    cd ${B}
-> +    cp --parents $(find . -name "*.h*") ${D}${includedir}/tensorflow/lite
-> +
-> +    # Install TFlite python3 interpreter
-> +    install -d ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime
-> +    install -d ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime.egg-info
-> +    install -m 0755  ${B}/tflite_runtime/* ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime
-> +    install -m 0755  ${B}/tflite_runtime.egg-info/* ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime.egg-info
-> +
-> +    # Install pkgconfig file required for NNstreamer build
 
-It is not just NNstreamer, any project that wants to link with this
-can make use of some form of .pc or .cmake file. We should see if
-we can fix this upstream and have this project generate that during build.
+--=20
+Jonathan Cormier
+Senior Software Engineer
 
-> +    install -d ${D}${libdir}/pkgconfig
-> +    install -m 0644 ${WORKDIR}/tensorflow2-lite.pc.in ${D}${libdir}/pkgconfig/tensorflow2-lite.pc
-> +    sed -i 's:@version@:${PV}:g
-> +            s:@libdir@:${libdir}:g
-> +            s:@includedir@:${includedir}:g' \
-> +            ${D}${libdir}/pkgconfig/tensorflow2-lite.pc
-> +}
-> +
-> +PACKAGES += "${PN}-tools python3-${PN}"
-> +
-> +RDEPENDS:${PN} += " \
-> +    ${PN}-tools \
-> +    python3-${PN} \
-> +"
-> +
-> +FILES:${PN} = " \
-> +    ${libdir}/lib*.so* \
-> +    ${libdir}/pkgconfig/* \
-> +"
-> +
-> +FILES:${PN}-tools = " \
-> +    /opt/* \
+Voice:  315.425.4045 x222
 
-Why /opt/ ?
+http://www.CriticalLink.com <http://www.criticallink.com/>
+6712 Brooklawn Parkway, Syracuse, NY 13211
+<https://twitter.com/Critical_Link>
 
-How about ${bindir}/${BPN}-tests?
+--000000000000a03bb0062ee48148
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Anyway, only minor comments here, and nothing we cant fix up over time.
+<div dir=3D"ltr">Ryan, I also had a question about the bitbake-setup config=
+s.=C2=A0 Is there some documentation on this setup tool?=C2=A0 Googling thi=
+s is tricky since the name is so generic. The other tools docs pop right up=
+ in google.<br></div><br><div class=3D"gmail_quote gmail_quote_container"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Fri, Feb 21, 2025 at 2:18=E2=80=AFP=
+M Jon Cormier &lt;<a href=3D"mailto:jcormier@criticallink.com">jcormier@cri=
+ticallink.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">Ryan, I think you also need to touch TMPDIR in a few of the lo=
+cal.conf files<br>
+<br>
+<br>
+On Fri, Feb 21, 2025 at 11:31=E2=80=AFAM Ryan Eatmon via<br>
+<a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_bla=
+nk">lists.yoctoproject.org</a> &lt;reatmon=3D<a href=3D"mailto:ti.com@lists=
+.yoctoproject.org" target=3D"_blank">ti.com@lists.yoctoproject.org</a>&gt; =
+wrote:<br>
+&gt;<br>
+&gt; When the conversion to the new XML/XSLT system was done, the reference=
+<br>
+&gt; to OEBASE was converted to TOPDIR.=C2=A0 The value for OEBASE was<br>
+&gt; historically the directory above the bitbake run dir which is what<br>
+&gt; TOPDIR is set to.=C2=A0 This made the downloads and sstate_cache direc=
+tories<br>
+&gt; appear down a level of directory that was unintended.<br>
+&gt;<br>
+&gt; This change updates the values for DL_DIR and SSTATE_DIR to be relativ=
+e<br>
+&gt; to TOPDIR but back in the same location they were originally meant to =
+be<br>
+&gt; in.<br>
+&gt;<br>
+&gt; Signed-off-by: Ryan Eatmon &lt;<a href=3D"mailto:reatmon@ti.com" targe=
+t=3D"_blank">reatmon@ti.com</a>&gt;<br>
+&gt; ---<br>
+&gt; v2: I ran a make clean and make and a lot more configs got updated wit=
+h<br>
+&gt; the change.=C2=A0 Clearly I need to rework the make system.<br>
+&gt;<br>
+&gt;=C2=A0 bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json=C2=A0=
+ =C2=A0 | 2 +-<br>
+&gt;=C2=A0 .../arago-kirkstone-chromium-config/local.conf.sample=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-kirkstone-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-kirkstone-next-config/local.conf.sample=C2=
+=A0 | 4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-kirkstone-wip-config/local.conf.sample=C2=
+=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-master-chromium-config/local.conf.sample | =
+4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-master-config/local.conf.sample=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-master-next-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-master-selinux-config/local.conf.sample=C2=
+=A0 | 4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-master-wip-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 .../arago-scarthgap-chromium-config/local.conf.sample=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-scarthgap-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-scarthgap-next-config/local.conf.sample=C2=
+=A0 | 4 ++--<br>
+&gt;=C2=A0 .../arago-scarthgap-selinux-config/local.conf.sample=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 conf/templates/arago-scarthgap-wip-config/local.conf.sample=C2=
+=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.00.00.006-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.00.00.007-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.00.00.011-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.01.00.001-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.01.00.003-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.01.00.007-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.01.00.008-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.02.00.008-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.02.00.009-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.02.00.010-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-09.03.05-config/local.conf.sample=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-10.00.07-config/local.conf.sample=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-10.01.08-config/local.conf.sample=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-10.01.10-config/local.conf.sample=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../coresdk_coresdk-10.01.10-selinux-config/local.conf.sample | =
+4 ++--<br>
+&gt;=C2=A0 conf/templates/distroless-kirkstone-config/local.conf.sample=C2=
+=A0 | 4 ++--<br>
+&gt;=C2=A0 conf/templates/distroless-master-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 conf/templates/distroless-scarthgap-config/local.conf.sample=C2=
+=A0 | 4 ++--<br>
+&gt;=C2=A0 conf/templates/poky-kirkstone-config/local.conf.sample=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 conf/templates/poky-master-config/local.conf.sample=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 conf/templates/poky-master-wip-config/local.conf.sample=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 conf/templates/poky-scarthgap-config/local.conf.sample=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 .../local.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 configs/arago-master-wip-config.txt=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 2 +-=
+<br>
+&gt;=C2=A0 .../processor-sdk-scarthgap-10.01.10.04-config.yml=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 | 1 +<br>
+&gt;=C2=A0 .../processor-sdk-scarthgap-chromium-10.01.10.04-config.yml=C2=
+=A0 =C2=A0| 1 +<br>
+&gt;=C2=A0 kas/templates/local-arago64-v2.conf.yml=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 kas/templates/local-arago64-v3.conf.yml=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 kas/templates/local-poky-v2.conf.yml=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 kas/templates/local-poky-v3.conf.yml=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 kas/templates/local-v2.conf.yml=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0| 4 ++--<br>
+&gt;=C2=A0 kas/templates/local-v3.conf.yml=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0| 4 ++--<br>
+&gt;=C2=A0 sample-files/local-arago64-v2.conf.sample=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 sample-files/local-arago64-v3.conf.sample=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 sample-files/local-poky-v2.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 sample-files/local-poky-v3.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 sample-files/local-v2.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| =
+4 ++--<br>
+&gt;=C2=A0 sample-files/local-v3.conf.sample=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| =
+4 ++--<br>
+&gt;=C2=A0 src/bin/<a href=3D"http://convert.pl" rel=3D"noreferrer" target=
+=3D"_blank">convert.pl</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 2 +-<br>
+&gt;=C2=A0 src/templates/local-arago64-v2.conf.xml=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 src/templates/local-arago64-v3.conf.xml=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 4 ++--<br>
+&gt;=C2=A0 src/templates/local-poky-v2.conf.xml=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 src/templates/local-poky-v3.conf.xml=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 4 ++--<br>
+&gt;=C2=A0 src/templates/local-v2.conf.xml=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0| 4 ++--<br>
+&gt;=C2=A0 src/templates/local-v3.conf.xml=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0| 4 ++--<br>
+&gt;=C2=A0 90 files changed, 175 insertions(+), 173 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.jso=
+n b/bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json<br>
+&gt; index 1cc2962..8acd24a 100644<br>
+&gt; --- a/bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json<br>
+&gt; +++ b/bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json<br>
+&gt; @@ -9,7 +9,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;uri&quot;: &quot=
+;<a href=3D"https://git.ti.com/git/arago-project/oe-layersetup.git" rel=3D"=
+noreferrer" target=3D"_blank">https://git.ti.com/git/arago-project/oe-layer=
+setup.git</a>&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;rev&quot;: &quot;wip&quot;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;rev&quot;: &quot;master&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;path&quot;: &quot;oe-layersetup&quot;=
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 },<br>
+&gt; diff --git a/conf/templates/arago-kirkstone-chromium-config/local.conf=
+.sample b/conf/templates/arago-kirkstone-chromium-config/local.conf.sample<=
+br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/arago-kirkstone-chromium-config/local.conf.sample=
+<br>
+&gt; +++ b/conf/templates/arago-kirkstone-chromium-config/local.conf.sample=
+<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-kirkstone-config/local.conf.sample b=
+/conf/templates/arago-kirkstone-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/arago-kirkstone-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/arago-kirkstone-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-kirkstone-next-config/local.conf.sam=
+ple b/conf/templates/arago-kirkstone-next-config/local.conf.sample<br>
+&gt; index cb76dd8..d97939a 100644<br>
+&gt; --- a/conf/templates/arago-kirkstone-next-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/arago-kirkstone-next-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-kirkstone-wip-config/local.conf.samp=
+le b/conf/templates/arago-kirkstone-wip-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/arago-kirkstone-wip-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/arago-kirkstone-wip-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-master-chromium-config/local.conf.sa=
+mple b/conf/templates/arago-master-chromium-config/local.conf.sample<br>
+&gt; index f2e9587..720ce11 100644<br>
+&gt; --- a/conf/templates/arago-master-chromium-config/local.conf.sample<br=
+>
+&gt; +++ b/conf/templates/arago-master-chromium-config/local.conf.sample<br=
+>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-master-config/local.conf.sample b/co=
+nf/templates/arago-master-config/local.conf.sample<br>
+&gt; index f2e9587..720ce11 100644<br>
+&gt; --- a/conf/templates/arago-master-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/arago-master-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-master-next-config/local.conf.sample=
+ b/conf/templates/arago-master-next-config/local.conf.sample<br>
+&gt; index 6c32f4b..c1549ac 100644<br>
+&gt; --- a/conf/templates/arago-master-next-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/arago-master-next-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-master-selinux-config/local.conf.sam=
+ple b/conf/templates/arago-master-selinux-config/local.conf.sample<br>
+&gt; index 5cc19d4..dfb4873 100644<br>
+&gt; --- a/conf/templates/arago-master-selinux-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/arago-master-selinux-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-master-wip-config/local.conf.sample =
+b/conf/templates/arago-master-wip-config/local.conf.sample<br>
+&gt; index f2e9587..720ce11 100644<br>
+&gt; --- a/conf/templates/arago-master-wip-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/arago-master-wip-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-scarthgap-chromium-config/local.conf=
+.sample b/conf/templates/arago-scarthgap-chromium-config/local.conf.sample<=
+br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/arago-scarthgap-chromium-config/local.conf.sample=
+<br>
+&gt; +++ b/conf/templates/arago-scarthgap-chromium-config/local.conf.sample=
+<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-scarthgap-config/local.conf.sample b=
+/conf/templates/arago-scarthgap-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/arago-scarthgap-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/arago-scarthgap-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-scarthgap-next-config/local.conf.sam=
+ple b/conf/templates/arago-scarthgap-next-config/local.conf.sample<br>
+&gt; index dbb184b..3ad6481 100644<br>
+&gt; --- a/conf/templates/arago-scarthgap-next-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/arago-scarthgap-next-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-scarthgap-selinux-config/local.conf.=
+sample b/conf/templates/arago-scarthgap-selinux-config/local.conf.sample<br=
+>
+&gt; index 46869ad..c862657 100644<br>
+&gt; --- a/conf/templates/arago-scarthgap-selinux-config/local.conf.sample<=
+br>
+&gt; +++ b/conf/templates/arago-scarthgap-selinux-config/local.conf.sample<=
+br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/arago-scarthgap-wip-config/local.conf.samp=
+le b/conf/templates/arago-scarthgap-wip-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/arago-scarthgap-wip-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/arago-scarthgap-wip-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.00.00.006-config/local.=
+conf.sample b/conf/templates/coresdk_coresdk-09.00.00.006-config/local.conf=
+.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.00.00.006-config/local.conf.sa=
+mple<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.00.00.006-config/local.conf.sa=
+mple<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.00.00.007-config/local.=
+conf.sample b/conf/templates/coresdk_coresdk-09.00.00.007-config/local.conf=
+.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.00.00.007-config/local.conf.sa=
+mple<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.00.00.007-config/local.conf.sa=
+mple<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.00.00.011-config/local.=
+conf.sample b/conf/templates/coresdk_coresdk-09.00.00.011-config/local.conf=
+.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.00.00.011-config/local.conf.sa=
+mple<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.00.00.011-config/local.conf.sa=
+mple<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.01.00.001-config/local.=
+conf.sample b/conf/templates/coresdk_coresdk-09.01.00.001-config/local.conf=
+.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.01.00.001-config/local.conf.sa=
+mple<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.01.00.001-config/local.conf.sa=
+mple<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.01.00.003-config/local.=
+conf.sample b/conf/templates/coresdk_coresdk-09.01.00.003-config/local.conf=
+.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.01.00.003-config/local.conf.sa=
+mple<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.01.00.003-config/local.conf.sa=
+mple<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.01.00.007-config/local.=
+conf.sample b/conf/templates/coresdk_coresdk-09.01.00.007-config/local.conf=
+.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.01.00.007-config/local.conf.sa=
+mple<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.01.00.007-config/local.conf.sa=
+mple<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.01.00.008-config/local.=
+conf.sample b/conf/templates/coresdk_coresdk-09.01.00.008-config/local.conf=
+.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.01.00.008-config/local.conf.sa=
+mple<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.01.00.008-config/local.conf.sa=
+mple<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.02.00.008-config/local.=
+conf.sample b/conf/templates/coresdk_coresdk-09.02.00.008-config/local.conf=
+.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.02.00.008-config/local.conf.sa=
+mple<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.02.00.008-config/local.conf.sa=
+mple<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.02.00.009-config/local.=
+conf.sample b/conf/templates/coresdk_coresdk-09.02.00.009-config/local.conf=
+.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.02.00.009-config/local.conf.sa=
+mple<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.02.00.009-config/local.conf.sa=
+mple<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.02.00.010-config/local.=
+conf.sample b/conf/templates/coresdk_coresdk-09.02.00.010-config/local.conf=
+.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.02.00.010-config/local.conf.sa=
+mple<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.02.00.010-config/local.conf.sa=
+mple<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-09.03.05-config/local.conf=
+.sample b/conf/templates/coresdk_coresdk-09.03.05-config/local.conf.sample<=
+br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-09.03.05-config/local.conf.sample=
+<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-09.03.05-config/local.conf.sample=
+<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-10.00.07-config/local.conf=
+.sample b/conf/templates/coresdk_coresdk-10.00.07-config/local.conf.sample<=
+br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-10.00.07-config/local.conf.sample=
+<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-10.00.07-config/local.conf.sample=
+<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-10.01.08-config/local.conf=
+.sample b/conf/templates/coresdk_coresdk-10.01.08-config/local.conf.sample<=
+br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-10.01.08-config/local.conf.sample=
+<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-10.01.08-config/local.conf.sample=
+<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-10.01.10-config/local.conf=
+.sample b/conf/templates/coresdk_coresdk-10.01.10-config/local.conf.sample<=
+br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-10.01.10-config/local.conf.sample=
+<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-10.01.10-config/local.conf.sample=
+<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/coresdk_coresdk-10.01.10-selinux-config/lo=
+cal.conf.sample b/conf/templates/coresdk_coresdk-10.01.10-selinux-config/lo=
+cal.conf.sample<br>
+&gt; index e45417c..27f1704 100644<br>
+&gt; --- a/conf/templates/coresdk_coresdk-10.01.10-selinux-config/local.con=
+f.sample<br>
+&gt; +++ b/conf/templates/coresdk_coresdk-10.01.10-selinux-config/local.con=
+f.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/distroless-kirkstone-config/local.conf.sam=
+ple b/conf/templates/distroless-kirkstone-config/local.conf.sample<br>
+&gt; index 46cb253..b499977 100644<br>
+&gt; --- a/conf/templates/distroless-kirkstone-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/distroless-kirkstone-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/distroless-master-config/local.conf.sample=
+ b/conf/templates/distroless-master-config/local.conf.sample<br>
+&gt; index bcdaaa4..7d218e8 100644<br>
+&gt; --- a/conf/templates/distroless-master-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/distroless-master-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/distroless-scarthgap-config/local.conf.sam=
+ple b/conf/templates/distroless-scarthgap-config/local.conf.sample<br>
+&gt; index 46cb253..b499977 100644<br>
+&gt; --- a/conf/templates/distroless-scarthgap-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/distroless-scarthgap-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/poky-kirkstone-config/local.conf.sample b/=
+conf/templates/poky-kirkstone-config/local.conf.sample<br>
+&gt; index e67385d..12eacfc 100644<br>
+&gt; --- a/conf/templates/poky-kirkstone-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/poky-kirkstone-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/poky-master-config/local.conf.sample b/con=
+f/templates/poky-master-config/local.conf.sample<br>
+&gt; index 1fe5688..e0112c7 100644<br>
+&gt; --- a/conf/templates/poky-master-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/poky-master-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/poky-master-wip-config/local.conf.sample b=
+/conf/templates/poky-master-wip-config/local.conf.sample<br>
+&gt; index 1fe5688..e0112c7 100644<br>
+&gt; --- a/conf/templates/poky-master-wip-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/poky-master-wip-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/poky-scarthgap-config/local.conf.sample b/=
+conf/templates/poky-scarthgap-config/local.conf.sample<br>
+&gt; index e67385d..12eacfc 100644<br>
+&gt; --- a/conf/templates/poky-scarthgap-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/poky-scarthgap-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-anal=
+ytics-09.00.00-config/local.conf.sample b/conf/templates/processor-sdk-anal=
+ytics_processor-sdk-analytics-09.00.00-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-0=
+9.00.00-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-0=
+9.00.00-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-anal=
+ytics-09.00.01-config/local.conf.sample b/conf/templates/processor-sdk-anal=
+ytics_processor-sdk-analytics-09.00.01-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-0=
+9.00.01-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-0=
+9.00.01-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-anal=
+ytics-09.01.00-config/local.conf.sample b/conf/templates/processor-sdk-anal=
+ytics_processor-sdk-analytics-09.01.00-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-0=
+9.01.00-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-0=
+9.01.00-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-anal=
+ytics-09.02.00-config/local.conf.sample b/conf/templates/processor-sdk-anal=
+ytics_processor-sdk-analytics-09.02.00-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-0=
+9.02.00-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-0=
+9.02.00-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-anal=
+ytics-10.00.00-config/local.conf.sample b/conf/templates/processor-sdk-anal=
+ytics_processor-sdk-analytics-10.00.00-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-1=
+0.00.00-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-1=
+0.00.00-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-anal=
+ytics-10.01.00-config/local.conf.sample b/conf/templates/processor-sdk-anal=
+ytics_processor-sdk-analytics-10.01.00-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-1=
+0.01.00-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-1=
+0.01.00-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-linux_processor-sdk-gateway-=
+10_00/local.conf.sample b/conf/templates/processor-sdk-linux_processor-sdk-=
+gateway-10_00/local.conf.sample<br>
+&gt; index 6b91881..1149e85 100644<br>
+&gt; --- a/conf/templates/processor-sdk-linux_processor-sdk-gateway-10_00/l=
+ocal.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-linux_processor-sdk-gateway-10_00/l=
+ocal.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-09=
+_00_00_06/local.conf.sample b/conf/templates/processor-sdk-linux_processor-=
+sdk-linux-09_00_00_06/local.conf.sample<br>
+&gt; index e4f04f3..a0d9b30 100644<br>
+&gt; --- a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_=
+06/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_=
+06/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-09=
+_00_00_07/local.conf.sample b/conf/templates/processor-sdk-linux_processor-=
+sdk-linux-09_00_00_07/local.conf.sample<br>
+&gt; index 32a6cfb..9dd0dfa 100644<br>
+&gt; --- a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_=
+07/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_=
+07/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-09=
+_01_00_06/local.conf.sample b/conf/templates/processor-sdk-linux_processor-=
+sdk-linux-09_01_00_06/local.conf.sample<br>
+&gt; index ee23c20..a83b490 100644<br>
+&gt; --- a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_=
+06/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_=
+06/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-09=
+_01_00_07/local.conf.sample b/conf/templates/processor-sdk-linux_processor-=
+sdk-linux-09_01_00_07/local.conf.sample<br>
+&gt; index c29b416..e743654 100644<br>
+&gt; --- a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_=
+07/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_=
+07/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-09=
+_02_00_04/local.conf.sample b/conf/templates/processor-sdk-linux_processor-=
+sdk-linux-09_02_00_04/local.conf.sample<br>
+&gt; index 34afc91..8096a3b 100644<br>
+&gt; --- a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_=
+04/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_=
+04/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-09=
+_02_00_05/local.conf.sample b/conf/templates/processor-sdk-linux_processor-=
+sdk-linux-09_02_00_05/local.conf.sample<br>
+&gt; index f592ad9..31bfec8 100644<br>
+&gt; --- a/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_=
+05/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_=
+05/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-10=
+_00_07_06/local.conf.sample b/conf/templates/processor-sdk-linux_processor-=
+sdk-linux-10_00_07_06/local.conf.sample<br>
+&gt; index 0df5360..145aed2 100644<br>
+&gt; --- a/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_07_=
+06/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_07_=
+06/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-10=
+_00_08_06/local.conf.sample b/conf/templates/processor-sdk-linux_processor-=
+sdk-linux-10_00_08_06/local.conf.sample<br>
+&gt; index 5e39ec4..016f942 100644<br>
+&gt; --- a/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_08_=
+06/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_08_=
+06/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-10=
+_01_08_01/local.conf.sample b/conf/templates/processor-sdk-linux_processor-=
+sdk-linux-10_01_08_01/local.conf.sample<br>
+&gt; index 689e5d8..e627f36 100644<br>
+&gt; --- a/conf/templates/processor-sdk-linux_processor-sdk-linux-10_01_08_=
+01/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-10_01_08_=
+01/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-09.00.00-am62x=
+xsip-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-=
+09.00.00-am62xxsip-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-09.00.00-am62xxsip-co=
+nfig/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-09.00.00-am62xxsip-co=
+nfig/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-09.00.00-confi=
+g/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-09.00.00-c=
+onfig/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-09.00.00-config/local=
+.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-09.00.00-config/local=
+.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-09.01.00-am65x=
+x-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-09.=
+01.00-am65xx-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-09.01.00-am65xx-confi=
+g/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-09.01.00-am65xx-confi=
+g/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-09.01.00-confi=
+g/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-09.01.00-c=
+onfig/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-09.01.00-config/local=
+.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-09.01.00-config/local=
+.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-09.01.00-legac=
+y-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-09.=
+01.00-legacy-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-09.01.00-legacy-confi=
+g/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-09.01.00-legacy-confi=
+g/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-09.02.00.08-am=
+64x-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-0=
+9.02.00.08-am64x-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-09.02.00.08-am64x-con=
+fig/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-09.02.00.08-am64x-con=
+fig/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-09.03.05.02-le=
+gacy-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-=
+09.03.05.02-legacy-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-co=
+nfig/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-co=
+nfig/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-kirkstone-09.0=
+2.01.09-config/local.conf.sample b/conf/templates/processor-sdk_processor-s=
+dk-kirkstone-09.02.01.09-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.09=
+-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.09=
+-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-kirkstone-09.0=
+2.01.10-config/local.conf.sample b/conf/templates/processor-sdk_processor-s=
+dk-kirkstone-09.02.01.10-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.10=
+-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.10=
+-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-kirkstone-chro=
+mium-09.02.01.09-config/local.conf.sample b/conf/templates/processor-sdk_pr=
+ocessor-sdk-kirkstone-chromium-09.02.01.09-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09=
+.02.01.09-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09=
+.02.01.09-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-kirkstone-chro=
+mium-09.02.01.10-config/local.conf.sample b/conf/templates/processor-sdk_pr=
+ocessor-sdk-kirkstone-chromium-09.02.01.10-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09=
+.02.01.10-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09=
+.02.01.10-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-10.0=
+0.07.04-config/local.conf.sample b/conf/templates/processor-sdk_processor-s=
+dk-scarthgap-10.00.07.04-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-scarthgap-10.00.07.04=
+-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-10.00.07.04=
+-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-10.0=
+1.10.04-config/local.conf.sample b/conf/templates/processor-sdk_processor-s=
+dk-scarthgap-10.01.10.04-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-scarthgap-10.01.10.04=
+-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-10.01.10.04=
+-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-chro=
+mium-10.00.07.04-config/local.conf.sample b/conf/templates/processor-sdk_pr=
+ocessor-sdk-scarthgap-chromium-10.00.07.04-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10=
+.00.07.04-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10=
+.00.07.04-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-chro=
+mium-10.01.10.04-config/local.conf.sample b/conf/templates/processor-sdk_pr=
+ocessor-sdk-scarthgap-chromium-10.01.10.04-config/local.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10=
+.01.10.04-config/local.conf.sample<br>
+&gt; +++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10=
+.01.10.04-config/local.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/configs/arago-master-wip-config.txt b/configs/arago-maste=
+r-wip-config.txt<br>
+&gt; index eb9c49d..165a3d1 100644<br>
+&gt; --- a/configs/arago-master-wip-config.txt<br>
+&gt; +++ b/configs/arago-master-wip-config.txt<br>
+&gt; @@ -5,7 +5,7 @@ bitbake,<a href=3D"https://git.openembedded.org/bitbak=
+e,master,HEAD" rel=3D"noreferrer" target=3D"_blank">https://git.openembedde=
+d.org/bitbake,master,HEAD</a><br>
+&gt;=C2=A0 meta-arago,<a href=3D"https://git.yoctoproject.org/meta-arago,ma=
+ster-wip,HEAD,layers=3Dmeta-arago-distro:meta-arago-extras:meta-arago-test"=
+ rel=3D"noreferrer" target=3D"_blank">https://git.yoctoproject.org/meta-ara=
+go,master-wip,HEAD,layers=3Dmeta-arago-distro:meta-arago-extras:meta-arago-=
+test</a><br>
+&gt;=C2=A0 #meta-browser,<a href=3D"https://github.com/OSSystems/meta-brows=
+er.git,master,HEAD,layers=3Dmeta-chromium" rel=3D"noreferrer" target=3D"_bl=
+ank">https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=3Dmet=
+a-chromium</a><br>
+&gt;=C2=A0 #meta-selinux,<a href=3D"https://git.yoctoproject.org/meta-selin=
+ux,master,HEAD,layers=3D" rel=3D"noreferrer" target=3D"_blank">https://git.=
+yoctoproject.org/meta-selinux,master,HEAD,layers=3D</a><br>
+&gt; -meta-qt5,<a href=3D"https://github.com/meta-qt5/meta-qt5.git,master,H=
+EAD,layers=3D" rel=3D"noreferrer" target=3D"_blank">https://github.com/meta=
+-qt5/meta-qt5.git,master,HEAD,layers=3D</a><br>
+&gt; +meta-qt6,<a href=3D"https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,la=
+yers=3D" rel=3D"noreferrer" target=3D"_blank">https://code.qt.io/yocto/meta=
+-qt6.git,dev,HEAD,layers=3D</a><br>
+&gt;=C2=A0 meta-virtualization,<a href=3D"https://git.yoctoproject.org/meta=
+-virtualization,master,HEAD,layers=3D" rel=3D"noreferrer" target=3D"_blank"=
+>https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=3D</a>=
+<br>
+&gt;=C2=A0 meta-openembedded,<a href=3D"https://git.openembedded.org/meta-o=
+penembedded,master,HEAD,layers=3Dmeta-networking:meta-python:meta-oe:meta-g=
+nome:meta-filesystems:meta-multimedia" rel=3D"noreferrer" target=3D"_blank"=
+>https://git.openembedded.org/meta-openembedded,master,HEAD,layers=3Dmeta-n=
+etworking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia</=
+a><br>
+&gt;=C2=A0 meta-ti,<a href=3D"https://git.yoctoproject.org/meta-ti,master-w=
+ip,HEAD,layers=3Dmeta-ti-extras:meta-beagle:meta-ti-bsp" rel=3D"noreferrer"=
+ target=3D"_blank">https://git.yoctoproject.org/meta-ti,master-wip,HEAD,lay=
+ers=3Dmeta-ti-extras:meta-beagle:meta-ti-bsp</a><br>
+&gt; diff --git a/kas/processor-sdk/processor-sdk-scarthgap-10.01.10.04-con=
+fig.yml b/kas/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.yml<=
+br>
+&gt; index 5ced779..2dc2f5c 100644<br>
+&gt; --- a/kas/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.yml=
+<br>
+&gt; +++ b/kas/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.yml=
+<br>
+&gt; @@ -71,3 +71,4 @@ repos:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 commit: &quot;dac630ab5ee7aa6c5c7c294093adbd11b116=
+c765&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 layers:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 meta:<br>
+&gt; +<br>
+&gt; diff --git a/kas/processor-sdk/processor-sdk-scarthgap-chromium-10.01.=
+10.04-config.yml b/kas/processor-sdk/processor-sdk-scarthgap-chromium-10.01=
+.10.04-config.yml<br>
+&gt; index 405fa3b..351d9ea 100644<br>
+&gt; --- a/kas/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-c=
+onfig.yml<br>
+&gt; +++ b/kas/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-c=
+onfig.yml<br>
+&gt; @@ -83,3 +83,4 @@ repos:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 url: &quot;<a href=3D"https://git.ti.com/git/edgea=
+i/meta-edgeai.git" rel=3D"noreferrer" target=3D"_blank">https://git.ti.com/=
+git/edgeai/meta-edgeai.git</a>&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 branch: &quot;scarthgap&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 commit: &quot;10.01.10.04&quot;<br>
+&gt; +<br>
+&gt; diff --git a/kas/templates/local-arago64-v2.conf.yml b/kas/templates/l=
+ocal-arago64-v2.conf.yml<br>
+&gt; index c79388d..c6781be 100644<br>
+&gt; --- a/kas/templates/local-arago64-v2.conf.yml<br>
+&gt; +++ b/kas/templates/local-arago64-v2.conf.yml<br>
+&gt; @@ -15,7 +15,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # wiping and rebuilding you can preserve this dire=
+ctory to speed up this part<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # of subsequent builds. This directory is safe to =
+share between multiple builds<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # on the same machine too.<br>
+&gt; -=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Where to place shared-state files<br>
+&gt; @@ -28,7 +28,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # regenerate from these files if no changes were m=
+ade to the configuration.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # If changes were made to the configuration, only =
+shared state files where the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # state was still valid would be used (done using =
+checksums).<br>
+&gt; -=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;=
+<br>
+&gt; +=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/kas/templates/local-arago64-v3.conf.yml b/kas/templates/l=
+ocal-arago64-v3.conf.yml<br>
+&gt; index b182483..3fa683e 100644<br>
+&gt; --- a/kas/templates/local-arago64-v3.conf.yml<br>
+&gt; +++ b/kas/templates/local-arago64-v3.conf.yml<br>
+&gt; @@ -15,7 +15,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # wiping and rebuilding you can preserve this dire=
+ctory to speed up this part<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # of subsequent builds. This directory is safe to =
+share between multiple builds<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # on the same machine too.<br>
+&gt; -=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Where to place shared-state files<br>
+&gt; @@ -28,7 +28,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # regenerate from these files if no changes were m=
+ade to the configuration.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # If changes were made to the configuration, only =
+shared state files where the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # state was still valid would be used (done using =
+checksums).<br>
+&gt; -=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;=
+<br>
+&gt; +=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/kas/templates/local-poky-v2.conf.yml b/kas/templates/loca=
+l-poky-v2.conf.yml<br>
+&gt; index 91995fe..075f535 100644<br>
+&gt; --- a/kas/templates/local-poky-v2.conf.yml<br>
+&gt; +++ b/kas/templates/local-poky-v2.conf.yml<br>
+&gt; @@ -15,7 +15,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # wiping and rebuilding you can preserve this dire=
+ctory to speed up this part<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # of subsequent builds. This directory is safe to =
+share between multiple builds<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # on the same machine too.<br>
+&gt; -=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Where to place shared-state files<br>
+&gt; @@ -28,7 +28,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # regenerate from these files if no changes were m=
+ade to the configuration.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # If changes were made to the configuration, only =
+shared state files where the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # state was still valid would be used (done using =
+checksums).<br>
+&gt; -=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;=
+<br>
+&gt; +=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/kas/templates/local-poky-v3.conf.yml b/kas/templates/loca=
+l-poky-v3.conf.yml<br>
+&gt; index 7368fb0..193a1ce 100644<br>
+&gt; --- a/kas/templates/local-poky-v3.conf.yml<br>
+&gt; +++ b/kas/templates/local-poky-v3.conf.yml<br>
+&gt; @@ -15,7 +15,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # wiping and rebuilding you can preserve this dire=
+ctory to speed up this part<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # of subsequent builds. This directory is safe to =
+share between multiple builds<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # on the same machine too.<br>
+&gt; -=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Where to place shared-state files<br>
+&gt; @@ -28,7 +28,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # regenerate from these files if no changes were m=
+ade to the configuration.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # If changes were made to the configuration, only =
+shared state files where the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # state was still valid would be used (done using =
+checksums).<br>
+&gt; -=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;=
+<br>
+&gt; +=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/kas/templates/local-v2.conf.yml b/kas/templates/local-v2.=
+conf.yml<br>
+&gt; index 3d666e4..f33fd45 100644<br>
+&gt; --- a/kas/templates/local-v2.conf.yml<br>
+&gt; +++ b/kas/templates/local-v2.conf.yml<br>
+&gt; @@ -15,7 +15,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # wiping and rebuilding you can preserve this dire=
+ctory to speed up this part<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # of subsequent builds. This directory is safe to =
+share between multiple builds<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # on the same machine too.<br>
+&gt; -=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Where to place shared-state files<br>
+&gt; @@ -28,7 +28,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # regenerate from these files if no changes were m=
+ade to the configuration.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # If changes were made to the configuration, only =
+shared state files where the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # state was still valid would be used (done using =
+checksums).<br>
+&gt; -=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;=
+<br>
+&gt; +=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/kas/templates/local-v3.conf.yml b/kas/templates/local-v3.=
+conf.yml<br>
+&gt; index 063b863..07eb5af 100644<br>
+&gt; --- a/kas/templates/local-v3.conf.yml<br>
+&gt; +++ b/kas/templates/local-v3.conf.yml<br>
+&gt; @@ -15,7 +15,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # wiping and rebuilding you can preserve this dire=
+ctory to speed up this part<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # of subsequent builds. This directory is safe to =
+share between multiple builds<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # on the same machine too.<br>
+&gt; -=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +=C2=A0 =C2=A0 DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Where to place shared-state files<br>
+&gt; @@ -28,7 +28,7 @@ local_conf_header:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # regenerate from these files if no changes were m=
+ade to the configuration.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # If changes were made to the configuration, only =
+shared state files where the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # state was still valid would be used (done using =
+checksums).<br>
+&gt; -=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;=
+<br>
+&gt; +=C2=A0 =C2=A0 SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/sample-files/local-arago64-v2.conf.sample b/sample-files/=
+local-arago64-v2.conf.sample<br>
+&gt; index 7575b4b..8ad6f26 100644<br>
+&gt; --- a/sample-files/local-arago64-v2.conf.sample<br>
+&gt; +++ b/sample-files/local-arago64-v2.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/sample-files/local-arago64-v3.conf.sample b/sample-files/=
+local-arago64-v3.conf.sample<br>
+&gt; index f2e9587..720ce11 100644<br>
+&gt; --- a/sample-files/local-arago64-v3.conf.sample<br>
+&gt; +++ b/sample-files/local-arago64-v3.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/sample-files/local-poky-v2.conf.sample b/sample-files/loc=
+al-poky-v2.conf.sample<br>
+&gt; index e67385d..12eacfc 100644<br>
+&gt; --- a/sample-files/local-poky-v2.conf.sample<br>
+&gt; +++ b/sample-files/local-poky-v2.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/sample-files/local-poky-v3.conf.sample b/sample-files/loc=
+al-poky-v3.conf.sample<br>
+&gt; index 1fe5688..e0112c7 100644<br>
+&gt; --- a/sample-files/local-poky-v3.conf.sample<br>
+&gt; +++ b/sample-files/local-poky-v3.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/sample-files/local-v2.conf.sample b/sample-files/local-v2=
+.conf.sample<br>
+&gt; index 46cb253..b499977 100644<br>
+&gt; --- a/sample-files/local-v2.conf.sample<br>
+&gt; +++ b/sample-files/local-v2.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/sample-files/local-v3.conf.sample b/sample-files/local-v3=
+.conf.sample<br>
+&gt; index bcdaaa4..7d218e8 100644<br>
+&gt; --- a/sample-files/local-v3.conf.sample<br>
+&gt; +++ b/sample-files/local-v3.conf.sample<br>
+&gt; @@ -10,7 +10,7 @@ CONF_VERSION =3D &quot;2&quot;<br>
+&gt;=C2=A0 # wiping and rebuilding you can preserve this directory to speed=
+ up this part<br>
+&gt;=C2=A0 # of subsequent builds. This directory is safe to share between =
+multiple builds<br>
+&gt;=C2=A0 # on the same machine too.<br>
+&gt; -DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt; +DL_DIR =3D &quot;${TOPDIR}/../downloads&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Where to place shared-state files<br>
+&gt; @@ -23,7 +23,7 @@ DL_DIR =3D &quot;${TOPDIR}/downloads&quot;<br>
+&gt;=C2=A0 # regenerate from these files if no changes were made to the con=
+figuration.<br>
+&gt;=C2=A0 # If changes were made to the configuration, only shared state f=
+iles where the<br>
+&gt;=C2=A0 # state was still valid would be used (done using checksums).<br=
+>
+&gt; -SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate-cache&quot;<br>
+&gt; +SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache&quot;<br>
+&gt;<br>
+&gt;=C2=A0 #<br>
+&gt;=C2=A0 # Shared-state files from other locations<br>
+&gt; diff --git a/src/bin/<a href=3D"http://convert.pl" rel=3D"noreferrer" =
+target=3D"_blank">convert.pl</a> b/src/bin/<a href=3D"http://convert.pl" re=
+l=3D"noreferrer" target=3D"_blank">convert.pl</a><br>
+&gt; index 2787b86..42b9c2c 100755<br>
+&gt; --- a/src/bin/<a href=3D"http://convert.pl" rel=3D"noreferrer" target=
+=3D"_blank">convert.pl</a><br>
+&gt; +++ b/src/bin/<a href=3D"http://convert.pl" rel=3D"noreferrer" target=
+=3D"_blank">convert.pl</a><br>
+&gt; @@ -501,7 +501,7 @@ sub convert_local_conf_template<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 chomp($lpLine);<br>
+&gt;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 $lpLine =3D~ s/OEBASE/TOPDIR/;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 $lpLine =3D~ s/OEBASE/TOPDIR\/\.\./;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 $lpLine =3D~ s/^MACHINE/#MACHINE/;<b=
+r>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 $lpLine =3D~ s/&amp;/&amp;amp;/g;<br=
+>
+&gt; diff --git a/src/templates/local-arago64-v2.conf.xml b/src/templates/l=
+ocal-arago64-v2.conf.xml<br>
+&gt; index b49f702..d9d2ae7 100644<br>
+&gt; --- a/src/templates/local-arago64-v2.conf.xml<br>
+&gt; +++ b/src/templates/local-arago64-v2.conf.xml<br>
+&gt; @@ -11,7 +11,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# wiping and rebuilding you can preser=
+ve this directory to speed up this part&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# of subsequent builds. This directory=
+ is safe to share between multiple builds&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# on the same machine too.&lt;/line&gt=
+;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/downloads&quot;&=
+lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/../downloads&quo=
+t;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Where to place shared-state files&lt=
+;/line&gt;<br>
+&gt; @@ -24,7 +24,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# regenerate from these files if no ch=
+anges were made to the configuration.&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# If changes were made to the configur=
+ation, only shared state files where the&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# state was still valid would be used =
+(done using checksums).&lt;/line&gt;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate=
+-cache&quot;&lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache=
+&quot;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Shared-state files from other locati=
+ons&lt;/line&gt;<br>
+&gt; diff --git a/src/templates/local-arago64-v3.conf.xml b/src/templates/l=
+ocal-arago64-v3.conf.xml<br>
+&gt; index 35d151f..c8a5d51 100644<br>
+&gt; --- a/src/templates/local-arago64-v3.conf.xml<br>
+&gt; +++ b/src/templates/local-arago64-v3.conf.xml<br>
+&gt; @@ -11,7 +11,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# wiping and rebuilding you can preser=
+ve this directory to speed up this part&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# of subsequent builds. This directory=
+ is safe to share between multiple builds&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# on the same machine too.&lt;/line&gt=
+;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/downloads&quot;&=
+lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/../downloads&quo=
+t;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Where to place shared-state files&lt=
+;/line&gt;<br>
+&gt; @@ -24,7 +24,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# regenerate from these files if no ch=
+anges were made to the configuration.&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# If changes were made to the configur=
+ation, only shared state files where the&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# state was still valid would be used =
+(done using checksums).&lt;/line&gt;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate=
+-cache&quot;&lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache=
+&quot;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Shared-state files from other locati=
+ons&lt;/line&gt;<br>
+&gt; diff --git a/src/templates/local-poky-v2.conf.xml b/src/templates/loca=
+l-poky-v2.conf.xml<br>
+&gt; index 72160c9..b45d6c2 100644<br>
+&gt; --- a/src/templates/local-poky-v2.conf.xml<br>
+&gt; +++ b/src/templates/local-poky-v2.conf.xml<br>
+&gt; @@ -11,7 +11,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# wiping and rebuilding you can preser=
+ve this directory to speed up this part&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# of subsequent builds. This directory=
+ is safe to share between multiple builds&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# on the same machine too.&lt;/line&gt=
+;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/downloads&quot;&=
+lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/../downloads&quo=
+t;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Where to place shared-state files&lt=
+;/line&gt;<br>
+&gt; @@ -24,7 +24,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# regenerate from these files if no ch=
+anges were made to the configuration.&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# If changes were made to the configur=
+ation, only shared state files where the&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# state was still valid would be used =
+(done using checksums).&lt;/line&gt;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate=
+-cache&quot;&lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache=
+&quot;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Shared-state files from other locati=
+ons&lt;/line&gt;<br>
+&gt; diff --git a/src/templates/local-poky-v3.conf.xml b/src/templates/loca=
+l-poky-v3.conf.xml<br>
+&gt; index 1e66478..fa313eb 100644<br>
+&gt; --- a/src/templates/local-poky-v3.conf.xml<br>
+&gt; +++ b/src/templates/local-poky-v3.conf.xml<br>
+&gt; @@ -11,7 +11,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# wiping and rebuilding you can preser=
+ve this directory to speed up this part&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# of subsequent builds. This directory=
+ is safe to share between multiple builds&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# on the same machine too.&lt;/line&gt=
+;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/downloads&quot;&=
+lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/../downloads&quo=
+t;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Where to place shared-state files&lt=
+;/line&gt;<br>
+&gt; @@ -24,7 +24,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# regenerate from these files if no ch=
+anges were made to the configuration.&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# If changes were made to the configur=
+ation, only shared state files where the&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# state was still valid would be used =
+(done using checksums).&lt;/line&gt;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate=
+-cache&quot;&lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache=
+&quot;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Shared-state files from other locati=
+ons&lt;/line&gt;<br>
+&gt; diff --git a/src/templates/local-v2.conf.xml b/src/templates/local-v2.=
+conf.xml<br>
+&gt; index 40f30e7..49e060c 100644<br>
+&gt; --- a/src/templates/local-v2.conf.xml<br>
+&gt; +++ b/src/templates/local-v2.conf.xml<br>
+&gt; @@ -11,7 +11,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# wiping and rebuilding you can preser=
+ve this directory to speed up this part&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# of subsequent builds. This directory=
+ is safe to share between multiple builds&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# on the same machine too.&lt;/line&gt=
+;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/downloads&quot;&=
+lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/../downloads&quo=
+t;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Where to place shared-state files&lt=
+;/line&gt;<br>
+&gt; @@ -24,7 +24,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# regenerate from these files if no ch=
+anges were made to the configuration.&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# If changes were made to the configur=
+ation, only shared state files where the&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# state was still valid would be used =
+(done using checksums).&lt;/line&gt;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate=
+-cache&quot;&lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache=
+&quot;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Shared-state files from other locati=
+ons&lt;/line&gt;<br>
+&gt; diff --git a/src/templates/local-v3.conf.xml b/src/templates/local-v3.=
+conf.xml<br>
+&gt; index d0c9d92..e300aaf 100644<br>
+&gt; --- a/src/templates/local-v3.conf.xml<br>
+&gt; +++ b/src/templates/local-v3.conf.xml<br>
+&gt; @@ -11,7 +11,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# wiping and rebuilding you can preser=
+ve this directory to speed up this part&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# of subsequent builds. This directory=
+ is safe to share between multiple builds&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# on the same machine too.&lt;/line&gt=
+;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/downloads&quot;&=
+lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;DL_DIR =3D &quot;${TOPDIR}/../downloads&quo=
+t;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Where to place shared-state files&lt=
+;/line&gt;<br>
+&gt; @@ -24,7 +24,7 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# regenerate from these files if no ch=
+anges were made to the configuration.&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# If changes were made to the configur=
+ation, only shared state files where the&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# state was still valid would be used =
+(done using checksums).&lt;/line&gt;<br>
+&gt; -=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/build/sstate=
+-cache&quot;&lt;/line&gt;<br>
+&gt; +=C2=A0 =C2=A0 &lt;line&gt;SSTATE_DIR =3D &quot;${TOPDIR}/sstate-cache=
+&quot;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;#&lt;/line&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;line&gt;# Shared-state files from other locati=
+ons&lt;/line&gt;<br>
+&gt; --<br>
+&gt; 2.17.1<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; Links: You receive all messages sent to this group.<br>
+&gt; View/Reply Online (#15886): <a href=3D"https://lists.yoctoproject.org/=
+g/meta-arago/message/15886" rel=3D"noreferrer" target=3D"_blank">https://li=
+sts.yoctoproject.org/g/meta-arago/message/15886</a><br>
+&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/11131127=
+6/7902621" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
+org/mt/111311276/7902621</a><br>
+&gt; Group Owner: <a href=3D"mailto:meta-arago%2Bowner@lists.yoctoproject.o=
+rg" target=3D"_blank">meta-arago+owner@lists.yoctoproject.org</a><br>
+&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/meta-arago/un=
+sub" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/=
+meta-arago/unsub</a> [<a href=3D"mailto:jcormier@criticallink.com" target=
+=3D"_blank">jcormier@criticallink.com</a>]<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt;<br>
+&gt;<br>
+<br>
+<br>
+-- <br>
+Jonathan Cormier<br>
+Senior Software Engineer<br>
+<br>
+Voice:=C2=A0 315.425.4045 x222<br>
+<br>
+<a href=3D"http://www.CriticalLink.com" rel=3D"noreferrer" target=3D"_blank=
+">http://www.CriticalLink.com</a><br>
+6712 Brooklawn Parkway, Syracuse, NY 13211<br>
+</blockquote></div><div><br clear=3D"all"></div><br><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D=
+"ltr"><div><div dir=3D"ltr"><div>Jonathan Cormier<br>Senior Software Engine=
+er<div><div><div><div><br></div><div><div><font color=3D"#000000">Voice:=C2=
+=A0=C2=A0<a value=3D"+13154254045">315.425.4045</a>=C2=A0x222</font></div><=
+div><div><div style=3D"color:rgb(32,33,36)"><div><div><img src=3D"https://c=
+i3.googleusercontent.com/mail-sig/AIorK4yQnmPDndAobohgnFohw9o8lcMLmEVCOkbl-=
+k9wp4xfgM_Qz53XJlRK_dxYVNdYFLq8DCe6bY4Zl_a0"><br></div><div><div><a href=3D=
+"http://www.criticallink.com/" target=3D"_blank">http://www.CriticalLink.co=
+m</a></div></div></div><div>6712 Brooklawn Parkway,=C2=A0Syracuse, NY 13211=
+ <font color=3D"#1155cc"><font color=3D"#1155cc"><a href=3D"https://twitter=
+.com/Critical_Link" target=3D"_blank"><img alt=3D"" src=3D"https://docs.goo=
+gle.com/uc?export=3Ddownload&amp;id=3D0B2vNSnu-aYu6cU1yWERrLXE0SnM&amp;revi=
+d=3D0B2vNSnu-aYu6b1YrZW1SM0hueVhVS0pPWm1IOXFSc0I3ay9jPQ"></a></font></font>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div>
 
-Looks good to me,
-
-Acked-by: Andrew Davis <afd@ti.com>
-
-> +"
-> +
-> +FILES:python3-${PN} = " \
-> +    ${PYTHON_SITEPACKAGES_DIR}/tflite_runtime \
-> +    ${PYTHON_SITEPACKAGES_DIR}/tflite_runtime.egg-info \
-> +"
-> +
-> +RDEPENDS:python3-${PN} += " python3-ctypes python3-numpy "
-> +
-> +PROVIDES += "python3-${PN}"
+--000000000000a03bb0062ee48148--
 
