@@ -1,135 +1,168 @@
-Return-Path: <rs@ti.com>
+Return-Path: <y-abhilashchandra@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 163C1C19776
-	for <webhook@archiver.kernel.org>; Thu, 27 Feb 2025 00:26:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F864C021BE
+	for <webhook@archiver.kernel.org>; Thu, 27 Feb 2025 04:55:16 +0000 (UTC)
 Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web11.20890.1740615982417467491
+ by mx.groups.io with SMTP id smtpd.web11.4164.1740632114205148588
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 26 Feb 2025 16:26:22 -0800
+ Wed, 26 Feb 2025 20:55:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=QzUOnpzP;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: rs@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=VwcV/s+2;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: y-abhilashchandra@ti.com)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51R0QISC1609274
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 51R4tBnh1663879
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 26 Feb 2025 18:26:18 -0600
+	Wed, 26 Feb 2025 22:55:11 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1740615978;
-	bh=W+f6D8JixBN5j6D8rLYVLn1oONy6eCYaEo53Q6rzKgQ=;
-	h=From:To:CC:Subject:Date;
-	b=QzUOnpzPQ8SvcGmLaJ0jbk+kXZjinbcDWlV8QIVwRccdVUs2747tCPczRKDbztmA/
-	 U5B8b1Lbp33QgkPlezPdq6hwelMEAbToO/a8YqaCccXN1RGRF6iRT95NyXEWdhsyiZ
-	 t90+E2v01l3md0+1q5Kh3v7JE5P5H/cm3q3xrQ0s=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51R0QIVr108379
+	s=ti-com-17Q1; t=1740632111;
+	bh=6TbLtNVzmhLaJ0/jbETNF5sZy9E9+p4LFj7VwYNv4HM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=VwcV/s+25+YdwcJCnwEH72w9muI1B7yGDOc7lCmi8jXk0umd4SW4gb9Tc7lqmkD79
+	 r+gz5ZrsBOyWfVbfSUYaQefHePEE8KOIEj18lbDmhsXKmkgARNWYAyTtPOVum8Jjb8
+	 Dc4pi34AR+2RFso0nXTnjTDLW94TVfVvwkEaPQJM=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 51R4tB4J001242
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 26 Feb 2025 18:26:18 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 26 Feb 2025 22:55:11 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
- Feb 2025 18:26:17 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2025 22:55:10 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 26 Feb 2025 18:26:17 -0600
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51R0QHEB054884;
-	Wed, 26 Feb 2025 18:26:17 -0600
-From: <rs@ti.com>
-To: <denis@denix.org>, <reatmon@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, <detheridge@ti.com>, <vijayp@ti.com>
-Subject: [meta-arago][scarthgap/master][PATCHv2] packagegroups: opencl and vulkan utilities
-Date: Wed, 26 Feb 2025 18:24:59 -0600
-Message-ID: <20250227002458.49808-2-rs@ti.com>
-X-Mailer: git-send-email 2.48.1
+ Frontend Transport; Wed, 26 Feb 2025 22:55:10 -0600
+Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 51R4t7sE070735;
+	Wed, 26 Feb 2025 22:55:08 -0600
+Message-ID: <a4d08a6c-c8c4-466f-a68c-c417a71cbfe8@ti.com>
+Date: Thu, 27 Feb 2025 10:25:07 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][master/scarthgap][PATCH] meta-arago-extras:
+ v4l-utils: Add recipe for v1.28.1
+To: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denis@denix.org>
+CC: <meta-arago@lists.yoctoproject.org>, <devarsht@ti.com>,
+        <vaishnav.a@ti.com>, <u-kumar1@ti.com>, <r-donadkar@ti.com>,
+        <a-limaye@ti.com>
+References: <20250211075813.970579-1-y-abhilashchandra@ti.com>
+ <20250211205111.GU21608@denix.org>
+ <f5658e67-238d-4532-ac69-d99755808300@ti.com>
+ <fc8cc93c-32bc-4bf5-ab5e-92010d32f44a@ti.com>
+ <b6008e79-5410-4e99-b83f-8d2e0ffb3c55@ti.com>
+Content-Language: en-US
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+In-Reply-To: <b6008e79-5410-4e99-b83f-8d2e0ffb3c55@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by fllvem-ot03.ext.ti.com id 51R4tBnh1663879
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 27 Feb 2025 00:26:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15925
+ <meta-arago@lists.yoctoproject.org>; Thu, 27 Feb 2025 04:55:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15926
 
-From: Randolph Sapp <rs@ti.com>
+Hi Ryan,
 
-Add package groups for OpenCL and Vulkan related utilities.
-Conditionally install them in tisdk-default-image if we enable the
-required distro features.
+On 26/02/25 21:04, Ryan Eatmon wrote:
+>=20
+>=20
+> On 2/16/2025 11:48 PM, Yemike Abhilash Chandra wrote:
+>> Hello everyone,
+>>
+>> I have provided my response regarding the concerns raised.
+>> Since I haven=E2=80=99t heard back, I wanted to check if you had
+>> any further thoughts.
+>>
+>> Please let me know how you'd like to proceed.
+>=20
+> One final question...=C2=A0 You said that this patch is for master as w=
+ell,=20
+> but I'm seeing a collision between this and the same recipe from=20
+> meta-openembedded on master.=C2=A0 Should this patch be applied to mast=
+er? Or=20
+> is the meta-openembedded version good enough?
+>=20
 
-Currently these package groups consist of clinfo and vulkaninfo
-respectively. These are useful tools for checking device extension
-compatibility and ICD loader functionality.
+Yes, the master branch of meta-openembedded has the latest version.
+Please skip this patch for the master branch. The meta-openembedded
+version is good enough.
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
+Thanks and Regards
+Yemike Abhilash Chandra
 
-Sending this version anyway. I'll do a v3 if people are upset about the license
-removal, but logically it doesn't make much sense for package groups to have a
-license anyway. OE-Core doesn't set them.
-
-v2: Remove LICENSE and PR. Add a SUMMARY.
-
- .../recipes-core/images/tisdk-default-image.bb       |  2 ++
- .../packagegroups/packagegroup-arago-opencl.bb       | 12 ++++++++++++
- .../packagegroups/packagegroup-arago-vulkan.bb       | 12 ++++++++++++
- 3 files changed, 26 insertions(+)
- create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-opencl.bb
- create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-vulkan.bb
-
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-index aace490b..bc067857 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-@@ -17,6 +17,8 @@ IMAGE_INSTALL += "\
-     ti-test-extras \
-     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-graphics','',d)} \
-     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-gtk','',d)} \
-+    ${@bb.utils.contains('DISTRO_FEATURES','opencl','packagegroup-arago-opencl','',d)} \
-+    ${@bb.utils.contains('DISTRO_FEATURES','vulkan','packagegroup-arago-vulkan','',d)} \
-     packagegroup-arago-tisdk-connectivity \
-     packagegroup-arago-tisdk-crypto \
-     packagegroup-arago-tisdk-multimedia \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-opencl.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-opencl.bb
-new file mode 100644
-index 00000000..443849b1
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-opencl.bb
-@@ -0,0 +1,12 @@
-+SUMMARY = "Useful OpenCL packages for Arago"
-+DESCRIPTION = "Packages we recommend for working with OpenCL"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+inherit packagegroup features_check
-+
-+REQUIRED_DISTRO_FEATURES = "opencl"
-+
-+RDEPENDS:${PN} = "\
-+    clinfo \
-+"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-vulkan.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-vulkan.bb
-new file mode 100644
-index 00000000..f5d08288
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-vulkan.bb
-@@ -0,0 +1,12 @@
-+SUMMARY = "Useful Vulkan packages for Arago"
-+DESCRIPTION = "Packages we recommend for working with Vulkan"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+inherit packagegroup features_check
-+
-+REQUIRED_DISTRO_FEATURES = "vulkan"
-+
-+RDEPENDS:${PN} = "\
-+    vulkan-tools \
-+"
--- 
-2.48.1
-
+>=20
+>=20
+>> Thanks and Regards,
+>> Yemike Abhilash Chandra.
+>>
+>> On 12/02/25 13:46, Yemike Abhilash Chandra wrote:
+>>>
+>>>
+>>> On 12/02/25 02:21, Denys Dmytriyenko wrote:
+>>>> On Tue, Feb 11, 2025 at 01:28:13PM +0530, Yemike Abhilash Chandra=20
+>>>> via lists.yoctoproject.org wrote:
+>>>>> An older recipe of v4l-utils (v1.26.1) is present in the meta-oe la=
+yer
+>>>>> for scarthgap.
+>>>>>
+>>>>> TI's 6.12 based kernel has backported multistream routing APIs from
+>>>>> upstream kernel, which requires v4l-utils to be the latest released
+>>>>> version (v1.28.1).
+>>>>>
+>>>>> Thus we override the recipe in this layer to the latest release of
+>>>>> v4l-utils.
+>>>>
+>>>> There are few issues with this...
+>>>>
+>>>> Do you really need to override the entire recipe? The old .bbappend =
+was
+>>>> applying a patch already - can you add a new patch to that and bump=20
+>>>> SRCREV?
+>>>>
+>>>
+>>> We are not only updating the SRCREV, but also moving to a newer branc=
+h
+>>> (stable-1.28), which is why we considered overriding the entire recip=
+e.
+>>> This approach aligns with how we have handled previously, including
+>>> 6.1 timeline, where we followed a similar process.[1]
+>>>
+>>> Given that the original recipe package still references an older=20
+>>> version,
+>>> do you suggest that we update the branch in the existing .bbappend,
+>>> even though the base recipe remains on an older version?
+>>>
+>>> Please let me know if you want me to do that way.
+>>>
+>>> [1]:=20
+>>> https://lore.kernel.org/all/20230525104036.2050245-1-j-luthra@ti.com/
+>>>
+>>> Thanks,
+>>> Yemike Abhilash Chandra
+>>>
+>>>> If you do need to override the entire recipe, then you first need to=
+=20
+>>>> clearly
+>>>> articulate your reason in the commit log - wanting a newer commit=20
+>>>> isn't such
+>>>> a reason
+>>>>
+>>>> Then you need to do it in 2 steps/patches - first you copy over the=20
+>>>> existing
+>>>> recipe verbatim w/o any modifications, and in a separate step make y=
+our
+>>>> modifications
+>>>>
+>>>> Also, having own copy of an upstream recipe requires special=20
+>>>> attention to not
+>>>> violate the Yocto Project Compatible guidelines. I've explained this=
+=20
+>>>> recently
+>>>> in another thread here on the list
+>>>>
+>=20
 
