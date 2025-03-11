@@ -1,158 +1,128 @@
-Return-Path: <afd@ti.com>
+Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ACE51C282EC
-	for <webhook@archiver.kernel.org>; Tue, 11 Mar 2025 17:33:12 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.15972.1741714382821696830
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 77273C282EC
+	for <webhook@archiver.kernel.org>; Tue, 11 Mar 2025 19:11:53 +0000 (UTC)
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+ by mx.groups.io with SMTP id smtpd.web10.18762.1741720304381596369
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 11 Mar 2025 10:33:03 -0700
+ Tue, 11 Mar 2025 12:11:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=Kssy/yzh;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: afd@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52BHWxXi1255440
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Tue, 11 Mar 2025 12:32:59 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=nCXfArhT;
+ spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: rs@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52BJBhhS847086
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 11 Mar 2025 14:11:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1741714379;
-	bh=7womCckSkuLZpYN14uBdj1QPvaP1tazazaVu64rMr3M=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Kssy/yzhTlfhlnK8LwMh5xATFty3v2kpVhnL76aKFSCkwfX3AYfa/OQE4TnBOlG1k
-	 KmZI4xPiQvQ5TisHNCndxxjeRR+peAypNvHs/eMMK5s9PIRNLSHL2kUE/pSO33/qGf
-	 9azoGPq6F++5rptA10im6aOPUx/fQVKxIKlxdEoM=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52BHWxxf079227;
-	Tue, 11 Mar 2025 12:32:59 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1741720303;
+	bh=y9yQAzFB7+692rsX+UIaXDaYXuBwnz/BieSjE17ej2A=;
+	h=Date:CC:Subject:From:To:References:In-Reply-To;
+	b=nCXfArhTV5jcxp7N9lLXaKKUPJRTEyTujahjjhu6LXQyT8bOB1rSj9XXfzJ7OPSjR
+	 XI+IocmN8oOADLFWn8eUjL2dEk67caHIzfAa2aT1ck1Y77bLPplcdgqxFBZzBBtKEQ
+	 nF3QNgPpHd3ydwPjXvaLyzn+Y8L/7GtuMgS+PqZg=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52BJBh6u079956
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 11 Mar 2025 14:11:43 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 11
- Mar 2025 12:32:59 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2025 14:11:42 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 11 Mar 2025 12:32:59 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52BHWxdX022574;
-	Tue, 11 Mar 2025 12:32:59 -0500
-Message-ID: <71a9042c-7963-40e6-afae-83247c5a452a@ti.com>
-Date: Tue, 11 Mar 2025 12:32:59 -0500
+ Frontend Transport; Tue, 11 Mar 2025 14:11:42 -0500
+Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52BJBgiN001178;
+	Tue, 11 Mar 2025 14:11:42 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master/scarthgap][PATCH] meta-arago-extras: Add
- recipe for NNShark
-To: Denys Dmytriyenko <denis@denix.org>, <c-shilwant@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>
-References: <20250311143744.102671-1-afd@ti.com>
- <9a646c15-22bd-4a12-a1c8-6a0e86e77f13@ti.com>
- <20250311162613.GB23729@denix.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250311162613.GB23729@denix.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Date: Tue, 11 Mar 2025 14:11:42 -0500
+Message-ID: <D8DOBH1Z0W3X.37ICDKG8VDW9H@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>
+Subject: Re: [meta-arago][scarthgap/master][PATCH]
+ packagegroup-arago-tisdk-gtk: set PACKAGE_ARCH
+From: Randolph Sapp <rs@ti.com>
+To: Andrew Davis <afd@ti.com>, <reatmon@ti.com>, <denys@konsulko.com>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250311003556.3131699-2-rs@ti.com>
+ <5be8e47e-5753-4893-b22f-371524842c47@ti.com>
+In-Reply-To: <5be8e47e-5753-4893-b22f-371524842c47@ti.com>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 11 Mar 2025 17:33:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15977
+ <meta-arago@lists.yoctoproject.org>; Tue, 11 Mar 2025 19:11:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15978
 
-On 3/11/25 11:26 AM, Denys Dmytriyenko wrote:
-> On Tue, Mar 11, 2025 at 09:28:44PM +0530, Chirag Shilwant via lists.yoctoproject.org wrote:
->> Hello Andrew,
->>
->> On 11/03/25 20:07, Andrew Davis via lists.yoctoproject.org wrote:
->>> Signed-off-by: Andrew Davis <afd@ti.com>
->>> ---
->>>   .../recipes-multimedia/nnshark/nnshark_git.bb | 38 +++++++++++++++++++
->>>   1 file changed, 38 insertions(+)
->>>   create mode 100644 meta-arago-extras/recipes-multimedia/nnshark/nnshark_git.bb
->>>
->>> diff --git a/meta-arago-extras/recipes-multimedia/nnshark/nnshark_git.bb b/meta-arago-extras/recipes-multimedia/nnshark/nnshark_git.bb
->>> new file mode 100644
->>> index 00000000..1a3d8ad5
->>> --- /dev/null
->>> +++ b/meta-arago-extras/recipes-multimedia/nnshark/nnshark_git.bb
->>> @@ -0,0 +1,38 @@
->>> +SUMMARY = "A GStreamer NNstreamer pipelines real-time profiling plugin"
->>
->>
->> nitpick, the below sounds much better?
->>
->> SUMMARY = "A GStreamer plugin to support real-time performance
->> profiling of NNStreamer pipelines."
-> 
-> This is 86+ characters long, which is too long for the SUMMARY (72 max). Also,
-> no dots at the end of the SUMMARY, only in the DESCRIPTION, which happens
-> automatically if not set explicitly.
-> 
-> 
->>> +HOMEPAGE = "https://github.com/nnstreamer/nnshark"
->>> +
->>> +LICENSE = "GPL-2.0-only & LGPL-2.1-only"
->>> +LIC_FILES_CHKSUM = "file://COPYING;md5=e1caa368743492879002ad032445fa97 \
->>> +                    file://COPYING.LESSER;md5=66c40c88533cd228b5b85936709801c8"
->>> +
->>> +SRC_URI = "git://github.com/nnstreamer/nnshark.git;protocol=https;branch=master;name=nnshark \
->>> +           git://github.com/GStreamer/common.git;protocol=https;branch=master;name=common;subdir=${S}/common \
->>> +"
->>
->> any specific reasons to not go with something like below,
->>
->> SRC_URI = "gitsm://github.com/nnstreamer/nnshark.git;protocol=https;branch=master
->> \
->> "
->>
->> SRCREV = "bcee91b23a98c981b87051fe1b2ad545991c4aa2"
-> 
-> Unless you want to control each SRCREV separately.
-> 
+On Tue Mar 11, 2025 at 8:22 AM CDT, Andrew Davis wrote:
+> On 3/10/25 7:35 PM, rs@ti.com wrote:
+>> From: Randolph Sapp <rs@ti.com>
+>>=20
+>> This packagegroup pulls a package that is automatically renamed with
+>> DEBIAN_NAMES. This is not allowed due to a sanity check that was added
+>> to prevent issues with packagegroups being aggressively cached and
+>> DEBIAN_NAMES potentially breaking this cache. See [YOCTO #7298] or
+>> 5bf3e447d2f in openembedded-core [1].
+>>=20
+>> [1] https://git.openembedded.org/openembedded-core/commit/?id=3D5bf3e447=
+d2f5064495d83a8fad30229bcf1ecc9b
+>>=20
+>> Fixes: 731fd376 (packagegroups: Do not set package arch when unneeded, 2=
+025-03-03)
+>> Signed-off-by: Randolph Sapp <rs@ti.com>
+>> ---
+>>=20
+>
+> Should we just drop this package group? Only has 2 packages, one is just =
+a demo,
+> and the other (gtk+3) should be installed by DEPENDS only for packages th=
+at depend
+> on it, not unconditionally as done here.
+>
+> Andrew
 
-Right, that is the reason I do this, the version of "common" when
-pulled as a submodule is not available, we have the exact same issue
-for TI GST plugins and we patch around[0]. This way of pulling "common"
-manually with SRC_URI seemed better.
+Well, we could drop the gtk+3 package from the group and keep the demos so =
+we
+know gtk+3 is still implicitly pulled. Gets weird considering this layer at=
+ one
+point came with default applications and libraries we thought were useful.
 
-Andrew
+I don't know. Ryan, Denys, do you guys think we've weaned enough customers =
+off
+of using the example SDK directly to move to a more pragmatic packaging lis=
+t?
+(Just the stuff required to test things and maybe some debug tools.)
 
-[0] https://git.yoctoproject.org/meta-arago/tree/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe/0001-Switch-submodule-common-to-github.patch
+>> Tagged scarthgap/master as the origional patch was, but I don't think th=
+e
+>> original patch has made it to master yet.
+>>=20
+>>   .../packagegroups/packagegroup-arago-tisdk-gtk.bb             | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>=20
+>> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-a=
+rago-tisdk-gtk.bb b/meta-arago-distro/recipes-core/packagegroups/packagegro=
+up-arago-tisdk-gtk.bb
+>> index cd6dd895..e0a90a31 100644
+>> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ti=
+sdk-gtk.bb
+>> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ti=
+sdk-gtk.bb
+>> @@ -2,6 +2,10 @@ DESCRIPTION =3D "Task to add Gtk embedded related packa=
+ges"
+>>   LICENSE =3D "MIT"
+>>   PR =3D "r2"
+>>  =20
+>> +# Required for packages that are renamed using DEBIAN_NAMES
+>> +# [YOCTO #7298]
+>> +PACKAGE_ARCH =3D "${TUNE_PKGARCH}"
+>> +
+>>   inherit packagegroup
+>>  =20
+>>   RDEPENDS:${PN} =3D "\
 
-> 
->>> +SRCREV_FORMAT="default"
->>> +SRCREV_nnshark="bcee91b23a98c981b87051fe1b2ad545991c4aa2"
->>> +SRCREV_common="b64f03f6090245624608beb5d2fff335e23a01c0"
->>> +
->>> +S = "${WORKDIR}/git"
->>
->> probably master might need a separate patch for UNPACKDIR stuff?
-> 
-> No changes for git based recipes needed.
-> 
-> 
->>> +
->>> +DEPENDS = "\
->>> +    gtk-doc-native \
->>> +    gstreamer1.0 \
->>> +    gstreamer1.0-plugins-base \
->>> +"
->>> +
->>> +inherit pkgconfig autotools-brokensep
->>> +
->>> +EXTRA_OECONF = " \
->>> +        --disable-graphviz \
->>> +        --disable-gtk-doc \
->>> +"
->>> +
->>> +do_configure:prepend() {
->>> +    sh autogen.sh --noconfigure
->>> +}
->>> +
->>> +FILES:${PN} += "\
->>> +       ${libdir}/gstreamer-1.0/libgstsharktracers.so \
->>> +       ${libdir}/gstreamer-1.0/libgstsharktracers.la \
->>> +"
 
