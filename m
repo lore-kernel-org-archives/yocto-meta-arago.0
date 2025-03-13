@@ -2,52 +2,55 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2DC79C35FF8
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CCC8C35FF7
 	for <webhook@archiver.kernel.org>; Thu, 13 Mar 2025 19:05:23 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web11.23084.1741892718574512022
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+ by mx.groups.io with SMTP id smtpd.web10.23279.1741892719284866357
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 13 Mar 2025 12:05:18 -0700
+ Thu, 13 Mar 2025 12:05:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=X6eywZms;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: reatmon@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52DJ5GXi1919486
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=t4llBQGO;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52DJ5H4l1432107
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
 	Thu, 13 Mar 2025 14:05:17 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1741892717;
-	bh=TuNQ1UBgkx7J4mUw3g5S31RstTT496ptOC9yO23HcIQ=;
-	h=From:To:Subject:Date;
-	b=X6eywZmsX/i1CnuGJSpd2/1XttE+3+CbvD/o/Ca7SyouLhkIYiDs4BYC6/1aPRGBH
-	 3zJkNoFlG0s9AjfinrslqZJ4ZlT5XLzYocEz7eOovxgLt5dX+NPiYKV3n6YlkdifVd
-	 J50aDU5V7F1LalCzsudKOyNgcFfgCRXY1jFBWnA0=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52DJ5G8j099365;
-	Thu, 13 Mar 2025 14:05:16 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1741892718;
+	bh=ya/CROSd5vmEuZUKCPxnOaJuD6R/i+OSQmNZA2lp2xA=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=t4llBQGOZOk8nhPMk4vCzJgsFKvpfzlLNk6QddQhl5Pa4w4QaTWoec/P0qmvn/ogl
+	 DrB8dFczvJZEzamvSGTIfFXh7X3ztOEeb6C0oGlJRPkIke/3I2hZmtqpgKq0+eVSsZ
+	 t02CDxtzt2wnN8H5PsyapbT1TiO9efFM5fHIhwWY=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52DJ5Hqt008944
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 13 Mar 2025 14:05:17 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
- Mar 2025 14:05:16 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2025 14:05:17 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 13 Mar 2025 14:05:16 -0500
+ Frontend Transport; Thu, 13 Mar 2025 14:05:17 -0500
 Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52DJ5G6X090097;
-	Thu, 13 Mar 2025 14:05:16 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52DJ5HLP026771;
+	Thu, 13 Mar 2025 14:05:17 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1tsnro-0005sB-Fj; Thu, 13 Mar 2025 14:05:16 -0500
+	id 1tsnrp-0005su-FR; Thu, 13 Mar 2025 14:05:17 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH v2 00/14] Update and cleanup sysrepo packages
-Date: Thu, 13 Mar 2025 14:05:02 -0500
-Message-ID: <20250313190516.22522-1-reatmon@ti.com>
+Subject: [meta-arago][master][PATCH v2 08/14] sysrepo-plugins-common: move and clean up
+Date: Thu, 13 Mar 2025 14:05:10 -0500
+Message-ID: <20250313190516.22522-9-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20250313190516.22522-1-reatmon@ti.com>
+References: <20250313190516.22522-1-reatmon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
@@ -55,80 +58,136 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 13 Mar 2025 19:05:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16035
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16043
 
-Update all of the sysrepo related packages to their latest versions and
-clean them up.  The recipes were all moved under recipes-extended
-instead of recipes-sysrepo, and various things caught by
-yocto-check-layer were fixed.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-v2: One of the commits was accidently squashed.  Split the two patches
-back out into individual patches.
+* Move into recipes-extended
+* Shorten SUMMARY and don't empty DESCRIPTION
+* Move patch into correct dir, don't alter FILESEXTRAPATHS
+* Update patch to remove fuzz
+* Set PV to a numeric value
+* Don't hardcode /usr when passing to CMake
+* No need for empty do_install:append
 
-Denys Dmytriyenko (8):
-  sysrepo: move and clean up
-  sysrepo-plugins-common: move and clean up
-  libyang: move bbappend
-  libnetconf2: move and clean up
-  libredblack: move and clean up
-  nw-configurator: move and clean up
-  tsn-yang-models: move and clean up
-  netopeer2-server: move and clean up
-
-Ryan Eatmon (6):
-  libnetconf2: Wrap libpam dependency
-  libyang: Remove recipe in favor of newer upstream version
-  libyang: Add BBCLASSEXTEND for native
-  libnetconf2: Update to version 3.5.5
-  sysrepo: Update to version 3.3.10
-  netopeer2-server: Update to version 2.2.35
-
- .../sysrepo/libnetconf2_git.bb                | 25 +++++++++
- .../sysrepo}/libredblack_git.bb               |  6 +--
- .../sysrepo/libyang_%.bbappend                |  1 +
- .../0001-Add-EST-Yang-Models.patch            | 10 ++--
- .../netopeer2-server/netopeer2-server         |  0
- .../netopeer2-serverd.service                 |  0
- .../sysrepo/netopeer2-server_git.bb           | 53 +++++++++++++++++++
- .../sysrepo}/nw-configurator.bb               |  6 +--
- .../nw-configurator}/nw-configurator.c        |  0
- .../0001-so-version.patch                     | 23 ++++++++
- .../sysrepo/sysrepo-plugins-common_git.bb     | 17 ++++++
- ...-Hardcode-correct-path-to-tar-binary.patch |  4 +-
- .../sysrepo/sysrepo/sysrepo                   |  0
- .../sysrepo/sysrepo/sysrepod.service          |  0
- .../sysrepo/sysrepo_git.bb                    | 46 ++++++++--------
- .../sysrepo}/tsn-yang-models_git.bb           |  2 -
- .../libnetconf2/libnetconf2_git.bb            | 24 ---------
- .../recipes-sysrepo/libyang/libyang_git.bb    | 23 --------
- .../netopeer2-server/netopeer2-server_git.bb  | 47 ----------------
- .../netopeer2-server_git.bbappend             |  5 --
- .../0001-so-version.patch                     | 15 ------
- .../sysrepo-plugins-common_git.bb             | 26 ---------
- 22 files changed, 154 insertions(+), 179 deletions(-)
- create mode 100644 meta-arago-extras/recipes-extended/sysrepo/libnetconf2_git.bb
- rename meta-arago-extras/{recipes-sysrepo/libredblack => recipes-extended/sysrepo}/libredblack_git.bb (62%)
- create mode 100644 meta-arago-extras/recipes-extended/sysrepo/libyang_%.bbappend
- rename meta-arago-extras/{recipes-sysrepo/netopeer2-server => recipes-extended/sysrepo}/netopeer2-server/0001-Add-EST-Yang-Models.patch (84%)
- rename meta-arago-extras/{recipes-sysrepo/netopeer2-server => recipes-extended/sysrepo}/netopeer2-server/netopeer2-server (100%)
- rename meta-arago-extras/{recipes-sysrepo/netopeer2-server => recipes-extended/sysrepo}/netopeer2-server/netopeer2-serverd.service (100%)
- create mode 100644 meta-arago-extras/recipes-extended/sysrepo/netopeer2-server_git.bb
- rename meta-arago-extras/{recipes-sysrepo/nw-configurator => recipes-extended/sysrepo}/nw-configurator.bb (74%)
- rename meta-arago-extras/{recipes-sysrepo/nw-configurator/files => recipes-extended/sysrepo/nw-configurator}/nw-configurator.c (100%)
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ .../0001-so-version.patch                     | 23 ++++++++++++++++
+ .../sysrepo/sysrepo-plugins-common_git.bb     | 17 ++++++++++++
+ .../0001-so-version.patch                     | 15 -----------
+ .../sysrepo-plugins-common_git.bb             | 26 -------------------
+ 4 files changed, 40 insertions(+), 41 deletions(-)
  create mode 100644 meta-arago-extras/recipes-extended/sysrepo/sysrepo-plugins-common/0001-so-version.patch
  create mode 100644 meta-arago-extras/recipes-extended/sysrepo/sysrepo-plugins-common_git.bb
- rename meta-arago-extras/{recipes-sysrepo => recipes-extended}/sysrepo/sysrepo/0001-Hardcode-correct-path-to-tar-binary.patch (88%)
- rename meta-arago-extras/{recipes-sysrepo => recipes-extended}/sysrepo/sysrepo/sysrepo (100%)
- rename meta-arago-extras/{recipes-sysrepo => recipes-extended}/sysrepo/sysrepo/sysrepod.service (100%)
- rename meta-arago-extras/{recipes-sysrepo => recipes-extended}/sysrepo/sysrepo_git.bb (50%)
- rename meta-arago-extras/{recipes-sysrepo/tsn-yang-models => recipes-extended/sysrepo}/tsn-yang-models_git.bb (96%)
- delete mode 100644 meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb
- delete mode 100644 meta-arago-extras/recipes-sysrepo/libyang/libyang_git.bb
- delete mode 100644 meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bb
- delete mode 100644 meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bbappend
  delete mode 100644 meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/0001-so-version.patch
  delete mode 100644 meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/sysrepo-plugins-common_git.bb
 
+diff --git a/meta-arago-extras/recipes-extended/sysrepo/sysrepo-plugins-common/0001-so-version.patch b/meta-arago-extras/recipes-extended/sysrepo/sysrepo-plugins-common/0001-so-version.patch
+new file mode 100644
+index 00000000..fbae80c0
+--- /dev/null
++++ b/meta-arago-extras/recipes-extended/sysrepo/sysrepo-plugins-common/0001-so-version.patch
+@@ -0,0 +1,23 @@
++From 3e2db769c1579010cb83d90f4a63ed256ddda4b8 Mon Sep 17 00:00:00 2001
++From: Ravi Gunasekaran <r-gunasekaran@ti.com>
++Date: Tue, 27 Jun 2023 17:20:59 +0000
++Subject: [PATCH] so version
++
++Upstream-Status: Inappropriate [arago specific]
++
++---
++ CMakeLists.txt | 1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/CMakeLists.txt b/CMakeLists.txt
++index dc4e5d4..5b04b51 100644
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -37,6 +37,7 @@ include_directories(${LIBYANG_INCLUDE_DIRS})
++ include_directories(${SYSREPO_INCLUDE_DIRS})
++
++ add_library(${PROJECT_NAME} SHARED ${SRPC_SOURCES})
+++set_target_properties(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
++
++ # project version
++ set_target_properties(${PROJECT_NAME}
+diff --git a/meta-arago-extras/recipes-extended/sysrepo/sysrepo-plugins-common_git.bb b/meta-arago-extras/recipes-extended/sysrepo/sysrepo-plugins-common_git.bb
+new file mode 100644
+index 00000000..f398a3e2
+--- /dev/null
++++ b/meta-arago-extras/recipes-extended/sysrepo/sysrepo-plugins-common_git.bb
+@@ -0,0 +1,17 @@
++SUMMARY = "Common utilities/functionalities for sysrepo plugins"
++LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=f91d5dfaae99cc1943a8eca222cafa5c"
++
++SRC_URI = "gitsm://github.com/telekom/sysrepo-plugins-common.git;protocol=https;branch=devel"
++SRC_URI += "file://0001-so-version.patch"
++
++PV = "0.1+git"
++SRCREV = "20885de0d3bb95a05610fdb3a0f83d8f7c370fad"
++
++S = "${WORKDIR}/git"
++
++DEPENDS = "libyang sysrepo"
++
++inherit cmake pkgconfig
++
++EXTRA_OECMAKE = "-DCMAKE_INSTALL_PREFIX:PATH=${prefix}"
+diff --git a/meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/0001-so-version.patch b/meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/0001-so-version.patch
+deleted file mode 100644
+index 5e2fc3a5..00000000
+--- a/meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/0001-so-version.patch
++++ /dev/null
+@@ -1,15 +0,0 @@
+-
+-Upstream-Status: Inappropriate [arago specific]
+-
+-diff --git a/CMakeLists.txt b/CMakeLists.txt
+-index fd64b80..910510d 100644
+---- a/CMakeLists.txt
+-+++ b/CMakeLists.txt
+-@@ -23,6 +23,7 @@ include_directories(${LIBYANG_INCLUDE_DIRS})
+- include_directories(${SYSREPO_INCLUDE_DIRS})
+-
+- add_library(${PROJECT_NAME} SHARED ${SRPC_SOURCES})
+-+set_target_properties(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
+-
+- install(
+-     TARGETS ${PROJECT_NAME}
+diff --git a/meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/sysrepo-plugins-common_git.bb b/meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/sysrepo-plugins-common_git.bb
+deleted file mode 100644
+index 23d42fcc..00000000
+--- a/meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/sysrepo-plugins-common_git.bb
++++ /dev/null
+@@ -1,26 +0,0 @@
+-SUMMARY = "Set of utilities/functionalities which can be used for easier build of sysrepo plugins."
+-DESCRIPTION = ""
+-LICENSE = "BSD-3-Clause"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=f91d5dfaae99cc1943a8eca222cafa5c"
+-
+-SRC_URI = "gitsm://github.com/telekom/sysrepo-plugins-common.git;protocol=https;branch=devel "
+-SRC_URI += " file://0001-so-version.patch "
+-FILESEXTRAPATHS:prepend := "${THISDIR}:"
+-
+-PV = "dev+git"
+-SRCREV = "20885de0d3bb95a05610fdb3a0f83d8f7c370fad"
+-
+-S = "${WORKDIR}/git"
+-
+-DEPENDS = "libyang sysrepo"
+-
+-FILES:${PN} += ""
+-
+-inherit cmake pkgconfig
+-
+-# Specify any options you want to pass to cmake using EXTRA_OECMAKE:
+-EXTRA_OECMAKE = " -DCMAKE_INSTALL_PREFIX:PATH=/usr "
+-
+-do_install:append () {
+-    true
+-}
 -- 
 2.17.1
 
