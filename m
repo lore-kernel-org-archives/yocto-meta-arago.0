@@ -2,52 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4DCD0C35FFF
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46300C35FFB
 	for <webhook@archiver.kernel.org>; Thu, 13 Mar 2025 19:05:23 +0000 (UTC)
 Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.23275.1741892718787430235
+ by mx.groups.io with SMTP id smtpd.web11.23089.1741892720016192108
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 13 Mar 2025 12:05:18 -0700
+ Thu, 13 Mar 2025 12:05:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=zRMOOO+x;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=nLJVpq0G;
  spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52DJ5Hba1919490
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 13 Mar 2025 14:05:17 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52DJ5Icn1919494
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Thu, 13 Mar 2025 14:05:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1741892717;
-	bh=YtefumQ7ILaMFW0h+GToeZ9gecNzh1w+OLI6HT+fmkI=;
+	s=ti-com-17Q1; t=1741892718;
+	bh=wYXJKX5ACxhKJgfebLjS4YhnNrWlLU2deZkZyQ5t2Z4=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=zRMOOO+xHqRVqhLGdrkdCpOSBAghRiD39P8f/MjJn/XDxS9WTO38a0d0GlLhzETRC
-	 +O4+AHi62935Zp0EO03NbqDRcB4QdmKOdRCEzfOL80gn1Sdw4+8n8zr8e8jzXAEn/V
-	 k6VgGEgz0cFvLYTYJcezRM+/IlxTKar6XtEOFNbE=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52DJ5HDF008935
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 13 Mar 2025 14:05:17 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	b=nLJVpq0GrAKTiRNvTO5MoNGgoOBYJ1JCqPGYBe1DgsnZep7B0V+2dzWO2EdiHe14E
+	 5xT9O+WGrfjCjnDI7/+xokkjpauVQlqcvo/SCMea7y4aIvK2ZnHjMXjfZbkX7+0S/T
+	 12HKhEcA2S53COKUMPtO58D+mbUQjykWo4ZsiRqw=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52DJ5IQI099376;
+	Thu, 13 Mar 2025 14:05:18 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
- Mar 2025 14:05:17 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2025 14:05:18 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 13 Mar 2025 14:05:17 -0500
+ Frontend Transport; Thu, 13 Mar 2025 14:05:18 -0500
 Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52DJ5HRa090109;
-	Thu, 13 Mar 2025 14:05:17 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52DJ5IZR026786;
+	Thu, 13 Mar 2025 14:05:18 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1tsnro-0005sV-V7; Thu, 13 Mar 2025 14:05:16 -0500
+	id 1tsnrq-0005tU-85; Thu, 13 Mar 2025 14:05:18 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH v2 04/14] libnetconf2: Update to version 3.5.5
-Date: Thu, 13 Mar 2025 14:05:06 -0500
-Message-ID: <20250313190516.22522-5-reatmon@ti.com>
+Subject: [meta-arago][master][PATCH v2 14/14] netopeer2-server: move and clean up
+Date: Thu, 13 Mar 2025 14:05:16 -0500
+Message-ID: <20250313190516.22522-15-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20250313190516.22522-1-reatmon@ti.com>
 References: <20250313190516.22522-1-reatmon@ti.com>
@@ -58,39 +57,170 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 13 Mar 2025 19:05:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16037
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16047
 
-With the update to libyang we need to move to a newer version of
-libnetconf2.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
+* Move into recipes-extended
+* Combine with bbappend
+* Shorten SUMMARY, split DESCRIPTION
+* Update DEPENDS - remove systemd and add sysrepo-native
+* Don't hardcode /usr when passing to CMake
+* Also pass -DSYSREPO_SETUP=OFF to CMake
+* Update installing scripts - remove user/group, add permissions
+
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
-v2: This was accidently squashed with the previous patch, restore them back
-single commits.
+ .../0001-Add-EST-Yang-Models.patch            |  0
+ .../netopeer2-server/netopeer2-server         |  0
+ .../netopeer2-serverd.service                 |  0
+ .../sysrepo/netopeer2-server_git.bb           | 53 +++++++++++++++++++
+ .../netopeer2-server/netopeer2-server_git.bb  | 47 ----------------
+ .../netopeer2-server_git.bbappend             |  5 --
+ 6 files changed, 53 insertions(+), 52 deletions(-)
+ rename meta-arago-extras/{recipes-sysrepo/netopeer2-server => recipes-extended/sysrepo}/netopeer2-server/0001-Add-EST-Yang-Models.patch (100%)
+ rename meta-arago-extras/{recipes-sysrepo/netopeer2-server => recipes-extended/sysrepo}/netopeer2-server/netopeer2-server (100%)
+ rename meta-arago-extras/{recipes-sysrepo/netopeer2-server => recipes-extended/sysrepo}/netopeer2-server/netopeer2-serverd.service (100%)
+ create mode 100644 meta-arago-extras/recipes-extended/sysrepo/netopeer2-server_git.bb
+ delete mode 100644 meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bb
+ delete mode 100644 meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bbappend
 
- .../recipes-sysrepo/libnetconf2/libnetconf2_git.bb          | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb b/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb
-index c62d3faa..6b3f73ca 100644
---- a/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb
-+++ b/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb
-@@ -6,12 +6,12 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=08a5578c9bab06fb2ae84284630b973f"
- 
- SRC_URI = "git://github.com/CESNET/libnetconf2.git;protocol=https;branch=devel"
- 
--PV = "2.1.34+git"
--SRCREV = "91cd6d75722c65de5c005d908f6d645b48cee89b"
-+PV = "3.5.5+git"
-+SRCREV = "4c7858c9c41f1ac04d2b15c032291e335fc0f5f5"
- 
- S = "${WORKDIR}/git"
- 
--DEPENDS = "libssh openssl libyang libxcrypt \
-+DEPENDS = "libssh openssl libyang libxcrypt mbedtls curl \
-     ${@bb.utils.contains('DISTRO_FEATURES','pam','libpam','',d)} \
- "
- 
+diff --git a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server/0001-Add-EST-Yang-Models.patch b/meta-arago-extras/recipes-extended/sysrepo/netopeer2-server/0001-Add-EST-Yang-Models.patch
+similarity index 100%
+rename from meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server/0001-Add-EST-Yang-Models.patch
+rename to meta-arago-extras/recipes-extended/sysrepo/netopeer2-server/0001-Add-EST-Yang-Models.patch
+diff --git a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server/netopeer2-server b/meta-arago-extras/recipes-extended/sysrepo/netopeer2-server/netopeer2-server
+similarity index 100%
+rename from meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server/netopeer2-server
+rename to meta-arago-extras/recipes-extended/sysrepo/netopeer2-server/netopeer2-server
+diff --git a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server/netopeer2-serverd.service b/meta-arago-extras/recipes-extended/sysrepo/netopeer2-server/netopeer2-serverd.service
+similarity index 100%
+rename from meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server/netopeer2-serverd.service
+rename to meta-arago-extras/recipes-extended/sysrepo/netopeer2-server/netopeer2-serverd.service
+diff --git a/meta-arago-extras/recipes-extended/sysrepo/netopeer2-server_git.bb b/meta-arago-extras/recipes-extended/sysrepo/netopeer2-server_git.bb
+new file mode 100644
+index 00000000..073aed5e
+--- /dev/null
++++ b/meta-arago-extras/recipes-extended/sysrepo/netopeer2-server_git.bb
+@@ -0,0 +1,53 @@
++SUMMARY = "Implementation of network configuration tools based on NETCONF Protocol"
++DESCRIPTION = "Netopeer2 is based on the new generation of the NETCONF and YANG libraries - \
++libyang and libnetconf2. The Netopeer server uses sysrepo as a NETCONF datastore implementation."
++LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=41daedff0b24958b2eba4f9086d782e1"
++
++SRC_URI = " \
++    git://github.com/CESNET/Netopeer2.git;protocol=https;branch=master \
++    file://0001-Add-EST-Yang-Models.patch \
++    ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'file://netopeer2-server', '', d)} \
++    ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'file://netopeer2-serverd.service', '', d)} \
++"
++
++PV = "2.2.35+git"
++SRCREV = "6d1cb61ef3ce2274a91dc9cbc51318bcd0b54697"
++
++S = "${WORKDIR}/git"
++
++DEPENDS = "libyang libnetconf2 sysrepo sysrepo-native"
++RDEPENDS:${PN} += "bash curl"
++
++FILES:${PN} += "${datadir}/yang* ${datadir}/netopeer2/* ${libdir}/sysrepo-plugind/*"
++
++inherit cmake pkgconfig
++inherit ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}
++
++EXTRA_OECMAKE = " \
++    -DCMAKE_INSTALL_PREFIX=${prefix} \
++    -DCMAKE_BUILD_TYPE:String=Release \
++    -DSYSREPO_SETUP=OFF \
++    -DINSTALL_MODULES=OFF \
++    -DGENERATE_HOSTKEY=OFF \
++    -DMERGE_LISTEN_CONFIG=OFF \
++"
++
++SYSTEMD_PACKAGES = "${PN}"
++SYSTEMD_SERVICE:${PN} = "netopeer2-serverd.service"
++SYSTEMD_AUTO_ENABLE:${PN} = "disable"
++
++do_install:append () {
++    install -d ${D}${sysconfdir}/netopeer2/scripts
++    install -m 0755 ${S}/scripts/setup.sh ${D}${sysconfdir}/netopeer2/scripts/setup.sh
++    install -m 0755 ${S}/scripts/merge_hostkey.sh ${D}${sysconfdir}/netopeer2/scripts/merge_hostkey.sh
++    install -m 0755 ${S}/scripts/merge_config.sh ${D}${sysconfdir}/netopeer2/scripts/merge_config.sh
++    if ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'true', 'false', d)}; then
++        install -d ${D}${sysconfdir}/init.d
++        install -m 0755 ${UNPACKDIR}/netopeer2-server ${D}${sysconfdir}/init.d/
++    fi
++    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
++        install -d ${D}${systemd_system_unitdir}
++        install -m 0644 ${UNPACKDIR}/netopeer2-serverd.service ${D}${systemd_system_unitdir}
++    fi
++}
+diff --git a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bb b/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bb
+deleted file mode 100644
+index 89a05b2b..00000000
+--- a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bb
++++ /dev/null
+@@ -1,47 +0,0 @@
+-SUMMARY = "Netopeer2 is a set of tools implementing network configuration tools based on the NETCONF Protocol."
+-DESCRIPTION = "Netopeer2 is based on the new generation of the NETCONF and YANG libraries - libyang and libnetconf2. The Netopeer server uses sysrepo as a NETCONF datastore implementation."
+-LICENSE = "BSD-3-Clause"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=41daedff0b24958b2eba4f9086d782e1"
+-
+-SRC_URI = "git://github.com/CESNET/Netopeer2.git;protocol=https;branch=master \
+-          ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', \
+-	        'file://netopeer2-server', '', d)} \
+-          ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', \
+-	        'file://netopeer2-serverd.service', '', d)} \
+-          "
+-
+-PV = "2.2.35+git"
+-SRCREV = "6d1cb61ef3ce2274a91dc9cbc51318bcd0b54697"
+-
+-S = "${WORKDIR}/git"
+-
+-DEPENDS = "libyang libnetconf2 sysrepo systemd"
+-RDEPENDS:${PN} += "bash curl"
+-
+-FILES:${PN} += "${datadir}/yang* ${datadir}/netopeer2/* ${libdir}/sysrepo-plugind/*"
+-
+-inherit cmake pkgconfig
+-inherit ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}
+-
+-# Specify any options you want to pass to cmake using EXTRA_OECMAKE:
+-EXTRA_OECMAKE = " -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE:String=Release -DINSTALL_MODULES=OFF -DGENERATE_HOSTKEY=OFF -DMERGE_LISTEN_CONFIG=OFF"
+-
+-SYSTEMD_PACKAGES = "${PN}"
+-SYSTEMD_SERVICE:${PN} = "netopeer2-serverd.service"
+-SYSTEMD_AUTO_ENABLE:${PN} = "disable"
+-
+-do_install:append () {
+-    install -d ${D}${sysconfdir}/netopeer2/scripts
+-    install -o root -g root ${S}/scripts/setup.sh ${D}${sysconfdir}/netopeer2/scripts/setup.sh
+-    install -o root -g root ${S}/scripts/merge_hostkey.sh ${D}${sysconfdir}/netopeer2/scripts/merge_hostkey.sh
+-    install -o root -g root ${S}/scripts/merge_config.sh ${D}${sysconfdir}/netopeer2/scripts/merge_config.sh
+-    install -d ${D}${sysconfdir}/netopeer2
+-    install -d ${D}${sysconfdir}/init.d
+-    if ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'true', 'false', d)}; then
+-        install -m 0755 ${UNPACKDIR}/netopeer2-server ${D}${sysconfdir}/init.d/
+-    fi
+-    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
+-        install -d ${D}${systemd_system_unitdir}
+-        install -m 0644 ${UNPACKDIR}/netopeer2-serverd.service ${D}${systemd_system_unitdir}
+-    fi
+-}
+diff --git a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bbappend b/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bbappend
+deleted file mode 100644
+index f8a9febe..00000000
+--- a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bbappend
++++ /dev/null
+@@ -1,5 +0,0 @@
+-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+-
+-SRC_URI += "file://0001-Add-EST-Yang-Models.patch"
+-
+-FILES:${PN} += "/usr/share/yang* /usr/share/netopeer2/* /usr/lib/sysrepo-plugind/*"
 -- 
 2.17.1
 
