@@ -2,52 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 575F8C35FFA
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D539C35FF8
 	for <webhook@archiver.kernel.org>; Thu, 13 Mar 2025 10:40:40 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web10.11654.1741862431252589519
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web10.11658.1741862431729581122
  for <meta-arago@lists.yoctoproject.org>;
  Thu, 13 Mar 2025 03:40:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=hd1ZG6IH;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: reatmon@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52DAeU5e1358785
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 13 Mar 2025 05:40:30 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=eVR7gcJo;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: reatmon@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52DAeUpm1850192
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Thu, 13 Mar 2025 05:40:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1741862430;
-	bh=fcNvUgFPxBh3V4CDhFj2y3GPF+K8Vt+RlOwEdG02Zf8=;
+	s=ti-com-17Q1; t=1741862431;
+	bh=LC653WEHRIDpOsCpTLcZxYJltDQ0Ug6+jrMj4gXqp0E=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=hd1ZG6IHgSc/XITcxBU1O/7rXgBLzes+8Q89r3g+oNsBfmF6DqBwc1PU8InCKT08E
-	 U2aXzV13LGGvlBg1khgD05/WQN5whwNAkcHrBKt0ONG3yKFF+QOLC4as1j4xYegf73
-	 LWI6UW/YuvZUk2oKoZA5awMfvTqqB7kzbO3fsKM0=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52DAeUcG023147
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	b=eVR7gcJok96PLsF0u+34L7BCyZG8Y9vF4X7j40q731KDz8HGy34iRzrr87mzHC+e5
+	 b63ppIzR+4QXWQWnGohDTufOC/vADV6qZaM3KEjPZu4yllAJ+W5VaSS+qWrsB2Yi3H
+	 dnMYQ97wClXEGmQDQGLrVeg5O9Kyjz/4Lnv9+o4o=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52DAeUC3070412;
 	Thu, 13 Mar 2025 05:40:30 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 13
- Mar 2025 05:40:29 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2025 05:40:30 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 13 Mar 2025 05:40:29 -0500
+ Frontend Transport; Thu, 13 Mar 2025 05:40:30 -0500
 Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52DAeTUQ083610;
-	Thu, 13 Mar 2025 05:40:29 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52DAeUsm015594;
+	Thu, 13 Mar 2025 05:40:30 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1tsfzJ-0003uV-Ly; Thu, 13 Mar 2025 05:40:29 -0500
+	id 1tsfzK-0003vH-H7; Thu, 13 Mar 2025 05:40:30 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH 01/13] libnetconf2: Wrap libpam dependency
-Date: Thu, 13 Mar 2025 05:40:17 -0500
-Message-ID: <20250313104029.14977-2-reatmon@ti.com>
+Subject: [meta-arago][master][PATCH 09/13] libnetconf2: move and clean up
+Date: Thu, 13 Mar 2025 05:40:25 -0500
+Message-ID: <20250313104029.14977-10-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20250313104029.14977-1-reatmon@ti.com>
 References: <20250313104029.14977-1-reatmon@ti.com>
@@ -58,32 +57,47 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 13 Mar 2025 10:40:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16016
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16021
 
-Check the DISTRO_FEATURES to make sure that pam is turned on before
-depending on libpam.  The libpam recipe is gated behind this check and
-this recipe will fail if you do not have pam enabled.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
+* Move into recipes-extended
+* Shorten SUMMARY, split DESCRIPTION
+* Don't hardcode /usr when passing to CMake
+
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- .../recipes-sysrepo/libnetconf2/libnetconf2_git.bb            | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../sysrepo}/libnetconf2_git.bb                          | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+ rename meta-arago-extras/{recipes-sysrepo/libnetconf2 => recipes-extended/sysrepo}/libnetconf2_git.bb (54%)
 
-diff --git a/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb b/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb
-index 196b36fe..c62d3faa 100644
+diff --git a/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb b/meta-arago-extras/recipes-extended/sysrepo/libnetconf2_git.bb
+similarity index 54%
+rename from meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb
+rename to meta-arago-extras/recipes-extended/sysrepo/libnetconf2_git.bb
+index 6b3f73ca..0d124890 100644
 --- a/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb
-+++ b/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb
-@@ -11,7 +11,9 @@ SRCREV = "91cd6d75722c65de5c005d908f6d645b48cee89b"
++++ b/meta-arago-extras/recipes-extended/sysrepo/libnetconf2_git.bb
+@@ -1,5 +1,6 @@
+-SUMMARY = "libnetconf2 is a NETCONF library in C intended for building NETCONF clients and servers"
+-DESCRIPTION = "The library provides functions to connect NETCONF client and server to each other via SSH and to send, receive and process NETCONF messages."
++SUMMARY = "NETCONF library in C for building NETCONF clients and servers"
++DESCRIPTION = "The library provides functions to connect NETCONF client and server \
++to each other via SSH and to send, receive and process NETCONF messages."
+ SECTION = "libs"
+ LICENSE = "BSD-3-Clause"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=08a5578c9bab06fb2ae84284630b973f"
+@@ -19,8 +20,6 @@ FILES:${PN} += "${datadir}/yang/modules/libnetconf2/*"
  
- S = "${WORKDIR}/git"
+ inherit cmake pkgconfig
  
--DEPENDS = "libssh openssl libyang libxcrypt libpam"
-+DEPENDS = "libssh openssl libyang libxcrypt \
-+    ${@bb.utils.contains('DISTRO_FEATURES','pam','libpam','',d)} \
-+"
+-# Specify any options you want to pass to cmake using EXTRA_OECMAKE:
+-#EXTRA_OECMAKE = " -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_BUILD_TYPE:String=Release -DLIBYANG_INCLUDE_DIR=/usr/include -DLIBYANG_LIBRARY=/usr/lib "
+-EXTRA_OECMAKE = " -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_BUILD_TYPE:String=Release "
++EXTRA_OECMAKE = "-DCMAKE_INSTALL_PREFIX:PATH=${prefix} -DCMAKE_BUILD_TYPE:String=Release"
  
- FILES:${PN} += "${datadir}/yang/modules/libnetconf2/*"
- 
+ BBCLASSEXTEND = "native nativesdk"
 -- 
 2.17.1
 
