@@ -2,52 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3743EC35FFB
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37008C282EC
 	for <webhook@archiver.kernel.org>; Mon, 17 Mar 2025 18:37:32 +0000 (UTC)
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web11.60916.1742236647338189542
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+ by mx.groups.io with SMTP id smtpd.web11.60917.1742236647466291067
  for <meta-arago@lists.yoctoproject.org>;
  Mon, 17 Mar 2025 11:37:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=itwDhhMR;
- spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52HIbQ602900322
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=QFdBPSx8;
+ spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: reatmon@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52HIbQve2847526
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
 	Mon, 17 Mar 2025 13:37:26 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1742236646;
-	bh=LC653WEHRIDpOsCpTLcZxYJltDQ0Ug6+jrMj4gXqp0E=;
+	bh=yIfHo6E96G3DYYTcjgjYtoBmEs94aLoQ2O+KzWcP9wY=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=itwDhhMRR7V4/iYadUqWjbd4lYW1PR8QwoSQrlcXncKJLxDKVLsMexXUSzPx2knjW
-	 jVwiESFFxPrAygVagnCMGqKfvQw4q0TM3ytxotBfNHPQQZ4UCxv7cEdQAZElU5IkxB
-	 bB+AGPK4mBIuCAj0quiLk5os4raJPtgtvdMg8T0g=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52HIbQDd092946
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	b=QFdBPSx8AZvASpV3aQpHfQYFA/3isuodVCAifDXdWByGFWz++JMsJgy4hBq3ge0CW
+	 q3yAg5ReOUQVJi8uCCCh/ExHLnqS81sQwC2bGx31hZ7hFI4K43idfdd7iHWzyHa8/J
+	 iz4EhjpLiJDYf0Pt+JJEY5pm95gKRSI9aHF16zeU=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52HIbQTX104586;
 	Mon, 17 Mar 2025 13:37:26 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 17
  Mar 2025 13:37:26 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Mon, 17 Mar 2025 13:37:25 -0500
 Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52HIbPmG000485;
-	Mon, 17 Mar 2025 13:37:25 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52HIbQOv029159;
+	Mon, 17 Mar 2025 13:37:26 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1tuFL3-0008F3-OU; Mon, 17 Mar 2025 13:37:25 -0500
+	id 1tuFL3-0008F9-Sa; Mon, 17 Mar 2025 13:37:25 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap][PATCH 10/14] libnetconf2: move and clean up
-Date: Mon, 17 Mar 2025 13:37:20 -0500
-Message-ID: <20250317183724.31563-12-reatmon@ti.com>
+Subject: [meta-arago][scarthgap][PATCH 11/14] libredblack: move and clean up
+Date: Mon, 17 Mar 2025 13:37:21 -0500
+Message-ID: <20250317183724.31563-13-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20250317183724.31563-1-reatmon@ti.com>
 References: <20250317183724.31563-1-reatmon@ti.com>
@@ -58,45 +57,39 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Mon, 17 Mar 2025 18:37:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16068
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16069
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
 * Move into recipes-extended
-* Shorten SUMMARY, split DESCRIPTION
-* Don't hardcode /usr when passing to CMake
+* Clean unnecessary comments
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- .../sysrepo}/libnetconf2_git.bb                          | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
- rename meta-arago-extras/{recipes-sysrepo/libnetconf2 => recipes-extended/sysrepo}/libnetconf2_git.bb (54%)
+ .../sysrepo}/libredblack_git.bb                             | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+ rename meta-arago-extras/{recipes-sysrepo/libredblack => recipes-extended/sysrepo}/libredblack_git.bb (62%)
 
-diff --git a/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb b/meta-arago-extras/recipes-extended/sysrepo/libnetconf2_git.bb
-similarity index 54%
-rename from meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb
-rename to meta-arago-extras/recipes-extended/sysrepo/libnetconf2_git.bb
-index 6b3f73ca..0d124890 100644
---- a/meta-arago-extras/recipes-sysrepo/libnetconf2/libnetconf2_git.bb
-+++ b/meta-arago-extras/recipes-extended/sysrepo/libnetconf2_git.bb
-@@ -1,5 +1,6 @@
--SUMMARY = "libnetconf2 is a NETCONF library in C intended for building NETCONF clients and servers"
--DESCRIPTION = "The library provides functions to connect NETCONF client and server to each other via SSH and to send, receive and process NETCONF messages."
-+SUMMARY = "NETCONF library in C for building NETCONF clients and servers"
-+DESCRIPTION = "The library provides functions to connect NETCONF client and server \
-+to each other via SSH and to send, receive and process NETCONF messages."
- SECTION = "libs"
- LICENSE = "BSD-3-Clause"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=08a5578c9bab06fb2ae84284630b973f"
-@@ -19,8 +20,6 @@ FILES:${PN} += "${datadir}/yang/modules/libnetconf2/*"
+diff --git a/meta-arago-extras/recipes-sysrepo/libredblack/libredblack_git.bb b/meta-arago-extras/recipes-extended/sysrepo/libredblack_git.bb
+similarity index 62%
+rename from meta-arago-extras/recipes-sysrepo/libredblack/libredblack_git.bb
+rename to meta-arago-extras/recipes-extended/sysrepo/libredblack_git.bb
+index 412d08d8..80283c73 100644
+--- a/meta-arago-extras/recipes-sysrepo/libredblack/libredblack_git.bb
++++ b/meta-arago-extras/recipes-extended/sysrepo/libredblack_git.bb
+@@ -10,12 +10,8 @@ SRCREV = "a399310d99b61eec4d3c0677573ab5dddcf9395d"
  
- inherit cmake pkgconfig
+ S = "${WORKDIR}/git"
  
--# Specify any options you want to pass to cmake using EXTRA_OECMAKE:
--#EXTRA_OECMAKE = " -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_BUILD_TYPE:String=Release -DLIBYANG_INCLUDE_DIR=/usr/include -DLIBYANG_LIBRARY=/usr/lib "
--EXTRA_OECMAKE = " -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_BUILD_TYPE:String=Release "
-+EXTRA_OECMAKE = "-DCMAKE_INSTALL_PREFIX:PATH=${prefix} -DCMAKE_BUILD_TYPE:String=Release"
+-# NOTE: if this software is not capable of being built in a separate build directory
+-# from the source, you should replace autotools with autotools-brokensep in the
+-# inherit line
+ inherit python3native autotools
+ 
+-# Specify any options you want to pass to the configure script using EXTRA_OECONF:
+-EXTRA_OECONF = " --without-rbgen "
++EXTRA_OECONF = "--without-rbgen"
  
  BBCLASSEXTEND = "native nativesdk"
 -- 
