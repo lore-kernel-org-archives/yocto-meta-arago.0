@@ -1,397 +1,191 @@
-Return-Path: <b-brnich@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30E79C28B2F
-	for <webhook@archiver.kernel.org>; Mon, 17 Mar 2025 02:15:06 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web11.43143.1742177697108919988
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92F62C35FF3
+	for <webhook@archiver.kernel.org>; Mon, 17 Mar 2025 15:02:20 +0000 (UTC)
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web10.54737.1742223737547793516
  for <meta-arago@lists.yoctoproject.org>;
- Sun, 16 Mar 2025 19:14:57 -0700
+ Mon, 17 Mar 2025 08:02:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=DojEr66U;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: b-brnich@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52H2EuEM2204086
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
-	for <meta-arago@lists.yoctoproject.org>; Sun, 16 Mar 2025 21:14:56 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=UYoC7J9o;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: reatmon@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52HF2GiQ2848722
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Mon, 17 Mar 2025 10:02:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1742177696;
-	bh=c36TkLEDz1mZSNZYIjohVI1ryIEwfiuZX95kxp2nR+Y=;
-	h=From:To:CC:Subject:Date;
-	b=DojEr66UkhJubZ4BtUjJRU9p9EK4ZDU3It201Ani7lKMhxNkYDbWo1CrlghL5dS74
-	 hV2o+QtivfIV/d2c4/1SvXQp4QRFelvTaDRRrUhWcsg2FAHHeMkNPYgKKkXfwaW98w
-	 QrOn0ezBJT9/q7XwObI1GnDiHcXHh1YyavcgrrkE=
+	s=ti-com-17Q1; t=1742223736;
+	bh=W9NwfRiLebphY0wnLJJVM7y2VGqTaJcM3ZenZoiFwWw=;
+	h=From:To:Subject:Date;
+	b=UYoC7J9o/nLNGR0nKMZJXtXWMd1cmhLejUI3Rzqa8KeWgJKaY820N/QLGMeQQDFfG
+	 Yz1zgOjszj/XSh6S51oQeBnb1t0G+cZH5BI6obV5hNaIBd96qrpc30AFel09Uc/Zka
+	 c8JZtuCqpSCLnf8FDSLUjKDQks+hZZXuNjxtH9Ns=
 Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52H2EucA013412
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Sun, 16 Mar 2025 21:14:56 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52HF2GD3108414;
+	Mon, 17 Mar 2025 10:02:16 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE114.ent.ti.com
  (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 16
- Mar 2025 21:14:56 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 17
+ Mar 2025 10:02:16 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 16 Mar 2025 21:14:55 -0500
-Received: from udba0500997.dhcp.ti.com (udba0500997.dhcp.ti.com [128.247.81.249])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52H2EtYN025974;
-	Sun, 16 Mar 2025 21:14:55 -0500
-From: Brandon Brnich <b-brnich@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: Ryan Eatmon <reatmon@ti.com>, Brandon Brnich <b-brnich@ti.com>,
-        Darren
- Etheridge <detheridge@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>
-Subject: [meta-arago][master/scarthgap][PATCH] gstreamer1.0-plugins-good: Add Patch to Support Cropping for JPEG Encoder
-Date: Sun, 16 Mar 2025 21:14:55 -0500
-Message-ID: <20250317021455.576445-1-b-brnich@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Frontend Transport; Mon, 17 Mar 2025 10:02:15 -0500
+Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52HF2Fjn126074;
+	Mon, 17 Mar 2025 10:02:15 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1tuByp-0008Br-Ni; Mon, 17 Mar 2025 10:02:15 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][scarthgap][PATCH] libyang: Backport 3.7.8 from meta-openembedded master branch
+Date: Mon, 17 Mar 2025 10:02:15 -0500
+Message-ID: <20250317150215.31034-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 17 Mar 2025 02:15:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16053
+ <meta-arago@lists.yoctoproject.org>; Mon, 17 Mar 2025 15:02:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16054
 
-The E5010 JPEG Encoder found on TI's am62a has the ability to only
-encode a specific region using the V4L2 S_SELECTION IOCTL. This control
-allows a cropping rectangle to be set where anything outside that region
-will be ignored. Gstreamer did not have support for cropping.
+This is a backport of the libyang_3.7.8.bb recipe and related files from
+the meta-openembedded master branch without any changes. [1]
 
-This patch adds support at the gstreamer level by exposing a crop-bounds
-control for the v4l2jpegenc element and updating the format accordingly
-if a crop rectangle is being requested.
+In order to move to newer versions of the sysrepo recieps, this version
+of libyang is required.
 
-Only add this patch to the am62a build as this is the only SoC that
-contains this IP.
+[1] https://git.openembedded.org/meta-openembedded/commit/?id=d9b91513488916ef843d04377eb6841590ca047c
 
-Signed-off-by: Brandon Brnich <b-brnich@ti.com>
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
+ ...ntext-skip-test-case-test_searchdirs.patch | 29 ++++++++++++
+ .../sysrepo/libyang/run-ptest                 | 18 ++++++++
+ .../recipes-extended/sysrepo/libyang_3.7.8.bb | 45 +++++++++++++++++++
+ 3 files changed, 92 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-extended/sysrepo/libyang/0001-test_context-skip-test-case-test_searchdirs.patch
+ create mode 100644 meta-arago-extras/recipes-extended/sysrepo/libyang/run-ptest
+ create mode 100644 meta-arago-extras/recipes-extended/sysrepo/libyang_3.7.8.bb
 
-Some example pipelines used for validation:
-
-gst-launch-1.0 videotestsrc num-buffers=200 ! video/x-raw, width=640, height=480, format=NV12 ! v4l2jpegenc 'crop-bounds=<400,80,240,400>' ! filesink location=small.jpeg
-
-gst-launch-1.0 videotestsrc num-buffers=200 ! video/x-raw, width=640, height=480, format=NV12 ! v4l2jpegenc 'crop-bounds=<100,40,540,440>' ! filesink location=medium.jpeg
-
-gst-launch-1.0 videotestsrc num-buffers=200 ! video/x-raw, width=640, height=480, format=NV12 ! v4l2jpegenc 'crop-bounds=<0,0,540,440>' ! filesink location=top_corner.jpeg
-
- ...support-for-cropping-in-JPEG-Encoder.patch | 287 ++++++++++++++++++
- .../gstreamer1.0-plugins-good_1.22.%.bbappend |   4 +
- 2 files changed, 291 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2jpegenc-Add-support-for-cropping-in-JPEG-Encoder.patch
-
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2jpegenc-Add-support-for-cropping-in-JPEG-Encoder.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2jpegenc-Add-support-for-cropping-in-JPEG-Encoder.patch
+diff --git a/meta-arago-extras/recipes-extended/sysrepo/libyang/0001-test_context-skip-test-case-test_searchdirs.patch b/meta-arago-extras/recipes-extended/sysrepo/libyang/0001-test_context-skip-test-case-test_searchdirs.patch
 new file mode 100644
-index 00000000..c761314e
+index 00000000..3c6aee92
 --- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2jpegenc-Add-support-for-cropping-in-JPEG-Encoder.patch
-@@ -0,0 +1,287 @@
-+From c997f3ee027da932cd8626dd50e86b9085c56b23 Mon Sep 17 00:00:00 2001
-+From: Brandon Brnich <b-brnich@ti.com>
-+Date: Mon, 10 Mar 2025 15:25:51 +0000
-+Subject: [PATCH] v4l2jpegenc: Add support for cropping in JPEG Encoder
++++ b/meta-arago-extras/recipes-extended/sysrepo/libyang/0001-test_context-skip-test-case-test_searchdirs.patch
+@@ -0,0 +1,29 @@
++From 5de24e1b39c09adb0c5bf4bb4228bd1bb935542a Mon Sep 17 00:00:00 2001
++From: Yi Zhao <yi.zhao@windriver.com>
++Date: Wed, 22 Mar 2023 16:03:56 +0800
++Subject: [PATCH] test_context: skip test case test_searchdirs
 +
-+V4L2 exposes control that allows users to set a cropping rectangle. This
-+rectangle can be used to encode a specific region of interest.
++Skip test case test_searchdirs as it searchs the source code directory.
 +
-+Add property to v4l2jpegenc to customize the region and update
-+set_format function accordingly.
++Upstream-Status: Inappropriate [embedded specific]
 +
-+Upstream-Status: Pending
-+
-+Signed-off-by: Brandon Brnich <b-brnich@ti.com>
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 +---
-+ sys/v4l2/gstv4l2jpegenc.c                 | 204 +++++++++++++++++-
-+ sys/v4l2/gstv4l2jpegenc.h                 |   4 +
-+ 2 files changed, 206 insertions(+), 2 deletions(-)
++ tests/utests/basic/test_context.c | 1 -
++ 1 file changed, 1 deletion(-)
 +
-+diff --git a/sys/v4l2/gstv4l2jpegenc.c b/sys/v4l2/gstv4l2jpegenc.c
-+index eee7a67da5..43f76ec9f3 100644
-+--- a/sys/v4l2/gstv4l2jpegenc.c
-++++ b/sys/v4l2/gstv4l2jpegenc.c
-+@@ -46,24 +46,210 @@ enum
++diff --git a/tests/utests/basic/test_context.c b/tests/utests/basic/test_context.c
++index cfba1d30f..8c3bb7ad6 100644
++--- a/tests/utests/basic/test_context.c
+++++ b/tests/utests/basic/test_context.c
++@@ -1061,7 +1061,6 @@ int
++ main(void)
 + {
-+   PROP_0,
-+   V4L2_STD_OBJECT_PROPS,
-++  PROP_CROP_BOUNDS,
-++  PROP_LAST
-+   /* TODO */
-+ };
++     const struct CMUnitTest tests[] = {
++-        UTEST(test_searchdirs),
++         UTEST(test_options),
++         UTEST(test_models),
++         UTEST(test_imports),
++-- 
++2.25.1
 +
-+ #define gst_v4l2_jpeg_enc_parent_class parent_class
-+ G_DEFINE_TYPE (GstV4l2JPEGEnc, gst_v4l2_jpeg_enc, GST_TYPE_V4L2_VIDEO_ENC);
+diff --git a/meta-arago-extras/recipes-extended/sysrepo/libyang/run-ptest b/meta-arago-extras/recipes-extended/sysrepo/libyang/run-ptest
+new file mode 100644
+index 00000000..c507afb2
+--- /dev/null
++++ b/meta-arago-extras/recipes-extended/sysrepo/libyang/run-ptest
+@@ -0,0 +1,18 @@
++#!/bin/sh
 +
-++static void
-++gst_v4l2_jpeg_enc_set_rect_value (GValue * value, struct v4l2_rect *rect)
-++{
-++  GValue val = { 0 };
-++
-++  g_value_init (&val, G_TYPE_INT);
-++  g_value_reset (value);
-++
-++  g_value_set_int (&val, rect->left);
-++  gst_value_array_append_value (value, &val);
-++
-++  g_value_set_int (&val, rect->top);
-++  gst_value_array_append_value (value, &val);
-++
-++  g_value_set_int (&val, rect->width);
-++  gst_value_array_append_value (value, &val);
-++
-++  g_value_set_int (&val, rect->height);
-++  gst_value_array_append_value (value, &val);
-++
-++  g_value_unset (&val);
-++}
-++
-+ static void
-+ gst_v4l2_jpeg_enc_set_property (GObject * object,
-+     guint prop_id, const GValue * value, GParamSpec * pspec)
-+ {
-+-  /* TODO */
-++  GstV4l2JPEGEnc *v4l2jpegenc = GST_V4L2_JPEG_ENC (object);
-++
-++  if (!gst_v4l2_object_set_property_helper (v4l2jpegenc->parent.v4l2output,
-++          prop_id, value, pspec)) {
-++    switch (prop_id) {
-++      case PROP_CROP_BOUNDS:
-++        v4l2jpegenc->crop_bounds.left = g_value_get_int (gst_value_array_get_value (value, 0));
-++        v4l2jpegenc->crop_bounds.top = g_value_get_int (gst_value_array_get_value (value, 1));
-++        v4l2jpegenc->crop_bounds.width = g_value_get_int (gst_value_array_get_value (value, 2));
-++        v4l2jpegenc->crop_bounds.height = g_value_get_int (gst_value_array_get_value (value, 3));
-++        v4l2jpegenc->apply_crop_settings = TRUE;
-++        break;
-++      default:
-++        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-++        break;
-++    }
-++  }
-+ }
++# cd into right directory
++ptestdir=$(dirname "$(readlink -f "$0")")
++cd "$ptestdir"/tests || exit
 +
-+ static void
-+ gst_v4l2_jpeg_enc_get_property (GObject * object,
-+     guint prop_id, GValue * value, GParamSpec * pspec)
-+ {
-+-  /* TODO */
-++  GstV4l2JPEGEnc *v4l2jpegenc = GST_V4L2_JPEG_ENC (object);
-++  guint i = 0;
-++
-++  if (!gst_v4l2_object_get_property_helper (v4l2jpegenc->parent.v4l2output,
-++          prop_id, value, pspec)) {
-++    switch (prop_id) {
-++      case PROP_CROP_BOUNDS:
-++        gst_v4l2_jpeg_enc_set_rect_value (value, &v4l2jpegenc->crop_bounds);
-++        for (i = 0; i < gst_value_array_get_size (value); i++) {
-++          GST_DEBUG_OBJECT(object, "entry %i is %i", i, gst_value_array_get_value (value, i));
-++        }
-++        break;
-++      default:
-++        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-++        break;
-++    }
-++  }
-++
-++}
-++
-++static gboolean
-++gst_v4l2_encoder_cmd (GstV4l2Object * v4l2object, guint cmd, guint flags)
-++{
-++  struct v4l2_encoder_cmd ecmd = { 0, };
-++
-++  GST_DEBUG_OBJECT (v4l2object->element,
-++      "sending v4l2 encoder command %u with flags %u", cmd, flags);
-++
-++  if (!GST_V4L2_IS_OPEN (v4l2object))
-++    return FALSE;
-++
-++  ecmd.cmd = cmd;
-++  ecmd.flags = flags;
-++  if (v4l2object->ioctl (v4l2object->video_fd, VIDIOC_ENCODER_CMD, &ecmd) < 0)
-++    goto ecmd_failed;
-++
-++  return TRUE;
-++
-++ecmd_failed:
-++  if (errno == ENOTTY) {
-++    GST_INFO_OBJECT (v4l2object->element,
-++        "Failed to send encoder command %u with flags %u for '%s'. (%s)",
-++        cmd, flags, v4l2object->videodev, g_strerror (errno));
-++  } else {
-++    GST_ERROR_OBJECT (v4l2object->element,
-++        "Failed to send encoder command %u with flags %u for '%s'. (%s)",
-++        cmd, flags, v4l2object->videodev, g_strerror (errno));
-++  }
-++  return FALSE;
-++}
-++
-++static GstFlowReturn
-++gst_v4l2_video_enc_finish (GstVideoEncoder * encoder)
-++{
-++  GstV4l2VideoEnc *self = GST_V4L2_VIDEO_ENC (encoder);
-++  GstFlowReturn ret = GST_FLOW_OK;
-++
-++  if (gst_pad_get_task_state (encoder->srcpad) != GST_TASK_STARTED)
-++    goto done;
-++
-++  GST_DEBUG_OBJECT (self, "Finishing encoding");
-++
-++  /* drop the stream lock while draining, so remaining buffers can be
-++   * pushed from the src pad task thread */
-++  GST_VIDEO_ENCODER_STREAM_UNLOCK (encoder);
-++
-++  if (gst_v4l2_encoder_cmd (self->v4l2capture, V4L2_ENC_CMD_STOP, 0)) {
-++    GstTask *task = encoder->srcpad->task;
-++
-++    /* Wait for the task to be drained */
-++    GST_DEBUG_OBJECT (self, "Waiting for encoder stop");
-++    GST_OBJECT_LOCK (task);
-++    while (GST_TASK_STATE (task) == GST_TASK_STARTED)
-++      GST_TASK_WAIT (task);
-++    GST_OBJECT_UNLOCK (task);
-++    ret = GST_FLOW_FLUSHING;
-++  }
-++
-++  /* and ensure the processing thread has stopped in case another error
-++   * occurred. */
-++  gst_v4l2_object_unlock (self->v4l2capture);
-++  gst_pad_stop_task (encoder->srcpad);
-++  GST_VIDEO_ENCODER_STREAM_LOCK (encoder);
-++
-++  if (ret == GST_FLOW_FLUSHING)
-++    ret = self->output_flow;
-++
-++  GST_DEBUG_OBJECT (encoder, "Done draining buffers");
-++
-++done:
-++  return ret;
-++}
-++
-++static gboolean
-++gst_v4l2_video_jpeg_set_format (GstVideoEncoder * encoder,
-++    GstVideoCodecState * state)
-++{
-++  gboolean ret = TRUE;
-++  GstV4l2VideoEnc *self = GST_V4L2_VIDEO_ENC (encoder);
-++  GstV4l2JPEGEnc *v4l2jpegenc = GST_V4L2_JPEG_ENC (encoder);
-++  GstV4l2Error error = GST_V4L2_ERROR_INIT;
-++  GstCaps *outcaps;
-++  GstVideoCodecState *output;
-++
-++  GST_DEBUG_OBJECT (self, "Setting format: %" GST_PTR_FORMAT, state->caps);
-++
-++  if (self->input_state) {
-++    if (gst_v4l2_object_caps_equal (self->v4l2output, state->caps)) {
-++      GST_DEBUG_OBJECT (self, "Compatible caps");
-++      return TRUE;
-++    }
-++
-++    if (gst_v4l2_video_enc_finish (encoder) != GST_FLOW_OK)
-++      return FALSE;
-++
-++    gst_v4l2_object_stop (self->v4l2output);
-++    gst_v4l2_object_stop (self->v4l2capture);
-++
-++    gst_video_codec_state_unref (self->input_state);
-++    self->input_state = NULL;
-++  }
-++
-++  outcaps = gst_pad_get_pad_template_caps (encoder->srcpad);
-++  outcaps = gst_caps_make_writable (outcaps);
-++  output = gst_video_encoder_set_output_state (encoder, outcaps, state);
-++  gst_video_codec_state_unref (output);
-++
-++  if (!gst_video_encoder_negotiate (encoder))
-++    return FALSE;
-++
-++  if (!gst_v4l2_object_set_format (self->v4l2output, state->caps, &error)) {
-++    gst_v4l2_error (self, &error);
-++    return FALSE;
-++  }
-++
-++  /* best effort */
-++  if (v4l2jpegenc->apply_crop_settings)
-++    gst_v4l2_object_set_crop (self->v4l2output, &v4l2jpegenc->crop_bounds);
-++  else
-++    gst_v4l2_object_setup_padding (self->v4l2output);
-++
-++  self->input_state = gst_video_codec_state_ref (state);
-++
-++  GST_DEBUG_OBJECT (self, "output caps: %" GST_PTR_FORMAT, state->caps);
-++
-++  return ret;
-+ }
++tests=$(find * -type f -name 'utest_*')
 +
-+ static void
-+@@ -77,12 +263,14 @@ gst_v4l2_jpeg_enc_class_init (GstV4l2JPEGEncClass * klass)
-+   GstElementClass *element_class;
-+   GObjectClass *gobject_class;
-+   GstV4l2VideoEncClass *baseclass;
-++  GstVideoEncoderClass *video_encoder_class;
++for f in $tests
++do
++    if test -x ./"$f"; then
++        if ./"$f" > ./"$f".out 2> ./"$f".err; then
++            echo "PASS: $f"
++        else
++            echo "FAIL: $f"
++        fi
++    fi
++done
+diff --git a/meta-arago-extras/recipes-extended/sysrepo/libyang_3.7.8.bb b/meta-arago-extras/recipes-extended/sysrepo/libyang_3.7.8.bb
+new file mode 100644
+index 00000000..3bea9bc2
+--- /dev/null
++++ b/meta-arago-extras/recipes-extended/sysrepo/libyang_3.7.8.bb
+@@ -0,0 +1,45 @@
++SUMMARY = "YANG data modeling language library"
++DESCRIPTION = "libyang is a YANG data modelling language parser and toolkit written (and providing API) in C."
++HOMEPAGE = "https://github.com/CESNET/libyang"
++SECTION = "libs"
++LICENSE = "BSD-3-Clause"
 +
-+   parent_class = g_type_class_peek_parent (klass);
++LIC_FILES_CHKSUM = "file://LICENSE;md5=9bb3d334294e8719f41c531e28a9a697"
 +
-+   element_class = (GstElementClass *) klass;
-+   gobject_class = (GObjectClass *) klass;
-+   baseclass = (GstV4l2VideoEncClass *) (klass);
-++  video_encoder_class = (GstVideoEncoderClass *) klass;
++SRCREV = "03e294d83b610f89e8ba7b2156a80dc0ad534443"
 +
-+   GST_DEBUG_CATEGORY_INIT (gst_v4l2_jpeg_enc_debug, "v4l2jpegenc", 0,
-+       "V4L2 JPEG Encoder");
-+@@ -99,6 +287,18 @@ gst_v4l2_jpeg_enc_class_init (GstV4l2JPEGEncClass * klass)
-+       GST_DEBUG_FUNCPTR (gst_v4l2_jpeg_enc_get_property);
++SRC_URI = "git://github.com/CESNET/libyang.git;branch=master;protocol=https \
++           file://0001-test_context-skip-test-case-test_searchdirs.patch \
++           file://run-ptest \
++           "
 +
-+   baseclass->codec_name = "JPEG";
-++  video_encoder_class->set_format =
-++      GST_DEBUG_FUNCPTR (gst_v4l2_video_jpeg_set_format);
-++
-++  g_object_class_install_property (gobject_class, PROP_CROP_BOUNDS,
-++      gst_param_spec_array ("crop-bounds", "Crop bounds",
-++          "The bounding region for crop rectangles ('<x, y, width, height>').",
-++          g_param_spec_int ("rect-value", "Rectangle Value",
-++              "One of x, y, width or height value.", G_MININT, G_MAXINT, -1,
-++              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS),
-++          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
-++
-++
-+ }
++S = "${WORKDIR}/git"
 +
-+ /* Probing functions */
-+diff --git a/sys/v4l2/gstv4l2jpegenc.h b/sys/v4l2/gstv4l2jpegenc.h
-+index 8b6d0b7a64..59cad21e08 100644
-+--- a/sys/v4l2/gstv4l2jpegenc.h
-++++ b/sys/v4l2/gstv4l2jpegenc.h
-+@@ -42,6 +42,10 @@ typedef struct _GstV4l2JPEGEncClass GstV4l2JPEGEncClass;
-+ struct _GstV4l2JPEGEnc
-+ {
-+   GstV4l2VideoEnc parent;
-++
-++  struct v4l2_rect crop_bounds;
-++  gboolean apply_crop_settings;
-++
-+ };
++# Main dependencies
++inherit cmake pkgconfig lib_package ptest multilib_header
++DEPENDS = "libpcre2"
++DEPENDS += "${@bb.utils.contains('PTEST_ENABLED', '1', 'cmocka', '', d)}"
 +
-+ struct _GstV4l2JPEGEncClass
-+--
-+2.34.1
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.22.%.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.22.%.bbappend
-index 6eddc74f..702f537a 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.22.%.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.22.%.bbappend
-@@ -8,4 +8,8 @@ SRC_URI:append = " \
-     file://0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch \
- "
- 
-+SRC_URI:append:am62axx-evm = " \
-+    file://0001-v4l2jpegenc-Add-support-for-cropping-in-JPEG-Encoder.patch \
-+"
++EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release"
++EXTRA_OECMAKE += " ${@bb.utils.contains('PTEST_ENABLED', '1', '-DENABLE_TESTS=ON -DENABLE_VALGRIND_TESTS=OFF', '', d)}"
 +
- PR:append = ".arago0"
++do_compile:prepend () {
++    if [ ${PTEST_ENABLED} = "1" ]; then
++        sed -i -e 's|${S}|${PTEST_PATH}|g' ${B}/tests/tests_config.h
++        sed -i -e 's|${B}|${PTEST_PATH}|g' ${B}/tests/tests_config.h
++    fi
++}
++
++do_install:append () {
++        oe_multilib_header  libyang/ly_config.h
++}
++
++do_install_ptest () {
++    install -d ${D}${PTEST_PATH}/tests
++    cp -f ${B}/tests/utest_* ${D}${PTEST_PATH}/tests/
++    cp -fR ${S}/tests/modules ${D}${PTEST_PATH}/tests/
++    install -d ${D}${PTEST_PATH}/tests/plugins
++    cp -f ${B}/tests/plugins/plugin_*.so ${D}${PTEST_PATH}/tests/plugins/
++}
++
++FILES:${PN} += "${datadir}/yang/*"
 -- 
-2.34.1
+2.17.1
 
 
