@@ -1,229 +1,87 @@
-Return-Path: <denis@denix.org>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 132C0C282EC
-	for <webhook@archiver.kernel.org>; Tue, 18 Mar 2025 16:33:46 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.1321.1742315621281303938
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 99A0AC282EC
+	for <webhook@archiver.kernel.org>; Tue, 18 Mar 2025 18:26:15 +0000 (UTC)
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+ by mx.groups.io with SMTP id smtpd.web11.2548.1742322374793353336
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 18 Mar 2025 09:33:41 -0700
+ Tue, 18 Mar 2025 11:26:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8D46340C50;
-	Tue, 18 Mar 2025 16:33:40 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id RoLFGfnXLCiT; Tue, 18 Mar 2025 16:33:40 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4024840A20;
-	Tue, 18 Mar 2025 16:33:34 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id F2C1916438E; Tue, 18 Mar 2025 12:33:33 -0400 (EDT)
-Date: Tue, 18 Mar 2025 12:33:33 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: rs@ti.com
-Cc: reatmon@ti.com, denys@konsulko.com, meta-arago@lists.yoctoproject.org,
-	afd@ti.com, detheridge@ti.com, vijayp@ti.com
-Subject: Re: [meta-arago][scarthgap][PATCH 1/2] emptty: add version 0.13.0
-Message-ID: <20250318163333.GK23729@denix.org>
-References: <20250312232628.1260171-2-rs@ti.com>
- <20250312232628.1260171-3-rs@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=nTi1KjPX;
+ spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52IIQDNJ2705277
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 18 Mar 2025 13:26:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1742322373;
+	bh=kd1mo1YzsSXjZKoM0+YHqk6WuTrN6RBe2AGFTk5GdDc=;
+	h=From:To:Subject:Date;
+	b=nTi1KjPXkRTx7f9stt7CYTYFLlgF1cIWMGre6oL15amqRTVLByo2GR/acy5hJftjY
+	 iWfj47ePuJNX2l+jpPghbSvT9fFdF1R6ECDLIYoQEMF4N3J+WOzPvCVibh4mxYiV79
+	 wANVBwAtv5eHdXkeszNK6t0ZLV09xYVhCKHB0eAs=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52IIQDtl019587
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 18 Mar 2025 13:26:13 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 18
+ Mar 2025 13:26:13 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 18 Mar 2025 13:26:13 -0500
+Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52IIQDvw118057;
+	Tue, 18 Mar 2025 13:26:13 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1tubdk-0002r2-ST; Tue, 18 Mar 2025 13:26:12 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master/scarthgap][PATCH] nw-configurator: Do not inherit autotools
+Date: Tue, 18 Mar 2025 13:26:12 -0500
+Message-ID: <20250318182612.10499-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250312232628.1260171-3-rs@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 18 Mar 2025 16:33:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16085
+ <meta-arago@lists.yoctoproject.org>; Tue, 18 Mar 2025 18:26:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16086
 
-On Wed, Mar 12, 2025 at 06:26:28PM -0500, Randolph Sapp via lists.yoctoproject.org wrote:
-> From: Randolph Sapp <rs@ti.com>
-> 
-> Add emptty, a "Dead simple CLI Display Manager on TTY". This is a
-> relatively lightweight display manager that supports x11 as well as
-> wayland though both a CLI and automatic login mechanism.
-> 
-> This can effetely replace the custom init scripts for both x11
-> (xserver-nodm-init) and wayland (weston-init) with a single tool with
-> more verbose logging capabilities.
-> 
-> This also addresses the current issue of with weston occasionally
-> starting before all the required devices are registered with the drm
-> subsystem.
-> 
-> Signed-off-by: Randolph Sapp <rs@ti.com>
-> ---
->  .../recipes-graphics/emptty/emptty/init       | 26 +++++++
->  .../recipes-graphics/emptty/emptty/pamconf    | 10 +++
->  .../recipes-graphics/emptty/emptty_0.13.0.bb  | 78 +++++++++++++++++++
->  3 files changed, 114 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty/init
->  create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
->  create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty_0.13.0.bb
-> 
-> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty/init b/meta-arago-distro/recipes-graphics/emptty/emptty/init
-> new file mode 100644
-> index 00000000..52493142
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty/init
-> @@ -0,0 +1,26 @@
-> +#!/bin/sh
-> +
-> +PIDFILE=/var/run/emptty.pid
-> +
-> +# source function library
-> +. /etc/init.d/functions
-> +
-> +case "$1" in
-> +	start)
-> +		echo "Starting display manager: emptty"
-> +		start-stop-daemon -S -p $PIDFILE -x /usr/bin/emptty
-> +		;;
-> +	stop)
-> +		echo "Stopping display manager: emptty"
-> +		start-stop-daemon -S -p $PIDFILE -x /usr/bin/emptty
-> +		;;
-> +	restart)
-> +		start-stop-daemon -K -p $PIDFILE --oknodo -x /usr/bin/emptty
-> +		sleep 2
-> +		start-stop-daemon -S -p $PIDFILE -x /usr/bin/emptty
-> +		;;
-> +	*)
-> +		echo "usage: $0 { start | stop | restart }"
-> +		;;
-> +esac
-> +
-> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf b/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
-> new file mode 100644
-> index 00000000..9cbfd6c4
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
-> @@ -0,0 +1,10 @@
-> +#%PAM-1.0
-> +auth            sufficient      pam_succeed_if.so user ingroup nopasswdlogin
-> +auth            include         common-auth
-> +-auth           optional        pam_gnome_keyring.so
-> +-auth           optional        pam_kwallet5.so
-> +account         include         common-account
-> +session         include         common-session
-> +-session        optional        pam_gnome_keyring.so auto_start
-> +-session        optional        pam_kwallet5.so auto_start force_run
-> +password        include         common-password
-> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty_0.13.0.bb b/meta-arago-distro/recipes-graphics/emptty/emptty_0.13.0.bb
-> new file mode 100644
-> index 00000000..7129426d
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty_0.13.0.bb
-> @@ -0,0 +1,78 @@
-> +SUMMARY = "Dead simple CLI Display Manager on TTY"
-> +HOMEPAGE = "https://github.com/tvrzna/emptty"
-> +LICENSE = "MIT"
-> +LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=d1e4d12c7d1d17367ba5668706a405ba"
-> +
-> +GO_IMPORT = "github.com/tvrzna/emptty"
-> +GO_IMPORT_pam = "github.com/msteinert/pam"
-> +SRC_URI = "\
-> +    git://${GO_IMPORT}.git;protocol=https;branch=master \
-> +    git://${GO_IMPORT_pam}.git;protocol=https;branch=master;name=pam;destsuffix=${S}/src/${GO_IMPORT_pam} \
-> +    file://pamconf \
-> +    "
-> +SRCREV = "4046552b6f5cc1cf76ce8bf333e04e16c59febca"
-> +SRCREV_pam = "50ded1b0e7864b9bf75005eb945a8ec826bcf69d"
-> +
-> +SRCREV_FORMAT .= "_pam"
-> 
-> +PACKAGES:append = " ${PN}-conf"
+This recipe does not use autotools at all and it is now an error to
+inherit autotools and not have a configure script. [1]
 
-Better use += here.
+[1] https://git.openembedded.org/openembedded-core/commit/?id=6d327a39befae44a88a812bdf4acde800dcee57b
 
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ meta-arago-extras/recipes-extended/sysrepo/nw-configurator.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pam x11', d)}"
-> +PACKAGECONFIG[pam] = ",,libpam"
-> +PACKAGECONFIG[x11] = ",,virtual/libx11"
-> +
-> +GO_TAGS = ""
-> +GO_TAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'pam', '', ',nopam', d)}"
-> +GO_TAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', ',noxlib', d)}"
-> +
-> +GOBUILDFLAGS:append = " -tags=${GO_TAGS}"
-> +
-> +export GO111MODULE="off"
-> +
-> +inherit go systemd
-> +
-> +DEPENDS:append = " gzip"
-
-Better use += here. Also, you probably want gzip-native instead.
-
-
-> +do_install () {
-> +    # general collateral
-> +    install -Dm755 ${B}/${GO_BUILD_BINDIR}/emptty ${D}${bindir}/emptty
-> +    oe_runmake -C ${S}/src/${GO_IMPORT} DESTDIR=${D} install-config
-> +    install -d ${D}${mandir}/man1
-> +    gzip -cn ${S}/src/${GO_IMPORT}/res/emptty.1 > ${D}${mandir}/man1/emptty.1.gz
-> +
-> +    # pam config
-> +    if "${@bb.utils.contains('PACKAGECONFIG','pam','true','false',d)}"
-> +    then
-> +        install -Dm644 ${WORKDIR}/pamconf ${D}${sysconfdir}/pam.d/emptty
-> +    fi
-> +
-> +    # init services
-> +    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}
-> +    then
-> +        oe_runmake -C ${S}/src/${GO_IMPORT} DESTDIR=${D} install-systemd
-> +    else
-> +        install -Dm755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/emptty
-> +    fi
-> +}
-> +
-> +FILES:${PN} = "\
-> +    ${systemd_system_unitdir}/emptty.service \
-> +    ${sysconfdir}/init.d/emptty \
-> +    ${bindir}/emptty \
-> +    ${mandir}/man1/emptty.1.gz \
-> +    ${sysconfdir}/pam.d/emptty \
-> +"
-> +
-> +FILES:${PN}-conf:append = " ${sysconfdir}/emptty/conf"
-
-Better use += here.
-
-
-> +CONFFILES:${PN}-conf:append = " ${sysconfdir}/emptty/conf"
-
-Same
-
-
-> +RPROVIDES:${PN}-conf:append = " virtual-emptty-conf"
-
-Same
-
-
-> +RDEPENDS:${PN}:append = " virtual-emptty-conf pam-plugin-succeed-if"
-
-Same
-
-
-> +SYSTEMD_SERVICE:${PN} = "emptty.service"
-> +
-> +INITSCRIPT_NAME = "emptty"
-> +INITSCRIPT_PARAMS = "start 9 5 2 . stop 20 0 1 6 ."
-> +INHIBIT_UPDATERCD_BBCLASS = "${@oe.utils.conditional('VIRTUAL-RUNTIME_init_manager', 'systemd', '1', '', d)}"
-> +
-> +inherit update-rc.d systemd
-
-systemd is inherited twice - better have inherit lines together to avoid 
-issues like that.
-
+diff --git a/meta-arago-extras/recipes-extended/sysrepo/nw-configurator.bb b/meta-arago-extras/recipes-extended/sysrepo/nw-configurator.bb
+index 50debb36..5f9d53e7 100644
+--- a/meta-arago-extras/recipes-extended/sysrepo/nw-configurator.bb
++++ b/meta-arago-extras/recipes-extended/sysrepo/nw-configurator.bb
+@@ -10,7 +10,7 @@ UNPACKDIR = "${S}"
+ 
+ DEPENDS = "sysrepo"
+ 
+-inherit autotools pkgconfig
++inherit pkgconfig
+ 
+ do_compile() {
+ 	${CC} ${CFLAGS} ${LDFLAGS} -I=${STAGING_INCDIR} ${S}/nw-configurator.c -o nw-configurator -lsysrepo
 -- 
-Denys
+2.17.1
+
 
