@@ -2,47 +2,53 @@ Return-Path: <a-christidis@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5BE59C282EC
-	for <webhook@archiver.kernel.org>; Tue, 18 Mar 2025 02:42:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 594FBC282EC
+	for <webhook@archiver.kernel.org>; Tue, 18 Mar 2025 15:12:42 +0000 (UTC)
 Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web11.2897.1742265756369787682
+ by mx.groups.io with SMTP id smtpd.web11.363.1742310757920618826
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 17 Mar 2025 19:42:36 -0700
+ Tue, 18 Mar 2025 08:12:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=gypPQ0yr;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=wjfugW9g;
  spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: a-christidis@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52I2gZgD2478787
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52IFCbse2623773
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
-	for <meta-arago@lists.yoctoproject.org>; Mon, 17 Mar 2025 21:42:35 -0500
+	for <meta-arago@lists.yoctoproject.org>; Tue, 18 Mar 2025 10:12:37 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1742265755;
-	bh=428gb4dfuvxjB1PtStygXGL3/wB4VCpjbIZ2n7gLndc=;
-	h=From:To:Subject:Date;
-	b=gypPQ0yrosunOtf7GgpcYfe1+74pUiRTwDnCyzwgOGK9LiWkqXvFErRw5tViL7Iee
-	 ryUE6dNQqAfAM92ZDSrIqfd/SphfvylLfyihg8Lhb4QhIqdiv0CPoWG4ckT/sxDxwf
-	 58bwoGrBxiEnlRRsgO+pISfg/CWZVrS9Hf6DuWlQ=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52I2gZpQ088743
+	s=ti-com-17Q1; t=1742310757;
+	bh=aN+i2j/hEvq+daiwEkfi12oLuO0IuX50Kx0shZTKHmY=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=wjfugW9gq986H4CTtMSyzo3Sx3Pyp3yjhNTUEHqn5QiK620UhWXBL+A0rLPj6uPwG
+	 Bpl0F96lzW2k99JUA7ztq13p+h77zqyhSHqelF2Nr/uIPCdiR46cwie96IFtTVtmz5
+	 9pDM0xePwpv122pphiZss05kpPgImB/GZPWHuvh0=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52IFCbHb024668
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Mon, 17 Mar 2025 21:42:35 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 17
- Mar 2025 21:42:35 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Tue, 18 Mar 2025 10:12:37 -0500
+Received: from lewvowa02.ent.ti.com (10.180.75.80) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 18
+ Mar 2025 10:12:37 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by lewvowa02.ent.ti.com
+ (10.180.75.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2507.34; Tue, 18 Mar
+ 2025 10:12:36 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 17 Mar 2025 21:42:35 -0500
+ Frontend Transport; Tue, 18 Mar 2025 10:12:36 -0500
 Received: from antonios-ThinkStation-P3-Tower.dhcp.ti.com (antonios-thinkstation-p3-tower.dhcp.ti.com [128.247.81.112])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52I2gZ3i018267
-	for <meta-arago@lists.yoctoproject.org>; Mon, 17 Mar 2025 21:42:35 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52IFCa2Y096063
+	for <meta-arago@lists.yoctoproject.org>; Tue, 18 Mar 2025 10:12:36 -0500
 From: <a-christidis@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap/master][PATCH] ti-gc320-tests: Update SRCREV for recipe
-Date: Mon, 17 Mar 2025 21:42:35 -0500
-Message-ID: <20250318024235.3581162-1-a-christidis@ti.com>
+Subject: [meta-arago][scarthgap/master][PATCH 2/2] meta-arago-distro: add opencl headers to arago toolchain sdk recipe
+Date: Tue, 18 Mar 2025 10:12:36 -0500
+Message-ID: <20250318151236.561373-3-a-christidis@ti.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250318151236.561373-1-a-christidis@ti.com>
+References: <20250318151236.561373-1-a-christidis@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -50,39 +56,30 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 18 Mar 2025 02:42:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16081
+ <meta-arago@lists.yoctoproject.org>; Tue, 18 Mar 2025 15:12:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16083
 
 From: Antonios Christidis <a-christidis@ti.com>
 
-Include a new SRCREV for the recipe to build from. This is not a new version of
-the tests repo, instead the new commit sha includes cross compilation errors
-fixes.
+Add the newly created packagegroup-arago-opencl-sdk-target within the
+arago toolchain sdk target recipe.
 
 Signed-off-by: Antonios Christidis <a-christidis@ti.com>
 ---
- .../ti-gc320-tests/ti-gc320-tests_5.0.11.p7.bb                | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroups/packagegroup-arago-toolchain-tisdk-target.bb   | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-extras/recipes-graphics/ti-gc320-tests/ti-gc320-tests_5.0.11.p7.bb b/meta-arago-extras/recipes-graphics/ti-gc320-tests/ti-gc320-tests_5.0.11.p7.bb
-index f9b9685f..02605d98 100644
---- a/meta-arago-extras/recipes-graphics/ti-gc320-tests/ti-gc320-tests_5.0.11.p7.bb
-+++ b/meta-arago-extras/recipes-graphics/ti-gc320-tests/ti-gc320-tests_5.0.11.p7.bb
-@@ -5,12 +5,12 @@ LIC_FILES_CHKSUM = "file://dra7x-sdk-ti-gc320-tests_manifest.html;md5=22a0018554
- 
- DEPENDS = "ti-gc320-libs"
- 
--BRANCH = "ti-${PV}"
-+BRANCH = "ti-${PV}-scarthgap"
- 
- SRC_URI = "git://git.ti.com/git/graphics/ti-gc320-test.git;protocol=https;branch=${BRANCH} \
- file://0001-makefile.linux.def-relax-assignment-of-CC-and-other-.patch \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
+index fc0a0241..5b1b4964 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
+@@ -22,5 +22,6 @@ RDEPENDS:${PN} = "\
+     ${TISDK_TOOLCHAIN_BASE_TARGET} \
+     ${TISDK_TOOLCHAIN_EXTRA_TARGET} \
+     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-graphics-sdk-target','',d)} \
++    ${@bb.utils.contains('DISTRO_FEATURES','opencl','packagegroup-arago-opencl-sdk-target','',d)} \
+     packagegroup-arago-tisdk-addons-sdk-target \
  "
--SRCREV = "53207f8e360a3336276b62066a1d8a9e923de17e"
-+SRCREV = "3c334f2004c718c9bb4321213c362e65c491efe6"
- PR = "r2"
- 
- S = "${WORKDIR}/git"
 -- 
 2.34.1
 
