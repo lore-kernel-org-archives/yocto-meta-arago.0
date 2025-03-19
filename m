@@ -2,45 +2,46 @@ Return-Path: <a-christidis@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 83975C36001
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 81016C36000
 	for <webhook@archiver.kernel.org>; Wed, 19 Mar 2025 21:27:40 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web10.6847.1742419650513354590
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+ by mx.groups.io with SMTP id smtpd.web10.6848.1742419650519333496
  for <meta-arago@lists.yoctoproject.org>;
  Wed, 19 Mar 2025 14:27:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=k4VgmsO4;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: a-christidis@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52JLRTQR3030094
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=AWtJq2/b;
+ spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: a-christidis@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52JLRTJD441090
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
 	for <meta-arago@lists.yoctoproject.org>; Wed, 19 Mar 2025 16:27:30 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1742419650;
-	bh=hRP2VoI/uHCfVb78Pq1vsYoBpG0IJzKSYbbwehNQqS8=;
+	bh=FktWNCs9vnZ8UDNk2jvWq1wcVIPSF39FYoLHrLGhxvg=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=k4VgmsO4+/rQqr/x0wWnj61nQcqn+9fqUJuIZqfNql9c7A3bV5C/rOfeK1UdLsjmt
-	 zOyn/Ul6cGVavkeJBvMZ7Z5QayNXBOpDWpW8OeBYruIlZrAbSET9EkD3R+tNkcXAEG
-	 IEB0eL0m9UD7dQq2Elb/bnKKUieidQLoEe3eXINg=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52JLRTfk094194
+	b=AWtJq2/bl7F1bEeK1YTvOR5hJLnArW7huA982Vkrt7mJ7SvFOzlkR0hmdfcvRrm00
+	 k3cFUnBSHKWgvI967o+0vww6Nn0O6LhroVylGQ0RrZnYZiUpSTdyeTqPx+gWkid54X
+	 ZH/H5u3YdmXjGG7/7/D5zhBlUEm2i/a7saIIdcds=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52JLRTCn092815
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@lists.yoctoproject.org>; Wed, 19 Mar 2025 16:27:29 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 19
  Mar 2025 16:27:29 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Wed, 19 Mar 2025 16:27:29 -0500
 Received: from antonios-ThinkStation-P3-Tower.dhcp.ti.com (antonios-thinkstation-p3-tower.dhcp.ti.com [128.247.81.112])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52JLRT1v026491;
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52JLRT1w026491;
 	Wed, 19 Mar 2025 16:27:29 -0500
 From: <a-christidis@ti.com>
 To: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>
-Subject: [meta-ti][scarthgap/master][PATCH v6 1/3] recipe-graphics: port gc320 driver to work on kernel 6.12
-Date: Wed, 19 Mar 2025 16:27:27 -0500
-Message-ID: <20250319212729.336516-2-a-christidis@ti.com>
+Subject: [meta-ti][scarthgap/master][PATCH v6 2/3] conf: machine: am57xx-evm: Enable gc320 machine feature for am57xx
+Date: Wed, 19 Mar 2025 16:27:28 -0500
+Message-ID: <20250319212729.336516-3-a-christidis@ti.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250319212729.336516-1-a-christidis@ti.com>
 References: <20250319212729.336516-1-a-christidis@ti.com>
@@ -52,35 +53,38 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Wed, 19 Mar 2025 21:27:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16096
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16097
 
 From: Antonios Christidis <a-christidis@ti.com>
 
-Changes made on the gc320 kernel mode driver in order to work with kernel
-6.12. There is no other change in functionality with this update, and the
-driver version remains the same.
+MACHINE_FEATURE gc320, already gets set on omap-a15.inc. But ti-bsp.inc file,
+removes the feature. So, remove that portion of functionality from ti-bsp, in
+order to allow the building of gc320 in kernel 6.12.
 
 Signed-off-by: Antonios Christidis <a-christidis@ti.com>
 ---
- .../recipes-bsp/gc320-drivers/ti-gc320-driver_5.0.11.p7.bb    | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-ti-bsp/recipes-bsp/gc320-drivers/ti-gc320-driver_5.0.11.p7.bb b/meta-ti-bsp/recipes-bsp/gc320-drivers/ti-gc320-driver_5.0.11.p7.bb
-index 818ed683..a6dc3e25 100644
---- a/meta-ti-bsp/recipes-bsp/gc320-drivers/ti-gc320-driver_5.0.11.p7.bb
-+++ b/meta-ti-bsp/recipes-bsp/gc320-drivers/ti-gc320-driver_5.0.11.p7.bb
-@@ -8,9 +8,9 @@ inherit module features_check
- REQUIRED_MACHINE_FEATURES = "gc320"
+v4:
+- Instead of commenting out, remove both lines
+
+
+ meta-ti-bsp/conf/machine/include/ti-bsp.inc | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/meta-ti-bsp/conf/machine/include/ti-bsp.inc b/meta-ti-bsp/conf/machine/include/ti-bsp.inc
+index 32beacee..054aa6cb 100644
+--- a/meta-ti-bsp/conf/machine/include/ti-bsp.inc
++++ b/meta-ti-bsp/conf/machine/include/ti-bsp.inc
+@@ -58,9 +58,6 @@ BSP_ROGUE_DRIVER_VERSION:bsp-ti-6_12 = "24%"
+ BSP_ROGUE_UMLIBS_VERSION:bsp-ti-6_12 = "24%"
+ BSP_MESA_PVR_VERSION:bsp-ti-6_12 = "24%"
  
- # Need to branch out with ${PV} var
--BRANCH = "ti-${PV}-k5.10"
-+BRANCH = "ti-${PV}-k6.12"
- 
--SRCREV = "e2a10f31e255a65ec30a6e10b890e77d7e9cb107"
-+SRCREV = "83afddf9dbf6a8458267b4dae21ee35bfb11f3d1"
- 
- SRC_URI = "git://git.ti.com/git/graphics/ti-gc320-driver.git;protocol=https;branch=${BRANCH}"
- 
+-# GC320 support requires out-of-tree drivers not yet available in 6.12
+-MACHINE_FEATURES:remove:bsp-ti-6_12 = "gc320"
+-
+ # ==========
+ # ti-6_6
+ # TI staging kernel 6.6, u-boot 2024.04
 -- 
 2.34.1
 
