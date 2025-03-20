@@ -2,52 +2,52 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 112DAC3DA4A
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26CB6C36002
 	for <webhook@archiver.kernel.org>; Thu, 20 Mar 2025 18:10:53 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web11.1876.1742494249469557040
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web10.1864.1742494251617110326
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 20 Mar 2025 11:10:49 -0700
+ Thu, 20 Mar 2025 11:10:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=u10wK6ct;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52KIAmWF075274
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=H5MheHKd;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: reatmon@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52KIAoeV684467
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 20 Mar 2025 13:10:48 -0500
+	Thu, 20 Mar 2025 13:10:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1742494248;
-	bh=pVi9IzrekuJPEXCJurln3OoW5BmWnSf/vOwBZOYdjVc=;
+	s=ti-com-17Q1; t=1742494250;
+	bh=fyaRN7AvjGhItFFtRVLtBo6N2eVZRPQTXUEmtL9LV4Q=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=u10wK6ctA5+JEktMDTBV64tA9wGerzn9SiYX3Er3vh+r5co9AJ1z221KZ30krRN4w
-	 3rsyprKpMpaCwrUr36W710mIZgCmLW9ZD51S40YXQTmoKqPSLlUX/Z21ndzY8lGUlH
-	 WD041HTeFq/t46O2ktkgfjtQtdVQ4GgJhTta4aZQ=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52KIAmGu020250
+	b=H5MheHKdbs43zbHee3Kt/G7d0CUdI/W9nPYKywgXNMsj+kMeIobS9nuZ7fSEq+52K
+	 TQ/v4lBCUhCcI4aIVpGFkMMWppE+00/2nTzPCjbQ7OH63gJF2ZYu8KsOST/vPCNtDe
+	 3CGEnIgkNBsQABCDqdC+1GXYFZzFGQm2jAJClwHI=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52KIAo9q049410
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 20 Mar 2025 13:10:48 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 20 Mar 2025 13:10:50 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 20
- Mar 2025 13:10:47 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2025 13:10:50 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 20 Mar 2025 13:10:47 -0500
+ Frontend Transport; Thu, 20 Mar 2025 13:10:50 -0500
 Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52KIAlpq085671;
-	Thu, 20 Mar 2025 13:10:47 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52KIAolP126298;
+	Thu, 20 Mar 2025 13:10:50 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1tvKLv-0007jx-Nk; Thu, 20 Mar 2025 13:10:47 -0500
+	id 1tvKLy-0001Pz-7p; Thu, 20 Mar 2025 13:10:50 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH 04/26] busybox: Wrap the bbappend in a compliant manner
-Date: Thu, 20 Mar 2025 13:10:25 -0500
-Message-ID: <20250320181047.18035-5-reatmon@ti.com>
+Subject: [meta-arago][master][PATCH 26/26] syslog-ng: Wrap the bbappend in a compliant manner
+Date: Thu, 20 Mar 2025 13:10:47 -0500
+Message-ID: <20250320181047.18035-27-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20250320181047.18035-1-reatmon@ti.com>
 References: <20250320181047.18035-1-reatmon@ti.com>
@@ -58,7 +58,7 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 20 Mar 2025 18:10:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16104
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16126
 
 Wrap the bbappend in a yocto-check-layer compliant manner so that only
 if you are building this recipe under meta-arago-distro with the arago
@@ -66,40 +66,26 @@ DISTRO_OVERRIDE would the bbappend apply.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- .../busybox/{busybox_%.bbappend => busybox-arago.inc}  |  2 +-
- .../recipes-core/busybox/busybox_%.bbappend            | 10 +++-------
- 2 files changed, 4 insertions(+), 8 deletions(-)
- copy meta-arago-distro/recipes-core/busybox/{busybox_%.bbappend => busybox-arago.inc} (63%)
+ .../syslog-ng/{syslog-ng_%.bbappend => syslog-ng-arago.inc} | 0
+ .../recipes-support/syslog-ng/syslog-ng_%.bbappend          | 6 ++++--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+ copy meta-arago-distro/recipes-support/syslog-ng/{syslog-ng_%.bbappend => syslog-ng-arago.inc} (100%)
 
-diff --git a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend b/meta-arago-distro/recipes-core/busybox/busybox-arago.inc
-similarity index 63%
-copy from meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
-copy to meta-arago-distro/recipes-core/busybox/busybox-arago.inc
-index 15c27a34..9b8a2963 100644
---- a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
-+++ b/meta-arago-distro/recipes-core/busybox/busybox-arago.inc
-@@ -1,4 +1,4 @@
--FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-+FILESEXTRAPATHS:prepend := "${THISDIR}/busybox:"
- 
- SRC_URI += " \
- 	file://network.cfg \
-diff --git a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
-index 15c27a34..b7a99d60 100644
---- a/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
-+++ b/meta-arago-distro/recipes-core/busybox/busybox_%.bbappend
-@@ -1,8 +1,4 @@
--FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-+BUSYBOX_ARAGO = ""
-+BUSYBOX_ARAGO:arago = "busybox-arago.inc"
- 
--SRC_URI += " \
--	file://network.cfg \
--	file://utils.cfg \
--"
--
--PR:append = ".arago22"
-+require ${BUSYBOX_ARAGO}
+diff --git a/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_%.bbappend b/meta-arago-distro/recipes-support/syslog-ng/syslog-ng-arago.inc
+similarity index 100%
+copy from meta-arago-distro/recipes-support/syslog-ng/syslog-ng_%.bbappend
+copy to meta-arago-distro/recipes-support/syslog-ng/syslog-ng-arago.inc
+diff --git a/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_%.bbappend b/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_%.bbappend
+index 6c6a8ff0..0dbc6349 100644
+--- a/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_%.bbappend
++++ b/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_%.bbappend
+@@ -1,2 +1,4 @@
+-PR:append = ".arago0"
+-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
++SYSLOG_NG_ARAGO = ""
++SYSLOG_NG_ARAGO:arago = "syslog-ng-arago.inc"
++
++require ${SYSLOG_NG_ARAGO}
 -- 
 2.17.1
 
