@@ -1,72 +1,88 @@
-Return-Path: <denis@denix.org>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F838C369A6
-	for <webhook@archiver.kernel.org>; Tue,  8 Apr 2025 15:47:51 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.78916.1744127263911359899
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C782C369A4
+	for <webhook@archiver.kernel.org>; Wed,  9 Apr 2025 16:56:54 +0000 (UTC)
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+ by mx.groups.io with SMTP id smtpd.web10.13994.1744217808821279566
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 08 Apr 2025 08:47:44 -0700
+ Wed, 09 Apr 2025 09:56:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id EAB2840C86;
-	Tue,  8 Apr 2025 15:47:42 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Xk_6l6HiZg0Q; Tue,  8 Apr 2025 15:47:42 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CCCD040C06;
-	Tue,  8 Apr 2025 15:47:41 +0000 (UTC)
-Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id E9BDE165934;
-	Tue,  8 Apr 2025 11:47:40 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master/scarthgap][PATCH 1/3] nativesdk-buildtools-perl-dummy: add missing perl packages
-Date: Tue,  8 Apr 2025 11:47:37 -0400
-Message-Id: <20250408154739.2716116-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=m+ZUHoX8;
+ spf=pass (domain: list.ti.com, ip: 198.47.19.245, mailfrom: lcpdbld@list.ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 539Gulgj882064
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 9 Apr 2025 11:56:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1744217807; i=@ti.com;
+	bh=PKn8fAeVxnUn0ZYsEu4khi26SpBGVYmZE9ZZnuyhHOw=;
+	h=From:To:Subject:Date;
+	b=m+ZUHoX8cDN64e6fNNIqq24mqOkMJfqCyko0SiR/Hb/txiCIA602QYtSCaPb4l31A
+	 tudBTy6jWPKOmul+mubMS2Hk+g4fHYu5OHJ0MHLarn9bTCjVIj6kLmadM1MqWG4dui
+	 wSFtmADzUOPspl78vHN4AhPOmWKaW8jmrFcI+Pps=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 539GulAx066942
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 9 Apr 2025 11:56:47 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
+ Apr 2025 11:56:46 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 9 Apr 2025 11:56:46 -0500
+Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.64.72.21])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 539GukeX110335;
+	Wed, 9 Apr 2025 11:56:46 -0500
+Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
+	id 53AB82741; Wed,  9 Apr 2025 11:56:46 -0500 (CDT)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master][PATCH] CI/CD Auto-Merger: cicd.master.202504090937
+Date: Wed, 9 Apr 2025 11:56:46 -0500
+Message-ID: <20250409165646.1425366-1-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 2.43.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 08 Apr 2025 15:47:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16160
+ <meta-arago@lists.yoctoproject.org>; Wed, 09 Apr 2025 16:56:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16163
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+Updated the value(s) for:
+  ltp-ddt: SRCREV
 
-There are few more perl packages that get pulled into the SDK when
-dummy nativesdk facility is used - add them here before they are
-added upstream.
+Changelogs:
+  ltp-ddt: https://git.ti.com/cgit/test-automation/ltp-ddt/log/?qt=range&q=02087029edb09315e23f56864a1a608a41e95c8c..607436e4c4843823119eb4ec0cb8884a6ca2f96b
 
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
 ---
- .../recipes-core/meta/nativesdk-buildtools-perl-dummy.bbappend | 3 +++
- 1 file changed, 3 insertions(+)
+ meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/nativesdk-buildtools-per=
-l-dummy.bbappend b/meta-arago-extras/recipes-core/meta/nativesdk-buildtoo=
-ls-perl-dummy.bbappend
-index 35de49b4..b9d40d6e 100644
---- a/meta-arago-extras/recipes-core/meta/nativesdk-buildtools-perl-dummy=
-.bbappend
-+++ b/meta-arago-extras/recipes-core/meta/nativesdk-buildtools-perl-dummy=
-.bbappend
-@@ -1,4 +1,7 @@
- DUMMYPROVIDES +=3D "\
-+    nativesdk-perl-dev \
-+    nativesdk-perl-module-feature \
-     nativesdk-perl-module-file-spec-unix \
-+    nativesdk-perl-module-integer \
-     nativesdk-perl-module-symbol \
- "
---=20
-2.25.1
+diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
+index 3dd2c45f..20ed9b09 100644
+--- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
++++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
+@@ -12,7 +12,7 @@ PE = "1"
+ PR = "r1"
+ PV:append = "+git"
+ 
+-SRCREV = "02087029edb09315e23f56864a1a608a41e95c8c"
++SRCREV = "607436e4c4843823119eb4ec0cb8884a6ca2f96b"
+ BRANCH ?= "master"
+ 
+ SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
+-- 
+2.43.5
 
 
