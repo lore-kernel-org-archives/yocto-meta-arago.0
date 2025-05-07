@@ -1,123 +1,124 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C185EC3ABBF
-	for <webhook@archiver.kernel.org>; Wed,  7 May 2025 22:32:48 +0000 (UTC)
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web11.2376.1746657164392938306
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F20C9C3ABC0
+	for <webhook@archiver.kernel.org>; Wed,  7 May 2025 23:18:18 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.3145.1746659893731230656
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 07 May 2025 15:32:44 -0700
+ Wed, 07 May 2025 16:18:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=LsH1iZDf;
- spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 547MWgXj1659787
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 7 May 2025 17:32:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746657162;
-	bh=CSAxGU6jCgS7R38NJYCPHWw4drKUrc993UzagTSYoX8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=LsH1iZDfdy9ImZP1YZ1ECTqo7MS4ZBtoEoz/qIc6t/RMrNV+vcXCrucbC8Fv0gKc9
-	 94a5He/yO2C5FzuJSxb91t2iuV5d9EgV9AenuXiooA3NRdNnnBHMxKZnyWd+pTta2H
-	 6KnYQRUlnn1aFfWFWwVVE9hiYcd30q6kIMibdfMg=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 547MWgLK017938
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 May 2025 17:32:42 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- May 2025 17:32:41 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 May 2025 17:32:41 -0500
-Received: from [10.249.37.202] ([10.249.37.202])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 547MWfod085414;
-	Wed, 7 May 2025 17:32:41 -0500
-Message-ID: <666637f5-a113-4a06-9339-02113b9c1d12@ti.com>
-Date: Wed, 7 May 2025 17:32:41 -0500
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id A632740C21;
+	Wed,  7 May 2025 23:18:12 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ecxPb9m6j19R; Wed,  7 May 2025 23:18:12 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8818940A22;
+	Wed,  7 May 2025 23:18:11 +0000 (UTC)
+Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id DF817167A59;
+	Wed,  7 May 2025 19:18:10 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master/scarthgap][PATCH] omapconf: use proper definition of boolean type
+Date: Wed,  7 May 2025 19:18:10 -0400
+Message-Id: <20250507231810.2027418-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago] [oe-layersetup][PATCHv2 00/16] Sacrifice your first
- born to the linter
-To: Randolph Sapp <rs@ti.com>, PRC Automation <automated_prc_response@ti.com>,
-        Randolph Sapp <res.sapp@gmail.com>
-CC: <denis@denix.org>, <afd@ti.com>, <nm@ti.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <20230614034507.598391-1-res.sapp@gmail.com>
- <20250507221606.C917EABF56@fllvdckhpci078.itg.ti.com>
- <51b0566e-5b14-4d62-9388-258f3e6cad68@ti.com>
- <183D5F55049BE192.1073@lists.yoctoproject.org>
-Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <183D5F55049BE192.1073@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by lelvem-ot02.ext.ti.com id 547MWgXj1659787
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 07 May 2025 22:32:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16190
+ <meta-arago@lists.yoctoproject.org>; Wed, 07 May 2025 23:18:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16191
 
+From: Denys Dmytriyenko <denys@konsulko.com>
 
+Newer versions of GCC and C standard have bool as a built-in
+keyword - use a standard stdbool.h header to properly handle it.
 
-On 5/7/2025 5:30 PM, Ryan Eatmon via lists.yoctoproject.org wrote:
->=20
->=20
-> On 5/7/2025 5:29 PM, Randolph Sapp wrote:
->> On 5/7/25 17:16, PRC Automation wrote:
->>> oe-layersetup / na / 20230614034507.598391-1-res.sapp
->>>
->>> PRC Results: FAIL
->>>
->>>
->>> Summary:
->>> - Patch Series: [oe-layersetup][PATCHv2 00/16] Sacrifice your first=20
->>> born to the linter
->>> - Submitter: From: Randolph Sapp <res.sapp@gmail.com>
->>> - Date: Date: Tue, 13 Jun 2023 22:44:51 -0500
->>> - Num Patches: 16
->>> - Mailing List (public inbox) Commit SHA:=20
->>> 5a49bf112d3685aeb2f6e7b0a0c6f5b45e440e23
->>>
->>> Applied to:
->>> - Repository:
->>> - Base Branch:
->>> - Commit Author:
->>> - Commit Subject:
->>> - Commit SHA:
->>>
->>> Patches
->>> ----------------------------------------
->>> FAIL - [oe-layersetup][PATCHv2 01/16] oe-layertool-setup: split logic=
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+ ...se-proper-definition-of-boolean-type.patch | 41 +++++++++++++++++++
+ .../recipes-devtools/omapconf/omapconf_git.bb |  2 +
+ 2 files changed, 43 insertions(+)
+ create mode 100644 meta-arago-test/recipes-devtools/omapconf/files/0001-=
+Use-proper-definition-of-boolean-type.patch
+
+diff --git a/meta-arago-test/recipes-devtools/omapconf/files/0001-Use-pro=
+per-definition-of-boolean-type.patch b/meta-arago-test/recipes-devtools/o=
+mapconf/files/0001-Use-proper-definition-of-boolean-type.patch
+new file mode 100644
+index 00000000..e1a29c9c
+--- /dev/null
++++ b/meta-arago-test/recipes-devtools/omapconf/files/0001-Use-proper-def=
+inition-of-boolean-type.patch
+@@ -0,0 +1,41 @@
++From c52280d923c167032a84f1c67574eb340e38572c Mon Sep 17 00:00:00 2001
++From: Denys Dmytriyenko <denys@konsulko.com>
++Date: Wed, 7 May 2025 17:03:20 -0400
++Subject: [PATCH] Use proper definition of boolean type
++
++Newer versions of GCC and C standard have bool as a built-in
++keyword - use a standard stdbool.h header to properly handle it.
++
++Upstream-Status: Inactive-Upstream
++
++Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
++---
++ arch/arm/mach-omap/common/statcoll/sci.h | 8 +-------
++ 1 file changed, 1 insertion(+), 7 deletions(-)
++
++diff --git a/arch/arm/mach-omap/common/statcoll/sci.h b/arch/arm/mach-om=
+ap/common/statcoll/sci.h
++index 4134c00..1a393b4 100644
++--- a/arch/arm/mach-omap/common/statcoll/sci.h
+++++ b/arch/arm/mach-omap/common/statcoll/sci.h
++@@ -48,17 +48,11 @@
++ #ifndef SCI_H
++ #define SCI_H
++=20
+++#include <stdbool.h>
++ #include <stdlib.h>
++ #include <stdint.h>		// The library uses C99 exact-width integer types
++ #include "sci_dev.h"
++=20
++-#if !defined(__bool_true_false_are_defined) && !defined(_STM_Logging)
++-typedef enum {
++-	false =3D 0,
++-	true =3D 1
++-} bool;
++-#endif
++-
++ #ifdef _STM_Logging
++ #include "StmLibrary.h"
++ #endif
++--=20
++2.25.1
++
+diff --git a/meta-arago-test/recipes-devtools/omapconf/omapconf_git.bb b/=
+meta-arago-test/recipes-devtools/omapconf/omapconf_git.bb
+index 175c6771..dad8ece0 100644
+--- a/meta-arago-test/recipes-devtools/omapconf/omapconf_git.bb
++++ b/meta-arago-test/recipes-devtools/omapconf/omapconf_git.bb
+@@ -13,6 +13,8 @@ SRCREV =3D "ff07b6992bacb1e1586c72b7d2be469caee4a347"
 =20
->>> and/or expressions
->>> =C2=A0=C2=A0=C2=A0=C2=A0 fatal: not a git repository (or any parent u=
-p to mount point=20
->>> /scratch)
->>> =C2=A0=C2=A0=C2=A0=C2=A0 Stopping at filesystem boundary (GIT_DISCOVE=
-RY_ACROSS_FILESYSTEM=20
->>> not set).
->>>
->>>
->>>
->>
->> How far back are you going with this test?
->=20
-> Doh!=C2=A0 No one should have been getting these emails...
->=20
-
-I think I see the issue...  I've turned it off while I fix it.
-
-
-
+ SRC_URI =3D "git://github.com/omapconf/omapconf.git;protocol=3Dhttps;bra=
+nch=3D${BRANCH}"
+=20
++SRC_URI +=3D "file://0001-Use-proper-definition-of-boolean-type.patch"
++
+ S =3D "${WORKDIR}/git"
+=20
+ do_compile () {
 --=20
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+2.25.1
+
 
