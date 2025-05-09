@@ -1,140 +1,111 @@
-Return-Path: <rs@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E4EA3C3ABC6
-	for <webhook@archiver.kernel.org>; Thu,  8 May 2025 21:10:30 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web10.334.1746738626030944930
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 91632C3ABC5
+	for <webhook@archiver.kernel.org>; Fri,  9 May 2025 02:22:00 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.5441.1746757310411277972
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 08 May 2025 14:10:26 -0700
+ Thu, 08 May 2025 19:21:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=fxqPjhqL;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: rs@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 548LAMZd1186851
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 8 May 2025 16:10:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746738623;
-	bh=UTKh6PFKOAnT6n/p2FzG/anB7nu/MLDjDu+m0ELux9g=;
-	h=From:To:CC:Subject:Date;
-	b=fxqPjhqLqjF29jkpMs2hDRY4PCq2SZ+58FRSn+IokD1CC3tSZi1b0+pfrA3ipIIYD
-	 tYCWwJR+MeOa4ufhbch0O6qgqA8eKrl/KaCEOlDGJ6dJ9jhnCfl/RwfLgB1QsjaZ2f
-	 JKpQkmd8EWEmqoXubdTUefw8R1Udk9mKjUVCMHNY=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 548LAMsa000546
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 May 2025 16:10:22 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- May 2025 16:10:22 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 May 2025 16:10:22 -0500
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 548LAMwg108832;
-	Thu, 8 May 2025 16:10:22 -0500
-From: <rs@ti.com>
-To: <reatmon@ti.com>, <denis@denix.org>
-CC: <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap/master][PATCHv2] mesa-demos: add a git version
-Date: Thu, 8 May 2025 16:10:09 -0500
-Message-ID: <20250508211009.1576476-1-rs@ti.com>
-X-Mailer: git-send-email 2.49.0
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 46F1640CC1;
+	Fri,  9 May 2025 02:21:49 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id xD0JwoeP3e-u; Fri,  9 May 2025 02:21:49 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 259F740CB6;
+	Fri,  9 May 2025 02:21:48 +0000 (UTC)
+Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 81097167B71;
+	Thu,  8 May 2025 22:21:47 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master/scarthgap][PATCH] recipes: fix whitespace warnings
+Date: Thu,  8 May 2025 22:21:47 -0400
+Message-Id: <20250509022147.310719-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 08 May 2025 21:10:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16193
+ <meta-arago@lists.yoctoproject.org>; Fri, 09 May 2025 02:22:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16194
 
-From: Randolph Sapp <rs@ti.com>
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Add a newer git version of this package to fetch modifications that
-allow us to build the EGL and GLES specific demos without the hard
-Desktop GL and X11 dependencies.
+Bitbake now warns if there are no whitespaces around "=3D" equal
+sign.
 
-These modification have not made it into a tag yet, but this recipe can
-be removed once oe-core's version of the package passes
-02eae079cb0b8186064d5b194ca4cc2995f099ee.
-
-Set this git recipe as the preferred version when using the arago
-distro.
-
-Signed-off-by: Randolph Sapp <rs@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- .../conf/distro/include/arago-prefs.inc       |  3 ++
- .../recipes-graphics/mesa/mesa-demos_git.bb   | 43 +++++++++++++++++++
- 2 files changed, 46 insertions(+)
- create mode 100644 meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb
+ .../initscript-telnetd/initscript-telnetd.bb                | 2 +-
+ meta-arago-extras/recipes-connectivity/hostap/hostap.inc    | 2 +-
+ .../tensorflow-lite/tensorflow-lite_2.18.0.bb               | 6 +++---
+ 3 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 69bae7d7..98aa2552 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -17,3 +17,6 @@ PREFERRED_PROVIDER_nativesdk-llvm = "nativesdk-clang"
- PROVIDES:pn-clang = "llvm"
- PROVIDES:pn-clang-native = "llvm-native"
- PROVIDES:pn-nativesdk-clang = "nativesdk-llvm"
-+
-+# Bump mesa-demos to include some patches not in a tagged release
-+PREFERRED_VERSION_mesa-demos = "9.0.0+git"
-diff --git a/meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb b/meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb
-new file mode 100644
-index 00000000..a18d212e
---- /dev/null
-+++ b/meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb
-@@ -0,0 +1,43 @@
-+SUMMARY = "Mesa demo applications"
-+DESCRIPTION = "This package includes the demonstration application, such as glxgears. \
-+These applications can be used for Mesa validation and benchmarking."
-+HOMEPAGE = "http://mesa3d.org"
-+BUGTRACKER = "https://bugs.freedesktop.org"
-+
-+LICENSE = "MIT & PD"
-+LIC_FILES_CHKSUM = "file://src/xdemos/glxgears.c;beginline=1;endline=20;md5=a481fbdb2ac800ecb12405c33bcfacae \
-+                    file://src/xdemos/glxdemo.c;beginline=1;endline=8;md5=b01d5ab1aee94d35b7efaa2ef48e1a06"
-+
-+SRC_URI = "git://gitlab.freedesktop.org/mesa/demos.git;protocol=https;branch=main"
-+SRCREV = "02eae079cb0b8186064d5b194ca4cc2995f099ee"
-+S = "${WORKDIR}/git"
-+
-+DEFAULT_PREFERENCE = "-1"
-+PV = "9.0.0+git"
-+
-+inherit meson pkgconfig features_check
-+REQUIRED_DISTRO_FEATURES = "opengl"
-+
-+EXTRA_OEMESON = "-Dwith-system-data-files=true"
-+
-+PACKAGECONFIG ?= "drm egl gles1 gles2 \
-+                  ${@bb.utils.filter('DISTRO_FEATURES', 'vulkan x11 wayland', d)}"
-+
-+PACKAGECONFIG[drm] = "-Dlibdrm=enabled,-Dlibdrm=disabled,libdrm"
-+PACKAGECONFIG[egl] = "-Degl=enabled,-Degl=disabled,virtual/egl"
-+PACKAGECONFIG[gles1] = "-Dgles1=enabled,-Dgles1=disabled,virtual/libgles1"
-+PACKAGECONFIG[gles2] = "-Dgles2=enabled,-Dgles2=disabled,virtual/libgles2"
-+PACKAGECONFIG[glut] = "-Dwith-glut=${STAGING_EXECPREFIXDIR},-Dglut=disabled,freeglut"
-+PACKAGECONFIG[osmesa] = "-Dosmesa=enabled,-Dosmesa=disabled,"
-+PACKAGECONFIG[vulkan] = "-Dvulkan=enabled,-Dvulkan=disabled,vulkan-loader glslang-native"
-+PACKAGECONFIG[wayland] = "-Dwayland=enabled,-Dwayland=disabled,virtual/libgl wayland wayland-native wayland-protocols libxkbcommon libdecor"
-+PACKAGECONFIG[x11] = "-Dx11=enabled,-Dx11=disabled,virtual/libx11 libglu libxkbcommon libxcb"
-+
-+do_install:append() {
-+	# it can be completely empty when all PACKAGECONFIG options are disabled
-+	rmdir --ignore-fail-on-non-empty ${D}${bindir}
-+
-+	if [ -f ${D}${bindir}/clear ]; then
-+		mv ${D}${bindir}/clear ${D}${bindir}/clear.mesa-demos
-+	fi
-+}
--- 
-2.49.0
+diff --git a/meta-arago-distro/recipes-connectivity/initscript-telnetd/in=
+itscript-telnetd.bb b/meta-arago-distro/recipes-connectivity/initscript-t=
+elnetd/initscript-telnetd.bb
+index c71a3fdb..30f25e70 100644
+--- a/meta-arago-distro/recipes-connectivity/initscript-telnetd/initscrip=
+t-telnetd.bb
++++ b/meta-arago-distro/recipes-connectivity/initscript-telnetd/initscrip=
+t-telnetd.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION =3D "Initscripts for telnetd"
+ LICENSE =3D "MIT"
+ LIC_FILES_CHKSUM =3D "file://telnetd;beginline=3D2;endline=3D18;md5=3Dd1=
+34d0d385c53f9201a270fef8448f29"
+-PR =3D"r1"
++PR  =3D "r1"
+=20
+ SRC_URI =3D "file://telnetd"
+=20
+diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc b/m=
+eta-arago-extras/recipes-connectivity/hostap/hostap.inc
+index 6695d3a3..5a5f7014 100644
+--- a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
++++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
+@@ -14,7 +14,7 @@ DEFAULT_PREFERENCE =3D "-1"
+ PR =3D "r6"
+=20
+ inherit update-rc.d pkgconfig
+-INITSCRIPT_NAME=3D"hostapd"
++INITSCRIPT_NAME =3D "hostapd"
+=20
+ CONFFILES:${PN} +=3D "${sysconfdir}/hostapd.conf"
+=20
+diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorfl=
+ow-lite_2.18.0.bb b/meta-arago-extras/recipes-framework/tensorflow-lite/t=
+ensorflow-lite_2.18.0.bb
+index a20c090a..78b971a5 100644
+--- a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite=
+_2.18.0.bb
++++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite=
+_2.18.0.bb
+@@ -74,9 +74,9 @@ DEPENDS =3D " \
+ "
+=20
+ # Set building environment variables
+-TENSORFLOW_TARGET=3D"linux"
+-TENSORFLOW_TARGET_ARCH:aarch64=3D"aarch64"
+-TENSORFLOW_TARGET_ARCH:arm=3D"armv7"
++TENSORFLOW_TARGET =3D "linux"
++TENSORFLOW_TARGET_ARCH:aarch64 =3D "aarch64"
++TENSORFLOW_TARGET_ARCH:arm =3D "armv7"
+=20
+ PACKAGECONFIG ??=3D "xnnpack ruy"
+ PACKAGECONFIG[xnnpack] =3D "-DTFLITE_ENABLE_XNNPACK=3DON, -DTFLITE_ENABL=
+E_XNNPACK=3DOFF"
+--=20
+2.25.1
 
 
