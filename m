@@ -1,110 +1,87 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 674CDC2D0CD
-	for <webhook@archiver.kernel.org>; Wed, 21 May 2025 18:44:14 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web10.6580.1747853045886183839
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BEA9AC54EDA
+	for <webhook@archiver.kernel.org>; Fri, 23 May 2025 19:01:03 +0000 (UTC)
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web11.1642.1748026856256611067
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 21 May 2025 11:44:06 -0700
+ Fri, 23 May 2025 12:00:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=OzXdP2YC;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: reatmon@ti.com)
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54LIi4qi1575280;
-	Wed, 21 May 2025 13:44:04 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=vEFFxLQ7;
+ spf=pass (domain: list.ti.com, ip: 198.47.23.235, mailfrom: lcpdbld@list.ti.com)
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54NJ0tFd1036176;
+	Fri, 23 May 2025 14:00:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1747853045;
-	bh=MF6fndz/blAuM+C3itj2+MSBBdlmwrm3kaWzmmowafs=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=OzXdP2YClGRBfUKYxcz5m3pDjkOGRZUDYe10pbWe33MWorXlZRF7jMRem5NtndYuK
-	 3PvZDv4fy1wGy2fGjCW/uXtrApVRBPDTncGTumADDWK5aRAwufrzeXL/Q+RXPzpkyo
-	 3lSw5uPGnfQNkGfYAb3P/i25yxydq/1tgjXHe2bM=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54LIi4Zp910706
+	s=ti-com-17Q1; t=1748026855; i=@ti.com;
+	bh=1+yMXgSvZ1mWFPOlpVerpQS1rO9eWwNi3F74gUuS6oA=;
+	h=From:To:Subject:Date;
+	b=vEFFxLQ7xNlovKSgG/ETdSdghf6vJlWD82SJgT1PSO5RmCKKTs5WzHDMM4U/MP8dN
+	 zDGhi6250F8MsLmLinszKDcNTD19XLk6AKbGpNI5hctLgvRl7nfyS6Oo5Q7dNoUCNh
+	 S5ddTEw+k1mOwEFou5QhiHJ79Dhkpgudh1YVbnEI=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54NJ0tuf285506
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 21 May 2025 13:44:04 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 21
- May 2025 13:44:04 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 23 May 2025 14:00:55 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 23
+ May 2025 14:00:54 -0500
+Received: from fllvsmtp8.itg.ti.com (10.64.41.158) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 21 May 2025 13:44:04 -0500
-Received: from [10.249.37.202] ([10.249.37.202])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54LIi4GI159364;
-	Wed, 21 May 2025 13:44:04 -0500
-Message-ID: <84933375-bd13-4756-884d-03d8a3a4eaf6@ti.com>
-Date: Wed, 21 May 2025 13:44:04 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH] sbc: Fix for gcc 15 compile error
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
+ Frontend Transport; Fri, 23 May 2025 14:00:55 -0500
+Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.64.72.21])
+	by fllvsmtp8.itg.ti.com (8.15.2/8.15.2) with ESMTP id 54NJ0swO096088;
+	Fri, 23 May 2025 14:00:54 -0500
+Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
+	id CA71518D467; Fri, 23 May 2025 14:00:54 -0500 (CDT)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-References: <184192F43A4056D7.22209@lists.yoctoproject.org>
-Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <184192F43A4056D7.22209@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: [meta-arago][scarthgap][PATCH] CI/CD Auto-Merger: cicd.scarthgap.202505230901
+Date: Fri, 23 May 2025 14:00:54 -0500
+Message-ID: <20250523190054.691783-1-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 2.43.5
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 21 May 2025 18:44:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16237
+ <meta-arago@lists.yoctoproject.org>; Fri, 23 May 2025 19:01:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16238
 
+Updated the value(s) for:
+  ltp-ddt: SRCREV
 
+Changelogs:
+  ltp-ddt: https://git.ti.com/cgit/test-automation/ltp-ddt/log/?qt=range&q=d1a8b82eb11222e80fb500e766784847103e06f8..74da4eaddd2a3f80ed565667d9cc8faf97fe014f
 
-On 5/21/2025 10:01 AM, Ryan Eatmon via lists.yoctoproject.org wrote:
-> With the move to gcc 15, the code is not generating a compile error.
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
+---
+ meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-It was pointed out on oe-core mailing list that I meant "now" and not 
-"not".  I have fixed this in the repo.
-
-
-> ../sbc-2.1/sbc/sbc_primitives_armv6.c:284:9:
->     error: too many arguments to function 'sbc_analyze_eight_armv6';
->        expected 0, have 3
-> 
-> Simple fix is to drop the C standard down to gnu17 to avoid this new
-> error.
-> 
-> I am going to submit a better patch to oe-core, but we need this in
-> the interim to get our builds working again.
-> 
-> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> ---
->   meta-arago-distro/recipes-multimedia/sbc/sbc-arago.inc  | 1 +
->   meta-arago-distro/recipes-multimedia/sbc/sbc_%.bbappend | 4 ++++
->   2 files changed, 5 insertions(+)
->   create mode 100644 meta-arago-distro/recipes-multimedia/sbc/sbc-arago.inc
->   create mode 100644 meta-arago-distro/recipes-multimedia/sbc/sbc_%.bbappend
-> 
-> diff --git a/meta-arago-distro/recipes-multimedia/sbc/sbc-arago.inc b/meta-arago-distro/recipes-multimedia/sbc/sbc-arago.inc
-> new file mode 100644
-> index 00000000..39725139
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-multimedia/sbc/sbc-arago.inc
-> @@ -0,0 +1 @@
-> +CFLAGS += "-std=gnu17"
-> diff --git a/meta-arago-distro/recipes-multimedia/sbc/sbc_%.bbappend b/meta-arago-distro/recipes-multimedia/sbc/sbc_%.bbappend
-> new file mode 100644
-> index 00000000..295b58a4
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-multimedia/sbc/sbc_%.bbappend
-> @@ -0,0 +1,4 @@
-> +SBC_ARAGO = ""
-> +SBC_ARAGO:arago = "sbc-arago.inc"
-> +
-> +require ${SBC_ARAGO}
-
+diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
+index 98f368e2..9501d2de 100644
+--- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
++++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
+@@ -12,7 +12,7 @@ PE = "1"
+ PR = "r1"
+ PV:append = "+git"
+ 
+-SRCREV = "d1a8b82eb11222e80fb500e766784847103e06f8"
++SRCREV = "74da4eaddd2a3f80ed565667d9cc8faf97fe014f"
+ BRANCH ?= "master"
+ 
+ SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
 -- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+2.43.5
+
 
