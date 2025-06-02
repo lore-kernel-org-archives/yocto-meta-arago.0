@@ -1,52 +1,48 @@
-Return-Path: <lcpdbld@list.ti.com>
+Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 35D81C5B543
-	for <webhook@archiver.kernel.org>; Fri, 30 May 2025 19:02:30 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web10.2858.1748631747704421908
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 84062C5AD49
+	for <webhook@archiver.kernel.org>; Mon,  2 Jun 2025 22:01:38 +0000 (UTC)
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web10.7787.1748901688577313047
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 30 May 2025 12:02:27 -0700
+ Mon, 02 Jun 2025 15:01:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=H02oDUJS;
- spf=pass (domain: list.ti.com, ip: 198.47.19.245, mailfrom: lcpdbld@list.ti.com)
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54UJ2Pj23949354;
-	Fri, 30 May 2025 14:02:25 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=At9Yn4xc;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: rs@ti.com)
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 552M1PDq3333840;
+	Mon, 2 Jun 2025 17:01:25 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1748631745; i=@ti.com;
-	bh=9WF/YjgbG17T0yt48YoawBSt0AnZQ+dZ54QAcn6aY48=;
-	h=From:To:Subject:Date;
-	b=H02oDUJSeqaOci3fTSRz+JnBvasLelMxkxHiYgaqrr2k94S/wF4kv3qGnbzrm5/AJ
-	 ytvVIzye7m5igR0noEmkgsj7S7e0WV+5xhuDNkFtlrXPbtwtucz1ewkMR/gJmWef1y
-	 Ueml0/Mhgk1dL0THOo9v04DsPA+8kVcwT4d7I604=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54UJ2Per1063384
+	s=ti-com-17Q1; t=1748901685;
+	bh=YkDil4Qkf6vgefEXQYJ+7OgYKf12o9a6WVzMcGoUF+4=;
+	h=From:To:CC:Subject:Date;
+	b=At9Yn4xcMIjRetT8A7jevv+IztsUf+Kud7SvisrzpF74YP0dNHt1bHKEed64qK3gH
+	 9YITv72fhg1eRYsh6FkqUfg8nk2Bm08I2QHfQtWONq1lcUF7xJp9JThHoITSd2rBlM
+	 PbkEKDMuPMknOd+h7m/ALehaLCAhGRD2rFM7ekOI=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 552M1PvI881200
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 30 May 2025 14:02:25 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- May 2025 14:02:25 -0500
-Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 2 Jun 2025 17:01:25 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 2
+ Jun 2025 17:01:24 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 May 2025 14:02:25 -0500
-Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.64.72.21])
-	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54UJ2Pka2815764;
-	Fri, 30 May 2025 14:02:25 -0500
-Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
-	id 58F542353; Fri, 30 May 2025 14:02:25 -0500 (CDT)
-From: LCPD Automation Script <lcpdbld@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys
- Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH] CI/CD Auto-Merger: cicd.master.202505300836
-Date: Fri, 30 May 2025 14:02:25 -0500
-Message-ID: <20250530190225.4114809-1-lcpdbld@list.ti.com>
-X-Mailer: git-send-email 2.43.5
+ Frontend Transport; Mon, 2 Jun 2025 17:01:24 -0500
+Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 552M1OCO3666085;
+	Mon, 2 Jun 2025 17:01:24 -0500
+From: <rs@ti.com>
+To: <denis@denix.org>, <reatmon@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>, <vijayp@ti.com>
+Subject: [meta-arago][scarthgap][PATCH] packagegroup-arago-tisdk-graphics: add mesa-demos and sdl2
+Date: Mon, 2 Jun 2025 17:01:16 -0500
+Message-ID: <20250602220116.2091347-1-rs@ti.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -54,34 +50,39 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 30 May 2025 19:02:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16246
+ <meta-arago@lists.yoctoproject.org>; Mon, 02 Jun 2025 22:01:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16247
 
-Updated the value(s) for:
-  ltp-ddt: SRCREV
+From: Randolph Sapp <rs@ti.com>
 
-Changelogs:
-  ltp-ddt: https://git.ti.com/cgit/test-automation/ltp-ddt/log/?qt=range&q=76c1ced0ac85561240999d7da173ac678e410f1d..81256f628c763f63f77818cf0d1605a9703ef92a
+Add the new mesa-demos package to this group so that users and scripts
+can use eglinfo to query information about supported extensions and
+configs for multiple platforms. It also adds vkgears and es2gears to
+test Vulkan and GLES 2 respectively.
 
-Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
+Add libsdl2 as it's a useful, minimal graphics toolkit that allows users
+to build GLES and Vulkan applications with less boilerplate. We have a
+few internal test applications that currently use it.
+
+Signed-off-by: Randolph Sapp <rs@ti.com>
 ---
- meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../packagegroups/packagegroup-arago-tisdk-graphics.bb          | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-index 9c5288f0..d04ca0fe 100644
---- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-+++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-@@ -12,7 +12,7 @@ PE = "1"
- PR = "r1"
- PV:append = "+git"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index fc1a5be3..3728ae52 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -9,6 +9,8 @@ inherit packagegroup
+ GFX_WAYLAND = "\
+     weston-init-arago \
+     weston-examples \
++    mesa-demos \
++    libsdl2 \
+ "
  
--SRCREV = "76c1ced0ac85561240999d7da173ac678e410f1d"
-+SRCREV = "81256f628c763f63f77818cf0d1605a9703ef92a"
- BRANCH ?= "master"
- 
- SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
+ RDEPENDS:${PN} = "\
 -- 
-2.43.5
+2.49.0
 
 
