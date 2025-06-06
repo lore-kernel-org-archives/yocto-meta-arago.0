@@ -1,87 +1,249 @@
-Return-Path: <lcpdbld@list.ti.com>
+Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27A04C5B552
-	for <webhook@archiver.kernel.org>; Fri,  6 Jun 2025 02:40:26 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web11.25180.1749177617012514349
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C1F2FC5B549
+	for <webhook@archiver.kernel.org>; Fri,  6 Jun 2025 07:49:48 +0000 (UTC)
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+ by mx.groups.io with SMTP id smtpd.web11.28639.1749196182898479806
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 05 Jun 2025 19:40:17 -0700
+ Fri, 06 Jun 2025 00:49:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=r/jb+8Cu;
- spf=pass (domain: list.ti.com, ip: 198.47.23.234, mailfrom: lcpdbld@list.ti.com)
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5562eF0E1266471;
-	Thu, 5 Jun 2025 21:40:15 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=ByAnR3dk;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: c-shilwant@ti.com)
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5567ngki1346699
+	for <meta-arago@lists.yoctoproject.org>; Fri, 6 Jun 2025 02:49:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1749177615; i=@ti.com;
-	bh=c9fwNxRmrPbZ1vftKcJv8nYstuZaB3sE7gCf2DDZIQ8=;
-	h=From:To:Subject:Date;
-	b=r/jb+8CuLVZ1yhXpdeB7kLnF4BUcgL53eTIEIg1G9VNb51+BXEX6BzHV2eSNDFHhZ
-	 q900wXL81JQIyyWQA/Fme/46G0vcHlBCwwvduWtB3AN10kTCQ/M9rbHPWoBut3seqM
-	 Blxy5sNZFC479vBxcnD7D5zXCFrtr1NhWUP1qJzQ=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5562eFUn1251900
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 5 Jun 2025 21:40:15 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
- Jun 2025 21:40:15 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 5 Jun 2025 21:40:15 -0500
-Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.64.72.21])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5562eFHH289403;
-	Thu, 5 Jun 2025 21:40:15 -0500
-Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
-	id 6D4162356; Thu,  5 Jun 2025 21:40:15 -0500 (CDT)
-From: LCPD Automation Script <lcpdbld@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys
- Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap][PATCH] CI/CD Auto-Merger: cicd.scarthgap.202506051136
-Date: Thu, 5 Jun 2025 21:40:15 -0500
-Message-ID: <20250606024015.272536-1-lcpdbld@list.ti.com>
-X-Mailer: git-send-email 2.43.5
+	s=ti-com-17Q1; t=1749196182;
+	bh=KAvYMwAX0xXRnNaoT8l0wbg3F/FKWtuAAvBqmn4hFS4=;
+	h=From:To:CC:Subject:Date;
+	b=ByAnR3dkVf2OAQyWvksWB8hXc9xjq4f1Wt5m34hTd86APrKTXFVSLzExVn51pRc/C
+	 KuTl0wVGR79RVLWKXsJTYHtpVuDA5U7y3Hf5rPQ1gkCH9ZPBNd9kNFe6NdEeppj9wS
+	 DJYfjx9uU29rYXG1jMobCJnPQf1K+JfYlw714iS4=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5567ng3b1512173
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Fri, 6 Jun 2025 02:49:42 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 6
+ Jun 2025 02:49:41 -0500
+Received: from DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455]) by
+ DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455%17]) with mapi id
+ 15.01.2507.023; Fri, 6 Jun 2025 02:49:41 -0500
+From: "Shilwant, Chirag" <c-shilwant@ti.com>
+To: "Christidis, Antonios" <a-christidis@ti.com>
+CC: "Eatmon, Ryan" <reatmon@ti.com>,
+        "meta-arago@lists.yoctoproject.org"
+	<meta-arago@lists.yoctoproject.org>,
+        "Etheridge, Darren" <detheridge@ti.com>,
+        "SAHU, JEEVAN KUMAR" <j-sahu@ti.com>
+Subject: Re: [meta-arago] [oe-layersetup][master]
+ configs/arago-scarthgap-chromium-*: Chromium v130 -> 132
+Thread-Topic: [meta-arago] [oe-layersetup][master]
+ configs/arago-scarthgap-chromium-*: Chromium v130 -> 132
+Thread-Index: AQHb1rePP/LLdBdab0y4mhXr/WZycQ==
+Date: Fri, 6 Jun 2025 07:49:41 +0000
+Message-ID: <70bd6a5e-9ab8-4da6-8b82-fdfd22d5f32a@email.android.com>
+Accept-Language: en-IN, en-US
+Content-Language: en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-c2processedorg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/alternative;
+	boundary="_000_70bd6a5e9ab84da68b82fdfd22d5f32aemailandroidcom_"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 06 Jun 2025 02:40:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16256
+ <meta-arago@lists.yoctoproject.org>; Fri, 06 Jun 2025 07:49:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16257
 
-Updated the value(s) for:
-  ltp-ddt: SRCREV
+--_000_70bd6a5e9ab84da68b82fdfd22d5f32aemailandroidcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Changelogs:
-  ltp-ddt: https://git.ti.com/cgit/test-automation/ltp-ddt/log/?qt=range&q=81256f628c763f63f77818cf0d1605a9703ef92a..c5be4c2b403371c49cb98f3c2c50f59b08b18c05
+SGkgQW50b25pb3MsDQoNCk9uIDA1LUp1bi0yMDI1IDExOjUy4oCvcG0sICJBbnRvbmlvcyBDaHJp
+c3RpZGlzIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnIiA8YS1jaHJpc3RpZGlzPXRpLmNvbUBs
+aXN0cy55b2N0b3Byb2plY3Qub3JnPiB3cm90ZToNCkZyb206IEFudG9uaW9zIENocmlzdGlkaXMg
+PGEtY2hyaXN0aWRpc0B0aS5jb20+DQoNClVwZGF0ZSBhbGwgc2NhcnRoZ2FwLWNocm9taXVtIGNv
+bmZpZ3MgdG8gcG9pbnQgdG8gYSBuZXcgY29tbWl0IHNoYS4gTm93DQpidWlsZGluZyB2ZXJzaW9u
+IDEzMi4NCg0KDQpTZXZlcmFsIG90aGVyIGNvbmZpZ3Mgc2VlbXMgdG8gaGF2ZSBtaXNzZWQgdGhl
+IFNIQSB1cGRhdGUgZm9yIG1ldGEtYnJvd3Nlci4gQ2hlY2tvdXQgY29tbWl0IFswXSBmcm9tIERh
+cnJlbi4NCg0KRXZlbiB0aG91Z2ggbWV0YS1icm93c2VyIGlzIGNvbW1lbnRlZCBpbiB0aG9zZSBv
+ZS1jb25maWdzLCB3ZSB1c2VkIHRvIGVuc3VyZSB0aGUgY29tbWl0IFNIQSBhcmUgY29uc2lzdGVu
+dCBhY3Jvc3MgYWxsIGNvbmZpZ3MuDQoNCg0KWzBdOiBodHRwczovL2dpdC50aS5jb20vY2dpdC9h
+cmFnby1wcm9qZWN0L29lLWxheWVyc2V0dXAvY29tbWl0Lz9pZD01Y2ViOTAzMDVlNTRmNjBjMDJh
+YjVkNzE2ZTRkNjljZTEyNDhhNjBiDQoNCg0KDQpDaGlyYWcNCg0KDQpTaWduZWQtb2ZmLWJ5OiBB
+bnRvbmlvcyBDaHJpc3RpZGlzIDxhLWNocmlzdGlkaXNAdGkuY29tPg0KLS0tDQogY29uZmlncy9h
+cmFnby1zY2FydGhnYXAtY2hyb21pdW0tY29uZmlnLnR4dCAgICAgfCAyICstDQoga2FzL2FyYWdv
+LXNjYXJ0aGdhcC1jaHJvbWl1bS1jb25maWcueW1sICAgICAgICAgfCAyICstDQogc3JjL2NvbmZp
+Z3MvYXJhZ28tc2NhcnRoZ2FwLWNocm9taXVtLWNvbmZpZy54bWwgfCAyICstDQogMyBmaWxlcyBj
+aGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9j
+b25maWdzL2FyYWdvLXNjYXJ0aGdhcC1jaHJvbWl1bS1jb25maWcudHh0IGIvY29uZmlncy9hcmFn
+by1zY2FydGhnYXAtY2hyb21pdW0tY29uZmlnLnR4dA0KaW5kZXggYWU4NzNlOC4uMDA5ODJjMCAx
+MDA2NDQNCi0tLSBhL2NvbmZpZ3MvYXJhZ28tc2NhcnRoZ2FwLWNocm9taXVtLWNvbmZpZy50eHQN
+CisrKyBiL2NvbmZpZ3MvYXJhZ28tc2NhcnRoZ2FwLWNocm9taXVtLWNvbmZpZy50eHQNCkBAIC0z
+LDcgKzMsNyBAQA0KDQogYml0YmFrZSxodHRwczovL2dpdC5vcGVuZW1iZWRkZWQub3JnL2JpdGJh
+a2UsMi44LEhFQUQNCiBtZXRhLWFyYWdvLGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0
+YS1hcmFnbyxzY2FydGhnYXAsSEVBRCxsYXllcnM9bWV0YS1hcmFnby1kaXN0cm86bWV0YS1hcmFn
+by1leHRyYXM6bWV0YS1hcmFnby10ZXN0DQotbWV0YS1icm93c2VyLGh0dHBzOi8vZ2l0aHViLmNv
+bS9PU1N5c3RlbXMvbWV0YS1icm93c2VyLmdpdCxtYXN0ZXIsNjhlOGNiZjUxYWM0NmM4YzFiMzky
+M2VlMmIyMGUyN2JhOWQzZmFhNCxsYXllcnM9bWV0YS1jaHJvbWl1bQ0KK21ldGEtYnJvd3Nlcixo
+dHRwczovL2dpdGh1Yi5jb20vT1NTeXN0ZW1zL21ldGEtYnJvd3Nlci5naXQsbWFzdGVyLDI3Y2E1
+MmY2MzVhMzFmNWY5NzYyODEzYTg1MjdkZDMxMzIzNTQ5YjcsbGF5ZXJzPW1ldGEtY2hyb21pdW0N
+CiAjbWV0YS1zZWxpbnV4LGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS1zZWxpbnV4
+LHNjYXJ0aGdhcCxIRUFELGxheWVycz0NCiBtZXRhLXF0NixodHRwczovL2NvZGUucXQuaW8veW9j
+dG8vbWV0YS1xdDYuZ2l0LDYuOSxIRUFELGxheWVycz0NCiBtZXRhLXZpcnR1YWxpemF0aW9uLGh0
+dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS12aXJ0dWFsaXphdGlvbixzY2FydGhnYXAs
+SEVBRCxsYXllcnM9DQpkaWZmIC0tZ2l0IGEva2FzL2FyYWdvLXNjYXJ0aGdhcC1jaHJvbWl1bS1j
+b25maWcueW1sIGIva2FzL2FyYWdvLXNjYXJ0aGdhcC1jaHJvbWl1bS1jb25maWcueW1sDQppbmRl
+eCBhOTI5ZWRhLi5mYjEwNTA0IDEwMDY0NA0KLS0tIGEva2FzL2FyYWdvLXNjYXJ0aGdhcC1jaHJv
+bWl1bS1jb25maWcueW1sDQorKysgYi9rYXMvYXJhZ28tc2NhcnRoZ2FwLWNocm9taXVtLWNvbmZp
+Zy55bWwNCkBAIC0xOCw3ICsxOCw3IEBAIHJlcG9zOg0KICAgbWV0YS1icm93c2VyOg0KICAgICB1
+cmw6ICJodHRwczovL2dpdGh1Yi5jb20vT1NTeXN0ZW1zL21ldGEtYnJvd3Nlci5naXQiDQogICAg
+IGJyYW5jaDogIm1hc3RlciINCi0gICAgY29tbWl0OiAiNjhlOGNiZjUxYWM0NmM4YzFiMzkyM2Vl
+MmIyMGUyN2JhOWQzZmFhNCINCisgICAgY29tbWl0OiAiMjdjYTUyZjYzNWEzMWY1Zjk3NjI4MTNh
+ODUyN2RkMzEzMjM1NDliNyINCiAgICAgbGF5ZXJzOg0KICAgICAgIG1ldGEtY2hyb21pdW06DQoN
+CmRpZmYgLS1naXQgYS9zcmMvY29uZmlncy9hcmFnby1zY2FydGhnYXAtY2hyb21pdW0tY29uZmln
+LnhtbCBiL3NyYy9jb25maWdzL2FyYWdvLXNjYXJ0aGdhcC1jaHJvbWl1bS1jb25maWcueG1sDQpp
+bmRleCBiYTdjOTVlLi5mYWViZTU3IDEwMDY0NA0KLS0tIGEvc3JjL2NvbmZpZ3MvYXJhZ28tc2Nh
+cnRoZ2FwLWNocm9taXVtLWNvbmZpZy54bWwNCisrKyBiL3NyYy9jb25maWdzL2FyYWdvLXNjYXJ0
+aGdhcC1jaHJvbWl1bS1jb25maWcueG1sDQpAQCAtMTYsNyArMTYsNyBAQA0KICAgICAgICAgICAg
+ICAgICA8bGF5ZXI+bWV0YS1hcmFnby10ZXN0PC9sYXllcj4NCiAgICAgICAgICAgICA8L2xheWVy
+cz4NCiAgICAgICAgIDwvcmVwbz4NCi0gICAgICAgIDxyZXBvIG5hbWU9J21ldGEtYnJvd3Nlcicg
+dXJsPSdodHRwczovL2dpdGh1Yi5jb20vT1NTeXN0ZW1zL21ldGEtYnJvd3Nlci5naXQnIGJyYW5j
+aD0nbWFzdGVyJyBjb21taXQ9JzY4ZThjYmY1MWFjNDZjOGMxYjM5MjNlZTJiMjBlMjdiYTlkM2Zh
+YTQnPg0KKyAgICAgICAgPHJlcG8gbmFtZT0nbWV0YS1icm93c2VyJyB1cmw9J2h0dHBzOi8vZ2l0
+aHViLmNvbS9PU1N5c3RlbXMvbWV0YS1icm93c2VyLmdpdCcgYnJhbmNoPSdtYXN0ZXInIGNvbW1p
+dD0nMjdjYTUyZjYzNWEzMWY1Zjk3NjI4MTNhODUyN2RkMzEzMjM1NDliNyc+DQogICAgICAgICAg
+ICAgPGxheWVycz4NCiAgICAgICAgICAgICAgICAgPGxheWVyPm1ldGEtY2hyb21pdW08L2xheWVy
+Pg0KICAgICAgICAgICAgIDwvbGF5ZXJzPg0KLS0NCjIuMzQuMQ0KDQoNCg0KLT0tPS09LT0tPS09
+LT0tPS09LT0tPS0NCkxpbmtzOiBZb3UgcmVjZWl2ZSBhbGwgbWVzc2FnZXMgc2VudCB0byB0aGlz
+IGdyb3VwLg0KVmlldy9SZXBseSBPbmxpbmUgKCMxNjI1NSk6IGh0dHBzOi8vbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZy9nL21ldGEtYXJhZ28vbWVzc2FnZS8xNjI1NQ0KTXV0ZSBUaGlzIFRvcGljOiBo
+dHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvMTEzNDkwNDc2LzcwMzAyODkNCkdyb3Vw
+IE93bmVyOiBtZXRhLWFyYWdvK293bmVyQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClVuc3Vic2Ny
+aWJlOiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy9tZXRhLWFyYWdvL3Vuc3ViIFtj
+LXNoaWx3YW50QHRpLmNvbV0NCi09LT0tPS09LT0tPS09LT0tPS09LT0tDQoNCg0KDQo=
 
-Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
----
- meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--_000_70bd6a5e9ab84da68b82fdfd22d5f32aemailandroidcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <183CDA4CF43CF04DB76C1F043AE49763@owa.mail.ti.com>
+Content-Transfer-Encoding: base64
 
-diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-index d04ca0fe..5a8fd2d8 100644
---- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-+++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-@@ -12,7 +12,7 @@ PE = "1"
- PR = "r1"
- PV:append = "+git"
- 
--SRCREV = "81256f628c763f63f77818cf0d1605a9703ef92a"
-+SRCREV = "c5be4c2b403371c49cb98f3c2c50f59b08b18c05"
- BRANCH ?= "master"
- 
- SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
--- 
-2.43.5
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdiBkaXI9ImF1
+dG8iPg0KPGRpdj5IaSBBbnRvbmlvcyw8YnI+DQo8ZGl2IGNsYXNzPSJnbWFpbF9leHRyYSI+PGJy
+Pg0KPGRpdiBjbGFzcz0iZ21haWxfcXVvdGUiPk9uIDA1LUp1bi0yMDI1IDExOjUy4oCvcG0sICZx
+dW90O0FudG9uaW9zIENocmlzdGlkaXMgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcmcXVvdDsg
+Jmx0O2EtY2hyaXN0aWRpcz10aS5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZndDsgd3JvdGU6
+PGJyIHR5cGU9ImF0dHJpYnV0aW9uIj4NCjxibG9ja3F1b3RlIGNsYXNzPSJxdW90ZSIgc3R5bGU9
+Im1hcmdpbjowIDAgMCAuOGV4O2JvcmRlci1sZWZ0OjFweCAjY2NjIHNvbGlkO3BhZGRpbmctbGVm
+dDoxZXgiPg0KPGRpdj48Zm9udCBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQi
+Pg0KPGRpdj5Gcm9tOiBBbnRvbmlvcyBDaHJpc3RpZGlzICZsdDthLWNocmlzdGlkaXNAdGkuY29t
+Jmd0Ozxicj4NCjxicj4NClVwZGF0ZSBhbGwgc2NhcnRoZ2FwLWNocm9taXVtIGNvbmZpZ3MgdG8g
+cG9pbnQgdG8gYSBuZXcgY29tbWl0IHNoYS4gTm93PGJyPg0KYnVpbGRpbmcgdmVyc2lvbiAxMzIu
+PGJyPg0KPC9kaXY+DQo8L3NwYW4+PC9mb250PjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+
+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9
+ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPlNldmVyYWwgb3RoZXIgY29uZmln
+cyBzZWVtcyB0byBoYXZlIG1pc3NlZCB0aGUgU0hBIHVwZGF0ZSBmb3IgbWV0YS1icm93c2VyLiBD
+aGVja291dCBjb21taXQgWzBdIGZyb20gRGFycmVuLjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxi
+cj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPkV2ZW4gdGhvdWdoIG1ldGEtYnJvd3NlciBpcyBj
+b21tZW50ZWQgaW4gdGhvc2Ugb2UtY29uZmlncywgd2UgdXNlZCB0byBlbnN1cmUgdGhlIGNvbW1p
+dCBTSEEgYXJlIGNvbnNpc3RlbnQgYWNyb3NzIGFsbCBjb25maWdzLjwvZGl2Pg0KPGRpdiBkaXI9
+ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBk
+aXI9ImF1dG8iPlswXTogaHR0cHM6Ly9naXQudGkuY29tL2NnaXQvYXJhZ28tcHJvamVjdC9vZS1s
+YXllcnNldHVwL2NvbW1pdC8/aWQ9NWNlYjkwMzA1ZTU0ZjYwYzAyYWI1ZDcxNmU0ZDY5Y2UxMjQ4
+YTYwYjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8i
+Pjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1
+dG8iPkNoaXJhZzwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9
+ImF1dG8iPg0KPGRpdiBjbGFzcz0iZ21haWxfZXh0cmEiPg0KPGRpdiBjbGFzcz0iZ21haWxfcXVv
+dGUiPg0KPGJsb2NrcXVvdGUgY2xhc3M9InF1b3RlIiBzdHlsZT0ibWFyZ2luOjAgMCAwIC44ZXg7
+Ym9yZGVyLWxlZnQ6MXB4ICNjY2Mgc29saWQ7cGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2Pjxmb250
+IHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBwdCI+DQo8ZGl2Pjxicj4NClNpZ25l
+ZC1vZmYtYnk6IEFudG9uaW9zIENocmlzdGlkaXMgJmx0O2EtY2hyaXN0aWRpc0B0aS5jb20mZ3Q7
+PGJyPg0KLS0tPGJyPg0KJm5ic3A7Y29uZmlncy9hcmFnby1zY2FydGhnYXAtY2hyb21pdW0tY29u
+ZmlnLnR4dCZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyB8IDIgJiM0MzstPGJyPg0KJm5ic3A7a2Fz
+L2FyYWdvLXNjYXJ0aGdhcC1jaHJvbWl1bS1jb25maWcueW1sJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHwgMiAmIzQzOy08YnI+DQombmJzcDtzcmMvY29u
+Zmlncy9hcmFnby1zY2FydGhnYXAtY2hyb21pdW0tY29uZmlnLnhtbCB8IDIgJiM0MzstPGJyPg0K
+Jm5ic3A7MyBmaWxlcyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoJiM0MzspLCAzIGRlbGV0aW9ucygt
+KTxicj4NCjxicj4NCmRpZmYgLS1naXQgYS9jb25maWdzL2FyYWdvLXNjYXJ0aGdhcC1jaHJvbWl1
+bS1jb25maWcudHh0IGIvY29uZmlncy9hcmFnby1zY2FydGhnYXAtY2hyb21pdW0tY29uZmlnLnR4
+dDxicj4NCmluZGV4IGFlODczZTguLjAwOTgyYzAgMTAwNjQ0PGJyPg0KLS0tIGEvY29uZmlncy9h
+cmFnby1zY2FydGhnYXAtY2hyb21pdW0tY29uZmlnLnR4dDxicj4NCiYjNDM7JiM0MzsmIzQzOyBi
+L2NvbmZpZ3MvYXJhZ28tc2NhcnRoZ2FwLWNocm9taXVtLWNvbmZpZy50eHQ8YnI+DQpAQCAtMyw3
+ICYjNDM7Myw3IEBAPGJyPg0KJm5ic3A7PGJyPg0KJm5ic3A7Yml0YmFrZSxodHRwczovL2dpdC5v
+cGVuZW1iZWRkZWQub3JnL2JpdGJha2UsMi44LEhFQUQ8YnI+DQombmJzcDttZXRhLWFyYWdvLGh0
+dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS1hcmFnbyxzY2FydGhnYXAsSEVBRCxsYXll
+cnM9bWV0YS1hcmFnby1kaXN0cm86bWV0YS1hcmFnby1leHRyYXM6bWV0YS1hcmFnby10ZXN0PGJy
+Pg0KLW1ldGEtYnJvd3NlcixodHRwczovL2dpdGh1Yi5jb20vT1NTeXN0ZW1zL21ldGEtYnJvd3Nl
+ci5naXQsbWFzdGVyLDY4ZThjYmY1MWFjNDZjOGMxYjM5MjNlZTJiMjBlMjdiYTlkM2ZhYTQsbGF5
+ZXJzPW1ldGEtY2hyb21pdW08YnI+DQomIzQzO21ldGEtYnJvd3NlcixodHRwczovL2dpdGh1Yi5j
+b20vT1NTeXN0ZW1zL21ldGEtYnJvd3Nlci5naXQsbWFzdGVyLDI3Y2E1MmY2MzVhMzFmNWY5NzYy
+ODEzYTg1MjdkZDMxMzIzNTQ5YjcsbGF5ZXJzPW1ldGEtY2hyb21pdW08YnI+DQombmJzcDsjbWV0
+YS1zZWxpbnV4LGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS1zZWxpbnV4LHNjYXJ0
+aGdhcCxIRUFELGxheWVycz08YnI+DQombmJzcDttZXRhLXF0NixodHRwczovL2NvZGUucXQuaW8v
+eW9jdG8vbWV0YS1xdDYuZ2l0LDYuOSxIRUFELGxheWVycz08YnI+DQombmJzcDttZXRhLXZpcnR1
+YWxpemF0aW9uLGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS12aXJ0dWFsaXphdGlv
+bixzY2FydGhnYXAsSEVBRCxsYXllcnM9PGJyPg0KZGlmZiAtLWdpdCBhL2thcy9hcmFnby1zY2Fy
+dGhnYXAtY2hyb21pdW0tY29uZmlnLnltbCBiL2thcy9hcmFnby1zY2FydGhnYXAtY2hyb21pdW0t
+Y29uZmlnLnltbDxicj4NCmluZGV4IGE5MjllZGEuLmZiMTA1MDQgMTAwNjQ0PGJyPg0KLS0tIGEv
+a2FzL2FyYWdvLXNjYXJ0aGdhcC1jaHJvbWl1bS1jb25maWcueW1sPGJyPg0KJiM0MzsmIzQzOyYj
+NDM7IGIva2FzL2FyYWdvLXNjYXJ0aGdhcC1jaHJvbWl1bS1jb25maWcueW1sPGJyPg0KQEAgLTE4
+LDcgJiM0MzsxOCw3IEBAIHJlcG9zOjxicj4NCiZuYnNwOyZuYnNwOyBtZXRhLWJyb3dzZXI6PGJy
+Pg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHVybDogJnF1b3Q7PGEgaHJlZj0iaHR0cHM6Ly9n
+aXRodWIuY29tL09TU3lzdGVtcy9tZXRhLWJyb3dzZXIuZ2l0Ij5odHRwczovL2dpdGh1Yi5jb20v
+T1NTeXN0ZW1zL21ldGEtYnJvd3Nlci5naXQ8L2E+JnF1b3Q7PGJyPg0KJm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7IGJyYW5jaDogJnF1b3Q7bWFzdGVyJnF1b3Q7PGJyPg0KLSZuYnNwOyZuYnNwOyZu
+YnNwOyBjb21taXQ6ICZxdW90OzY4ZThjYmY1MWFjNDZjOGMxYjM5MjNlZTJiMjBlMjdiYTlkM2Zh
+YTQmcXVvdDs8YnI+DQomIzQzOyZuYnNwOyZuYnNwOyZuYnNwOyBjb21taXQ6ICZxdW90OzI3Y2E1
+MmY2MzVhMzFmNWY5NzYyODEzYTg1MjdkZDMxMzIzNTQ5YjcmcXVvdDs8YnI+DQombmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsgbGF5ZXJzOjxicj4NCiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyBtZXRhLWNocm9taXVtOjxicj4NCiZuYnNwOzxicj4NCmRpZmYgLS1naXQgYS9zcmMv
+Y29uZmlncy9hcmFnby1zY2FydGhnYXAtY2hyb21pdW0tY29uZmlnLnhtbCBiL3NyYy9jb25maWdz
+L2FyYWdvLXNjYXJ0aGdhcC1jaHJvbWl1bS1jb25maWcueG1sPGJyPg0KaW5kZXggYmE3Yzk1ZS4u
+ZmFlYmU1NyAxMDA2NDQ8YnI+DQotLS0gYS9zcmMvY29uZmlncy9hcmFnby1zY2FydGhnYXAtY2hy
+b21pdW0tY29uZmlnLnhtbDxicj4NCiYjNDM7JiM0MzsmIzQzOyBiL3NyYy9jb25maWdzL2FyYWdv
+LXNjYXJ0aGdhcC1jaHJvbWl1bS1jb25maWcueG1sPGJyPg0KQEAgLTE2LDcgJiM0MzsxNiw3IEBA
+PGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICZsdDtsYXllciZn
+dDttZXRhLWFyYWdvLXRlc3QmbHQ7L2xheWVyJmd0Ozxicj4NCiZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyAmbHQ7
+L2xheWVycyZndDs8YnI+DQombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsgJmx0Oy9yZXBvJmd0Ozxicj4NCi0mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsgJmx0O3JlcG8gbmFtZT0nbWV0YS1icm93c2VyJyB1cmw9JzxhIGhyZWY9
+Imh0dHBzOi8vZ2l0aHViLmNvbS9PU1N5c3RlbXMvbWV0YS1icm93c2VyLmdpdCI+aHR0cHM6Ly9n
+aXRodWIuY29tL09TU3lzdGVtcy9tZXRhLWJyb3dzZXIuZ2l0PC9hPicgYnJhbmNoPSdtYXN0ZXIn
+IGNvbW1pdD0nNjhlOGNiZjUxYWM0NmM4YzFiMzkyM2VlMmIyMGUyN2JhOWQzZmFhNCcmZ3Q7PGJy
+Pg0KJiM0MzsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgJmx0O3Jl
+cG8gbmFtZT0nbWV0YS1icm93c2VyJyB1cmw9JzxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9P
+U1N5c3RlbXMvbWV0YS1icm93c2VyLmdpdCI+aHR0cHM6Ly9naXRodWIuY29tL09TU3lzdGVtcy9t
+ZXRhLWJyb3dzZXIuZ2l0PC9hPicgYnJhbmNoPSdtYXN0ZXInIGNvbW1pdD0nMjdjYTUyZjYzNWEz
+MWY1Zjk3NjI4MTNhODUyN2RkMzEzMjM1NDliNycmZ3Q7PGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICZs
+dDtsYXllcnMmZ3Q7PGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+ICZsdDtsYXllciZndDttZXRhLWNocm9taXVtJmx0Oy9sYXllciZndDs8YnI+DQombmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsgJmx0Oy9sYXllcnMmZ3Q7PGJyPg0KLS0gPGJyPg0KMi4zNC4xPGJyPg0KPGJyPg0KPGJy
+Pg0KPGJyPg0KLT0tPS09LT0tPS09LT0tPS09LT0tPS08YnI+DQpMaW5rczogWW91IHJlY2VpdmUg
+YWxsIG1lc3NhZ2VzIHNlbnQgdG8gdGhpcyBncm91cC48YnI+DQpWaWV3L1JlcGx5IE9ubGluZSAo
+IzE2MjU1KTogPGEgaHJlZj0iaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cvbWV0YS1h
+cmFnby9tZXNzYWdlLzE2MjU1Ij4NCmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL21l
+dGEtYXJhZ28vbWVzc2FnZS8xNjI1NTwvYT48YnI+DQpNdXRlIFRoaXMgVG9waWM6IDxhIGhyZWY9
+Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9tdC8xMTM0OTA0NzYvNzAzMDI4OSI+aHR0
+cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL210LzExMzQ5MDQ3Ni83MDMwMjg5PC9hPjxicj4N
+Ckdyb3VwIE93bmVyOiBtZXRhLWFyYWdvJiM0Mztvd25lckBsaXN0cy55b2N0b3Byb2plY3Qub3Jn
+PGJyPg0KVW5zdWJzY3JpYmU6IDxhIGhyZWY9Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9y
+Zy9nL21ldGEtYXJhZ28vdW5zdWIiPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL21l
+dGEtYXJhZ28vdW5zdWI8L2E+IFtjLXNoaWx3YW50QHRpLmNvbV08YnI+DQotPS09LT0tPS09LT0t
+PS09LT0tPS09LTxicj4NCjxicj4NCjxicj4NCjwvZGl2Pg0KPC9zcGFuPjwvZm9udD48L2Rpdj4N
+CjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPGJyPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9i
+b2R5Pg0KPC9odG1sPg0K
 
+--_000_70bd6a5e9ab84da68b82fdfd22d5f32aemailandroidcom_--
 
