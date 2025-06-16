@@ -1,52 +1,48 @@
-Return-Path: <lcpdbld@list.ti.com>
+Return-Path: <p-bhagat@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC6EEC61CE8
-	for <webhook@archiver.kernel.org>; Thu, 12 Jun 2025 23:58:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9851EC71136
+	for <webhook@archiver.kernel.org>; Mon, 16 Jun 2025 12:32:35 +0000 (UTC)
 Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web11.9078.1749772712098189786
+ by mx.groups.io with SMTP id smtpd.web10.29201.1750077151886728331
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 12 Jun 2025 16:58:32 -0700
+ Mon, 16 Jun 2025 05:32:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=jlC6iwgP;
- spf=pass (domain: list.ti.com, ip: 198.47.19.245, mailfrom: lcpdbld@list.ti.com)
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55CNwU7D2988755;
-	Thu, 12 Jun 2025 18:58:30 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=rbNJkosN;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: p-bhagat@ti.com)
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55GCWS393734359;
+	Mon, 16 Jun 2025 07:32:28 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1749772710; i=@ti.com;
-	bh=Gs6Psw4Fv0C6R9JTmemxhFtJgF9jr/XiHnEjPu0YhoQ=;
-	h=From:To:Subject:Date;
-	b=jlC6iwgP5trKdjHWvQ8fibHNjXtDx5++5UqvuPjmx9fmTYd/CP1KzLWyvPZTAyw/h
-	 EIg9O5Es74f+0jMYdd/T13N7Jv+TdrIbz8FVZ3RLwcQRx/NCE012Lck+d+BsV+OPyX
-	 SSPa0AjlhPXAzC5Nkpgq5I5Pi0Lu27cP8WvbjqHA=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55CNwUMO2184927
+	s=ti-com-17Q1; t=1750077148;
+	bh=TrdYOGFxasRu7LwIM27EpzYh9UltxfMyZmDZHP+Mb6o=;
+	h=From:To:CC:Subject:Date;
+	b=rbNJkosNGj1rxff+fSD3iZYKRXDcUfvAIZ+o6eoHBRo6Vzx7RS1pInBzC1gUsJtOM
+	 ivd6D7IEEDESWxqVfhUclYfSNfrVwyvr9SeIqDUc8z+sSKEwXaxWTT/iWSW8bH1kuO
+	 XbggFDMX42kaFQc0hF6sLACQVbD8ULZZSIXL8Brk=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55GCWS3L946418
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 12 Jun 2025 18:58:30 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 12
- Jun 2025 18:58:29 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 16 Jun 2025 07:32:28 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 16
+ Jun 2025 07:32:28 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 12 Jun 2025 18:58:29 -0500
-Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.64.72.21])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55CNwT1D2718702;
-	Thu, 12 Jun 2025 18:58:29 -0500
-Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
-	id A15212358; Thu, 12 Jun 2025 18:58:29 -0500 (CDT)
-From: LCPD Automation Script <lcpdbld@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys
- Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap][PATCH] CI/CD Auto-Merger: cicd.scarthgap.202506121146
-Date: Thu, 12 Jun 2025 18:58:29 -0500
-Message-ID: <20250612235829.1342710-1-lcpdbld@list.ti.com>
-X-Mailer: git-send-email 2.43.5
+ Frontend Transport; Mon, 16 Jun 2025 07:32:28 -0500
+Received: from localhost (ula0502350.dhcp.ti.com [172.24.227.38])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55GCWRL64064374;
+	Mon, 16 Jun 2025 07:32:27 -0500
+From: Paresh Bhagat <p-bhagat@ti.com>
+To: <meta-arago@lists.yoctoproject.org>, <denis@denix.org>, <reatmon@ti.com>
+CC: <v-singh1@ti.com>, <c-shilwant@ti.com>, <khasim@ti.com>, <afd@ti.com>
+Subject: [scarthgap][PATCH v2] meta-arago-distro: packagegroups: Add additional libraries for audio
+Date: Mon, 16 Jun 2025 18:02:21 +0530
+Message-ID: <20250616123221.2058197-1-p-bhagat@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -54,34 +50,87 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 12 Jun 2025 23:58:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16264
+ <meta-arago@lists.yoctoproject.org>; Mon, 16 Jun 2025 12:32:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16265
 
-Updated the value(s) for:
-  ltp-ddt: SRCREV
+Add fftw and libsndfile1 libraries in multimedia package group, which are
+used for signal processing and audio manipulation. Update corresponding
+sdk target file to package header files and libraries for development.
 
-Changelogs:
-  ltp-ddt: https://git.ti.com/cgit/test-automation/ltp-ddt/log/?qt=range&q=c5be4c2b403371c49cb98f3c2c50f59b08b18c05..3df447f1208234cd114719bb29da0555838dde05
+Also add rpmsg DMA library for all k3 platforms.
 
-Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
+Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
 ---
- meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Boot logs
+https://gist.github.com/paresh-bhagat12/5deee18beb726c6efb94cbdb7a07d8a8
 
-diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-index 5a8fd2d8..61e80528 100644
---- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-+++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-@@ -12,7 +12,7 @@ PE = "1"
- PR = "r1"
- PV:append = "+git"
+Note: This patch depends on below patch
+https://lists.yoctoproject.org/g/meta-ti/message/18635
+
+Change log
+V1 -> V2
+	- Drop ti-librpmsg-dma-example.
+
+ .../packagegroups/packagegroup-arago-tisdk-addons.bb        | 1 +
+ .../packagegroup-arago-tisdk-multimedia-sdk-target.bb       | 6 ++++++
+ .../packagegroups/packagegroup-arago-tisdk-multimedia.bb    | 6 ++++++
+ 3 files changed, 13 insertions(+)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index f02f013b..d9ab3617 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -53,6 +53,7 @@ UTILS:append:omap-a15 = " mmc-utils \
+ UTILS:append:k3 = " mmc-utils \
+                     switch-config \
+                     irqbalance \
++                    ti-librpmsg-dma \
+                     ti-rpmsg-char \
+                     ti-rpmsg-char-examples \
+                     statcol \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
+index 9daaa06d..6edc0dfd 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
+@@ -13,7 +13,13 @@ MULTIMEDIA:append:dra7xx = " \
+     hevc-arm-decoder-staticdev \
+ "
  
--SRCREV = "c5be4c2b403371c49cb98f3c2c50f59b08b18c05"
-+SRCREV = "3df447f1208234cd114719bb29da0555838dde05"
- BRANCH ?= "master"
++AUDIO = " \
++    fftw-dev \
++    libsndfile1-dev \
++"
++
+ RDEPENDS:${PN} = "\
++    ${AUDIO} \
+     ${MULTIMEDIA} \
+     packagegroup-arago-gst-sdk-target \
+ "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+index 3aa1a051..6b0397b3 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+@@ -11,6 +11,11 @@ MULTIMEDIA = " \
+     libcamera-gst \
+ "
  
- SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
++AUDIO = " \
++    fftw \
++    libsndfile1 \
++"
++
+ MULTIMEDIA:append:arago = " ffmpeg mpv"
+ 
+ MULTIMEDIA:omapl138 = ""
+@@ -31,6 +36,7 @@ ACCEL_MM:append:omap-a15 = " \
+ "
+ 
+ RDEPENDS:${PN} = "\
++    ${AUDIO} \
+     packagegroup-arago-gst \
+     ${MULTIMEDIA} \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', '${ACCEL_MM}', '', d)} \
 -- 
-2.43.5
+2.34.1
 
 
