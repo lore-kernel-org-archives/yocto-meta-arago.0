@@ -1,87 +1,70 @@
-Return-Path: <lcpdbld@list.ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 479F2C77B7F
-	for <webhook@archiver.kernel.org>; Fri, 27 Jun 2025 13:14:57 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web10.13434.1751030096800660254
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B4ADC83029
+	for <webhook@archiver.kernel.org>; Mon, 30 Jun 2025 16:15:51 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.45045.1751300146892176460
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 27 Jun 2025 06:14:56 -0700
+ Mon, 30 Jun 2025 09:15:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=B3/v+rhT;
- spf=pass (domain: list.ti.com, ip: 198.47.23.234, mailfrom: lcpdbld@list.ti.com)
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 55RDEtoe2025512;
-	Fri, 27 Jun 2025 08:14:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1751030095; i=@ti.com;
-	bh=CTZF6yTQHzZ480ur6kYr0Kn9wPur7BMB16jSFkP0/YI=;
-	h=From:To:Subject:Date;
-	b=B3/v+rhTVeWL4Sf8AJ3FnlfFA+mSATnb+4BQDMkIUSdjw/aM7HhP5WKz/+W7ygSmT
-	 qFYIM/Kjv9N8+MCJIhZCg4CRUWhpo6NcIZ8I6uOF1FETJEK6Kmca/692wxwFfK+azG
-	 6w2YDjhzlscJ9HNu03UlZW3inFawZMksIBhmVYnI=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 55RDEtFC3263855
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 27 Jun 2025 08:14:55 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 27
- Jun 2025 08:14:54 -0500
-Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 27 Jun 2025 08:14:54 -0500
-Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.64.72.21])
-	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 55RDEsZg4159752;
-	Fri, 27 Jun 2025 08:14:54 -0500
-Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
-	id C2AA8235D; Fri, 27 Jun 2025 08:14:54 -0500 (CDT)
-From: LCPD Automation Script <lcpdbld@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys
- Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap][PATCH] CI/CD Auto-Merger: cicd.scarthgap.202506261626
-Date: Fri, 27 Jun 2025 08:14:54 -0500
-Message-ID: <20250627131454.2142700-1-lcpdbld@list.ti.com>
-X-Mailer: git-send-email 2.43.5
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 4507A407DA;
+	Mon, 30 Jun 2025 16:15:46 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id qgO9B6-pelS0; Mon, 30 Jun 2025 16:15:46 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 28B0240C7B;
+	Mon, 30 Jun 2025 16:15:45 +0000 (UTC)
+Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 3BE8816AFB9;
+	Mon, 30 Jun 2025 12:15:44 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master][PATCH 2/2] arago-prefs: drop very old preference for ltp-ddt
+Date: Mon, 30 Jun 2025 12:15:43 -0400
+Message-Id: <20250630161543.1781117-2-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250630161543.1781117-1-denis@denix.org>
+References: <20250630161543.1781117-1-denis@denix.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 27 Jun 2025 13:14:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16274
+ <meta-arago@lists.yoctoproject.org>; Mon, 30 Jun 2025 16:15:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16275
 
-Updated the value(s) for:
-  ltp-ddt: SRCREV
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Changelogs:
-  ltp-ddt: https://git.ti.com/cgit/test-automation/ltp-ddt/log/?qt=range&q=b862369dbe6af5486959aa64ca8c7ca6f858c149..6a635db1816af206c582611edc6682c967e9a46a
+It has been a long time since there were multiple providers for
+ltp-ddt, based on the kernel version around 3.8 - there's no need
+to set it anymore.
 
-Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/conf/distro/include/arago-prefs.inc | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-index ca6efd7a..48f0868a 100644
---- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-+++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
-@@ -12,7 +12,7 @@ PE = "1"
- PR = "r1"
- PV:append = "+git"
- 
--SRCREV = "b862369dbe6af5486959aa64ca8c7ca6f858c149"
-+SRCREV = "6a635db1816af206c582611edc6682c967e9a46a"
- BRANCH ?= "master"
- 
- SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
--- 
-2.43.5
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta=
+-arago-distro/conf/distro/include/arago-prefs.inc
+index 1273070f..f05fc43c 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -1,6 +1,3 @@
+-# Use the latest version of ltp-ddt for kernel versions 3.8+
+-PREFERRED_PROVIDER_ltp-ddt =3D "ltp-ddt"
+-
+ PREFERRED_PROVIDER_virtual/gettext =3D "gettext"
+=20
+ PREFERRED_PROVIDER_virtual/kernel:append =3D "${ARAGO_KERNEL_SUFFIX}"
+--=20
+2.25.1
 
 
