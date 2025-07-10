@@ -1,732 +1,2578 @@
-Return-Path: <a-limaye@ti.com>
+Return-Path: <j-sahu@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C318C8303C
-	for <webhook@archiver.kernel.org>; Mon,  7 Jul 2025 09:07:27 +0000 (UTC)
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web10.55573.1751879243468272150
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C037C83F1B
+	for <webhook@archiver.kernel.org>; Thu, 10 Jul 2025 15:12:04 +0000 (UTC)
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+ by mx.groups.io with SMTP id smtpd.web11.11328.1752160323906030138
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 07 Jul 2025 02:07:23 -0700
+ Thu, 10 Jul 2025 08:12:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=AuxlPYrS;
- spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: a-limaye@ti.com)
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56797M7T817503
-	for <meta-arago@lists.yoctoproject.org>; Mon, 7 Jul 2025 04:07:22 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=RiZG/s70;
+ spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: j-sahu@ti.com)
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56AFC3dl1186293
+	for <meta-arago@lists.yoctoproject.org>; Thu, 10 Jul 2025 10:12:03 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1751879242;
-	bh=zkEj+zIF1VlZBW4bHiR7veTc3rtPaMMor16JtmyKiIg=;
+	s=ti-com-17Q1; t=1752160323;
+	bh=DQW+i/WkVhUP4m8iAmgoK2bWu1b2Bes5Szoc/AfY5RU=;
 	h=From:To:CC:Subject:Date;
-	b=AuxlPYrSzn77XQsFVGaAEYSHsIGcHmr0mWXUbloGlP/JCq3vzG7Q5AghpfsUKv/I5
-	 c+VOYYHmseOff7XE7rZ+w4vn7D5YDpHTuZnxBlMuS2LQI2ViiUKNAqLi66EunH1RC4
-	 DmOiRGkL87ZyqX0U+OtpTVqVucAXnG5odc+P0ZMU=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56797MN64058321
+	b=RiZG/s70hfEvVoOfHswbts4oFKHRyWgouoM1A97gIE0fMNDCzN0YSjk5UXlXggFyW
+	 InGCA9OXjLsiu0Jy830ye9CGLsXVGpIZ2cQhKtJxNizXuMvq8A4peZ4lHMyhJH/Cry
+	 7ff23rfZVbNHlxHh8WaOBQJNd4iNUc16+t8cRzbk=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56AFC3Xu1344630
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Mon, 7 Jul 2025 04:07:22 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 7
- Jul 2025 04:07:22 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Thu, 10 Jul 2025 10:12:03 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 10
+ Jul 2025 10:12:02 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 7 Jul 2025 04:07:22 -0500
-Received: from aniket-z2-workstation.dhcp.ti.com (aniket-z2-workstation.dhcp.ti.com [10.24.69.69])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56797KFX3789343;
-	Mon, 7 Jul 2025 04:07:21 -0500
-From: Aniket Limaye <a-limaye@ti.com>
+ Frontend Transport; Thu, 10 Jul 2025 10:12:02 -0500
+Received: from jeevan-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (jeevan-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.236])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56AFC1jk1559861;
+	Thu, 10 Jul 2025 10:12:01 -0500
+From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
-CC: <reatmon@ti.com>
-Subject: [meta-arago][scarthgap][PATCH] meta-arago-distro: ethtool: Add patch to dump CPSW registers for K3 SoCs
-Date: Mon, 7 Jul 2025 14:37:20 +0530
-Message-ID: <20250707090720.750031-1-a-limaye@ti.com>
+CC: Chirag <c-shilwant@ti.com>, Ryan Eatmon <reatmon@ti.com>
+Subject: [meta-arago][oe-layersetup][master][PATCH] processor-sdk: Add new configs for Sitara SDK 11.01 Release
+Date: Thu, 10 Jul 2025 20:41:54 +0530
+Message-ID: <20250710151154.2768229-1-j-sahu@ti.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 07 Jul 2025 09:07:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16277
+ <meta-arago@lists.yoctoproject.org>; Thu, 10 Jul 2025 15:12:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16278
 
-Add support for TI K3 CPSW register and ALE table dump through the
-ethtool userspace utility.
+- Add processor-sdk-scarthgap-chromium-11.01.05.03-config
+used for building AM62P, AM62x, AM62LP & Beagleplay.
 
-Signed-off-by: Aniket Limaye <a-limaye@ti.com>
+- Add processor-sdk-scarthgap-11.01.05.03-config used for
+building AM62-SIP.
+
+- Add processor-sdk-scarthgap-nonqt-11.01.05.03-config used
+for building AM64x and AM62D.
+
+- Add processor-sdk-scarthpag-selinux-11.01.05.03-config
+used for selinux for AM62P, AM62x, AM62LP & Beagleplay.
+
+Signed-off-by: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
 ---
- .../ethtool/ethtool-arago.inc                 |   8 +
- ...k3-cpsw-registers-and-ale-table-dump.patch | 574 ++++++++++++++++++
- .../ethtool/ethtool_%.bbappend                |   4 +
- 3 files changed, 586 insertions(+)
- create mode 100644 meta-arago-distro/recipes-extended/ethtool/ethtool-arag=
-o.inc
- create mode 100644 meta-arago-distro/recipes-extended/ethtool/ethtool/pret=
-ty-add-support-for-ti-k3-cpsw-registers-and-ale-table-dump.patch
- create mode 100644 meta-arago-distro/recipes-extended/ethtool/ethtool_%.bb=
-append
+ ...ssor-sdk-scarthgap-11.01.05.03-config.json | 147 ++++++++++++++
+ ...scarthgap-chromium-11.01.05.03-config.json | 158 +++++++++++++++
+ ...dk-scarthgap-nonqt-11.01.05.03-config.json | 136 +++++++++++++
+ ...-scarthgap-selinux-11.01.05.03-config.json | 158 +++++++++++++++
+ .../bblayers.conf.sample                      |  34 ++++
+ .../conf-notes.txt                            |  22 +++
+ .../conf-summary.txt                          |   1 +
+ .../local.conf.sample                         | 175 +++++++++++++++++
+ .../bblayers.conf.sample                      |  35 ++++
+ .../conf-notes.txt                            |  22 +++
+ .../conf-summary.txt                          |   1 +
+ .../local.conf.sample                         | 175 +++++++++++++++++
+ .../bblayers.conf.sample                      |  33 ++++
+ .../conf-notes.txt                            |  22 +++
+ .../conf-summary.txt                          |   1 +
+ .../local.conf.sample                         | 175 +++++++++++++++++
+ .../bblayers.conf.sample                      |  35 ++++
+ .../conf-notes.txt                            |  22 +++
+ .../conf-summary.txt                          |   1 +
+ .../local.conf.sample                         | 184 ++++++++++++++++++
+ ...essor-sdk-scarthgap-11.01.05.03-config.txt |  18 ++
+ ...-scarthgap-chromium-11.01.05.03-config.txt |  19 ++
+ ...sdk-scarthgap-nonqt-11.01.05.03-config.txt |  17 ++
+ ...k-scarthgap-selinux-11.01.05.03-config.txt |  21 ++
+ ...essor-sdk-scarthgap-11.01.05.03-config.yml |  82 ++++++++
+ ...-scarthgap-chromium-11.01.05.03-config.yml |  89 +++++++++
+ ...sdk-scarthgap-nonqt-11.01.05.03-config.yml |  77 ++++++++
+ ...k-scarthgap-selinux-11.01.05.03-config.yml |  90 +++++++++
+ ...essor-sdk-scarthgap-11.01.05.03-config.xml |  72 +++++++
+ ...-scarthgap-chromium-11.01.05.03-config.xml |  77 ++++++++
+ ...sdk-scarthgap-nonqt-11.01.05.03-config.xml |  69 +++++++
+ ...k-scarthgap-selinux-11.01.05.03-config.xml |  79 ++++++++
+ 32 files changed, 2247 insertions(+)
+ create mode 100644 bitbake-setup/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config.json
+ create mode 100644 bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config.json
+ create mode 100644 bitbake-setup/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config.json
+ create mode 100644 bitbake-setup/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config.json
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/bblayers.conf.sample
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/conf-notes.txt
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/conf-summary.txt
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/local.conf.sample
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/bblayers.conf.sample
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/conf-notes.txt
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/conf-summary.txt
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/local.conf.sample
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/bblayers.conf.sample
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/conf-notes.txt
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/conf-summary.txt
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/local.conf.sample
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/bblayers.conf.sample
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/conf-notes.txt
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/conf-summary.txt
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/local.conf.sample
+ create mode 100644 configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.txt
+ create mode 100644 configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.txt
+ create mode 100644 configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.txt
+ create mode 100644 configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.txt
+ create mode 100644 kas/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.yml
+ create mode 100644 kas/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.yml
+ create mode 100644 kas/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.yml
+ create mode 100644 kas/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.yml
+ create mode 100644 src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml
+ create mode 100644 src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml
+ create mode 100644 src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml
+ create mode 100644 src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml
 
-diff --git a/meta-arago-distro/recipes-extended/ethtool/ethtool-arago.inc b=
-/meta-arago-distro/recipes-extended/ethtool/ethtool-arago.inc
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config.json b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config.json
 new file mode 100644
-index 00000000..5fd05a85
+index 0000000..b0d63f8
 --- /dev/null
-+++ b/meta-arago-distro/recipes-extended/ethtool/ethtool-arago.inc
-@@ -0,0 +1,8 @@
-+PR:append =3D ".arago0"
-+
-+FILESEXTRAPATHS:prepend :=3D "${THISDIR}/ethtool:"
-+
-+SRC_URI:append =3D " \
-+                  file://pretty-add-support-for-ti-k3-cpsw-registers-and-a=
-le-table-dump.patch \
-+                  "
-+
-diff --git a/meta-arago-distro/recipes-extended/ethtool/ethtool/pretty-add-=
-support-for-ti-k3-cpsw-registers-and-ale-table-dump.patch b/meta-arago-dist=
-ro/recipes-extended/ethtool/ethtool/pretty-add-support-for-ti-k3-cpsw-regis=
-ters-and-ale-table-dump.patch
++++ b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config.json
+@@ -0,0 +1,147 @@
++{
++  "version": "1.0",
++  "description": "TI Processor SDK v11.01.05.03",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "2.8"
++      },
++      "path": "bitbake"
++    },
++    "meta-tisdk": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/TexasInstruments/meta-tisdk.git"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-tisdk"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arago"
++    },
++    "meta-qt6": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://code.qt.io/yocto/meta-qt6.git"
++          }
++        },
++        "rev": "6.9"
++      },
++      "path": "meta-qt6"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-lts-mixins": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-lts-mixins"
++          }
++        },
++        "rev": "scarthgap/rust"
++      },
++      "path": "meta-lts-mixins"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arm"
++    },
++    "meta-clang": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/kraj/meta-clang"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-clang"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "oe-core"
++    }
++  },
++  "configuration": {
++    "bitbake-setup": {
++      "default": {
++        "description": "Default build configuration",
++         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-11.01.05.03-config",
++         "targets": [ "bitbake -k tisdk-default-image" ]
++      }
++    }
++  }
++}
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config.json b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config.json
 new file mode 100644
-index 00000000..a14089b4
+index 0000000..fb06679
 --- /dev/null
-+++ b/meta-arago-distro/recipes-extended/ethtool/ethtool/pretty-add-support=
--for-ti-k3-cpsw-registers-and-ale-table-dump.patch
-@@ -0,0 +1,574 @@
-+From: Chintan Vankar <c-vankar@ti.com>=0D
-+Subject: [PATCH] pretty: Add support for TI K3 CPSW registers and ALE tabl=
-e dump=0D
-+Date: Thu, 3 Jul 2025 12:02:46 +0530=0D
-+=0D
-+Add support to dump CPSW registers and ALE table for the CPSW instances on=
-=0D
-+K3 SoCs that are configured using the am65-cpsw-nuss.c device-driver in=0D
-+Linux.=0D
-+=0D
-+Upstream-Status: Submitted [https://lore.kernel.org/all/20250705134807.351=
-4891-1-c-vankar@ti.com/]=0D
-+Signed-off-by: Chintan Vankar <c-vankar@ti.com>=0D
-+---=0D
-+ Makefile.am      |   2 +-=0D
-+ am65-cpsw-nuss.c | 510 +++++++++++++++++++++++++++++++++++++++++++++++=0D
-+ ethtool.c        |   1 +=0D
-+ internal.h       |   3 +=0D
-+ 4 files changed, 515 insertions(+), 1 deletion(-)=0D
-+ create mode 100644 am65-cpsw-nuss.c=0D
-+=0D
-+diff --git a/Makefile.am b/Makefile.am=0D
-+index b9e06ad..fe6afcb 100644=0D
-+--- a/Makefile.am=0D
-++++ b/Makefile.am=0D
-+@@ -23,7 +23,7 @@ ethtool_SOURCES +=3D \=0D
-+ 		  smsc911x.c at76c50x-usb.c sfc.c stmmac.c	\=0D
-+ 		  sff-common.c sff-common.h sfpid.c sfpdiag.c	\=0D
-+ 		  ixgbevf.c tse.c vmxnet3.c qsfp.c qsfp.h fjes.c lan78xx.c \=0D
-+-		  igc.c cmis.c cmis.h bnxt.c cpsw.c lan743x.c hns3.c=0D
-++		  igc.c cmis.c cmis.h bnxt.c cpsw.c lan743x.c hns3.c am65-cpsw-nuss.c=0D
-+ endif=0D
-+ =0D
-+ if ENABLE_BASH_COMPLETION=0D
-+diff --git a/am65-cpsw-nuss.c b/am65-cpsw-nuss.c=0D
-+new file mode 100644=0D
-+index 0000000..de8e3e9=0D
-+--- /dev/null=0D
-++++ b/am65-cpsw-nuss.c=0D
-+@@ -0,0 +1,510 @@=0D
-++// SPDX-License-Identifier: GPL-2.0-only OR MIT=0D
-++/* Code to dump registers and ALE table for the CPSW instances on K3 SoCs=
- that are configured using=0D
-++ * the am65-cpsw-nuss device-driver in Linux.=0D
-++ *=0D
-++ * Copyright (C) 2025 Texas Instruments=0D
-++ * Author: Chintan Vankar <c-vankar@ti.com>=0D
-++ */=0D
-++=0D
-++#include <stdio.h>=0D
-++#include <string.h>=0D
-++=0D
-++#include "internal.h"=0D
-++=0D
-++#define ALE_ENTRY_BITS          74=0D
-++#define ALE_ENTRY_WORDS         DIV_ROUND_UP(ALE_ENTRY_BITS, 32)=0D
-++=0D
-++#define ALE_ENTRY_FREE		0x0=0D
-++#define ALE_ENTRY_ADDR		0x1=0D
-++#define ALE_ENTRY_VLAN		0x2=0D
-++#define ALE_ENTRY_VLAN_ADDR	0x3=0D
-++=0D
-++#define BIT(nr)			(1 << (nr))=0D
-++#define BITMASK(bits)		(BIT(bits) - 1)=0D
-++=0D
-++/* ALE word specifiers */=0D
-++#define NUM_ALE_WORDS	2=0D
-++#define ALE_WORD_LEN	32=0D
-++=0D
-++/* MAC address specifiers */=0D
-++#define MAC_START_BIT	40=0D
-++#define MAC_OCTET_LEN	8=0D
-++#define NUM_MAC_OCTET	6=0D
-++=0D
-++/* RTL version specifiers */=0D
-++#define RTL_VERSION_MASK	0xF800=0D
-++#define CPSW2G_RTL_VERSION	0x3800=0D
-++#define CPSW3G_RTL_VERSION	0x0=0D
-++=0D
-++/* OUI address uses format xx:xx:xx, use OUI shift as 16 bits and MASK as=
- 0xFF to parse the same*/=0D
-++#define OUI_ADDR_SHIFT		16=0D
-++#define OUI_ADDR_MASK		0xFF=0D
-++=0D
-++/* VLAN entry specifiers */=0D
-++#define VLAN_INNER_ENTRY	0x0=0D
-++#define VLAN_OUTER_ENTRY	0x2=0D
-++#define VLAN_ETHERTYPE_ENTRY	0x4=0D
-++#define VLAN_IPV4_ENTRY		0x6=0D
-++#define VLAN_IPV6_ENTRY_MASK	0x1=0D
-++=0D
-++/* VLAN Inner/Outer table entry MASKs and SHIFTs*/=0D
-++#define NOLEARN_FLAG_SHIFT		2=0D
-++#define NOLEARN_FLAG_MASK		0x1FF=0D
-++#define INGRESS_CHECK_SHIFT		1=0D
-++#define INGRESS_CHECK_MASK		0x1=0D
-++#define VLAN_ID_SHIFT			16=0D
-++#define VLAN_ID_MASK			0xFFF=0D
-++#define NOFRAG_FLAG_SHIFT_2G		12=0D
-++#define NOFRAG_FLAG_MASK_2G		0x1=0D
-++#define NOFRAG_FLAG_SHIFT		15=0D
-++#define NOFRAG_FLAG_MASK		0x1=0D
-++#define REG_MASK_SHIFT			4=0D
-++#define REG_MASK_MASK			0x1FF=0D
-++#define PKT_EGRESS_W1_MASK		0x1=0D
-++#define PKT_EGRESS_W1_OFFSET		512=0D
-++#define PKT_EGRESS_SHIFT		24=0D
-++#define PKT_EGRESS_MASK_2G		0x3=0D
-++#define PKT_EGRESS_MASK			0x1FF=0D
-++#define UNREG_MASK_SHIFT_2G		20=0D
-++#define UNREG_MASK_MASK_2G		0x7=0D
-++#define UNREG_MASK_SHIFT		12=0D
-++#define UNREG_MASK_MASK			0x1FF=0D
-++#define NXT_HDR_CTRL_SHIFT_2G		19=0D
-++#define NXT_HDR_CTRL_MASK_2G		0x1=0D
-++#define NXT_HDR_CTRL_SHIFT		23=0D
-++#define NXT_HDR_CTRL_MASK		0x1=0D
-++#define VLAN_MEMBER_LIST_MASK_2G	0x3=0D
-++#define VLAN_MEMBER_LIST_MASK		0x1FF=0D
-++=0D
-++/* VLAN IPv4 entry MASKs and SHIFTs*/=0D
-++#define IPV4_ADDR_OCT1_SHIFT	24=0D
-++#define IPV4_ADDR_OCT2_SHIFT	16=0D
-++#define IPV4_ADDR_OCT3_SHIFT	8=0D
-++#define IPV4_ADDR_MASK		0xFF=0D
-++=0D
-++/* VLAN IPv6 entry MASKs and SHIFTs*/=0D
-++#define IPV6_HIGH_ENTRY_FLAG	0x40=0D
-++#define IPV6_IGNMCBITS_MASK	0xFF=0D
-++#define IPV6_HADDR_W1_SHIFT	12=0D
-++#define IPV6_HADDR_W1_MASK_1	0xFFFF=0D
-++#define IPV6_HADDR_W1_MASK_2	0xFFF=0D
-++#define IPV6_HADDR_W0_SHIFT_1	28=0D
-++#define IPV6_HADDR_W0_MASK_1	0xF=0D
-++#define IPV6_HADDR_W0_SHIFT_2	12=0D
-++#define IPV6_HADDR_W0_MASK_2	0xFFFF=0D
-++#define IPV6_LADDR_W2_SHIFT	4=0D
-++#define IPV6_LADDR_W2_MAKS	0xF=0D
-++#define IPV6_LADDR_W1_SHIFT	16=0D
-++#define IPV6_LADDR_W1_MASK_1	0xFFF=0D
-++#define IPV6_LADDR_W1_MASK	0xFFFF=0D
-++#define IPV6_LADDR_W0_SHIFT	16=0D
-++#define IPV6_LADDR_W0_MASK	0xFFFF=0D
-++=0D
-++/**=0D
-++ * Since there are different instances of CPSW (namely cpsw2g, cpsw3g, cp=
-sw5g and cpsw9g)=0D
-++ * some register offsets differ to get some parameters for ALE table, par=
-se rtl_version=0D
-++ * from ALE_MOD_VER register to determine which instance is being used.=0D
-++ */=0D
-++u32 rtl_version;=0D
-++=0D
-++static inline int cpsw_ale_get_field(u32 *ale_entry, u32 start, u32 bits)=
-=0D
-++{=0D
-++	int idx;=0D
-++=0D
-++	idx    =3D start / ALE_WORD_LEN;=0D
-++	start -=3D idx * ALE_WORD_LEN;=0D
-++=0D
-++	/**=0D
-++	 * ALE words are stored in order word2, word1 and word0, flip the word t=
-o parse in numeric=0D
-++	 * order=0D
-++	 */=0D
-++	idx    =3D NUM_ALE_WORDS - idx; /* flip */=0D
-++	return (ale_entry[idx] >> start) & BITMASK(bits);=0D
-++}=0D
-++=0D
-++#define DEFINE_ALE_FIELD(name, start, bits)				\=0D
-++static inline int cpsw_ale_get_##name(u32 *ale_entry)			\=0D
-++{									\=0D
-++	return cpsw_ale_get_field(ale_entry, start, bits);		\=0D
-++}=0D
-++=0D
-++DEFINE_ALE_FIELD(entry_type,		60,	2)=0D
-++DEFINE_ALE_FIELD(vlan_id,		48,	12)=0D
-++DEFINE_ALE_FIELD(mcast_state,		62,	2)=0D
-++DEFINE_ALE_FIELD(port_mask,		66,	9)=0D
-++DEFINE_ALE_FIELD(super,			65,	1)=0D
-++DEFINE_ALE_FIELD(agable,		62,	1)=0D
-++DEFINE_ALE_FIELD(touched,		63,	1)=0D
-++DEFINE_ALE_FIELD(ucast_type,		62,	2)=0D
-++DEFINE_ALE_FIELD(port_num,		66,	4)=0D
-++DEFINE_ALE_FIELD(port_num_2g,		66,	1)=0D
-++DEFINE_ALE_FIELD(port_num_3g,		66,	2)=0D
-++DEFINE_ALE_FIELD(blocked,		65,	1)=0D
-++DEFINE_ALE_FIELD(secure,		64,	1)=0D
-++DEFINE_ALE_FIELD(oui_entry,		62,	2)=0D
-++DEFINE_ALE_FIELD(oui_addr,		4,	24)=0D
-++DEFINE_ALE_FIELD(mcast,			40,	1)=0D
-++DEFINE_ALE_FIELD(vlan_entry_type,	62,	3)=0D
-++DEFINE_ALE_FIELD(ethertype,		0,	16)=0D
-++DEFINE_ALE_FIELD(ipv4_addr,		0,	32)=0D
-++DEFINE_ALE_FIELD(ingress_bits,		65,	5)=0D
-++DEFINE_ALE_FIELD(ipv6_addr_low,		0,	60)=0D
-++DEFINE_ALE_FIELD(ipv6_addr_mid,		63,	8)=0D
-++DEFINE_ALE_FIELD(ipv6_addr_high,	0,	60)=0D
-++DEFINE_ALE_FIELD(entry_word0,		0,	32)=0D
-++DEFINE_ALE_FIELD(entry_word1,		32,	32)=0D
-++DEFINE_ALE_FIELD(entry_word2,		64,	12)=0D
-++=0D
-++static inline void cpsw_ale_get_addr(u32 *ale_entry, u8 *addr)=0D
-++{=0D
-++	int i;=0D
-++=0D
-++	for (i =3D 0; i < NUM_MAC_OCTET; i++)=0D
-++		addr[i] =3D cpsw_ale_get_field(ale_entry, MAC_START_BIT - MAC_OCTET_LEN=
- * i,=0D
-++					     MAC_OCTET_LEN);=0D
-++}=0D
-++=0D
-++struct k3_cpsw_regdump_hdr {=0D
-++	u32 module_id;=0D
-++	u32 len;=0D
-++};=0D
-++=0D
-++enum {=0D
-++	K3_CPSW_REGDUMP_MOD_NUSS =3D 1,=0D
-++	K3_CPSW_REGDUMP_MOD_RGMII_STATUS =3D 2,=0D
-++	K3_CPSW_REGDUMP_MOD_MDIO =3D 3,=0D
-++	K3_CPSW_REGDUMP_MOD_CPSW =3D 4,=0D
-++	K3_CPSW_REGDUMP_MOD_CPSW_P0 =3D 5,=0D
-++	K3_CPSW_REGDUMP_MOD_CPSW_PN =3D 6,=0D
-++	K3_CPSW_REGDUMP_MOD_CPSW_CPTS =3D 7,=0D
-++	K3_CPSW_REGDUMP_MOD_CPSW_ALE =3D 8,=0D
-++	K3_CPSW_REGDUMP_MOD_CPSW_ALE_TBL =3D 9,=0D
-++	K3_CPSW_REGDUMP_MOD_LAST,=0D
-++};=0D
-++=0D
-++static const char *mod_names[K3_CPSW_REGDUMP_MOD_LAST] =3D {=0D
-++	[K3_CPSW_REGDUMP_MOD_NUSS] =3D "cpsw-nuss",=0D
-++	[K3_CPSW_REGDUMP_MOD_RGMII_STATUS] =3D "cpsw-nuss-rgmii-status",=0D
-++	[K3_CPSW_REGDUMP_MOD_MDIO] =3D "cpsw-nuss-mdio",=0D
-++	[K3_CPSW_REGDUMP_MOD_CPSW] =3D "cpsw-nu",=0D
-++	[K3_CPSW_REGDUMP_MOD_CPSW_P0] =3D "cpsw-nu-p0",=0D
-++	[K3_CPSW_REGDUMP_MOD_CPSW_PN] =3D "cpsw-nu-pn",=0D
-++	[K3_CPSW_REGDUMP_MOD_CPSW_CPTS] =3D "cpsw-nu-cpts",=0D
-++	[K3_CPSW_REGDUMP_MOD_CPSW_ALE] =3D "cpsw-nu-ale",=0D
-++	[K3_CPSW_REGDUMP_MOD_CPSW_ALE_TBL] =3D "cpsw-nu-ale-tbl",=0D
-++};=0D
-++=0D
-++static void cpsw_ale_dump_oui_entry(int index, u32 *ale_entry)=0D
-++{=0D
-++	u32 oui_addr;=0D
-++=0D
-++	oui_addr =3D cpsw_ale_get_oui_addr(ale_entry);=0D
-++=0D
-++	fprintf(stdout, "%d: Type: OUI Unicast\n, \tOUI =3D %02x:%02x:%02x\n",=0D
-++		index, (oui_addr >> OUI_ADDR_SHIFT) & OUI_ADDR_MASK,=0D
-++		(oui_addr >> OUI_ADDR_SHIFT) & OUI_ADDR_MASK, oui_addr & OUI_ADDR_MASK)=
-;=0D
-++}=0D
-++=0D
-++static void cpsw_ale_dump_addr(int index, u32 *ale_entry)=0D
-++{=0D
-++	u8 addr[NUM_MAC_OCTET];=0D
-++=0D
-++	cpsw_ale_get_addr(ale_entry, addr);=0D
-++=0D
-++	if (cpsw_ale_get_mcast(ale_entry)) {=0D
-++		static const char * const str_mcast_state[] =3D {"Forwarding",=0D
-++							       "Blocking/Forwarding/Learning",=0D
-++							       "Learning/Forwarding",=0D
-++							       "Forwarding"};=0D
-++		u16 port_mask =3D cpsw_ale_get_port_mask(ale_entry);=0D
-++		u8 state =3D cpsw_ale_get_mcast_state(ale_entry);=0D
-++		u8 super =3D cpsw_ale_get_super(ale_entry);=0D
-++=0D
-++		fprintf(stdout, "%d: Type: Multicast\n \tAddress =3D %02x:%02x:%02x:%02=
-x:%02x:%02x, Multicast_State =3D %s, %sSuper, port_mask =3D 0x%x\n",=0D
-++			index, addr[0], addr[1], addr[2], addr[3], addr[4], addr[5],=0D
-++			str_mcast_state[state], super ? "" : "No ", port_mask);=0D
-++	} else {=0D
-++		static const char * const s_ucast_type[] =3D {"Persistent", "Untouched"=
-, "OUI",=0D
-++							    "Touched"};=0D
-++		u8 ucast_type =3D cpsw_ale_get_ucast_type(ale_entry);=0D
-++		u8 port_num =3D cpsw_ale_get_port_num(ale_entry);=0D
-++		u8 blocked =3D cpsw_ale_get_blocked(ale_entry);=0D
-++		u8 touched =3D cpsw_ale_get_touched(ale_entry);=0D
-++		u8 secure =3D cpsw_ale_get_secure(ale_entry);=0D
-++		u8 agable =3D cpsw_ale_get_agable(ale_entry);=0D
-++=0D
-++		fprintf(stdout, "%d: Type: Unicast\n \tUpdated Address =3D %02x:%02x:%0=
-2x:%02x:%02x:%02x, Unicast Type =3D %s, Port_num =3D 0x%x, Secure: %d, Bloc=
-ked: %d, Touch =3D %d, Agable =3D %d\n",=0D
-++			index, addr[0], addr[1], addr[2], addr[3], addr[4], addr[5],=0D
-++			s_ucast_type[ucast_type], port_num, secure, blocked, touched, agable);=
-=0D
-++	}=0D
-++}=0D
-++=0D
-++static void cpsw_ale_dump_inner_vlan_entry(int index, u32 *ale_entry)=0D
-++{=0D
-++	u32 vlan_entry_word0 =3D cpsw_ale_get_entry_word0(ale_entry);=0D
-++	u32 vlan_entry_word1 =3D cpsw_ale_get_entry_word1(ale_entry);=0D
-++	u16 vlan_entry_word2 =3D cpsw_ale_get_entry_word2(ale_entry);=0D
-++=0D
-++	fprintf(stdout, "%d: Type: Inner VLAN\n \tNolearn Mask =3D 0x%x, Ingress=
- Check =3D %d\n",=0D
-++		index, (vlan_entry_word2 >> NOLEARN_FLAG_SHIFT) & NOLEARN_FLAG_MASK,=0D
-++		(vlan_entry_word2 >> INGRESS_CHECK_SHIFT) & INGRESS_CHECK_MASK);=0D
-++=0D
-++	if (rtl_version =3D=3D CPSW2G_RTL_VERSION) {=0D
-++		fprintf(stdout, "\tVLAN ID =3D %d, No Frag =3D %d, Registered Mask =3D =
-0x%x\n",=0D
-++			(vlan_entry_word1 >> VLAN_ID_SHIFT) & VLAN_ID_MASK,=0D
-++			(vlan_entry_word1 >> NOFRAG_FLAG_SHIFT_2G) & NOFRAG_FLAG_MASK_2G,=0D
-++			(vlan_entry_word1 >> REG_MASK_SHIFT) & REG_MASK_MASK);=0D
-++=0D
-++		fprintf(stdout, "\tForce Untagged Packet Egress =3D 0x%x, Unregistered =
-Mask =3D 0x%x, Limit Next Header Control =3D %d, Members =3D 0x%x\n",=0D
-++			(vlan_entry_word0 >> PKT_EGRESS_SHIFT) & PKT_EGRESS_MASK_2G,=0D
-++			(vlan_entry_word0 >> UNREG_MASK_SHIFT_2G) & UNREG_MASK_MASK_2G,=0D
-++			(vlan_entry_word0 >> NXT_HDR_CTRL_SHIFT_2G) & NXT_HDR_CTRL_MASK_2G,=0D
-++			(vlan_entry_word0 & VLAN_MEMBER_LIST_MASK_2G));=0D
-++	} else {=0D
-++		fprintf(stdout, "\tVLAN ID =3D %d, Registered Mask =3D 0x%x, No Frag =
-=3D %d\n",=0D
-++			(vlan_entry_word1 >> VLAN_ID_SHIFT) & VLAN_ID_MASK,=0D
-++			(vlan_entry_word1 >> REG_MASK_SHIFT) & REG_MASK_MASK,=0D
-++			(vlan_entry_word1 >> NOFRAG_FLAG_SHIFT) & NOFRAG_FLAG_MASK);=0D
-++=0D
-++		fprintf(stdout, "\tForce Untagged Packet Egress =3D 0x%x, Limit Next He=
-ader Control =3D %d, Unregistered Mask =3D 0x%x, Members =3D 0x%x\n",=0D
-++			(vlan_entry_word1 & PKT_EGRESS_W1_MASK) * PKT_EGRESS_W1_OFFSET +=0D
-++			((vlan_entry_word0 >> PKT_EGRESS_SHIFT) & PKT_EGRESS_MASK),=0D
-++			(vlan_entry_word0 >> NXT_HDR_CTRL_SHIFT) & NXT_HDR_CTRL_MASK,=0D
-++			(vlan_entry_word0 >> UNREG_MASK_SHIFT) & UNREG_MASK_MASK,=0D
-++			(vlan_entry_word0 & VLAN_MEMBER_LIST_MASK));=0D
-++	}=0D
-++}=0D
-++=0D
-++static void cpsw_ale_dump_outer_vlan_entry(int index, u32 *ale_entry)=0D
-++{=0D
-++	u32 vlan_entry_word0 =3D cpsw_ale_get_entry_word0(ale_entry);=0D
-++	u32 vlan_entry_word1 =3D cpsw_ale_get_entry_word1(ale_entry);=0D
-++	u16 vlan_entry_word2 =3D cpsw_ale_get_entry_word2(ale_entry);=0D
-++=0D
-++	fprintf(stdout, "%d: Type: Outer VLAN\n \tNolearn Mask =3D 0x%x, Ingress=
- Check =3D %d\n",=0D
-++		index, (vlan_entry_word2 >> NOLEARN_FLAG_SHIFT) & NOLEARN_FLAG_MASK,=0D
-++		(vlan_entry_word2 >> INGRESS_CHECK_SHIFT) & INGRESS_CHECK_MASK);=0D
-++=0D
-++	if (rtl_version =3D=3D CPSW2G_RTL_VERSION) {=0D
-++		fprintf(stdout, "\tVLAN ID =3D %d, No Frag =3D %d, Registered Mask =3D =
-0x%x\n",=0D
-++			(vlan_entry_word1 >> VLAN_ID_SHIFT) & VLAN_ID_MASK,=0D
-++			(vlan_entry_word1 >> NOFRAG_FLAG_SHIFT_2G) & NOFRAG_FLAG_MASK_2G,=0D
-++			(vlan_entry_word1 >> REG_MASK_SHIFT) & REG_MASK_MASK);=0D
-++=0D
-++		fprintf(stdout, "\tForce Untagged Packet Egress =3D 0x%x, Unregistered =
-Mask =3D 0x%x, Limit Next Header Control =3D %d, Members =3D 0x%x\n",=0D
-++			(vlan_entry_word0 >> PKT_EGRESS_SHIFT) & PKT_EGRESS_MASK_2G,=0D
-++			(vlan_entry_word0 >> UNREG_MASK_SHIFT_2G) & UNREG_MASK_MASK_2G,=0D
-++			(vlan_entry_word0 >> NXT_HDR_CTRL_SHIFT_2G) & NXT_HDR_CTRL_MASK_2G,=0D
-++			(vlan_entry_word0 & VLAN_MEMBER_LIST_MASK_2G));=0D
-++	} else {=0D
-++		fprintf(stdout, "\tVLAN ID =3D %d, No Frag =3D %d, Registered Mask =3D =
-0x%x\n",=0D
-++			(vlan_entry_word1 >> VLAN_ID_SHIFT) & VLAN_ID_MASK,=0D
-++			(vlan_entry_word1 >> NOFRAG_FLAG_SHIFT) & NOFRAG_FLAG_MASK,=0D
-++			(vlan_entry_word1 >> REG_MASK_SHIFT) & REG_MASK_MASK);=0D
-++=0D
-++		fprintf(stdout, "\tForce Untagged Packet Egress =3D 0x%x, Limit Next He=
-ader Control =3D %d, Unregistered Mask =3D 0x%x Members =3D 0x%x\n",=0D
-++			(vlan_entry_word1 & PKT_EGRESS_W1_MASK) * PKT_EGRESS_W1_OFFSET +=0D
-++			((vlan_entry_word0 >> PKT_EGRESS_SHIFT) & PKT_EGRESS_MASK),=0D
-++			(vlan_entry_word0 >> NXT_HDR_CTRL_SHIFT) & NXT_HDR_CTRL_MASK,=0D
-++			(vlan_entry_word0 >> UNREG_MASK_SHIFT) & UNREG_MASK_MASK,=0D
-++			(vlan_entry_word0 & VLAN_MEMBER_LIST_MASK));=0D
-++	}=0D
-++}=0D
-++=0D
-++static void cpsw_ale_dump_ethertype_entry(int index, u32 *ale_entry)=0D
-++{=0D
-++	u16 ethertype =3D cpsw_ale_get_ethertype(ale_entry);=0D
-++=0D
-++	fprintf(stdout, "%d: Type: VLAN Ethertype\n \tEthertype =3D 0x%x\n", ind=
-ex, ethertype);=0D
-++}=0D
-++=0D
-++static void cpsw_ale_dump_ipv4_entry(int index, u32 *ale_entry)=0D
-++{=0D
-++	u8 ingress_bits =3D cpsw_ale_get_ingress_bits(ale_entry);=0D
-++	u32 ipv4_addr =3D cpsw_ale_get_ipv4_addr(ale_entry);=0D
-++=0D
-++	fprintf(stdout, "%d: Type: VLAN IPv4\n \tIngress Bits: 0x%x IPv4 Address=
- =3D %u.%u.%u.%u\n",=0D
-++		index, ingress_bits, ipv4_addr >> IPV4_ADDR_OCT1_SHIFT & IPV4_ADDR_MASK=
-,=0D
-++		ipv4_addr >> IPV4_ADDR_OCT2_SHIFT & IPV4_ADDR_MASK,=0D
-++		ipv4_addr >> IPV4_ADDR_OCT3_SHIFT & IPV4_ADDR_MASK, ipv4_addr & IPV4_AD=
-DR_MASK);=0D
-++}=0D
-++=0D
-++static void cpsw_ale_dump_ipv6_entry(int index, u32 *ale_entry)=0D
-++{=0D
-++	u32 vlan_entry_word0 =3D cpsw_ale_get_entry_word0(ale_entry);=0D
-++	u32 vlan_entry_word1 =3D cpsw_ale_get_entry_word1(ale_entry);=0D
-++	u16 vlan_entry_word2 =3D cpsw_ale_get_entry_word2(ale_entry);=0D
-++=0D
-++	if (index & IPV6_HIGH_ENTRY_FLAG) {=0D
-++		fprintf(stdout, "%d: Type: VLAN IPv6 Higher Entry (Lower Bit entry at %=
-04u)\n \tIgnored Multicast bits: 0x%x, IPv6 Address (Bits [127:68]) =3D %04=
-x:%03x%01x:%04x:%03x\n",=0D
-++			index, (index & (~IPV6_HIGH_ENTRY_FLAG)),=0D
-++			vlan_entry_word2 & IPV6_IGNMCBITS_MASK,=0D
-++			(vlan_entry_word1 >> IPV6_HADDR_W1_SHIFT) & IPV6_HADDR_W1_MASK_1,=0D
-++			vlan_entry_word1 & IPV6_HADDR_W1_MASK_2,=0D
-++			(vlan_entry_word0 >> IPV6_HADDR_W0_SHIFT_1) & IPV6_HADDR_W0_MASK_1,=0D
-++			(vlan_entry_word0 >> IPV6_HADDR_W0_SHIFT_2) & IPV6_HADDR_W0_MASK_2,=0D
-++			vlan_entry_word0 & IPV6_HADDR_W0_MASK_2);=0D
-++	} else {=0D
-++		fprintf(stdout, "%d: Type: VLAN IPv6 Lower Entry (Higher Bit entry at %=
-04u)\n \tIPv6 Address (Bits [127:68]) =3D %01x:%01x%03x:%04x:%04x:%04x\n",=
-=0D
-++			index, (index | IPV6_HIGH_ENTRY_FLAG),=0D
-++			(vlan_entry_word2 >> IPV6_LADDR_W2_SHIFT) & IPV6_LADDR_W2_MAKS,=0D
-++			vlan_entry_word2 & IPV6_LADDR_W2_MAKS,=0D
-++			(vlan_entry_word1 >> IPV6_LADDR_W1_SHIFT) & IPV6_LADDR_W1_MASK_1,=0D
-++			vlan_entry_word1 & IPV6_LADDR_W1_MASK,=0D
-++			(vlan_entry_word0 >> IPV6_LADDR_W0_SHIFT) & IPV6_LADDR_W0_MASK,=0D
-++			vlan_entry_word0 & IPV6_LADDR_W0_MASK);=0D
-++	}=0D
-++}=0D
-++=0D
-++static void cpsw_ale_dump_vlan_addr(int index, u32 *ale_entry)=0D
-++{=0D
-++	u8 addr[NUM_MAC_OCTET];=0D
-++	int vlan =3D cpsw_ale_get_vlan_id(ale_entry);=0D
-++=0D
-++	cpsw_ale_get_addr(ale_entry, addr);=0D
-++	if (cpsw_ale_get_mcast(ale_entry)) {=0D
-++		static const char * const str_mcast_state[] =3D {"Forwarding",=0D
-++							       "Blocking/Forwarding/Learning",=0D
-++							       "Learning/Forwarding",=0D
-++							       "Forwarding"};=0D
-++		u16 port_mask =3D cpsw_ale_get_port_mask(ale_entry);=0D
-++		u8 state =3D cpsw_ale_get_mcast_state(ale_entry);=0D
-++		u8 super =3D cpsw_ale_get_super(ale_entry);=0D
-++=0D
-++		fprintf(stdout, "%d: Type: Multicast\n \tVID =3D %d, Address =3D %02x:%=
-02x:%02x:%02x:%02x:%02x, Multicast_state =3D %s, %s Super, port_mask =3D 0x=
-%x\n",=0D
-++			index, vlan, addr[0], addr[1], addr[2], addr[3], addr[4], addr[5],=0D
-++			str_mcast_state[state], super ? "" : "No ", port_mask);=0D
-++	} else {=0D
-++		static const char * const s_ucast_type[] =3D {"Persistent", "Untouched"=
-, "OUI",=0D
-++							    "Touched"};=0D
-++		u8 ucast_type =3D cpsw_ale_get_ucast_type(ale_entry);=0D
-++		u8 blocked =3D cpsw_ale_get_blocked(ale_entry);=0D
-++		u8 touched =3D cpsw_ale_get_touched(ale_entry);=0D
-++		u8 secure =3D cpsw_ale_get_secure(ale_entry);=0D
-++		u8 agable =3D cpsw_ale_get_agable(ale_entry);=0D
-++=0D
-++		int port_num;=0D
-++=0D
-++		if (rtl_version =3D=3D CPSW2G_RTL_VERSION)=0D
-++			port_num =3D cpsw_ale_get_port_num_2g(ale_entry);=0D
-++		else if (rtl_version =3D=3D CPSW3G_RTL_VERSION)=0D
-++			port_num =3D cpsw_ale_get_port_num_3g(ale_entry);=0D
-++		else=0D
-++			port_num =3D cpsw_ale_get_port_num(ale_entry);=0D
-++=0D
-++		fprintf(stdout, "%d: Type: Unicast\n \tVID =3D %d, Address =3D %02x:%02=
-x:%02x:%02x:%02x:%02x, Unicast_type =3D %s, port_num =3D 0x%x, Secure =3D %=
-d, Blocked =3D %d, Touch =3D %d, Agable =3D %d\n",=0D
-++			index, vlan, addr[0], addr[1], addr[2], addr[3], addr[4], addr[5],=0D
-++			s_ucast_type[ucast_type], port_num, secure, blocked, touched, agable);=
-=0D
-++	}=0D
-++}=0D
-++=0D
-++void cpsw_dump_ale(struct k3_cpsw_regdump_hdr *ale_hdr, u32 *ale_pos)=0D
-++{=0D
-++	int i, ale_entries;=0D
-++=0D
-++	if (!ale_hdr)=0D
-++		return;=0D
-++=0D
-++	ale_entries =3D (ale_hdr->len - sizeof(struct k3_cpsw_regdump_hdr)) /=0D
-++		      ALE_ENTRY_WORDS / sizeof(u32);=0D
-++=0D
-++	printf("Number of ALE entries: %d\n", ale_entries);=0D
-++	ale_pos +=3D 2;=0D
-++	for (i =3D 0; i < ale_entries; i++) {=0D
-++		int type;=0D
-++=0D
-++		type =3D cpsw_ale_get_entry_type(ale_pos);=0D
-++=0D
-++		switch (type) {=0D
-++		case ALE_ENTRY_FREE:=0D
-++			break;=0D
-++=0D
-++		case ALE_ENTRY_ADDR:=0D
-++			u32 oui_entry =3D cpsw_ale_get_oui_addr(ale_pos);=0D
-++=0D
-++			if (oui_entry =3D=3D 0x2)=0D
-++				cpsw_ale_dump_oui_entry(i, ale_pos);=0D
-++			else=0D
-++				cpsw_ale_dump_addr(i, ale_pos);=0D
-++			break;=0D
-++=0D
-++		case ALE_ENTRY_VLAN:=0D
-++			u32 vlan_entry_type =3D cpsw_ale_get_vlan_entry_type(ale_pos);=0D
-++=0D
-++			if (vlan_entry_type =3D=3D VLAN_INNER_ENTRY)=0D
-++				cpsw_ale_dump_inner_vlan_entry(i, ale_pos);=0D
-++			else if (vlan_entry_type =3D=3D VLAN_OUTER_ENTRY)=0D
-++				cpsw_ale_dump_outer_vlan_entry(i, ale_pos);=0D
-++			else if (vlan_entry_type =3D=3D VLAN_ETHERTYPE_ENTRY)=0D
-++				cpsw_ale_dump_ethertype_entry(i, ale_pos);=0D
-++			else if (vlan_entry_type =3D=3D VLAN_IPV4_ENTRY)=0D
-++				cpsw_ale_dump_ipv4_entry(i, ale_pos);=0D
-++			else if (vlan_entry_type & VLAN_IPV6_ENTRY_MASK)=0D
-++				cpsw_ale_dump_ipv6_entry(i, ale_pos);=0D
-++			break;=0D
-++=0D
-++		case ALE_ENTRY_VLAN_ADDR:=0D
-++			cpsw_ale_dump_vlan_addr(i, ale_pos);=0D
-++			break;=0D
-++=0D
-++		default:=0D
-++			break;=0D
-++		}=0D
-++=0D
-++		ale_pos +=3D ALE_ENTRY_WORDS;=0D
-++	}=0D
-++}=0D
-++=0D
-++int am65_cpsw_dump_regs(struct  ethtool_drvinfo *info __maybe_unused,=0D
-++			struct ethtool_regs *regs)=0D
-++{=0D
-++	struct k3_cpsw_regdump_hdr *dump_hdr, *ale_hdr =3D NULL;=0D
-++	u32 *reg =3D (u32 *)regs->data, *ale_pos;=0D
-++	u32 mod_id;=0D
-++	int i, regdump_len =3D info->regdump_len;=0D
-++=0D
-++	fprintf(stdout, "K3 CPSW dump version: %d, len: %d\n",=0D
-++		regs->version, info->regdump_len);=0D
-++	fprintf(stdout, "(Missing registers in memory space can be considered as=
- zero valued)\n");=0D
-++=0D
-++	/* Line break before register dump */=0D
-++	fprintf(stdout, "-------------------------------------------------------=
--------------\n");=0D
-++	i =3D 0;=0D
-++	do {=0D
-++		u32 *tmp, j;=0D
-++		u32 num_items;=0D
-++=0D
-++		dump_hdr =3D (struct k3_cpsw_regdump_hdr *)reg;=0D
-++		mod_id =3D dump_hdr->module_id;=0D
-++=0D
-++		num_items =3D dump_hdr->len / sizeof(u32);=0D
-++=0D
-++		if (mod_id =3D=3D K3_CPSW_REGDUMP_MOD_CPSW_ALE)=0D
-++			rtl_version =3D reg[3] & RTL_VERSION_MASK;=0D
-++=0D
-++		if (mod_id =3D=3D K3_CPSW_REGDUMP_MOD_CPSW_ALE_TBL) {=0D
-++			ale_hdr =3D dump_hdr;=0D
-++			ale_pos =3D reg;=0D
-++			break;=0D
-++		}=0D
-++=0D
-++		fprintf(stdout, "%s regdump: number of Registers:(%d)\n",=0D
-++			mod_names[mod_id], num_items - 2);=0D
-++		tmp =3D reg;=0D
-++		/* Values are stored in pair as reg_offset-reg_val, hence parse the sam=
-e way*/=0D
-++		for (j =3D 2; j < num_items; j +=3D 2) {=0D
-++			if (tmp[j + 1] !=3D 0x0)=0D
-++				fprintf(stdout, "%08x:reg(%08X)\n", tmp[j], tmp[j + 1]);=0D
-++		}=0D
-++=0D
-++		reg +=3D num_items;=0D
-++		i +=3D dump_hdr->len;=0D
-++	} while (i < regdump_len);=0D
-++=0D
-++	/* Adding a boundary in between Register dump and ALE table */=0D
-++	fprintf(stdout, "--------------------------\n");=0D
-++=0D
-++	cpsw_dump_ale(ale_hdr, ale_pos);=0D
-++=0D
-++	return 0;=0D
-++};=0D
-+diff --git a/ethtool.c b/ethtool.c=0D
-+index 3ac15a7..a383eb6 100644=0D
-+--- a/ethtool.c=0D
-++++ b/ethtool.c=0D
-+@@ -1162,6 +1162,7 @@ static const struct {=0D
-+ 	{ "fsl_enetc", fsl_enetc_dump_regs },=0D
-+ 	{ "fsl_enetc_vf", fsl_enetc_dump_regs },=0D
-+ 	{ "hns3", hns3_dump_regs },=0D
-++	{ "am65-cpsw-nuss", am65_cpsw_dump_regs },=0D
-+ };=0D
-+ #endif=0D
-+ =0D
-+diff --git a/internal.h b/internal.h=0D
-+index 4b994f5..81212b4 100644=0D
-+--- a/internal.h=0D
-++++ b/internal.h=0D
-+@@ -410,4 +410,7 @@ int cpsw_dump_regs(struct ethtool_drvinfo *info, struc=
-t ethtool_regs *regs);=0D
-+ /* Microchip Ethernet Controller */=0D
-+ int lan743x_dump_regs(struct ethtool_drvinfo *info, struct ethtool_regs *=
-regs);=0D
-+ =0D
-++/* TI K3 CPSW Ethernet Switch */=0D
-++int am65_cpsw_dump_regs(struct ethtool_drvinfo *info, struct ethtool_regs=
- *regs);=0D
-++=0D
-+ #endif /* ETHTOOL_INTERNAL_H__ */=0D
-+-- =0D
-+2.34.1=0D
-+=0D
-diff --git a/meta-arago-distro/recipes-extended/ethtool/ethtool_%.bbappend =
-b/meta-arago-distro/recipes-extended/ethtool/ethtool_%.bbappend
++++ b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config.json
+@@ -0,0 +1,158 @@
++{
++  "version": "1.0",
++  "description": "TI Processor SDK vchromium-11.01.05.03",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "2.8"
++      },
++      "path": "bitbake"
++    },
++    "meta-tisdk": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/TexasInstruments/meta-tisdk.git"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-tisdk"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arago"
++    },
++    "meta-browser": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/OSSystems/meta-browser.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "meta-browser"
++    },
++    "meta-qt6": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://code.qt.io/yocto/meta-qt6.git"
++          }
++        },
++        "rev": "6.9"
++      },
++      "path": "meta-qt6"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-lts-mixins": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-lts-mixins"
++          }
++        },
++        "rev": "scarthgap/rust"
++      },
++      "path": "meta-lts-mixins"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arm"
++    },
++    "meta-clang": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/kraj/meta-clang"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-clang"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "oe-core"
++    }
++  },
++  "configuration": {
++    "bitbake-setup": {
++      "default": {
++        "description": "Default build configuration",
++         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config",
++         "targets": [ "bitbake -k tisdk-default-image" ]
++      }
++    }
++  }
++}
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config.json b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config.json
 new file mode 100644
-index 00000000..3b388151
+index 0000000..e003bc8
 --- /dev/null
-+++ b/meta-arago-distro/recipes-extended/ethtool/ethtool_%.bbappend
-@@ -0,0 +1,4 @@
-+ETHTOOL_ARAGO =3D ""
-+ETHTOOL_ARAGO:arago =3D "ethtool-arago.inc"
++++ b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config.json
+@@ -0,0 +1,136 @@
++{
++  "version": "1.0",
++  "description": "TI Processor SDK vnonqt-11.01.05.03",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "2.8"
++      },
++      "path": "bitbake"
++    },
++    "meta-tisdk": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/TexasInstruments/meta-tisdk.git"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-tisdk"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arago"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-lts-mixins": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-lts-mixins"
++          }
++        },
++        "rev": "scarthgap/rust"
++      },
++      "path": "meta-lts-mixins"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arm"
++    },
++    "meta-clang": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/kraj/meta-clang"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-clang"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "oe-core"
++    }
++  },
++  "configuration": {
++    "bitbake-setup": {
++      "default": {
++        "description": "Default build configuration",
++         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config",
++         "targets": [ "bitbake -k tisdk-default-image" ]
++      }
++    }
++  }
++}
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config.json b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config.json
+new file mode 100644
+index 0000000..8e6c080
+--- /dev/null
++++ b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config.json
+@@ -0,0 +1,158 @@
++{
++  "version": "1.0",
++  "description": "TI Processor SDK vselinux-11.01.05.03",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "2.8"
++      },
++      "path": "bitbake"
++    },
++    "meta-tisdk": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/TexasInstruments/meta-tisdk.git"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-tisdk"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arago"
++    },
++    "meta-selinux": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-selinux"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-selinux"
++    },
++    "meta-qt6": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://code.qt.io/yocto/meta-qt6.git"
++          }
++        },
++        "rev": "6.9"
++      },
++      "path": "meta-qt6"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-lts-mixins": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-lts-mixins"
++          }
++        },
++        "rev": "scarthgap/rust"
++      },
++      "path": "meta-lts-mixins"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arm"
++    },
++    "meta-clang": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/kraj/meta-clang"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-clang"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "oe-core"
++    }
++  },
++  "configuration": {
++    "bitbake-setup": {
++      "default": {
++        "description": "Default build configuration",
++         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config",
++         "targets": [ "bitbake -k tisdk-default-image" ]
++      }
++    }
++  }
++}
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/bblayers.conf.sample b/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/bblayers.conf.sample
+new file mode 100644
+index 0000000..25c6a26
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/bblayers.conf.sample
+@@ -0,0 +1,34 @@
++# This template file was created by taking the oe-core/meta/conf/bblayers.conf
++# file and removing the BBLAYERS section at the end.
 +
-+require ${ETHTOOL_ARAGO}
---=20
++# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
++# changes incompatibly
++LCONF_VERSION = "5"
++
++BBPATH = "${TOPDIR}"
++BBFILES ?= ""
++
++BBLAYERS ?= " \
++    ##OEROOT##/../meta-tisdk/meta-ti-foundational
++    ##OEROOT##/../meta-tisdk/meta-ti-ml
++    ##OEROOT##/../meta-arago/meta-arago-distro
++    ##OEROOT##/../meta-arago/meta-arago-extras
++    ##OEROOT##/../meta-arago/meta-arago-test
++    ##OEROOT##/../meta-qt6
++    ##OEROOT##/../meta-virtualization
++    ##OEROOT##/../meta-openembedded/meta-networking
++    ##OEROOT##/../meta-openembedded/meta-python
++    ##OEROOT##/../meta-openembedded/meta-oe
++    ##OEROOT##/../meta-openembedded/meta-gnome
++    ##OEROOT##/../meta-openembedded/meta-filesystems
++    ##OEROOT##/../meta-openembedded/meta-multimedia
++    ##OEROOT##/../meta-lts-mixins
++    ##OEROOT##/../meta-ti/meta-ti-extras
++    ##OEROOT##/../meta-ti/meta-beagle
++    ##OEROOT##/../meta-ti/meta-ti-bsp
++    ##OEROOT##/../meta-arm/meta-arm
++    ##OEROOT##/../meta-arm/meta-arm-toolchain
++    ##OEROOT##/../meta-clang
++    ##OEROOT##/../oe-core/meta
++    ##OEROOT##/../oe-layersetup
++"
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/conf-notes.txt b/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/conf-notes.txt
+new file mode 100644
+index 0000000..1880460
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/conf-notes.txt
+@@ -0,0 +1,22 @@
++
++### Shell environment set up for builds. ###
++
++You can now run 'bitbake <target>'
++
++If you have not set MACHINE in your local.conf you can run
++'MACHINE=xxxxx bitbake <target>'
++
++Common targets are:
++    tisdk-default-image
++    tisdk-base-image
++    tisdk-bootstrap-base-image
++    tisdk-bootstrap-image
++    tisdk-thinlinux-image
++    tisdk-tiny-image
++
++You can also run generated qemu images with a command like 'runqemu qemux86-64'.
++
++Other commonly useful commands are:
++ - 'devtool' and 'recipetool' handle common recipe tasks
++ - 'bitbake-layers' handles common layer tasks
++ - 'oe-pkgdata-util' handles common target package tasks
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/conf-summary.txt b/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/conf-summary.txt
+new file mode 100644
+index 0000000..0546e20
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/conf-summary.txt
+@@ -0,0 +1 @@
++TI Processor SDK v11.01.05.03
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/local.conf.sample
+new file mode 100644
+index 0000000..8ad6f26
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/local.conf.sample
+@@ -0,0 +1,175 @@
++# CONF_VERSION is increased each time build/conf/ changes incompatibly
++CONF_VERSION = "2"
++
++#
++# Where to place downloads
++#
++# During a first build the system will download many different source code
++# tarballs from various upstream projects. This can take a while, particularly
++# if your network connection is slow. These are all stored in DL_DIR. When
++# wiping and rebuilding you can preserve this directory to speed up this part
++# of subsequent builds. This directory is safe to share between multiple builds
++# on the same machine too.
++DL_DIR = "${TOPDIR}/../downloads"
++
++#
++# Where to place shared-state files
++#
++# BitBake has the capability to accelerate builds based on previously built
++# output. This is done using "shared state" files which can be thought of as
++# cache objects and this option determines where those files are placed.
++#
++# You can wipe out TMPDIR leaving this directory intact and the build would
++# regenerate from these files if no changes were made to the configuration.
++# If changes were made to the configuration, only shared state files where the
++# state was still valid would be used (done using checksums).
++SSTATE_DIR = "${TOPDIR}/sstate-cache"
++
++#
++# Shared-state files from other locations
++#
++# As mentioned above, shared state files are prebuilt cache data objects which
++# can be used to accelerate build time. This variable can be used to configure
++# the system to search other mirror locations for these objects before it
++# builds the data itself.
++#
++# This can be a filesystem directory, or a remote url such as http or ftp.
++# These would contain the sstate-cache results from previous builds (possibly
++# from other machines). This variable works like fetcher MIRRORS/PREMIRRORS
++# and points to the cache locations to check for the shared objects.
++#SSTATE_MIRRORS ?= "\
++#file://.* http://someserver.tld/share/sstate/ \n \
++#file://.* file:///some/local/dir/sstate/"
++
++#
++# Where to place the build output
++#
++# This option specifies where the bulk of the building work should be done and
++# where BitBake should place its temporary files and output. Keep in mind that
++# this includes the extraction and compilation of many applications and the toolchain
++# which can use Gigabytes of hard disk space.
++TMPDIR = "${TOPDIR}/arago-tmp"
++
++# By default, DEPLOY_DIR is inside TMPDIR, but can be changed here to be outside
++#DEPLOY_DIR = "${TOPDIR}/deploy"
++
++#
++# Machine Selection
++#
++# You need to select a specific machine to target the build with. There are a selection
++# of emulated machines available which can boot and run in the QEMU emulator:
++#
++#MACHINE ?= "arago"
++
++#
++# Package Management configuration
++#
++# This variable lists which packaging formats to enable. Multiple package backends
++# can be enabled at once and the first item listed in the variable will be used
++# to generate the root filesystems.
++# Options are:
++#  - 'package_deb' for debian style deb files
++#  - 'package_ipk' for ipk files are used by opkg (a debian style embedded package manager)
++#  - 'package_rpm' for rpm style packages
++# E.g.: PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"
++# We default to ipk:
++PACKAGE_CLASSES ?= "package_ipk"
++
++#
++# SDK/ADT target architecture
++#
++# This variable specified the architecture to build SDK/ADT items for and means
++# you can build the SDK packages for architectures other than the machine you are
++# running the build on (i.e. building i686 packages on an x86_64 host._
++# Supported values are i686 and x86_64
++SDKMACHINE ?= "x86_64"
++
++#
++# Extra image configuration defaults
++#
++# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated
++# images. Some of these options are added to certain image types automatically. The
++# variable can contain the following options:
++#  "dbg-pkgs"       - add -dbg packages for all installed packages
++#                     (adds symbol information for debugging/profiling)
++#  "dev-pkgs"       - add -dev packages for all installed packages
++#                     (useful if you want to develop against libs in the image)
++#  "tools-sdk"      - add development tools (gcc, make, pkgconfig etc.)
++#  "tools-debug"    - add debugging tools (gdb, strace)
++#  "tools-profile"  - add profiling tools (oprofile, exmap, lttng valgrind (x86 only))
++#  "tools-testapps" - add useful testing tools (ts_print, aplay, arecord etc.)
++#  "debug-tweaks"   - make an image suitable for development
++#                     e.g. ssh root access has a blank password
++# There are other application targets that can be used here too, see
++# meta/classes/image.bbclass and meta/classes/core-image.bbclass for more details.
++# We default to enabling the debugging tweaks.
++EXTRA_IMAGE_FEATURES = "debug-tweaks"
++
++#
++# Additional image features
++#
++# The following is a list of additional classes to use when building images which
++# enable extra features. Some available options which can be included in this variable
++# are:
++#   - 'buildstats' collect build statistics
++#   - 'image-swab' to perform host system intrusion detection
++# NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
++USER_CLASSES ?= "buildstats"
++
++# By default disable interactive patch resolution (tasks will just fail instead):
++PATCHRESOLVE = "noop"
++
++# By default the machine configuration file sets the IMAGE_FSTYPES.  But if you
++# would like to add additional file system types you can uncomment the
++# following line and add the additional IMAGE_FSTYPES you want created
++# as part of the build flow.  Some common types are listed below and you
++# can remove the ones you do not want.
++# IMAGE_FSTYPES += "jffs2 cramfs ext2.gz ext3.gz squashfs ubi tar.gz tar.bz2 cpio"
++
++#
++# Parallelism Options
++#
++# These two options control how much parallelism BitBake should use. The first
++# option determines how many tasks bitbake should run in parallel:
++#
++# BB_NUMBER_THREADS ?= "1"
++#
++# The second option controls how many processes make should run in parallel when
++# running compile tasks:
++#
++# PARALLEL_MAKE ?= "-j 1"
++#
++# For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
++# be appropriate for example
++#
++# NOTE: By default, bitbake will choose the number of processeors on your host
++# so you should not need to set this unless you are wanting to lower the number
++# allowed.
++#
++
++DISTRO   = "arago"
++
++# Set terminal types by default it expects gnome-terminal
++# but we chose xterm
++TERMCMD = "${XTERM_TERMCMD}"
++TERMCMDRUN = "${XTERM_TERMCMDRUN}"
++
++# Don't generate the mirror tarball for SCM repos, the snapshot is enough
++BB_GENERATE_MIRROR_TARBALLS = "0"
++
++# Uncomment this to remove work directory after packaging to save disk space
++#INHERIT += "rm_work"
++
++# Keep one set of images by default
++RM_OLD_IMAGE = "1"
++
++# Enable local PR service for binary feeds
++PRSERV_HOST = "localhost:0"
++
++# Enable hash equiv server
++BB_SIGNATURE_HANDLER = "OEEquivHash"
++BB_HASHSERVE = "auto"
++
++# It is recommended to activate "buildhistory" for testing the PR service
++INHERIT += "buildhistory"
++BUILDHISTORY_COMMIT = "1"
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/bblayers.conf.sample b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/bblayers.conf.sample
+new file mode 100644
+index 0000000..340048b
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/bblayers.conf.sample
+@@ -0,0 +1,35 @@
++# This template file was created by taking the oe-core/meta/conf/bblayers.conf
++# file and removing the BBLAYERS section at the end.
++
++# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
++# changes incompatibly
++LCONF_VERSION = "5"
++
++BBPATH = "${TOPDIR}"
++BBFILES ?= ""
++
++BBLAYERS ?= " \
++    ##OEROOT##/../meta-tisdk/meta-ti-foundational
++    ##OEROOT##/../meta-tisdk/meta-ti-ml
++    ##OEROOT##/../meta-arago/meta-arago-distro
++    ##OEROOT##/../meta-arago/meta-arago-extras
++    ##OEROOT##/../meta-arago/meta-arago-test
++    ##OEROOT##/../meta-browser/meta-chromium
++    ##OEROOT##/../meta-qt6
++    ##OEROOT##/../meta-virtualization
++    ##OEROOT##/../meta-openembedded/meta-networking
++    ##OEROOT##/../meta-openembedded/meta-python
++    ##OEROOT##/../meta-openembedded/meta-oe
++    ##OEROOT##/../meta-openembedded/meta-gnome
++    ##OEROOT##/../meta-openembedded/meta-filesystems
++    ##OEROOT##/../meta-openembedded/meta-multimedia
++    ##OEROOT##/../meta-lts-mixins
++    ##OEROOT##/../meta-ti/meta-ti-extras
++    ##OEROOT##/../meta-ti/meta-beagle
++    ##OEROOT##/../meta-ti/meta-ti-bsp
++    ##OEROOT##/../meta-arm/meta-arm
++    ##OEROOT##/../meta-arm/meta-arm-toolchain
++    ##OEROOT##/../meta-clang
++    ##OEROOT##/../oe-core/meta
++    ##OEROOT##/../oe-layersetup
++"
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/conf-notes.txt b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/conf-notes.txt
+new file mode 100644
+index 0000000..1880460
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/conf-notes.txt
+@@ -0,0 +1,22 @@
++
++### Shell environment set up for builds. ###
++
++You can now run 'bitbake <target>'
++
++If you have not set MACHINE in your local.conf you can run
++'MACHINE=xxxxx bitbake <target>'
++
++Common targets are:
++    tisdk-default-image
++    tisdk-base-image
++    tisdk-bootstrap-base-image
++    tisdk-bootstrap-image
++    tisdk-thinlinux-image
++    tisdk-tiny-image
++
++You can also run generated qemu images with a command like 'runqemu qemux86-64'.
++
++Other commonly useful commands are:
++ - 'devtool' and 'recipetool' handle common recipe tasks
++ - 'bitbake-layers' handles common layer tasks
++ - 'oe-pkgdata-util' handles common target package tasks
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/conf-summary.txt b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/conf-summary.txt
+new file mode 100644
+index 0000000..cc828ed
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/conf-summary.txt
+@@ -0,0 +1 @@
++TI Processor SDK vchromium-11.01.05.03
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/local.conf.sample
+new file mode 100644
+index 0000000..8ad6f26
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/local.conf.sample
+@@ -0,0 +1,175 @@
++# CONF_VERSION is increased each time build/conf/ changes incompatibly
++CONF_VERSION = "2"
++
++#
++# Where to place downloads
++#
++# During a first build the system will download many different source code
++# tarballs from various upstream projects. This can take a while, particularly
++# if your network connection is slow. These are all stored in DL_DIR. When
++# wiping and rebuilding you can preserve this directory to speed up this part
++# of subsequent builds. This directory is safe to share between multiple builds
++# on the same machine too.
++DL_DIR = "${TOPDIR}/../downloads"
++
++#
++# Where to place shared-state files
++#
++# BitBake has the capability to accelerate builds based on previously built
++# output. This is done using "shared state" files which can be thought of as
++# cache objects and this option determines where those files are placed.
++#
++# You can wipe out TMPDIR leaving this directory intact and the build would
++# regenerate from these files if no changes were made to the configuration.
++# If changes were made to the configuration, only shared state files where the
++# state was still valid would be used (done using checksums).
++SSTATE_DIR = "${TOPDIR}/sstate-cache"
++
++#
++# Shared-state files from other locations
++#
++# As mentioned above, shared state files are prebuilt cache data objects which
++# can be used to accelerate build time. This variable can be used to configure
++# the system to search other mirror locations for these objects before it
++# builds the data itself.
++#
++# This can be a filesystem directory, or a remote url such as http or ftp.
++# These would contain the sstate-cache results from previous builds (possibly
++# from other machines). This variable works like fetcher MIRRORS/PREMIRRORS
++# and points to the cache locations to check for the shared objects.
++#SSTATE_MIRRORS ?= "\
++#file://.* http://someserver.tld/share/sstate/ \n \
++#file://.* file:///some/local/dir/sstate/"
++
++#
++# Where to place the build output
++#
++# This option specifies where the bulk of the building work should be done and
++# where BitBake should place its temporary files and output. Keep in mind that
++# this includes the extraction and compilation of many applications and the toolchain
++# which can use Gigabytes of hard disk space.
++TMPDIR = "${TOPDIR}/arago-tmp"
++
++# By default, DEPLOY_DIR is inside TMPDIR, but can be changed here to be outside
++#DEPLOY_DIR = "${TOPDIR}/deploy"
++
++#
++# Machine Selection
++#
++# You need to select a specific machine to target the build with. There are a selection
++# of emulated machines available which can boot and run in the QEMU emulator:
++#
++#MACHINE ?= "arago"
++
++#
++# Package Management configuration
++#
++# This variable lists which packaging formats to enable. Multiple package backends
++# can be enabled at once and the first item listed in the variable will be used
++# to generate the root filesystems.
++# Options are:
++#  - 'package_deb' for debian style deb files
++#  - 'package_ipk' for ipk files are used by opkg (a debian style embedded package manager)
++#  - 'package_rpm' for rpm style packages
++# E.g.: PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"
++# We default to ipk:
++PACKAGE_CLASSES ?= "package_ipk"
++
++#
++# SDK/ADT target architecture
++#
++# This variable specified the architecture to build SDK/ADT items for and means
++# you can build the SDK packages for architectures other than the machine you are
++# running the build on (i.e. building i686 packages on an x86_64 host._
++# Supported values are i686 and x86_64
++SDKMACHINE ?= "x86_64"
++
++#
++# Extra image configuration defaults
++#
++# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated
++# images. Some of these options are added to certain image types automatically. The
++# variable can contain the following options:
++#  "dbg-pkgs"       - add -dbg packages for all installed packages
++#                     (adds symbol information for debugging/profiling)
++#  "dev-pkgs"       - add -dev packages for all installed packages
++#                     (useful if you want to develop against libs in the image)
++#  "tools-sdk"      - add development tools (gcc, make, pkgconfig etc.)
++#  "tools-debug"    - add debugging tools (gdb, strace)
++#  "tools-profile"  - add profiling tools (oprofile, exmap, lttng valgrind (x86 only))
++#  "tools-testapps" - add useful testing tools (ts_print, aplay, arecord etc.)
++#  "debug-tweaks"   - make an image suitable for development
++#                     e.g. ssh root access has a blank password
++# There are other application targets that can be used here too, see
++# meta/classes/image.bbclass and meta/classes/core-image.bbclass for more details.
++# We default to enabling the debugging tweaks.
++EXTRA_IMAGE_FEATURES = "debug-tweaks"
++
++#
++# Additional image features
++#
++# The following is a list of additional classes to use when building images which
++# enable extra features. Some available options which can be included in this variable
++# are:
++#   - 'buildstats' collect build statistics
++#   - 'image-swab' to perform host system intrusion detection
++# NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
++USER_CLASSES ?= "buildstats"
++
++# By default disable interactive patch resolution (tasks will just fail instead):
++PATCHRESOLVE = "noop"
++
++# By default the machine configuration file sets the IMAGE_FSTYPES.  But if you
++# would like to add additional file system types you can uncomment the
++# following line and add the additional IMAGE_FSTYPES you want created
++# as part of the build flow.  Some common types are listed below and you
++# can remove the ones you do not want.
++# IMAGE_FSTYPES += "jffs2 cramfs ext2.gz ext3.gz squashfs ubi tar.gz tar.bz2 cpio"
++
++#
++# Parallelism Options
++#
++# These two options control how much parallelism BitBake should use. The first
++# option determines how many tasks bitbake should run in parallel:
++#
++# BB_NUMBER_THREADS ?= "1"
++#
++# The second option controls how many processes make should run in parallel when
++# running compile tasks:
++#
++# PARALLEL_MAKE ?= "-j 1"
++#
++# For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
++# be appropriate for example
++#
++# NOTE: By default, bitbake will choose the number of processeors on your host
++# so you should not need to set this unless you are wanting to lower the number
++# allowed.
++#
++
++DISTRO   = "arago"
++
++# Set terminal types by default it expects gnome-terminal
++# but we chose xterm
++TERMCMD = "${XTERM_TERMCMD}"
++TERMCMDRUN = "${XTERM_TERMCMDRUN}"
++
++# Don't generate the mirror tarball for SCM repos, the snapshot is enough
++BB_GENERATE_MIRROR_TARBALLS = "0"
++
++# Uncomment this to remove work directory after packaging to save disk space
++#INHERIT += "rm_work"
++
++# Keep one set of images by default
++RM_OLD_IMAGE = "1"
++
++# Enable local PR service for binary feeds
++PRSERV_HOST = "localhost:0"
++
++# Enable hash equiv server
++BB_SIGNATURE_HANDLER = "OEEquivHash"
++BB_HASHSERVE = "auto"
++
++# It is recommended to activate "buildhistory" for testing the PR service
++INHERIT += "buildhistory"
++BUILDHISTORY_COMMIT = "1"
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/bblayers.conf.sample b/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/bblayers.conf.sample
+new file mode 100644
+index 0000000..9011f62
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/bblayers.conf.sample
+@@ -0,0 +1,33 @@
++# This template file was created by taking the oe-core/meta/conf/bblayers.conf
++# file and removing the BBLAYERS section at the end.
++
++# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
++# changes incompatibly
++LCONF_VERSION = "5"
++
++BBPATH = "${TOPDIR}"
++BBFILES ?= ""
++
++BBLAYERS ?= " \
++    ##OEROOT##/../meta-tisdk/meta-ti-foundational
++    ##OEROOT##/../meta-tisdk/meta-ti-ml
++    ##OEROOT##/../meta-arago/meta-arago-distro
++    ##OEROOT##/../meta-arago/meta-arago-extras
++    ##OEROOT##/../meta-arago/meta-arago-test
++    ##OEROOT##/../meta-virtualization
++    ##OEROOT##/../meta-openembedded/meta-networking
++    ##OEROOT##/../meta-openembedded/meta-python
++    ##OEROOT##/../meta-openembedded/meta-oe
++    ##OEROOT##/../meta-openembedded/meta-gnome
++    ##OEROOT##/../meta-openembedded/meta-filesystems
++    ##OEROOT##/../meta-openembedded/meta-multimedia
++    ##OEROOT##/../meta-lts-mixins
++    ##OEROOT##/../meta-ti/meta-ti-extras
++    ##OEROOT##/../meta-ti/meta-beagle
++    ##OEROOT##/../meta-ti/meta-ti-bsp
++    ##OEROOT##/../meta-arm/meta-arm
++    ##OEROOT##/../meta-arm/meta-arm-toolchain
++    ##OEROOT##/../meta-clang
++    ##OEROOT##/../oe-core/meta
++    ##OEROOT##/../oe-layersetup
++"
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/conf-notes.txt b/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/conf-notes.txt
+new file mode 100644
+index 0000000..1880460
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/conf-notes.txt
+@@ -0,0 +1,22 @@
++
++### Shell environment set up for builds. ###
++
++You can now run 'bitbake <target>'
++
++If you have not set MACHINE in your local.conf you can run
++'MACHINE=xxxxx bitbake <target>'
++
++Common targets are:
++    tisdk-default-image
++    tisdk-base-image
++    tisdk-bootstrap-base-image
++    tisdk-bootstrap-image
++    tisdk-thinlinux-image
++    tisdk-tiny-image
++
++You can also run generated qemu images with a command like 'runqemu qemux86-64'.
++
++Other commonly useful commands are:
++ - 'devtool' and 'recipetool' handle common recipe tasks
++ - 'bitbake-layers' handles common layer tasks
++ - 'oe-pkgdata-util' handles common target package tasks
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/conf-summary.txt b/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/conf-summary.txt
+new file mode 100644
+index 0000000..4a69b8e
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/conf-summary.txt
+@@ -0,0 +1 @@
++TI Processor SDK vnonqt-11.01.05.03
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/local.conf.sample
+new file mode 100644
+index 0000000..8ad6f26
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/local.conf.sample
+@@ -0,0 +1,175 @@
++# CONF_VERSION is increased each time build/conf/ changes incompatibly
++CONF_VERSION = "2"
++
++#
++# Where to place downloads
++#
++# During a first build the system will download many different source code
++# tarballs from various upstream projects. This can take a while, particularly
++# if your network connection is slow. These are all stored in DL_DIR. When
++# wiping and rebuilding you can preserve this directory to speed up this part
++# of subsequent builds. This directory is safe to share between multiple builds
++# on the same machine too.
++DL_DIR = "${TOPDIR}/../downloads"
++
++#
++# Where to place shared-state files
++#
++# BitBake has the capability to accelerate builds based on previously built
++# output. This is done using "shared state" files which can be thought of as
++# cache objects and this option determines where those files are placed.
++#
++# You can wipe out TMPDIR leaving this directory intact and the build would
++# regenerate from these files if no changes were made to the configuration.
++# If changes were made to the configuration, only shared state files where the
++# state was still valid would be used (done using checksums).
++SSTATE_DIR = "${TOPDIR}/sstate-cache"
++
++#
++# Shared-state files from other locations
++#
++# As mentioned above, shared state files are prebuilt cache data objects which
++# can be used to accelerate build time. This variable can be used to configure
++# the system to search other mirror locations for these objects before it
++# builds the data itself.
++#
++# This can be a filesystem directory, or a remote url such as http or ftp.
++# These would contain the sstate-cache results from previous builds (possibly
++# from other machines). This variable works like fetcher MIRRORS/PREMIRRORS
++# and points to the cache locations to check for the shared objects.
++#SSTATE_MIRRORS ?= "\
++#file://.* http://someserver.tld/share/sstate/ \n \
++#file://.* file:///some/local/dir/sstate/"
++
++#
++# Where to place the build output
++#
++# This option specifies where the bulk of the building work should be done and
++# where BitBake should place its temporary files and output. Keep in mind that
++# this includes the extraction and compilation of many applications and the toolchain
++# which can use Gigabytes of hard disk space.
++TMPDIR = "${TOPDIR}/arago-tmp"
++
++# By default, DEPLOY_DIR is inside TMPDIR, but can be changed here to be outside
++#DEPLOY_DIR = "${TOPDIR}/deploy"
++
++#
++# Machine Selection
++#
++# You need to select a specific machine to target the build with. There are a selection
++# of emulated machines available which can boot and run in the QEMU emulator:
++#
++#MACHINE ?= "arago"
++
++#
++# Package Management configuration
++#
++# This variable lists which packaging formats to enable. Multiple package backends
++# can be enabled at once and the first item listed in the variable will be used
++# to generate the root filesystems.
++# Options are:
++#  - 'package_deb' for debian style deb files
++#  - 'package_ipk' for ipk files are used by opkg (a debian style embedded package manager)
++#  - 'package_rpm' for rpm style packages
++# E.g.: PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"
++# We default to ipk:
++PACKAGE_CLASSES ?= "package_ipk"
++
++#
++# SDK/ADT target architecture
++#
++# This variable specified the architecture to build SDK/ADT items for and means
++# you can build the SDK packages for architectures other than the machine you are
++# running the build on (i.e. building i686 packages on an x86_64 host._
++# Supported values are i686 and x86_64
++SDKMACHINE ?= "x86_64"
++
++#
++# Extra image configuration defaults
++#
++# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated
++# images. Some of these options are added to certain image types automatically. The
++# variable can contain the following options:
++#  "dbg-pkgs"       - add -dbg packages for all installed packages
++#                     (adds symbol information for debugging/profiling)
++#  "dev-pkgs"       - add -dev packages for all installed packages
++#                     (useful if you want to develop against libs in the image)
++#  "tools-sdk"      - add development tools (gcc, make, pkgconfig etc.)
++#  "tools-debug"    - add debugging tools (gdb, strace)
++#  "tools-profile"  - add profiling tools (oprofile, exmap, lttng valgrind (x86 only))
++#  "tools-testapps" - add useful testing tools (ts_print, aplay, arecord etc.)
++#  "debug-tweaks"   - make an image suitable for development
++#                     e.g. ssh root access has a blank password
++# There are other application targets that can be used here too, see
++# meta/classes/image.bbclass and meta/classes/core-image.bbclass for more details.
++# We default to enabling the debugging tweaks.
++EXTRA_IMAGE_FEATURES = "debug-tweaks"
++
++#
++# Additional image features
++#
++# The following is a list of additional classes to use when building images which
++# enable extra features. Some available options which can be included in this variable
++# are:
++#   - 'buildstats' collect build statistics
++#   - 'image-swab' to perform host system intrusion detection
++# NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
++USER_CLASSES ?= "buildstats"
++
++# By default disable interactive patch resolution (tasks will just fail instead):
++PATCHRESOLVE = "noop"
++
++# By default the machine configuration file sets the IMAGE_FSTYPES.  But if you
++# would like to add additional file system types you can uncomment the
++# following line and add the additional IMAGE_FSTYPES you want created
++# as part of the build flow.  Some common types are listed below and you
++# can remove the ones you do not want.
++# IMAGE_FSTYPES += "jffs2 cramfs ext2.gz ext3.gz squashfs ubi tar.gz tar.bz2 cpio"
++
++#
++# Parallelism Options
++#
++# These two options control how much parallelism BitBake should use. The first
++# option determines how many tasks bitbake should run in parallel:
++#
++# BB_NUMBER_THREADS ?= "1"
++#
++# The second option controls how many processes make should run in parallel when
++# running compile tasks:
++#
++# PARALLEL_MAKE ?= "-j 1"
++#
++# For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
++# be appropriate for example
++#
++# NOTE: By default, bitbake will choose the number of processeors on your host
++# so you should not need to set this unless you are wanting to lower the number
++# allowed.
++#
++
++DISTRO   = "arago"
++
++# Set terminal types by default it expects gnome-terminal
++# but we chose xterm
++TERMCMD = "${XTERM_TERMCMD}"
++TERMCMDRUN = "${XTERM_TERMCMDRUN}"
++
++# Don't generate the mirror tarball for SCM repos, the snapshot is enough
++BB_GENERATE_MIRROR_TARBALLS = "0"
++
++# Uncomment this to remove work directory after packaging to save disk space
++#INHERIT += "rm_work"
++
++# Keep one set of images by default
++RM_OLD_IMAGE = "1"
++
++# Enable local PR service for binary feeds
++PRSERV_HOST = "localhost:0"
++
++# Enable hash equiv server
++BB_SIGNATURE_HANDLER = "OEEquivHash"
++BB_HASHSERVE = "auto"
++
++# It is recommended to activate "buildhistory" for testing the PR service
++INHERIT += "buildhistory"
++BUILDHISTORY_COMMIT = "1"
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/bblayers.conf.sample b/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/bblayers.conf.sample
+new file mode 100644
+index 0000000..8c55fed
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/bblayers.conf.sample
+@@ -0,0 +1,35 @@
++# This template file was created by taking the oe-core/meta/conf/bblayers.conf
++# file and removing the BBLAYERS section at the end.
++
++# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
++# changes incompatibly
++LCONF_VERSION = "5"
++
++BBPATH = "${TOPDIR}"
++BBFILES ?= ""
++
++BBLAYERS ?= " \
++    ##OEROOT##/../meta-tisdk/meta-ti-foundational
++    ##OEROOT##/../meta-tisdk/meta-ti-ml
++    ##OEROOT##/../meta-arago/meta-arago-distro
++    ##OEROOT##/../meta-arago/meta-arago-extras
++    ##OEROOT##/../meta-arago/meta-arago-test
++    ##OEROOT##/../meta-selinux
++    ##OEROOT##/../meta-qt6
++    ##OEROOT##/../meta-virtualization
++    ##OEROOT##/../meta-openembedded/meta-networking
++    ##OEROOT##/../meta-openembedded/meta-python
++    ##OEROOT##/../meta-openembedded/meta-oe
++    ##OEROOT##/../meta-openembedded/meta-gnome
++    ##OEROOT##/../meta-openembedded/meta-filesystems
++    ##OEROOT##/../meta-openembedded/meta-multimedia
++    ##OEROOT##/../meta-lts-mixins
++    ##OEROOT##/../meta-ti/meta-ti-extras
++    ##OEROOT##/../meta-ti/meta-beagle
++    ##OEROOT##/../meta-ti/meta-ti-bsp
++    ##OEROOT##/../meta-arm/meta-arm
++    ##OEROOT##/../meta-arm/meta-arm-toolchain
++    ##OEROOT##/../meta-clang
++    ##OEROOT##/../oe-core/meta
++    ##OEROOT##/../oe-layersetup
++"
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/conf-notes.txt b/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/conf-notes.txt
+new file mode 100644
+index 0000000..1880460
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/conf-notes.txt
+@@ -0,0 +1,22 @@
++
++### Shell environment set up for builds. ###
++
++You can now run 'bitbake <target>'
++
++If you have not set MACHINE in your local.conf you can run
++'MACHINE=xxxxx bitbake <target>'
++
++Common targets are:
++    tisdk-default-image
++    tisdk-base-image
++    tisdk-bootstrap-base-image
++    tisdk-bootstrap-image
++    tisdk-thinlinux-image
++    tisdk-tiny-image
++
++You can also run generated qemu images with a command like 'runqemu qemux86-64'.
++
++Other commonly useful commands are:
++ - 'devtool' and 'recipetool' handle common recipe tasks
++ - 'bitbake-layers' handles common layer tasks
++ - 'oe-pkgdata-util' handles common target package tasks
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/conf-summary.txt b/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/conf-summary.txt
+new file mode 100644
+index 0000000..cc760bc
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/conf-summary.txt
+@@ -0,0 +1 @@
++TI Processor SDK vselinux-11.01.05.03
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/local.conf.sample
+new file mode 100644
+index 0000000..08dfbc7
+--- /dev/null
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/local.conf.sample
+@@ -0,0 +1,184 @@
++# CONF_VERSION is increased each time build/conf/ changes incompatibly
++CONF_VERSION = "2"
++
++#
++# Where to place downloads
++#
++# During a first build the system will download many different source code
++# tarballs from various upstream projects. This can take a while, particularly
++# if your network connection is slow. These are all stored in DL_DIR. When
++# wiping and rebuilding you can preserve this directory to speed up this part
++# of subsequent builds. This directory is safe to share between multiple builds
++# on the same machine too.
++DL_DIR = "${TOPDIR}/../downloads"
++
++#
++# Where to place shared-state files
++#
++# BitBake has the capability to accelerate builds based on previously built
++# output. This is done using "shared state" files which can be thought of as
++# cache objects and this option determines where those files are placed.
++#
++# You can wipe out TMPDIR leaving this directory intact and the build would
++# regenerate from these files if no changes were made to the configuration.
++# If changes were made to the configuration, only shared state files where the
++# state was still valid would be used (done using checksums).
++SSTATE_DIR = "${TOPDIR}/sstate-cache"
++
++#
++# Shared-state files from other locations
++#
++# As mentioned above, shared state files are prebuilt cache data objects which
++# can be used to accelerate build time. This variable can be used to configure
++# the system to search other mirror locations for these objects before it
++# builds the data itself.
++#
++# This can be a filesystem directory, or a remote url such as http or ftp.
++# These would contain the sstate-cache results from previous builds (possibly
++# from other machines). This variable works like fetcher MIRRORS/PREMIRRORS
++# and points to the cache locations to check for the shared objects.
++#SSTATE_MIRRORS ?= "\
++#file://.* http://someserver.tld/share/sstate/ \n \
++#file://.* file:///some/local/dir/sstate/"
++
++#
++# Where to place the build output
++#
++# This option specifies where the bulk of the building work should be done and
++# where BitBake should place its temporary files and output. Keep in mind that
++# this includes the extraction and compilation of many applications and the toolchain
++# which can use Gigabytes of hard disk space.
++TMPDIR = "${TOPDIR}/arago-tmp"
++
++# By default, DEPLOY_DIR is inside TMPDIR, but can be changed here to be outside
++#DEPLOY_DIR = "${TOPDIR}/deploy"
++
++#
++# Machine Selection
++#
++# You need to select a specific machine to target the build with. There are a selection
++# of emulated machines available which can boot and run in the QEMU emulator:
++#
++#MACHINE ?= "arago"
++
++#
++# Package Management configuration
++#
++# This variable lists which packaging formats to enable. Multiple package backends
++# can be enabled at once and the first item listed in the variable will be used
++# to generate the root filesystems.
++# Options are:
++#  - 'package_deb' for debian style deb files
++#  - 'package_ipk' for ipk files are used by opkg (a debian style embedded package manager)
++#  - 'package_rpm' for rpm style packages
++# E.g.: PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"
++# We default to ipk:
++PACKAGE_CLASSES ?= "package_ipk"
++
++#
++# SDK/ADT target architecture
++#
++# This variable specified the architecture to build SDK/ADT items for and means
++# you can build the SDK packages for architectures other than the machine you are
++# running the build on (i.e. building i686 packages on an x86_64 host._
++# Supported values are i686 and x86_64
++SDKMACHINE ?= "x86_64"
++
++#
++# Extra image configuration defaults
++#
++# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated
++# images. Some of these options are added to certain image types automatically. The
++# variable can contain the following options:
++#  "dbg-pkgs"       - add -dbg packages for all installed packages
++#                     (adds symbol information for debugging/profiling)
++#  "dev-pkgs"       - add -dev packages for all installed packages
++#                     (useful if you want to develop against libs in the image)
++#  "tools-sdk"      - add development tools (gcc, make, pkgconfig etc.)
++#  "tools-debug"    - add debugging tools (gdb, strace)
++#  "tools-profile"  - add profiling tools (oprofile, exmap, lttng valgrind (x86 only))
++#  "tools-testapps" - add useful testing tools (ts_print, aplay, arecord etc.)
++#  "debug-tweaks"   - make an image suitable for development
++#                     e.g. ssh root access has a blank password
++# There are other application targets that can be used here too, see
++# meta/classes/image.bbclass and meta/classes/core-image.bbclass for more details.
++# We default to enabling the debugging tweaks.
++EXTRA_IMAGE_FEATURES = "debug-tweaks"
++
++#
++# Additional image features
++#
++# The following is a list of additional classes to use when building images which
++# enable extra features. Some available options which can be included in this variable
++# are:
++#   - 'buildstats' collect build statistics
++#   - 'image-swab' to perform host system intrusion detection
++# NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
++USER_CLASSES ?= "buildstats"
++
++# By default disable interactive patch resolution (tasks will just fail instead):
++PATCHRESOLVE = "noop"
++
++# By default the machine configuration file sets the IMAGE_FSTYPES.  But if you
++# would like to add additional file system types you can uncomment the
++# following line and add the additional IMAGE_FSTYPES you want created
++# as part of the build flow.  Some common types are listed below and you
++# can remove the ones you do not want.
++# IMAGE_FSTYPES += "jffs2 cramfs ext2.gz ext3.gz squashfs ubi tar.gz tar.bz2 cpio"
++
++#
++# Parallelism Options
++#
++# These two options control how much parallelism BitBake should use. The first
++# option determines how many tasks bitbake should run in parallel:
++#
++# BB_NUMBER_THREADS ?= "1"
++#
++# The second option controls how many processes make should run in parallel when
++# running compile tasks:
++#
++# PARALLEL_MAKE ?= "-j 1"
++#
++# For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
++# be appropriate for example
++#
++# NOTE: By default, bitbake will choose the number of processeors on your host
++# so you should not need to set this unless you are wanting to lower the number
++# allowed.
++#
++
++DISTRO   = "arago"
++
++# Set terminal types by default it expects gnome-terminal
++# but we chose xterm
++TERMCMD = "${XTERM_TERMCMD}"
++TERMCMDRUN = "${XTERM_TERMCMDRUN}"
++
++# Don't generate the mirror tarball for SCM repos, the snapshot is enough
++BB_GENERATE_MIRROR_TARBALLS = "0"
++
++# Uncomment this to remove work directory after packaging to save disk space
++#INHERIT += "rm_work"
++
++# Keep one set of images by default
++RM_OLD_IMAGE = "1"
++
++# Enable local PR service for binary feeds
++PRSERV_HOST = "localhost:0"
++
++# Enable hash equiv server
++BB_SIGNATURE_HANDLER = "OEEquivHash"
++BB_HASHSERVE = "auto"
++
++# It is recommended to activate "buildhistory" for testing the PR service
++INHERIT += "buildhistory"
++BUILDHISTORY_COMMIT = "1"
++
++
++#====================================================================
++# Settings from oe-layersetup config file: processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config
++#
++# Do not remove.
++#--------------------------------------------------------------------
++DISTRO_FEATURES:append = " acl xattr pam selinux"
++#====================================================================
+diff --git a/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.txt b/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.txt
+new file mode 100644
+index 0000000..bb37278
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.txt
+@@ -0,0 +1,18 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,https://git.openembedded.org/bitbake,2.8,139f61fe9eec221745184a14b3618d2dfa650b91
++meta-tisdk,https://github.com/TexasInstruments/meta-tisdk.git,scarthgap,11.01.05.03,layers=meta-ti-foundational:meta-ti-ml
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,11.01.05,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
++meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,18bda8b8a5cf03ad16ed3c52b110b63b98b8ed77,layers=
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,9e040ee8dd6025558ea60ac9db60c41bfeddf221,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,727811eaf256b88fd135be99559f2cbf14c82fce,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rust,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=
++meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,11.01.05,layers=meta-ti-extras:meta-beagle:meta-ti-bsp
++meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,8e0f8af90fefb03f08cd2228cde7a89902a6b37c,layers=meta-arm:meta-arm-toolchain
++meta-clang,https://github.com/kraj/meta-clang,scarthgap,eea5ec23155cfd47781599fdc9a92c21e4caffc8,layers=
++oe-core,https://git.openembedded.org/openembedded-core,scarthgap,cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe,layers=meta
++
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.txt b/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.txt
+new file mode 100644
+index 0000000..fde77b6
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.txt
+@@ -0,0 +1,19 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,https://git.openembedded.org/bitbake,2.8,139f61fe9eec221745184a14b3618d2dfa650b91
++meta-tisdk,https://github.com/TexasInstruments/meta-tisdk.git,scarthgap,11.01.05.03,layers=meta-ti-foundational:meta-ti-ml
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,11.01.05,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
++meta-browser,https://github.com/OSSystems/meta-browser.git,master,27ca52f635a31f5f9762813a8527dd31323549b7,layers=meta-chromium
++meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,18bda8b8a5cf03ad16ed3c52b110b63b98b8ed77,layers=
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,9e040ee8dd6025558ea60ac9db60c41bfeddf221,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,727811eaf256b88fd135be99559f2cbf14c82fce,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rust,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=
++meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,11.01.05,layers=meta-ti-extras:meta-beagle:meta-ti-bsp
++meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,8e0f8af90fefb03f08cd2228cde7a89902a6b37c,layers=meta-arm:meta-arm-toolchain
++meta-clang,https://github.com/kraj/meta-clang,scarthgap,eea5ec23155cfd47781599fdc9a92c21e4caffc8,layers=
++oe-core,https://git.openembedded.org/openembedded-core,scarthgap,cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe,layers=meta
++
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.txt b/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.txt
+new file mode 100644
+index 0000000..1b3755e
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.txt
+@@ -0,0 +1,17 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,https://git.openembedded.org/bitbake,2.8,139f61fe9eec221745184a14b3618d2dfa650b91
++meta-tisdk,https://github.com/TexasInstruments/meta-tisdk.git,scarthgap,11.01.05.03,layers=meta-ti-foundational:meta-ti-ml
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,11.01.05,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,9e040ee8dd6025558ea60ac9db60c41bfeddf221,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,727811eaf256b88fd135be99559f2cbf14c82fce,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rust,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=
++meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,11.01.05,layers=meta-ti-extras:meta-beagle:meta-ti-bsp
++meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,8e0f8af90fefb03f08cd2228cde7a89902a6b37c,layers=meta-arm:meta-arm-toolchain
++meta-clang,https://github.com/kraj/meta-clang,scarthgap,eea5ec23155cfd47781599fdc9a92c21e4caffc8,layers=
++oe-core,https://git.openembedded.org/openembedded-core,scarthgap,cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe,layers=meta
++
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.txt b/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.txt
+new file mode 100644
+index 0000000..ce0cddb
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.txt
+@@ -0,0 +1,21 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,https://git.openembedded.org/bitbake,2.8,139f61fe9eec221745184a14b3618d2dfa650b91
++meta-tisdk,https://github.com/TexasInstruments/meta-tisdk.git,scarthgap,11.01.05.03,layers=meta-ti-foundational:meta-ti-ml
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,11.01.05,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
++meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,c4b059262089b74c8fbf8dd5fdf5fd7bc1deeddc,layers=
++meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,18bda8b8a5cf03ad16ed3c52b110b63b98b8ed77,layers=
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,9e040ee8dd6025558ea60ac9db60c41bfeddf221,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,727811eaf256b88fd135be99559f2cbf14c82fce,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rust,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=
++meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,11.01.05,layers=meta-ti-extras:meta-beagle:meta-ti-bsp
++meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,8e0f8af90fefb03f08cd2228cde7a89902a6b37c,layers=meta-arm:meta-arm-toolchain
++meta-clang,https://github.com/kraj/meta-clang,scarthgap,eea5ec23155cfd47781599fdc9a92c21e4caffc8,layers=
++oe-core,https://git.openembedded.org/openembedded-core,scarthgap,cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe,layers=meta
++
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
++
++LOCALCONF:DISTRO_FEATURES:append = " acl xattr pam selinux"
+diff --git a/kas/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.yml b/kas/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.yml
+new file mode 100644
+index 0000000..4db0c9d
+--- /dev/null
++++ b/kas/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.yml
+@@ -0,0 +1,82 @@
++header:
++  version: 17
++  includes:
++    - ../templates/bblayers.conf.yml
++    - ../templates/local-arago64-v2.conf.yml
++
++target: tisdk-default-image
++
++repos:
++  meta-tisdk:
++    url: "https://github.com/TexasInstruments/meta-tisdk.git"
++    branch: "scarthgap"
++    commit: "11.01.05.03"
++    layers:
++      meta-ti-foundational:
++      meta-ti-ml:
++
++  meta-arago:
++    url: "https://git.yoctoproject.org/meta-arago"
++    branch: "scarthgap"
++    commit: "11.01.05"
++    layers:
++      meta-arago-distro:
++      meta-arago-extras:
++      meta-arago-test:
++
++  meta-qt6:
++    url: "https://code.qt.io/yocto/meta-qt6.git"
++    branch: "6.9"
++    commit: "18bda8b8a5cf03ad16ed3c52b110b63b98b8ed77"
++
++  meta-virtualization:
++    url: "https://git.yoctoproject.org/meta-virtualization"
++    branch: "scarthgap"
++    commit: "9e040ee8dd6025558ea60ac9db60c41bfeddf221"
++
++  meta-openembedded:
++    url: "https://git.openembedded.org/meta-openembedded"
++    branch: "scarthgap"
++    commit: "727811eaf256b88fd135be99559f2cbf14c82fce"
++    layers:
++      meta-networking:
++      meta-python:
++      meta-oe:
++      meta-gnome:
++      meta-filesystems:
++      meta-multimedia:
++
++  meta-lts-mixins:
++    url: "https://git.yoctoproject.org/meta-lts-mixins"
++    branch: "scarthgap/rust"
++    commit: "a8046d5ec53b1856169ac795aa87cb0d5db84c04"
++
++  meta-ti:
++    url: "https://git.yoctoproject.org/meta-ti"
++    branch: "scarthgap"
++    commit: "11.01.05"
++    layers:
++      meta-ti-extras:
++      meta-beagle:
++      meta-ti-bsp:
++
++  meta-arm:
++    url: "https://git.yoctoproject.org/meta-arm"
++    branch: "scarthgap"
++    commit: "8e0f8af90fefb03f08cd2228cde7a89902a6b37c"
++    layers:
++      meta-arm:
++      meta-arm-toolchain:
++
++  meta-clang:
++    url: "https://github.com/kraj/meta-clang"
++    branch: "scarthgap"
++    commit: "eea5ec23155cfd47781599fdc9a92c21e4caffc8"
++
++  oe-core:
++    url: "https://git.openembedded.org/openembedded-core"
++    branch: "scarthgap"
++    commit: "cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe"
++    layers:
++      meta:
++
+diff --git a/kas/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.yml b/kas/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.yml
+new file mode 100644
+index 0000000..b744ffb
+--- /dev/null
++++ b/kas/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.yml
+@@ -0,0 +1,89 @@
++header:
++  version: 17
++  includes:
++    - ../templates/bblayers.conf.yml
++    - ../templates/local-arago64-v2.conf.yml
++
++target: tisdk-default-image
++
++repos:
++  meta-tisdk:
++    url: "https://github.com/TexasInstruments/meta-tisdk.git"
++    branch: "scarthgap"
++    commit: "11.01.05.03"
++    layers:
++      meta-ti-foundational:
++      meta-ti-ml:
++
++  meta-arago:
++    url: "https://git.yoctoproject.org/meta-arago"
++    branch: "scarthgap"
++    commit: "11.01.05"
++    layers:
++      meta-arago-distro:
++      meta-arago-extras:
++      meta-arago-test:
++
++  meta-browser:
++    url: "https://github.com/OSSystems/meta-browser.git"
++    branch: "master"
++    commit: "27ca52f635a31f5f9762813a8527dd31323549b7"
++    layers:
++      meta-chromium:
++
++  meta-qt6:
++    url: "https://code.qt.io/yocto/meta-qt6.git"
++    branch: "6.9"
++    commit: "18bda8b8a5cf03ad16ed3c52b110b63b98b8ed77"
++
++  meta-virtualization:
++    url: "https://git.yoctoproject.org/meta-virtualization"
++    branch: "scarthgap"
++    commit: "9e040ee8dd6025558ea60ac9db60c41bfeddf221"
++
++  meta-openembedded:
++    url: "https://git.openembedded.org/meta-openembedded"
++    branch: "scarthgap"
++    commit: "727811eaf256b88fd135be99559f2cbf14c82fce"
++    layers:
++      meta-networking:
++      meta-python:
++      meta-oe:
++      meta-gnome:
++      meta-filesystems:
++      meta-multimedia:
++
++  meta-lts-mixins:
++    url: "https://git.yoctoproject.org/meta-lts-mixins"
++    branch: "scarthgap/rust"
++    commit: "a8046d5ec53b1856169ac795aa87cb0d5db84c04"
++
++  meta-ti:
++    url: "https://git.yoctoproject.org/meta-ti"
++    branch: "scarthgap"
++    commit: "11.01.05"
++    layers:
++      meta-ti-extras:
++      meta-beagle:
++      meta-ti-bsp:
++
++  meta-arm:
++    url: "https://git.yoctoproject.org/meta-arm"
++    branch: "scarthgap"
++    commit: "8e0f8af90fefb03f08cd2228cde7a89902a6b37c"
++    layers:
++      meta-arm:
++      meta-arm-toolchain:
++
++  meta-clang:
++    url: "https://github.com/kraj/meta-clang"
++    branch: "scarthgap"
++    commit: "eea5ec23155cfd47781599fdc9a92c21e4caffc8"
++
++  oe-core:
++    url: "https://git.openembedded.org/openembedded-core"
++    branch: "scarthgap"
++    commit: "cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe"
++    layers:
++      meta:
++
+diff --git a/kas/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.yml b/kas/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.yml
+new file mode 100644
+index 0000000..87c55ce
+--- /dev/null
++++ b/kas/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.yml
+@@ -0,0 +1,77 @@
++header:
++  version: 17
++  includes:
++    - ../templates/bblayers.conf.yml
++    - ../templates/local-arago64-v2.conf.yml
++
++target: tisdk-default-image
++
++repos:
++  meta-tisdk:
++    url: "https://github.com/TexasInstruments/meta-tisdk.git"
++    branch: "scarthgap"
++    commit: "11.01.05.03"
++    layers:
++      meta-ti-foundational:
++      meta-ti-ml:
++
++  meta-arago:
++    url: "https://git.yoctoproject.org/meta-arago"
++    branch: "scarthgap"
++    commit: "11.01.05"
++    layers:
++      meta-arago-distro:
++      meta-arago-extras:
++      meta-arago-test:
++
++  meta-virtualization:
++    url: "https://git.yoctoproject.org/meta-virtualization"
++    branch: "scarthgap"
++    commit: "9e040ee8dd6025558ea60ac9db60c41bfeddf221"
++
++  meta-openembedded:
++    url: "https://git.openembedded.org/meta-openembedded"
++    branch: "scarthgap"
++    commit: "727811eaf256b88fd135be99559f2cbf14c82fce"
++    layers:
++      meta-networking:
++      meta-python:
++      meta-oe:
++      meta-gnome:
++      meta-filesystems:
++      meta-multimedia:
++
++  meta-lts-mixins:
++    url: "https://git.yoctoproject.org/meta-lts-mixins"
++    branch: "scarthgap/rust"
++    commit: "a8046d5ec53b1856169ac795aa87cb0d5db84c04"
++
++  meta-ti:
++    url: "https://git.yoctoproject.org/meta-ti"
++    branch: "scarthgap"
++    commit: "11.01.05"
++    layers:
++      meta-ti-extras:
++      meta-beagle:
++      meta-ti-bsp:
++
++  meta-arm:
++    url: "https://git.yoctoproject.org/meta-arm"
++    branch: "scarthgap"
++    commit: "8e0f8af90fefb03f08cd2228cde7a89902a6b37c"
++    layers:
++      meta-arm:
++      meta-arm-toolchain:
++
++  meta-clang:
++    url: "https://github.com/kraj/meta-clang"
++    branch: "scarthgap"
++    commit: "eea5ec23155cfd47781599fdc9a92c21e4caffc8"
++
++  oe-core:
++    url: "https://git.openembedded.org/openembedded-core"
++    branch: "scarthgap"
++    commit: "cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe"
++    layers:
++      meta:
++
+diff --git a/kas/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.yml b/kas/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.yml
+new file mode 100644
+index 0000000..a5cde29
+--- /dev/null
++++ b/kas/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.yml
+@@ -0,0 +1,90 @@
++header:
++  version: 17
++  includes:
++    - ../templates/bblayers.conf.yml
++    - ../templates/local-arago64-v2.conf.yml
++
++target: tisdk-default-image
++
++repos:
++  meta-tisdk:
++    url: "https://github.com/TexasInstruments/meta-tisdk.git"
++    branch: "scarthgap"
++    commit: "11.01.05.03"
++    layers:
++      meta-ti-foundational:
++      meta-ti-ml:
++
++  meta-arago:
++    url: "https://git.yoctoproject.org/meta-arago"
++    branch: "scarthgap"
++    commit: "11.01.05"
++    layers:
++      meta-arago-distro:
++      meta-arago-extras:
++      meta-arago-test:
++
++  meta-selinux:
++    url: "https://git.yoctoproject.org/meta-selinux"
++    branch: "scarthgap"
++    commit: "c4b059262089b74c8fbf8dd5fdf5fd7bc1deeddc"
++
++  meta-qt6:
++    url: "https://code.qt.io/yocto/meta-qt6.git"
++    branch: "6.9"
++    commit: "18bda8b8a5cf03ad16ed3c52b110b63b98b8ed77"
++
++  meta-virtualization:
++    url: "https://git.yoctoproject.org/meta-virtualization"
++    branch: "scarthgap"
++    commit: "9e040ee8dd6025558ea60ac9db60c41bfeddf221"
++
++  meta-openembedded:
++    url: "https://git.openembedded.org/meta-openembedded"
++    branch: "scarthgap"
++    commit: "727811eaf256b88fd135be99559f2cbf14c82fce"
++    layers:
++      meta-networking:
++      meta-python:
++      meta-oe:
++      meta-gnome:
++      meta-filesystems:
++      meta-multimedia:
++
++  meta-lts-mixins:
++    url: "https://git.yoctoproject.org/meta-lts-mixins"
++    branch: "scarthgap/rust"
++    commit: "a8046d5ec53b1856169ac795aa87cb0d5db84c04"
++
++  meta-ti:
++    url: "https://git.yoctoproject.org/meta-ti"
++    branch: "scarthgap"
++    commit: "11.01.05"
++    layers:
++      meta-ti-extras:
++      meta-beagle:
++      meta-ti-bsp:
++
++  meta-arm:
++    url: "https://git.yoctoproject.org/meta-arm"
++    branch: "scarthgap"
++    commit: "8e0f8af90fefb03f08cd2228cde7a89902a6b37c"
++    layers:
++      meta-arm:
++      meta-arm-toolchain:
++
++  meta-clang:
++    url: "https://github.com/kraj/meta-clang"
++    branch: "scarthgap"
++    commit: "eea5ec23155cfd47781599fdc9a92c21e4caffc8"
++
++  oe-core:
++    url: "https://git.openembedded.org/openembedded-core"
++    branch: "scarthgap"
++    commit: "cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe"
++    layers:
++      meta:
++
++local_conf_header:
++  oe-layersetup-local-conf-config-specific: |
++    DISTRO_FEATURES:append = " acl xattr pam selinux"
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml
+new file mode 100644
+index 0000000..65196b1
+--- /dev/null
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml
+@@ -0,0 +1,72 @@
++<?xml version='1.0'?>
++<config>
++    <description>TI Processor SDK v11.01.05.03</description>
++
++    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++
++    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='139f61fe9eec221745184a14b3618d2dfa650b91'/>
++
++    <repos>
++        <repo name='meta-tisdk' url='https://github.com/TexasInstruments/meta-tisdk.git' branch='scarthgap' commit='11.01.05.03'>
++            <layers>
++                <layer>meta-ti-foundational</layer>
++                <layer>meta-ti-ml</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='11.01.05'>
++            <layers>
++                <layer>meta-arago-distro</layer>
++                <layer>meta-arago-extras</layer>
++                <layer>meta-arago-test</layer>
++            </layers>
++        </repo>
++        <repo name='meta-qt6' url='https://code.qt.io/yocto/meta-qt6.git' branch='6.9' commit='18bda8b8a5cf03ad16ed3c52b110b63b98b8ed77'>
++            <layers/>
++        </repo>
++        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='9e040ee8dd6025558ea60ac9db60c41bfeddf221'>
++            <layers/>
++        </repo>
++        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='727811eaf256b88fd135be99559f2cbf14c82fce'>
++            <layers>
++                <layer>meta-networking</layer>
++                <layer>meta-python</layer>
++                <layer>meta-oe</layer>
++                <layer>meta-gnome</layer>
++                <layer>meta-filesystems</layer>
++                <layer>meta-multimedia</layer>
++            </layers>
++        </repo>
++        <repo name='meta-lts-mixins' url='https://git.yoctoproject.org/meta-lts-mixins' branch='scarthgap/rust' commit='a8046d5ec53b1856169ac795aa87cb0d5db84c04'>
++            <layers/>
++        </repo>
++        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='11.01.05'>
++            <layers>
++                <layer>meta-ti-extras</layer>
++                <layer>meta-beagle</layer>
++                <layer>meta-ti-bsp</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arm' url='https://git.yoctoproject.org/meta-arm' branch='scarthgap' commit='8e0f8af90fefb03f08cd2228cde7a89902a6b37c'>
++            <layers>
++                <layer>meta-arm</layer>
++                <layer>meta-arm-toolchain</layer>
++            </layers>
++        </repo>
++        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='eea5ec23155cfd47781599fdc9a92c21e4caffc8'>
++            <layers/>
++        </repo>
++        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe'>
++            <layers>
++                <layer>meta</layer>
++            </layers>
++        </repo>
++    </repos>
++
++    <tools>
++        <tool type='oe-layersetup'>
++            <var name='BITBAKE_INCLUSIVE_VARS' value='yes'/>
++        </tool>
++    </tools>
++</config>
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml
+new file mode 100644
+index 0000000..3bd1b8e
+--- /dev/null
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml
+@@ -0,0 +1,77 @@
++<?xml version='1.0'?>
++<config>
++    <description>TI Processor SDK vchromium-11.01.05.03</description>
++
++    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++
++    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='139f61fe9eec221745184a14b3618d2dfa650b91'/>
++
++    <repos>
++        <repo name='meta-tisdk' url='https://github.com/TexasInstruments/meta-tisdk.git' branch='scarthgap' commit='11.01.05.03'>
++            <layers>
++                <layer>meta-ti-foundational</layer>
++                <layer>meta-ti-ml</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='11.01.05'>
++            <layers>
++                <layer>meta-arago-distro</layer>
++                <layer>meta-arago-extras</layer>
++                <layer>meta-arago-test</layer>
++            </layers>
++        </repo>
++        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='27ca52f635a31f5f9762813a8527dd31323549b7'>
++            <layers>
++                <layer>meta-chromium</layer>
++            </layers>
++        </repo>
++        <repo name='meta-qt6' url='https://code.qt.io/yocto/meta-qt6.git' branch='6.9' commit='18bda8b8a5cf03ad16ed3c52b110b63b98b8ed77'>
++            <layers/>
++        </repo>
++        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='9e040ee8dd6025558ea60ac9db60c41bfeddf221'>
++            <layers/>
++        </repo>
++        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='727811eaf256b88fd135be99559f2cbf14c82fce'>
++            <layers>
++                <layer>meta-networking</layer>
++                <layer>meta-python</layer>
++                <layer>meta-oe</layer>
++                <layer>meta-gnome</layer>
++                <layer>meta-filesystems</layer>
++                <layer>meta-multimedia</layer>
++            </layers>
++        </repo>
++        <repo name='meta-lts-mixins' url='https://git.yoctoproject.org/meta-lts-mixins' branch='scarthgap/rust' commit='a8046d5ec53b1856169ac795aa87cb0d5db84c04'>
++            <layers/>
++        </repo>
++        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='11.01.05'>
++            <layers>
++                <layer>meta-ti-extras</layer>
++                <layer>meta-beagle</layer>
++                <layer>meta-ti-bsp</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arm' url='https://git.yoctoproject.org/meta-arm' branch='scarthgap' commit='8e0f8af90fefb03f08cd2228cde7a89902a6b37c'>
++            <layers>
++                <layer>meta-arm</layer>
++                <layer>meta-arm-toolchain</layer>
++            </layers>
++        </repo>
++        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='eea5ec23155cfd47781599fdc9a92c21e4caffc8'>
++            <layers/>
++        </repo>
++        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe'>
++            <layers>
++                <layer>meta</layer>
++            </layers>
++        </repo>
++    </repos>
++
++    <tools>
++        <tool type='oe-layersetup'>
++            <var name='BITBAKE_INCLUSIVE_VARS' value='yes'/>
++        </tool>
++    </tools>
++</config>
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml
+new file mode 100644
+index 0000000..3d40933
+--- /dev/null
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml
+@@ -0,0 +1,69 @@
++<?xml version='1.0'?>
++<config>
++    <description>TI Processor SDK vnonqt-11.01.05.03</description>
++
++    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++
++    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='139f61fe9eec221745184a14b3618d2dfa650b91'/>
++
++    <repos>
++        <repo name='meta-tisdk' url='https://github.com/TexasInstruments/meta-tisdk.git' branch='scarthgap' commit='11.01.05.03'>
++            <layers>
++                <layer>meta-ti-foundational</layer>
++                <layer>meta-ti-ml</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='11.01.05'>
++            <layers>
++                <layer>meta-arago-distro</layer>
++                <layer>meta-arago-extras</layer>
++                <layer>meta-arago-test</layer>
++            </layers>
++        </repo>
++        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='9e040ee8dd6025558ea60ac9db60c41bfeddf221'>
++            <layers/>
++        </repo>
++        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='727811eaf256b88fd135be99559f2cbf14c82fce'>
++            <layers>
++                <layer>meta-networking</layer>
++                <layer>meta-python</layer>
++                <layer>meta-oe</layer>
++                <layer>meta-gnome</layer>
++                <layer>meta-filesystems</layer>
++                <layer>meta-multimedia</layer>
++            </layers>
++        </repo>
++        <repo name='meta-lts-mixins' url='https://git.yoctoproject.org/meta-lts-mixins' branch='scarthgap/rust' commit='a8046d5ec53b1856169ac795aa87cb0d5db84c04'>
++            <layers/>
++        </repo>
++        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='11.01.05'>
++            <layers>
++                <layer>meta-ti-extras</layer>
++                <layer>meta-beagle</layer>
++                <layer>meta-ti-bsp</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arm' url='https://git.yoctoproject.org/meta-arm' branch='scarthgap' commit='8e0f8af90fefb03f08cd2228cde7a89902a6b37c'>
++            <layers>
++                <layer>meta-arm</layer>
++                <layer>meta-arm-toolchain</layer>
++            </layers>
++        </repo>
++        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='eea5ec23155cfd47781599fdc9a92c21e4caffc8'>
++            <layers/>
++        </repo>
++        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe'>
++            <layers>
++                <layer>meta</layer>
++            </layers>
++        </repo>
++    </repos>
++
++    <tools>
++        <tool type='oe-layersetup'>
++            <var name='BITBAKE_INCLUSIVE_VARS' value='yes'/>
++        </tool>
++    </tools>
++</config>
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml
+new file mode 100644
+index 0000000..9231c95
+--- /dev/null
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml
+@@ -0,0 +1,79 @@
++<?xml version='1.0'?>
++<config>
++    <description>TI Processor SDK vselinux-11.01.05.03</description>
++
++    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++
++    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='139f61fe9eec221745184a14b3618d2dfa650b91'/>
++
++    <repos>
++        <repo name='meta-tisdk' url='https://github.com/TexasInstruments/meta-tisdk.git' branch='scarthgap' commit='11.01.05.03'>
++            <layers>
++                <layer>meta-ti-foundational</layer>
++                <layer>meta-ti-ml</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='11.01.05'>
++            <layers>
++                <layer>meta-arago-distro</layer>
++                <layer>meta-arago-extras</layer>
++                <layer>meta-arago-test</layer>
++            </layers>
++        </repo>
++        <repo name='meta-selinux' url='https://git.yoctoproject.org/meta-selinux' branch='scarthgap' commit='c4b059262089b74c8fbf8dd5fdf5fd7bc1deeddc'>
++            <layers/>
++        </repo>
++        <repo name='meta-qt6' url='https://code.qt.io/yocto/meta-qt6.git' branch='6.9' commit='18bda8b8a5cf03ad16ed3c52b110b63b98b8ed77'>
++            <layers/>
++        </repo>
++        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='9e040ee8dd6025558ea60ac9db60c41bfeddf221'>
++            <layers/>
++        </repo>
++        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='727811eaf256b88fd135be99559f2cbf14c82fce'>
++            <layers>
++                <layer>meta-networking</layer>
++                <layer>meta-python</layer>
++                <layer>meta-oe</layer>
++                <layer>meta-gnome</layer>
++                <layer>meta-filesystems</layer>
++                <layer>meta-multimedia</layer>
++            </layers>
++        </repo>
++        <repo name='meta-lts-mixins' url='https://git.yoctoproject.org/meta-lts-mixins' branch='scarthgap/rust' commit='a8046d5ec53b1856169ac795aa87cb0d5db84c04'>
++            <layers/>
++        </repo>
++        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='11.01.05'>
++            <layers>
++                <layer>meta-ti-extras</layer>
++                <layer>meta-beagle</layer>
++                <layer>meta-ti-bsp</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arm' url='https://git.yoctoproject.org/meta-arm' branch='scarthgap' commit='8e0f8af90fefb03f08cd2228cde7a89902a6b37c'>
++            <layers>
++                <layer>meta-arm</layer>
++                <layer>meta-arm-toolchain</layer>
++            </layers>
++        </repo>
++        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='eea5ec23155cfd47781599fdc9a92c21e4caffc8'>
++            <layers/>
++        </repo>
++        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='cfa97a50e06fb0fcc7cbc0ada54ce7ad5ba29ebe'>
++            <layers>
++                <layer>meta</layer>
++            </layers>
++        </repo>
++    </repos>
++
++    <local-conf>
++        <line>DISTRO_FEATURES:append = " acl xattr pam selinux"</line>
++    </local-conf>
++
++    <tools>
++        <tool type='oe-layersetup'>
++            <var name='BITBAKE_INCLUSIVE_VARS' value='yes'/>
++        </tool>
++    </tools>
++</config>
+-- 
 2.34.1
 
 
