@@ -1,1388 +1,381 @@
-Return-Path: <c-shilwant@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C7EDCC87FCB
-	for <webhook@archiver.kernel.org>; Mon, 28 Jul 2025 10:16:16 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web10.77911.1753697775642955448
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15554C83F17
+	for <webhook@archiver.kernel.org>; Mon, 28 Jul 2025 14:46:38 +0000 (UTC)
+Received: from OSPPR02CU001.outbound.protection.outlook.com (OSPPR02CU001.outbound.protection.outlook.com [40.107.159.92])
+ by mx.groups.io with SMTP id smtpd.web11.80509.1753706635665200711
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 28 Jul 2025 03:16:15 -0700
+ Mon, 28 Jul 2025 05:43:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=mC7+DQNj;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: c-shilwant@ti.com)
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56SAGCCT2282538;
-	Mon, 28 Jul 2025 05:16:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1753697772;
-	bh=wdnIRY6risG3QReYpaIcnwpFZW3KGJSISF//3EaS/7E=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=mC7+DQNjcJFIBAONnNvBbooDARfA3HP8/89/9RAcnhcPEvoA/ugFKEQ9TcBSPUwyf
-	 g3miLYu7UANFQUmehndywN4KoiLMKEFiMecY906nwXliKKPcWqC9BQIx5NK+nZGjdX
-	 YZ+hGEbRiVSiHYIrODCUZFPm+RROzHQ8H27xMA6I=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56SAGC5W1618420
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 28 Jul 2025 05:16:12 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 28
- Jul 2025 05:16:11 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 28 Jul 2025 05:16:11 -0500
-Received: from [10.24.72.117] (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.72.117])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56SAG92S1883278;
-	Mon, 28 Jul 2025 05:16:10 -0500
-Message-ID: <bc555895-3b4f-40fc-aed5-da05a93a67e0@ti.com>
-Date: Mon, 28 Jul 2025 15:46:09 +0530
+ dkim=pass header.i=@ctag.com header.s=selector1 header.b=U0B7zqRk;
+ spf=pass (domain: ctag.com, ip: 40.107.159.92, mailfrom: miguel.salvatierra3222@ctag.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Srdgh14TfF3lpVOrrM7DlvYS86pEV8Wppsls6ml8GGOIwNqIQdoeXYWLQSPcGaO+aceux2nMz0vDF3KEoWNE5Nzvkg6x1PCZm6IWTyppRgDZGVw2bzHh26rDNlDMb6919w2PqFSdvOmd/1cLXqI13cvdo4pSuSySx5VhiOxbMHLiwVJpCboC4mR+djDnNeb2pDqKB/VL/lTkF7jP4FJywO3ySP8SPwF5WghfpvejDYKfcnzTIRWf5124FPfEClU4X4fzmO19tvlqEUvFg/BxSRvUTfSioQv913gQ49EbQi1vUDH3D8c4Jf89ChwPlgmwLBD82IZSHj6pvW++me1ubA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OBtBWfe+p4TZQrHknSEr8Yhs2wRln0F4UCDCcDgF7uE=;
+ b=psDK8i5j6qqFGnjM2oy91I8f5X7NHr1s1wiShUM4NRYO5gAjERT34djrPQM0CahTQqhb+eJL0CSstkGdHF7xIDdOqUlpFrkJNfqP4UG1/Xa9MO9FzWvTZt8mkK2VuB5VZQxlixlS0VMFn/ajsxTGstzyG9oKpdck67beXzI6iy8dZqxtMADha10juDzrjaDeaqTEZpH/7U73nbYdaZENxpDsZWXTt+cV2C1D2VJwOeXGGurV+7ymOIB+Ucl+sjdpno+OR+zZSyNmUde0ZBMnEw0QUvaDZ82CXuSwBzK4v4J0j0cp75m/ZhPOTEc81QKie8NkqKivRifu83Qpkz002g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ctag.com; dmarc=pass action=none header.from=ctag.com;
+ dkim=pass header.d=ctag.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ctag.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OBtBWfe+p4TZQrHknSEr8Yhs2wRln0F4UCDCcDgF7uE=;
+ b=U0B7zqRkcQZRhyIo1W8/EsVHdhYOSRNQvmE1cBPbf0aHi6D+mDFWM1YPzwRAHtGDNlMQP6FFHQ68wGVnUnWjhv30+O+LJWVCifLkS6Aicwd4S6wuDb4/8u3E5Un5w5S/KRXgatNIDp5Ho5jfpBMoJoE5pa1UlBMpsPfQeRwCC6OGyumoZeO62WKs8v/91ggr1rNEVXmBLkwosncbGeziGBnnsQEzp8r0gMOp6R+4sbRBSYv+ybLZxdqiYP0+VYq3jAaOZyokyanan6lruwg8f3ryogz9zdGiIVKJ9+GoU4kYuAGutm/iKvukjNe8YhBJ47oLR3Mx3oqtmClcAiGrfw==
+Received: from AS4PR10MB5743.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:4f5::14)
+ by AM8PR10MB4100.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1eb::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.26; Mon, 28 Jul
+ 2025 12:28:20 +0000
+Received: from AS4PR10MB5743.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::b7ab:9573:35ee:3de]) by AS4PR10MB5743.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::b7ab:9573:35ee:3de%5]) with mapi id 15.20.8964.024; Mon, 28 Jul 2025
+ 12:28:20 +0000
+From: Miguel Salvatierra Veleiro <miguel.salvatierra3222@ctag.com>
+To: "meta-arago@lists.yoctoproject.org" <meta-arago@lists.yoctoproject.org>
+Subject: [scarthgap][PATCH] Tags from ARM-software repository are now in another branch
+Thread-Topic: [scarthgap][PATCH] Tags from ARM-software repository are now in
+ another branch
+Thread-Index: AQHb/6yX6g7QHkMYWE6kXSLqwTtcag==
+Date: Mon, 28 Jul 2025 12:28:20 +0000
+Message-ID: 
+ <AS4PR10MB5743C880C7F7D12B9AF14DAEE45AA@AS4PR10MB5743.EURPRD10.PROD.OUTLOOK.COM>
+Accept-Language: es-ES, en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+msip_labels: 
+ MSIP_Label_fd6eac63-1ee0-4123-a534-e0a51ea4f7b2_Enabled=True;MSIP_Label_fd6eac63-1ee0-4123-a534-e0a51ea4f7b2_SiteId=6b2f6648-df41-4bbb-8eb7-a5be90169d14;MSIP_Label_fd6eac63-1ee0-4123-a534-e0a51ea4f7b2_SetDate=2025-07-28T12:28:19.778Z;MSIP_Label_fd6eac63-1ee0-4123-a534-e0a51ea4f7b2_Name=INTERNO
+ -
+ INTERNAL;MSIP_Label_fd6eac63-1ee0-4123-a534-e0a51ea4f7b2_ContentBits=0;MSIP_Label_fd6eac63-1ee0-4123-a534-e0a51ea4f7b2_Method=Standard;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=ctag.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS4PR10MB5743:EE_|AM8PR10MB4100:EE_
+x-ms-office365-filtering-correlation-id: b56f1146-85e2-4d95-6d1e-08ddcdd23cb7
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|1800799024|31052699007|39142699007|376014|366016|4053099003|8096899003|38070700018;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?dGZ2UDlBMEc0M1M4NHA3dk84Y0cwenlzT2J0dDZqU3lzM2hOaEJIblh6Q3VS?=
+ =?utf-8?B?T3JsZWduT0ExcHVhRXpPSmY3Y3lSdWR6ZnR6RTdHUUxJMFhYM2NDdXlZUGxG?=
+ =?utf-8?B?YUx2SVF5Smw2RXJmeHo1djVZek1qa3I1YmFSK3NYNmhLekVBbmdvL24rY2U5?=
+ =?utf-8?B?eFRnbENKbnFjRldGc0xOekdPN1lGSFBONXd2dXhZbktHY2NqTTB3OUt1SnBz?=
+ =?utf-8?B?WmpOeHhaQmVCQ1h5YmpvS09QSHJiUlhDZm9KMlFhV2lOUVAvL2ROWGhRekk1?=
+ =?utf-8?B?YU1lK3ZDQVpGOTQ4YjZ4cmJUYWtvODhJN0t5WURQTS9IN29vaHRTeUNYNGNY?=
+ =?utf-8?B?Nnh0WVpCVHUxdHBlWGd3Ym1Ea05oQ1dsQk1wb1g1RXZ2eThlN3cwSGptY0k5?=
+ =?utf-8?B?TkRoWE5lWXlYL0I4RzlDZnhzYlk5bmxPeElIZXdyeUFpa0xZaGJXOUNOWnBL?=
+ =?utf-8?B?OGFJNHAxdEN3dUo3UUw0M3E1SjliLzJhT05mTW5BQXhQVHJIQ0t3NkduQ29I?=
+ =?utf-8?B?Z2R3VG5sUC9DY055REJ1WGVFM25sV2RocGtOV2ovU29DRk45YVdFdHo3VGg2?=
+ =?utf-8?B?d0NKR2dEZDlsMVgvNzAvRUxQS05uZHdob1FwZ3ZkZWtsNzAzaXE2WXRRbWtD?=
+ =?utf-8?B?dXJtOW9wcTJpQXpNaTdCT1F2ZW5vRHRlVnBZRXlucUJJaS9DZGV3QVM5SE1t?=
+ =?utf-8?B?bnN3T0FKcEtGN21sQXRpa01adXhYYitqcW9aczI0RG1tbm44VEtBbHh1MzR0?=
+ =?utf-8?B?RnI2WFJiQWo4SkdvQkZyTjVoQ2l0M01vWmloOThZc1Mwb2FJZUFjZmRlZzhE?=
+ =?utf-8?B?Zy9GdHQycUhkcldwSG5pQ0xFWFpVWkxYNllQNnJmcGdyQTByQ3F3Y0VaUGw5?=
+ =?utf-8?B?UGdHT1VXQmtEMmcwdXBVVUxtaE5xN3FDV2xyelI1ZHVaNWtwdHpoRklyUFF6?=
+ =?utf-8?B?aWJhNG11eDFrbGt6Y2E5MndiTkNncTJ0WExIRTBXV1UydGFPa1JNOUdoREdl?=
+ =?utf-8?B?UHpCQng5Nk04b3RqQTN4b0p1Rk1MWERqVjl3Wk1wbTlWanh0WHVGU0lobTFq?=
+ =?utf-8?B?NmFzMnVmckh1Skg5UThrN2xzRThjRXJsUWthTDRwNm8vSm0wK0JDbUcrK09R?=
+ =?utf-8?B?aHNWMmVIY3pDU3BSNEo2b3VCTWNGWHJucHRDdzk1WDVneGNNK0o1eGZPWWdz?=
+ =?utf-8?B?NnJhOHRrUjJQSGZ0WnFobHV0ajVLQS9MYzZVVjZEU3JzS0tlbStzOHBYb1Bm?=
+ =?utf-8?B?N0pRTm0vd3g1dm5JcFJibWF5WUpCNkFQd0djUnNod3FMR3hHY0g5TnpCTk1V?=
+ =?utf-8?B?a0NQb0V4WFdxcGc4UG5POER5V0hzMUE5SVRHdUN1aWVCSFhDTk9mTGRUdldT?=
+ =?utf-8?B?dnE5c1RtV3U0V0FBWUN6SXJZcE1BNUVJbDBXb2QyYlpNVHkrd2RiZDNhcEZ3?=
+ =?utf-8?B?SHc4TmdEZ3F5SUQza2NZUGZ4QU1QQ3JWaXVFRENYK0RDU2VMc2w3WEhnYTFl?=
+ =?utf-8?B?akhnc3ZqWC8yV2RLQmFmZnY1eVVWUTk3Y2dUTm9PNlpqNjBPbVZ5MzllZlhF?=
+ =?utf-8?B?VTArbGhkSEJIV2pHeUxXZmZaSVhjUzlCcTc2UW14OXA4a2phUWtkOE0yNVFy?=
+ =?utf-8?B?WUJhTjVnS0NkTVA0NDltQTlUY3IwM3dGU3NjYXozbi8vQnUwMVZONi9ReGxS?=
+ =?utf-8?B?Y2JnaXlnSHVhVHRMRlFJMndKR01POXFKaS8zSnltL0dFQUc5NnMrNXZoUm90?=
+ =?utf-8?B?cnJ1RHdaSlNOZ05ZR1hDU0JaRWhTS0p1NnMxK1hWQ3BCQWs5VzRhWjRYcEpv?=
+ =?utf-8?B?alV6YkNXU0E1NTFTYkx2ckFBdDhrZVhrUDlPOVpWTEZvOHoyUkpQTlh6RjJK?=
+ =?utf-8?B?R2lJN2RUUWhjRE9vak9OdmR4UmlpZDYyaVY5RTRwUnFFaGJzNk1SWWRYd2lT?=
+ =?utf-8?Q?a6dvTau0CKQ=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR10MB5743.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(31052699007)(39142699007)(376014)(366016)(4053099003)(8096899003)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?U3JyWEM2SUtUT0k5Q1AwYTRVblloS3kvS214Y2ExVGlKUXBlVnhHa0JZWjRO?=
+ =?utf-8?B?eHRPR3pwWnllekc4ejROakpqbXJhUWZNc3lpNFFnTnM1Sm5WQ2E3VzYyY2Vn?=
+ =?utf-8?B?Q2drbllmNCtGaHpPdVIyZU5yRjZZSDY2U3BCOGVZOHVRd3FDSFlzNFdUbWRj?=
+ =?utf-8?B?ZjEyaisvcXQxeXg5b1ZvcWYzbVVrdXBHd1NsOGd1ZHVaRFVDbjVpZGlFSy9y?=
+ =?utf-8?B?NmxBVkZZMm5mODJIclBTYndwV0dpWDVZQ1g2cVg1VG1iTEcrWW9zY01oZ2o0?=
+ =?utf-8?B?TDBLZEI4TnRqZ2NUWjlvR3B4N0psVUJBT1p4RHhwMFB3NGRwSTU0ekFnMnRJ?=
+ =?utf-8?B?bDVQcFpka1NsNUMwSFRrTnM2QkpRWWpuWCszd0xXOHNHaTFieUR6TEw1cEo1?=
+ =?utf-8?B?UU5oNmV2QzZVNUlHVENSOVFub24vMDBlZnBHTzVaNHRGdm1lYVYxSEQxTG1J?=
+ =?utf-8?B?RDRHMEYwbUlZM3VBanJHeUp4Y3dMVHMwZ25yemwydGJyZnhrVzhkU1hLMDFQ?=
+ =?utf-8?B?a0wyNnAya1d5OUZpTEFUd284Njk2bzk2V1owNUR1MG1rOWV4SXpNVWVITWdC?=
+ =?utf-8?B?dG5FSWNCTTcrV0ljUmU5cG1OYUZQTHdXaVovVyt0VmpSY0NaR3h6eHM3ck9t?=
+ =?utf-8?B?amtWa3RUVGFmem8vWVFvSFRocmkwMC93NmFyd2dRdGVIWkMwR2hVYktOdEdq?=
+ =?utf-8?B?Tkd2a05tcUNyRFlVQmF0TGRPTnRNdFZuazBTVmhWdHUrTy9xSE1GT2k3UFdC?=
+ =?utf-8?B?TEI5cVQzQ2JOc2d3RjRKVURLY0pxUGJ5aGlLWDJhQTNIOU5sTDZuenZCeEdZ?=
+ =?utf-8?B?OFFQaXMwYmltOWJsT0hxZFNVZ0ljUEVWSXRZeCtNMmFVZXltVXJzZEkxRXph?=
+ =?utf-8?B?Z042UXhDeXJZdDZiSTZYR2dBL2Y0WUJtWDdEWmZpTXpSUTNFM0ptcDlHRGMv?=
+ =?utf-8?B?Vmx1S0lLdXJvSUZLVWVUZnBPUzk4Z0J1K3FoOEFPb05VcWdUVXZKMWg4K1FQ?=
+ =?utf-8?B?UzV0TDltQ1R3ckZ4OE1jd3VjRWNMaGkzVjdyVjBrWm9vNUJNOElXNFhYUmFF?=
+ =?utf-8?B?ajdaWDVHTnYrakVUOTIxUWZrOCsrdVpjMlhiNDJUckxDSUdhZEw4SUV4UlZ6?=
+ =?utf-8?B?WjhqL2lad2dPY1RNcFBNc3RxZG5xREUwTEl1bUtkMG1QQldJQmVDcFFEL3BN?=
+ =?utf-8?B?VVBJLytTeW12MHdkb0hSODB4ZTBNeEM4TGR5dDVwTnVKbHFPZnd6TXZXSlFk?=
+ =?utf-8?B?WTRtYi8zc1U5NkovSFFDQy9FUVlNdklpRzc1VnAwbEY5bENMa0NwSUwyOGlB?=
+ =?utf-8?B?MkVKY2puUFBHcnB4S2pSRnJML2c4M0cySHlhSlhpUnNiWGgxR2h2aHY4a1A3?=
+ =?utf-8?B?ckE0M0xCb3dGVmQwOGZTYkZWR0MwOSt5TlduNXoxc29BMUYwclhGWkxqN285?=
+ =?utf-8?B?TkVxRndGZ01DZzR2eEM2UXMzU3FtN2pTT0dqYUJYVjdQVjVDa1BJajNJeFE4?=
+ =?utf-8?B?NlUwUjdydGFjTFZaSkhsZTlXbVlrNmVsK3FHbVdYQTdQNXlpVHd2aER3MzlO?=
+ =?utf-8?B?V1ptUU5EUlY4SjRIWFZZeXVpTXR0WjBkOXF1SVdSeFdVL1VaV2pXVUZNSG5Y?=
+ =?utf-8?B?NHJlUG1XcUZjSXRvRXRYeW81Vmh5VWgzTFNpNFBFSU5GUTZQcU4vK3ZZUkRS?=
+ =?utf-8?B?UkZPN1lRL2dmUzFMK1JqM0dkQmJsWkxxYjVpdnZoRDlpUnFNMjhhSW9veFd3?=
+ =?utf-8?B?RVFDZnlkbldXZjRjcW5xcWpsMU5HT3R5R3VaT1hkajlFK2tMM004c3pEUDkv?=
+ =?utf-8?B?TXhxbVYzNUYvcGxiZTY0ZEl6STFzMFFEWm9OeDJ3NklYb2NJeEZQeUtFbzZT?=
+ =?utf-8?B?cHRqOUdFNzV0YkFVaHBtdUhKNTNMelA4aG83NGlBK2dWRUo1b2pNS01YTFpt?=
+ =?utf-8?B?MC84ZDNCYW42OTJIVDUzMmdVUWRhaWJ4UVoybktyVUlBcnU5anByaEdmVFBH?=
+ =?utf-8?B?NjN0bDNNZkZ1aXc2elI5Z1NFc2ZvbFFXK0luUXhTVzNVSDVKTmJEUENUS0hJ?=
+ =?utf-8?B?THdYcU1NeWFGb2hhVXpZeEpFOC90T1ZiQzRZcStGTHRaTEZnU2U4QUZKRFdm?=
+ =?utf-8?Q?dEOM=3D?=
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][oe-layersetup][master][PATCH]
- processor-sdk-analytics: Add new configs for AM62A EdgeAI SDK 11.1 Release
-To: <meta-arago@lists.yoctoproject.org>
-CC: Denys <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>
-References: <18566209431DEBE1.1178@lists.yoctoproject.org>
-Content-Language: en-US
-From: Chirag Shilwant <c-shilwant@ti.com>
-In-Reply-To: <18566209431DEBE1.1178@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-OriginatorOrg: ctag.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR10MB5743.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: b56f1146-85e2-4d95-6d1e-08ddcdd23cb7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2025 12:28:20.1786
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 6b2f6648-df41-4bbb-8eb7-a5be90169d14
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mu/oq20uayabrB2dWKIRTxK08a52ZMENvYUD4A/u8a7OD9ymHCFLQUGB7Q/JM8iIUFoT+UvDKb+SibZuoWK2oA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR10MB4100
+Content-Type: multipart/mixed; boundary="Groupsio=IMvF2XZYrwETPm4CafeZ"
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 28 Jul 2025 10:16:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16324
+ <meta-arago@lists.yoctoproject.org>; Mon, 28 Jul 2025 14:46:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16325
 
+--Groupsio=IMvF2XZYrwETPm4CafeZ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+R29vZCBhZnRlcm5vb24sDQoNCkkgdHJpZWQgdG8gZmV0Y2ggdGhlIHNvdXJjZXMgZnJvbSByZWNp
+cGUgL21ldGEtYXJhZ28vbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1kZXZ0b29scy9hcm0tY29t
+cHV0ZS1saWJyYXJ5L2FybS1jb21wdXRlLWxpYnJhcnlfMjQuMTIuYmIgaW4gc2NhcnRoZ2FwIGJ1
+dCB0aGUgU1JDUkVWIGFyZSBub3QgZm91bmQgaW4gdGhlIGdpdGh1Yi5jb20vQVJNLXNvZnR3YXJl
+L0NvbXB1dGVMaWJyYXJ5LmdpdCByZXBvc2l0b3J5LiBBbGwgdGhlIHRhZ3MgaW4gdGhpcyByZXBv
+IGFyZSBtb3ZlZCB0byBhIG5ldyBicmFuY2ggY2FsbGVkIGFyY2hpdmVkLXJlbGVhc2VzLiBJJ3Zl
+IGNoYW5nZWQgdGhlIGJyYW5jaCB0byAiYXJjaGl2ZWQtcmVsZWFzZXMiIHBhcmFtZXRlciBpbiB0
+aGUgU1JDX1VSSSBhbmQgbm93IGl0IHdvcmtzLiBIb3cgY2FuIEkgcmVxdWVzdCB0byBtZXJnZSB0
+aGlzIGNoYW5nZT8NCg0KZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtZGV2
+dG9vbHMvYXJtLWNvbXB1dGUtbGlicmFyeS9hcm0tY29tcHV0ZS1saWJyYXJ5XzI0LjEyLmJiIGIv
+bWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1kZXZ0b29scy9hcm0tY29tcHV0ZS1saWJyYXJ5L2Fy
+bS1jb21wdXRlLWxpYnJhcnlfMjQuMTIuYmINCmluZGV4IGY0MTI5YTc1Li5kYjM3NjQzMyAxMDA2
+NDQNCi0tLSBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtZGV2dG9vbHMvYXJtLWNvbXB1dGUt
+bGlicmFyeS9hcm0tY29tcHV0ZS1saWJyYXJ5XzI0LjEyLmJiDQorKysgYi9tZXRhLWFyYWdvLWV4
+dHJhcy9yZWNpcGVzLWRldnRvb2xzL2FybS1jb21wdXRlLWxpYnJhcnkvYXJtLWNvbXB1dGUtbGli
+cmFyeV8yNC4xMi5iYg0KQEAgLTQsNyArNCw3IEBAIExJQ0VOU0UgPSAiTUlUIg0KIExJQ19GSUxF
+U19DSEtTVU0gPSAiZmlsZTovL0xJQ0VOU0VTL01JVC50eHQ7bWQ1PTM1Zjg5NDRmYWU5NzI5NzY2
+OTFmMzQ4M2IwYWM5ZGJhIg0KDQogU1JDX1VSSSA9ICIgXA0KLSAgICBnaXQ6Ly9naXRodWIuY29t
+L0FSTS1zb2Z0d2FyZS9Db21wdXRlTGlicmFyeS5naXQ7YnJhbmNoPW1haW47cHJvdG9jb2w9aHR0
+cHMgXA0KKyAgICBnaXQ6Ly9naXRodWIuY29tL0FSTS1zb2Z0d2FyZS9Db21wdXRlTGlicmFyeS5n
+aXQ7YnJhbmNoPWFyY2hpdmVkLXJlbGVhc2VzO3Byb3RvY29sPWh0dHBzIFwNCiAgICAgZmlsZTov
+LzAwMDEtZml4LUZpeC1pbmRlbnRpb24taW4tY21ha2UtZ2VuZXJhdG9yLXNjcmlwdC5wYXRjaCBc
+DQogICAgIGZpbGU6Ly8wMDAyLVVzZS1BUk1fQ09NUFVURV9FTkFCTEVfTkVPTi1pbi1jb2RlLWZv
+ci1jaGVja2luZy1ORU8ucGF0Y2ggXA0KICAgICBmaWxlOi8vMDAwMy1Vc2UtQVJNX0NPTVBVVEVf
+RU5BQkxFX1NWRS1pbi1jb2RlLWZvci1jaGVja2luZy1TVkUtLnBhdGNoIFwNCg0KTWlndWVsLA0K
+DQoNCkNvbnRlbnQgQ2xhc3NpZmljYXRpb246DQoNCg0KDQpQdWJsaWMNCg0K4oiaDQoNCkludGVy
+bmFsDQoNCg0KDQpDb25maWRlbnRpYWwNCg0KDQoNClNlY3JldA0KDQoNCg0KW2NpZDo0NzI0MjE4
+ZS1kMmY1LTRlOTAtOWNjYS1hYjAwNDQyNzhmZTBdDQoNCkNUQUcgLSBDZW50cm8gVGVjbm9sw7Nn
+aWNvIGRlIEF1dG9tb2Npw7NuIGRlIEdhbGljaWENClBvbMOtZ29ubyBJbmR1c3RyaWFsICJBIEdS
+QU5YQSIsIENhbGxlICJB4oCcLCAyNDktMjUwDQpQb3JyacOxbyAzNjQ3NSAoUG9udGV2ZWRyYSku
+IFNQQUlOLg0KVGZuOiAoKzM0KSA5ODYgOTAwIDMwMCAgICAgICAgIFByaXZhY3kgUG9saWN5PGh0
+dHBzOi8vY3RhZy5jb20vd3AtY29udGVudC91cGxvYWRzL3BvbGl0aWNhX2ludGVncmFkYV8yMDA5
+LnBkZj4NCg0K
 
-On 28/07/25 15:31, Chirag Shilwant via lists.yoctoproject.org wrote:
-> - Add processor-sdk-analytics-11.01.07.05-config used for building
-> EdgeAI filesystem for AM62A.
->
-> - Add processor-sdk-analytics-selinux-11.01.07.05-config used for
-> building SELinux enabled EdgeAI filesystem for AM62A.
+--Groupsio=IMvF2XZYrwETPm4CafeZ
+Content-Type: image/png; name="Outlook-c1isvrku.png"
+Content-Description: Outlook-c1isvrku.png
+Content-Disposition: inline; filename="Outlook-c1isvrku.png"; size=10023;
+	creation-date="Mon, 28 Jul 2025 12:28:20 GMT";
+	modification-date="Mon, 28 Jul 2025 12:28:20 GMT"
+Content-ID: <4724218e-d2f5-4e90-9cca-ab0044278fe0>
+Content-Transfer-Encoding: base64
 
-Ignore this patch, just realized that meta-selinux points to HEAD which
-is fine for [0] but maybe not for a release config...will send a v2.
+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
 
-
-[0]: 
-https://git.ti.com/cgit/arago-project/oe-layersetup/tree/configs/arago-scarthgap-selinux-config.txt
-
---
-Chirag
-
->
-> Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-> ---
->   ...ssor-sdk-analytics-11.01.07.05-config.json | 158 +++++++++++++++
->   ...-analytics-selinux-11.01.07.05-config.json | 169 ++++++++++++++++
->   .../bblayers.conf.sample                      |  34 ++++
->   .../conf-notes.txt                            |  22 +++
->   .../conf-summary.txt                          |   1 +
->   .../local.conf.sample                         | 175 +++++++++++++++++
->   .../bblayers.conf.sample                      |  35 ++++
->   .../conf-notes.txt                            |  22 +++
->   .../conf-summary.txt                          |   1 +
->   .../local.conf.sample                         | 184 ++++++++++++++++++
->   ...essor-sdk-analytics-11.01.07.05-config.txt |  19 ++
->   ...k-analytics-selinux-11.01.07.05-config.txt |  22 +++
->   ...essor-sdk-analytics-11.01.07.05-config.yml |  86 ++++++++
->   ...k-analytics-selinux-11.01.07.05-config.yml |  93 +++++++++
->   ...essor-sdk-analytics-11.01.07.05-config.xml |  74 +++++++
->   ...k-analytics-selinux-11.01.07.05-config.xml |  81 ++++++++
->   16 files changed, 1176 insertions(+)
->   create mode 100644 bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config.json
->   create mode 100644 bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config.json
->   create mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/bblayers.conf.sample
->   create mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/conf-notes.txt
->   create mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/conf-summary.txt
->   create mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/local.conf.sample
->   create mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/bblayers.conf.sample
->   create mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/conf-notes.txt
->   create mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/conf-summary.txt
->   create mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/local.conf.sample
->   create mode 100644 configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.txt
->   create mode 100644 configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.txt
->   create mode 100644 kas/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.yml
->   create mode 100644 kas/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.yml
->   create mode 100644 src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml
->   create mode 100644 src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml
->
-> diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config.json b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config.json
-> new file mode 100644
-> index 0000000..d856fda
-> --- /dev/null
-> +++ b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config.json
-> @@ -0,0 +1,158 @@
-> +{
-> +  "version": "1.0",
-> +  "description": "TI Processor SDK Analytics v11.01.07.05",
-> +  "sources": {
-> +    "oe-layersetup": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
-> +          }
-> +        },
-> +        "rev": "master"
-> +      },
-> +      "path": "oe-layersetup"
-> +    },
-> +    "bitbake": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.openembedded.org/bitbake"
-> +          }
-> +        },
-> +        "rev": "2.8"
-> +      },
-> +      "path": "bitbake"
-> +    },
-> +    "meta-tisdk": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://github.com/TexasInstruments/meta-tisdk.git"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-tisdk"
-> +    },
-> +    "meta-arago": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-arago"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-arago"
-> +    },
-> +    "meta-qt6": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://code.qt.io/yocto/meta-qt6.git"
-> +          }
-> +        },
-> +        "rev": "6.9"
-> +      },
-> +      "path": "meta-qt6"
-> +    },
-> +    "meta-virtualization": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-virtualization"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-virtualization"
-> +    },
-> +    "meta-openembedded": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.openembedded.org/meta-openembedded"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-openembedded"
-> +    },
-> +    "meta-lts-mixins": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-lts-mixins"
-> +          }
-> +        },
-> +        "rev": "scarthgap/rust"
-> +      },
-> +      "path": "meta-lts-mixins"
-> +    },
-> +    "meta-ti": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-ti"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-ti"
-> +    },
-> +    "meta-arm": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-arm"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-arm"
-> +    },
-> +    "meta-clang": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://github.com/kraj/meta-clang"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-clang"
-> +    },
-> +    "oe-core": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.openembedded.org/openembedded-core"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "oe-core"
-> +    },
-> +    "meta-edgeai": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.ti.com/git/edgeai/meta-edgeai.git"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-edgeai"
-> +    }
-> +  },
-> +  "configuration": {
-> +    "bitbake-setup": {
-> +      "default": {
-> +        "description": "Default build configuration",
-> +         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config",
-> +         "targets": [ "bitbake -k tisdk-default-image" ]
-> +      }
-> +    }
-> +  }
-> +}
-> diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config.json b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config.json
-> new file mode 100644
-> index 0000000..9523f46
-> --- /dev/null
-> +++ b/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config.json
-> @@ -0,0 +1,169 @@
-> +{
-> +  "version": "1.0",
-> +  "description": "TI Processor SDK Analytics vselinux-11.01.07.05",
-> +  "sources": {
-> +    "oe-layersetup": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
-> +          }
-> +        },
-> +        "rev": "master"
-> +      },
-> +      "path": "oe-layersetup"
-> +    },
-> +    "bitbake": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.openembedded.org/bitbake"
-> +          }
-> +        },
-> +        "rev": "2.8"
-> +      },
-> +      "path": "bitbake"
-> +    },
-> +    "meta-tisdk": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://github.com/TexasInstruments/meta-tisdk.git"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-tisdk"
-> +    },
-> +    "meta-arago": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-arago"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-arago"
-> +    },
-> +    "meta-selinux": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-selinux"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-selinux"
-> +    },
-> +    "meta-qt6": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://code.qt.io/yocto/meta-qt6.git"
-> +          }
-> +        },
-> +        "rev": "6.9"
-> +      },
-> +      "path": "meta-qt6"
-> +    },
-> +    "meta-virtualization": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-virtualization"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-virtualization"
-> +    },
-> +    "meta-openembedded": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.openembedded.org/meta-openembedded"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-openembedded"
-> +    },
-> +    "meta-lts-mixins": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-lts-mixins"
-> +          }
-> +        },
-> +        "rev": "scarthgap/rust"
-> +      },
-> +      "path": "meta-lts-mixins"
-> +    },
-> +    "meta-ti": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-ti"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-ti"
-> +    },
-> +    "meta-arm": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.yoctoproject.org/meta-arm"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-arm"
-> +    },
-> +    "meta-clang": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://github.com/kraj/meta-clang"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-clang"
-> +    },
-> +    "oe-core": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.openembedded.org/openembedded-core"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "oe-core"
-> +    },
-> +    "meta-edgeai": {
-> +      "git-remote": {
-> +        "remotes": {
-> +          "origin": {
-> +            "uri": "https://git.ti.com/git/edgeai/meta-edgeai.git"
-> +          }
-> +        },
-> +        "rev": "scarthgap"
-> +      },
-> +      "path": "meta-edgeai"
-> +    }
-> +  },
-> +  "configuration": {
-> +    "bitbake-setup": {
-> +      "default": {
-> +        "description": "Default build configuration",
-> +         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config",
-> +         "targets": [ "bitbake -k tisdk-default-image" ]
-> +      }
-> +    }
-> +  }
-> +}
-> diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/bblayers.conf.sample b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/bblayers.conf.sample
-> new file mode 100644
-> index 0000000..f96214b
-> --- /dev/null
-> +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/bblayers.conf.sample
-> @@ -0,0 +1,34 @@
-> +# This template file was created by taking the oe-core/meta/conf/bblayers.conf
-> +# file and removing the BBLAYERS section at the end.
-> +
-> +# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
-> +# changes incompatibly
-> +LCONF_VERSION = "5"
-> +
-> +BBPATH = "${TOPDIR}"
-> +BBFILES ?= ""
-> +
-> +BBLAYERS ?= " \
-> +    ##OEROOT##/../meta-tisdk/meta-ti-foundational
-> +    ##OEROOT##/../meta-arago/meta-arago-distro
-> +    ##OEROOT##/../meta-arago/meta-arago-extras
-> +    ##OEROOT##/../meta-arago/meta-arago-test
-> +    ##OEROOT##/../meta-qt6
-> +    ##OEROOT##/../meta-virtualization
-> +    ##OEROOT##/../meta-openembedded/meta-networking
-> +    ##OEROOT##/../meta-openembedded/meta-python
-> +    ##OEROOT##/../meta-openembedded/meta-oe
-> +    ##OEROOT##/../meta-openembedded/meta-gnome
-> +    ##OEROOT##/../meta-openembedded/meta-filesystems
-> +    ##OEROOT##/../meta-openembedded/meta-multimedia
-> +    ##OEROOT##/../meta-lts-mixins
-> +    ##OEROOT##/../meta-ti/meta-ti-extras
-> +    ##OEROOT##/../meta-ti/meta-beagle
-> +    ##OEROOT##/../meta-ti/meta-ti-bsp
-> +    ##OEROOT##/../meta-arm/meta-arm
-> +    ##OEROOT##/../meta-arm/meta-arm-toolchain
-> +    ##OEROOT##/../meta-clang
-> +    ##OEROOT##/../oe-core/meta
-> +    ##OEROOT##/../meta-edgeai
-> +    ##OEROOT##/../oe-layersetup
-> +"
-> diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/conf-notes.txt b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/conf-notes.txt
-> new file mode 100644
-> index 0000000..1880460
-> --- /dev/null
-> +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/conf-notes.txt
-> @@ -0,0 +1,22 @@
-> +
-> +### Shell environment set up for builds. ###
-> +
-> +You can now run 'bitbake <target>'
-> +
-> +If you have not set MACHINE in your local.conf you can run
-> +'MACHINE=xxxxx bitbake <target>'
-> +
-> +Common targets are:
-> +    tisdk-default-image
-> +    tisdk-base-image
-> +    tisdk-bootstrap-base-image
-> +    tisdk-bootstrap-image
-> +    tisdk-thinlinux-image
-> +    tisdk-tiny-image
-> +
-> +You can also run generated qemu images with a command like 'runqemu qemux86-64'.
-> +
-> +Other commonly useful commands are:
-> + - 'devtool' and 'recipetool' handle common recipe tasks
-> + - 'bitbake-layers' handles common layer tasks
-> + - 'oe-pkgdata-util' handles common target package tasks
-> diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/conf-summary.txt b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/conf-summary.txt
-> new file mode 100644
-> index 0000000..9dfc327
-> --- /dev/null
-> +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/conf-summary.txt
-> @@ -0,0 +1 @@
-> +TI Processor SDK Analytics v11.01.07.05
-> diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/local.conf.sample b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/local.conf.sample
-> new file mode 100644
-> index 0000000..8ad6f26
-> --- /dev/null
-> +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/local.conf.sample
-> @@ -0,0 +1,175 @@
-> +# CONF_VERSION is increased each time build/conf/ changes incompatibly
-> +CONF_VERSION = "2"
-> +
-> +#
-> +# Where to place downloads
-> +#
-> +# During a first build the system will download many different source code
-> +# tarballs from various upstream projects. This can take a while, particularly
-> +# if your network connection is slow. These are all stored in DL_DIR. When
-> +# wiping and rebuilding you can preserve this directory to speed up this part
-> +# of subsequent builds. This directory is safe to share between multiple builds
-> +# on the same machine too.
-> +DL_DIR = "${TOPDIR}/../downloads"
-> +
-> +#
-> +# Where to place shared-state files
-> +#
-> +# BitBake has the capability to accelerate builds based on previously built
-> +# output. This is done using "shared state" files which can be thought of as
-> +# cache objects and this option determines where those files are placed.
-> +#
-> +# You can wipe out TMPDIR leaving this directory intact and the build would
-> +# regenerate from these files if no changes were made to the configuration.
-> +# If changes were made to the configuration, only shared state files where the
-> +# state was still valid would be used (done using checksums).
-> +SSTATE_DIR = "${TOPDIR}/sstate-cache"
-> +
-> +#
-> +# Shared-state files from other locations
-> +#
-> +# As mentioned above, shared state files are prebuilt cache data objects which
-> +# can be used to accelerate build time. This variable can be used to configure
-> +# the system to search other mirror locations for these objects before it
-> +# builds the data itself.
-> +#
-> +# This can be a filesystem directory, or a remote url such as http or ftp.
-> +# These would contain the sstate-cache results from previous builds (possibly
-> +# from other machines). This variable works like fetcher MIRRORS/PREMIRRORS
-> +# and points to the cache locations to check for the shared objects.
-> +#SSTATE_MIRRORS ?= "\
-> +#file://.* http://someserver.tld/share/sstate/ \n \
-> +#file://.* file:///some/local/dir/sstate/"
-> +
-> +#
-> +# Where to place the build output
-> +#
-> +# This option specifies where the bulk of the building work should be done and
-> +# where BitBake should place its temporary files and output. Keep in mind that
-> +# this includes the extraction and compilation of many applications and the toolchain
-> +# which can use Gigabytes of hard disk space.
-> +TMPDIR = "${TOPDIR}/arago-tmp"
-> +
-> +# By default, DEPLOY_DIR is inside TMPDIR, but can be changed here to be outside
-> +#DEPLOY_DIR = "${TOPDIR}/deploy"
-> +
-> +#
-> +# Machine Selection
-> +#
-> +# You need to select a specific machine to target the build with. There are a selection
-> +# of emulated machines available which can boot and run in the QEMU emulator:
-> +#
-> +#MACHINE ?= "arago"
-> +
-> +#
-> +# Package Management configuration
-> +#
-> +# This variable lists which packaging formats to enable. Multiple package backends
-> +# can be enabled at once and the first item listed in the variable will be used
-> +# to generate the root filesystems.
-> +# Options are:
-> +#  - 'package_deb' for debian style deb files
-> +#  - 'package_ipk' for ipk files are used by opkg (a debian style embedded package manager)
-> +#  - 'package_rpm' for rpm style packages
-> +# E.g.: PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"
-> +# We default to ipk:
-> +PACKAGE_CLASSES ?= "package_ipk"
-> +
-> +#
-> +# SDK/ADT target architecture
-> +#
-> +# This variable specified the architecture to build SDK/ADT items for and means
-> +# you can build the SDK packages for architectures other than the machine you are
-> +# running the build on (i.e. building i686 packages on an x86_64 host._
-> +# Supported values are i686 and x86_64
-> +SDKMACHINE ?= "x86_64"
-> +
-> +#
-> +# Extra image configuration defaults
-> +#
-> +# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated
-> +# images. Some of these options are added to certain image types automatically. The
-> +# variable can contain the following options:
-> +#  "dbg-pkgs"       - add -dbg packages for all installed packages
-> +#                     (adds symbol information for debugging/profiling)
-> +#  "dev-pkgs"       - add -dev packages for all installed packages
-> +#                     (useful if you want to develop against libs in the image)
-> +#  "tools-sdk"      - add development tools (gcc, make, pkgconfig etc.)
-> +#  "tools-debug"    - add debugging tools (gdb, strace)
-> +#  "tools-profile"  - add profiling tools (oprofile, exmap, lttng valgrind (x86 only))
-> +#  "tools-testapps" - add useful testing tools (ts_print, aplay, arecord etc.)
-> +#  "debug-tweaks"   - make an image suitable for development
-> +#                     e.g. ssh root access has a blank password
-> +# There are other application targets that can be used here too, see
-> +# meta/classes/image.bbclass and meta/classes/core-image.bbclass for more details.
-> +# We default to enabling the debugging tweaks.
-> +EXTRA_IMAGE_FEATURES = "debug-tweaks"
-> +
-> +#
-> +# Additional image features
-> +#
-> +# The following is a list of additional classes to use when building images which
-> +# enable extra features. Some available options which can be included in this variable
-> +# are:
-> +#   - 'buildstats' collect build statistics
-> +#   - 'image-swab' to perform host system intrusion detection
-> +# NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
-> +USER_CLASSES ?= "buildstats"
-> +
-> +# By default disable interactive patch resolution (tasks will just fail instead):
-> +PATCHRESOLVE = "noop"
-> +
-> +# By default the machine configuration file sets the IMAGE_FSTYPES.  But if you
-> +# would like to add additional file system types you can uncomment the
-> +# following line and add the additional IMAGE_FSTYPES you want created
-> +# as part of the build flow.  Some common types are listed below and you
-> +# can remove the ones you do not want.
-> +# IMAGE_FSTYPES += "jffs2 cramfs ext2.gz ext3.gz squashfs ubi tar.gz tar.bz2 cpio"
-> +
-> +#
-> +# Parallelism Options
-> +#
-> +# These two options control how much parallelism BitBake should use. The first
-> +# option determines how many tasks bitbake should run in parallel:
-> +#
-> +# BB_NUMBER_THREADS ?= "1"
-> +#
-> +# The second option controls how many processes make should run in parallel when
-> +# running compile tasks:
-> +#
-> +# PARALLEL_MAKE ?= "-j 1"
-> +#
-> +# For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
-> +# be appropriate for example
-> +#
-> +# NOTE: By default, bitbake will choose the number of processeors on your host
-> +# so you should not need to set this unless you are wanting to lower the number
-> +# allowed.
-> +#
-> +
-> +DISTRO   = "arago"
-> +
-> +# Set terminal types by default it expects gnome-terminal
-> +# but we chose xterm
-> +TERMCMD = "${XTERM_TERMCMD}"
-> +TERMCMDRUN = "${XTERM_TERMCMDRUN}"
-> +
-> +# Don't generate the mirror tarball for SCM repos, the snapshot is enough
-> +BB_GENERATE_MIRROR_TARBALLS = "0"
-> +
-> +# Uncomment this to remove work directory after packaging to save disk space
-> +#INHERIT += "rm_work"
-> +
-> +# Keep one set of images by default
-> +RM_OLD_IMAGE = "1"
-> +
-> +# Enable local PR service for binary feeds
-> +PRSERV_HOST = "localhost:0"
-> +
-> +# Enable hash equiv server
-> +BB_SIGNATURE_HANDLER = "OEEquivHash"
-> +BB_HASHSERVE = "auto"
-> +
-> +# It is recommended to activate "buildhistory" for testing the PR service
-> +INHERIT += "buildhistory"
-> +BUILDHISTORY_COMMIT = "1"
-> diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/bblayers.conf.sample b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/bblayers.conf.sample
-> new file mode 100644
-> index 0000000..8ce4cd8
-> --- /dev/null
-> +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/bblayers.conf.sample
-> @@ -0,0 +1,35 @@
-> +# This template file was created by taking the oe-core/meta/conf/bblayers.conf
-> +# file and removing the BBLAYERS section at the end.
-> +
-> +# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
-> +# changes incompatibly
-> +LCONF_VERSION = "5"
-> +
-> +BBPATH = "${TOPDIR}"
-> +BBFILES ?= ""
-> +
-> +BBLAYERS ?= " \
-> +    ##OEROOT##/../meta-tisdk/meta-ti-foundational
-> +    ##OEROOT##/../meta-arago/meta-arago-distro
-> +    ##OEROOT##/../meta-arago/meta-arago-extras
-> +    ##OEROOT##/../meta-arago/meta-arago-test
-> +    ##OEROOT##/../meta-selinux
-> +    ##OEROOT##/../meta-qt6
-> +    ##OEROOT##/../meta-virtualization
-> +    ##OEROOT##/../meta-openembedded/meta-networking
-> +    ##OEROOT##/../meta-openembedded/meta-python
-> +    ##OEROOT##/../meta-openembedded/meta-oe
-> +    ##OEROOT##/../meta-openembedded/meta-gnome
-> +    ##OEROOT##/../meta-openembedded/meta-filesystems
-> +    ##OEROOT##/../meta-openembedded/meta-multimedia
-> +    ##OEROOT##/../meta-lts-mixins
-> +    ##OEROOT##/../meta-ti/meta-ti-extras
-> +    ##OEROOT##/../meta-ti/meta-beagle
-> +    ##OEROOT##/../meta-ti/meta-ti-bsp
-> +    ##OEROOT##/../meta-arm/meta-arm
-> +    ##OEROOT##/../meta-arm/meta-arm-toolchain
-> +    ##OEROOT##/../meta-clang
-> +    ##OEROOT##/../oe-core/meta
-> +    ##OEROOT##/../meta-edgeai
-> +    ##OEROOT##/../oe-layersetup
-> +"
-> diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/conf-notes.txt b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/conf-notes.txt
-> new file mode 100644
-> index 0000000..1880460
-> --- /dev/null
-> +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/conf-notes.txt
-> @@ -0,0 +1,22 @@
-> +
-> +### Shell environment set up for builds. ###
-> +
-> +You can now run 'bitbake <target>'
-> +
-> +If you have not set MACHINE in your local.conf you can run
-> +'MACHINE=xxxxx bitbake <target>'
-> +
-> +Common targets are:
-> +    tisdk-default-image
-> +    tisdk-base-image
-> +    tisdk-bootstrap-base-image
-> +    tisdk-bootstrap-image
-> +    tisdk-thinlinux-image
-> +    tisdk-tiny-image
-> +
-> +You can also run generated qemu images with a command like 'runqemu qemux86-64'.
-> +
-> +Other commonly useful commands are:
-> + - 'devtool' and 'recipetool' handle common recipe tasks
-> + - 'bitbake-layers' handles common layer tasks
-> + - 'oe-pkgdata-util' handles common target package tasks
-> diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/conf-summary.txt b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/conf-summary.txt
-> new file mode 100644
-> index 0000000..908c776
-> --- /dev/null
-> +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/conf-summary.txt
-> @@ -0,0 +1 @@
-> +TI Processor SDK Analytics vselinux-11.01.07.05
-> diff --git a/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/local.conf.sample b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/local.conf.sample
-> new file mode 100644
-> index 0000000..d298814
-> --- /dev/null
-> +++ b/conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/local.conf.sample
-> @@ -0,0 +1,184 @@
-> +# CONF_VERSION is increased each time build/conf/ changes incompatibly
-> +CONF_VERSION = "2"
-> +
-> +#
-> +# Where to place downloads
-> +#
-> +# During a first build the system will download many different source code
-> +# tarballs from various upstream projects. This can take a while, particularly
-> +# if your network connection is slow. These are all stored in DL_DIR. When
-> +# wiping and rebuilding you can preserve this directory to speed up this part
-> +# of subsequent builds. This directory is safe to share between multiple builds
-> +# on the same machine too.
-> +DL_DIR = "${TOPDIR}/../downloads"
-> +
-> +#
-> +# Where to place shared-state files
-> +#
-> +# BitBake has the capability to accelerate builds based on previously built
-> +# output. This is done using "shared state" files which can be thought of as
-> +# cache objects and this option determines where those files are placed.
-> +#
-> +# You can wipe out TMPDIR leaving this directory intact and the build would
-> +# regenerate from these files if no changes were made to the configuration.
-> +# If changes were made to the configuration, only shared state files where the
-> +# state was still valid would be used (done using checksums).
-> +SSTATE_DIR = "${TOPDIR}/sstate-cache"
-> +
-> +#
-> +# Shared-state files from other locations
-> +#
-> +# As mentioned above, shared state files are prebuilt cache data objects which
-> +# can be used to accelerate build time. This variable can be used to configure
-> +# the system to search other mirror locations for these objects before it
-> +# builds the data itself.
-> +#
-> +# This can be a filesystem directory, or a remote url such as http or ftp.
-> +# These would contain the sstate-cache results from previous builds (possibly
-> +# from other machines). This variable works like fetcher MIRRORS/PREMIRRORS
-> +# and points to the cache locations to check for the shared objects.
-> +#SSTATE_MIRRORS ?= "\
-> +#file://.* http://someserver.tld/share/sstate/ \n \
-> +#file://.* file:///some/local/dir/sstate/"
-> +
-> +#
-> +# Where to place the build output
-> +#
-> +# This option specifies where the bulk of the building work should be done and
-> +# where BitBake should place its temporary files and output. Keep in mind that
-> +# this includes the extraction and compilation of many applications and the toolchain
-> +# which can use Gigabytes of hard disk space.
-> +TMPDIR = "${TOPDIR}/arago-tmp"
-> +
-> +# By default, DEPLOY_DIR is inside TMPDIR, but can be changed here to be outside
-> +#DEPLOY_DIR = "${TOPDIR}/deploy"
-> +
-> +#
-> +# Machine Selection
-> +#
-> +# You need to select a specific machine to target the build with. There are a selection
-> +# of emulated machines available which can boot and run in the QEMU emulator:
-> +#
-> +#MACHINE ?= "arago"
-> +
-> +#
-> +# Package Management configuration
-> +#
-> +# This variable lists which packaging formats to enable. Multiple package backends
-> +# can be enabled at once and the first item listed in the variable will be used
-> +# to generate the root filesystems.
-> +# Options are:
-> +#  - 'package_deb' for debian style deb files
-> +#  - 'package_ipk' for ipk files are used by opkg (a debian style embedded package manager)
-> +#  - 'package_rpm' for rpm style packages
-> +# E.g.: PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"
-> +# We default to ipk:
-> +PACKAGE_CLASSES ?= "package_ipk"
-> +
-> +#
-> +# SDK/ADT target architecture
-> +#
-> +# This variable specified the architecture to build SDK/ADT items for and means
-> +# you can build the SDK packages for architectures other than the machine you are
-> +# running the build on (i.e. building i686 packages on an x86_64 host._
-> +# Supported values are i686 and x86_64
-> +SDKMACHINE ?= "x86_64"
-> +
-> +#
-> +# Extra image configuration defaults
-> +#
-> +# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated
-> +# images. Some of these options are added to certain image types automatically. The
-> +# variable can contain the following options:
-> +#  "dbg-pkgs"       - add -dbg packages for all installed packages
-> +#                     (adds symbol information for debugging/profiling)
-> +#  "dev-pkgs"       - add -dev packages for all installed packages
-> +#                     (useful if you want to develop against libs in the image)
-> +#  "tools-sdk"      - add development tools (gcc, make, pkgconfig etc.)
-> +#  "tools-debug"    - add debugging tools (gdb, strace)
-> +#  "tools-profile"  - add profiling tools (oprofile, exmap, lttng valgrind (x86 only))
-> +#  "tools-testapps" - add useful testing tools (ts_print, aplay, arecord etc.)
-> +#  "debug-tweaks"   - make an image suitable for development
-> +#                     e.g. ssh root access has a blank password
-> +# There are other application targets that can be used here too, see
-> +# meta/classes/image.bbclass and meta/classes/core-image.bbclass for more details.
-> +# We default to enabling the debugging tweaks.
-> +EXTRA_IMAGE_FEATURES = "debug-tweaks"
-> +
-> +#
-> +# Additional image features
-> +#
-> +# The following is a list of additional classes to use when building images which
-> +# enable extra features. Some available options which can be included in this variable
-> +# are:
-> +#   - 'buildstats' collect build statistics
-> +#   - 'image-swab' to perform host system intrusion detection
-> +# NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
-> +USER_CLASSES ?= "buildstats"
-> +
-> +# By default disable interactive patch resolution (tasks will just fail instead):
-> +PATCHRESOLVE = "noop"
-> +
-> +# By default the machine configuration file sets the IMAGE_FSTYPES.  But if you
-> +# would like to add additional file system types you can uncomment the
-> +# following line and add the additional IMAGE_FSTYPES you want created
-> +# as part of the build flow.  Some common types are listed below and you
-> +# can remove the ones you do not want.
-> +# IMAGE_FSTYPES += "jffs2 cramfs ext2.gz ext3.gz squashfs ubi tar.gz tar.bz2 cpio"
-> +
-> +#
-> +# Parallelism Options
-> +#
-> +# These two options control how much parallelism BitBake should use. The first
-> +# option determines how many tasks bitbake should run in parallel:
-> +#
-> +# BB_NUMBER_THREADS ?= "1"
-> +#
-> +# The second option controls how many processes make should run in parallel when
-> +# running compile tasks:
-> +#
-> +# PARALLEL_MAKE ?= "-j 1"
-> +#
-> +# For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
-> +# be appropriate for example
-> +#
-> +# NOTE: By default, bitbake will choose the number of processeors on your host
-> +# so you should not need to set this unless you are wanting to lower the number
-> +# allowed.
-> +#
-> +
-> +DISTRO   = "arago"
-> +
-> +# Set terminal types by default it expects gnome-terminal
-> +# but we chose xterm
-> +TERMCMD = "${XTERM_TERMCMD}"
-> +TERMCMDRUN = "${XTERM_TERMCMDRUN}"
-> +
-> +# Don't generate the mirror tarball for SCM repos, the snapshot is enough
-> +BB_GENERATE_MIRROR_TARBALLS = "0"
-> +
-> +# Uncomment this to remove work directory after packaging to save disk space
-> +#INHERIT += "rm_work"
-> +
-> +# Keep one set of images by default
-> +RM_OLD_IMAGE = "1"
-> +
-> +# Enable local PR service for binary feeds
-> +PRSERV_HOST = "localhost:0"
-> +
-> +# Enable hash equiv server
-> +BB_SIGNATURE_HANDLER = "OEEquivHash"
-> +BB_HASHSERVE = "auto"
-> +
-> +# It is recommended to activate "buildhistory" for testing the PR service
-> +INHERIT += "buildhistory"
-> +BUILDHISTORY_COMMIT = "1"
-> +
-> +
-> +#====================================================================
-> +# Settings from oe-layersetup config file: processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config
-> +#
-> +# Do not remove.
-> +#--------------------------------------------------------------------
-> +DISTRO_FEATURES:append = " acl xattr pam selinux"
-> +#====================================================================
-> diff --git a/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.txt b/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.txt
-> new file mode 100644
-> index 0000000..26457d0
-> --- /dev/null
-> +++ b/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.txt
-> @@ -0,0 +1,19 @@
-> +# This file takes repo entries in the format
-> +# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-> +
-> +bitbake,https://git.openembedded.org/bitbake,2.8,86e7a58c0e9904c33b1b94dddc3d683c2da22d1a
-> +meta-tisdk,https://github.com/TexasInstruments/meta-tisdk.git,scarthgap,11.01.07.05,layers=meta-ti-foundational
-> +meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,11.01.07,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
-> +meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,2b4e60e319348ae2d53072b901645f30b4cc42bf,layers=
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,a5449c0c50aa07d02186f548fe6bb6c1ce8823dc,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
-> +meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rust,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=
-> +meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,11.01.07,layers=meta-ti-extras:meta-beagle:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,8e0f8af90fefb03f08cd2228cde7a89902a6b37c,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,scarthgap,aef850f7fa53121c74b244b7ae40d31fb9809ccf,layers=
-> +oe-core,https://git.openembedded.org/openembedded-core,scarthgap,24c0ab18045920bb5c1e965c0ea6d176fd6de234,layers=meta
-> +meta-edgeai,https://git.ti.com/git/edgeai/meta-edgeai.git,scarthgap,11.01.07.05,layers=
-> +
-> +OECORELAYERCONF=./sample-files/bblayers.conf.sample
-> +OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> +BITBAKE_INCLUSIVE_VARS=yes
-> diff --git a/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.txt b/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.txt
-> new file mode 100644
-> index 0000000..938235e
-> --- /dev/null
-> +++ b/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.txt
-> @@ -0,0 +1,22 @@
-> +# This file takes repo entries in the format
-> +# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-> +
-> +bitbake,https://git.openembedded.org/bitbake,2.8,86e7a58c0e9904c33b1b94dddc3d683c2da22d1a
-> +meta-tisdk,https://github.com/TexasInstruments/meta-tisdk.git,scarthgap,11.01.07.05,layers=meta-ti-foundational
-> +meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,11.01.07,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
-> +meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
-> +meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,2b4e60e319348ae2d53072b901645f30b4cc42bf,layers=
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,a5449c0c50aa07d02186f548fe6bb6c1ce8823dc,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
-> +meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rust,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=
-> +meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,11.01.07,layers=meta-ti-extras:meta-beagle:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,8e0f8af90fefb03f08cd2228cde7a89902a6b37c,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,scarthgap,aef850f7fa53121c74b244b7ae40d31fb9809ccf,layers=
-> +oe-core,https://git.openembedded.org/openembedded-core,scarthgap,24c0ab18045920bb5c1e965c0ea6d176fd6de234,layers=meta
-> +meta-edgeai,https://git.ti.com/git/edgeai/meta-edgeai.git,scarthgap,11.01.07.05,layers=
-> +
-> +OECORELAYERCONF=./sample-files/bblayers.conf.sample
-> +OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> +BITBAKE_INCLUSIVE_VARS=yes
-> +
-> +LOCALCONF:DISTRO_FEATURES:append = " acl xattr pam selinux"
-> diff --git a/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.yml b/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.yml
-> new file mode 100644
-> index 0000000..83eb847
-> --- /dev/null
-> +++ b/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.yml
-> @@ -0,0 +1,86 @@
-> +header:
-> +  version: 17
-> +  includes:
-> +    - ../templates/bblayers.conf.yml
-> +    - ../templates/local-arago64-v2.conf.yml
-> +
-> +target: tisdk-default-image
-> +
-> +repos:
-> +  meta-tisdk:
-> +    url: "https://github.com/TexasInstruments/meta-tisdk.git"
-> +    branch: "scarthgap"
-> +    commit: "11.01.07.05"
-> +    layers:
-> +      meta-ti-foundational:
-> +
-> +  meta-arago:
-> +    url: "https://git.yoctoproject.org/meta-arago"
-> +    branch: "scarthgap"
-> +    commit: "11.01.07"
-> +    layers:
-> +      meta-arago-distro:
-> +      meta-arago-extras:
-> +      meta-arago-test:
-> +
-> +  meta-qt6:
-> +    url: "https://code.qt.io/yocto/meta-qt6.git"
-> +    branch: "6.9"
-> +    commit: "2b4e60e319348ae2d53072b901645f30b4cc42bf"
-> +
-> +  meta-virtualization:
-> +    url: "https://git.yoctoproject.org/meta-virtualization"
-> +    branch: "scarthgap"
-> +    commit: "a5449c0c50aa07d02186f548fe6bb6c1ce8823dc"
-> +
-> +  meta-openembedded:
-> +    url: "https://git.openembedded.org/meta-openembedded"
-> +    branch: "scarthgap"
-> +    commit: "e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943"
-> +    layers:
-> +      meta-networking:
-> +      meta-python:
-> +      meta-oe:
-> +      meta-gnome:
-> +      meta-filesystems:
-> +      meta-multimedia:
-> +
-> +  meta-lts-mixins:
-> +    url: "https://git.yoctoproject.org/meta-lts-mixins"
-> +    branch: "scarthgap/rust"
-> +    commit: "a8046d5ec53b1856169ac795aa87cb0d5db84c04"
-> +
-> +  meta-ti:
-> +    url: "https://git.yoctoproject.org/meta-ti"
-> +    branch: "scarthgap"
-> +    commit: "11.01.07"
-> +    layers:
-> +      meta-ti-extras:
-> +      meta-beagle:
-> +      meta-ti-bsp:
-> +
-> +  meta-arm:
-> +    url: "https://git.yoctoproject.org/meta-arm"
-> +    branch: "scarthgap"
-> +    commit: "8e0f8af90fefb03f08cd2228cde7a89902a6b37c"
-> +    layers:
-> +      meta-arm:
-> +      meta-arm-toolchain:
-> +
-> +  meta-clang:
-> +    url: "https://github.com/kraj/meta-clang"
-> +    branch: "scarthgap"
-> +    commit: "aef850f7fa53121c74b244b7ae40d31fb9809ccf"
-> +
-> +  oe-core:
-> +    url: "https://git.openembedded.org/openembedded-core"
-> +    branch: "scarthgap"
-> +    commit: "24c0ab18045920bb5c1e965c0ea6d176fd6de234"
-> +    layers:
-> +      meta:
-> +
-> +  meta-edgeai:
-> +    url: "https://git.ti.com/git/edgeai/meta-edgeai.git"
-> +    branch: "scarthgap"
-> +    commit: "11.01.07.05"
-> +
-> diff --git a/kas/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.yml b/kas/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.yml
-> new file mode 100644
-> index 0000000..500eeb4
-> --- /dev/null
-> +++ b/kas/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.yml
-> @@ -0,0 +1,93 @@
-> +header:
-> +  version: 17
-> +  includes:
-> +    - ../templates/bblayers.conf.yml
-> +    - ../templates/local-arago64-v2.conf.yml
-> +
-> +target: tisdk-default-image
-> +
-> +repos:
-> +  meta-tisdk:
-> +    url: "https://github.com/TexasInstruments/meta-tisdk.git"
-> +    branch: "scarthgap"
-> +    commit: "11.01.07.05"
-> +    layers:
-> +      meta-ti-foundational:
-> +
-> +  meta-arago:
-> +    url: "https://git.yoctoproject.org/meta-arago"
-> +    branch: "scarthgap"
-> +    commit: "11.01.07"
-> +    layers:
-> +      meta-arago-distro:
-> +      meta-arago-extras:
-> +      meta-arago-test:
-> +
-> +  meta-selinux:
-> +    url: "https://git.yoctoproject.org/meta-selinux"
-> +    branch: "scarthgap"
-> +
-> +  meta-qt6:
-> +    url: "https://code.qt.io/yocto/meta-qt6.git"
-> +    branch: "6.9"
-> +    commit: "2b4e60e319348ae2d53072b901645f30b4cc42bf"
-> +
-> +  meta-virtualization:
-> +    url: "https://git.yoctoproject.org/meta-virtualization"
-> +    branch: "scarthgap"
-> +    commit: "a5449c0c50aa07d02186f548fe6bb6c1ce8823dc"
-> +
-> +  meta-openembedded:
-> +    url: "https://git.openembedded.org/meta-openembedded"
-> +    branch: "scarthgap"
-> +    commit: "e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943"
-> +    layers:
-> +      meta-networking:
-> +      meta-python:
-> +      meta-oe:
-> +      meta-gnome:
-> +      meta-filesystems:
-> +      meta-multimedia:
-> +
-> +  meta-lts-mixins:
-> +    url: "https://git.yoctoproject.org/meta-lts-mixins"
-> +    branch: "scarthgap/rust"
-> +    commit: "a8046d5ec53b1856169ac795aa87cb0d5db84c04"
-> +
-> +  meta-ti:
-> +    url: "https://git.yoctoproject.org/meta-ti"
-> +    branch: "scarthgap"
-> +    commit: "11.01.07"
-> +    layers:
-> +      meta-ti-extras:
-> +      meta-beagle:
-> +      meta-ti-bsp:
-> +
-> +  meta-arm:
-> +    url: "https://git.yoctoproject.org/meta-arm"
-> +    branch: "scarthgap"
-> +    commit: "8e0f8af90fefb03f08cd2228cde7a89902a6b37c"
-> +    layers:
-> +      meta-arm:
-> +      meta-arm-toolchain:
-> +
-> +  meta-clang:
-> +    url: "https://github.com/kraj/meta-clang"
-> +    branch: "scarthgap"
-> +    commit: "aef850f7fa53121c74b244b7ae40d31fb9809ccf"
-> +
-> +  oe-core:
-> +    url: "https://git.openembedded.org/openembedded-core"
-> +    branch: "scarthgap"
-> +    commit: "24c0ab18045920bb5c1e965c0ea6d176fd6de234"
-> +    layers:
-> +      meta:
-> +
-> +  meta-edgeai:
-> +    url: "https://git.ti.com/git/edgeai/meta-edgeai.git"
-> +    branch: "scarthgap"
-> +    commit: "11.01.07.05"
-> +
-> +local_conf_header:
-> +  oe-layersetup-local-conf-config-specific: |
-> +    DISTRO_FEATURES:append = " acl xattr pam selinux"
-> diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml
-> new file mode 100644
-> index 0000000..51b3453
-> --- /dev/null
-> +++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml
-> @@ -0,0 +1,74 @@
-> +<?xml version='1.0'?>
-> +<config>
-> +    <description>TI Processor SDK Analytics v11.01.07.05</description>
-> +
-> +    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-> +    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-> +    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-> +
-> +    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='86e7a58c0e9904c33b1b94dddc3d683c2da22d1a'/>
-> +
-> +    <repos>
-> +        <repo name='meta-tisdk' url='https://github.com/TexasInstruments/meta-tisdk.git' branch='scarthgap' commit='11.01.07.05'>
-> +            <layers>
-> +                <layer>meta-ti-foundational</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='11.01.07'>
-> +            <layers>
-> +                <layer>meta-arago-distro</layer>
-> +                <layer>meta-arago-extras</layer>
-> +                <layer>meta-arago-test</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-qt6' url='https://code.qt.io/yocto/meta-qt6.git' branch='6.9' commit='2b4e60e319348ae2d53072b901645f30b4cc42bf'>
-> +            <layers/>
-> +        </repo>
-> +        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='a5449c0c50aa07d02186f548fe6bb6c1ce8823dc'>
-> +            <layers/>
-> +        </repo>
-> +        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943'>
-> +            <layers>
-> +                <layer>meta-networking</layer>
-> +                <layer>meta-python</layer>
-> +                <layer>meta-oe</layer>
-> +                <layer>meta-gnome</layer>
-> +                <layer>meta-filesystems</layer>
-> +                <layer>meta-multimedia</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-lts-mixins' url='https://git.yoctoproject.org/meta-lts-mixins' branch='scarthgap/rust' commit='a8046d5ec53b1856169ac795aa87cb0d5db84c04'>
-> +            <layers/>
-> +        </repo>
-> +        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='11.01.07'>
-> +            <layers>
-> +                <layer>meta-ti-extras</layer>
-> +                <layer>meta-beagle</layer>
-> +                <layer>meta-ti-bsp</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-arm' url='https://git.yoctoproject.org/meta-arm' branch='scarthgap' commit='8e0f8af90fefb03f08cd2228cde7a89902a6b37c'>
-> +            <layers>
-> +                <layer>meta-arm</layer>
-> +                <layer>meta-arm-toolchain</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='aef850f7fa53121c74b244b7ae40d31fb9809ccf'>
-> +            <layers/>
-> +        </repo>
-> +        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='24c0ab18045920bb5c1e965c0ea6d176fd6de234'>
-> +            <layers>
-> +                <layer>meta</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-edgeai' url='https://git.ti.com/git/edgeai/meta-edgeai.git' branch='scarthgap' commit='11.01.07.05'>
-> +            <layers/>
-> +        </repo>
-> +    </repos>
-> +
-> +    <tools>
-> +        <tool type='oe-layersetup'>
-> +            <var name='BITBAKE_INCLUSIVE_VARS' value='yes'/>
-> +        </tool>
-> +    </tools>
-> +</config>
-> diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml
-> new file mode 100644
-> index 0000000..7631b20
-> --- /dev/null
-> +++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml
-> @@ -0,0 +1,81 @@
-> +<?xml version='1.0'?>
-> +<config>
-> +    <description>TI Processor SDK Analytics vselinux-11.01.07.05</description>
-> +
-> +    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-> +    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-> +    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-> +
-> +    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='86e7a58c0e9904c33b1b94dddc3d683c2da22d1a'/>
-> +
-> +    <repos>
-> +        <repo name='meta-tisdk' url='https://github.com/TexasInstruments/meta-tisdk.git' branch='scarthgap' commit='11.01.07.05'>
-> +            <layers>
-> +                <layer>meta-ti-foundational</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='11.01.07'>
-> +            <layers>
-> +                <layer>meta-arago-distro</layer>
-> +                <layer>meta-arago-extras</layer>
-> +                <layer>meta-arago-test</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-selinux' url='https://git.yoctoproject.org/meta-selinux' branch='scarthgap' commit='HEAD'>
-> +            <layers/>
-> +        </repo>
-> +        <repo name='meta-qt6' url='https://code.qt.io/yocto/meta-qt6.git' branch='6.9' commit='2b4e60e319348ae2d53072b901645f30b4cc42bf'>
-> +            <layers/>
-> +        </repo>
-> +        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='a5449c0c50aa07d02186f548fe6bb6c1ce8823dc'>
-> +            <layers/>
-> +        </repo>
-> +        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943'>
-> +            <layers>
-> +                <layer>meta-networking</layer>
-> +                <layer>meta-python</layer>
-> +                <layer>meta-oe</layer>
-> +                <layer>meta-gnome</layer>
-> +                <layer>meta-filesystems</layer>
-> +                <layer>meta-multimedia</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-lts-mixins' url='https://git.yoctoproject.org/meta-lts-mixins' branch='scarthgap/rust' commit='a8046d5ec53b1856169ac795aa87cb0d5db84c04'>
-> +            <layers/>
-> +        </repo>
-> +        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='11.01.07'>
-> +            <layers>
-> +                <layer>meta-ti-extras</layer>
-> +                <layer>meta-beagle</layer>
-> +                <layer>meta-ti-bsp</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-arm' url='https://git.yoctoproject.org/meta-arm' branch='scarthgap' commit='8e0f8af90fefb03f08cd2228cde7a89902a6b37c'>
-> +            <layers>
-> +                <layer>meta-arm</layer>
-> +                <layer>meta-arm-toolchain</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='aef850f7fa53121c74b244b7ae40d31fb9809ccf'>
-> +            <layers/>
-> +        </repo>
-> +        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='24c0ab18045920bb5c1e965c0ea6d176fd6de234'>
-> +            <layers>
-> +                <layer>meta</layer>
-> +            </layers>
-> +        </repo>
-> +        <repo name='meta-edgeai' url='https://git.ti.com/git/edgeai/meta-edgeai.git' branch='scarthgap' commit='11.01.07.05'>
-> +            <layers/>
-> +        </repo>
-> +    </repos>
-> +
-> +    <local-conf>
-> +        <line>DISTRO_FEATURES:append = " acl xattr pam selinux"</line>
-> +    </local-conf>
-> +
-> +    <tools>
-> +        <tool type='oe-layersetup'>
-> +            <var name='BITBAKE_INCLUSIVE_VARS' value='yes'/>
-> +        </tool>
-> +    </tools>
-> +</config>
+--Groupsio=IMvF2XZYrwETPm4CafeZ--
 
