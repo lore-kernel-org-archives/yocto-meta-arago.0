@@ -1,308 +1,156 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <jcormier@criticallink.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 638FEC83F17
-	for <webhook@archiver.kernel.org>; Mon, 28 Jul 2025 19:18:39 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web11.90208.1753730318406363645
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88D62C83F26
+	for <webhook@archiver.kernel.org>; Tue, 29 Jul 2025 17:23:23 +0000 (UTC)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+ by mx.groups.io with SMTP id smtpd.web11.14069.1753809796844043373
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 28 Jul 2025 12:18:38 -0700
+ Tue, 29 Jul 2025 10:23:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=VfKNQDRc;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: reatmon@ti.com)
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56SJIZwM2794719;
-	Mon, 28 Jul 2025 14:18:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1753730315;
-	bh=ZjbH/H/RYNcTYcdHwoVQZB4mlBVsT+lUOwV3rb8e/3k=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=VfKNQDRcMEk6IMupdUhcNFJhV369X91jOkde4nBeR+fh507Vyl78+LXP2Sj72DWKL
-	 +fbR1V2l0o+9e1MQCowiyu2V3H3JOz9E7TYxBH1o4G+MepgvrvrHVwxRUAxnuOm9yc
-	 gnpC8S+fHUHBWVeuZbAhxJaBqfrwsgl1wSOEf08E=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56SJIZIe1898878
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 28 Jul 2025 14:18:35 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 28
- Jul 2025 14:18:35 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 28 Jul 2025 14:18:35 -0500
-Received: from [10.249.37.202] ([10.249.37.202])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56SJIZ2J2544797;
-	Mon, 28 Jul 2025 14:18:35 -0500
-Message-ID: <796ec4ab-26c1-4ad0-84e2-758af03e2507@ti.com>
-Date: Mon, 28 Jul 2025 14:18:35 -0500
+ dkim=pass header.i=@criticallink.com header.s=google header.b=ZF+YRuHE;
+ spf=pass (domain: criticallink.com, ip: 209.85.219.179, mailfrom: jcormier@criticallink.com)
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e8e21bbd736so1638835276.3
+        for <meta-arago@lists.yoctoproject.org>; Tue, 29 Jul 2025 10:23:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=criticallink.com; s=google; t=1753809796; x=1754414596; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x9MTHQjuQWbS+fYirssIB5IzTz+CAuMj7YvpTPaOf38=;
+        b=ZF+YRuHEB0Dpup8ZecQR2gjs08/ticPOy5OHSg2O+Xmv9e3bU8hfarbDgZsrHvlnNg
+         843gq39JNN+WcFz8esAzrRtTtSqVkNKZdcubZlFEasO+hDch51bFYQK9CSYfoEt9hTBc
+         ByLhiuVQpMA7vVG6GOpSCUDLY3C1uEvnAEo+2yenptSwztFNcy+6BlFaMBYIY43zpzQl
+         WCPONyYZkJWpU1Jo7HvEJxHYbZGW9hnUF+KsQ3o8wt2kWKyXDXDq4v78m5op30MDB5E+
+         O6LkJr7xodpLpkfj5w95tkVZ5/b9CXVGTu1XA4j+21tZVJdEExvHugK+LDQ2PLFMxOcc
+         4NVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753809796; x=1754414596;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=x9MTHQjuQWbS+fYirssIB5IzTz+CAuMj7YvpTPaOf38=;
+        b=kWecKutU44BIefcMjvztiiDUfLmDbUyt+cQ3cfc83vDnrSlE89gdGj41bxT1cuH64b
+         5zdnJmCeufIjG7iP3D4RX1fxGshYBppuzh6fAeRp/rx7Ulf/5gVdIb+C5gSioHaqj6/a
+         RUJbIaCSplRFrPEk3J81afLhnqORjnsPpwjlQS2guQKJQLvDzzE/qaQambytDeuGvoA6
+         1Ow0dAmsVFYjzmGfrhqaaUoNJtoVgjCNoY5axFBKIdiIczEiG+P0VLQvq9U+kb0Qwj1Q
+         mU5DQSsthfgJyM4Oz8DZ/2jE8ctUSwkC0xKjuuq+k89q0R25LvfbJRTSrKcAKUiCY0mV
+         0Nuw==
+X-Forwarded-Encrypted: i=1; AJvYcCVEw0K3CAA0n19w4SognzkNB9afWcWrzOnML7knto3nHHDl6eLUP4Lf4DIetKambwxPx8ZmrnZma/i9@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YxfijUcU/C7G9UGguzE6+le8m6wf+WQ0pMOW3D+58+cfGUt4IIW
+	gtNK8AG3hLo0CpkOzgTiQZaFV9SfSK/Wj/zCYrMKMTQhOpEMGgij9qu3hNfKdS/ex60uPAfsPSo
+	Dz1Mn9L2e0mtsrSqa4dDqUQU4EFwHBjrqx/eQzkCK
+X-Gm-Gg: ASbGncvN8QlHVAxebCV6bJlCmOMgqgQuOU4FrwcUdcB1G5pORZC7fWdaKQAe+/AJpAF
+	yAmqhEcdMJrIUCBmmAGdO9DSbpWnNx6+84gr7Nu2natoWq5dprXVGGuPl3j5tjGJpF4s4GP0tJd
+	c4Ez0FLPa+rTutXqsRwM3FpffrMolFN2AwhvdTK14bd1PCsR3FKq4JEhAmx3to56rjAP8xU4ZxT
+	uFwPQ==
+X-Google-Smtp-Source: AGHT+IGOTBY0aNUeR9HejGyjhZlk7EpI1vL1j0Wp8oj8xrKBHBMWwmbtm7k7D0dS1uKHqbqsmWmE4IaF9m25xk1VZa4=
+X-Received: by 2002:a05:6902:2702:b0:e8b:bac6:e1be with SMTP id
+ 3f1490d57ef6-e8e31512ea3mr627920276.22.1753809795870; Tue, 29 Jul 2025
+ 10:23:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][scarthgap/master][PATCH] recipes-graphics: Move
- weston fix for SGX to meta-ti
-To: Andrew Davis <afd@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <20250728173156.575486-1-afd@ti.com>
-Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <20250728173156.575486-1-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250728183922.580652-1-afd@ti.com> <20250728183922.580652-2-afd@ti.com>
+In-Reply-To: <20250728183922.580652-2-afd@ti.com>
+From: Jon Cormier <jcormier@criticallink.com>
+Date: Tue, 29 Jul 2025 13:23:04 -0400
+X-Gm-Features: Ac12FXwniPdxr_Q0WP4vb5H_zKk_qrQOWEl58upZ62tXEyqC1n0Z_06u4uk3z9w
+Message-ID: <CADL8D3ahwrwmPe9JaPtEj2j_gz-4-nuKAf3Gjvg3CNp3GewqcA@mail.gmail.com>
+Subject: Re: [meta-arago][scarthgap/master][PATCH 2/2] packagegroup-arago-tisdk-amsdk-sdk-host:
+ Remove this recipe
+To: afd@ti.com
+Cc: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>, 
+	meta-arago@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 28 Jul 2025 19:18:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16335
+ <meta-arago@lists.yoctoproject.org>; Tue, 29 Jul 2025 17:23:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16336
 
-As glimpse to the upcoming checks here is the results for this patch:
-
-
-
-meta-arago / na / 20250728173156.575486-1-afd
-
-PRC Results: FAIL
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-   check-yocto-patches: PASS
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-Patches
-----------------------------------------
-All patches passed
-
-
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-   apply-yocto-patch: FAIL
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-scarthgap
-=====================
-Summary:
-- Patch Series: [meta-arago][scarthgap/master][PATCH] recipes-graphics: 
-Move weston fix for SGX to meta-ti
-- Submitter: From: Andrew Davis <afd@ti.com>
--From: Denys Dmytriyenko <denys@konsulko.com>
-- Date: Date: Mon, 28 Jul 2025 12:31:56 -0500
--Date: Thu, 6 Jul 2023 01:48:41 +0000
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: 
-94311fba9f85cd36bd26c3bbb6b479c5d7274103
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: scarthgap-wip
-- Commit Author: Andrew Davis <afd@ti.com>
-- Commit Subject: packagegroup-arago-tisdk-multimedia: Remove OMAP5-EVM 
-appends
-- Commit SHA: 216afc8545480531a2419deae0bb47bc8856b530
-
-Patches
-----------------------------------------
-All patches applied
-
-master
-=====================
-Summary:
-- Patch Series: [meta-arago][scarthgap/master][PATCH] recipes-graphics: 
-Move weston fix for SGX to meta-ti
-- Submitter: From: Andrew Davis <afd@ti.com>
--From: Denys Dmytriyenko <denys@konsulko.com>
-- Date: Date: Mon, 28 Jul 2025 12:31:56 -0500
--Date: Thu, 6 Jul 2023 01:48:41 +0000
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: 
-94311fba9f85cd36bd26c3bbb6b479c5d7274103
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master
-- Commit Author: LCPD Automation Script <lcpdbld@list.ti.com>
-- Commit Subject: CI/CD Auto-Merger: cicd.master.202507240100
-- Commit SHA: e6222168663149d337d6abf5fc7f324faaac2024
-
-Patches
-----------------------------------------
-FAIL - [meta-arago][scarthgap/master][PATCH] recipes-graphics: Move 
-weston fix for SGX to meta-ti
-     Applying: recipes-graphics: Move weston fix for SGX to meta-ti
-     Patch failed at 0001 recipes-graphics: Move weston fix for SGX to 
-meta-ti
-     error: patch failed: 
-meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-require-GL_EXT_unpack_subimage-commit.patch:1
-     error: 
-meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-require-GL_EXT_unpack_subimage-commit.patch: 
-patch does not apply
-     error: 
-meta-arago-distro/recipes-graphics/wayland/weston_13.0.%.bbappend: does 
-not exist in index
-
-
-
-
-
-
-
-
-Fails to apply on master.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-On 7/28/2025 12:31 PM, Andrew Davis wrote:
-> This change is needed due to the SGX driver, any distro, not just Arago,
-> using a TI SoC with SGX will need this fix, so it should go in meta-ti.
-> Remove it from here so it can go into meta-ti without patch conflicts.
-> 
+On Mon, Jul 28, 2025 at 2:39=E2=80=AFPM Andrew Davis via
+lists.yoctoproject.org <afd=3Dti.com@lists.yoctoproject.org> wrote:
+>
+> This recipe only now exists to add "tisdk-uenv" to tisdk-core-bundle
+> images so uEnv.txt can be packaged into prebuilt-images. We only need
+> to package the uEnv.txt as a "prebuilt-image" if some bundled image
+> includes it, no need to manually add this for all images.
+Does this mean the tisdk-base/default images will no longer include
+the example empty uEnv.txt file?
+>
 > Signed-off-by: Andrew Davis <afd@ti.com>
 > ---
->   .../recipes-graphics/wayland/weston-arago.inc |  7 --
->   ...equire-GL_EXT_unpack_subimage-commit.patch | 95 -------------------
->   .../wayland/weston_13.0.%.bbappend            |  4 -
->   3 files changed, 106 deletions(-)
->   delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-arago.inc
->   delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-require-GL_EXT_unpack_subimage-commit.patch
->   delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston_13.0.%.bbappend
-> 
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-arago.inc b/meta-arago-distro/recipes-graphics/wayland/weston-arago.inc
-> deleted file mode 100644
-> index 16518353..00000000
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston-arago.inc
-> +++ /dev/null
-> @@ -1,7 +0,0 @@
-> -FILESEXTRAPATHS:prepend := "${THISDIR}/weston:"
+>  .../recipes-core/images/tisdk-core-bundle.inc    |  4 ----
+>  .../packagegroup-arago-tisdk-amsdk-sdk-host.bb   | 16 ----------------
+>  2 files changed, 20 deletions(-)
+>  delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packageg=
+roup-arago-tisdk-amsdk-sdk-host.bb
+>
+> diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc =
+b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
+> index 43b1ef5f..5f72e7b0 100644
+> --- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
+> +++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
+> @@ -33,7 +33,3 @@ TARGET_IMAGES =3D "tisdk-base-image tisdk-default-image=
+ tisdk-thinlinux-image tisd
+>
+>  TISDK_TOOLCHAIN =3D "meta-toolchain-arago-tisdk"
+>  TOOLCHAIN_SUFFIX =3D "-tisdk"
 > -
-> -PR:append = ".arago1"
-> -
-> -SRC_URI += " \
-> -        file://0001-Revert-require-GL_EXT_unpack_subimage-commit.patch \
+> -IMAGE_INSTALL =3D "\
+> -    packagegroup-arago-tisdk-amsdk-sdk-host \
 > -"
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-require-GL_EXT_unpack_subimage-commit.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-require-GL_EXT_unpack_subimage-commit.patch
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
+ago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/=
+packagegroup-arago-tisdk-amsdk-sdk-host.bb
 > deleted file mode 100644
-> index ad252030..00000000
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-require-GL_EXT_unpack_subimage-commit.patch
+> index 9562310f..00000000
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
+dk-amsdk-sdk-host.bb
 > +++ /dev/null
-> @@ -1,95 +0,0 @@
-> -From 5a05e5b66dd3831a9c9c2b3f64bd42419d9ade2d Mon Sep 17 00:00:00 2001
-> -From: Denys Dmytriyenko <denys@konsulko.com>
-> -Date: Thu, 6 Jul 2023 01:48:41 +0000
-> -Subject: [PATCH] Revert require GL_EXT_unpack_subimage commit
+> @@ -1,16 +0,0 @@
+> -SUMMARY =3D "Task to install additional scripts and applications into th=
+e SDK"
+> -LICENSE =3D "MIT"
+> -PR =3D "r30"
 > -
-> -This reverts commit 593d5af43a8e2c2a3371088fa7ae430d0517c82d.
+> -PACKAGE_ARCH =3D "${MACHINE_ARCH}"
 > -
-> -That commit removed support for GPU drivers without GL_EXT_unpack_subimage
-> -which SGX does not support. Add back support for GPUs without this
-> -extension.
+> -inherit packagegroup
 > -
-> -Upstream-Status: Inappropriate [specific to TI SGX]
+> -EXTRA_FILES =3D ""
+> -EXTRA_FILES:ti43x =3D "tisdk-uenv"
+> -EXTRA_FILES:omap-a15 =3D "tisdk-uenv"
+> -EXTRA_FILES:k3 =3D "tisdk-uenv"
 > -
-> -Signed-off-by: Andrew Davis <afd@ti.com>
-> -Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
-> -
-> ----
-> - libweston/renderer-gl/gl-renderer-internal.h |  2 ++
-> - libweston/renderer-gl/gl-renderer.c          | 29 ++++++++++++++++----
-> - 2 files changed, 26 insertions(+), 5 deletions(-)
-> -
-> -diff --git a/libweston/renderer-gl/gl-renderer-internal.h b/libweston/renderer-gl/gl-renderer-internal.h
-> -index 5032035..85616c9 100644
-> ---- a/libweston/renderer-gl/gl-renderer-internal.h
-> -+++ b/libweston/renderer-gl/gl-renderer-internal.h
-> -@@ -160,6 +160,8 @@ struct gl_renderer {
-> -	PFNEGLCREATEPLATFORMWINDOWSURFACEEXTPROC create_platform_window;
-> -	bool has_platform_base;
-> -
-> -+	bool has_unpack_subimage;
-> -+
-> -	PFNEGLBINDWAYLANDDISPLAYWL bind_display;
-> -	PFNEGLUNBINDWAYLANDDISPLAYWL unbind_display;
-> -	PFNEGLQUERYWAYLANDBUFFERWL query_buffer;
-> -diff --git a/libweston/renderer-gl/gl-renderer.c b/libweston/renderer-gl/gl-renderer.c
-> -index ccb41e6..38a0e0c 100644
-> ---- a/libweston/renderer-gl/gl-renderer.c
-> -+++ b/libweston/renderer-gl/gl-renderer.c
-> -@@ -2106,6 +2106,7 @@ gl_renderer_flush_damage(struct weston_surface *surface,
-> - {
-> -	const struct weston_testsuite_quirks *quirks =
-> -		&surface->compositor->test_data.test_quirks;
-> -+	struct gl_renderer *gr = get_renderer(surface->compositor);
-> -	struct gl_surface_state *gs = get_surface_state(surface);
-> -	struct gl_buffer_state *gb = gs->buffer;
-> -	struct weston_paint_node *pnode;
-> -@@ -2152,6 +2153,24 @@ gl_renderer_flush_damage(struct weston_surface *surface,
-> -
-> -	glActiveTexture(GL_TEXTURE0);
-> -
-> -+	if (!gr->has_unpack_subimage) {
-> -+		wl_shm_buffer_begin_access(buffer->shm_buffer);
-> -+		for (j = 0; j < gs->buffer->num_textures; j++) {
-> -+			glBindTexture(GL_TEXTURE_2D, gs->buffer->textures[j]);
-> -+			glTexImage2D(GL_TEXTURE_2D, 0,
-> -+				     gs->buffer->gl_format[j],
-> -+				     gs->buffer->pitch / pixel_format_hsub(buffer->pixel_format, j),
-> -+				     buffer->height / pixel_format_vsub(buffer->pixel_format, j),
-> -+				     0,
-> -+				     gl_format_from_internal(gs->buffer->gl_format[j]),
-> -+				     gs->buffer->gl_pixel_type,
-> -+				     data + gs->buffer->offset[j]);
-> -+		}
-> -+		wl_shm_buffer_end_access(buffer->shm_buffer);
-> -+
-> -+		goto done;
-> -+	}
-> -+
-> -	if (gb->needs_full_upload || quirks->gl_force_full_upload) {
-> -		glPixelStorei(GL_UNPACK_SKIP_PIXELS_EXT, 0);
-> -		glPixelStorei(GL_UNPACK_SKIP_ROWS_EXT, 0);
-> -@@ -4169,11 +4188,9 @@ gl_renderer_setup(struct weston_compositor *ec)
-> -	else
-> -		ec->read_format = pixel_format_get_info(DRM_FORMAT_ABGR8888);
-> -
-> --	if (gr->gl_version < gr_gl_version(3, 0) &&
-> --	    !weston_check_egl_extension(extensions, "GL_EXT_unpack_subimage")) {
-> --		weston_log("GL_EXT_unpack_subimage not available.\n");
-> --		return -1;
-> --	}
-> -+	if (gr->gl_version >= gr_gl_version(3, 0) ||
-> -+	    weston_check_egl_extension(extensions, "GL_EXT_unpack_subimage"))
-> -+		gr->has_unpack_subimage = true;
-> -
-> -	if (gr->gl_version >= gr_gl_version(3, 0) ||
-> -	    weston_check_egl_extension(extensions, "GL_EXT_texture_type_2_10_10_10_REV"))
-> -@@ -4268,6 +4285,8 @@ gl_renderer_setup(struct weston_compositor *ec)
-> -		   gr_gl_version_minor(gr->gl_version));
-> -	weston_log_continue(STAMP_SPACE "read-back format: %s\n",
-> -			    ec->read_format->drm_format_name);
-> -+	weston_log_continue(STAMP_SPACE "wl_shm sub-image to texture: %s\n",
-> -+			    gr->has_unpack_subimage ? "yes" : "no");
-> -	weston_log_continue(STAMP_SPACE "glReadPixels supports y-flip: %s\n",
-> -			    yesno(gr->has_pack_reverse));
-> -	weston_log_continue(STAMP_SPACE "wl_shm 10 bpc formats: %s\n",
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_13.0.%.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_13.0.%.bbappend
-> deleted file mode 100644
-> index c98a62de..00000000
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston_13.0.%.bbappend
-> +++ /dev/null
-> @@ -1,4 +0,0 @@
-> -WESTON_ARAGO = ""
-> -WESTON_ARAGO:arago = "weston-arago.inc"
-> -
-> -require ${WESTON_ARAGO}
+> -RDEPENDS:${PN} =3D "\
+> -    ${EXTRA_FILES} \
+> -"
+> --
+> 2.39.2
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#16334): https://lists.yoctoproject.org/g/meta-arago/m=
+essage/16334
+> Mute This Topic: https://lists.yoctoproject.org/mt/114418842/7902621
+> Group Owner: meta-arago+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/meta-arago/unsub [jcormier@=
+criticallink.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
--- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+
+--=20
+Jonathan Cormier
+Senior Software Engineer
+
+Voice:  315.425.4045 x222
+
+http://www.CriticalLink.com
+6712 Brooklawn Parkway, Syracuse, NY 13211
 
