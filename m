@@ -2,143 +2,103 @@ Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 49166CA0EF7
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BF07DCA0EF3
 	for <webhook@archiver.kernel.org>; Wed, 13 Aug 2025 23:25:56 +0000 (UTC)
 Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web10.10055.1755127552937909342
+ by mx.groups.io with SMTP id smtpd.web10.10041.1755127545309323737
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 13 Aug 2025 16:25:53 -0700
+ Wed, 13 Aug 2025 16:25:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=x8keZwF2;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=Wpi/I0pv;
  spf=pass (domain: list.ti.com, ip: 198.47.23.235, mailfrom: prc@list.ti.com)
 Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DNPqKI2252533;
-	Wed, 13 Aug 2025 18:25:52 -0500
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DNPioe2252513;
+	Wed, 13 Aug 2025 18:25:44 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755127552; i=@ti.com;
-	bh=GJHx1teMbdMfjzwZFvgvGYY2ToYRXo9iYHOm1JaEKPI=;
+	s=ti-com-17Q1; t=1755127544; i=@ti.com;
+	bh=ILg68A8PBQG8X8MJ0rAxjx0s+5V5kZjt3+5i/8P9ALc=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=x8keZwF2KKUhJg7wyya/3nqTTEh29IsryVQx+I4Q93k5fRea9kdeWmEtzJ04zXEdj
-	 BMnXUCvvPRPX35rDa0xejIn5Qsa3Hv2hIvNoWZTVzjR+fRJR05OILPsjPXlmHFaSC/
-	 VvSRMSQ3PDitHqd70iKNMPQ+A0fsNCzSyl6SlEJI=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DNPqao403427
+	b=Wpi/I0pvg97jtVvfHRZXjvJim6PLvBUlZXnGUPWwT1CGwAHY6i33MdADteHLmWEuS
+	 gdgIdQSNPJufT8oHZGessFnY3rCtC3W0mkqCYn0uVFU5m57rVWQ5VZKwz9sdoDnQ+D
+	 v0pTVIFw3bxaQu4dS/LSe7Zf7Mfzu2ZNZNUXRTL4=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DNPiwD403395
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 13 Aug 2025 18:25:52 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 13 Aug 2025 18:25:44 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
- Aug 2025 18:25:51 -0500
-Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2025 18:25:43 -0500
+Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 13 Aug 2025 18:25:51 -0500
-Received: from fllvdckhpci094.itg.ti.com (fllvdckhpci094.itg.ti.com [10.64.72.50])
-	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DNPpNA3678250;
-	Wed, 13 Aug 2025 18:25:51 -0500
-Received: by fllvdckhpci094.itg.ti.com (Postfix, from userid 60899)
-	id ABA684E68; Wed, 13 Aug 2025 18:25:51 -0500 (CDT)
+ Frontend Transport; Wed, 13 Aug 2025 18:25:44 -0500
+Received: from fllvdckhpci032.itg.ti.com (fllvdckhpci032.itg.ti.com [10.64.72.43])
+	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DNPixa3611024;
+	Wed, 13 Aug 2025 18:25:44 -0500
+Received: by fllvdckhpci032.itg.ti.com (Postfix, from userid 60899)
+	id CF5EC1436F5; Wed, 13 Aug 2025 18:25:43 -0500 (CDT)
 From: PRC Automation <prc@list.ti.com>
-To: Yogesh Siraswar <yogeshs@ti.com>
-CC: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
+To: LCPD Automation Script <lcpdbld@list.ti.com>
+CC: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago][master/dunfell][PATCH] ltp-ddt: Bump ltp-ddt version for 08.01.00.003
-Date: Wed, 13 Aug 2025 18:25:51 -0500
-Message-ID: <20250813232551.3029965-1-prc@list.ti.com>
+Subject: Re: [meta-arago][kirkstone][PATCH] CI/CD Auto-Merger: cicd.kirkstone.202402281524
+Date: Wed, 13 Aug 2025 18:25:43 -0500
+Message-ID: <20250813232543.2437141-1-prc@list.ti.com>
 X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20211112052219.36255-1-yogeshs@ti.com>
-References: <20211112052219.36255-1-yogeshs@ti.com>
+In-Reply-To: <1709170604-75212-1-git-send-email-lcpdbld@list.ti.com>
+References: <1709170604-75212-1-git-send-email-lcpdbld@list.ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Wed, 13 Aug 2025 23:25:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16432
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16405
 
-meta-arago / na / 20211112052219.36255-1-yogeshs
+meta-arago / na / 1709170604-75212-1-git-send-email-lcpdbld
 
 PRC Results: FAIL
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
+=========================================================
   check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
+=========================================================
 Patches
 ----------------------------------------
 All patches passed
 
 
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
+=========================================================
   apply-yocto-patch: FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+=========================================================
+kirkstone
+=====================
 Summary:
-- Patch Series: [meta-arago][master/dunfell][PATCH] ltp-ddt: Bump ltp-ddt v=
-ersion for 08.01.00.003
-- Submitter: From: "Yogesh Siraswar" <yogeshs@ti.com>=0D
-- Date: Date: Fri, 12 Nov 2021 05:22:19 +0000=0D
+- Patch Series: [meta-arago][kirkstone][PATCH] CI/CD Auto-Merger: cicd.kirkstone.202402281524
+- Submitter: From: LCPD Automation Script <lcpdbld@list.ti.com>
+- Date: Date: Wed, 28 Feb 2024 19:36:44 -0600
 - Num Patches: 1
-- Mailing List (public inbox) Commit SHA: 3c23cbf7252287ce2244ef7b066d513c6=
-65b161d
+- Mailing List (public inbox) Commit SHA: 8e64ab3749e29531329c0840cc808c5a9dcdadb6
 
 Applied to:
 - Repository: lcpd-prc-meta-arago
-- Base Branch: master
-- Commit Author: LCPD Automation Script <lcpdbld@list.ti.com>
-- Commit Subject: CI/CD Auto-Merger: cicd.master.202508010100
-- Commit SHA: 644f8b47f0eef26bda636717f5838871ec67d138
+- Base Branch: kirkstone
+- Commit Author: Judith Mendez <jm@ti.com>
+- Commit Subject: ti-test: Add rng-tools
+- Commit SHA: f8ad2232a4e52b50aecc6c847ee7cfa24fc84070
 
 Patches
 ----------------------------------------
-FAIL - [meta-arago][master/dunfell][PATCH] ltp-ddt: Bump ltp-ddt version fo=
-r 08.01.00.003
-    Applying: ltp-ddt: Bump ltp-ddt version for 08.01.00.003
-    Patch failed at 0001 ltp-ddt: Bump ltp-ddt version for 08.01.00.003
-    error: meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb: =
-does not exist in index
-
-dunfell
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [meta-arago][master/dunfell][PATCH] ltp-ddt: Bump ltp-ddt v=
-ersion for 08.01.00.003
-- Submitter: From: "Yogesh Siraswar" <yogeshs@ti.com>=0D
-- Date: Date: Fri, 12 Nov 2021 05:22:19 +0000=0D
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: 3c23cbf7252287ce2244ef7b066d513c6=
-65b161d
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: dunfell
-- Commit Author: Randolph Sapp <rs@ti.com>
-- Commit Subject: meta-arago-distro: linux-firmware: remove cadence firmware
-- Commit SHA: 86d19ced20934c8383c8a39f88d97c72e7e929ee
-
-Patches
-----------------------------------------
-FAIL - [meta-arago][master/dunfell][PATCH] ltp-ddt: Bump ltp-ddt version fo=
-r 08.01.00.003
-    Applying: ltp-ddt: Bump ltp-ddt version for 08.01.00.003
-    Patch failed at 0001 ltp-ddt: Bump ltp-ddt version for 08.01.00.003
-    error: patch failed: meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt=
-_20210524.bb:14
-    error: meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb: =
-patch does not apply
+FAIL - [meta-arago][kirkstone][PATCH] CI/CD Auto-Merger: cicd.kirkstone.202402281524
+    Applying: CI/CD Auto-Merger: cicd.kirkstone.202402281524
+    Patch failed at 0001 CI/CD Auto-Merger: cicd.kirkstone.202402281524
+    error: patch failed: meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb:14
+    error: meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb: patch does not apply
 
 
 
