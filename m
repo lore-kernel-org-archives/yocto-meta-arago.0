@@ -2,46 +2,46 @@ Return-Path: <t-lannynd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AD4E7CA0EE5
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B4D2DCA0EE6
 	for <webhook@archiver.kernel.org>; Wed, 13 Aug 2025 16:52:01 +0000 (UTC)
 Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web10.1530.1755103914276698342
+ by mx.groups.io with SMTP id smtpd.web10.1531.1755103914724824392
  for <meta-arago@lists.yoctoproject.org>;
  Wed, 13 Aug 2025 09:51:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=IJPDNkjE;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=dR7Jh0Hy;
  spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: t-lannynd@ti.com)
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DGprLc2191838
-	for <meta-arago@lists.yoctoproject.org>; Wed, 13 Aug 2025 11:51:53 -0500
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DGps8e2191842
+	for <meta-arago@lists.yoctoproject.org>; Wed, 13 Aug 2025 11:51:54 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755103913;
-	bh=mbXC3A+utcHNR1ntsucVr5UVqO4UWYi0kBv7XaTLicA=;
+	s=ti-com-17Q1; t=1755103914;
+	bh=WGpxElWNy/PgnI1WvWhBJ6iq4G1F/tFceurgE92ccgs=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=IJPDNkjEKznmTM/Q1H7JlP54k7tMMCSg57xxxWYzB2l13uxa8e9jwQco5QFlwf44A
-	 kVI4hIHSlws7+//1OXE2+zJ7z7TwqP7kAi7XJYyzlttKX7oFStoB0qIFKnvLDLwHvh
-	 12CHx7d6n07G8KmM2rzcLP/OLNstRRRYX/bRqesM=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DGpred527027
+	b=dR7Jh0HyIHrlP2Cqd7n2kqGcQqntCtEg/4sChcD65+aB87UACp1LZRK/MhoFm0h08
+	 PDfBizO7QfptBNYphtIFt+KLo21rDQNdwnkggmeCmL3S0gaiSbVS6Ytdyi9MS5fZdD
+	 nRqsA261ZRo+CbX+/zn+t2eRhnwiuPsWSj+VvRwE=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DGpsEA1106877
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Wed, 13 Aug 2025 11:51:53 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Wed, 13 Aug 2025 11:51:54 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
  Aug 2025 11:51:53 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
  Frontend Transport; Wed, 13 Aug 2025 11:51:53 -0500
 Received: from uda0867391-2.dhcp.ti.com (uda0867391-2.dhcp.ti.com [128.247.81.58])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DGpoA02292823;
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DGpoA12292823;
 	Wed, 13 Aug 2025 11:51:53 -0500
 From: Thorsten Lannynd <t-lannynd@ti.com>
 To: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>
 CC: <detheridge@ti.com>, <rs@ti.com>, <b-brnich@ti.com>
-Subject: [meta-arago][scarthgap/master][PATCH 2/5] meta-arago-distro: chromium: enable V4L2 stateful decoder
-Date: Wed, 13 Aug 2025 11:51:45 -0500
-Message-ID: <20250813165148.220012-3-t-lannynd@ti.com>
+Subject: [meta-arago][scarthgap/master][PATCH 3/5] meta-arago-distro: chromium: Allow GPU sandbox access to V4L2
+Date: Wed, 13 Aug 2025 11:51:46 -0500
+Message-ID: <20250813165148.220012-4-t-lannynd@ti.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250813165148.220012-1-t-lannynd@ti.com>
 References: <20250813165148.220012-1-t-lannynd@ti.com>
@@ -53,56 +53,77 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Wed, 13 Aug 2025 16:52:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16363
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16364
 
-Add patch that enables the V4L2 stateful decoder in Chromium
-by making sure that Chromium is opening the right V4L2
-device path for Linux.
+Add a patch to allow Chromium to open the V4L2 device patchs
+from Weston which is needed for enabling the V4L2 Stateful decoder
+in Chromium without using --no-sandbox.
 
 Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
 ---
- ...pu-v4l2-enable-V4L2-stateful-decoder.patch | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
- create mode 100644 meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0002-chromium-gpu-v4l2-enable-V4L2-stateful-decoder.patch
+ ...dbox-Allow-GPU-sandbox-access-to-V4L.patch | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+ create mode 100644 meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0003-chromium-gpu-sandbox-Allow-GPU-sandbox-access-to-V4L.patch
 
-diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0002-chromium-gpu-v4l2-enable-V4L2-stateful-decoder.patch b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0002-chromium-gpu-v4l2-enable-V4L2-stateful-decoder.patch
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0003-chromium-gpu-sandbox-Allow-GPU-sandbox-access-to-V4L.patch b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0003-chromium-gpu-sandbox-Allow-GPU-sandbox-access-to-V4L.patch
 new file mode 100644
-index 00000000..ca94d2ab
+index 00000000..1cadaa5b
 --- /dev/null
-+++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0002-chromium-gpu-v4l2-enable-V4L2-stateful-decoder.patch
-@@ -0,0 +1,34 @@
-+From c9a81537eb0bc1f11ea902cb9abe4d98b7be74a9 Mon Sep 17 00:00:00 2001
++++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0003-chromium-gpu-sandbox-Allow-GPU-sandbox-access-to-V4L.patch
+@@ -0,0 +1,55 @@
++From 99c59368f9cdd43638dd30c2ea867a950a54b648 Mon Sep 17 00:00:00 2001
 +From: Thorsten Lannynd <t-lannynd@ti.com>
-+Date: Thu, 7 Aug 2025 14:48:31 -0500
-+Subject: [PATCH] chromium: gpu: v4l2: enable V4L2 stateful decoder
++Date: Fri, 8 Aug 2025 23:05:18 -0500
++Subject: [PATCH] chromium: gpu: sandbox: Allow GPU sandbox access to V4L2
++ devices
 +
 +Upstream-Status: Pending
 +
-+Setting the video device path to /dev/video0 for linux allows
-+Chromium to find the decoder and also check that it is stateful.
-+This patch setups the correct V4L2 pipeline.
++This patch modifies the Chromium GPU sandbox configuration to allow
++access to V4L2 (Video4Linux2) devices. This is necessary to enable
++hardware-accelerated video decoding and encoding on systems that rely on
++Chromium with V4L2 for video processing.
 +
 +Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
 +---
-+ media/gpu/v4l2/v4l2_utils.cc | 4 ++++
-+ 1 file changed, 4 insertions(+)
++ content/common/gpu_pre_sandbox_hook_linux.cc | 12 ++++++++++--
++ 1 file changed, 10 insertions(+), 2 deletions(-)
 +
-+diff --git a/media/gpu/v4l2/v4l2_utils.cc b/media/gpu/v4l2/v4l2_utils.cc
-+index 9646e8be73..8bc88e938f 100644
-+--- a/media/gpu/v4l2/v4l2_utils.cc
-++++ b/media/gpu/v4l2/v4l2_utils.cc
-+@@ -633,7 +633,11 @@ std::optional<SupportedVideoDecoderConfigs> GetSupportedV4L2DecoderConfigs() {
-+ }
-+
-+ bool IsV4L2DecoderStateful() {
++diff --git a/content/common/gpu_pre_sandbox_hook_linux.cc b/content/common/gpu_pre_sandbox_hook_linux.cc
++index 2a3abc9775..1865246fa8 100644
++--- a/content/common/gpu_pre_sandbox_hook_linux.cc
+++++ b/content/common/gpu_pre_sandbox_hook_linux.cc
++@@ -140,8 +140,13 @@ void AddV4L2GpuPermissions(
++     static constexpr size_t MAX_V4L2_DECODERS = 5;
++     static const base::FilePath::CharType kDevicePath[] =
++         FILE_PATH_LITERAL("/dev/");
 ++#if BUILDFLAG(IS_LINUX)
-++  constexpr char kVideoDeviceDriverPath[] = "/dev/video0";
+++    static const base::FilePath::CharType kVideoDecBase[] = "video";
+++    static const base::FilePath::CharType kMediaDecBase[] = "";
 ++#else
-+   constexpr char kVideoDeviceDriverPath[] = "/dev/video-dec0";
++     static const base::FilePath::CharType kVideoDecBase[] = "video-dec";
++     static const base::FilePath::CharType kMediaDecBase[] = "media-dec";
 ++#endif
-+   base::ScopedFD device_fd(HANDLE_EINTR(
-+       open(kVideoDeviceDriverPath, O_RDWR | O_NONBLOCK | O_CLOEXEC)));
-+   if (!device_fd.is_valid()) {
++     for (size_t i = 0; i < MAX_V4L2_DECODERS; i++) {
++       std::ostringstream decoderPath;
++       decoderPath << kDevicePath << kVideoDecBase << i;
++@@ -516,11 +521,14 @@ std::vector<BrokerFilePermission> FilePermissionsForGpu(
++       AddDrmGpuPermissions(&permissions);
++   }
++
+++  if (UseV4L2Codec(options)) {
+++      // Add V4L2 permissions for video decode/encode.
+++      AddV4L2GpuPermissions(&permissions, options);
+++  }
+++
++   if (IsChromeOS()) {
++     // Permissions are additive, there can be multiple GPUs in the system.
++     AddStandardChromeOsPermissions(&permissions);
++-    if (UseV4L2Codec(options))
++-      AddV4L2GpuPermissions(&permissions, options);
++     if (IsArchitectureArm()) {
++       AddImgPvrGpuPermissions(&permissions);
++       AddArmGpuPermissions(&permissions);
 +--
 +2.34.1
 
