@@ -2,54 +2,52 @@ Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F337CA0FFB
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97088CA1000
 	for <webhook@archiver.kernel.org>; Wed, 13 Aug 2025 23:25:57 +0000 (UTC)
 Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web11.10211.1755127556673428179
+ by mx.groups.io with SMTP id smtpd.web11.10212.1755127556834778632
  for <meta-arago@lists.yoctoproject.org>;
  Wed, 13 Aug 2025 16:25:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=dK0kzIOm;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=WqnWUxw1;
  spf=pass (domain: list.ti.com, ip: 198.47.23.234, mailfrom: prc@list.ti.com)
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DNPt8T1803101;
-	Wed, 13 Aug 2025 18:25:55 -0500
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DNPunD1803105;
+	Wed, 13 Aug 2025 18:25:56 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755127555; i=@ti.com;
-	bh=gDtBeIO+hwvjqoutcvOwX7mcIZKRjwFJ9WhWoo8g+Co=;
+	s=ti-com-17Q1; t=1755127556; i=@ti.com;
+	bh=jKUbElz3Mm/Kgz511aYuerIR9UDrwMEhmCG35UJyRJ8=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=dK0kzIOmxxplkllMSh4CYZWI9cQ8p5cC3+xO+T3WTgVcjM1J7FhcO3MP5NqmNuO9L
-	 CxDIGYWZvjKg9tptxm1k4nK87piIu9GEZ/vK7fB8Lx1+bPI8cz3WIFpyMyDY7pr/K7
-	 /yLn01aU/Tzbx0hJXWWfpoUezp2DjXeA/k8W2Zqk=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DNPtF2727203
+	b=WqnWUxw1/BKHNt51cRW8BSeRuTG5/Qx0BVotDs/E1qrxsmLodmrrEZeuNIuob968J
+	 q52JIj0g4/6PwAgBkyWmBeBD9R96Sx3uQPqCMO0TQfL8RW+hVCYLUMzv8jbN7uLZdg
+	 tFPIeIcI+o4hS1/JUaYJtKxaDgaJrU6L2HnqRM4U=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DNPtqL1300458
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 13 Aug 2025 18:25:55 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 13 Aug 2025 18:25:56 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
  Aug 2025 18:25:55 -0500
-Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DLEE109.ent.ti.com
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE109.ent.ti.com
  (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
  Frontend Transport; Wed, 13 Aug 2025 18:25:55 -0500
-Received: from fllvdckhpci091.itg.ti.com (fllvdckhpci091.itg.ti.com [10.64.72.44])
-	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DNPtBh3678292;
+Received: from fllvdckhpci101.itg.ti.com (fllvdckhpci101.itg.ti.com [10.64.72.84])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DNPtc82710380;
 	Wed, 13 Aug 2025 18:25:55 -0500
-Received: by fllvdckhpci091.itg.ti.com (Postfix, from userid 60899)
-	id 698031893; Wed, 13 Aug 2025 18:25:55 -0500 (CDT)
+Received: by fllvdckhpci101.itg.ti.com (Postfix, from userid 60899)
+	id 8D32F4DC43; Wed, 13 Aug 2025 18:25:55 -0500 (CDT)
 From: PRC Automation <prc@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>
-CC: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
+To: Andrew Davis <afd@ti.com>
+CC: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago][dunfell][PATCH] packagegroups: Mirror ti-test change
+Subject: Re: [meta-arago][kirkstone/master][PATCH] libloki: fix C++ compile errors with gcc-11
 Date: Wed, 13 Aug 2025 18:25:55 -0500
-Message-ID: <20250813232555.2799392-1-prc@list.ti.com>
+Message-ID: <20250813232555.2911223-1-prc@list.ti.com>
 X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20220714162948.31295-1-reatmon@ti.com>
-References: <20220714162948.31295-1-reatmon@ti.com>
+In-Reply-To: <20230213192226.26228-1-afd@ti.com>
+References: <20230213192226.26228-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -58,47 +56,20 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Wed, 13 Aug 2025 23:25:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16453
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16456
 
-meta-arago / na / 20220714162948.31295-1-reatmon
+meta-arago / na / 20230213192226.26228-1-afd
 
 PRC Results: FAIL
 
 =========================================================
-  check-yocto-patches: PASS
+  check-yocto-patches: FAIL
 =========================================================
 Patches
 ----------------------------------------
-All patches passed
-
-
-
-=========================================================
-  apply-yocto-patch: FAIL
-=========================================================
-dunfell
-=====================
-Summary:
-- Patch Series: [meta-arago][dunfell][PATCH] packagegroups: Mirror ti-test change from meta-ti
-- Submitter: From: Ryan Eatmon <reatmon@ti.com>
-- Date: Date: Thu, 14 Jul 2022 11:29:48 -0500
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: 881802b080e1c5da6d0c6eae8987779128bc6c9b
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: dunfell
-- Commit Author: Randolph Sapp <rs@ti.com>
-- Commit Subject: meta-arago-distro: linux-firmware: remove cadence firmware
-- Commit SHA: 86d19ced20934c8383c8a39f88d97c72e7e929ee
-
-Patches
-----------------------------------------
-FAIL - [meta-arago][dunfell][PATCH] packagegroups: Mirror ti-test change from meta-ti
-    error: patch failed: meta-arago-distro/recipes-core/packagegroups/ti-test.bb:83
-    error: meta-arago-distro/recipes-core/packagegroups/ti-test.bb: patch does not apply
-    Applying: packagegroups: Mirror ti-test change from meta-ti
-    Patch failed at 0001 packagegroups: Mirror ti-test change from meta-ti
+FAIL - [meta-arago][kirkstone/master][PATCH] libloki: fix C++ compile errors with gcc-11
+    ERROR: Missing Upstream-Status in added patch file: hunk(1) meta-arago-extras/recipes-support/loki/libloki/0001-include-loki-SmallObj.h-ISO-C-17-does-not-allow-dyna.patch (UPSTREAM-STATUS-1)
+        patch
 
 
 
