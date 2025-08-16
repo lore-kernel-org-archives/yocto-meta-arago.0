@@ -2,49 +2,47 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4AF38CA0EEB
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F854CA0EE6
 	for <webhook@archiver.kernel.org>; Sat, 16 Aug 2025 00:36:49 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.25763.1755304603784152842
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+ by mx.groups.io with SMTP id smtpd.web11.25576.1755304603501235931
  for <meta-arago@lists.yoctoproject.org>;
  Fri, 15 Aug 2025 17:36:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=p0b61VoD;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: rs@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=f5Etcd5r;
+ spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: rs@ti.com)
 Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57G0aeIi2628267;
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57G0aegt2260725;
 	Fri, 15 Aug 2025 19:36:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1755304600;
-	bh=Q0t5mVwhQy/WGBLv1H0ghxLQECG5cpPRksH9lt4n/Yk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=p0b61VoDxnyTsi1WdKf2QIMnxwGue60cbus0D/xowEVYQKQli7NOS4nGk9lJX/AN7
-	 X+sGhXy5kjD51F3sAteZ2CZNf2nAKXs7NCKybnoeRxm3JRCGBUoRywSfRP+lAhlI7v
-	 evXfx0gWnL3xLsEgGnfP/MHr/wEXp4+o+vWH5lPI=
+	bh=z+t7v9+uwq5De0+sPjJ+A2I4+AO4Y0oP8660bOXaxB8=;
+	h=From:To:CC:Subject:Date;
+	b=f5Etcd5ra2t3L3ZyhcQQNuoBEYPeQLzZyt6/kUESliSsaRmOiIe9dO3ELz8mj176Q
+	 HzdTcGABouKkWmWm26Zzolhly3z6T7956RapMA57SAp7aDK72LBsZQIXHXc3l/L90G
+	 v+XPJnXV8LaL9vniijA7YN05ksDLrXqSfX7PVQOQ=
 Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57G0aeBT1986707
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57G0aeBS1986707
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
 	Fri, 15 Aug 2025 19:36:40 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
  (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 15
- Aug 2025 19:36:40 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2025 19:36:39 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
  Frontend Transport; Fri, 15 Aug 2025 19:36:39 -0500
 Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57G0aduu1743917;
-	Fri, 15 Aug 2025 19:36:40 -0500
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57G0aduq1743917;
+	Fri, 15 Aug 2025 19:36:39 -0500
 From: <rs@ti.com>
 To: <reatmon@ti.com>, <denis@denix.org>
 CC: <meta-arago@lists.yoctoproject.org>, <jcormier@criticallink.com>
-Subject: [oe-layersetup][PATCH 4/5] kas: do not add a default target if one is not given
-Date: Fri, 15 Aug 2025 19:36:19 -0500
-Message-ID: <20250816003620.2112669-5-rs@ti.com>
+Subject: [oe-layersetup][PATCH 0/5] kas: yamllint cleanup effort
+Date: Fri, 15 Aug 2025 19:36:15 -0500
+Message-ID: <20250816003620.2112669-1-rs@ti.com>
 X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250816003620.2112669-1-rs@ti.com>
-References: <20250816003620.2112669-1-rs@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -53,51 +51,123 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Sat, 16 Aug 2025 00:36:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16487
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16484
 
 From: Randolph Sapp <rs@ti.com>
 
-There are configs, such as the distroless configs, that may not specify
-a default target. In those cases we should not have a "target" key in
-our kas config. An unspecified target is fine, but an empty target is a
-violation of their schema.
+An attempt to satisfy yamllint with our templates. Actually caught a bug when
+running it over the current output.
 
-Detected through the use of yamllint's trailing whitespace check.
+There is one check I am currently ignoring. That's line-length. By default they
+prefer files do not exceed a line-length of 80. Ordinarily that's fine, but here
+there are large template files with their own formatting that cannot be
+word-wrapped easily.
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
- src/xslt/kas.xslt | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+Randolph Sapp (5):
+  kas: yamllint: documents should have an explicit start
+  kas: yamllint: trailing whitespace
+  kas: yamllint: too many blank lines
+  kas: do not add a default target if one is not given
+  kas: regenerate all configs to include yamllint fixes
 
-diff --git a/src/xslt/kas.xslt b/src/xslt/kas.xslt
-index cb0b9a4..4a9fe62 100644
---- a/src/xslt/kas.xslt
-+++ b/src/xslt/kas.xslt
-@@ -8,10 +8,7 @@ header:
- </xsl:text>
- <xsl:apply-templates select='config/bblayers-conf-template'/>
- <xsl:apply-templates select='config/local-conf-template'/>
--<xsl:text>
--</xsl:text>
--<xsl:text>target: </xsl:text><xsl:value-of select='config/targets/default/text()'/><xsl:text>
--</xsl:text>
-+<xsl:apply-templates select='config/targets/default'/>
- <xsl:if test='config/bitbake|config/repos'>
- <xsl:text>
- </xsl:text>
-@@ -20,6 +17,12 @@ header:
- <xsl:apply-templates select='config/local-conf'/>
- </xsl:template>
- 
-+<xsl:template match='config/targets/default'>
-+<xsl:text>
-+target: </xsl:text><xsl:value-of select='text()'/><xsl:text>
-+</xsl:text>
-+</xsl:template>
-+
- <xsl:template name='repos'>repos:
- <xsl:apply-templates select='config/bitbake'/>
- <xsl:apply-templates select='config/repos/repo[not(@disabled) or @disabled="no"]'/>
+ kas/arago-kirkstone-chromium-config.yml       |  2 +-
+ kas/arago-kirkstone-config.yml                |  2 +-
+ kas/arago-kirkstone-next-config.yml           |  1 +
+ kas/arago-kirkstone-wip-config.yml            |  2 +-
+ kas/arago-master-chromium-config.yml          |  2 +-
+ kas/arago-master-config.yml                   |  2 +-
+ kas/arago-master-next-config.yml              |  1 +
+ kas/arago-master-selinux-config.yml           |  1 +
+ kas/arago-master-wip-config.yml               |  2 +-
+ kas/arago-scarthgap-10x-config.yml            |  1 +
+ kas/arago-scarthgap-10x-next-config.yml       |  1 +
+ kas/arago-scarthgap-chromium-config.yml       |  2 +-
+ kas/arago-scarthgap-config.yml                |  2 +-
+ kas/arago-scarthgap-flutter-config.yml        |  1 +
+ kas/arago-scarthgap-next-config.yml           |  1 +
+ kas/arago-scarthgap-selinux-config.yml        |  1 +
+ kas/arago-scarthgap-wip-config.yml            |  2 +-
+ kas/coresdk/coresdk-09.00.00.006-config.yml   |  2 +-
+ kas/coresdk/coresdk-09.00.00.007-config.yml   |  2 +-
+ kas/coresdk/coresdk-09.00.00.011-config.yml   |  2 +-
+ kas/coresdk/coresdk-09.01.00.001-config.yml   |  2 +-
+ kas/coresdk/coresdk-09.01.00.003-config.yml   |  2 +-
+ kas/coresdk/coresdk-09.01.00.007-config.yml   |  2 +-
+ kas/coresdk/coresdk-09.01.00.008-config.yml   |  2 +-
+ kas/coresdk/coresdk-09.02.00.008-config.yml   |  2 +-
+ kas/coresdk/coresdk-09.02.00.009-config.yml   |  2 +-
+ kas/coresdk/coresdk-09.02.00.010-config.yml   |  2 +-
+ kas/coresdk/coresdk-09.03.05-config.yml       |  2 +-
+ kas/coresdk/coresdk-10.00.07-config.yml       |  2 +-
+ kas/coresdk/coresdk-10.01.08-config.yml       |  2 +-
+ kas/coresdk/coresdk-10.01.10-config.yml       |  2 +-
+ .../coresdk-10.01.10-selinux-config.yml       |  1 +
+ kas/coresdk/coresdk-11.00.09-config.yml       |  2 +-
+ kas/coresdk/coresdk-11.00.15-config.yml       |  2 +-
+ kas/coresdk/coresdk-11.01.05-config.yml       |  2 +-
+ kas/distroless-kirkstone-config.yml           |  4 +-
+ kas/distroless-master-config.yml              |  4 +-
+ kas/distroless-scarthgap-config.yml           |  4 +-
+ kas/poky-kirkstone-config.yml                 |  2 +-
+ kas/poky-master-config.yml                    |  2 +-
+ kas/poky-master-wip-config.yml                |  2 +-
+ kas/poky-scarthgap-config.yml                 |  2 +-
+ kas/poky-scarthgap-wip-config.yml             |  2 +-
+ ...rocessor-sdk-analytics-09.00.00-config.yml |  2 +-
+ ...rocessor-sdk-analytics-09.00.01-config.yml |  2 +-
+ ...rocessor-sdk-analytics-09.01.00-config.yml |  2 +-
+ ...rocessor-sdk-analytics-09.02.00-config.yml |  2 +-
+ ...rocessor-sdk-analytics-10.00.00-config.yml |  2 +-
+ ...rocessor-sdk-analytics-10.01.00-config.yml |  2 +-
+ ...rocessor-sdk-analytics-11.00.00-config.yml |  2 +-
+ ...essor-sdk-analytics-11.01.07.05-config.yml |  2 +-
+ ...k-analytics-selinux-11.01.07.05-config.yml |  1 +
+ .../processor-sdk-gateway-10_00.yml           |  1 +
+ .../processor-sdk-linux-09_00_00_06.yml       |  1 +
+ .../processor-sdk-linux-09_00_00_07.yml       |  1 +
+ .../processor-sdk-linux-09_01_00_06.yml       |  1 +
+ .../processor-sdk-linux-09_01_00_07.yml       |  1 +
+ .../processor-sdk-linux-09_02_00_04.yml       |  1 +
+ .../processor-sdk-linux-09_02_00_05.yml       |  1 +
+ .../processor-sdk-linux-09_03_06_05.yml       |  2 +-
+ .../processor-sdk-linux-10_00_07_06.yml       |  1 +
+ .../processor-sdk-linux-10_00_08_06.yml       |  1 +
+ .../processor-sdk-linux-10_01_08_01.yml       |  1 +
+ ...rocessor-sdk-09.00.00-am62xxsip-config.yml |  2 +-
+ .../processor-sdk-09.00.00-config.yml         |  2 +-
+ .../processor-sdk-09.01.00-am65xx-config.yml  |  2 +-
+ .../processor-sdk-09.01.00-config.yml         |  2 +-
+ .../processor-sdk-09.01.00-legacy-config.yml  |  2 +-
+ ...processor-sdk-09.02.00.08-am64x-config.yml |  2 +-
+ ...rocessor-sdk-09.03.05.02-legacy-config.yml |  2 +-
+ ...ocessor-sdk-11.00.05.02-am62lxx-config.yml |  2 +-
+ ...ocessor-sdk-11.00.15.05-am62lxx-config.yml |  2 +-
+ ...essor-sdk-kirkstone-09.02.01.09-config.yml |  2 +-
+ ...essor-sdk-kirkstone-09.02.01.10-config.yml |  2 +-
+ ...-kirkstone-chromium-09.02.01.09-config.yml |  2 +-
+ ...-kirkstone-chromium-09.02.01.10-config.yml |  2 +-
+ ...essor-sdk-scarthgap-10.00.07.04-config.yml |  2 +-
+ ...essor-sdk-scarthgap-10.01.10.04-config.yml |  2 +-
+ ...essor-sdk-scarthgap-11.00.09.04-config.yml |  2 +-
+ ...essor-sdk-scarthgap-11.01.05.03-config.yml |  2 +-
+ ...-scarthgap-chromium-10.00.07.04-config.yml |  2 +-
+ ...-scarthgap-chromium-10.01.10.04-config.yml |  2 +-
+ ...-scarthgap-chromium-11.00.09.04-config.yml |  2 +-
+ ...-scarthgap-chromium-11.01.05.03-config.yml |  2 +-
+ ...sdk-scarthgap-nonqt-11.01.05.03-config.yml |  2 +-
+ ...k-scarthgap-selinux-11.00.09.04-config.yml |  1 +
+ ...k-scarthgap-selinux-11.01.05.03-config.yml |  1 +
+ kas/templates/bblayers.conf.yml               |  6 +--
+ kas/templates/local-arago64-v2.conf.yml       | 44 +++++++++----------
+ kas/templates/local-arago64-v3.conf.yml       | 44 +++++++++----------
+ kas/templates/local-poky-v2.conf.yml          | 42 +++++++++---------
+ kas/templates/local-poky-v3.conf.yml          | 42 +++++++++---------
+ kas/templates/local-v2.conf.yml               | 36 +++++++--------
+ kas/templates/local-v3.conf.yml               | 36 +++++++--------
+ src/xslt/kas-templates.xslt                   | 21 ++++++---
+ src/xslt/kas.xslt                             | 25 ++++++-----
+ 96 files changed, 240 insertions(+), 214 deletions(-)
+
 -- 
 2.50.1
 
