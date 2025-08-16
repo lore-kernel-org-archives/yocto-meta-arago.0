@@ -2,120 +2,161 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F298ACA0ED1
-	for <webhook@archiver.kernel.org>; Fri, 15 Aug 2025 20:25:57 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web10.21119.1755289554166206698
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A9DFCA0EE4
+	for <webhook@archiver.kernel.org>; Sat, 16 Aug 2025 00:36:49 +0000 (UTC)
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+ by mx.groups.io with SMTP id smtpd.web10.25762.1755304603485960165
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 15 Aug 2025 13:25:54 -0700
+ Fri, 15 Aug 2025 17:36:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=NwiXdJKM;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: rs@ti.com)
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57FKPpTm2171635;
-	Fri, 15 Aug 2025 15:25:51 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=I+82f10Q;
+ spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: rs@ti.com)
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57G0aeNa2260729;
+	Fri, 15 Aug 2025 19:36:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755289551;
-	bh=yYf6iN2BrowSxae7ARSNfnLIHPME6VQyFwtZsZNMIf4=;
-	h=Date:CC:Subject:From:To:References:In-Reply-To;
-	b=NwiXdJKM2zCLFI7SW3KC3d53bbnTv+MddJEz0NKXVo6WgD0VeGvtBF8gU2d76J7Gn
-	 f10vO6+NZRx/b0Rf0e1HwPqQ4paAB8/aoEyJNEb8Lx+yTLZe71R0ImDXWiFejtAkoO
-	 HS0TjaNXbHjRLe3wQ2MchGFWuPi7PkKwqer+XlIM=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57FKPpnB2673600
+	s=ti-com-17Q1; t=1755304600;
+	bh=hw2tTrd7zPQivAPzsaGNGwhI4NAMvmX2ayT69/RQ5YA=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=I+82f10QWHp2K3qAwPmqZCWYyA2erGAqUCYpe494ocmbFRrLgaIMBQtchx5cKBgIw
+	 SMkgDJLSP7v1fibCUDEoGb4cqAZuoXf9YkHws0k/lybvVWQ/E82ZCmA35VScN/Uv7C
+	 A5N0CuLEEEe4vx1BPaYR1OAmWBm1XhKIcrHO4Cj8=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57G0aegh1986710
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 15 Aug 2025 15:25:51 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 15 Aug 2025 19:36:40 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 15
- Aug 2025 15:25:50 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2025 19:36:40 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 15 Aug 2025 15:25:50 -0500
-Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57FKPo0V1797579;
-	Fri, 15 Aug 2025 15:25:50 -0500
+ Frontend Transport; Fri, 15 Aug 2025 19:36:40 -0500
+Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57G0adut1743917;
+	Fri, 15 Aug 2025 19:36:40 -0500
+From: <rs@ti.com>
+To: <reatmon@ti.com>, <denis@denix.org>
+CC: <meta-arago@lists.yoctoproject.org>, <jcormier@criticallink.com>
+Subject: [oe-layersetup][PATCH 3/5] kas: yamllint: too many blank lines
+Date: Fri, 15 Aug 2025 19:36:18 -0500
+Message-ID: <20250816003620.2112669-4-rs@ti.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250816003620.2112669-1-rs@ti.com>
+References: <20250816003620.2112669-1-rs@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Date: Fri, 15 Aug 2025 15:25:50 -0500
-Message-ID: <DC3A7RJ5NTC8.3FJ3D9WFG8J54@ti.com>
-CC: <reatmon@ti.com>, <denis@denix.org>, <a-christidis@ti.com>,
-        <meta-arago@lists.yoctoproject.org>, <nm@ti.com>
-Subject: Re: [meta-arago] [oe-layersetup][PATCH 2/2] kas: regenerate all
- configs to include bitbake
-From: Randolph Sapp <rs@ti.com>
-To: Jon Cormier <jcormier@criticallink.com>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250814232955.1559040-1-rs@ti.com>
- <20250814232955.1559040-3-rs@ti.com>
- <CADL8D3YwWvVtodQehpL9aL_ytqnjOEF26JRw+KPpjFDdFmB5Og@mail.gmail.com>
- <DC37XD2JXTIN.2JYXTQ0KPHPKB@ti.com>
- <CADL8D3aDf=1M1KjeECNV7ovR8DabE3LrkC6vSR3b4nB+Xg1dFA@mail.gmail.com>
-In-Reply-To: <CADL8D3aDf=1M1KjeECNV7ovR8DabE3LrkC6vSR3b4nB+Xg1dFA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 15 Aug 2025 20:25:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16483
+ <meta-arago@lists.yoctoproject.org>; Sat, 16 Aug 2025 00:36:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16485
 
-On Fri Aug 15, 2025 at 2:48 PM CDT, Jon Cormier wrote:
-> On Fri, Aug 15, 2025 at 2:38=E2=80=AFPM Randolph Sapp <rs@ti.com> wrote:
->> On Fri Aug 15, 2025 at 10:25 AM CDT, Jon Cormier wrote:
->> > Is there any simple guide on using kas for the TI builds?
->> >
->> > If I try on ubuntu 24.04, what the kas documentation says, I get a
->> > very minimal and unhelpful failure... With seemingly no way to turn on
->> > additional logging.  The build directory is empty as well.
->>
->> Their documentation is enough with this patch. Prior to this patch we
->> would not
->> clone the bitbake repo, and the first part of the build is running a
->> script in
->> oe-core that is supposed to interact with bitbake. This generates the
->> cryptic
->> 'Command "/tmp/tmp_qqetik6/get_bb_env/work/build" failed with error 1'
->> error
->> message.
->>
-> Makes sense, i should have read the whole patch set before commenting
->
-> With kas-container, Is there a way I'm missing to specify MACHINE=3D<>
-> without modifying local.conf or using "shell"?
+From: Randolph Sapp <rs@ti.com>
 
-There may be other documented options, but I personally prefer making a
-top level .config.yml like the following:
+There should be no blank lines at the end of the document. This means
+whitespace should be added based on anchor elements, such as the
+document header.
 
-```
+Signed-off-by: Randolph Sapp <rs@ti.com>
 ---
-header:
-  version: 17
-  includes:
-    - kas/arago-scarthgap-config.yml
+ src/xslt/kas-templates.xslt | 17 +++++++++--------
+ src/xslt/kas.xslt           | 11 +++++------
+ 2 files changed, 14 insertions(+), 14 deletions(-)
 
-machine: am62xx-evm
-target: core-image-minimal
-```
+diff --git a/src/xslt/kas-templates.xslt b/src/xslt/kas-templates.xslt
+index c6d5782..1ec6bf3 100644
+--- a/src/xslt/kas-templates.xslt
++++ b/src/xslt/kas-templates.xslt
+@@ -12,13 +12,13 @@ header:
+ <xsl:template match='bblayers-conf-template'>
+ <xsl:text>bblayers_conf_header:
+ </xsl:text>
+-<xsl:text>  oe-layersetup-bblayers-conf-template: |
+-</xsl:text>
++<xsl:text>  oe-layersetup-bblayers-conf-template: |</xsl:text>
+ <xsl:for-each select='line'>
++<xsl:text>
++</xsl:text>
+ <xsl:variable name='normal-line' select='normalize-space(text())'/>
+ <xsl:if test='string-length($normal-line) > 0'>
+-<xsl:text>    </xsl:text><xsl:value-of select='text()'/><xsl:text>
+-</xsl:text>
++<xsl:text>    </xsl:text><xsl:value-of select='text()'/>
+ </xsl:if>
+ </xsl:for-each>
+ <xsl:text>
+@@ -28,13 +28,14 @@ header:
+ <xsl:template match='local-conf-template'>
+ <xsl:text>local_conf_header:
+ </xsl:text>
+-<xsl:text>  oe-layersetup-local-conf-template: |
+-</xsl:text>
++<xsl:text>  oe-layersetup-local-conf-template: |</xsl:text>
+ <xsl:for-each select='line'>
++<xsl:text>
++</xsl:text>
+ <xsl:variable name='normal-line' select='normalize-space(text())'/>
+ <xsl:if test='string-length($normal-line) > 0'>
+-<xsl:text>    </xsl:text><xsl:value-of select='text()'/><xsl:text>
+-</xsl:text>
++<xsl:text>    </xsl:text><xsl:value-of select='text()'/>
++</xsl:if>
+ </xsl:for-each>
+ <xsl:apply-templates select='/config/local-conf'/>
+ <xsl:text>
+diff --git a/src/xslt/kas.xslt b/src/xslt/kas.xslt
+index 6a0b251..cb0b9a4 100644
+--- a/src/xslt/kas.xslt
++++ b/src/xslt/kas.xslt
+@@ -12,9 +12,9 @@ header:
+ </xsl:text>
+ <xsl:text>target: </xsl:text><xsl:value-of select='config/targets/default/text()'/><xsl:text>
+ </xsl:text>
++<xsl:if test='config/bitbake|config/repos'>
+ <xsl:text>
+ </xsl:text>
+-<xsl:if test='config/bitbake|config/repos'>
+ <xsl:call-template name='repos'/>
+ </xsl:if>
+ <xsl:apply-templates select='config/local-conf'/>
+@@ -38,11 +38,11 @@ header:
+ </xsl:text>
+ <xsl:text>      .: disabled
+ </xsl:text>
+-<xsl:text>
+-</xsl:text>
+ </xsl:template>
+ 
+ <xsl:template match='config/repos/repo'>
++<xsl:text>
++</xsl:text>
+ <xsl:text>  </xsl:text><xsl:value-of select='@name'/><xsl:text>:
+ </xsl:text>
+ <xsl:text>    url: "</xsl:text><xsl:value-of select='@url'/><xsl:text>"
+@@ -54,8 +54,6 @@ header:
+ </xsl:text>
+ </xsl:if>
+ <xsl:apply-templates select='layers'/>
+-<xsl:text>
+-</xsl:text>
+ </xsl:template>
+ 
+ <xsl:template match='config/repos/repo/layers'>
+@@ -79,7 +77,8 @@ header:
+ </xsl:template>
+ 
+ <xsl:template match='config/local-conf'>
+-<xsl:text>local_conf_header:
++<xsl:text>
++local_conf_header:
+   oe-layersetup-local-conf-config-specific: |
+ </xsl:text>
+ <xsl:for-each select='line'>
+-- 
+2.50.1
 
-> Note: The recent flutter config I guess is missing a blank line, so
-> rerunning the config make generates a git diff ...
-> $ git diff
-> diff --git a/kas/arago-scarthgap-flutter-config.yml
-> b/kas/arago-scarthgap-flutter-config.yml
-> index d131a8fa5f78..e5f901bf2bb5 100644
-> --- a/kas/arago-scarthgap-flutter-config.yml
-> +++ b/kas/arago-scarthgap-flutter-config.yml
-> @@ -76,3 +76,4 @@ repos:
->      branch: "scarthgap"
->      layers:
->        meta:
-> +
->
-> [snip]
-
-Yeah, second patch addresses that. Not entirely sure how/why there was a
-descrepency in whitespace to begin with. I may submit a followup patch to
-address yamllint warnings that I reported a while back.
 
