@@ -1,47 +1,47 @@
-Return-Path: <s-sinha@ti.com>
+Return-Path: <j-sahu@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E8B2CA1013
-	for <webhook@archiver.kernel.org>; Thu,  4 Sep 2025 20:15:21 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.4669.1757016913047891622
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E566CA0FED
+	for <webhook@archiver.kernel.org>; Fri,  5 Sep 2025 07:58:15 +0000 (UTC)
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+ by mx.groups.io with SMTP id smtpd.web11.15993.1757059094587309220
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 04 Sep 2025 13:15:13 -0700
+ Fri, 05 Sep 2025 00:58:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=fxGR3Yjt;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: s-sinha@ti.com)
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 584KFC1w3550500
-	for <meta-arago@lists.yoctoproject.org>; Thu, 4 Sep 2025 15:15:12 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=mxshLrES;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: j-sahu@ti.com)
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5857wDSx3207474
+	for <meta-arago@lists.yoctoproject.org>; Fri, 5 Sep 2025 02:58:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757016912;
-	bh=uDy74aIrC2LbkZsEXaAwR2hVpDjU4SwTtQOYI/NUt5o=;
+	s=ti-com-17Q1; t=1757059093;
+	bh=+WSOyNZyLzieRSLBac+b+VRHrLsQfcGxStdpWT0+YFU=;
 	h=From:To:CC:Subject:Date;
-	b=fxGR3YjtF4X60o690Pizrq6RLm/YWTAAOVQpqSIhchbFetDFW6C9/KNMdv9UXj5gA
-	 iUjFqQ7oi1j7aSWkjc/T4xGlTEh+7MzKQtuAv+HnpNtI7BigPUy9YGz+p+ZWb3fuqM
-	 Pf0nidrQHftReQBpK3Oq0PaDXgg+3QR6EzvF4mO4=
+	b=mxshLrES92YpCr/RgUEz+Fm/EMqhHwoCQHSsvyKeCY8HWTWhoVIFb2S2041o9kyza
+	 553dSNGCLsnf4udc5w9IoNEb3lfxuyB1ffQbOPSfVcQyY7CKD3uU2LWSMw5xq/nRW3
+	 Ng97Z6Ra+qxOwa4JZcMVrTlyOjVbPHuDeHOZiUTo=
 Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 584KFCLD4051825
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5857wDkT736241
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Thu, 4 Sep 2025 15:15:12 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE100.ent.ti.com
+	for <meta-arago@lists.yoctoproject.org>; Fri, 5 Sep 2025 02:58:13 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
  (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
- Sep 2025 15:15:11 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 5
+ Sep 2025 02:58:13 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 4 Sep 2025 15:15:11 -0500
-Received: from localhost (robotics.dhcp.ti.com [172.24.235.192])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 584KFA413532988;
-	Thu, 4 Sep 2025 15:15:11 -0500
-From: Shreyash Sinha <s-sinha@ti.com>
+ Frontend Transport; Fri, 5 Sep 2025 02:58:13 -0500
+Received: from jeevan-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (jeevan-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.233.81])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5857wBFn412802;
+	Fri, 5 Sep 2025 02:58:12 -0500
+From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
-CC: <reatmon@ti.com>, Shreyash Sinha <s-sinha@ti.com>
-Subject: [meta-arago][oe-layersetup][PATCH v3] configs: processor-sdk-linux: Add 11.0 release config
-Date: Fri, 5 Sep 2025 01:45:08 +0530
-Message-ID: <20250904201508.61939-1-s-sinha@ti.com>
+CC: Ryan Eatmon <reatmon@ti.com>
+Subject: [meta-arago][oe-layersetup][master][PATCH] processor-sdk: Add new configs for AM62P PG.12 EA Release
+Date: Fri, 5 Sep 2025 12:24:42 +0530
+Message-ID: <20250905065442.802086-1-j-sahu@ti.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -50,38 +50,41 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 04 Sep 2025 20:15:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16528
+ <meta-arago@lists.yoctoproject.org>; Fri, 05 Sep 2025 07:58:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16529
 
-Signed-off-by: Shreyash Sinha <s-sinha@ti.com>
+- Add processor-sdk-scarthgap-chromium-11.01.12.10-config
+used for building AM62P.
+
+Signed-off-by: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
 ---
- ...linux_processor-sdk-linux-11_00_10_01.json | 147 +++++++++++++++
- .../bblayers.conf.sample                      |  32 ++++
+ ...scarthgap-chromium-11.01.12.10-config.json | 158 ++++++++++++++++
+ .../bblayers.conf.sample                      |  35 ++++
  .../conf-notes.txt                            |  22 +++
  .../conf-summary.txt                          |   1 +
  .../local.conf.sample                         | 175 ++++++++++++++++++
- .../processor-sdk-linux-11_00_10_01.txt       |  18 ++
- .../processor-sdk-linux-11_00_10_01.yml       |  87 +++++++++
- .../processor-sdk-linux-11_00_10_01.xml       |  70 +++++++
- 8 files changed, 552 insertions(+)
- create mode 100644 bitbake-setup/processor-sdk-linux_processor-sdk-linux-11_00_10_01.json
- create mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/bblayers.conf.sample
- create mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/conf-notes.txt
- create mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/conf-summary.txt
- create mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/local.conf.sample
- create mode 100644 configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.txt
- create mode 100644 kas/processor-sdk-linux/processor-sdk-linux-11_00_10_01.yml
- create mode 100644 src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml
+ ...-scarthgap-chromium-11.01.12.10-config.txt |  21 +++
+ ...-scarthgap-chromium-11.01.12.10-config.yml |  96 ++++++++++
+ ...-scarthgap-chromium-11.01.12.10-config.xml |  86 +++++++++
+ 8 files changed, 594 insertions(+)
+ create mode 100644 bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config.json
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/bblayers.conf.sample
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/conf-notes.txt
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/conf-summary.txt
+ create mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/local.conf.sample
+ create mode 100644 configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.txt
+ create mode 100644 kas/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.yml
+ create mode 100644 src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml
 
-diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-11_00_10_01.json b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-11_00_10_01.json
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config.json b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config.json
 new file mode 100644
-index 0000000..dfc3980
+index 0000000..1036166
 --- /dev/null
-+++ b/bitbake-setup/processor-sdk-linux_processor-sdk-linux-11_00_10_01.json
-@@ -0,0 +1,147 @@
++++ b/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config.json
+@@ -0,0 +1,158 @@
 +{
 +  "version": "1.0",
-+  "description": "TI Processor SDK Linux v11_00_10_01",
++  "description": "TI Processor SDK vchromium-11.01.12.10",
 +  "sources": {
 +    "oe-layersetup": {
 +      "git-remote": {
@@ -105,6 +108,17 @@ index 0000000..dfc3980
 +      },
 +      "path": "bitbake"
 +    },
++    "meta-tisdk": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/TexasInstruments/meta-tisdk.git"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-tisdk"
++    },
 +    "meta-arago": {
 +      "git-remote": {
 +        "remotes": {
@@ -115,6 +129,17 @@ index 0000000..dfc3980
 +        "rev": "scarthgap"
 +      },
 +      "path": "meta-arago"
++    },
++    "meta-browser": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/OSSystems/meta-browser.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "meta-browser"
 +    },
 +    "meta-qt6": {
 +      "git-remote": {
@@ -148,6 +173,17 @@ index 0000000..dfc3980
 +        "rev": "scarthgap"
 +      },
 +      "path": "meta-openembedded"
++    },
++    "meta-lts-mixins": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-lts-mixins"
++          }
++        },
++        "rev": "scarthgap/rust"
++      },
++      "path": "meta-lts-mixins"
 +    },
 +    "meta-ti": {
 +      "git-remote": {
@@ -192,46 +228,24 @@ index 0000000..dfc3980
 +        "rev": "scarthgap"
 +      },
 +      "path": "oe-core"
-+    },
-+    "meta-tisdk": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-tisdk"
-+    },
-+    "meta-edgeai": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.ti.com/git/edgeai/meta-edgeai.git"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-edgeai"
 +    }
 +  },
 +  "configuration": {
 +    "bitbake-setup": {
 +      "default": {
 +        "description": "Default build configuration",
-+         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-11_00_10_01",
++         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config",
 +         "targets": [ "bitbake -k tisdk-default-image" ]
 +      }
 +    }
 +  }
 +}
-diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/bblayers.conf.sample b/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/bblayers.conf.sample
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/bblayers.conf.sample b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/bblayers.conf.sample
 new file mode 100644
-index 0000000..51640e0
+index 0000000..340048b
 --- /dev/null
-+++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/bblayers.conf.sample
-@@ -0,0 +1,32 @@
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/bblayers.conf.sample
+@@ -0,0 +1,35 @@
 +# This template file was created by taking the oe-core/meta/conf/bblayers.conf
 +# file and removing the BBLAYERS section at the end.
 +
@@ -243,9 +257,12 @@ index 0000000..51640e0
 +BBFILES ?= ""
 +
 +BBLAYERS ?= " \
++    ##OEROOT##/../meta-tisdk/meta-ti-foundational
++    ##OEROOT##/../meta-tisdk/meta-ti-ml
 +    ##OEROOT##/../meta-arago/meta-arago-distro
 +    ##OEROOT##/../meta-arago/meta-arago-extras
 +    ##OEROOT##/../meta-arago/meta-arago-test
++    ##OEROOT##/../meta-browser/meta-chromium
 +    ##OEROOT##/../meta-qt6
 +    ##OEROOT##/../meta-virtualization
 +    ##OEROOT##/../meta-openembedded/meta-networking
@@ -254,21 +271,21 @@ index 0000000..51640e0
 +    ##OEROOT##/../meta-openembedded/meta-gnome
 +    ##OEROOT##/../meta-openembedded/meta-filesystems
 +    ##OEROOT##/../meta-openembedded/meta-multimedia
++    ##OEROOT##/../meta-lts-mixins
 +    ##OEROOT##/../meta-ti/meta-ti-extras
++    ##OEROOT##/../meta-ti/meta-beagle
 +    ##OEROOT##/../meta-ti/meta-ti-bsp
 +    ##OEROOT##/../meta-arm/meta-arm
 +    ##OEROOT##/../meta-arm/meta-arm-toolchain
 +    ##OEROOT##/../meta-clang
 +    ##OEROOT##/../oe-core/meta
-+    ##OEROOT##/../meta-tisdk/meta-ti-foundational
-+    ##OEROOT##/../meta-edgeai
 +    ##OEROOT##/../oe-layersetup
 +"
-diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/conf-notes.txt b/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/conf-notes.txt
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/conf-notes.txt b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/conf-notes.txt
 new file mode 100644
 index 0000000..1880460
 --- /dev/null
-+++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/conf-notes.txt
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/conf-notes.txt
 @@ -0,0 +1,22 @@
 +
 +### Shell environment set up for builds. ###
@@ -292,18 +309,18 @@ index 0000000..1880460
 + - 'devtool' and 'recipetool' handle common recipe tasks
 + - 'bitbake-layers' handles common layer tasks
 + - 'oe-pkgdata-util' handles common target package tasks
-diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/conf-summary.txt b/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/conf-summary.txt
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/conf-summary.txt b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/conf-summary.txt
 new file mode 100644
-index 0000000..6ffa6dd
+index 0000000..bd63f9a
 --- /dev/null
-+++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/conf-summary.txt
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/conf-summary.txt
 @@ -0,0 +1 @@
-+TI Processor SDK Linux v11_00_10_01
-diff --git a/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/local.conf.sample b/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/local.conf.sample
++TI Processor SDK vchromium-11.01.12.10
+diff --git a/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/local.conf.sample b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/local.conf.sample
 new file mode 100644
 index 0000000..8ad6f26
 --- /dev/null
-+++ b/conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/local.conf.sample
++++ b/conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/local.conf.sample
 @@ -0,0 +1,175 @@
 +# CONF_VERSION is increased each time build/conf/ changes incompatibly
 +CONF_VERSION = "2"
@@ -480,36 +497,39 @@ index 0000000..8ad6f26
 +# It is recommended to activate "buildhistory" for testing the PR service
 +INHERIT += "buildhistory"
 +BUILDHISTORY_COMMIT = "1"
-diff --git a/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.txt b/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.txt
+diff --git a/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.txt b/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.txt
 new file mode 100644
-index 0000000..7b271b4
+index 0000000..dae4f9f
 --- /dev/null
-+++ b/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.txt
-@@ -0,0 +1,18 @@
++++ b/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.txt
+@@ -0,0 +1,21 @@
 +# This file takes repo entries in the format
 +# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
 +
-+bitbake,https://git.openembedded.org/bitbake,2.8,696c2c1ef095f8b11c7d2eff36fae50f58c62e5e
-+meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,c04e85dd207dd24387edac10526b9ec971df9496,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
-+meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,fce7cf8c3aa54b3650a30a79dce705838c32f3c3,layers=
-+meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,9e040ee8dd6025558ea60ac9db60c41bfeddf221,layers=
-+meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,e92d0173a80ea7592c866618ef5293203c50544c,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
-+meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,a98a2e1029870b25e117d4c9410e75bfd955f35a,layers=meta-ti-extras:meta-ti-bsp
++bitbake,https://git.openembedded.org/bitbake,2.8,982645110a19ebb94d519926a4e14c8a2a205cfd
++meta-tisdk,https://github.com/TexasInstruments/meta-tisdk.git,scarthgap,11.01.12.10,layers=meta-ti-foundational:meta-ti-ml
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,11.01.12,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
++meta-browser,https://github.com/OSSystems/meta-browser.git,master,27ca52f635a31f5f9762813a8527dd31323549b7,layers=meta-chromium
++#meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,0bb4a34a5e102c5264215bfaedddb13703270afa,layers=
++meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,2033d6b48e6f5258b101fe433c90ebdb9c22f643,layers=
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,02f72c96bf9acd0bd3ae0463f482bce8feabe749,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,c29a18fa39ede952f3f6108ec007c1906e2d9a0d,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rust,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=
++meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,11.01.12,layers=meta-ti-extras:meta-beagle:meta-ti-bsp
 +meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,8e0f8af90fefb03f08cd2228cde7a89902a6b37c,layers=meta-arm:meta-arm-toolchain
-+meta-clang,https://github.com/kraj/meta-clang,scarthgap,eaa08939eaec9f620b14742ff3ac568553683034,layers=
-+oe-core,https://git.openembedded.org/openembedded-core,scarthgap,b214cc84a922f7a3fb7ebbc501189ce25e8bd2bd,layers=meta
-+meta-tisdk,https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git,scarthgap,1f96dccc01f10c73295e0bac6a15a97d3d4562fd,layers=meta-ti-foundational
-+meta-edgeai,https://git.ti.com/git/edgeai/meta-edgeai.git,scarthgap,81d1b80b2a314814c6d900e82ea2da93eee3f57d,layers=
++meta-clang,https://github.com/kraj/meta-clang,scarthgap,6691e4bc47e20b903dc3dd7684685086d2468b84,layers=
++#meta-flutter,https://github.com/meta-flutter/meta-flutter.git,scarthgap,0bb4a34a5e102c5264215bfaedddb13703270afa,layers=.:meta-flutter-apps
++oe-core,https://git.openembedded.org/openembedded-core,scarthgap,93c7489d843a0e46fe4fc685b356d0ae885300d7,layers=meta
 +
 +OECORELAYERCONF=./sample-files/bblayers.conf.sample
 +OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
 +BITBAKE_INCLUSIVE_VARS=yes
-diff --git a/kas/processor-sdk-linux/processor-sdk-linux-11_00_10_01.yml b/kas/processor-sdk-linux/processor-sdk-linux-11_00_10_01.yml
+diff --git a/kas/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.yml b/kas/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.yml
 new file mode 100644
-index 0000000..1e09702
+index 0000000..e2353d4
 --- /dev/null
-+++ b/kas/processor-sdk-linux/processor-sdk-linux-11_00_10_01.yml
-@@ -0,0 +1,87 @@
++++ b/kas/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.yml
+@@ -0,0 +1,96 @@
 +---
 +header:
 +  version: 17
@@ -523,33 +543,48 @@ index 0000000..1e09702
 +  bitbake:
 +    url: "https://git.openembedded.org/bitbake"
 +    branch: "2.8"
-+    commit: "696c2c1ef095f8b11c7d2eff36fae50f58c62e5e"
++    commit: "982645110a19ebb94d519926a4e14c8a2a205cfd"
 +    layers:
 +      .: disabled
++
++  meta-tisdk:
++    url: "https://github.com/TexasInstruments/meta-tisdk.git"
++    branch: "scarthgap"
++    commit: "11.01.12.10"
++    layers:
++      meta-ti-foundational:
++      meta-ti-ml:
 +
 +  meta-arago:
 +    url: "https://git.yoctoproject.org/meta-arago"
 +    branch: "scarthgap"
-+    commit: "c04e85dd207dd24387edac10526b9ec971df9496"
++    commit: "11.01.12"
 +    layers:
 +      meta-arago-distro:
 +      meta-arago-extras:
 +      meta-arago-test:
 +
++  meta-browser:
++    url: "https://github.com/OSSystems/meta-browser.git"
++    branch: "master"
++    commit: "27ca52f635a31f5f9762813a8527dd31323549b7"
++    layers:
++      meta-chromium:
++
 +  meta-qt6:
 +    url: "https://code.qt.io/yocto/meta-qt6.git"
 +    branch: "6.9"
-+    commit: "fce7cf8c3aa54b3650a30a79dce705838c32f3c3"
++    commit: "2033d6b48e6f5258b101fe433c90ebdb9c22f643"
 +
 +  meta-virtualization:
 +    url: "https://git.yoctoproject.org/meta-virtualization"
 +    branch: "scarthgap"
-+    commit: "9e040ee8dd6025558ea60ac9db60c41bfeddf221"
++    commit: "02f72c96bf9acd0bd3ae0463f482bce8feabe749"
 +
 +  meta-openembedded:
 +    url: "https://git.openembedded.org/meta-openembedded"
 +    branch: "scarthgap"
-+    commit: "e92d0173a80ea7592c866618ef5293203c50544c"
++    commit: "c29a18fa39ede952f3f6108ec007c1906e2d9a0d"
 +    layers:
 +      meta-networking:
 +      meta-python:
@@ -558,12 +593,18 @@ index 0000000..1e09702
 +      meta-filesystems:
 +      meta-multimedia:
 +
++  meta-lts-mixins:
++    url: "https://git.yoctoproject.org/meta-lts-mixins"
++    branch: "scarthgap/rust"
++    commit: "a8046d5ec53b1856169ac795aa87cb0d5db84c04"
++
 +  meta-ti:
 +    url: "https://git.yoctoproject.org/meta-ti"
 +    branch: "scarthgap"
-+    commit: "a98a2e1029870b25e117d4c9410e75bfd955f35a"
++    commit: "11.01.12"
 +    layers:
 +      meta-ti-extras:
++      meta-beagle:
 +      meta-ti-bsp:
 +
 +  meta-arm:
@@ -577,57 +618,59 @@ index 0000000..1e09702
 +  meta-clang:
 +    url: "https://github.com/kraj/meta-clang"
 +    branch: "scarthgap"
-+    commit: "eaa08939eaec9f620b14742ff3ac568553683034"
++    commit: "6691e4bc47e20b903dc3dd7684685086d2468b84"
 +
 +  oe-core:
 +    url: "https://git.openembedded.org/openembedded-core"
 +    branch: "scarthgap"
-+    commit: "b214cc84a922f7a3fb7ebbc501189ce25e8bd2bd"
++    commit: "93c7489d843a0e46fe4fc685b356d0ae885300d7"
 +    layers:
 +      meta:
-+
-+  meta-tisdk:
-+    url: "https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git"
-+    branch: "scarthgap"
-+    commit: "1f96dccc01f10c73295e0bac6a15a97d3d4562fd"
-+    layers:
-+      meta-ti-foundational:
-+
-+  meta-edgeai:
-+    url: "https://git.ti.com/git/edgeai/meta-edgeai.git"
-+    branch: "scarthgap"
-+    commit: "81d1b80b2a314814c6d900e82ea2da93eee3f57d"
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml
 new file mode 100644
-index 0000000..339c4d7
+index 0000000..5793c01
 --- /dev/null
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml
-@@ -0,0 +1,70 @@
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml
+@@ -0,0 +1,86 @@
 +<?xml version='1.0'?>
 +<config>
-+    <description>TI Processor SDK Linux v11_00_10_01</description>
++    <description>TI Processor SDK vchromium-11.01.12.10</description>
 +
 +    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
 +    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
 +    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
 +
-+    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='696c2c1ef095f8b11c7d2eff36fae50f58c62e5e'/>
++    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='982645110a19ebb94d519926a4e14c8a2a205cfd'/>
 +
 +    <repos>
-+        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='c04e85dd207dd24387edac10526b9ec971df9496'>
++        <repo name='meta-tisdk' url='https://github.com/TexasInstruments/meta-tisdk.git' branch='scarthgap' commit='11.01.12.10'>
++            <layers>
++                <layer>meta-ti-foundational</layer>
++                <layer>meta-ti-ml</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='11.01.12'>
 +            <layers>
 +                <layer>meta-arago-distro</layer>
 +                <layer>meta-arago-extras</layer>
 +                <layer>meta-arago-test</layer>
 +            </layers>
 +        </repo>
-+        <repo name='meta-qt6' url='https://code.qt.io/yocto/meta-qt6.git' branch='6.9' commit='fce7cf8c3aa54b3650a30a79dce705838c32f3c3'>
++        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='27ca52f635a31f5f9762813a8527dd31323549b7'>
++            <layers>
++                <layer>meta-chromium</layer>
++            </layers>
++        </repo>
++        <repo name='meta-selinux' url='https://git.yoctoproject.org/meta-selinux' branch='scarthgap' commit='0bb4a34a5e102c5264215bfaedddb13703270afa' disabled='true'>
 +            <layers/>
 +        </repo>
-+        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='9e040ee8dd6025558ea60ac9db60c41bfeddf221'>
++        <repo name='meta-qt6' url='https://code.qt.io/yocto/meta-qt6.git' branch='6.9' commit='2033d6b48e6f5258b101fe433c90ebdb9c22f643'>
 +            <layers/>
 +        </repo>
-+        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='e92d0173a80ea7592c866618ef5293203c50544c'>
++        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='02f72c96bf9acd0bd3ae0463f482bce8feabe749'>
++            <layers/>
++        </repo>
++        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='c29a18fa39ede952f3f6108ec007c1906e2d9a0d'>
 +            <layers>
 +                <layer>meta-networking</layer>
 +                <layer>meta-python</layer>
@@ -637,9 +680,13 @@ index 0000000..339c4d7
 +                <layer>meta-multimedia</layer>
 +            </layers>
 +        </repo>
-+        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='a98a2e1029870b25e117d4c9410e75bfd955f35a'>
++        <repo name='meta-lts-mixins' url='https://git.yoctoproject.org/meta-lts-mixins' branch='scarthgap/rust' commit='a8046d5ec53b1856169ac795aa87cb0d5db84c04'>
++            <layers/>
++        </repo>
++        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='11.01.12'>
 +            <layers>
 +                <layer>meta-ti-extras</layer>
++                <layer>meta-beagle</layer>
 +                <layer>meta-ti-bsp</layer>
 +            </layers>
 +        </repo>
@@ -649,21 +696,19 @@ index 0000000..339c4d7
 +                <layer>meta-arm-toolchain</layer>
 +            </layers>
 +        </repo>
-+        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='eaa08939eaec9f620b14742ff3ac568553683034'>
++        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='6691e4bc47e20b903dc3dd7684685086d2468b84'>
 +            <layers/>
 +        </repo>
-+        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='b214cc84a922f7a3fb7ebbc501189ce25e8bd2bd'>
++        <repo name='meta-flutter' url='https://github.com/meta-flutter/meta-flutter.git' branch='scarthgap' commit='0bb4a34a5e102c5264215bfaedddb13703270afa' disabled='true'>
++            <layers>
++                <layer>.</layer>
++                <layer>meta-flutter-apps</layer>
++            </layers>
++        </repo>
++        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='93c7489d843a0e46fe4fc685b356d0ae885300d7'>
 +            <layers>
 +                <layer>meta</layer>
 +            </layers>
-+        </repo>
-+        <repo name='meta-tisdk' url='https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git' branch='scarthgap' commit='1f96dccc01f10c73295e0bac6a15a97d3d4562fd'>
-+            <layers>
-+                <layer>meta-ti-foundational</layer>
-+            </layers>
-+        </repo>
-+        <repo name='meta-edgeai' url='https://git.ti.com/git/edgeai/meta-edgeai.git' branch='scarthgap' commit='81d1b80b2a314814c6d900e82ea2da93eee3f57d'>
-+            <layers/>
 +        </repo>
 +    </repos>
 +
