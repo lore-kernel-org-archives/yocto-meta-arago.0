@@ -2,52 +2,54 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 431C2CAC592
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63372CAC594
 	for <webhook@archiver.kernel.org>; Thu, 11 Sep 2025 16:35:13 +0000 (UTC)
 Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.2132.1757608508607963721
+ by mx.groups.io with SMTP id smtpd.web11.2133.1757608509046521953
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 11 Sep 2025 09:35:08 -0700
+ Thu, 11 Sep 2025 09:35:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=Vld+HXdq;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=kKALBBUD;
  spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: reatmon@ti.com)
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58BGZ6km787724;
-	Thu, 11 Sep 2025 11:35:06 -0500
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58BGZ7jG787728;
+	Thu, 11 Sep 2025 11:35:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757608506;
-	bh=Cx24wOxxq3S01conNx6whZpTy7J3A4fPKytEh2r7/Lo=;
-	h=From:To:Subject:Date;
-	b=Vld+HXdq5bGg2NTOJLE4CC7HD173OqcQTNpI0ZwsAF16yJ6OpUQdhBmFYe/pScNcr
-	 p01XCk8A1MhF7xWz8liCGOiJZ0sogihCWYk00mKkxLUiOUTFN6ot6hLvb4yZE1ePWR
-	 dz9uRpANKIfe5oyqep2KcurlfUgS9UeGIEg82QqY=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58BGZ61K1185775
+	s=ti-com-17Q1; t=1757608507;
+	bh=Gdpt2775SNQMoxRqbGlpBBjyMfjl/W7D1w2WSExvZEI=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=kKALBBUDw3nKnP/YSg2HudHSWyduv9iGdIBAbVB5eUGvWA3s9bvBRos3xB6dEFRJv
+	 dEjzLHnvL5SkahJ1EFwzxfRyrBOuAEwtfYE71l5G2HyKRsKktEFjwURI9togAG2USF
+	 4YNGWU3rUCq2RzkCZmWnvxl8XTHVuz+mSEaydXIs=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58BGZ7bi1289117
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 11 Sep 2025 11:35:06 -0500
-Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 11 Sep 2025 11:35:07 -0500
+Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 11
  Sep 2025 11:35:06 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE208.ent.ti.com
- (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
  Transport; Thu, 11 Sep 2025 11:35:06 -0500
 Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58BGZ6j72120959;
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58BGZ6S22416682;
 	Thu, 11 Sep 2025 11:35:06 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1uwkGI-0005K2-8A; Thu, 11 Sep 2025 11:35:06 -0500
+	id 1uwkGI-0005KH-K1; Thu, 11 Sep 2025 11:35:06 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [oe-layersetup][master][PATCH 0/5] Update bitbake-setup support
-Date: Thu, 11 Sep 2025 11:35:01 -0500
-Message-ID: <20250911163506.20414-1-reatmon@ti.com>
+Subject: [oe-layersetup][master][PATCH 3/5] src/configs: Update all of the configs
+Date: Thu, 11 Sep 2025 11:35:04 -0500
+Message-ID: <20250911163506.20414-4-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20250911163506.20414-1-reatmon@ti.com>
+References: <20250911163506.20414-1-reatmon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
@@ -55,1078 +57,1449 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 11 Sep 2025 16:35:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16561
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16562
 
-Update all of the bitbake-setup files to match the upcoming
-bitbake-setup release.
+Update all of the config XML files to add in the machine list include
+and change the name of the targets to distro.
 
-Ryan Eatmon (5):
-  conf: Add support for whinlatter
-  src: Rework bitbake-setup support
-  src/configs: Update all of the configs
-  bitbake-setup: Generate new files
-  bitbake-setup: Remove old bitbake-setup files
+Update the local.conf template XML files to include a summary and
+description.
 
- .../arago-kirkstone-chromium-config.json      |  49 ++++-
- bitbake-setup/arago-kirkstone-config.json     |  49 ++++-
- .../arago-kirkstone-next-config.json          |  49 ++++-
- bitbake-setup/arago-kirkstone-wip-config.json |  49 ++++-
- .../arago-master-chromium-config.json         |  49 ++++-
- bitbake-setup/arago-master-config.json        |  49 ++++-
- .../arago-master-flutter-config.json          |  49 ++++-
- bitbake-setup/arago-master-next-config.json   |  49 ++++-
- .../arago-master-selinux-config.json          |  49 ++++-
- bitbake-setup/arago-master-wip-config.json    |  49 ++++-
- bitbake-setup/arago-scarthgap-10x-config.json |  49 ++++-
- .../arago-scarthgap-10x-next-config.json      |  49 ++++-
- .../arago-scarthgap-chromium-config.json      |  49 ++++-
- bitbake-setup/arago-scarthgap-config.json     |  49 ++++-
- .../arago-scarthgap-flutter-config.json       |  49 ++++-
- .../arago-scarthgap-next-config.json          |  49 ++++-
- .../arago-scarthgap-selinux-config.json       |  49 ++++-
- bitbake-setup/arago-scarthgap-wip-config.json |  49 ++++-
- .../coresdk-09.00.00.006-config.json}         |  49 ++++-
- .../coresdk-09.00.00.007-config.json}         |  49 ++++-
- .../coresdk-09.00.00.011-config.json}         |  49 ++++-
- .../coresdk/coresdk-09.01.00.001-config.json  | 149 +++++++++++++
- .../coresdk/coresdk-09.01.00.003-config.json  | 149 +++++++++++++
- .../coresdk/coresdk-09.01.00.007-config.json  | 149 +++++++++++++
- .../coresdk/coresdk-09.01.00.008-config.json  | 149 +++++++++++++
- .../coresdk-09.02.00.008-config.json}         |  49 ++++-
- .../coresdk-09.02.00.009-config.json}         |  49 ++++-
- .../coresdk-09.02.00.010-config.json}         |  49 ++++-
- .../coresdk-09.03.05-config.json}             |  49 ++++-
- .../coresdk-10.00.07-config.json}             |  49 ++++-
- .../coresdk-10.01.08-config.json}             |  49 ++++-
- .../coresdk-10.01.10-config.json}             |  49 ++++-
- .../coresdk-10.01.10-selinux-config.json}     |  49 ++++-
- .../coresdk-11.00.09-config.json}             |  49 ++++-
- .../coresdk-11.00.15-config.json}             |  49 ++++-
- .../coresdk-11.01.05-config.json}             |  49 ++++-
- .../coresdk-11.01.08-config.json}             |  49 ++++-
- .../coresdk_coresdk-09.01.00.001-config.json  | 114 ----------
- .../coresdk_coresdk-09.01.00.003-config.json  | 114 ----------
- .../coresdk_coresdk-09.01.00.007-config.json  | 114 ----------
- .../coresdk_coresdk-09.01.00.008-config.json  | 114 ----------
- .../distroless-kirkstone-config.json          |  49 ++++-
- bitbake-setup/distroless-master-config.json   |  49 ++++-
- .../distroless-scarthgap-config.json          |  49 ++++-
- bitbake-setup/poky-kirkstone-config.json      |  49 ++++-
- bitbake-setup/poky-master-config.json         |  49 ++++-
- bitbake-setup/poky-master-wip-config.json     |  49 ++++-
- bitbake-setup/poky-scarthgap-config.json      |  49 ++++-
- bitbake-setup/poky-scarthgap-wip-config.json  |  49 ++++-
- ...cessor-sdk-analytics-09.00.00-config.json} |  49 ++++-
- ...cessor-sdk-analytics-09.00.01-config.json} |  49 ++++-
- ...cessor-sdk-analytics-09.01.00-config.json} |  49 ++++-
- ...cessor-sdk-analytics-09.02.00-config.json} |  49 ++++-
- ...cessor-sdk-analytics-10.00.00-config.json} |  49 ++++-
- ...cessor-sdk-analytics-10.01.00-config.json} |  49 ++++-
- ...cessor-sdk-analytics-11.00.00-config.json} |  49 ++++-
- ...sor-sdk-analytics-11.01.07.05-config.json} |  49 ++++-
- ...analytics-selinux-11.01.07.05-config.json} |  49 ++++-
- .../processor-sdk-gateway-10_00.json}         |  49 ++++-
- .../processor-sdk-linux-09_00_00_06.json}     |  49 ++++-
- .../processor-sdk-linux-09_00_00_07.json}     |  49 ++++-
- .../processor-sdk-linux-09_01_00_06.json}     |  49 ++++-
- .../processor-sdk-linux-09_01_00_07.json}     |  49 ++++-
- .../processor-sdk-linux-09_02_00_04.json}     |  49 ++++-
- .../processor-sdk-linux-09_02_00_05.json}     |  49 ++++-
- .../processor-sdk-linux-09_03_06_05.json}     |  49 ++++-
- .../processor-sdk-linux-10_00_07_06.json}     |  49 ++++-
- .../processor-sdk-linux-10_00_08_06.json}     |  49 ++++-
- .../processor-sdk-linux-10_01_08_01.json}     |  49 ++++-
- .../processor-sdk-linux-11_00_10_01.json}     |  49 ++++-
- ...cessor-sdk-09.00.00-am62xxsip-config.json} |  49 ++++-
- .../processor-sdk-09.00.00-config.json}       |  49 ++++-
- ...processor-sdk-09.01.00-am65xx-config.json} |  49 ++++-
- .../processor-sdk-09.01.00-config.json}       |  49 ++++-
- ...processor-sdk-09.01.00-legacy-config.json} |  49 ++++-
- ...ocessor-sdk-09.02.00.08-am64x-config.json} |  49 ++++-
- ...cessor-sdk-09.03.05.02-legacy-config.json} |  49 ++++-
- ...essor-sdk-11.00.05.02-am62lxx-config.json} |  49 ++++-
- ...essor-sdk-11.00.15.05-am62lxx-config.json} |  49 ++++-
- ...sor-sdk-kirkstone-09.02.01.09-config.json} |  49 ++++-
- ...sor-sdk-kirkstone-09.02.01.10-config.json} |  49 ++++-
- ...irkstone-chromium-09.02.01.09-config.json} |  49 ++++-
- ...irkstone-chromium-09.02.01.10-config.json} |  49 ++++-
- ...sor-sdk-scarthgap-10.00.07.04-config.json} |  49 ++++-
- ...sor-sdk-scarthgap-10.01.10.04-config.json} |  49 ++++-
- ...sor-sdk-scarthgap-11.00.09.04-config.json} |  49 ++++-
- ...sor-sdk-scarthgap-11.01.05.03-config.json} |  49 ++++-
- ...carthgap-chromium-10.00.07.04-config.json} |  49 ++++-
- ...carthgap-chromium-10.01.10.04-config.json} |  49 ++++-
- ...carthgap-chromium-11.00.09.04-config.json} |  49 ++++-
- ...carthgap-chromium-11.01.05.03-config.json} |  49 ++++-
- ...carthgap-chromium-11.01.12.10-config.json} |  49 ++++-
- ...k-scarthgap-nonqt-11.01.05.03-config.json} |  49 ++++-
- ...scarthgap-selinux-11.00.09.04-config.json} |  49 ++++-
- ...scarthgap-selinux-11.01.05.03-config.json} |  49 ++++-
- .../configs/arago-kirkstone-next-config.conf  |   9 +
- .../configs/arago-master-next-config.conf     |   4 +
- .../configs/arago-master-selinux-config.conf  |   4 +
- .../configs/arago-scarthgap-10x-config.conf   |   4 +
- .../arago-scarthgap-10x-next-config.conf      |   8 +
- .../configs/arago-scarthgap-next-config.conf  |  25 +++
- .../arago-scarthgap-selinux-config.conf       |   4 +
- .../coresdk-10.01.10-selinux-config.conf      |   4 +
- ...-analytics-selinux-11.01.07.05-config.conf |   4 +
- .../processor-sdk-gateway-10_00.conf          |   4 +
- .../processor-sdk-linux-09_00_00_06.conf      |   5 +
- .../processor-sdk-linux-09_00_00_07.conf      |   4 +
- .../processor-sdk-linux-09_01_00_06.conf      |   5 +
- .../processor-sdk-linux-09_01_00_07.conf      |   4 +
- .../processor-sdk-linux-09_02_00_04.conf      |   5 +
- .../processor-sdk-linux-09_02_00_05.conf      |   5 +
- .../processor-sdk-linux-10_00_07_06.conf      |   5 +
- .../processor-sdk-linux-10_00_08_06.conf      |   5 +
- .../processor-sdk-linux-10_01_08_01.conf      |   5 +
- ...-scarthgap-selinux-11.00.09.04-config.conf |   4 +
- ...-scarthgap-selinux-11.01.05.03-config.conf |   4 +
- .../localconf/local-arago64-v2.conf}          |   3 +
- .../localconf/local-arago64-v3.conf}          |   3 +
- .../localconf/local-poky-v2.conf}             |   3 +
- .../localconf/local-poky-v3.conf}             |   3 +
- .../localconf/local-v2.conf}                  |   3 +
- .../localconf/local-v3.conf}                  |   3 +
- conf/layer.conf                               |   2 +-
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../bblayers.conf.sample                      |  30 ---
- .../arago-kirkstone-config/conf-notes.txt     |  22 --
- .../arago-kirkstone-config/conf-summary.txt   |   1 -
- .../arago-kirkstone-config/local.conf.sample  | 175 ---------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 189 ----------------
- .../bblayers.conf.sample                      |  30 ---
- .../arago-kirkstone-wip-config/conf-notes.txt |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 177 ---------------
- .../arago-master-config/bblayers.conf.sample  |  31 ---
- .../arago-master-config/conf-notes.txt        |  22 --
- .../arago-master-config/conf-summary.txt      |   1 -
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 177 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../arago-master-next-config/conf-notes.txt   |  22 --
- .../arago-master-next-config/conf-summary.txt |   1 -
- .../local.conf.sample                         | 186 ----------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 186 ----------------
- .../bblayers.conf.sample                      |  31 ---
- .../arago-master-wip-config/conf-notes.txt    |  22 --
- .../arago-master-wip-config/conf-summary.txt  |   1 -
- .../arago-master-wip-config/local.conf.sample | 177 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../arago-scarthgap-10x-config/conf-notes.txt |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 184 ----------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 188 ----------------
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../arago-scarthgap-config/conf-notes.txt     |  22 --
- .../arago-scarthgap-config/conf-summary.txt   |   1 -
- .../arago-scarthgap-config/local.conf.sample  | 175 ---------------
- .../bblayers.conf.sample                      |  34 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 205 ------------------
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 184 ----------------
- .../bblayers.conf.sample                      |  32 ---
- .../arago-scarthgap-wip-config/conf-notes.txt |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  28 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  28 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  28 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  29 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  29 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  29 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  29 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 184 ----------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  18 --
- .../conf-notes.txt                            |  17 --
- .../conf-summary.txt                          |   1 -
- .../bblayers.conf.sample                      |  18 --
- .../distroless-master-config/conf-notes.txt   |  17 --
- .../distroless-master-config/conf-summary.txt |   1 -
- .../bblayers.conf.sample                      |  18 --
- .../conf-notes.txt                            |  17 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 165 --------------
- .../bblayers.conf.sample                      |  22 --
- .../poky-kirkstone-config/conf-notes.txt      |  17 --
- .../poky-kirkstone-config/conf-summary.txt    |   1 -
- .../poky-master-config/bblayers.conf.sample   |  22 --
- .../poky-master-config/conf-notes.txt         |  17 --
- .../poky-master-config/conf-summary.txt       |   1 -
- .../bblayers.conf.sample                      |  22 --
- .../poky-master-wip-config/conf-notes.txt     |  17 --
- .../poky-master-wip-config/conf-summary.txt   |   1 -
- .../poky-master-wip-config/local.conf.sample  | 174 ---------------
- .../bblayers.conf.sample                      |  22 --
- .../poky-scarthgap-config/conf-notes.txt      |  17 --
- .../poky-scarthgap-config/conf-summary.txt    |   1 -
- .../poky-scarthgap-config/local.conf.sample   | 172 ---------------
- .../bblayers.conf.sample                      |  20 --
- .../poky-scarthgap-wip-config/conf-notes.txt  |  17 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 172 ---------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  34 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  35 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 184 ----------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 184 ----------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 185 ----------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 184 ----------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 185 ----------------
- .../bblayers.conf.sample                      |  30 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 184 ----------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 185 ----------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 185 ----------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 185 ----------------
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 185 ----------------
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 185 ----------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  31 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  32 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  34 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  34 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  34 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  34 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  35 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  35 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  33 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 175 ---------------
- .../bblayers.conf.sample                      |  34 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 184 ----------------
- .../bblayers.conf.sample                      |  35 ---
- .../conf-notes.txt                            |  22 --
- .../conf-summary.txt                          |   1 -
- .../local.conf.sample                         | 184 ----------------
- src/Makefile                                  | 205 +++---------------
- src/bin/convert.pl                            |   8 +-
- src/common/distro_arago.xml                   |  14 ++
- src/common/distro_poky.xml                    |   9 +
- src/common/machines.xml                       |  39 ++++
- src/common/targets_arago.xml                  |   8 -
- src/common/targets_poky.xml                   |   3 -
- .../arago-kirkstone-chromium-config.xml       |   3 +-
- src/configs/arago-kirkstone-config.xml        |   3 +-
- src/configs/arago-kirkstone-next-config.xml   |   3 +-
- src/configs/arago-kirkstone-wip-config.xml    |   3 +-
- src/configs/arago-master-chromium-config.xml  |   3 +-
- src/configs/arago-master-config.xml           |   3 +-
- src/configs/arago-master-flutter-config.xml   |   3 +-
- src/configs/arago-master-next-config.xml      |   3 +-
- src/configs/arago-master-selinux-config.xml   |   3 +-
- src/configs/arago-master-wip-config.xml       |   3 +-
- src/configs/arago-scarthgap-10x-config.xml    |   3 +-
- .../arago-scarthgap-10x-next-config.xml       |   3 +-
- .../arago-scarthgap-chromium-config.xml       |   3 +-
- src/configs/arago-scarthgap-config.xml        |   3 +-
- .../arago-scarthgap-flutter-config.xml        |   3 +-
- src/configs/arago-scarthgap-next-config.xml   |   3 +-
- .../arago-scarthgap-selinux-config.xml        |   3 +-
- src/configs/arago-scarthgap-wip-config.xml    |   3 +-
- .../coresdk/coresdk-09.00.00.006-config.xml   |   3 +-
- .../coresdk/coresdk-09.00.00.007-config.xml   |   3 +-
- .../coresdk/coresdk-09.00.00.011-config.xml   |   3 +-
- .../coresdk/coresdk-09.01.00.001-config.xml   |   3 +-
- .../coresdk/coresdk-09.01.00.003-config.xml   |   3 +-
- .../coresdk/coresdk-09.01.00.007-config.xml   |   3 +-
- .../coresdk/coresdk-09.01.00.008-config.xml   |   3 +-
- .../coresdk/coresdk-09.02.00.008-config.xml   |   3 +-
- .../coresdk/coresdk-09.02.00.009-config.xml   |   3 +-
- .../coresdk/coresdk-09.02.00.010-config.xml   |   3 +-
- .../coresdk/coresdk-09.03.05-config.xml       |   3 +-
- .../coresdk/coresdk-10.00.07-config.xml       |   3 +-
- .../coresdk/coresdk-10.01.08-config.xml       |   3 +-
- .../coresdk/coresdk-10.01.10-config.xml       |   3 +-
- .../coresdk-10.01.10-selinux-config.xml       |   3 +-
- .../coresdk/coresdk-11.00.09-config.xml       |   3 +-
- .../coresdk/coresdk-11.00.15-config.xml       |   3 +-
- .../coresdk/coresdk-11.01.05-config.xml       |   3 +-
- .../coresdk/coresdk-11.01.08-config.xml       |   3 +-
- src/configs/distroless-kirkstone-config.xml   |   1 +
- src/configs/distroless-master-config.xml      |   1 +
- src/configs/distroless-scarthgap-config.xml   |   1 +
- src/configs/poky-kirkstone-config.xml         |   3 +-
- src/configs/poky-master-config.xml            |   3 +-
- src/configs/poky-master-wip-config.xml        |   3 +-
- src/configs/poky-scarthgap-config.xml         |   3 +-
- src/configs/poky-scarthgap-wip-config.xml     |   3 +-
- ...rocessor-sdk-analytics-09.00.00-config.xml |   3 +-
- ...rocessor-sdk-analytics-09.00.01-config.xml |   3 +-
- ...rocessor-sdk-analytics-09.01.00-config.xml |   3 +-
- ...rocessor-sdk-analytics-09.02.00-config.xml |   3 +-
- ...rocessor-sdk-analytics-10.00.00-config.xml |   3 +-
- ...rocessor-sdk-analytics-10.01.00-config.xml |   3 +-
- ...rocessor-sdk-analytics-11.00.00-config.xml |   3 +-
- ...essor-sdk-analytics-11.01.07.05-config.xml |   3 +-
- ...k-analytics-selinux-11.01.07.05-config.xml |   3 +-
- .../processor-sdk-gateway-10_00.xml           |   3 +-
- .../processor-sdk-linux-09_00_00_06.xml       |   3 +-
- .../processor-sdk-linux-09_00_00_07.xml       |   3 +-
- .../processor-sdk-linux-09_01_00_06.xml       |   3 +-
- .../processor-sdk-linux-09_01_00_07.xml       |   3 +-
- .../processor-sdk-linux-09_02_00_04.xml       |   3 +-
- .../processor-sdk-linux-09_02_00_05.xml       |   3 +-
- .../processor-sdk-linux-09_03_06_05.xml       |   3 +-
- .../processor-sdk-linux-10_00_07_06.xml       |   3 +-
- .../processor-sdk-linux-10_00_08_06.xml       |   3 +-
- .../processor-sdk-linux-10_01_08_01.xml       |   3 +-
- .../processor-sdk-linux-11_00_10_01.xml       |   3 +-
- ...rocessor-sdk-09.00.00-am62xxsip-config.xml |   3 +-
- .../processor-sdk-09.00.00-config.xml         |   3 +-
- .../processor-sdk-09.01.00-am65xx-config.xml  |   3 +-
- .../processor-sdk-09.01.00-config.xml         |   3 +-
- .../processor-sdk-09.01.00-legacy-config.xml  |   3 +-
- ...processor-sdk-09.02.00.08-am64x-config.xml |   3 +-
- ...rocessor-sdk-09.03.05.02-legacy-config.xml |   3 +-
- ...ocessor-sdk-11.00.05.02-am62lxx-config.xml |   3 +-
- ...ocessor-sdk-11.00.15.05-am62lxx-config.xml |   3 +-
- ...essor-sdk-kirkstone-09.02.01.09-config.xml |   3 +-
- ...essor-sdk-kirkstone-09.02.01.10-config.xml |   3 +-
- ...-kirkstone-chromium-09.02.01.09-config.xml |   3 +-
- ...-kirkstone-chromium-09.02.01.10-config.xml |   3 +-
- ...essor-sdk-scarthgap-10.00.07.04-config.xml |   3 +-
- ...essor-sdk-scarthgap-10.01.10.04-config.xml |   3 +-
- ...essor-sdk-scarthgap-11.00.09.04-config.xml |   3 +-
- ...essor-sdk-scarthgap-11.01.05.03-config.xml |   3 +-
- ...-scarthgap-chromium-10.00.07.04-config.xml |   3 +-
- ...-scarthgap-chromium-10.01.10.04-config.xml |   3 +-
- ...-scarthgap-chromium-11.00.09.04-config.xml |   3 +-
- ...-scarthgap-chromium-11.01.05.03-config.xml |   3 +-
- ...-scarthgap-chromium-11.01.12.10-config.xml |   3 +-
- ...sdk-scarthgap-nonqt-11.01.05.03-config.xml |   3 +-
- ...k-scarthgap-selinux-11.00.09.04-config.xml |   3 +-
- ...k-scarthgap-selinux-11.01.05.03-config.xml |   3 +-
- src/templates/local-arago64-v2.conf.xml       |   2 +
- src/templates/local-arago64-v3.conf.xml       |   2 +
- src/templates/local-poky-v2.conf.xml          |   2 +
- src/templates/local-poky-v3.conf.xml          |   2 +
- src/templates/local-v2.conf.xml               |   2 +
- src/templates/local-v3.conf.xml               |   2 +
- src/xslt/bitbake-setup-bblayers-conf.xslt     |  45 ----
- src/xslt/bitbake-setup-conf-notes.xslt        |  32 ---
- src/xslt/bitbake-setup-conf-summary.xslt      |   9 -
- src/xslt/bitbake-setup-config-localconf.xslt  |  20 ++
- src/xslt/bitbake-setup-local-conf.xslt        |  34 ---
- ...=> bitbake-setup-localconf-templates.xslt} |  11 +-
- src/xslt/bitbake-setup.xslt                   |  82 ++++++-
- src/xslt/kas.xslt                             |   4 +-
- 593 files changed, 4781 insertions(+), 21411 deletions(-)
- rename bitbake-setup/{coresdk_coresdk-09.00.00.006-config.json => coresdk/coresdk-09.00.00.006-config.json} (50%)
- rename bitbake-setup/{coresdk_coresdk-09.00.00.007-config.json => coresdk/coresdk-09.00.00.007-config.json} (50%)
- rename bitbake-setup/{coresdk_coresdk-09.00.00.011-config.json => coresdk/coresdk-09.00.00.011-config.json} (50%)
- create mode 100644 bitbake-setup/coresdk/coresdk-09.01.00.001-config.json
- create mode 100644 bitbake-setup/coresdk/coresdk-09.01.00.003-config.json
- create mode 100644 bitbake-setup/coresdk/coresdk-09.01.00.007-config.json
- create mode 100644 bitbake-setup/coresdk/coresdk-09.01.00.008-config.json
- rename bitbake-setup/{coresdk_coresdk-09.02.00.008-config.json => coresdk/coresdk-09.02.00.008-config.json} (52%)
- rename bitbake-setup/{coresdk_coresdk-09.02.00.009-config.json => coresdk/coresdk-09.02.00.009-config.json} (52%)
- rename bitbake-setup/{coresdk_coresdk-09.02.00.010-config.json => coresdk/coresdk-09.02.00.010-config.json} (52%)
- rename bitbake-setup/{coresdk_coresdk-09.03.05-config.json => coresdk/coresdk-09.03.05-config.json} (52%)
- rename bitbake-setup/{coresdk_coresdk-10.00.07-config.json => coresdk/coresdk-10.00.07-config.json} (51%)
- rename bitbake-setup/{coresdk_coresdk-10.01.08-config.json => coresdk/coresdk-10.01.08-config.json} (51%)
- rename bitbake-setup/{coresdk_coresdk-10.01.10-config.json => coresdk/coresdk-10.01.10-config.json} (51%)
- rename bitbake-setup/{coresdk_coresdk-10.01.10-selinux-config.json => coresdk/coresdk-10.01.10-selinux-config.json} (53%)
- rename bitbake-setup/{coresdk_coresdk-11.00.09-config.json => coresdk/coresdk-11.00.09-config.json} (51%)
- rename bitbake-setup/{coresdk_coresdk-11.00.15-config.json => coresdk/coresdk-11.00.15-config.json} (51%)
- rename bitbake-setup/{coresdk_coresdk-11.01.05-config.json => coresdk/coresdk-11.01.05-config.json} (54%)
- rename bitbake-setup/{coresdk_coresdk-11.01.08-config.json => coresdk/coresdk-11.01.08-config.json} (54%)
- delete mode 100644 bitbake-setup/coresdk_coresdk-09.01.00.001-config.json
- delete mode 100644 bitbake-setup/coresdk_coresdk-09.01.00.003-config.json
- delete mode 100644 bitbake-setup/coresdk_coresdk-09.01.00.007-config.json
- delete mode 100644 bitbake-setup/coresdk_coresdk-09.01.00.008-config.json
- rename bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-09.00.00-config.json => processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.json} (54%)
- rename bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-09.00.01-config.json => processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.json} (54%)
- rename bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-09.01.00-config.json => processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.json} (54%)
- rename bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-09.02.00-config.json => processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.json} (54%)
- rename bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-10.00.00-config.json => processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.json} (54%)
- rename bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-10.01.00-config.json => processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.json} (56%)
- rename bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-11.00.00-config.json => processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.json} (56%)
- rename bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config.json => processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.json} (57%)
- rename bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config.json => processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.json} (58%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-gateway-10_00.json => processor-sdk-linux/processor-sdk-gateway-10_00.json} (53%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_00_00_06.json => processor-sdk-linux/processor-sdk-linux-09_00_00_06.json} (53%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_00_00_07.json => processor-sdk-linux/processor-sdk-linux-09_00_00_07.json} (53%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_01_00_06.json => processor-sdk-linux/processor-sdk-linux-09_01_00_06.json} (51%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_01_00_07.json => processor-sdk-linux/processor-sdk-linux-09_01_00_07.json} (51%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_02_00_04.json => processor-sdk-linux/processor-sdk-linux-09_02_00_04.json} (55%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_02_00_05.json => processor-sdk-linux/processor-sdk-linux-09_02_00_05.json} (55%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_03_06_05.json => processor-sdk-linux/processor-sdk-linux-09_03_06_05.json} (54%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-10_00_07_06.json => processor-sdk-linux/processor-sdk-linux-10_00_07_06.json} (54%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-10_00_08_06.json => processor-sdk-linux/processor-sdk-linux-10_00_08_06.json} (54%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-10_01_08_01.json => processor-sdk-linux/processor-sdk-linux-10_01_08_01.json} (54%)
- rename bitbake-setup/{processor-sdk-linux_processor-sdk-linux-11_00_10_01.json => processor-sdk-linux/processor-sdk-linux-11_00_10_01.json} (56%)
- rename bitbake-setup/{processor-sdk_processor-sdk-09.00.00-am62xxsip-config.json => processor-sdk/processor-sdk-09.00.00-am62xxsip-config.json} (54%)
- rename bitbake-setup/{processor-sdk_processor-sdk-09.00.00-config.json => processor-sdk/processor-sdk-09.00.00-config.json} (54%)
- rename bitbake-setup/{processor-sdk_processor-sdk-09.01.00-am65xx-config.json => processor-sdk/processor-sdk-09.01.00-am65xx-config.json} (52%)
- rename bitbake-setup/{processor-sdk_processor-sdk-09.01.00-config.json => processor-sdk/processor-sdk-09.01.00-config.json} (54%)
- rename bitbake-setup/{processor-sdk_processor-sdk-09.01.00-legacy-config.json => processor-sdk/processor-sdk-09.01.00-legacy-config.json} (52%)
- rename bitbake-setup/{processor-sdk_processor-sdk-09.02.00.08-am64x-config.json => processor-sdk/processor-sdk-09.02.00.08-am64x-config.json} (54%)
- rename bitbake-setup/{processor-sdk_processor-sdk-09.03.05.02-legacy-config.json => processor-sdk/processor-sdk-09.03.05.02-legacy-config.json} (52%)
- rename bitbake-setup/{processor-sdk_processor-sdk-11.00.05.02-am62lxx-config.json => processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.json} (52%)
- rename bitbake-setup/{processor-sdk_processor-sdk-11.00.15.05-am62lxx-config.json => processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.json} (51%)
- rename bitbake-setup/{processor-sdk_processor-sdk-kirkstone-09.02.01.09-config.json => processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.json} (56%)
- rename bitbake-setup/{processor-sdk_processor-sdk-kirkstone-09.02.01.10-config.json => processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.json} (56%)
- rename bitbake-setup/{processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config.json => processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.json} (58%)
- rename bitbake-setup/{processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config.json => processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.json} (58%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-10.00.07.04-config.json => processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.json} (54%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-10.01.10.04-config.json => processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.json} (54%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-11.00.09.04-config.json => processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.json} (53%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-11.01.05.03-config.json => processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.json} (55%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config.json => processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.json} (57%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.04-config.json => processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.json} (57%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-chromium-11.00.09.04-config.json => processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.json} (55%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config.json => processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.json} (57%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config.json => processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.json} (57%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config.json => processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.json} (53%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-selinux-11.00.09.04-config.json => processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.json} (54%)
- rename bitbake-setup/{processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config.json => processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.json} (56%)
- create mode 100644 conf/fragments/localconf/configs/arago-kirkstone-next-config.conf
- create mode 100644 conf/fragments/localconf/configs/arago-master-next-config.conf
- create mode 100644 conf/fragments/localconf/configs/arago-master-selinux-config.conf
- create mode 100644 conf/fragments/localconf/configs/arago-scarthgap-10x-config.conf
- create mode 100644 conf/fragments/localconf/configs/arago-scarthgap-10x-next-config.conf
- create mode 100644 conf/fragments/localconf/configs/arago-scarthgap-next-config.conf
- create mode 100644 conf/fragments/localconf/configs/arago-scarthgap-selinux-config.conf
- create mode 100644 conf/fragments/localconf/configs/coresdk/coresdk-10.01.10-selinux-config.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-gateway-10_00.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.conf
- create mode 100644 conf/fragments/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.conf
- rename conf/{templates/arago-kirkstone-chromium-config/local.conf.sample => fragments/localconf/local-arago64-v2.conf} (97%)
- rename conf/{templates/arago-master-config/local.conf.sample => fragments/localconf/local-arago64-v3.conf} (97%)
- rename conf/{templates/poky-kirkstone-config/local.conf.sample => fragments/localconf/local-poky-v2.conf} (97%)
- rename conf/{templates/poky-master-config/local.conf.sample => fragments/localconf/local-poky-v3.conf} (97%)
- rename conf/{templates/distroless-kirkstone-config/local.conf.sample => fragments/localconf/local-v2.conf} (97%)
- rename conf/{templates/distroless-master-config/local.conf.sample => fragments/localconf/local-v3.conf} (97%)
- delete mode 100644 conf/templates/arago-kirkstone-chromium-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-kirkstone-chromium-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-kirkstone-chromium-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-kirkstone-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-kirkstone-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-kirkstone-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-kirkstone-config/local.conf.sample
- delete mode 100644 conf/templates/arago-kirkstone-next-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-kirkstone-next-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-kirkstone-next-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-kirkstone-next-config/local.conf.sample
- delete mode 100644 conf/templates/arago-kirkstone-wip-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-kirkstone-wip-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-kirkstone-wip-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-kirkstone-wip-config/local.conf.sample
- delete mode 100644 conf/templates/arago-master-chromium-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-master-chromium-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-master-chromium-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-master-chromium-config/local.conf.sample
- delete mode 100644 conf/templates/arago-master-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-master-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-master-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-master-flutter-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-master-flutter-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-master-flutter-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-master-flutter-config/local.conf.sample
- delete mode 100644 conf/templates/arago-master-next-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-master-next-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-master-next-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-master-next-config/local.conf.sample
- delete mode 100644 conf/templates/arago-master-selinux-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-master-selinux-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-master-selinux-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-master-selinux-config/local.conf.sample
- delete mode 100644 conf/templates/arago-master-wip-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-master-wip-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-master-wip-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-master-wip-config/local.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-10x-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-10x-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-scarthgap-10x-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-scarthgap-10x-config/local.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-10x-next-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-10x-next-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-scarthgap-10x-next-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-scarthgap-10x-next-config/local.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-chromium-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-chromium-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-scarthgap-chromium-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-scarthgap-chromium-config/local.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-scarthgap-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-scarthgap-config/local.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-flutter-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-flutter-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-scarthgap-flutter-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-scarthgap-flutter-config/local.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-next-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-next-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-scarthgap-next-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-scarthgap-next-config/local.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-selinux-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-selinux-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-scarthgap-selinux-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-scarthgap-selinux-config/local.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-wip-config/bblayers.conf.sample
- delete mode 100644 conf/templates/arago-scarthgap-wip-config/conf-notes.txt
- delete mode 100644 conf/templates/arago-scarthgap-wip-config/conf-summary.txt
- delete mode 100644 conf/templates/arago-scarthgap-wip-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.006-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.006-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.006-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.006-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.007-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.007-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.007-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.007-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.011-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.011-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.011-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.00.00.011-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.001-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.001-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.001-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.001-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.003-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.003-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.003-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.003-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.007-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.007-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.007-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.007-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.008-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.008-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.008-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.01.00.008-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.008-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.008-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.008-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.008-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.009-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.009-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.009-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.009-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.010-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.010-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.010-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.02.00.010-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.03.05-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-09.03.05-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.03.05-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-09.03.05-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-10.00.07-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-10.00.07-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-10.00.07-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-10.00.07-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.08-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.08-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.08-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.08-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.10-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.10-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.10-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.10-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.10-selinux-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.10-selinux-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.10-selinux-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-10.01.10-selinux-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-11.00.09-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-11.00.09-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-11.00.09-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-11.00.09-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-11.00.15-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-11.00.15-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-11.00.15-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-11.00.15-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-11.01.05-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-11.01.05-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-11.01.05-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-11.01.05-config/local.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-11.01.08-config/bblayers.conf.sample
- delete mode 100644 conf/templates/coresdk_coresdk-11.01.08-config/conf-notes.txt
- delete mode 100644 conf/templates/coresdk_coresdk-11.01.08-config/conf-summary.txt
- delete mode 100644 conf/templates/coresdk_coresdk-11.01.08-config/local.conf.sample
- delete mode 100644 conf/templates/distroless-kirkstone-config/bblayers.conf.sample
- delete mode 100644 conf/templates/distroless-kirkstone-config/conf-notes.txt
- delete mode 100644 conf/templates/distroless-kirkstone-config/conf-summary.txt
- delete mode 100644 conf/templates/distroless-master-config/bblayers.conf.sample
- delete mode 100644 conf/templates/distroless-master-config/conf-notes.txt
- delete mode 100644 conf/templates/distroless-master-config/conf-summary.txt
- delete mode 100644 conf/templates/distroless-scarthgap-config/bblayers.conf.sample
- delete mode 100644 conf/templates/distroless-scarthgap-config/conf-notes.txt
- delete mode 100644 conf/templates/distroless-scarthgap-config/conf-summary.txt
- delete mode 100644 conf/templates/distroless-scarthgap-config/local.conf.sample
- delete mode 100644 conf/templates/poky-kirkstone-config/bblayers.conf.sample
- delete mode 100644 conf/templates/poky-kirkstone-config/conf-notes.txt
- delete mode 100644 conf/templates/poky-kirkstone-config/conf-summary.txt
- delete mode 100644 conf/templates/poky-master-config/bblayers.conf.sample
- delete mode 100644 conf/templates/poky-master-config/conf-notes.txt
- delete mode 100644 conf/templates/poky-master-config/conf-summary.txt
- delete mode 100644 conf/templates/poky-master-wip-config/bblayers.conf.sample
- delete mode 100644 conf/templates/poky-master-wip-config/conf-notes.txt
- delete mode 100644 conf/templates/poky-master-wip-config/conf-summary.txt
- delete mode 100644 conf/templates/poky-master-wip-config/local.conf.sample
- delete mode 100644 conf/templates/poky-scarthgap-config/bblayers.conf.sample
- delete mode 100644 conf/templates/poky-scarthgap-config/conf-notes.txt
- delete mode 100644 conf/templates/poky-scarthgap-config/conf-summary.txt
- delete mode 100644 conf/templates/poky-scarthgap-config/local.conf.sample
- delete mode 100644 conf/templates/poky-scarthgap-wip-config/bblayers.conf.sample
- delete mode 100644 conf/templates/poky-scarthgap-wip-config/conf-notes.txt
- delete mode 100644 conf/templates/poky-scarthgap-wip-config/conf-summary.txt
- delete mode 100644 conf/templates/poky-scarthgap-wip-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.01.00-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.01.00-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.01.00-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-10.01.00-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.00.00-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.00.00-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.00.00-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.00.00-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-gateway-10_00/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-gateway-10_00/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-gateway-10_00/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-gateway-10_00/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_06/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_06/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_06/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_06/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_07/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_07/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_07/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_00_00_07/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_06/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_06/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_06/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_06/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_07/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_07/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_07/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_01_00_07/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_04/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_04/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_04/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_04/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_05/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_05/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_05/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_02_00_05/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_03_06_05/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_03_06_05/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_03_06_05/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-09_03_06_05/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_07_06/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_07_06/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_07_06/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_07_06/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_08_06/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_08_06/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_08_06/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_00_08_06/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_01_08_01/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_01_08_01/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_01_08_01/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-10_01_08_01/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk-linux_processor-sdk-linux-11_00_10_01/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.00.00-am62xxsip-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.00.00-am62xxsip-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.00.00-am62xxsip-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.00.00-am62xxsip-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.00.00-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.00.00-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.00.00-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.00.00-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-am65xx-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-am65xx-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-am65xx-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-am65xx-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-legacy-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-legacy-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-legacy-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.01.00-legacy-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.02.00.08-am64x-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.02.00.08-am64x-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.02.00.08-am64x-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.02.00.08-am64x-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-09.03.05.02-legacy-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-11.00.05.02-am62lxx-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-11.00.05.02-am62lxx-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-11.00.05.02-am62lxx-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-11.00.05.02-am62lxx-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-11.00.15.05-am62lxx-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-11.00.15.05-am62lxx-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-11.00.15.05-am62lxx-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-11.00.15.05-am62lxx-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.00.09.04-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.00.09.04-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.00.09.04-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.00.09.04-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.04-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.04-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.04-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.04-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.00.09.04-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.00.09.04-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.00.09.04-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.00.09.04-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.00.09.04-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.00.09.04-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.00.09.04-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.00.09.04-config/local.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/bblayers.conf.sample
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/conf-notes.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/conf-summary.txt
- delete mode 100644 conf/templates/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config/local.conf.sample
- create mode 100644 src/common/distro_arago.xml
- create mode 100644 src/common/distro_poky.xml
- create mode 100644 src/common/machines.xml
- delete mode 100644 src/common/targets_arago.xml
- delete mode 100644 src/common/targets_poky.xml
- delete mode 100644 src/xslt/bitbake-setup-bblayers-conf.xslt
- delete mode 100644 src/xslt/bitbake-setup-conf-notes.xslt
- delete mode 100644 src/xslt/bitbake-setup-conf-summary.xslt
- create mode 100644 src/xslt/bitbake-setup-config-localconf.xslt
- delete mode 100644 src/xslt/bitbake-setup-local-conf.xslt
- copy src/xslt/{oe-layersetup-templates.xslt => bitbake-setup-localconf-templates.xslt} (64%)
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ src/configs/arago-kirkstone-chromium-config.xml                | 3 ++-
+ src/configs/arago-kirkstone-config.xml                         | 3 ++-
+ src/configs/arago-kirkstone-next-config.xml                    | 3 ++-
+ src/configs/arago-kirkstone-wip-config.xml                     | 3 ++-
+ src/configs/arago-master-chromium-config.xml                   | 3 ++-
+ src/configs/arago-master-config.xml                            | 3 ++-
+ src/configs/arago-master-flutter-config.xml                    | 3 ++-
+ src/configs/arago-master-next-config.xml                       | 3 ++-
+ src/configs/arago-master-selinux-config.xml                    | 3 ++-
+ src/configs/arago-master-wip-config.xml                        | 3 ++-
+ src/configs/arago-scarthgap-10x-config.xml                     | 3 ++-
+ src/configs/arago-scarthgap-10x-next-config.xml                | 3 ++-
+ src/configs/arago-scarthgap-chromium-config.xml                | 3 ++-
+ src/configs/arago-scarthgap-config.xml                         | 3 ++-
+ src/configs/arago-scarthgap-flutter-config.xml                 | 3 ++-
+ src/configs/arago-scarthgap-next-config.xml                    | 3 ++-
+ src/configs/arago-scarthgap-selinux-config.xml                 | 3 ++-
+ src/configs/arago-scarthgap-wip-config.xml                     | 3 ++-
+ src/configs/coresdk/coresdk-09.00.00.006-config.xml            | 3 ++-
+ src/configs/coresdk/coresdk-09.00.00.007-config.xml            | 3 ++-
+ src/configs/coresdk/coresdk-09.00.00.011-config.xml            | 3 ++-
+ src/configs/coresdk/coresdk-09.01.00.001-config.xml            | 3 ++-
+ src/configs/coresdk/coresdk-09.01.00.003-config.xml            | 3 ++-
+ src/configs/coresdk/coresdk-09.01.00.007-config.xml            | 3 ++-
+ src/configs/coresdk/coresdk-09.01.00.008-config.xml            | 3 ++-
+ src/configs/coresdk/coresdk-09.02.00.008-config.xml            | 3 ++-
+ src/configs/coresdk/coresdk-09.02.00.009-config.xml            | 3 ++-
+ src/configs/coresdk/coresdk-09.02.00.010-config.xml            | 3 ++-
+ src/configs/coresdk/coresdk-09.03.05-config.xml                | 3 ++-
+ src/configs/coresdk/coresdk-10.00.07-config.xml                | 3 ++-
+ src/configs/coresdk/coresdk-10.01.08-config.xml                | 3 ++-
+ src/configs/coresdk/coresdk-10.01.10-config.xml                | 3 ++-
+ src/configs/coresdk/coresdk-10.01.10-selinux-config.xml        | 3 ++-
+ src/configs/coresdk/coresdk-11.00.09-config.xml                | 3 ++-
+ src/configs/coresdk/coresdk-11.00.15-config.xml                | 3 ++-
+ src/configs/coresdk/coresdk-11.01.05-config.xml                | 3 ++-
+ src/configs/coresdk/coresdk-11.01.08-config.xml                | 3 ++-
+ src/configs/distroless-kirkstone-config.xml                    | 1 +
+ src/configs/distroless-master-config.xml                       | 1 +
+ src/configs/distroless-scarthgap-config.xml                    | 1 +
+ src/configs/poky-kirkstone-config.xml                          | 3 ++-
+ src/configs/poky-master-config.xml                             | 3 ++-
+ src/configs/poky-master-wip-config.xml                         | 3 ++-
+ src/configs/poky-scarthgap-config.xml                          | 3 ++-
+ src/configs/poky-scarthgap-wip-config.xml                      | 3 ++-
+ .../processor-sdk-analytics-09.00.00-config.xml                | 3 ++-
+ .../processor-sdk-analytics-09.00.01-config.xml                | 3 ++-
+ .../processor-sdk-analytics-09.01.00-config.xml                | 3 ++-
+ .../processor-sdk-analytics-09.02.00-config.xml                | 3 ++-
+ .../processor-sdk-analytics-10.00.00-config.xml                | 3 ++-
+ .../processor-sdk-analytics-10.01.00-config.xml                | 3 ++-
+ .../processor-sdk-analytics-11.00.00-config.xml                | 3 ++-
+ .../processor-sdk-analytics-11.01.07.05-config.xml             | 3 ++-
+ .../processor-sdk-analytics-selinux-11.01.07.05-config.xml     | 3 ++-
+ .../processor-sdk-linux/processor-sdk-gateway-10_00.xml        | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-09_00_00_06.xml    | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-09_00_00_07.xml    | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-09_01_00_06.xml    | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-09_01_00_07.xml    | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-09_02_00_04.xml    | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-09_02_00_05.xml    | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-09_03_06_05.xml    | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-10_00_07_06.xml    | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-10_00_08_06.xml    | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-10_01_08_01.xml    | 3 ++-
+ .../processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml    | 3 ++-
+ .../processor-sdk/processor-sdk-09.00.00-am62xxsip-config.xml  | 3 ++-
+ src/configs/processor-sdk/processor-sdk-09.00.00-config.xml    | 3 ++-
+ .../processor-sdk/processor-sdk-09.01.00-am65xx-config.xml     | 3 ++-
+ src/configs/processor-sdk/processor-sdk-09.01.00-config.xml    | 3 ++-
+ .../processor-sdk/processor-sdk-09.01.00-legacy-config.xml     | 3 ++-
+ .../processor-sdk/processor-sdk-09.02.00.08-am64x-config.xml   | 3 ++-
+ .../processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml  | 3 ++-
+ .../processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.xml | 3 ++-
+ .../processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.xml | 3 ++-
+ .../processor-sdk-kirkstone-09.02.01.09-config.xml             | 3 ++-
+ .../processor-sdk-kirkstone-09.02.01.10-config.xml             | 3 ++-
+ .../processor-sdk-kirkstone-chromium-09.02.01.09-config.xml    | 3 ++-
+ .../processor-sdk-kirkstone-chromium-09.02.01.10-config.xml    | 3 ++-
+ .../processor-sdk-scarthgap-10.00.07.04-config.xml             | 3 ++-
+ .../processor-sdk-scarthgap-10.01.10.04-config.xml             | 3 ++-
+ .../processor-sdk-scarthgap-11.00.09.04-config.xml             | 3 ++-
+ .../processor-sdk-scarthgap-11.01.05.03-config.xml             | 3 ++-
+ .../processor-sdk-scarthgap-chromium-10.00.07.04-config.xml    | 3 ++-
+ .../processor-sdk-scarthgap-chromium-10.01.10.04-config.xml    | 3 ++-
+ .../processor-sdk-scarthgap-chromium-11.00.09.04-config.xml    | 3 ++-
+ .../processor-sdk-scarthgap-chromium-11.01.05.03-config.xml    | 3 ++-
+ .../processor-sdk-scarthgap-chromium-11.01.12.10-config.xml    | 3 ++-
+ .../processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml       | 3 ++-
+ .../processor-sdk-scarthgap-selinux-11.00.09.04-config.xml     | 3 ++-
+ .../processor-sdk-scarthgap-selinux-11.01.05.03-config.xml     | 3 ++-
+ src/templates/local-arago64-v2.conf.xml                        | 2 ++
+ src/templates/local-arago64-v3.conf.xml                        | 2 ++
+ src/templates/local-poky-v2.conf.xml                           | 2 ++
+ src/templates/local-poky-v3.conf.xml                           | 2 ++
+ src/templates/local-v2.conf.xml                                | 2 ++
+ src/templates/local-v3.conf.xml                                | 2 ++
+ 97 files changed, 191 insertions(+), 88 deletions(-)
 
+diff --git a/src/configs/arago-kirkstone-chromium-config.xml b/src/configs/arago-kirkstone-chromium-config.xml
+index 4ab973c..df49027 100644
+--- a/src/configs/arago-kirkstone-chromium-config.xml
++++ b/src/configs/arago-kirkstone-chromium-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for kirkstone-chromium</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-kirkstone-config.xml b/src/configs/arago-kirkstone-config.xml
+index d568956..cc8e1d5 100644
+--- a/src/configs/arago-kirkstone-config.xml
++++ b/src/configs/arago-kirkstone-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for kirkstone</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-kirkstone-next-config.xml b/src/configs/arago-kirkstone-next-config.xml
+index 7d6ffde..dd6815f 100644
+--- a/src/configs/arago-kirkstone-next-config.xml
++++ b/src/configs/arago-kirkstone-next-config.xml
+@@ -3,7 +3,8 @@
+     <description>Arago reference distribution for kirkstone-next (CICD)</description>
+ 
+     <xi:include href='../common/motd_cicd.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-kirkstone-wip-config.xml b/src/configs/arago-kirkstone-wip-config.xml
+index 5d672f1..f08ac6f 100644
+--- a/src/configs/arago-kirkstone-wip-config.xml
++++ b/src/configs/arago-kirkstone-wip-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for kirkstone-wip</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-master-chromium-config.xml b/src/configs/arago-master-chromium-config.xml
+index 5ac01ba..d59c579 100644
+--- a/src/configs/arago-master-chromium-config.xml
++++ b/src/configs/arago-master-chromium-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for master-chromium</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-master-config.xml b/src/configs/arago-master-config.xml
+index a7eeb4d..1f3bb4e 100644
+--- a/src/configs/arago-master-config.xml
++++ b/src/configs/arago-master-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for master</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-master-flutter-config.xml b/src/configs/arago-master-flutter-config.xml
+index 3fdcbe7..0bb8972 100644
+--- a/src/configs/arago-master-flutter-config.xml
++++ b/src/configs/arago-master-flutter-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for master-flutter</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-master-next-config.xml b/src/configs/arago-master-next-config.xml
+index c4ec0f5..2f3c78a 100644
+--- a/src/configs/arago-master-next-config.xml
++++ b/src/configs/arago-master-next-config.xml
+@@ -3,7 +3,8 @@
+     <description>Arago reference distribution for master-next (CICD)</description>
+ 
+     <xi:include href='../common/motd_cicd.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-master-selinux-config.xml b/src/configs/arago-master-selinux-config.xml
+index 59d05d7..e3018bd 100644
+--- a/src/configs/arago-master-selinux-config.xml
++++ b/src/configs/arago-master-selinux-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for master</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-master-wip-config.xml b/src/configs/arago-master-wip-config.xml
+index e8a8407..fe52c8c 100644
+--- a/src/configs/arago-master-wip-config.xml
++++ b/src/configs/arago-master-wip-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for master-wip</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-scarthgap-10x-config.xml b/src/configs/arago-scarthgap-10x-config.xml
+index ead78e2..505245f 100644
+--- a/src/configs/arago-scarthgap-10x-config.xml
++++ b/src/configs/arago-scarthgap-10x-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for scarthgap</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-scarthgap-10x-next-config.xml b/src/configs/arago-scarthgap-10x-next-config.xml
+index 1d55f7e..727cef6 100644
+--- a/src/configs/arago-scarthgap-10x-next-config.xml
++++ b/src/configs/arago-scarthgap-10x-next-config.xml
+@@ -3,7 +3,8 @@
+     <description>Arago reference distribution for scarthgap-next (CICD)</description>
+ 
+     <xi:include href='../common/motd_cicd.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-scarthgap-chromium-config.xml b/src/configs/arago-scarthgap-chromium-config.xml
+index 5ed35b4..ca960cd 100644
+--- a/src/configs/arago-scarthgap-chromium-config.xml
++++ b/src/configs/arago-scarthgap-chromium-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for scarthgap-chromium</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-scarthgap-config.xml b/src/configs/arago-scarthgap-config.xml
+index d5c571e..3a3302a 100644
+--- a/src/configs/arago-scarthgap-config.xml
++++ b/src/configs/arago-scarthgap-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for scarthgap</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-scarthgap-flutter-config.xml b/src/configs/arago-scarthgap-flutter-config.xml
+index 8686025..eb3920c 100644
+--- a/src/configs/arago-scarthgap-flutter-config.xml
++++ b/src/configs/arago-scarthgap-flutter-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for scarthgap</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-scarthgap-next-config.xml b/src/configs/arago-scarthgap-next-config.xml
+index df77559..85a4326 100644
+--- a/src/configs/arago-scarthgap-next-config.xml
++++ b/src/configs/arago-scarthgap-next-config.xml
+@@ -3,7 +3,8 @@
+     <description>Arago reference distribution for scarthgap-next (CICD)</description>
+ 
+     <xi:include href='../common/motd_cicd.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-scarthgap-selinux-config.xml b/src/configs/arago-scarthgap-selinux-config.xml
+index 1096683..cfc2217 100644
+--- a/src/configs/arago-scarthgap-selinux-config.xml
++++ b/src/configs/arago-scarthgap-selinux-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for scarthgap</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/arago-scarthgap-wip-config.xml b/src/configs/arago-scarthgap-wip-config.xml
+index cdb4a29..e5a1596 100644
+--- a/src/configs/arago-scarthgap-wip-config.xml
++++ b/src/configs/arago-scarthgap-wip-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Arago reference distribution for scarthgap-wip</description>
+ 
+-    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.00.00.006-config.xml b/src/configs/coresdk/coresdk-09.00.00.006-config.xml
+index fcd933d..2eebcb1 100644
+--- a/src/configs/coresdk/coresdk-09.00.00.006-config.xml
++++ b/src/configs/coresdk/coresdk-09.00.00.006-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.00.00.006</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.00.00.007-config.xml b/src/configs/coresdk/coresdk-09.00.00.007-config.xml
+index 9cf9601..0a8d7e3 100644
+--- a/src/configs/coresdk/coresdk-09.00.00.007-config.xml
++++ b/src/configs/coresdk/coresdk-09.00.00.007-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.00.00.007</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.00.00.011-config.xml b/src/configs/coresdk/coresdk-09.00.00.011-config.xml
+index 3906414..2534264 100644
+--- a/src/configs/coresdk/coresdk-09.00.00.011-config.xml
++++ b/src/configs/coresdk/coresdk-09.00.00.011-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.00.00.011</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.01.00.001-config.xml b/src/configs/coresdk/coresdk-09.01.00.001-config.xml
+index 67ad2fd..1942bcc 100644
+--- a/src/configs/coresdk/coresdk-09.01.00.001-config.xml
++++ b/src/configs/coresdk/coresdk-09.01.00.001-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.01.00.001</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.01.00.003-config.xml b/src/configs/coresdk/coresdk-09.01.00.003-config.xml
+index 006ed07..297e447 100644
+--- a/src/configs/coresdk/coresdk-09.01.00.003-config.xml
++++ b/src/configs/coresdk/coresdk-09.01.00.003-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.01.00.003</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.01.00.007-config.xml b/src/configs/coresdk/coresdk-09.01.00.007-config.xml
+index a0f0872..4e9d77a 100644
+--- a/src/configs/coresdk/coresdk-09.01.00.007-config.xml
++++ b/src/configs/coresdk/coresdk-09.01.00.007-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.01.00.007</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.01.00.008-config.xml b/src/configs/coresdk/coresdk-09.01.00.008-config.xml
+index 4278823..7a8cb6e 100644
+--- a/src/configs/coresdk/coresdk-09.01.00.008-config.xml
++++ b/src/configs/coresdk/coresdk-09.01.00.008-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.01.00.008</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.02.00.008-config.xml b/src/configs/coresdk/coresdk-09.02.00.008-config.xml
+index 17da7f2..3131288 100644
+--- a/src/configs/coresdk/coresdk-09.02.00.008-config.xml
++++ b/src/configs/coresdk/coresdk-09.02.00.008-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.02.00.008</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.02.00.009-config.xml b/src/configs/coresdk/coresdk-09.02.00.009-config.xml
+index 2320051..6187b6f 100644
+--- a/src/configs/coresdk/coresdk-09.02.00.009-config.xml
++++ b/src/configs/coresdk/coresdk-09.02.00.009-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.02.00.009</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.02.00.010-config.xml b/src/configs/coresdk/coresdk-09.02.00.010-config.xml
+index 1182413..edd24d5 100644
+--- a/src/configs/coresdk/coresdk-09.02.00.010-config.xml
++++ b/src/configs/coresdk/coresdk-09.02.00.010-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.02.00.010</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-09.03.05-config.xml b/src/configs/coresdk/coresdk-09.03.05-config.xml
+index 4cb5d1f..ff6a24f 100644
+--- a/src/configs/coresdk/coresdk-09.03.05-config.xml
++++ b/src/configs/coresdk/coresdk-09.03.05-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v09.03.05</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-10.00.07-config.xml b/src/configs/coresdk/coresdk-10.00.07-config.xml
+index f244fd4..6791de3 100644
+--- a/src/configs/coresdk/coresdk-10.00.07-config.xml
++++ b/src/configs/coresdk/coresdk-10.00.07-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v10.00.07</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-10.01.08-config.xml b/src/configs/coresdk/coresdk-10.01.08-config.xml
+index 32b15b1..b7ddf05 100644
+--- a/src/configs/coresdk/coresdk-10.01.08-config.xml
++++ b/src/configs/coresdk/coresdk-10.01.08-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v10.01.08</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-10.01.10-config.xml b/src/configs/coresdk/coresdk-10.01.10-config.xml
+index 419ff7f..bf9fb4f 100644
+--- a/src/configs/coresdk/coresdk-10.01.10-config.xml
++++ b/src/configs/coresdk/coresdk-10.01.10-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v10.01.10</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-10.01.10-selinux-config.xml b/src/configs/coresdk/coresdk-10.01.10-selinux-config.xml
+index 2dc488c..303a1b5 100644
+--- a/src/configs/coresdk/coresdk-10.01.10-selinux-config.xml
++++ b/src/configs/coresdk/coresdk-10.01.10-selinux-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v10.01.10-selinux</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-11.00.09-config.xml b/src/configs/coresdk/coresdk-11.00.09-config.xml
+index e1732cc..0d3b62d 100644
+--- a/src/configs/coresdk/coresdk-11.00.09-config.xml
++++ b/src/configs/coresdk/coresdk-11.00.09-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v11.00.09</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-11.00.15-config.xml b/src/configs/coresdk/coresdk-11.00.15-config.xml
+index 0629135..1b6879f 100644
+--- a/src/configs/coresdk/coresdk-11.00.15-config.xml
++++ b/src/configs/coresdk/coresdk-11.00.15-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v11.00.15</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-11.01.05-config.xml b/src/configs/coresdk/coresdk-11.01.05-config.xml
+index 6085a9f..62212f9 100644
+--- a/src/configs/coresdk/coresdk-11.01.05-config.xml
++++ b/src/configs/coresdk/coresdk-11.01.05-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v11.01.05</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/coresdk/coresdk-11.01.08-config.xml b/src/configs/coresdk/coresdk-11.01.08-config.xml
+index 554477e..3c8c562 100644
+--- a/src/configs/coresdk/coresdk-11.01.08-config.xml
++++ b/src/configs/coresdk/coresdk-11.01.08-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI CoreSDK v11.01.08</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/distroless-kirkstone-config.xml b/src/configs/distroless-kirkstone-config.xml
+index 844571c..6992b77 100644
+--- a/src/configs/distroless-kirkstone-config.xml
++++ b/src/configs/distroless-kirkstone-config.xml
+@@ -2,6 +2,7 @@
+ <config>
+     <description>Distroless reference for kirkstone</description>
+ 
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/distroless-master-config.xml b/src/configs/distroless-master-config.xml
+index 14b0d4e..1e134df 100644
+--- a/src/configs/distroless-master-config.xml
++++ b/src/configs/distroless-master-config.xml
+@@ -2,6 +2,7 @@
+ <config>
+     <description>Distroless reference for master</description>
+ 
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/distroless-scarthgap-config.xml b/src/configs/distroless-scarthgap-config.xml
+index 5bb6433..293a68d 100644
+--- a/src/configs/distroless-scarthgap-config.xml
++++ b/src/configs/distroless-scarthgap-config.xml
+@@ -2,6 +2,7 @@
+ <config>
+     <description>Distroless reference for scarthgap</description>
+ 
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/poky-kirkstone-config.xml b/src/configs/poky-kirkstone-config.xml
+index 6826d19..fbd5de9 100644
+--- a/src/configs/poky-kirkstone-config.xml
++++ b/src/configs/poky-kirkstone-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Poky reference distribution for kirkstone</description>
+ 
+-    <xi:include href='../common/targets_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-poky-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/poky-master-config.xml b/src/configs/poky-master-config.xml
+index b1fdfb8..f8fff75 100644
+--- a/src/configs/poky-master-config.xml
++++ b/src/configs/poky-master-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Poky reference distribution for master</description>
+ 
+-    <xi:include href='../common/targets_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-poky-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/poky-master-wip-config.xml b/src/configs/poky-master-wip-config.xml
+index b128614..82375a6 100644
+--- a/src/configs/poky-master-wip-config.xml
++++ b/src/configs/poky-master-wip-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Poky reference distribution for master-wip</description>
+ 
+-    <xi:include href='../common/targets_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-poky-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/poky-scarthgap-config.xml b/src/configs/poky-scarthgap-config.xml
+index 8f0043d..590f42d 100644
+--- a/src/configs/poky-scarthgap-config.xml
++++ b/src/configs/poky-scarthgap-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Poky reference distribution for scarthgap</description>
+ 
+-    <xi:include href='../common/targets_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-poky-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/poky-scarthgap-wip-config.xml b/src/configs/poky-scarthgap-wip-config.xml
+index 7d38edd..2995ebc 100644
+--- a/src/configs/poky-scarthgap-wip-config.xml
++++ b/src/configs/poky-scarthgap-wip-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>Poky reference distribution for scarthgap-wip</description>
+ 
+-    <xi:include href='../common/targets_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/distro_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../templates/local-poky-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.xml
+index e1a089e..5a5ecbf 100644
+--- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.xml
++++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Analytics v09.00.00</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.xml
+index 24f199c..8ba1857 100644
+--- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.xml
++++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Analytics v09.00.01</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.xml
+index 9e77c7b..84aebd0 100644
+--- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.xml
++++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Analytics v09.01.00</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.xml
+index de57928..17f4a9b 100644
+--- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.xml
++++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Analytics v09.02.00</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.xml
+index 76674d7..b17e040 100644
+--- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.xml
++++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Analytics v10.00.00</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.xml
+index 7308167..b6b9239 100644
+--- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.xml
++++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Analytics v10.01.00</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.xml
+index 23b1a1e..689d685 100644
+--- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.xml
++++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Analytics v11.00.00</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml
+index 51b3453..904c44a 100644
+--- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml
++++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Analytics v11.01.07.05</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml
+index 01408f4..6b0203a 100644
+--- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml
++++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Analytics vselinux-11.01.07.05</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-gateway-10_00.xml b/src/configs/processor-sdk-linux/processor-sdk-gateway-10_00.xml
+index 5b7f9c8..d95abd3 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-gateway-10_00.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-gateway-10_00.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v10_00</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.xml
+index 4f3091b..7ad8d60 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v09_00_00_06</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.xml
+index 6692925..48038e6 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v09_00_00_07</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.xml
+index f8ebadd..6cf7315 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v09_01_00_06</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.xml
+index 09700a4..94138fd 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v09_01_00_07</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.xml
+index 8e78543..ef62651 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v09_02_00_04</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.xml
+index 7953cb0..a392d1f 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v09_02_00_05</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_03_06_05.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_03_06_05.xml
+index a2efc86..b5bac85 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_03_06_05.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_03_06_05.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v09_03_06_05</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.xml
+index 15e4786..1c3ca85 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v10_00_07_06</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.xml
+index 03f23ec..0b4fdff 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v10_00_08_06</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.xml
+index 79a5cc6..e54afaf 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v10_01_08_01</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml
+index 339c4d7..38aa819 100644
+--- a/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK Linux v11_00_10_01</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.xml b/src/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.xml
+index c3a0a82..393e1e1 100644
+--- a/src/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v09.00.00-am62xxsip</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-09.00.00-config.xml b/src/configs/processor-sdk/processor-sdk-09.00.00-config.xml
+index 7fc7e25..2aa5745 100644
+--- a/src/configs/processor-sdk/processor-sdk-09.00.00-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-09.00.00-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v09.00.00</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.xml b/src/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.xml
+index 6286162..594dba5 100644
+--- a/src/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v09.01.00-am65xx</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-09.01.00-config.xml b/src/configs/processor-sdk/processor-sdk-09.01.00-config.xml
+index c57afe8..60025f9 100644
+--- a/src/configs/processor-sdk/processor-sdk-09.01.00-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-09.01.00-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v09.01.00</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-09.01.00-legacy-config.xml b/src/configs/processor-sdk/processor-sdk-09.01.00-legacy-config.xml
+index ebd448c..ef9e4ec 100644
+--- a/src/configs/processor-sdk/processor-sdk-09.01.00-legacy-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-09.01.00-legacy-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v09.01.00-legacy</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-09.02.00.08-am64x-config.xml b/src/configs/processor-sdk/processor-sdk-09.02.00.08-am64x-config.xml
+index 6ec86aa..75b4a4a 100644
+--- a/src/configs/processor-sdk/processor-sdk-09.02.00.08-am64x-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-09.02.00.08-am64x-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v09.02.00.08-am64x</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml b/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml
+index 71bd067..7093231 100644
+--- a/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v09.03.05.02-legacy</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.xml b/src/configs/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.xml
+index bd1671f..c11df3b 100644
+--- a/src/configs/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v11.00.05.02-am62lxx</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.xml b/src/configs/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.xml
+index 2ef7047..cf3eb77 100644
+--- a/src/configs/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v11.00.15.05-am62lxx</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.xml b/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.xml
+index 4b7d298..aa74482 100644
+--- a/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v09.02.01.09</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.xml b/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.xml
+index 4443130..a611434 100644
+--- a/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v09.02.01.10</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.xml b/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.xml
+index 314a511..a8364ba 100644
+--- a/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK vchromium-09.02.01.09</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.xml b/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.xml
+index 039ddb1..234a14c 100644
+--- a/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK vchromium-09.02.01.10</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.xml
+index 24938c3..96ea7d1 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v10.00.07.04</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.xml
+index 9ee86f2..518357e 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v10.01.10.04</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.xml
+index 0d108bc..64dd3a9 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v11.00.09.04</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml
+index 65196b1..28af57f 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK v11.01.05.03</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.xml
+index 53ecc11..e5122a2 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK vchromium-10.00.07.04</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.xml
+index 5a9df9e..a3f29c5 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK vchromium-10.01.10.04</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.xml
+index 71a9acb..6bf2aff 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK vchromium-11.00.09.04</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml
+index 3bd1b8e..43a2e11 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK vchromium-11.01.05.03</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml
+index 5793c01..1dfdaeb 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK vchromium-11.01.12.10</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml
+index 3d40933..095c0ec 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK vnonqt-11.01.05.03</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.xml
+index 93c45d0..70fcb8a 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK vselinux-11.00.09.04</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml
+index 9231c95..1e96e8a 100644
+--- a/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml
++++ b/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml
+@@ -2,7 +2,8 @@
+ <config>
+     <description>TI Processor SDK vselinux-11.01.05.03</description>
+ 
+-    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
+ 
+diff --git a/src/templates/local-arago64-v2.conf.xml b/src/templates/local-arago64-v2.conf.xml
+index d9d2ae7..797bd39 100644
+--- a/src/templates/local-arago64-v2.conf.xml
++++ b/src/templates/local-arago64-v2.conf.xml
+@@ -1,4 +1,6 @@
+ <local-conf-template name='local-arago64-v2.conf'>
++    <summary>TI oe-layersetup build defaults for Arago 64bit builds v2</summary>
++    <description>TI oe-layersetup build defaults for Arago 64bit builds v2</description>
+     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
+     <line>CONF_VERSION = "2"</line>
+     <line></line>
+diff --git a/src/templates/local-arago64-v3.conf.xml b/src/templates/local-arago64-v3.conf.xml
+index c8a5d51..35ba584 100644
+--- a/src/templates/local-arago64-v3.conf.xml
++++ b/src/templates/local-arago64-v3.conf.xml
+@@ -1,4 +1,6 @@
+ <local-conf-template name='local-arago64-v3.conf'>
++    <summary>TI oe-layersetup build defaults for Arago 64bit builds v3</summary>
++    <description>TI oe-layersetup build defaults for Arago 64bit builds v3</description>
+     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
+     <line>CONF_VERSION = "2"</line>
+     <line></line>
+diff --git a/src/templates/local-poky-v2.conf.xml b/src/templates/local-poky-v2.conf.xml
+index b45d6c2..d04e653 100644
+--- a/src/templates/local-poky-v2.conf.xml
++++ b/src/templates/local-poky-v2.conf.xml
+@@ -1,4 +1,6 @@
+ <local-conf-template name='local-poky-v2.conf'>
++    <summary>TI oe-layersetup build defaults for Poky builds v2</summary>
++    <description>TI oe-layersetup build defaults for Poky builds v2</description>
+     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
+     <line>CONF_VERSION = "2"</line>
+     <line></line>
+diff --git a/src/templates/local-poky-v3.conf.xml b/src/templates/local-poky-v3.conf.xml
+index fa313eb..d09ea38 100644
+--- a/src/templates/local-poky-v3.conf.xml
++++ b/src/templates/local-poky-v3.conf.xml
+@@ -1,4 +1,6 @@
+ <local-conf-template name='local-poky-v3.conf'>
++    <summary>TI oe-layersetup build defaults for Poky builds v3</summary>
++    <description>TI oe-layersetup build defaults for Poky builds v3</description>
+     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
+     <line>CONF_VERSION = "2"</line>
+     <line></line>
+diff --git a/src/templates/local-v2.conf.xml b/src/templates/local-v2.conf.xml
+index 49e060c..bbff2fa 100644
+--- a/src/templates/local-v2.conf.xml
++++ b/src/templates/local-v2.conf.xml
+@@ -1,4 +1,6 @@
+ <local-conf-template name='local-v2.conf'>
++    <summary>TI oe-layersetup build defaults for builds v2</summary>
++    <description>TI oe-layersetup build defaults for builds v2</description>
+     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
+     <line>CONF_VERSION = "2"</line>
+     <line></line>
+diff --git a/src/templates/local-v3.conf.xml b/src/templates/local-v3.conf.xml
+index e300aaf..fbb619f 100644
+--- a/src/templates/local-v3.conf.xml
++++ b/src/templates/local-v3.conf.xml
+@@ -1,4 +1,6 @@
+ <local-conf-template name='local-v3.conf'>
++    <summary>TI oe-layersetup build defaults for builds v3</summary>
++    <description>TI oe-layersetup build defaults for builds v3</description>
+     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
+     <line>CONF_VERSION = "2"</line>
+     <line></line>
 -- 
 2.17.1
 
