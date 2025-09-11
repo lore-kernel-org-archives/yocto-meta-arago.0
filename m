@@ -1,134 +1,201 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8123CCAC587
-	for <webhook@archiver.kernel.org>; Thu, 11 Sep 2025 21:10:27 +0000 (UTC)
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web10.541.1757625021336353861
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 840A8CAC587
+	for <webhook@archiver.kernel.org>; Thu, 11 Sep 2025 21:13:37 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.605.1757625208936631353
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 11 Sep 2025 14:10:21 -0700
+ Thu, 11 Sep 2025 14:13:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=ANNCq+Ns;
- spf=pass (domain: list.ti.com, ip: 198.47.23.235, mailfrom: prc@list.ti.com)
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58BLAIfx889283;
-	Thu, 11 Sep 2025 16:10:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757625018; i=@ti.com;
-	bh=AgkiH4IM5iiWQRtfdo1EMwtxUGSp/tW1Rx+qS4CErQI=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=ANNCq+Ns8/4oS4rwNKoZTCQR7kpkNztxjzGDVgSgXOG38ngEuW/+E5wM7m60ilmt1
-	 uY57MOobfzdP/eVPz/cZ83zW0OxXy1PULLwqhHFcKZ6tpx5f1LxV0RUn3ZZSI3ghe0
-	 ryltXk6MjnRdS8mqypfawXWstCRFp5rArb1380Cc=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58BLAImL1376967
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 11 Sep 2025 16:10:18 -0500
-Received: from DLEE214.ent.ti.com (157.170.170.117) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 11
- Sep 2025 16:10:18 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE214.ent.ti.com
- (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 11 Sep 2025 16:10:18 -0500
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58BLAIsc2855997;
-	Thu, 11 Sep 2025 16:10:18 -0500
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id 65F84168FED; Thu, 11 Sep 2025 16:10:18 -0500 (CDT)
-From: PRC Automation <prc@list.ti.com>
-To: Judith Mendez <jm@ti.com>
-CC: Ryan Eatmon <reatmon@ti.com>, Chirag Shilwant <c-shilwant@ti.com>,
-        Denys
- Dmytriyenko <denis@denix.org>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: Re: [master/scarthgap][PATCH] hwspinlocktest: Update hwspinlock recipe remote repo url
-Date: Thu, 11 Sep 2025 16:10:18 -0500
-Message-ID: <20250911211018.2042953-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20250911210645.2142573-1-jm@ti.com>
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5511A40C1C;
+	Thu, 11 Sep 2025 21:13:27 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 2oVQnIiN9Msm; Thu, 11 Sep 2025 21:13:27 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0D95F40A46;
+	Thu, 11 Sep 2025 21:13:22 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id B1572174BB8; Thu, 11 Sep 2025 17:13:22 -0400 (EDT)
+Date: Thu, 11 Sep 2025 17:13:22 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: jm@ti.com
+Cc: Ryan Eatmon <reatmon@ti.com>, Chirag Shilwant <c-shilwant@ti.com>,
+	Praneeth Bajjuri <praneeth@ti.com>,
+	meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago] [master/scarthgap][PATCH] hwspinlocktest: Update
+ hwspinlock recipe remote repo url
+Message-ID: <20250911211322.GI3125@denix.org>
 References: <20250911210645.2142573-1-jm@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250911210645.2142573-1-jm@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 11 Sep 2025 21:10:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16570
+ <meta-arago@lists.yoctoproject.org>; Thu, 11 Sep 2025 21:13:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16571
 
-meta-arago / na / 20250911210645.2142573-1-jm
+On Thu, Sep 11, 2025 at 04:06:45PM -0500, Mendez, Judith via lists.yoctoproject.org wrote:
+> The hwspinlock module is still not moved to git.ti.com. So a new
+> fork has been created to add support for am62sip platform.
+> 
+> Move now to new forked repo and remove patches that have already been
+> integrated to the new forked repo master branch.
 
-PRC Results: FAIL
-
-=========================================================
-  check-yocto-patches: PASS
-=========================================================
-Patches
-----------------------------------------
-All patches passed
-
+Why not move it to https://github.com/TexasInstruments/ instead of another 
+personal repo?
 
 
-=========================================================
-  apply-yocto-patch: FAIL
-=========================================================
-master
-=====================
-Summary:
-- Patch Series: [master/scarthgap][PATCH] hwspinlocktest: Update hwspinlock recipe remote repo url
-- Submitter: From: Judith Mendez <jm@ti.com>
--From: Ryan Eatmon <reatmon@ti.com>
--From: Judith Mendez <jm@ti.com>
-- Date: Date: Thu, 11 Sep 2025 16:06:45 -0500
--Date: Fri, 11 Apr 2025 13:49:11 -0500
--Date: Mon, 18 Nov 2024 14:57:45 -0600
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: f31e15e8203a40c39a6a13448a4416fea74746bd
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Thorsten Lannynd <t-lannynd@ti.com>
-- Commit Subject: chromium: Replace /dev/video* with Chromium naming convention
-- Commit SHA: e3ad867e65837c5892885b41510d09699b5a4b62
-
-Patches
-----------------------------------------
-All patches applied
-
-scarthgap
-=====================
-Summary:
-- Patch Series: [master/scarthgap][PATCH] hwspinlocktest: Update hwspinlock recipe remote repo url
-- Submitter: From: Judith Mendez <jm@ti.com>
--From: Ryan Eatmon <reatmon@ti.com>
--From: Judith Mendez <jm@ti.com>
-- Date: Date: Thu, 11 Sep 2025 16:06:45 -0500
--Date: Fri, 11 Apr 2025 13:49:11 -0500
--Date: Mon, 18 Nov 2024 14:57:45 -0600
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: f31e15e8203a40c39a6a13448a4416fea74746bd
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: scarthgap
-- Commit Author: LCPD Automation Script <lcpdbld@list.ti.com>
-- Commit Subject: CI/CD Auto-Merger: cicd.scarthgap.202509111148
-- Commit SHA: 67c473bc6d88a2cce13b2e8c36fcb79cb0015339
-
-Patches
-----------------------------------------
-FAIL - [master/scarthgap][PATCH] hwspinlocktest: Update hwspinlock recipe remote repo url
-    error: patch failed: meta-arago-test/recipes-kernel/hwspinlocktest/hwspinlocktest_0.1.bb:6
-    error: meta-arago-test/recipes-kernel/hwspinlocktest/hwspinlocktest_0.1.bb: patch does not apply
-    Applying: hwspinlocktest: Update hwspinlock recipe remote repo url
-    Patch failed at 0001 hwspinlocktest: Update hwspinlock recipe remote repo url
-
-
-
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+>  ...test-Remove-hwspin_lock_get_id-calls.patch | 69 -------------------
+>  .../0002-Add-support-for-AM62-SoCs.patch      | 31 ---------
+>  .../hwspinlocktest/hwspinlocktest_0.1.bb      |  6 +-
+>  3 files changed, 2 insertions(+), 104 deletions(-)
+>  delete mode 100644 meta-arago-test/recipes-kernel/hwspinlocktest/files/0001-omap_hwspinlock_test-Remove-hwspin_lock_get_id-calls.patch
+>  delete mode 100644 meta-arago-test/recipes-kernel/hwspinlocktest/files/0002-Add-support-for-AM62-SoCs.patch
+> 
+> diff --git a/meta-arago-test/recipes-kernel/hwspinlocktest/files/0001-omap_hwspinlock_test-Remove-hwspin_lock_get_id-calls.patch b/meta-arago-test/recipes-kernel/hwspinlocktest/files/0001-omap_hwspinlock_test-Remove-hwspin_lock_get_id-calls.patch
+> deleted file mode 100644
+> index d4448397..00000000
+> --- a/meta-arago-test/recipes-kernel/hwspinlocktest/files/0001-omap_hwspinlock_test-Remove-hwspin_lock_get_id-calls.patch
+> +++ /dev/null
+> @@ -1,69 +0,0 @@
+> -From fb986ed355cd488da64da9eb94d0f260bb329d5b Mon Sep 17 00:00:00 2001
+> -From: Ryan Eatmon <reatmon@ti.com>
+> -Date: Fri, 11 Apr 2025 13:49:11 -0500
+> -Subject: [PATCH] omap_hwspinlock_test: Remove hwspin_lock_get_id() calls
+> -
+> -The hwspin_lock_get_id() function was removed in the most recent
+> -kernel [1].  We can safely stop using this function even for older kernels,
+> -so go ahead and take these changes.
+> -
+> -[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=fec04edb74126f21ac628c7be763c97deb49f69d
+> -
+> -Upstream-Status: Inactive-Upstream [private repo]
+> -
+> -Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+> ----
+> - omap_hwspinlock_test.c | 12 ++++++------
+> - 1 file changed, 6 insertions(+), 6 deletions(-)
+> -
+> -diff --git a/omap_hwspinlock_test.c b/omap_hwspinlock_test.c
+> -index b180138..f3e0912 100644
+> ---- a/omap_hwspinlock_test.c
+> -+++ b/omap_hwspinlock_test.c
+> -@@ -26,12 +26,12 @@ struct hwspinlock_data {
+> -	const unsigned int max_locks;
+> - };
+> -
+> --static int hwspin_lock_test(struct hwspinlock *hwlock)
+> -+static int hwspin_lock_test(struct hwspinlock *hwlock, int lock_num)
+> - {
+> -	int i;
+> -	int ret;
+> -
+> --	pr_err("\nTesting lock %d\n", hwspin_lock_get_id(hwlock));
+> -+	pr_err("\nTesting lock %d\n", lock_num);
+> -	for (i = 0; i < count; i++) {
+> -		ret = hwspin_trylock(hwlock);
+> -		if (ret) {
+> -@@ -82,7 +82,7 @@ static int hwspin_lock_test_all_locks(unsigned int max_locks)
+> -			continue;
+> -		}
+> -
+> --		ret1 = hwspin_lock_test(hwlock);
+> -+		ret1 = hwspin_lock_test(hwlock, i);
+> -		if (ret1) {
+> -			pr_err("hwspinlock tests failed on lock %d\n", i);
+> -			ret = ret1;
+> -@@ -147,17 +147,17 @@ static int hwspin_lock_test_all_phandle_locks(unsigned int max_locks)
+> -			continue;
+> -		}
+> -
+> --		ret1 = hwspin_lock_test(hwlock);
+> -+		ret1 = hwspin_lock_test(hwlock, i);
+> -		if (ret1) {
+> -			pr_err("hwspinlock test failed on DT lock %d, ret = %d\n",
+> --			       hwspin_lock_get_id(hwlock), ret1);
+> -+			       hwlock_id, ret1);
+> -			ret = ret1;
+> -		}
+> -
+> -		ret1 = hwspin_lock_free(hwlock);
+> -		if (ret1) {
+> -			pr_err("hwspin_lock_free failed on lock %d\n",
+> --			       hwspin_lock_get_id(hwlock));
+> -+			       hwlock_id);
+> -			ret = ret1;
+> -		}
+> -	}
+> ---
+> -2.17.1
+> diff --git a/meta-arago-test/recipes-kernel/hwspinlocktest/files/0002-Add-support-for-AM62-SoCs.patch b/meta-arago-test/recipes-kernel/hwspinlocktest/files/0002-Add-support-for-AM62-SoCs.patch
+> deleted file mode 100644
+> index 30d9886a..00000000
+> --- a/meta-arago-test/recipes-kernel/hwspinlocktest/files/0002-Add-support-for-AM62-SoCs.patch
+> +++ /dev/null
+> @@ -1,31 +0,0 @@
+> -From 5ea20dff1aba059cc49e11031f731a422f3fd114 Mon Sep 17 00:00:00 2001
+> -From: Judith Mendez <jm@ti.com>
+> -Date: Mon, 18 Nov 2024 14:57:45 -0600
+> -Subject: [PATCH 2/2] Add support for AM62* SoCs
+> -
+> -The K3 AM62* SoCs have a hwspinlock IP in MAIN domain.
+> -Extend the test to add the desired SoC compatible so that
+> -the test can be exercised on these new SoC families.
+> -
+> -Upstream-Status: Inactive-Upstream [private repo]
+> -Signed-off-by: Judith Mendez <jm@ti.com>
+> ----
+> - omap_hwspinlock_test.c | 3 +++
+> - 1 file changed, 3 insertions(+)
+> -
+> -diff --git a/omap_hwspinlock_test.c b/omap_hwspinlock_test.c
+> -index b180138..46fcc08 100644
+> ---- a/omap_hwspinlock_test.c
+> -+++ b/omap_hwspinlock_test.c
+> -@@ -199,6 +199,9 @@ static const struct hwspinlock_data soc_data[] = {
+> -	{ "ti,j7200",	256, },
+> -	{ "ti,am642",	256, },
+> -	{ "ti,j721s2",	256, },
+> -+	{ "ti,am625",	256, },
+> -+	{ "ti,am62a7",	256, },
+> -+	{ "ti,am62p5",	256, },
+> -	{ /* sentinel */ },
+> - };
+> -
+> ---
+> -2.47.0
+> diff --git a/meta-arago-test/recipes-kernel/hwspinlocktest/hwspinlocktest_0.1.bb b/meta-arago-test/recipes-kernel/hwspinlocktest/hwspinlocktest_0.1.bb
+> index 454f0131..50892379 100644
+> --- a/meta-arago-test/recipes-kernel/hwspinlocktest/hwspinlocktest_0.1.bb
+> +++ b/meta-arago-test/recipes-kernel/hwspinlocktest/hwspinlocktest_0.1.bb
+> @@ -6,13 +6,11 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=bfa02c83df161e37647ee23a2c7eacd4"
+>  inherit module
+>  
+>  SRC_URI = "\
+> -    git://github.com/sumananna/omap-hwspinlock-test;protocol=https;branch=master \
+> +    git://github.com/jmenti/omap-hwspinlock-test-jm;protocol=https;branch=master \
+>      file://0001-Fix-Makefile-for-to-build-with-yocto.patch \
+> -    file://0002-Add-support-for-AM62-SoCs.patch \
+> -    file://0001-omap_hwspinlock_test-Remove-hwspin_lock_get_id-calls.patch \
+>  "
+>  
+> -SRCREV = "20f15e79a3a0197e06328c252d23aec225de21ed"
+> +SRCREV = "125cf8e0e874d3ccb314c542331f01a719f1538a"
+>  
+>  # The inherit of module.bbclass will automatically name module packages with
+>  # "kernel-module-" prefix as required by the oe-core build environment.
+> -- 
+> 2.51.0
 
