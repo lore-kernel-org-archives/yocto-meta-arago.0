@@ -2,51 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63372CAC594
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 71664CAC597
 	for <webhook@archiver.kernel.org>; Thu, 11 Sep 2025 16:35:13 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web11.2133.1757608509046521953
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+ by mx.groups.io with SMTP id smtpd.web10.2133.1757608509313830573
  for <meta-arago@lists.yoctoproject.org>;
  Thu, 11 Sep 2025 09:35:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=kKALBBUD;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: reatmon@ti.com)
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58BGZ7jG787728;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=AzZh5RMA;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: reatmon@ti.com)
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58BGZ7Vo333916;
 	Thu, 11 Sep 2025 11:35:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1757608507;
-	bh=Gdpt2775SNQMoxRqbGlpBBjyMfjl/W7D1w2WSExvZEI=;
+	bh=HHsiQYze2EcU5xGHM6zjW8xPUhp0hbzn405v7vLYmW8=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=kKALBBUDw3nKnP/YSg2HudHSWyduv9iGdIBAbVB5eUGvWA3s9bvBRos3xB6dEFRJv
-	 dEjzLHnvL5SkahJ1EFwzxfRyrBOuAEwtfYE71l5G2HyKRsKktEFjwURI9togAG2USF
-	 4YNGWU3rUCq2RzkCZmWnvxl8XTHVuz+mSEaydXIs=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58BGZ7bi1289117
+	b=AzZh5RMAWen9nJeahcuvTyXDuBmEPySzA6v1lTEBwus2oy35/9GKAX74I2IjwvCbf
+	 N8vu+wOY1LwKKQ6XLQe6pCd+1s/ZILXE/BrNwiGf5qkUvk3m52TxOhrjj8vMs4sBDi
+	 +1bAEc5iwMZee/+Wxr7JQ8+gvAse/j7zCM3IUDjE=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58BGZ7VN2073423
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
 	Thu, 11 Sep 2025 11:35:07 -0500
-Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE212.ent.ti.com (10.64.6.70) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 11
- Sep 2025 11:35:06 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE211.ent.ti.com
- (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2025 11:35:07 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE212.ent.ti.com
+ (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
  Transport; Thu, 11 Sep 2025 11:35:06 -0500
 Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58BGZ6S22416682;
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58BGZ6kY2120971;
 	Thu, 11 Sep 2025 11:35:06 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1uwkGI-0005KH-K1; Thu, 11 Sep 2025 11:35:06 -0500
+	id 1uwkGI-0005KN-OD; Thu, 11 Sep 2025 11:35:06 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [oe-layersetup][master][PATCH 3/5] src/configs: Update all of the configs
-Date: Thu, 11 Sep 2025 11:35:04 -0500
-Message-ID: <20250911163506.20414-4-reatmon@ti.com>
+Subject: [oe-layersetup][master][PATCH 4/5] bitbake-setup: Generate new files
+Date: Thu, 11 Sep 2025 11:35:05 -0500
+Message-ID: <20250911163506.20414-5-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20250911163506.20414-1-reatmon@ti.com>
 References: <20250911163506.20414-1-reatmon@ti.com>
@@ -57,1449 +57,6578 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 11 Sep 2025 16:35:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16562
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16563
 
-Update all of the config XML files to add in the machine list include
-and change the name of the targets to distro.
-
-Update the local.conf template XML files to include a summary and
-description.
+Regenerate all of the bitbake-setup files to the new standard.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- src/configs/arago-kirkstone-chromium-config.xml                | 3 ++-
- src/configs/arago-kirkstone-config.xml                         | 3 ++-
- src/configs/arago-kirkstone-next-config.xml                    | 3 ++-
- src/configs/arago-kirkstone-wip-config.xml                     | 3 ++-
- src/configs/arago-master-chromium-config.xml                   | 3 ++-
- src/configs/arago-master-config.xml                            | 3 ++-
- src/configs/arago-master-flutter-config.xml                    | 3 ++-
- src/configs/arago-master-next-config.xml                       | 3 ++-
- src/configs/arago-master-selinux-config.xml                    | 3 ++-
- src/configs/arago-master-wip-config.xml                        | 3 ++-
- src/configs/arago-scarthgap-10x-config.xml                     | 3 ++-
- src/configs/arago-scarthgap-10x-next-config.xml                | 3 ++-
- src/configs/arago-scarthgap-chromium-config.xml                | 3 ++-
- src/configs/arago-scarthgap-config.xml                         | 3 ++-
- src/configs/arago-scarthgap-flutter-config.xml                 | 3 ++-
- src/configs/arago-scarthgap-next-config.xml                    | 3 ++-
- src/configs/arago-scarthgap-selinux-config.xml                 | 3 ++-
- src/configs/arago-scarthgap-wip-config.xml                     | 3 ++-
- src/configs/coresdk/coresdk-09.00.00.006-config.xml            | 3 ++-
- src/configs/coresdk/coresdk-09.00.00.007-config.xml            | 3 ++-
- src/configs/coresdk/coresdk-09.00.00.011-config.xml            | 3 ++-
- src/configs/coresdk/coresdk-09.01.00.001-config.xml            | 3 ++-
- src/configs/coresdk/coresdk-09.01.00.003-config.xml            | 3 ++-
- src/configs/coresdk/coresdk-09.01.00.007-config.xml            | 3 ++-
- src/configs/coresdk/coresdk-09.01.00.008-config.xml            | 3 ++-
- src/configs/coresdk/coresdk-09.02.00.008-config.xml            | 3 ++-
- src/configs/coresdk/coresdk-09.02.00.009-config.xml            | 3 ++-
- src/configs/coresdk/coresdk-09.02.00.010-config.xml            | 3 ++-
- src/configs/coresdk/coresdk-09.03.05-config.xml                | 3 ++-
- src/configs/coresdk/coresdk-10.00.07-config.xml                | 3 ++-
- src/configs/coresdk/coresdk-10.01.08-config.xml                | 3 ++-
- src/configs/coresdk/coresdk-10.01.10-config.xml                | 3 ++-
- src/configs/coresdk/coresdk-10.01.10-selinux-config.xml        | 3 ++-
- src/configs/coresdk/coresdk-11.00.09-config.xml                | 3 ++-
- src/configs/coresdk/coresdk-11.00.15-config.xml                | 3 ++-
- src/configs/coresdk/coresdk-11.01.05-config.xml                | 3 ++-
- src/configs/coresdk/coresdk-11.01.08-config.xml                | 3 ++-
- src/configs/distroless-kirkstone-config.xml                    | 1 +
- src/configs/distroless-master-config.xml                       | 1 +
- src/configs/distroless-scarthgap-config.xml                    | 1 +
- src/configs/poky-kirkstone-config.xml                          | 3 ++-
- src/configs/poky-master-config.xml                             | 3 ++-
- src/configs/poky-master-wip-config.xml                         | 3 ++-
- src/configs/poky-scarthgap-config.xml                          | 3 ++-
- src/configs/poky-scarthgap-wip-config.xml                      | 3 ++-
- .../processor-sdk-analytics-09.00.00-config.xml                | 3 ++-
- .../processor-sdk-analytics-09.00.01-config.xml                | 3 ++-
- .../processor-sdk-analytics-09.01.00-config.xml                | 3 ++-
- .../processor-sdk-analytics-09.02.00-config.xml                | 3 ++-
- .../processor-sdk-analytics-10.00.00-config.xml                | 3 ++-
- .../processor-sdk-analytics-10.01.00-config.xml                | 3 ++-
- .../processor-sdk-analytics-11.00.00-config.xml                | 3 ++-
- .../processor-sdk-analytics-11.01.07.05-config.xml             | 3 ++-
- .../processor-sdk-analytics-selinux-11.01.07.05-config.xml     | 3 ++-
- .../processor-sdk-linux/processor-sdk-gateway-10_00.xml        | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-09_00_00_06.xml    | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-09_00_00_07.xml    | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-09_01_00_06.xml    | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-09_01_00_07.xml    | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-09_02_00_04.xml    | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-09_02_00_05.xml    | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-09_03_06_05.xml    | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-10_00_07_06.xml    | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-10_00_08_06.xml    | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-10_01_08_01.xml    | 3 ++-
- .../processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml    | 3 ++-
- .../processor-sdk/processor-sdk-09.00.00-am62xxsip-config.xml  | 3 ++-
- src/configs/processor-sdk/processor-sdk-09.00.00-config.xml    | 3 ++-
- .../processor-sdk/processor-sdk-09.01.00-am65xx-config.xml     | 3 ++-
- src/configs/processor-sdk/processor-sdk-09.01.00-config.xml    | 3 ++-
- .../processor-sdk/processor-sdk-09.01.00-legacy-config.xml     | 3 ++-
- .../processor-sdk/processor-sdk-09.02.00.08-am64x-config.xml   | 3 ++-
- .../processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml  | 3 ++-
- .../processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.xml | 3 ++-
- .../processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.xml | 3 ++-
- .../processor-sdk-kirkstone-09.02.01.09-config.xml             | 3 ++-
- .../processor-sdk-kirkstone-09.02.01.10-config.xml             | 3 ++-
- .../processor-sdk-kirkstone-chromium-09.02.01.09-config.xml    | 3 ++-
- .../processor-sdk-kirkstone-chromium-09.02.01.10-config.xml    | 3 ++-
- .../processor-sdk-scarthgap-10.00.07.04-config.xml             | 3 ++-
- .../processor-sdk-scarthgap-10.01.10.04-config.xml             | 3 ++-
- .../processor-sdk-scarthgap-11.00.09.04-config.xml             | 3 ++-
- .../processor-sdk-scarthgap-11.01.05.03-config.xml             | 3 ++-
- .../processor-sdk-scarthgap-chromium-10.00.07.04-config.xml    | 3 ++-
- .../processor-sdk-scarthgap-chromium-10.01.10.04-config.xml    | 3 ++-
- .../processor-sdk-scarthgap-chromium-11.00.09.04-config.xml    | 3 ++-
- .../processor-sdk-scarthgap-chromium-11.01.05.03-config.xml    | 3 ++-
- .../processor-sdk-scarthgap-chromium-11.01.12.10-config.xml    | 3 ++-
- .../processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml       | 3 ++-
- .../processor-sdk-scarthgap-selinux-11.00.09.04-config.xml     | 3 ++-
- .../processor-sdk-scarthgap-selinux-11.01.05.03-config.xml     | 3 ++-
- src/templates/local-arago64-v2.conf.xml                        | 2 ++
- src/templates/local-arago64-v3.conf.xml                        | 2 ++
- src/templates/local-poky-v2.conf.xml                           | 2 ++
- src/templates/local-poky-v3.conf.xml                           | 2 ++
- src/templates/local-v2.conf.xml                                | 2 ++
- src/templates/local-v3.conf.xml                                | 2 ++
- 97 files changed, 191 insertions(+), 88 deletions(-)
+ .../arago-kirkstone-chromium-config.json      |  49 +++++-
+ bitbake-setup/arago-kirkstone-config.json     |  49 +++++-
+ .../arago-kirkstone-next-config.json          |  49 +++++-
+ bitbake-setup/arago-kirkstone-wip-config.json |  49 +++++-
+ .../arago-master-chromium-config.json         |  49 +++++-
+ bitbake-setup/arago-master-config.json        |  49 +++++-
+ .../arago-master-flutter-config.json          |  49 +++++-
+ bitbake-setup/arago-master-next-config.json   |  49 +++++-
+ .../arago-master-selinux-config.json          |  49 +++++-
+ bitbake-setup/arago-master-wip-config.json    |  49 +++++-
+ bitbake-setup/arago-scarthgap-10x-config.json |  49 +++++-
+ .../arago-scarthgap-10x-next-config.json      |  49 +++++-
+ .../arago-scarthgap-chromium-config.json      |  49 +++++-
+ bitbake-setup/arago-scarthgap-config.json     |  49 +++++-
+ .../arago-scarthgap-flutter-config.json       |  49 +++++-
+ .../arago-scarthgap-next-config.json          |  49 +++++-
+ .../arago-scarthgap-selinux-config.json       |  49 +++++-
+ bitbake-setup/arago-scarthgap-wip-config.json |  49 +++++-
+ .../coresdk-09.00.00.006-config.json}         |  49 +++++-
+ .../coresdk-09.00.00.007-config.json}         |  49 +++++-
+ .../coresdk-09.00.00.011-config.json}         |  49 +++++-
+ .../coresdk/coresdk-09.01.00.001-config.json  | 149 ++++++++++++++++++
+ .../coresdk/coresdk-09.01.00.003-config.json  | 149 ++++++++++++++++++
+ .../coresdk/coresdk-09.01.00.007-config.json  | 149 ++++++++++++++++++
+ .../coresdk/coresdk-09.01.00.008-config.json  | 149 ++++++++++++++++++
+ .../coresdk-09.02.00.008-config.json}         |  49 +++++-
+ .../coresdk-09.02.00.009-config.json}         |  49 +++++-
+ .../coresdk-09.02.00.010-config.json}         |  49 +++++-
+ .../coresdk-09.03.05-config.json}             |  49 +++++-
+ .../coresdk-10.00.07-config.json}             |  49 +++++-
+ .../coresdk-10.01.08-config.json}             |  49 +++++-
+ .../coresdk-10.01.10-config.json}             |  49 +++++-
+ .../coresdk-10.01.10-selinux-config.json}     |  49 +++++-
+ .../coresdk-11.00.09-config.json}             |  49 +++++-
+ .../coresdk-11.00.15-config.json}             |  49 +++++-
+ .../coresdk-11.01.05-config.json}             |  49 +++++-
+ .../coresdk-11.01.08-config.json}             |  49 +++++-
+ .../distroless-kirkstone-config.json          |  49 +++++-
+ bitbake-setup/distroless-master-config.json   |  49 +++++-
+ .../distroless-scarthgap-config.json          |  49 +++++-
+ bitbake-setup/poky-kirkstone-config.json      |  49 +++++-
+ bitbake-setup/poky-master-config.json         |  49 +++++-
+ bitbake-setup/poky-master-wip-config.json     |  49 +++++-
+ bitbake-setup/poky-scarthgap-config.json      |  49 +++++-
+ bitbake-setup/poky-scarthgap-wip-config.json  |  49 +++++-
+ ...cessor-sdk-analytics-09.00.00-config.json} |  49 +++++-
+ ...cessor-sdk-analytics-09.00.01-config.json} |  49 +++++-
+ ...cessor-sdk-analytics-09.01.00-config.json} |  49 +++++-
+ ...cessor-sdk-analytics-09.02.00-config.json} |  49 +++++-
+ ...cessor-sdk-analytics-10.00.00-config.json} |  49 +++++-
+ ...cessor-sdk-analytics-10.01.00-config.json} |  49 +++++-
+ ...cessor-sdk-analytics-11.00.00-config.json} |  49 +++++-
+ ...sor-sdk-analytics-11.01.07.05-config.json} |  49 +++++-
+ ...analytics-selinux-11.01.07.05-config.json} |  49 +++++-
+ .../processor-sdk-gateway-10_00.json}         |  49 +++++-
+ .../processor-sdk-linux-09_00_00_06.json}     |  49 +++++-
+ .../processor-sdk-linux-09_00_00_07.json}     |  49 +++++-
+ .../processor-sdk-linux-09_01_00_06.json}     |  49 +++++-
+ .../processor-sdk-linux-09_01_00_07.json}     |  49 +++++-
+ .../processor-sdk-linux-09_02_00_04.json}     |  49 +++++-
+ .../processor-sdk-linux-09_02_00_05.json}     |  49 +++++-
+ .../processor-sdk-linux-09_03_06_05.json}     |  49 +++++-
+ .../processor-sdk-linux-10_00_07_06.json}     |  49 +++++-
+ .../processor-sdk-linux-10_00_08_06.json}     |  49 +++++-
+ .../processor-sdk-linux-10_01_08_01.json}     |  49 +++++-
+ .../processor-sdk-linux-11_00_10_01.json}     |  49 +++++-
+ ...cessor-sdk-09.00.00-am62xxsip-config.json} |  49 +++++-
+ .../processor-sdk-09.00.00-config.json}       |  49 +++++-
+ ...processor-sdk-09.01.00-am65xx-config.json} |  49 +++++-
+ .../processor-sdk-09.01.00-config.json}       |  49 +++++-
+ ...processor-sdk-09.01.00-legacy-config.json} |  49 +++++-
+ ...ocessor-sdk-09.02.00.08-am64x-config.json} |  49 +++++-
+ ...cessor-sdk-09.03.05.02-legacy-config.json} |  49 +++++-
+ ...essor-sdk-11.00.05.02-am62lxx-config.json} |  49 +++++-
+ ...essor-sdk-11.00.15.05-am62lxx-config.json} |  49 +++++-
+ ...sor-sdk-kirkstone-09.02.01.09-config.json} |  49 +++++-
+ ...sor-sdk-kirkstone-09.02.01.10-config.json} |  49 +++++-
+ ...irkstone-chromium-09.02.01.09-config.json} |  49 +++++-
+ ...irkstone-chromium-09.02.01.10-config.json} |  49 +++++-
+ ...sor-sdk-scarthgap-10.00.07.04-config.json} |  49 +++++-
+ ...sor-sdk-scarthgap-10.01.10.04-config.json} |  49 +++++-
+ ...sor-sdk-scarthgap-11.00.09.04-config.json} |  49 +++++-
+ ...sor-sdk-scarthgap-11.01.05.03-config.json} |  49 +++++-
+ ...carthgap-chromium-10.00.07.04-config.json} |  49 +++++-
+ ...carthgap-chromium-10.01.10.04-config.json} |  49 +++++-
+ ...carthgap-chromium-11.00.09.04-config.json} |  49 +++++-
+ ...carthgap-chromium-11.01.05.03-config.json} |  49 +++++-
+ ...carthgap-chromium-11.01.12.10-config.json} |  49 +++++-
+ ...k-scarthgap-nonqt-11.01.05.03-config.json} |  49 +++++-
+ ...scarthgap-selinux-11.00.09.04-config.json} |  49 +++++-
+ ...scarthgap-selinux-11.01.05.03-config.json} |  49 +++++-
+ .../configs/arago-kirkstone-next-config.conf  |   9 ++
+ .../configs/arago-master-next-config.conf     |   4 +
+ .../configs/arago-master-selinux-config.conf  |   4 +
+ .../configs/arago-scarthgap-10x-config.conf   |   4 +
+ .../arago-scarthgap-10x-next-config.conf      |   8 +
+ .../configs/arago-scarthgap-next-config.conf  |  25 +++
+ .../arago-scarthgap-selinux-config.conf       |   4 +
+ .../coresdk-10.01.10-selinux-config.conf      |   4 +
+ ...-analytics-selinux-11.01.07.05-config.conf |   4 +
+ .../processor-sdk-gateway-10_00.conf          |   4 +
+ .../processor-sdk-linux-09_00_00_06.conf      |   5 +
+ .../processor-sdk-linux-09_00_00_07.conf      |   4 +
+ .../processor-sdk-linux-09_01_00_06.conf      |   5 +
+ .../processor-sdk-linux-09_01_00_07.conf      |   4 +
+ .../processor-sdk-linux-09_02_00_04.conf      |   5 +
+ .../processor-sdk-linux-09_02_00_05.conf      |   5 +
+ .../processor-sdk-linux-10_00_07_06.conf      |   5 +
+ .../processor-sdk-linux-10_00_08_06.conf      |   5 +
+ .../processor-sdk-linux-10_01_08_01.conf      |   5 +
+ ...-scarthgap-selinux-11.00.09.04-config.conf |   4 +
+ ...-scarthgap-selinux-11.01.05.03-config.conf |   4 +
+ .../localconf/local-arago64-v2.conf}          |   3 +
+ .../localconf/local-arago64-v3.conf}          |   3 +
+ .../localconf/local-poky-v2.conf}             |   3 +
+ .../fragments/localconf/local-poky-v3.conf    |   3 +
+ .../localconf/local-v2.conf}                  |   3 +
+ .../fragments/localconf/local-v3.conf         |   3 +
+ 118 files changed, 4389 insertions(+), 609 deletions(-)
+ copy bitbake-setup/{coresdk_coresdk-09.00.00.006-config.json => coresdk/coresdk-09.00.00.006-config.json} (50%)
+ copy bitbake-setup/{coresdk_coresdk-09.00.00.007-config.json => coresdk/coresdk-09.00.00.007-config.json} (50%)
+ copy bitbake-setup/{coresdk_coresdk-09.00.00.011-config.json => coresdk/coresdk-09.00.00.011-config.json} (50%)
+ create mode 100644 bitbake-setup/coresdk/coresdk-09.01.00.001-config.json
+ create mode 100644 bitbake-setup/coresdk/coresdk-09.01.00.003-config.json
+ create mode 100644 bitbake-setup/coresdk/coresdk-09.01.00.007-config.json
+ create mode 100644 bitbake-setup/coresdk/coresdk-09.01.00.008-config.json
+ copy bitbake-setup/{coresdk_coresdk-09.02.00.008-config.json => coresdk/coresdk-09.02.00.008-config.json} (52%)
+ copy bitbake-setup/{coresdk_coresdk-09.02.00.009-config.json => coresdk/coresdk-09.02.00.009-config.json} (52%)
+ copy bitbake-setup/{coresdk_coresdk-09.02.00.010-config.json => coresdk/coresdk-09.02.00.010-config.json} (52%)
+ copy bitbake-setup/{coresdk_coresdk-09.03.05-config.json => coresdk/coresdk-09.03.05-config.json} (52%)
+ copy bitbake-setup/{coresdk_coresdk-10.00.07-config.json => coresdk/coresdk-10.00.07-config.json} (51%)
+ copy bitbake-setup/{coresdk_coresdk-10.01.08-config.json => coresdk/coresdk-10.01.08-config.json} (51%)
+ copy bitbake-setup/{coresdk_coresdk-10.01.10-config.json => coresdk/coresdk-10.01.10-config.json} (51%)
+ copy bitbake-setup/{coresdk_coresdk-10.01.10-selinux-config.json => coresdk/coresdk-10.01.10-selinux-config.json} (53%)
+ copy bitbake-setup/{coresdk_coresdk-11.00.09-config.json => coresdk/coresdk-11.00.09-config.json} (51%)
+ copy bitbake-setup/{coresdk_coresdk-11.00.15-config.json => coresdk/coresdk-11.00.15-config.json} (51%)
+ copy bitbake-setup/{coresdk_coresdk-11.01.05-config.json => coresdk/coresdk-11.01.05-config.json} (54%)
+ copy bitbake-setup/{coresdk_coresdk-11.01.08-config.json => coresdk/coresdk-11.01.08-config.json} (54%)
+ copy bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-09.00.00-config.json => processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.json} (54%)
+ copy bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-09.00.01-config.json => processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.json} (54%)
+ copy bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-09.01.00-config.json => processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.json} (54%)
+ copy bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-09.02.00-config.json => processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.json} (54%)
+ copy bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-10.00.00-config.json => processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.json} (54%)
+ copy bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-10.01.00-config.json => processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.json} (56%)
+ copy bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-11.00.00-config.json => processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.json} (56%)
+ copy bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config.json => processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.json} (57%)
+ copy bitbake-setup/{processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config.json => processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.json} (58%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-gateway-10_00.json => processor-sdk-linux/processor-sdk-gateway-10_00.json} (53%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_00_00_06.json => processor-sdk-linux/processor-sdk-linux-09_00_00_06.json} (53%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_00_00_07.json => processor-sdk-linux/processor-sdk-linux-09_00_00_07.json} (53%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_01_00_06.json => processor-sdk-linux/processor-sdk-linux-09_01_00_06.json} (51%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_01_00_07.json => processor-sdk-linux/processor-sdk-linux-09_01_00_07.json} (51%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_02_00_04.json => processor-sdk-linux/processor-sdk-linux-09_02_00_04.json} (55%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_02_00_05.json => processor-sdk-linux/processor-sdk-linux-09_02_00_05.json} (55%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-09_03_06_05.json => processor-sdk-linux/processor-sdk-linux-09_03_06_05.json} (54%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-10_00_07_06.json => processor-sdk-linux/processor-sdk-linux-10_00_07_06.json} (54%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-10_00_08_06.json => processor-sdk-linux/processor-sdk-linux-10_00_08_06.json} (54%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-10_01_08_01.json => processor-sdk-linux/processor-sdk-linux-10_01_08_01.json} (54%)
+ copy bitbake-setup/{processor-sdk-linux_processor-sdk-linux-11_00_10_01.json => processor-sdk-linux/processor-sdk-linux-11_00_10_01.json} (56%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-09.00.00-am62xxsip-config.json => processor-sdk/processor-sdk-09.00.00-am62xxsip-config.json} (54%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-09.00.00-config.json => processor-sdk/processor-sdk-09.00.00-config.json} (54%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-09.01.00-am65xx-config.json => processor-sdk/processor-sdk-09.01.00-am65xx-config.json} (52%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-09.01.00-config.json => processor-sdk/processor-sdk-09.01.00-config.json} (54%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-09.01.00-legacy-config.json => processor-sdk/processor-sdk-09.01.00-legacy-config.json} (52%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-09.02.00.08-am64x-config.json => processor-sdk/processor-sdk-09.02.00.08-am64x-config.json} (54%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-09.03.05.02-legacy-config.json => processor-sdk/processor-sdk-09.03.05.02-legacy-config.json} (52%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-11.00.05.02-am62lxx-config.json => processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.json} (52%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-11.00.15.05-am62lxx-config.json => processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.json} (51%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-kirkstone-09.02.01.09-config.json => processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.json} (56%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-kirkstone-09.02.01.10-config.json => processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.json} (56%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config.json => processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.json} (58%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config.json => processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.json} (58%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-10.00.07.04-config.json => processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.json} (54%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-10.01.10.04-config.json => processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.json} (54%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-11.00.09.04-config.json => processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.json} (53%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-11.01.05.03-config.json => processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.json} (55%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config.json => processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.json} (57%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.04-config.json => processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.json} (57%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-chromium-11.00.09.04-config.json => processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.json} (55%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config.json => processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.json} (57%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config.json => processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.json} (57%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config.json => processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.json} (53%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-selinux-11.00.09.04-config.json => processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.json} (54%)
+ copy bitbake-setup/{processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config.json => processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.json} (56%)
+ create mode 100644 conf/fragments/localconf/configs/arago-kirkstone-next-config.conf
+ create mode 100644 conf/fragments/localconf/configs/arago-master-next-config.conf
+ create mode 100644 conf/fragments/localconf/configs/arago-master-selinux-config.conf
+ create mode 100644 conf/fragments/localconf/configs/arago-scarthgap-10x-config.conf
+ create mode 100644 conf/fragments/localconf/configs/arago-scarthgap-10x-next-config.conf
+ create mode 100644 conf/fragments/localconf/configs/arago-scarthgap-next-config.conf
+ create mode 100644 conf/fragments/localconf/configs/arago-scarthgap-selinux-config.conf
+ create mode 100644 conf/fragments/localconf/configs/coresdk/coresdk-10.01.10-selinux-config.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-gateway-10_00.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.conf
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.conf
+ copy conf/{templates/arago-kirkstone-chromium-config/local.conf.sample => fragments/localconf/local-arago64-v2.conf} (97%)
+ copy conf/{templates/arago-master-config/local.conf.sample => fragments/localconf/local-arago64-v3.conf} (97%)
+ copy conf/{templates/poky-kirkstone-config/local.conf.sample => fragments/localconf/local-poky-v2.conf} (97%)
+ copy sample-files/local-poky-v3.conf.sample => conf/fragments/localconf/local-poky-v3.conf (97%)
+ copy conf/{templates/distroless-kirkstone-config/local.conf.sample => fragments/localconf/local-v2.conf} (97%)
+ copy sample-files/local-v3.conf.sample => conf/fragments/localconf/local-v3.conf (97%)
 
-diff --git a/src/configs/arago-kirkstone-chromium-config.xml b/src/configs/arago-kirkstone-chromium-config.xml
-index 4ab973c..df49027 100644
---- a/src/configs/arago-kirkstone-chromium-config.xml
-+++ b/src/configs/arago-kirkstone-chromium-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for kirkstone-chromium</description>
+diff --git a/bitbake-setup/arago-kirkstone-chromium-config.json b/bitbake-setup/arago-kirkstone-chromium-config.json
+index 977b95d..3852de9 100644
+--- a/bitbake-setup/arago-kirkstone-chromium-config.json
++++ b/bitbake-setup/arago-kirkstone-chromium-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-kirkstone-chromium-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-kirkstone-config.json b/bitbake-setup/arago-kirkstone-config.json
+index 4921baf..4eaee6f 100644
+--- a/bitbake-setup/arago-kirkstone-config.json
++++ b/bitbake-setup/arago-kirkstone-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-kirkstone-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-kirkstone-next-config.json b/bitbake-setup/arago-kirkstone-next-config.json
+index 0865573..159e16d 100644
+--- a/bitbake-setup/arago-kirkstone-next-config.json
++++ b/bitbake-setup/arago-kirkstone-next-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-kirkstone-next-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/arago-kirkstone-next-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-kirkstone-wip-config.json b/bitbake-setup/arago-kirkstone-wip-config.json
+index 99cca73..a3d73e8 100644
+--- a/bitbake-setup/arago-kirkstone-wip-config.json
++++ b/bitbake-setup/arago-kirkstone-wip-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-kirkstone-wip-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-master-chromium-config.json b/bitbake-setup/arago-master-chromium-config.json
+index 82d7f1d..8dce603 100644
+--- a/bitbake-setup/arago-master-chromium-config.json
++++ b/bitbake-setup/arago-master-chromium-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-master-chromium-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v3" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-master-config.json b/bitbake-setup/arago-master-config.json
+index 38dc3e6..d804526 100644
+--- a/bitbake-setup/arago-master-config.json
++++ b/bitbake-setup/arago-master-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-master-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v3" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-master-flutter-config.json b/bitbake-setup/arago-master-flutter-config.json
+index 98b9810..624d8b4 100644
+--- a/bitbake-setup/arago-master-flutter-config.json
++++ b/bitbake-setup/arago-master-flutter-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-master-flutter-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-flutter/.","meta-flutter/meta-flutter-apps","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v3" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-master-next-config.json b/bitbake-setup/arago-master-next-config.json
+index d0065e1..9ddca65 100644
+--- a/bitbake-setup/arago-master-next-config.json
++++ b/bitbake-setup/arago-master-next-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-master-next-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v3", "oe-layersetup/localconf/configs/arago-master-next-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-master-selinux-config.json b/bitbake-setup/arago-master-selinux-config.json
+index 8d5d8b8..7ae5258 100644
+--- a/bitbake-setup/arago-master-selinux-config.json
++++ b/bitbake-setup/arago-master-selinux-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-master-selinux-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-selinux","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v3", "oe-layersetup/localconf/configs/arago-master-selinux-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-master-wip-config.json b/bitbake-setup/arago-master-wip-config.json
+index cea3704..24140f5 100644
+--- a/bitbake-setup/arago-master-wip-config.json
++++ b/bitbake-setup/arago-master-wip-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-master-wip-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v3" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-scarthgap-10x-config.json b/bitbake-setup/arago-scarthgap-10x-config.json
+index fc9279b..30b355d 100644
+--- a/bitbake-setup/arago-scarthgap-10x-config.json
++++ b/bitbake-setup/arago-scarthgap-10x-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-scarthgap-10x-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/arago-scarthgap-10x-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-scarthgap-10x-next-config.json b/bitbake-setup/arago-scarthgap-10x-next-config.json
+index f4fe3d8..1415016 100644
+--- a/bitbake-setup/arago-scarthgap-10x-next-config.json
++++ b/bitbake-setup/arago-scarthgap-10x-next-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-scarthgap-10x-next-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/arago-scarthgap-10x-next-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-scarthgap-chromium-config.json b/bitbake-setup/arago-scarthgap-chromium-config.json
+index 9ba4585..6ef006b 100644
+--- a/bitbake-setup/arago-scarthgap-chromium-config.json
++++ b/bitbake-setup/arago-scarthgap-chromium-config.json
+@@ -135,13 +135,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-scarthgap-chromium-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-scarthgap-config.json b/bitbake-setup/arago-scarthgap-config.json
+index 9e8067b..ec9e116 100644
+--- a/bitbake-setup/arago-scarthgap-config.json
++++ b/bitbake-setup/arago-scarthgap-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-scarthgap-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-scarthgap-flutter-config.json b/bitbake-setup/arago-scarthgap-flutter-config.json
+index fd31ad6..d79adfc 100644
+--- a/bitbake-setup/arago-scarthgap-flutter-config.json
++++ b/bitbake-setup/arago-scarthgap-flutter-config.json
+@@ -135,13 +135,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-scarthgap-flutter-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","meta-flutter/.","meta-flutter/meta-flutter-apps","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-scarthgap-next-config.json b/bitbake-setup/arago-scarthgap-next-config.json
+index fbee1d2..80a5d54 100644
+--- a/bitbake-setup/arago-scarthgap-next-config.json
++++ b/bitbake-setup/arago-scarthgap-next-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-scarthgap-next-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/arago-scarthgap-next-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-scarthgap-selinux-config.json b/bitbake-setup/arago-scarthgap-selinux-config.json
+index ac5b4c4..fc37999 100644
+--- a/bitbake-setup/arago-scarthgap-selinux-config.json
++++ b/bitbake-setup/arago-scarthgap-selinux-config.json
+@@ -135,13 +135,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-scarthgap-selinux-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-selinux","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/arago-scarthgap-selinux-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/arago-scarthgap-wip-config.json b/bitbake-setup/arago-scarthgap-wip-config.json
+index 51bb3f1..8c75113 100644
+--- a/bitbake-setup/arago-scarthgap-wip-config.json
++++ b/bitbake-setup/arago-scarthgap-wip-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-arago-scarthgap-wip-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-09.00.00.006-config.json b/bitbake-setup/coresdk/coresdk-09.00.00.006-config.json
+similarity index 50%
+copy from bitbake-setup/coresdk_coresdk-09.00.00.006-config.json
+copy to bitbake-setup/coresdk/coresdk-09.00.00.006-config.json
+index 4a577ff..042ae70 100644
+--- a/bitbake-setup/coresdk_coresdk-09.00.00.006-config.json
++++ b/bitbake-setup/coresdk/coresdk-09.00.00.006-config.json
+@@ -102,13 +102,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-09.00.00.006-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-09.00.00.007-config.json b/bitbake-setup/coresdk/coresdk-09.00.00.007-config.json
+similarity index 50%
+copy from bitbake-setup/coresdk_coresdk-09.00.00.007-config.json
+copy to bitbake-setup/coresdk/coresdk-09.00.00.007-config.json
+index 4e0637c..44c8e68 100644
+--- a/bitbake-setup/coresdk_coresdk-09.00.00.007-config.json
++++ b/bitbake-setup/coresdk/coresdk-09.00.00.007-config.json
+@@ -102,13 +102,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-09.00.00.007-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-09.00.00.011-config.json b/bitbake-setup/coresdk/coresdk-09.00.00.011-config.json
+similarity index 50%
+copy from bitbake-setup/coresdk_coresdk-09.00.00.011-config.json
+copy to bitbake-setup/coresdk/coresdk-09.00.00.011-config.json
+index ebe82de..6402a9e 100644
+--- a/bitbake-setup/coresdk_coresdk-09.00.00.011-config.json
++++ b/bitbake-setup/coresdk/coresdk-09.00.00.011-config.json
+@@ -102,13 +102,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-09.00.00.011-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk/coresdk-09.01.00.001-config.json b/bitbake-setup/coresdk/coresdk-09.01.00.001-config.json
+new file mode 100644
+index 0000000..8e78032
+--- /dev/null
++++ b/bitbake-setup/coresdk/coresdk-09.01.00.001-config.json
+@@ -0,0 +1,149 @@
++{
++  "version": "1.0",
++  "description": "TI CoreSDK v09.01.00.001",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "2.0"
++      },
++      "path": "bitbake"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-arago"
++    },
++    "meta-qt5": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/meta-qt5/meta-qt5.git"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-qt5"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-arm"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "oe-core"
++    }
++  },
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
++      }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
++  }
++}
+diff --git a/bitbake-setup/coresdk/coresdk-09.01.00.003-config.json b/bitbake-setup/coresdk/coresdk-09.01.00.003-config.json
+new file mode 100644
+index 0000000..064138b
+--- /dev/null
++++ b/bitbake-setup/coresdk/coresdk-09.01.00.003-config.json
+@@ -0,0 +1,149 @@
++{
++  "version": "1.0",
++  "description": "TI CoreSDK v09.01.00.003",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "2.0"
++      },
++      "path": "bitbake"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-arago"
++    },
++    "meta-qt5": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/meta-qt5/meta-qt5.git"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-qt5"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-arm"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "oe-core"
++    }
++  },
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
++      }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
++  }
++}
+diff --git a/bitbake-setup/coresdk/coresdk-09.01.00.007-config.json b/bitbake-setup/coresdk/coresdk-09.01.00.007-config.json
+new file mode 100644
+index 0000000..345356c
+--- /dev/null
++++ b/bitbake-setup/coresdk/coresdk-09.01.00.007-config.json
+@@ -0,0 +1,149 @@
++{
++  "version": "1.0",
++  "description": "TI CoreSDK v09.01.00.007",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "2.0"
++      },
++      "path": "bitbake"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-arago"
++    },
++    "meta-qt5": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/meta-qt5/meta-qt5.git"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-qt5"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-arm"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "oe-core"
++    }
++  },
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
++      }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
++  }
++}
+diff --git a/bitbake-setup/coresdk/coresdk-09.01.00.008-config.json b/bitbake-setup/coresdk/coresdk-09.01.00.008-config.json
+new file mode 100644
+index 0000000..4c0410b
+--- /dev/null
++++ b/bitbake-setup/coresdk/coresdk-09.01.00.008-config.json
+@@ -0,0 +1,149 @@
++{
++  "version": "1.0",
++  "description": "TI CoreSDK v09.01.00.008",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "2.0"
++      },
++      "path": "bitbake"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-arago"
++    },
++    "meta-qt5": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/meta-qt5/meta-qt5.git"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-qt5"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "meta-arm"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "kirkstone"
++      },
++      "path": "oe-core"
++    }
++  },
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
++      }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
++  }
++}
+diff --git a/bitbake-setup/coresdk_coresdk-09.02.00.008-config.json b/bitbake-setup/coresdk/coresdk-09.02.00.008-config.json
+similarity index 52%
+copy from bitbake-setup/coresdk_coresdk-09.02.00.008-config.json
+copy to bitbake-setup/coresdk/coresdk-09.02.00.008-config.json
+index e0ef11c..7d387dd 100644
+--- a/bitbake-setup/coresdk_coresdk-09.02.00.008-config.json
++++ b/bitbake-setup/coresdk/coresdk-09.02.00.008-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-09.02.00.008-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-09.02.00.009-config.json b/bitbake-setup/coresdk/coresdk-09.02.00.009-config.json
+similarity index 52%
+copy from bitbake-setup/coresdk_coresdk-09.02.00.009-config.json
+copy to bitbake-setup/coresdk/coresdk-09.02.00.009-config.json
+index 529c2df..244eb4e 100644
+--- a/bitbake-setup/coresdk_coresdk-09.02.00.009-config.json
++++ b/bitbake-setup/coresdk/coresdk-09.02.00.009-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-09.02.00.009-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-09.02.00.010-config.json b/bitbake-setup/coresdk/coresdk-09.02.00.010-config.json
+similarity index 52%
+copy from bitbake-setup/coresdk_coresdk-09.02.00.010-config.json
+copy to bitbake-setup/coresdk/coresdk-09.02.00.010-config.json
+index 99d9ae1..9731e2f 100644
+--- a/bitbake-setup/coresdk_coresdk-09.02.00.010-config.json
++++ b/bitbake-setup/coresdk/coresdk-09.02.00.010-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-09.02.00.010-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-09.03.05-config.json b/bitbake-setup/coresdk/coresdk-09.03.05-config.json
+similarity index 52%
+copy from bitbake-setup/coresdk_coresdk-09.03.05-config.json
+copy to bitbake-setup/coresdk/coresdk-09.03.05-config.json
+index 45df6f7..8c85125 100644
+--- a/bitbake-setup/coresdk_coresdk-09.03.05-config.json
++++ b/bitbake-setup/coresdk/coresdk-09.03.05-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-09.03.05-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-10.00.07-config.json b/bitbake-setup/coresdk/coresdk-10.00.07-config.json
+similarity index 51%
+copy from bitbake-setup/coresdk_coresdk-10.00.07-config.json
+copy to bitbake-setup/coresdk/coresdk-10.00.07-config.json
+index 2564285..9676947 100644
+--- a/bitbake-setup/coresdk_coresdk-10.00.07-config.json
++++ b/bitbake-setup/coresdk/coresdk-10.00.07-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-10.00.07-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-10.01.08-config.json b/bitbake-setup/coresdk/coresdk-10.01.08-config.json
+similarity index 51%
+copy from bitbake-setup/coresdk_coresdk-10.01.08-config.json
+copy to bitbake-setup/coresdk/coresdk-10.01.08-config.json
+index 7fb45d7..f729913 100644
+--- a/bitbake-setup/coresdk_coresdk-10.01.08-config.json
++++ b/bitbake-setup/coresdk/coresdk-10.01.08-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-10.01.08-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-10.01.10-config.json b/bitbake-setup/coresdk/coresdk-10.01.10-config.json
+similarity index 51%
+copy from bitbake-setup/coresdk_coresdk-10.01.10-config.json
+copy to bitbake-setup/coresdk/coresdk-10.01.10-config.json
+index 6a1a840..62a140b 100644
+--- a/bitbake-setup/coresdk_coresdk-10.01.10-config.json
++++ b/bitbake-setup/coresdk/coresdk-10.01.10-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-10.01.10-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json b/bitbake-setup/coresdk/coresdk-10.01.10-selinux-config.json
+similarity index 53%
+copy from bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json
+copy to bitbake-setup/coresdk/coresdk-10.01.10-selinux-config.json
+index 8acd24a..b9f2db7 100644
+--- a/bitbake-setup/coresdk_coresdk-10.01.10-selinux-config.json
++++ b/bitbake-setup/coresdk/coresdk-10.01.10-selinux-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-10.01.10-selinux-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-selinux","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/coresdk/coresdk-10.01.10-selinux-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-11.00.09-config.json b/bitbake-setup/coresdk/coresdk-11.00.09-config.json
+similarity index 51%
+copy from bitbake-setup/coresdk_coresdk-11.00.09-config.json
+copy to bitbake-setup/coresdk/coresdk-11.00.09-config.json
+index 1113730..86d5241 100644
+--- a/bitbake-setup/coresdk_coresdk-11.00.09-config.json
++++ b/bitbake-setup/coresdk/coresdk-11.00.09-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-11.00.09-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-11.00.15-config.json b/bitbake-setup/coresdk/coresdk-11.00.15-config.json
+similarity index 51%
+copy from bitbake-setup/coresdk_coresdk-11.00.15-config.json
+copy to bitbake-setup/coresdk/coresdk-11.00.15-config.json
+index 55bb1e3..f28d86c 100644
+--- a/bitbake-setup/coresdk_coresdk-11.00.15-config.json
++++ b/bitbake-setup/coresdk/coresdk-11.00.15-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-11.00.15-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-11.01.05-config.json b/bitbake-setup/coresdk/coresdk-11.01.05-config.json
+similarity index 54%
+copy from bitbake-setup/coresdk_coresdk-11.01.05-config.json
+copy to bitbake-setup/coresdk/coresdk-11.01.05-config.json
+index 140a55f..8ca09b1 100644
+--- a/bitbake-setup/coresdk_coresdk-11.01.05-config.json
++++ b/bitbake-setup/coresdk/coresdk-11.01.05-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-11.01.05-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/coresdk_coresdk-11.01.08-config.json b/bitbake-setup/coresdk/coresdk-11.01.08-config.json
+similarity index 54%
+copy from bitbake-setup/coresdk_coresdk-11.01.08-config.json
+copy to bitbake-setup/coresdk/coresdk-11.01.08-config.json
+index 7ec7ec8..0efc55e 100644
+--- a/bitbake-setup/coresdk_coresdk-11.01.08-config.json
++++ b/bitbake-setup/coresdk/coresdk-11.01.08-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-coresdk_coresdk-11.01.08-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/distroless-kirkstone-config.json b/bitbake-setup/distroless-kirkstone-config.json
+index b0ca7e7..405acf1 100644
+--- a/bitbake-setup/distroless-kirkstone-config.json
++++ b/bitbake-setup/distroless-kirkstone-config.json
+@@ -58,13 +58,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-distroless-kirkstone-config",
+-         "targets": [ "bitbake -k " ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [ "meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/distroless-master-config.json b/bitbake-setup/distroless-master-config.json
+index 1479e27..c338794 100644
+--- a/bitbake-setup/distroless-master-config.json
++++ b/bitbake-setup/distroless-master-config.json
+@@ -58,13 +58,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-distroless-master-config",
+-         "targets": [ "bitbake -k " ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [ "meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-v3" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/distroless-scarthgap-config.json b/bitbake-setup/distroless-scarthgap-config.json
+index bc34f7f..ee905cf 100644
+--- a/bitbake-setup/distroless-scarthgap-config.json
++++ b/bitbake-setup/distroless-scarthgap-config.json
+@@ -58,13 +58,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-distroless-scarthgap-config",
+-         "targets": [ "bitbake -k " ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [ "meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/poky-kirkstone-config.json b/bitbake-setup/poky-kirkstone-config.json
+index f577d85..e80f519 100644
+--- a/bitbake-setup/poky-kirkstone-config.json
++++ b/bitbake-setup/poky-kirkstone-config.json
+@@ -80,13 +80,48 @@
+       "path": "meta-arago"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-poky-kirkstone-config",
+-         "targets": [ "bitbake -k core_image_minimal" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "poky",
++        "description": "Yocto Project Poky reference distro build",
++        "bb-layers": [ "meta-yocto/meta-poky","meta-yocto/meta-yocto-bsp","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-poky-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/poky" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/poky-master-config.json b/bitbake-setup/poky-master-config.json
+index 7e99bd4..aa63dbf 100644
+--- a/bitbake-setup/poky-master-config.json
++++ b/bitbake-setup/poky-master-config.json
+@@ -80,13 +80,48 @@
+       "path": "meta-arago"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-poky-master-config",
+-         "targets": [ "bitbake -k core_image_minimal" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "poky",
++        "description": "Yocto Project Poky reference distro build",
++        "bb-layers": [ "meta-yocto/meta-poky","meta-yocto/meta-yocto-bsp","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-poky-v3" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/poky" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/poky-master-wip-config.json b/bitbake-setup/poky-master-wip-config.json
+index 063df20..119a7dc 100644
+--- a/bitbake-setup/poky-master-wip-config.json
++++ b/bitbake-setup/poky-master-wip-config.json
+@@ -80,13 +80,48 @@
+       "path": "meta-arago"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-poky-master-wip-config",
+-         "targets": [ "bitbake -k core_image_minimal" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "poky",
++        "description": "Yocto Project Poky reference distro build",
++        "bb-layers": [ "meta-yocto/meta-poky","meta-yocto/meta-yocto-bsp","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-poky-v3" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/poky" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/poky-scarthgap-config.json b/bitbake-setup/poky-scarthgap-config.json
+index 7d4cb50..1012df5 100644
+--- a/bitbake-setup/poky-scarthgap-config.json
++++ b/bitbake-setup/poky-scarthgap-config.json
+@@ -80,13 +80,48 @@
+       "path": "meta-arago"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-poky-scarthgap-config",
+-         "targets": [ "bitbake -k core_image_minimal" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "poky",
++        "description": "Yocto Project Poky reference distro build",
++        "bb-layers": [ "meta-yocto/meta-poky","meta-yocto/meta-yocto-bsp","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-poky-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/poky" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/poky-scarthgap-wip-config.json b/bitbake-setup/poky-scarthgap-wip-config.json
+index a4aeed0..727a4cf 100644
+--- a/bitbake-setup/poky-scarthgap-wip-config.json
++++ b/bitbake-setup/poky-scarthgap-wip-config.json
+@@ -69,13 +69,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-poky-scarthgap-wip-config",
+-         "targets": [ "bitbake -k core_image_minimal" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "poky",
++        "description": "Yocto Project Poky reference distro build",
++        "bb-layers": [ "meta-yocto/meta-poky","meta-yocto/meta-yocto-bsp","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-poky-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/poky" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config.json
+copy to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.json
+index a371d64..50da6c5 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.00-config.json
++++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.json
+@@ -124,13 +124,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-09.00.00-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-psdkla","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config.json
+copy to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.json
+index f6a90fc..80b6654 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.00.01-config.json
++++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.json
+@@ -124,13 +124,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-09.00.01-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-psdkla","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config.json
+copy to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.json
+index 880511e..1841a1e 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.01.00-config.json
++++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.json
+@@ -124,13 +124,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-09.01.00-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-tisdk","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config.json
+copy to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.json
+index edf3114..533c64b 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-09.02.00-config.json
++++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.json
+@@ -124,13 +124,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-09.02.00-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-tisdk","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config.json
+copy to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.json
+index c8979db..f9c374f 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-10.00.00-config.json
++++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.json
+@@ -124,13 +124,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-10.00.00-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-tisdk","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-10.01.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.json
+similarity index 56%
+copy from bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-10.01.00-config.json
+copy to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.json
+index 0eb3867..239789b 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-10.01.00-config.json
++++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.json
+@@ -135,13 +135,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-10.01.00-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-11.00.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.json
+similarity index 56%
+copy from bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-11.00.00-config.json
+copy to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.json
+index d4ca6ae..9921885 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-11.00.00-config.json
++++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.json
+@@ -135,13 +135,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-11.00.00-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk/meta-ti-foundational","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.json
+similarity index 57%
+copy from bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config.json
+copy to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.json
+index d856fda..4c49df6 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config.json
++++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.json
+@@ -146,13 +146,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-11.01.07.05-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.json
+similarity index 58%
+copy from bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config.json
+copy to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.json
+index 9523f46..aad35e1 100644
+--- a/bitbake-setup/processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config.json
++++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.json
+@@ -157,13 +157,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-analytics_processor-sdk-analytics-selinux-11.01.07.05-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-selinux","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-gateway-10_00.json b/bitbake-setup/processor-sdk-linux/processor-sdk-gateway-10_00.json
+similarity index 53%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-gateway-10_00.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-gateway-10_00.json
+index 0496660..8d733ee 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-gateway-10_00.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-gateway-10_00.json
+@@ -124,13 +124,48 @@
+       "path": "meta-tisdk"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-gateway-10_00",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-linux/processor-sdk-gateway-10_00.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_06.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_06.json
+similarity index 53%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_06.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_06.json
+index 27b1c73..16db478 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_06.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_06.json
+@@ -124,13 +124,48 @@
+       "path": "meta-psdkla"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-09_00_00_06",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-aws","meta-psdkla","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_07.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_07.json
+similarity index 53%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_07.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_07.json
+index 1b65b00..1788918 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_00_00_07.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_07.json
+@@ -124,13 +124,48 @@
+       "path": "meta-psdkla"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-09_00_00_07",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-aws","meta-psdkla","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_06.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_06.json
+similarity index 51%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_06.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_06.json
+index df3bf13..90c8857 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_06.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_06.json
+@@ -113,13 +113,48 @@
+       "path": "meta-tisdk"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-09_01_00_06",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-tisdk","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_07.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_07.json
+similarity index 51%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_07.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_07.json
+index b349a19..4dc31e5 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_01_00_07.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_07.json
+@@ -113,13 +113,48 @@
+       "path": "meta-tisdk"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-09_01_00_07",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-tisdk","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_04.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_04.json
+similarity index 55%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_04.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_04.json
+index f90a776..edbb9f7 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_04.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_04.json
+@@ -135,13 +135,48 @@
+       "path": "meta-tisdk"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-09_02_00_04",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_05.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_05.json
+similarity index 55%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_05.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_05.json
+index ae0d18a..030c1a4 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_02_00_05.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_05.json
+@@ -135,13 +135,48 @@
+       "path": "meta-tisdk"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-09_02_00_05",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_03_06_05.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_03_06_05.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_03_06_05.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_03_06_05.json
+index 785408f..744c963 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-09_03_06_05.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_03_06_05.json
+@@ -124,13 +124,48 @@
+       "path": "meta-tisdk"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-09_03_06_05",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_07_06.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_07_06.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_07_06.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_07_06.json
+index 0f49f93..fb638fd 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_07_06.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_07_06.json
+@@ -135,13 +135,48 @@
+       "path": "meta-tisdk"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-10_00_07_06",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_08_06.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_08_06.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_08_06.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_08_06.json
+index 213b129..e9d7ab6 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_00_08_06.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_08_06.json
+@@ -135,13 +135,48 @@
+       "path": "meta-tisdk"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-10_00_08_06",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_01_08_01.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_01_08_01.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_01_08_01.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_01_08_01.json
+index 952b366..a1de7e5 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-10_01_08_01.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_01_08_01.json
+@@ -135,13 +135,48 @@
+       "path": "meta-tisdk"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-10_01_08_01",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-11_00_10_01.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_00_10_01.json
+similarity index 56%
+copy from bitbake-setup/processor-sdk-linux_processor-sdk-linux-11_00_10_01.json
+copy to bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_00_10_01.json
+index dfc3980..e12fb5d 100644
+--- a/bitbake-setup/processor-sdk-linux_processor-sdk-linux-11_00_10_01.json
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_00_10_01.json
+@@ -135,13 +135,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk-linux_processor-sdk-linux-11_00_10_01",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk/meta-ti-foundational","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.00.00-am62xxsip-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk_processor-sdk-09.00.00-am62xxsip-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.json
+index 55ba7a4..287835e 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.00.00-am62xxsip-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-09.00.00-am62xxsip-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-edgeai","meta-processor-sdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.00.00-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.00.00-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk_processor-sdk-09.00.00-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-09.00.00-config.json
+index 95fd87e..9ce9de5 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.00.00-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-09.00.00-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-09.00.00-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-edgeai","meta-processor-sdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-am65xx-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.01.00-am65xx-config.json
+similarity index 52%
+copy from bitbake-setup/processor-sdk_processor-sdk-09.01.00-am65xx-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-09.01.00-am65xx-config.json
+index bbc816a..8511942 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-am65xx-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-09.01.00-am65xx-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-09.01.00-am65xx-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-processor-sdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.01.00-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk_processor-sdk-09.01.00-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-09.01.00-config.json
+index daec1ba..bb4b1d4 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-09.01.00-config.json
+@@ -124,13 +124,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-09.01.00-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-legacy-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.01.00-legacy-config.json
+similarity index 52%
+copy from bitbake-setup/processor-sdk_processor-sdk-09.01.00-legacy-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-09.01.00-legacy-config.json
+index 0ea7a01..f92a67b 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.01.00-legacy-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-09.01.00-legacy-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-09.01.00-legacy-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-processor-sdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.02.00.08-am64x-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.02.00.08-am64x-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk_processor-sdk-09.02.00.08-am64x-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-09.02.00.08-am64x-config.json
+index 3ab024e..d6c1a9a 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.02.00.08-am64x-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-09.02.00.08-am64x-config.json
+@@ -124,13 +124,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-09.02.00.08-am64x-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.03.05.02-legacy-config.json
+similarity index 52%
+copy from bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-09.03.05.02-legacy-config.json
+index 8424253..3510a78 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-09.03.05.02-legacy-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-09.03.05.02-legacy-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-09.03.05.02-legacy-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-11.00.05.02-am62lxx-config.json b/bitbake-setup/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.json
+similarity index 52%
+copy from bitbake-setup/processor-sdk_processor-sdk-11.00.05.02-am62lxx-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.json
+index aa05aa1..2d595f5 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-11.00.05.02-am62lxx-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-11.00.05.02-am62lxx-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-11.00.15.05-am62lxx-config.json b/bitbake-setup/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.json
+similarity index 51%
+copy from bitbake-setup/processor-sdk_processor-sdk-11.00.15.05-am62lxx-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.json
+index f49a25b..1b98f59 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-11.00.15.05-am62lxx-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.json
+@@ -113,13 +113,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-11.00.15.05-am62lxx-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-tisdk/meta-ti-ml","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config.json b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.json
+similarity index 56%
+copy from bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.json
+index ce27119..e66c382 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.09-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.json
+@@ -135,13 +135,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-kirkstone-09.02.01.09-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config.json b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.json
+similarity index 56%
+copy from bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.json
+index 24d8391..135b209 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-09.02.01.10-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.json
+@@ -135,13 +135,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-kirkstone-09.02.01.10-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config.json b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.json
+similarity index 58%
+copy from bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.json
+index f408a5c..5e6ea36 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.json
+@@ -146,13 +146,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.09-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config.json b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.json
+similarity index 58%
+copy from bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.json
+index 808b637..f7a73f8 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.json
+@@ -146,13 +146,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-kirkstone-chromium-09.02.01.10-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.json
+index dfed0b4..7fddac3 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-10.00.07.04-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-10.00.07.04-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.json
+index f70e760..74ae454 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-10.01.10.04-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-10.01.10.04-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-11.00.09.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.json
+similarity index 53%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-11.00.09.04-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.json
+index d58d987..c9f0c7f 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-11.00.09.04-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-11.00.09.04-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-tisdk/meta-ti-ml","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.json
+similarity index 55%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.json
+index b0d63f8..cdcb8d1 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-11.01.05.03-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.json
+@@ -135,13 +135,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-11.01.05.03-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-tisdk/meta-ti-ml","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.json
+similarity index 57%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.json
+index 0b4a703..22f0e9c 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.json
+@@ -146,13 +146,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-chromium-10.00.07.04-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.json
+similarity index 57%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.04-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.json
+index fa0a0bd..3610606 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.04-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.json
+@@ -146,13 +146,48 @@
+       "path": "meta-edgeai"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-chromium-10.01.10.04-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-demos","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt5","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-edgeai","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.00.09.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.json
+similarity index 55%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.00.09.04-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.json
+index dd2ac11..cd7b89e 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.00.09.04-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.json
+@@ -135,13 +135,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-chromium-11.00.09.04-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-tisdk/meta-ti-ml","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.json
+similarity index 57%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.json
+index fb06679..33cf0ea 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.json
+@@ -146,13 +146,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-chromium-11.01.05.03-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-tisdk/meta-ti-ml","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.json
+similarity index 57%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.json
+index 1036166..64e1d35 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.json
+@@ -146,13 +146,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-chromium-11.01.12.10-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-tisdk/meta-ti-ml","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-browser/meta-chromium","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.json
+similarity index 53%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.json
+index e003bc8..587343c 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.json
+@@ -124,13 +124,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-nonqt-11.01.05.03-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-tisdk/meta-ti-ml","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-selinux-11.00.09.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.json
+similarity index 54%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-selinux-11.00.09.04-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.json
+index a6733a9..dfd404c 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-selinux-11.00.09.04-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.json
+@@ -135,13 +135,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-selinux-11.00.09.04-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-tisdk/meta-ti-ml","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-selinux","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.json
+similarity index 56%
+copy from bitbake-setup/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config.json
+copy to bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.json
+index 8e6c080..60c031e 100644
+--- a/bitbake-setup/processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config.json
++++ b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.json
+@@ -146,13 +146,48 @@
+       "path": "oe-core"
+     }
+   },
+-  "configuration": {
+-    "bitbake-setup": {
+-      "default": {
+-        "description": "Default build configuration",
+-         "template": "oe-layersetup-processor-sdk_processor-sdk-scarthgap-selinux-11.01.05.03-config",
+-         "targets": [ "bitbake -k tisdk-default-image" ]
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-tisdk/meta-ti-ml","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-selinux","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2", "oe-layersetup/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
+       }
+-    }
++    ]
++  }
++}
++{
++  "version": "1.0",
++  "description": "",
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "",
++        "description": "",
++        "bb-layers": [  ],
++        "oe-fragments": [ "oe-layersetup/localconf/" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [  ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [  ]
++          }
++        }
++      }
++    ]
+   }
+ }
+diff --git a/conf/fragments/localconf/configs/arago-kirkstone-next-config.conf b/conf/fragments/localconf/configs/arago-kirkstone-next-config.conf
+new file mode 100644
+index 0000000..7fab4ff
+--- /dev/null
++++ b/conf/fragments/localconf/configs/arago-kirkstone-next-config.conf
+@@ -0,0 +1,9 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for arago-kirkstone-next-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for arago-kirkstone-next-config"
++
++OVERRIDES:append = ":recipe-${@os.path.basename(d.getVar('FILE'))}"
++BRANCH:recipe-linux-ti-staging_6.1.bb = "ti-linux-6.1.y-cicd"
++BRANCH:recipe-linux-ti-staging-rt_6.1.bb = "ti-rt-linux-6.1.y-cicd"
++BRANCH:recipe-linux-ti-staging-systest_6.1.bb = "ti-linux-6.1.y-cicd"
++GIT_BRANCH:recipe-ti-k3-secdev_git.bb = "master-next"
++BRANCH:recipe-u-boot-ti-staging_2023.04.bb = "ti-u-boot-2023.04-next"
+diff --git a/conf/fragments/localconf/configs/arago-master-next-config.conf b/conf/fragments/localconf/configs/arago-master-next-config.conf
+new file mode 100644
+index 0000000..b85b6a7
+--- /dev/null
++++ b/conf/fragments/localconf/configs/arago-master-next-config.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for arago-master-next-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for arago-master-next-config"
++
++OVERRIDES:append = ":recipe-${@os.path.basename(d.getVar('FILE'))}"
+diff --git a/conf/fragments/localconf/configs/arago-master-selinux-config.conf b/conf/fragments/localconf/configs/arago-master-selinux-config.conf
+new file mode 100644
+index 0000000..022576a
+--- /dev/null
++++ b/conf/fragments/localconf/configs/arago-master-selinux-config.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for arago-master-selinux-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for arago-master-selinux-config"
++
++DISTRO_FEATURES:append = " acl xattr pam selinux"
+diff --git a/conf/fragments/localconf/configs/arago-scarthgap-10x-config.conf b/conf/fragments/localconf/configs/arago-scarthgap-10x-config.conf
+new file mode 100644
+index 0000000..6f4bf47
+--- /dev/null
++++ b/conf/fragments/localconf/configs/arago-scarthgap-10x-config.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for arago-scarthgap-10x-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for arago-scarthgap-10x-config"
++
++TI_PREFERRED_BSP = "ti-6_6"
+diff --git a/conf/fragments/localconf/configs/arago-scarthgap-10x-next-config.conf b/conf/fragments/localconf/configs/arago-scarthgap-10x-next-config.conf
+new file mode 100644
+index 0000000..d663446
+--- /dev/null
++++ b/conf/fragments/localconf/configs/arago-scarthgap-10x-next-config.conf
+@@ -0,0 +1,8 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for arago-scarthgap-10x-next-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for arago-scarthgap-10x-next-config"
++
++TI_PREFERRED_BSP = "ti-6_6"
++OVERRIDES:append = ":recipe-${@os.path.basename(d.getVar('FILE'))}"
++BRANCH:recipe-linux-ti-staging_6.6.bb = "ti-linux-6.6.y-cicd"
++BRANCH:recipe-linux-ti-staging-rt_6.6.bb = "ti-rt-linux-6.6.y-cicd"
++BRANCH:recipe-u-boot-ti-staging_2024.04.bb = "ti-u-boot-2024.04-next"
+diff --git a/conf/fragments/localconf/configs/arago-scarthgap-next-config.conf b/conf/fragments/localconf/configs/arago-scarthgap-next-config.conf
+new file mode 100644
+index 0000000..9c33ebe
+--- /dev/null
++++ b/conf/fragments/localconf/configs/arago-scarthgap-next-config.conf
+@@ -0,0 +1,25 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for arago-scarthgap-next-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for arago-scarthgap-next-config"
++
++OVERRIDES:append = ":recipe-${@os.path.basename(d.getVar('FILE'))}"
++BRANCH:recipe-ltp-ddt_20250130.bb = "cicd"
++BRANCH:recipe-cadence-mhdp-fw_git.bb = "ti-linux-firmware-next"
++BRANCH:recipe-cnm-wave-fw_git.bb = "ti-linux-firmware-next"
++BRANCH:recipe-goodix-fw_git.bb = "ti-linux-firmware-next"
++BRANCH:recipe-linux-ti-staging_6.12.bb = "ti-linux-6.12.y-cicd"
++BRANCH_ARM64:recipe-linux-ti-staging-rt_6.12.bb = "ti-linux-6.12.y-cicd"
++BRANCH_ARM32:recipe-linux-ti-staging-rt_6.12.bb = "ti-rt-linux-6.12.y-arm32-cicd"
++BRANCH:recipe-prueth-fw_5.6.15.bb = "ti-linux-firmware-next"
++BRANCH:recipe-pruhsr-fw_2.17.25.bb = "ti-linux-firmware-next"
++BRANCH:recipe-pruprp-fw_2.17.25.bb = "ti-linux-firmware-next"
++BRANCH:recipe-prusw-fw_3.2.9.bb = "ti-linux-firmware-next"
++BRANCH:recipe-ti-dac-fw.bb = "ti-linux-firmware-next"
++BRANCH:recipe-ti-dm-fw.bb = "ti-linux-firmware-next"
++BRANCH:recipe-ti-eth-fw.bb = "ti-linux-firmware-next"
++BRANCH:recipe-ti-hsm-demo-fw_git.bb = "ti-linux-firmware-next"
++BRANCH:recipe-ti-pka-fw_git.bb = "ti-linux-firmware-next"
++BRANCH:recipe-ti-rtos-echo-test-fw.bb = "ti-linux-firmware-next"
++BRANCH:recipe-ti-rtos-messageq-test-fw_git.bb = "ti-linux-firmware-next"
++BRANCH:recipe-ti-sci-fw_git.bb = "ti-linux-firmware-next"
++BRANCH:recipe-u-boot-ti-staging_2025.01.bb = "ti-u-boot-2025.01-next"
++BRANCH:recipe-vxd-dec-fw_git.bb = "ti-linux-firmware-next"
+diff --git a/conf/fragments/localconf/configs/arago-scarthgap-selinux-config.conf b/conf/fragments/localconf/configs/arago-scarthgap-selinux-config.conf
+new file mode 100644
+index 0000000..df8ae7d
+--- /dev/null
++++ b/conf/fragments/localconf/configs/arago-scarthgap-selinux-config.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for arago-scarthgap-selinux-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for arago-scarthgap-selinux-config"
++
++DISTRO_FEATURES:append = " acl xattr pam selinux"
+diff --git a/conf/fragments/localconf/configs/coresdk/coresdk-10.01.10-selinux-config.conf b/conf/fragments/localconf/configs/coresdk/coresdk-10.01.10-selinux-config.conf
+new file mode 100644
+index 0000000..f69ad44
+--- /dev/null
++++ b/conf/fragments/localconf/configs/coresdk/coresdk-10.01.10-selinux-config.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for coresdk/coresdk-10.01.10-selinux-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for coresdk/coresdk-10.01.10-selinux-config"
++
++DISTRO_FEATURES:append = " acl xattr pam selinux"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.conf b/conf/fragments/localconf/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.conf
+new file mode 100644
+index 0000000..6724665
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config"
++
++DISTRO_FEATURES:append = " acl xattr pam selinux"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-gateway-10_00.conf b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-gateway-10_00.conf
+new file mode 100644
+index 0000000..155f9aa
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-gateway-10_00.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-linux/processor-sdk-gateway-10_00"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-linux/processor-sdk-gateway-10_00"
++
++DISTRO_FEATURES:append = " virtualization"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.conf b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.conf
+new file mode 100644
+index 0000000..31abf7b
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.conf
+@@ -0,0 +1,5 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_00_00_06"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_00_00_06"
++
++DISTRO_FEATURES:append = " virtualization"
++ARAGO_BRAND = "foundational_sdk"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.conf b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.conf
+new file mode 100644
+index 0000000..f17155b
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_00_00_07"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_00_00_07"
++
++DISTRO_FEATURES:append = " virtualization"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.conf b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.conf
+new file mode 100644
+index 0000000..126e2d8
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.conf
+@@ -0,0 +1,5 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_01_00_06"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_01_00_06"
++
++DISTRO_FEATURES:append = " virtualization"
++ARAGO_BRAND = "foundational_sdk"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.conf b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.conf
+new file mode 100644
+index 0000000..bd7050d
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_01_00_07"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_01_00_07"
++
++DISTRO_FEATURES:append = " virtualization"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.conf b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.conf
+new file mode 100644
+index 0000000..9dc1d44
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.conf
+@@ -0,0 +1,5 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_02_00_04"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_02_00_04"
++
++DISTRO_FEATURES:append = " virtualization"
++ARAGO_BRAND = "foundational_sdk"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.conf b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.conf
+new file mode 100644
+index 0000000..9ddeb33
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.conf
+@@ -0,0 +1,5 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_02_00_05"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-09_02_00_05"
++
++DISTRO_FEATURES:append = " virtualization"
++ARAGO_BRAND = "foundational_sdk"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.conf b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.conf
+new file mode 100644
+index 0000000..2ffbc77
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.conf
+@@ -0,0 +1,5 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-10_00_07_06"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-10_00_07_06"
++
++DISTRO_FEATURES:append = " virtualization"
++DISTROOVERRIDES:append = ":foundational"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.conf b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.conf
+new file mode 100644
+index 0000000..3c156b5
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.conf
+@@ -0,0 +1,5 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-10_00_08_06"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-10_00_08_06"
++
++DISTRO_FEATURES:append = " virtualization"
++DISTROOVERRIDES:append = ":foundational"
+diff --git a/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.conf b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.conf
+new file mode 100644
+index 0000000..9104ae3
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.conf
+@@ -0,0 +1,5 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-10_01_08_01"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk-linux/processor-sdk-linux-10_01_08_01"
++
++DISTRO_FEATURES:append = " virtualization"
++DISTROOVERRIDES:append = ":foundational"
+diff --git a/conf/fragments/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.conf b/conf/fragments/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.conf
+new file mode 100644
+index 0000000..2771845
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config"
++
++DISTRO_FEATURES:append = " acl xattr pam selinux"
+diff --git a/conf/fragments/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.conf b/conf/fragments/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.conf
+new file mode 100644
+index 0000000..13e4230
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY = "Config specific overrides for processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config"
++BB_CONF_FRAGMENT_DESCRIPTION = "Config specific overrides for processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config"
++
++DISTRO_FEATURES:append = " acl xattr pam selinux"
+diff --git a/conf/templates/arago-kirkstone-chromium-config/local.conf.sample b/conf/fragments/localconf/local-arago64-v2.conf
+similarity index 97%
+copy from conf/templates/arago-kirkstone-chromium-config/local.conf.sample
+copy to conf/fragments/localconf/local-arago64-v2.conf
+index 8ad6f26..1e102fc 100644
+--- a/conf/templates/arago-kirkstone-chromium-config/local.conf.sample
++++ b/conf/fragments/localconf/local-arago64-v2.conf
+@@ -1,3 +1,6 @@
++BB_CONF_FRAGMENT_SUMMARY = "TI oe-layersetup build defaults for Arago 64bit builds v2"
++BB_CONF_FRAGMENT_DESCRIPTION = "TI oe-layersetup build defaults for Arago 64bit builds v2"
++
+ # CONF_VERSION is increased each time build/conf/ changes incompatibly
+ CONF_VERSION = "2"
+ 
+diff --git a/conf/templates/arago-master-config/local.conf.sample b/conf/fragments/localconf/local-arago64-v3.conf
+similarity index 97%
+copy from conf/templates/arago-master-config/local.conf.sample
+copy to conf/fragments/localconf/local-arago64-v3.conf
+index 720ce11..be1b9aa 100644
+--- a/conf/templates/arago-master-config/local.conf.sample
++++ b/conf/fragments/localconf/local-arago64-v3.conf
+@@ -1,3 +1,6 @@
++BB_CONF_FRAGMENT_SUMMARY = "TI oe-layersetup build defaults for Arago 64bit builds v3"
++BB_CONF_FRAGMENT_DESCRIPTION = "TI oe-layersetup build defaults for Arago 64bit builds v3"
++
+ # CONF_VERSION is increased each time build/conf/ changes incompatibly
+ CONF_VERSION = "2"
+ 
+diff --git a/conf/templates/poky-kirkstone-config/local.conf.sample b/conf/fragments/localconf/local-poky-v2.conf
+similarity index 97%
+copy from conf/templates/poky-kirkstone-config/local.conf.sample
+copy to conf/fragments/localconf/local-poky-v2.conf
+index 12eacfc..63f1040 100644
+--- a/conf/templates/poky-kirkstone-config/local.conf.sample
++++ b/conf/fragments/localconf/local-poky-v2.conf
+@@ -1,3 +1,6 @@
++BB_CONF_FRAGMENT_SUMMARY = "TI oe-layersetup build defaults for Poky builds v2"
++BB_CONF_FRAGMENT_DESCRIPTION = "TI oe-layersetup build defaults for Poky builds v2"
++
+ # CONF_VERSION is increased each time build/conf/ changes incompatibly
+ CONF_VERSION = "2"
+ 
+diff --git a/sample-files/local-poky-v3.conf.sample b/conf/fragments/localconf/local-poky-v3.conf
+similarity index 97%
+copy from sample-files/local-poky-v3.conf.sample
+copy to conf/fragments/localconf/local-poky-v3.conf
+index e0112c7..c224d6b 100644
+--- a/sample-files/local-poky-v3.conf.sample
++++ b/conf/fragments/localconf/local-poky-v3.conf
+@@ -1,3 +1,6 @@
++BB_CONF_FRAGMENT_SUMMARY = "TI oe-layersetup build defaults for Poky builds v3"
++BB_CONF_FRAGMENT_DESCRIPTION = "TI oe-layersetup build defaults for Poky builds v3"
++
+ # CONF_VERSION is increased each time build/conf/ changes incompatibly
+ CONF_VERSION = "2"
+ 
+diff --git a/conf/templates/distroless-kirkstone-config/local.conf.sample b/conf/fragments/localconf/local-v2.conf
+similarity index 97%
+copy from conf/templates/distroless-kirkstone-config/local.conf.sample
+copy to conf/fragments/localconf/local-v2.conf
+index b499977..a072036 100644
+--- a/conf/templates/distroless-kirkstone-config/local.conf.sample
++++ b/conf/fragments/localconf/local-v2.conf
+@@ -1,3 +1,6 @@
++BB_CONF_FRAGMENT_SUMMARY = "TI oe-layersetup build defaults for builds v2"
++BB_CONF_FRAGMENT_DESCRIPTION = "TI oe-layersetup build defaults for builds v2"
++
+ # CONF_VERSION is increased each time build/conf/ changes incompatibly
+ CONF_VERSION = "2"
+ 
+diff --git a/sample-files/local-v3.conf.sample b/conf/fragments/localconf/local-v3.conf
+similarity index 97%
+copy from sample-files/local-v3.conf.sample
+copy to conf/fragments/localconf/local-v3.conf
+index 7d218e8..d4ed078 100644
+--- a/sample-files/local-v3.conf.sample
++++ b/conf/fragments/localconf/local-v3.conf
+@@ -1,3 +1,6 @@
++BB_CONF_FRAGMENT_SUMMARY = "TI oe-layersetup build defaults for builds v3"
++BB_CONF_FRAGMENT_DESCRIPTION = "TI oe-layersetup build defaults for builds v3"
++
+ # CONF_VERSION is increased each time build/conf/ changes incompatibly
+ CONF_VERSION = "2"
  
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-kirkstone-config.xml b/src/configs/arago-kirkstone-config.xml
-index d568956..cc8e1d5 100644
---- a/src/configs/arago-kirkstone-config.xml
-+++ b/src/configs/arago-kirkstone-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for kirkstone</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-kirkstone-next-config.xml b/src/configs/arago-kirkstone-next-config.xml
-index 7d6ffde..dd6815f 100644
---- a/src/configs/arago-kirkstone-next-config.xml
-+++ b/src/configs/arago-kirkstone-next-config.xml
-@@ -3,7 +3,8 @@
-     <description>Arago reference distribution for kirkstone-next (CICD)</description>
- 
-     <xi:include href='../common/motd_cicd.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-kirkstone-wip-config.xml b/src/configs/arago-kirkstone-wip-config.xml
-index 5d672f1..f08ac6f 100644
---- a/src/configs/arago-kirkstone-wip-config.xml
-+++ b/src/configs/arago-kirkstone-wip-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for kirkstone-wip</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-master-chromium-config.xml b/src/configs/arago-master-chromium-config.xml
-index 5ac01ba..d59c579 100644
---- a/src/configs/arago-master-chromium-config.xml
-+++ b/src/configs/arago-master-chromium-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for master-chromium</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-master-config.xml b/src/configs/arago-master-config.xml
-index a7eeb4d..1f3bb4e 100644
---- a/src/configs/arago-master-config.xml
-+++ b/src/configs/arago-master-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for master</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-master-flutter-config.xml b/src/configs/arago-master-flutter-config.xml
-index 3fdcbe7..0bb8972 100644
---- a/src/configs/arago-master-flutter-config.xml
-+++ b/src/configs/arago-master-flutter-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for master-flutter</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-master-next-config.xml b/src/configs/arago-master-next-config.xml
-index c4ec0f5..2f3c78a 100644
---- a/src/configs/arago-master-next-config.xml
-+++ b/src/configs/arago-master-next-config.xml
-@@ -3,7 +3,8 @@
-     <description>Arago reference distribution for master-next (CICD)</description>
- 
-     <xi:include href='../common/motd_cicd.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-master-selinux-config.xml b/src/configs/arago-master-selinux-config.xml
-index 59d05d7..e3018bd 100644
---- a/src/configs/arago-master-selinux-config.xml
-+++ b/src/configs/arago-master-selinux-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for master</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-master-wip-config.xml b/src/configs/arago-master-wip-config.xml
-index e8a8407..fe52c8c 100644
---- a/src/configs/arago-master-wip-config.xml
-+++ b/src/configs/arago-master-wip-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for master-wip</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-scarthgap-10x-config.xml b/src/configs/arago-scarthgap-10x-config.xml
-index ead78e2..505245f 100644
---- a/src/configs/arago-scarthgap-10x-config.xml
-+++ b/src/configs/arago-scarthgap-10x-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for scarthgap</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-scarthgap-10x-next-config.xml b/src/configs/arago-scarthgap-10x-next-config.xml
-index 1d55f7e..727cef6 100644
---- a/src/configs/arago-scarthgap-10x-next-config.xml
-+++ b/src/configs/arago-scarthgap-10x-next-config.xml
-@@ -3,7 +3,8 @@
-     <description>Arago reference distribution for scarthgap-next (CICD)</description>
- 
-     <xi:include href='../common/motd_cicd.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-scarthgap-chromium-config.xml b/src/configs/arago-scarthgap-chromium-config.xml
-index 5ed35b4..ca960cd 100644
---- a/src/configs/arago-scarthgap-chromium-config.xml
-+++ b/src/configs/arago-scarthgap-chromium-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for scarthgap-chromium</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-scarthgap-config.xml b/src/configs/arago-scarthgap-config.xml
-index d5c571e..3a3302a 100644
---- a/src/configs/arago-scarthgap-config.xml
-+++ b/src/configs/arago-scarthgap-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for scarthgap</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-scarthgap-flutter-config.xml b/src/configs/arago-scarthgap-flutter-config.xml
-index 8686025..eb3920c 100644
---- a/src/configs/arago-scarthgap-flutter-config.xml
-+++ b/src/configs/arago-scarthgap-flutter-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for scarthgap</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-scarthgap-next-config.xml b/src/configs/arago-scarthgap-next-config.xml
-index df77559..85a4326 100644
---- a/src/configs/arago-scarthgap-next-config.xml
-+++ b/src/configs/arago-scarthgap-next-config.xml
-@@ -3,7 +3,8 @@
-     <description>Arago reference distribution for scarthgap-next (CICD)</description>
- 
-     <xi:include href='../common/motd_cicd.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-scarthgap-selinux-config.xml b/src/configs/arago-scarthgap-selinux-config.xml
-index 1096683..cfc2217 100644
---- a/src/configs/arago-scarthgap-selinux-config.xml
-+++ b/src/configs/arago-scarthgap-selinux-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for scarthgap</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/arago-scarthgap-wip-config.xml b/src/configs/arago-scarthgap-wip-config.xml
-index cdb4a29..e5a1596 100644
---- a/src/configs/arago-scarthgap-wip-config.xml
-+++ b/src/configs/arago-scarthgap-wip-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Arago reference distribution for scarthgap-wip</description>
- 
--    <xi:include href='../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.00.00.006-config.xml b/src/configs/coresdk/coresdk-09.00.00.006-config.xml
-index fcd933d..2eebcb1 100644
---- a/src/configs/coresdk/coresdk-09.00.00.006-config.xml
-+++ b/src/configs/coresdk/coresdk-09.00.00.006-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.00.00.006</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.00.00.007-config.xml b/src/configs/coresdk/coresdk-09.00.00.007-config.xml
-index 9cf9601..0a8d7e3 100644
---- a/src/configs/coresdk/coresdk-09.00.00.007-config.xml
-+++ b/src/configs/coresdk/coresdk-09.00.00.007-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.00.00.007</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.00.00.011-config.xml b/src/configs/coresdk/coresdk-09.00.00.011-config.xml
-index 3906414..2534264 100644
---- a/src/configs/coresdk/coresdk-09.00.00.011-config.xml
-+++ b/src/configs/coresdk/coresdk-09.00.00.011-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.00.00.011</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.01.00.001-config.xml b/src/configs/coresdk/coresdk-09.01.00.001-config.xml
-index 67ad2fd..1942bcc 100644
---- a/src/configs/coresdk/coresdk-09.01.00.001-config.xml
-+++ b/src/configs/coresdk/coresdk-09.01.00.001-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.01.00.001</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.01.00.003-config.xml b/src/configs/coresdk/coresdk-09.01.00.003-config.xml
-index 006ed07..297e447 100644
---- a/src/configs/coresdk/coresdk-09.01.00.003-config.xml
-+++ b/src/configs/coresdk/coresdk-09.01.00.003-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.01.00.003</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.01.00.007-config.xml b/src/configs/coresdk/coresdk-09.01.00.007-config.xml
-index a0f0872..4e9d77a 100644
---- a/src/configs/coresdk/coresdk-09.01.00.007-config.xml
-+++ b/src/configs/coresdk/coresdk-09.01.00.007-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.01.00.007</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.01.00.008-config.xml b/src/configs/coresdk/coresdk-09.01.00.008-config.xml
-index 4278823..7a8cb6e 100644
---- a/src/configs/coresdk/coresdk-09.01.00.008-config.xml
-+++ b/src/configs/coresdk/coresdk-09.01.00.008-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.01.00.008</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.02.00.008-config.xml b/src/configs/coresdk/coresdk-09.02.00.008-config.xml
-index 17da7f2..3131288 100644
---- a/src/configs/coresdk/coresdk-09.02.00.008-config.xml
-+++ b/src/configs/coresdk/coresdk-09.02.00.008-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.02.00.008</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.02.00.009-config.xml b/src/configs/coresdk/coresdk-09.02.00.009-config.xml
-index 2320051..6187b6f 100644
---- a/src/configs/coresdk/coresdk-09.02.00.009-config.xml
-+++ b/src/configs/coresdk/coresdk-09.02.00.009-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.02.00.009</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.02.00.010-config.xml b/src/configs/coresdk/coresdk-09.02.00.010-config.xml
-index 1182413..edd24d5 100644
---- a/src/configs/coresdk/coresdk-09.02.00.010-config.xml
-+++ b/src/configs/coresdk/coresdk-09.02.00.010-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.02.00.010</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-09.03.05-config.xml b/src/configs/coresdk/coresdk-09.03.05-config.xml
-index 4cb5d1f..ff6a24f 100644
---- a/src/configs/coresdk/coresdk-09.03.05-config.xml
-+++ b/src/configs/coresdk/coresdk-09.03.05-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v09.03.05</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-10.00.07-config.xml b/src/configs/coresdk/coresdk-10.00.07-config.xml
-index f244fd4..6791de3 100644
---- a/src/configs/coresdk/coresdk-10.00.07-config.xml
-+++ b/src/configs/coresdk/coresdk-10.00.07-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v10.00.07</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-10.01.08-config.xml b/src/configs/coresdk/coresdk-10.01.08-config.xml
-index 32b15b1..b7ddf05 100644
---- a/src/configs/coresdk/coresdk-10.01.08-config.xml
-+++ b/src/configs/coresdk/coresdk-10.01.08-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v10.01.08</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-10.01.10-config.xml b/src/configs/coresdk/coresdk-10.01.10-config.xml
-index 419ff7f..bf9fb4f 100644
---- a/src/configs/coresdk/coresdk-10.01.10-config.xml
-+++ b/src/configs/coresdk/coresdk-10.01.10-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v10.01.10</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-10.01.10-selinux-config.xml b/src/configs/coresdk/coresdk-10.01.10-selinux-config.xml
-index 2dc488c..303a1b5 100644
---- a/src/configs/coresdk/coresdk-10.01.10-selinux-config.xml
-+++ b/src/configs/coresdk/coresdk-10.01.10-selinux-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v10.01.10-selinux</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-11.00.09-config.xml b/src/configs/coresdk/coresdk-11.00.09-config.xml
-index e1732cc..0d3b62d 100644
---- a/src/configs/coresdk/coresdk-11.00.09-config.xml
-+++ b/src/configs/coresdk/coresdk-11.00.09-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v11.00.09</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-11.00.15-config.xml b/src/configs/coresdk/coresdk-11.00.15-config.xml
-index 0629135..1b6879f 100644
---- a/src/configs/coresdk/coresdk-11.00.15-config.xml
-+++ b/src/configs/coresdk/coresdk-11.00.15-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v11.00.15</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-11.01.05-config.xml b/src/configs/coresdk/coresdk-11.01.05-config.xml
-index 6085a9f..62212f9 100644
---- a/src/configs/coresdk/coresdk-11.01.05-config.xml
-+++ b/src/configs/coresdk/coresdk-11.01.05-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v11.01.05</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/coresdk/coresdk-11.01.08-config.xml b/src/configs/coresdk/coresdk-11.01.08-config.xml
-index 554477e..3c8c562 100644
---- a/src/configs/coresdk/coresdk-11.01.08-config.xml
-+++ b/src/configs/coresdk/coresdk-11.01.08-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI CoreSDK v11.01.08</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/distroless-kirkstone-config.xml b/src/configs/distroless-kirkstone-config.xml
-index 844571c..6992b77 100644
---- a/src/configs/distroless-kirkstone-config.xml
-+++ b/src/configs/distroless-kirkstone-config.xml
-@@ -2,6 +2,7 @@
- <config>
-     <description>Distroless reference for kirkstone</description>
- 
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/distroless-master-config.xml b/src/configs/distroless-master-config.xml
-index 14b0d4e..1e134df 100644
---- a/src/configs/distroless-master-config.xml
-+++ b/src/configs/distroless-master-config.xml
-@@ -2,6 +2,7 @@
- <config>
-     <description>Distroless reference for master</description>
- 
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/distroless-scarthgap-config.xml b/src/configs/distroless-scarthgap-config.xml
-index 5bb6433..293a68d 100644
---- a/src/configs/distroless-scarthgap-config.xml
-+++ b/src/configs/distroless-scarthgap-config.xml
-@@ -2,6 +2,7 @@
- <config>
-     <description>Distroless reference for scarthgap</description>
- 
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/poky-kirkstone-config.xml b/src/configs/poky-kirkstone-config.xml
-index 6826d19..fbd5de9 100644
---- a/src/configs/poky-kirkstone-config.xml
-+++ b/src/configs/poky-kirkstone-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Poky reference distribution for kirkstone</description>
- 
--    <xi:include href='../common/targets_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-poky-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/poky-master-config.xml b/src/configs/poky-master-config.xml
-index b1fdfb8..f8fff75 100644
---- a/src/configs/poky-master-config.xml
-+++ b/src/configs/poky-master-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Poky reference distribution for master</description>
- 
--    <xi:include href='../common/targets_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-poky-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/poky-master-wip-config.xml b/src/configs/poky-master-wip-config.xml
-index b128614..82375a6 100644
---- a/src/configs/poky-master-wip-config.xml
-+++ b/src/configs/poky-master-wip-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Poky reference distribution for master-wip</description>
- 
--    <xi:include href='../common/targets_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-poky-v3.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/poky-scarthgap-config.xml b/src/configs/poky-scarthgap-config.xml
-index 8f0043d..590f42d 100644
---- a/src/configs/poky-scarthgap-config.xml
-+++ b/src/configs/poky-scarthgap-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Poky reference distribution for scarthgap</description>
- 
--    <xi:include href='../common/targets_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-poky-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/poky-scarthgap-wip-config.xml b/src/configs/poky-scarthgap-wip-config.xml
-index 7d38edd..2995ebc 100644
---- a/src/configs/poky-scarthgap-wip-config.xml
-+++ b/src/configs/poky-scarthgap-wip-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>Poky reference distribution for scarthgap-wip</description>
- 
--    <xi:include href='../common/targets_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/distro_poky.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../templates/local-poky-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.xml
-index e1a089e..5a5ecbf 100644
---- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.xml
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Analytics v09.00.00</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.xml
-index 24f199c..8ba1857 100644
---- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.xml
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Analytics v09.00.01</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.xml
-index 9e77c7b..84aebd0 100644
---- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.xml
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Analytics v09.01.00</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.xml
-index de57928..17f4a9b 100644
---- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.xml
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Analytics v09.02.00</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.xml
-index 76674d7..b17e040 100644
---- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.xml
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Analytics v10.00.00</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.xml
-index 7308167..b6b9239 100644
---- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.xml
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Analytics v10.01.00</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.xml
-index 23b1a1e..689d685 100644
---- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.xml
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Analytics v11.00.00</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml
-index 51b3453..904c44a 100644
---- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Analytics v11.01.07.05</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml
-index 01408f4..6b0203a 100644
---- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Analytics vselinux-11.01.07.05</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-gateway-10_00.xml b/src/configs/processor-sdk-linux/processor-sdk-gateway-10_00.xml
-index 5b7f9c8..d95abd3 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-gateway-10_00.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-gateway-10_00.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v10_00</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.xml
-index 4f3091b..7ad8d60 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_06.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v09_00_00_06</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.xml
-index 6692925..48038e6 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_00_00_07.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v09_00_00_07</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.xml
-index f8ebadd..6cf7315 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_06.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v09_01_00_06</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.xml
-index 09700a4..94138fd 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_01_00_07.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v09_01_00_07</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.xml
-index 8e78543..ef62651 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_04.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v09_02_00_04</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.xml
-index 7953cb0..a392d1f 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_02_00_05.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v09_02_00_05</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-09_03_06_05.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-09_03_06_05.xml
-index a2efc86..b5bac85 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-09_03_06_05.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-09_03_06_05.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v09_03_06_05</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.xml
-index 15e4786..1c3ca85 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_07_06.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v10_00_07_06</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.xml
-index 03f23ec..0b4fdff 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-10_00_08_06.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v10_00_08_06</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.xml
-index 79a5cc6..e54afaf 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-10_01_08_01.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v10_01_08_01</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml
-index 339c4d7..38aa819 100644
---- a/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml
-+++ b/src/configs/processor-sdk-linux/processor-sdk-linux-11_00_10_01.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK Linux v11_00_10_01</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.xml b/src/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.xml
-index c3a0a82..393e1e1 100644
---- a/src/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v09.00.00-am62xxsip</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-09.00.00-config.xml b/src/configs/processor-sdk/processor-sdk-09.00.00-config.xml
-index 7fc7e25..2aa5745 100644
---- a/src/configs/processor-sdk/processor-sdk-09.00.00-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-09.00.00-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v09.00.00</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.xml b/src/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.xml
-index 6286162..594dba5 100644
---- a/src/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v09.01.00-am65xx</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-09.01.00-config.xml b/src/configs/processor-sdk/processor-sdk-09.01.00-config.xml
-index c57afe8..60025f9 100644
---- a/src/configs/processor-sdk/processor-sdk-09.01.00-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-09.01.00-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v09.01.00</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-09.01.00-legacy-config.xml b/src/configs/processor-sdk/processor-sdk-09.01.00-legacy-config.xml
-index ebd448c..ef9e4ec 100644
---- a/src/configs/processor-sdk/processor-sdk-09.01.00-legacy-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-09.01.00-legacy-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v09.01.00-legacy</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-09.02.00.08-am64x-config.xml b/src/configs/processor-sdk/processor-sdk-09.02.00.08-am64x-config.xml
-index 6ec86aa..75b4a4a 100644
---- a/src/configs/processor-sdk/processor-sdk-09.02.00.08-am64x-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-09.02.00.08-am64x-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v09.02.00.08-am64x</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml b/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml
-index 71bd067..7093231 100644
---- a/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-09.03.05.02-legacy-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v09.03.05.02-legacy</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.xml b/src/configs/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.xml
-index bd1671f..c11df3b 100644
---- a/src/configs/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v11.00.05.02-am62lxx</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.xml b/src/configs/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.xml
-index 2ef7047..cf3eb77 100644
---- a/src/configs/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v11.00.15.05-am62lxx</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.xml b/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.xml
-index 4b7d298..aa74482 100644
---- a/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v09.02.01.09</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.xml b/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.xml
-index 4443130..a611434 100644
---- a/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v09.02.01.10</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.xml b/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.xml
-index 314a511..a8364ba 100644
---- a/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK vchromium-09.02.01.09</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.xml b/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.xml
-index 039ddb1..234a14c 100644
---- a/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK vchromium-09.02.01.10</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.xml
-index 24938c3..96ea7d1 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v10.00.07.04</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.xml
-index 9ee86f2..518357e 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v10.01.10.04</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.xml
-index 0d108bc..64dd3a9 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v11.00.09.04</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml
-index 65196b1..28af57f 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK v11.01.05.03</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.xml
-index 53ecc11..e5122a2 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK vchromium-10.00.07.04</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.xml
-index 5a9df9e..a3f29c5 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK vchromium-10.01.10.04</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.xml
-index 71a9acb..6bf2aff 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK vchromium-11.00.09.04</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml
-index 3bd1b8e..43a2e11 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK vchromium-11.01.05.03</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml
-index 5793c01..1dfdaeb 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK vchromium-11.01.12.10</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml
-index 3d40933..095c0ec 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK vnonqt-11.01.05.03</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.xml
-index 93c45d0..70fcb8a 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK vselinux-11.00.09.04</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml b/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml
-index 9231c95..1e96e8a 100644
---- a/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml
-+++ b/src/configs/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.xml
-@@ -2,7 +2,8 @@
- <config>
-     <description>TI Processor SDK vselinux-11.01.05.03</description>
- 
--    <xi:include href='../../common/targets_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-     <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
- 
-diff --git a/src/templates/local-arago64-v2.conf.xml b/src/templates/local-arago64-v2.conf.xml
-index d9d2ae7..797bd39 100644
---- a/src/templates/local-arago64-v2.conf.xml
-+++ b/src/templates/local-arago64-v2.conf.xml
-@@ -1,4 +1,6 @@
- <local-conf-template name='local-arago64-v2.conf'>
-+    <summary>TI oe-layersetup build defaults for Arago 64bit builds v2</summary>
-+    <description>TI oe-layersetup build defaults for Arago 64bit builds v2</description>
-     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
-     <line>CONF_VERSION = "2"</line>
-     <line></line>
-diff --git a/src/templates/local-arago64-v3.conf.xml b/src/templates/local-arago64-v3.conf.xml
-index c8a5d51..35ba584 100644
---- a/src/templates/local-arago64-v3.conf.xml
-+++ b/src/templates/local-arago64-v3.conf.xml
-@@ -1,4 +1,6 @@
- <local-conf-template name='local-arago64-v3.conf'>
-+    <summary>TI oe-layersetup build defaults for Arago 64bit builds v3</summary>
-+    <description>TI oe-layersetup build defaults for Arago 64bit builds v3</description>
-     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
-     <line>CONF_VERSION = "2"</line>
-     <line></line>
-diff --git a/src/templates/local-poky-v2.conf.xml b/src/templates/local-poky-v2.conf.xml
-index b45d6c2..d04e653 100644
---- a/src/templates/local-poky-v2.conf.xml
-+++ b/src/templates/local-poky-v2.conf.xml
-@@ -1,4 +1,6 @@
- <local-conf-template name='local-poky-v2.conf'>
-+    <summary>TI oe-layersetup build defaults for Poky builds v2</summary>
-+    <description>TI oe-layersetup build defaults for Poky builds v2</description>
-     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
-     <line>CONF_VERSION = "2"</line>
-     <line></line>
-diff --git a/src/templates/local-poky-v3.conf.xml b/src/templates/local-poky-v3.conf.xml
-index fa313eb..d09ea38 100644
---- a/src/templates/local-poky-v3.conf.xml
-+++ b/src/templates/local-poky-v3.conf.xml
-@@ -1,4 +1,6 @@
- <local-conf-template name='local-poky-v3.conf'>
-+    <summary>TI oe-layersetup build defaults for Poky builds v3</summary>
-+    <description>TI oe-layersetup build defaults for Poky builds v3</description>
-     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
-     <line>CONF_VERSION = "2"</line>
-     <line></line>
-diff --git a/src/templates/local-v2.conf.xml b/src/templates/local-v2.conf.xml
-index 49e060c..bbff2fa 100644
---- a/src/templates/local-v2.conf.xml
-+++ b/src/templates/local-v2.conf.xml
-@@ -1,4 +1,6 @@
- <local-conf-template name='local-v2.conf'>
-+    <summary>TI oe-layersetup build defaults for builds v2</summary>
-+    <description>TI oe-layersetup build defaults for builds v2</description>
-     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
-     <line>CONF_VERSION = "2"</line>
-     <line></line>
-diff --git a/src/templates/local-v3.conf.xml b/src/templates/local-v3.conf.xml
-index e300aaf..fbb619f 100644
---- a/src/templates/local-v3.conf.xml
-+++ b/src/templates/local-v3.conf.xml
-@@ -1,4 +1,6 @@
- <local-conf-template name='local-v3.conf'>
-+    <summary>TI oe-layersetup build defaults for builds v3</summary>
-+    <description>TI oe-layersetup build defaults for builds v3</description>
-     <line># CONF_VERSION is increased each time build/conf/ changes incompatibly</line>
-     <line>CONF_VERSION = "2"</line>
-     <line></line>
 -- 
 2.17.1
 
