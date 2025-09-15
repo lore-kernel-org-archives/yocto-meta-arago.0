@@ -2,46 +2,46 @@ Return-Path: <s-sinha@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9316FCAC58E
-	for <webhook@archiver.kernel.org>; Mon, 15 Sep 2025 08:06:45 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web11.27443.1757923596334827157
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F609CAC58E
+	for <webhook@archiver.kernel.org>; Mon, 15 Sep 2025 08:13:15 +0000 (UTC)
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+ by mx.groups.io with SMTP id smtpd.web10.27321.1757923992590835839
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 15 Sep 2025 01:06:36 -0700
+ Mon, 15 Sep 2025 01:13:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=L462eXUO;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: s-sinha@ti.com)
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58F86ZGR1000852
-	for <meta-arago@lists.yoctoproject.org>; Mon, 15 Sep 2025 03:06:35 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=f+5gYFzU;
+ spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: s-sinha@ti.com)
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58F8DCeo1452307
+	for <meta-arago@lists.yoctoproject.org>; Mon, 15 Sep 2025 03:13:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757923595;
-	bh=H7ES0vigurp+ptP3r5iUystBiUOTGECKKfRwFykV8NI=;
+	s=ti-com-17Q1; t=1757923992;
+	bh=Itnfm86DWvyGP16GICsFCV3hBEgmlcaJAb5nkEgl9XI=;
 	h=From:To:CC:Subject:Date;
-	b=L462eXUOPiFDdaPDBfqHT5Cs5nd1gjry+Jy940NJC8ksIT+Cnf0Qk4jrXzczK3oo7
-	 Y5LUXpSRQXweC/eyBHVSqVOOdkF02GdfyJJBfMHBZmZZtk7nKSZP/LVJCn3edqm7Mb
-	 /dUuKsfFQrvxLVeQi2vaM/IXXY3O0jMifC5f3naU=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58F86Z7I589107
+	b=f+5gYFzUBWUURUoJ+CokEttfFowif80lUwHRvc+9ver9Aaa0oLsBCAM/oiDtnyg/h
+	 GXCDobgZUJ2ZLd0hytJON+rg1Npjg++ti2HcZ+K2WClfsQTs5CMCoF7VUv9/Ddb0IA
+	 kIbQOIAxMKvNOIY8qK8HfH0Zi/b8MO4bDGaWnelg=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58F8DCuR3254827
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Mon, 15 Sep 2025 03:06:35 -0500
-Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Mon, 15 Sep 2025 03:13:12 -0500
+Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 15
- Sep 2025 03:06:34 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2025 03:13:11 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE213.ent.ti.com
+ (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 15 Sep 2025 03:06:35 -0500
+ Transport; Mon, 15 Sep 2025 03:13:11 -0500
 Received: from localhost (robotics.dhcp.ti.com [172.24.235.192])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58F86XAf3699992;
-	Mon, 15 Sep 2025 03:06:34 -0500
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58F8DAx23411589;
+	Mon, 15 Sep 2025 03:13:11 -0500
 From: Shreyash Sinha <s-sinha@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
 CC: <reatmon@ti.com>, Shreyash Sinha <s-sinha@ti.com>
-Subject: [meta-arago][oe-layersetup][PATCH] configs: processor-sdk-analytics: Add 11.1 release config
-Date: Mon, 15 Sep 2025 13:36:30 +0530
-Message-ID: <20250915080630.2061061-1-s-sinha@ti.com>
+Subject: [meta-arago][oe-layersetup][PATCH v2] configs: processor-sdk-analytics: Add 11.1 release config
+Date: Mon, 15 Sep 2025 13:43:08 +0530
+Message-ID: <20250915081308.2061382-1-s-sinha@ti.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -50,30 +50,30 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 15 Sep 2025 08:06:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16581
+ <meta-arago@lists.yoctoproject.org>; Mon, 15 Sep 2025 08:13:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16582
 
 Signed-off-by: Shreyash Sinha <s-sinha@ti.com>
 ---
- ...sor-sdk-analytics-11.01.00-config.txt.json | 158 ++++++++++++++++++
- ...ssor-sdk-analytics-11.01.00-config.txt.txt |  18 ++
- ...ssor-sdk-analytics-11.01.00-config.txt.yml |  87 ++++++++++
- ...ssor-sdk-analytics-11.01.00-config.txt.xml |  71 ++++++++
+ ...ocessor-sdk-analytics-11.01.00-config.json | 158 ++++++++++++++++++
+ ...rocessor-sdk-analytics-11.01.00-config.txt |  18 ++
+ ...rocessor-sdk-analytics-11.01.00-config.yml |  87 ++++++++++
+ ...rocessor-sdk-analytics-11.01.00-config.xml |  71 ++++++++
  4 files changed, 334 insertions(+)
- create mode 100644 bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.json
- create mode 100644 configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.txt
- create mode 100644 kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.yml
- create mode 100644 src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.xml
+ create mode 100644 bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.json
+ create mode 100644 configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt
+ create mode 100644 kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.yml
+ create mode 100644 src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.xml
 
-diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.json
+diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.json
 new file mode 100644
-index 0000000..0a7835b
+index 0000000..9dafbc3
 --- /dev/null
-+++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.json
++++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.json
 @@ -0,0 +1,158 @@
 +{
 +  "version": "1.0",
-+  "description": "TI Processor SDK Analytics v11.01.00-config.txt",
++  "description": "TI Processor SDK Analytics v11.01.00",
 +  "sources": {
 +    "oe-layersetup": {
 +      "git-remote": {
@@ -229,11 +229,11 @@ index 0000000..0a7835b
 +    ]
 +  }
 +}
-diff --git a/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.txt b/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.txt
+diff --git a/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt b/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt
 new file mode 100644
 index 0000000..df52072
 --- /dev/null
-+++ b/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.txt
++++ b/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt
 @@ -0,0 +1,18 @@
 +# This file takes repo entries in the format
 +# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
@@ -253,11 +253,11 @@ index 0000000..df52072
 +OECORELAYERCONF=./sample-files/bblayers.conf.sample
 +OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
 +BITBAKE_INCLUSIVE_VARS=yes
-diff --git a/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.yml b/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.yml
+diff --git a/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.yml b/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.yml
 new file mode 100644
 index 0000000..b1e2dca
 --- /dev/null
-+++ b/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.yml
++++ b/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.yml
 @@ -0,0 +1,87 @@
 +---
 +header:
@@ -346,15 +346,15 @@ index 0000000..b1e2dca
 +    url: "https://git.ti.com/git/edgeai/meta-edgeai.git"
 +    branch: "scarthgap"
 +    commit: "42fb59bb661dd2a467e6df7f5ddf8ec21661083c"
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.xml
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.xml
 new file mode 100644
-index 0000000..aada53c
+index 0000000..82681eb
 --- /dev/null
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt.xml
++++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.xml
 @@ -0,0 +1,71 @@
 +<?xml version='1.0'?>
 +<config>
-+    <description>TI Processor SDK Analytics v11.01.00-config.txt</description>
++    <description>TI Processor SDK Analytics v11.01.00</description>
 +
 +    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
 +    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
