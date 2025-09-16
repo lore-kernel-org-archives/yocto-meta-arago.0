@@ -1,429 +1,656 @@
-Return-Path: <s-sinha@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F609CAC58E
-	for <webhook@archiver.kernel.org>; Mon, 15 Sep 2025 08:13:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 119FDCAC599
+	for <webhook@archiver.kernel.org>; Tue, 16 Sep 2025 15:46:27 +0000 (UTC)
 Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.27321.1757923992590835839
+ by mx.groups.io with SMTP id smtpd.web11.2006.1758037578550382885
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 15 Sep 2025 01:13:12 -0700
+ Tue, 16 Sep 2025 08:46:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=f+5gYFzU;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: s-sinha@ti.com)
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58F8DCeo1452307
-	for <meta-arago@lists.yoctoproject.org>; Mon, 15 Sep 2025 03:13:12 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=GFenOSci;
+ spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: reatmon@ti.com)
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58GFkG2T045179;
+	Tue, 16 Sep 2025 10:46:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757923992;
-	bh=Itnfm86DWvyGP16GICsFCV3hBEgmlcaJAb5nkEgl9XI=;
-	h=From:To:CC:Subject:Date;
-	b=f+5gYFzUBWUURUoJ+CokEttfFowif80lUwHRvc+9ver9Aaa0oLsBCAM/oiDtnyg/h
-	 GXCDobgZUJ2ZLd0hytJON+rg1Npjg++ti2HcZ+K2WClfsQTs5CMCoF7VUv9/Ddb0IA
-	 kIbQOIAxMKvNOIY8qK8HfH0Zi/b8MO4bDGaWnelg=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58F8DCuR3254827
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Mon, 15 Sep 2025 03:13:12 -0500
-Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 15
- Sep 2025 03:13:11 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE213.ent.ti.com
- (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1758037576;
+	bh=6w4VY+na4cvEuorUIJmpcY7mU5LbCHp5MKItmS52q1g=;
+	h=From:To:Subject:Date;
+	b=GFenOSciuHZA2qMfWgzjVSqRpGiq2W8o+SmQcQll3p6RH6Ajk4O8yOW5cNl2QEBSy
+	 RQWU6SirYBmS3Reum8F76V+BOYWHzxCwJ6ukd3BE20pcSDszQkWMA5vhbt56LVnrGR
+	 2DIyNt3HyR1KnBGO/mZCt9vU4FQzIIMBlZev+0K0=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58GFkGCl832676
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 16 Sep 2025 10:46:16 -0500
+Received: from DFLE212.ent.ti.com (10.64.6.70) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 16
+ Sep 2025 10:46:15 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE212.ent.ti.com
+ (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 15 Sep 2025 03:13:11 -0500
-Received: from localhost (robotics.dhcp.ti.com [172.24.235.192])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58F8DAx23411589;
-	Mon, 15 Sep 2025 03:13:11 -0500
-From: Shreyash Sinha <s-sinha@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: <reatmon@ti.com>, Shreyash Sinha <s-sinha@ti.com>
-Subject: [meta-arago][oe-layersetup][PATCH v2] configs: processor-sdk-analytics: Add 11.1 release config
-Date: Mon, 15 Sep 2025 13:43:08 +0530
-Message-ID: <20250915081308.2061382-1-s-sinha@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Transport; Tue, 16 Sep 2025 10:46:15 -0500
+Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58GFkF1Q1545958;
+	Tue, 16 Sep 2025 10:46:15 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1uyXsl-0001bq-CN; Tue, 16 Sep 2025 10:46:15 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [oe-layersetup][master][PATCH] bitbake-setup: Rename json files
+Date: Tue, 16 Sep 2025 10:46:15 -0500
+Message-ID: <20250916154615.6145-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 15 Sep 2025 08:13:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16582
+ <meta-arago@lists.yoctoproject.org>; Tue, 16 Sep 2025 15:46:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16583
 
-Signed-off-by: Shreyash Sinha <s-sinha@ti.com>
+There is a requirement that the name of the config json file ends with
+.conf.json.  Update the Makefile and rename all of the files.
+
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- ...ocessor-sdk-analytics-11.01.00-config.json | 158 ++++++++++++++++++
- ...rocessor-sdk-analytics-11.01.00-config.txt |  18 ++
- ...rocessor-sdk-analytics-11.01.00-config.yml |  87 ++++++++++
- ...rocessor-sdk-analytics-11.01.00-config.xml |  71 ++++++++
- 4 files changed, 334 insertions(+)
- create mode 100644 bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.json
- create mode 100644 configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt
- create mode 100644 kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.yml
- create mode 100644 src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.xml
+ ...son => arago-kirkstone-chromium-config.conf.json} |  0
+ ...-config.json => arago-kirkstone-config.conf.json} |  0
+ ...ig.json => arago-kirkstone-next-config.conf.json} |  0
+ ...fig.json => arago-kirkstone-wip-config.conf.json} |  0
+ ...g.json => arago-master-chromium-config.conf.json} |  0
+ ...ter-config.json => arago-master-config.conf.json} |  0
+ ...ig.json => arago-master-flutter-config.conf.json} |  0
+ ...onfig.json => arago-master-next-config.conf.json} |  0
+ ...ig.json => arago-master-selinux-config.conf.json} |  0
+ ...config.json => arago-master-wip-config.conf.json} |  0
+ ...fig.json => arago-scarthgap-10x-config.conf.json} |  0
+ ...son => arago-scarthgap-10x-next-config.conf.json} |  0
+ ...son => arago-scarthgap-chromium-config.conf.json} |  0
+ ...-config.json => arago-scarthgap-config.conf.json} |  0
+ ...json => arago-scarthgap-flutter-config.conf.json} |  0
+ ...ig.json => arago-scarthgap-next-config.conf.json} |  0
+ ...json => arago-scarthgap-selinux-config.conf.json} |  0
+ ...fig.json => arago-scarthgap-wip-config.conf.json} |  0
+ ...ig.json => coresdk-09.00.00.006-config.conf.json} |  0
+ ...ig.json => coresdk-09.00.00.007-config.conf.json} |  0
+ ...ig.json => coresdk-09.00.00.011-config.conf.json} |  0
+ ...ig.json => coresdk-09.01.00.001-config.conf.json} |  0
+ ...ig.json => coresdk-09.01.00.003-config.conf.json} |  0
+ ...ig.json => coresdk-09.01.00.007-config.conf.json} |  0
+ ...ig.json => coresdk-09.01.00.008-config.conf.json} |  0
+ ...ig.json => coresdk-09.02.00.008-config.conf.json} |  0
+ ...ig.json => coresdk-09.02.00.009-config.conf.json} |  0
+ ...ig.json => coresdk-09.02.00.010-config.conf.json} |  0
+ ...config.json => coresdk-09.03.05-config.conf.json} |  0
+ ...config.json => coresdk-10.00.07-config.conf.json} |  0
+ ...config.json => coresdk-10.01.08-config.conf.json} |  0
+ ...config.json => coresdk-10.01.10-config.conf.json} |  0
+ ...son => coresdk-10.01.10-selinux-config.conf.json} |  0
+ ...config.json => coresdk-11.00.09-config.conf.json} |  0
+ ...config.json => coresdk-11.00.15-config.conf.json} |  0
+ ...config.json => coresdk-11.01.05-config.conf.json} |  0
+ ...config.json => coresdk-11.01.08-config.conf.json} |  0
+ ...ig.json => distroless-kirkstone-config.conf.json} |  0
+ ...onfig.json => distroless-master-config.conf.json} |  0
+ ...ig.json => distroless-scarthgap-config.conf.json} |  0
+ ...e-config.json => poky-kirkstone-config.conf.json} |  0
+ ...ster-config.json => poky-master-config.conf.json} |  0
+ ...-config.json => poky-master-wip-config.conf.json} |  0
+ ...p-config.json => poky-scarthgap-config.conf.json} |  0
+ ...nfig.json => poky-scarthgap-wip-config.conf.json} |  0
+ ...rocessor-sdk-analytics-09.00.00-config.conf.json} |  0
+ ...rocessor-sdk-analytics-09.00.01-config.conf.json} |  0
+ ...rocessor-sdk-analytics-09.01.00-config.conf.json} |  0
+ ...rocessor-sdk-analytics-09.02.00-config.conf.json} |  0
+ ...rocessor-sdk-analytics-10.00.00-config.conf.json} |  0
+ ...rocessor-sdk-analytics-10.01.00-config.conf.json} |  0
+ ...rocessor-sdk-analytics-11.00.00-config.conf.json} |  0
+ ...essor-sdk-analytics-11.01.07.05-config.conf.json} |  0
+ ...k-analytics-selinux-11.01.07.05-config.conf.json} |  0
+ ...00.json => processor-sdk-gateway-10_00.conf.json} |  0
+ ...son => processor-sdk-linux-09_00_00_06.conf.json} |  0
+ ...son => processor-sdk-linux-09_00_00_07.conf.json} |  0
+ ...son => processor-sdk-linux-09_01_00_06.conf.json} |  0
+ ...son => processor-sdk-linux-09_01_00_07.conf.json} |  0
+ ...son => processor-sdk-linux-09_02_00_04.conf.json} |  0
+ ...son => processor-sdk-linux-09_02_00_05.conf.json} |  0
+ ...son => processor-sdk-linux-09_03_06_05.conf.json} |  0
+ ...son => processor-sdk-linux-10_00_07_06.conf.json} |  0
+ ...son => processor-sdk-linux-10_00_08_06.conf.json} |  0
+ ...son => processor-sdk-linux-10_01_08_01.conf.json} |  0
+ ...son => processor-sdk-linux-11_00_10_01.conf.json} |  0
+ ...rocessor-sdk-09.00.00-am62xxsip-config.conf.json} |  0
+ ....json => processor-sdk-09.00.00-config.conf.json} |  0
+ ...> processor-sdk-09.01.00-am65xx-config.conf.json} |  0
+ ....json => processor-sdk-09.01.00-config.conf.json} |  0
+ ...> processor-sdk-09.01.00-legacy-config.conf.json} |  0
+ ...processor-sdk-09.02.00.08-am64x-config.conf.json} |  0
+ ...rocessor-sdk-09.03.05.02-legacy-config.conf.json} |  0
+ ...ocessor-sdk-11.00.05.02-am62lxx-config.conf.json} |  0
+ ...ocessor-sdk-11.00.15.05-am62lxx-config.conf.json} |  0
+ ...essor-sdk-kirkstone-09.02.01.09-config.conf.json} |  0
+ ...essor-sdk-kirkstone-09.02.01.10-config.conf.json} |  0
+ ...-kirkstone-chromium-09.02.01.09-config.conf.json} |  0
+ ...-kirkstone-chromium-09.02.01.10-config.conf.json} |  0
+ ...essor-sdk-scarthgap-10.00.07.04-config.conf.json} |  0
+ ...essor-sdk-scarthgap-10.01.10.04-config.conf.json} |  0
+ ...essor-sdk-scarthgap-11.00.09.04-config.conf.json} |  0
+ ...essor-sdk-scarthgap-11.01.05.03-config.conf.json} |  0
+ ...-scarthgap-chromium-10.00.07.04-config.conf.json} |  0
+ ...-scarthgap-chromium-10.01.10.04-config.conf.json} |  0
+ ...-scarthgap-chromium-11.00.09.04-config.conf.json} |  0
+ ...-scarthgap-chromium-11.01.05.03-config.conf.json} |  0
+ ...-scarthgap-chromium-11.01.12.10-config.conf.json} |  0
+ ...sdk-scarthgap-nonqt-11.01.05.03-config.conf.json} |  0
+ ...k-scarthgap-selinux-11.00.09.04-config.conf.json} |  0
+ ...k-scarthgap-selinux-11.01.05.03-config.conf.json} |  0
+ src/Makefile                                         | 12 ++++++------
+ 92 files changed, 6 insertions(+), 6 deletions(-)
+ rename bitbake-setup/{arago-kirkstone-chromium-config.json => arago-kirkstone-chromium-config.conf.json} (100%)
+ rename bitbake-setup/{arago-kirkstone-config.json => arago-kirkstone-config.conf.json} (100%)
+ rename bitbake-setup/{arago-kirkstone-next-config.json => arago-kirkstone-next-config.conf.json} (100%)
+ rename bitbake-setup/{arago-kirkstone-wip-config.json => arago-kirkstone-wip-config.conf.json} (100%)
+ rename bitbake-setup/{arago-master-chromium-config.json => arago-master-chromium-config.conf.json} (100%)
+ rename bitbake-setup/{arago-master-config.json => arago-master-config.conf.json} (100%)
+ rename bitbake-setup/{arago-master-flutter-config.json => arago-master-flutter-config.conf.json} (100%)
+ rename bitbake-setup/{arago-master-next-config.json => arago-master-next-config.conf.json} (100%)
+ rename bitbake-setup/{arago-master-selinux-config.json => arago-master-selinux-config.conf.json} (100%)
+ rename bitbake-setup/{arago-master-wip-config.json => arago-master-wip-config.conf.json} (100%)
+ rename bitbake-setup/{arago-scarthgap-10x-config.json => arago-scarthgap-10x-config.conf.json} (100%)
+ rename bitbake-setup/{arago-scarthgap-10x-next-config.json => arago-scarthgap-10x-next-config.conf.json} (100%)
+ rename bitbake-setup/{arago-scarthgap-chromium-config.json => arago-scarthgap-chromium-config.conf.json} (100%)
+ rename bitbake-setup/{arago-scarthgap-config.json => arago-scarthgap-config.conf.json} (100%)
+ rename bitbake-setup/{arago-scarthgap-flutter-config.json => arago-scarthgap-flutter-config.conf.json} (100%)
+ rename bitbake-setup/{arago-scarthgap-next-config.json => arago-scarthgap-next-config.conf.json} (100%)
+ rename bitbake-setup/{arago-scarthgap-selinux-config.json => arago-scarthgap-selinux-config.conf.json} (100%)
+ rename bitbake-setup/{arago-scarthgap-wip-config.json => arago-scarthgap-wip-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.00.00.006-config.json => coresdk-09.00.00.006-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.00.00.007-config.json => coresdk-09.00.00.007-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.00.00.011-config.json => coresdk-09.00.00.011-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.01.00.001-config.json => coresdk-09.01.00.001-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.01.00.003-config.json => coresdk-09.01.00.003-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.01.00.007-config.json => coresdk-09.01.00.007-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.01.00.008-config.json => coresdk-09.01.00.008-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.02.00.008-config.json => coresdk-09.02.00.008-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.02.00.009-config.json => coresdk-09.02.00.009-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.02.00.010-config.json => coresdk-09.02.00.010-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-09.03.05-config.json => coresdk-09.03.05-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-10.00.07-config.json => coresdk-10.00.07-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-10.01.08-config.json => coresdk-10.01.08-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-10.01.10-config.json => coresdk-10.01.10-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-10.01.10-selinux-config.json => coresdk-10.01.10-selinux-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-11.00.09-config.json => coresdk-11.00.09-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-11.00.15-config.json => coresdk-11.00.15-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-11.01.05-config.json => coresdk-11.01.05-config.conf.json} (100%)
+ rename bitbake-setup/coresdk/{coresdk-11.01.08-config.json => coresdk-11.01.08-config.conf.json} (100%)
+ rename bitbake-setup/{distroless-kirkstone-config.json => distroless-kirkstone-config.conf.json} (100%)
+ rename bitbake-setup/{distroless-master-config.json => distroless-master-config.conf.json} (100%)
+ rename bitbake-setup/{distroless-scarthgap-config.json => distroless-scarthgap-config.conf.json} (100%)
+ rename bitbake-setup/{poky-kirkstone-config.json => poky-kirkstone-config.conf.json} (100%)
+ rename bitbake-setup/{poky-master-config.json => poky-master-config.conf.json} (100%)
+ rename bitbake-setup/{poky-master-wip-config.json => poky-master-wip-config.conf.json} (100%)
+ rename bitbake-setup/{poky-scarthgap-config.json => poky-scarthgap-config.conf.json} (100%)
+ rename bitbake-setup/{poky-scarthgap-wip-config.json => poky-scarthgap-wip-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-analytics/{processor-sdk-analytics-09.00.00-config.json => processor-sdk-analytics-09.00.00-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-analytics/{processor-sdk-analytics-09.00.01-config.json => processor-sdk-analytics-09.00.01-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-analytics/{processor-sdk-analytics-09.01.00-config.json => processor-sdk-analytics-09.01.00-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-analytics/{processor-sdk-analytics-09.02.00-config.json => processor-sdk-analytics-09.02.00-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-analytics/{processor-sdk-analytics-10.00.00-config.json => processor-sdk-analytics-10.00.00-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-analytics/{processor-sdk-analytics-10.01.00-config.json => processor-sdk-analytics-10.01.00-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-analytics/{processor-sdk-analytics-11.00.00-config.json => processor-sdk-analytics-11.00.00-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-analytics/{processor-sdk-analytics-11.01.07.05-config.json => processor-sdk-analytics-11.01.07.05-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-analytics/{processor-sdk-analytics-selinux-11.01.07.05-config.json => processor-sdk-analytics-selinux-11.01.07.05-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-gateway-10_00.json => processor-sdk-gateway-10_00.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-09_00_00_06.json => processor-sdk-linux-09_00_00_06.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-09_00_00_07.json => processor-sdk-linux-09_00_00_07.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-09_01_00_06.json => processor-sdk-linux-09_01_00_06.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-09_01_00_07.json => processor-sdk-linux-09_01_00_07.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-09_02_00_04.json => processor-sdk-linux-09_02_00_04.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-09_02_00_05.json => processor-sdk-linux-09_02_00_05.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-09_03_06_05.json => processor-sdk-linux-09_03_06_05.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-10_00_07_06.json => processor-sdk-linux-10_00_07_06.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-10_00_08_06.json => processor-sdk-linux-10_00_08_06.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-10_01_08_01.json => processor-sdk-linux-10_01_08_01.conf.json} (100%)
+ rename bitbake-setup/processor-sdk-linux/{processor-sdk-linux-11_00_10_01.json => processor-sdk-linux-11_00_10_01.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-09.00.00-am62xxsip-config.json => processor-sdk-09.00.00-am62xxsip-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-09.00.00-config.json => processor-sdk-09.00.00-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-09.01.00-am65xx-config.json => processor-sdk-09.01.00-am65xx-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-09.01.00-config.json => processor-sdk-09.01.00-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-09.01.00-legacy-config.json => processor-sdk-09.01.00-legacy-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-09.02.00.08-am64x-config.json => processor-sdk-09.02.00.08-am64x-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-09.03.05.02-legacy-config.json => processor-sdk-09.03.05.02-legacy-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-11.00.05.02-am62lxx-config.json => processor-sdk-11.00.05.02-am62lxx-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-11.00.15.05-am62lxx-config.json => processor-sdk-11.00.15.05-am62lxx-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-kirkstone-09.02.01.09-config.json => processor-sdk-kirkstone-09.02.01.09-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-kirkstone-09.02.01.10-config.json => processor-sdk-kirkstone-09.02.01.10-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-kirkstone-chromium-09.02.01.09-config.json => processor-sdk-kirkstone-chromium-09.02.01.09-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-kirkstone-chromium-09.02.01.10-config.json => processor-sdk-kirkstone-chromium-09.02.01.10-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-10.00.07.04-config.json => processor-sdk-scarthgap-10.00.07.04-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-10.01.10.04-config.json => processor-sdk-scarthgap-10.01.10.04-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-11.00.09.04-config.json => processor-sdk-scarthgap-11.00.09.04-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-11.01.05.03-config.json => processor-sdk-scarthgap-11.01.05.03-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-chromium-10.00.07.04-config.json => processor-sdk-scarthgap-chromium-10.00.07.04-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-chromium-10.01.10.04-config.json => processor-sdk-scarthgap-chromium-10.01.10.04-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-chromium-11.00.09.04-config.json => processor-sdk-scarthgap-chromium-11.00.09.04-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-chromium-11.01.05.03-config.json => processor-sdk-scarthgap-chromium-11.01.05.03-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-chromium-11.01.12.10-config.json => processor-sdk-scarthgap-chromium-11.01.12.10-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-nonqt-11.01.05.03-config.json => processor-sdk-scarthgap-nonqt-11.01.05.03-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-selinux-11.00.09.04-config.json => processor-sdk-scarthgap-selinux-11.00.09.04-config.conf.json} (100%)
+ rename bitbake-setup/processor-sdk/{processor-sdk-scarthgap-selinux-11.01.05.03-config.json => processor-sdk-scarthgap-selinux-11.01.05.03-config.conf.json} (100%)
 
-diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.json
-new file mode 100644
-index 0000000..9dafbc3
---- /dev/null
-+++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.json
-@@ -0,0 +1,158 @@
-+{
-+  "version": "1.0",
-+  "description": "TI Processor SDK Analytics v11.01.00",
-+  "sources": {
-+    "oe-layersetup": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
-+          }
-+        },
-+        "rev": "master"
-+      },
-+      "path": "oe-layersetup"
-+    },
-+    "bitbake": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.openembedded.org/bitbake"
-+          }
-+        },
-+        "rev": "2.8"
-+      },
-+      "path": "bitbake"
-+    },
-+    "meta-arago": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.yoctoproject.org/meta-arago"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-arago"
-+    },
-+    "meta-qt6": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://code.qt.io/yocto/meta-qt6.git"
-+          }
-+        },
-+        "rev": "6.9"
-+      },
-+      "path": "meta-qt6"
-+    },
-+    "meta-virtualization": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.yoctoproject.org/meta-virtualization"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-virtualization"
-+    },
-+    "meta-openembedded": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.openembedded.org/meta-openembedded"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-openembedded"
-+    },
-+    "meta-ti": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.yoctoproject.org/meta-ti"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-ti"
-+    },
-+    "meta-arm": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.yoctoproject.org/meta-arm"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-arm"
-+    },
-+    "meta-clang": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://github.com/kraj/meta-clang"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-clang"
-+    },
-+    "oe-core": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.openembedded.org/openembedded-core"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "oe-core"
-+    },
-+    "meta-tisdk": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-tisdk"
-+    },
-+    "meta-edgeai": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.ti.com/git/edgeai/meta-edgeai.git"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-edgeai"
-+    }
-+  },
-+  "bitbake-setup": {
-+    "configurations": [
-+      {
-+        "name": "arago",
-+        "description": "TI Arago distro build",
-+        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-extras","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk/meta-ti-foundational","meta-edgeai","oe-layersetup" ],
-+        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
-+        "oe-fragments-one-of": {
-+          "machine": {
-+            "description": "Available target machines",
-+            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
-+          },
-+          "distro": {
-+            "description": "Available distributions",
-+            "options": [ "distro/arago" ]
-+          }
-+        }
-+      }
-+    ]
-+  }
-+}
-diff --git a/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt b/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt
-new file mode 100644
-index 0000000..df52072
---- /dev/null
-+++ b/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.txt
-@@ -0,0 +1,18 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,https://git.openembedded.org/bitbake,2.8,86e7a58c0e9904c33b1b94dddc3d683c2da22d1a
-+meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,b253a46d52348996c2abcd9d309c1a8da1e63ca1,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
-+meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,559e316dc5facf962ed06e3ac5dd2ecc20a4ae5b,layers=
-+meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,151273b120117468e70733020b6db864d8180c0b,layers=
-+meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
-+meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,0353868b3f625ee43a671a211245cc14cddbda7d,layers=meta-ti-extras:meta-ti-bsp
-+meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,8e0f8af90fefb03f08cd2228cde7a89902a6b37c,layers=meta-arm:meta-arm-toolchain
-+meta-clang,https://github.com/kraj/meta-clang,scarthgap,aef850f7fa53121c74b244b7ae40d31fb9809ccf,layers=
-+oe-core,https://git.openembedded.org/openembedded-core,scarthgap,c374e6cfcdd2c8ba17d82ffcfdeb97d21144e2bf,layers=meta
-+meta-tisdk,https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git,scarthgap,487eab23a220d225cf31ca9649630f5b83488068,layers=meta-ti-foundational
-+meta-edgeai,https://git.ti.com/git/edgeai/meta-edgeai.git,scarthgap,42fb59bb661dd2a467e6df7f5ddf8ec21661083c,layers=
-+
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-+BITBAKE_INCLUSIVE_VARS=yes
-diff --git a/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.yml b/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.yml
-new file mode 100644
-index 0000000..b1e2dca
---- /dev/null
-+++ b/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.yml
-@@ -0,0 +1,87 @@
-+---
-+header:
-+  version: 17
-+  includes:
-+    - ../templates/bblayers.conf.yml
-+    - ../templates/local-arago64-v2.conf.yml
-+
-+target: tisdk-default-image
-+
-+repos:
-+  bitbake:
-+    url: "https://git.openembedded.org/bitbake"
-+    branch: "2.8"
-+    commit: "86e7a58c0e9904c33b1b94dddc3d683c2da22d1a"
-+    layers:
-+      .: disabled
-+
-+  meta-arago:
-+    url: "https://git.yoctoproject.org/meta-arago"
-+    branch: "scarthgap"
-+    commit: "b253a46d52348996c2abcd9d309c1a8da1e63ca1"
-+    layers:
-+      meta-arago-distro:
-+      meta-arago-extras:
-+      meta-arago-test:
-+
-+  meta-qt6:
-+    url: "https://code.qt.io/yocto/meta-qt6.git"
-+    branch: "6.9"
-+    commit: "559e316dc5facf962ed06e3ac5dd2ecc20a4ae5b"
-+
-+  meta-virtualization:
-+    url: "https://git.yoctoproject.org/meta-virtualization"
-+    branch: "scarthgap"
-+    commit: "151273b120117468e70733020b6db864d8180c0b"
-+
-+  meta-openembedded:
-+    url: "https://git.openembedded.org/meta-openembedded"
-+    branch: "scarthgap"
-+    commit: "e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943"
-+    layers:
-+      meta-networking:
-+      meta-python:
-+      meta-oe:
-+      meta-gnome:
-+      meta-filesystems:
-+      meta-multimedia:
-+
-+  meta-ti:
-+    url: "https://git.yoctoproject.org/meta-ti"
-+    branch: "scarthgap"
-+    commit: "0353868b3f625ee43a671a211245cc14cddbda7d"
-+    layers:
-+      meta-ti-extras:
-+      meta-ti-bsp:
-+
-+  meta-arm:
-+    url: "https://git.yoctoproject.org/meta-arm"
-+    branch: "scarthgap"
-+    commit: "8e0f8af90fefb03f08cd2228cde7a89902a6b37c"
-+    layers:
-+      meta-arm:
-+      meta-arm-toolchain:
-+
-+  meta-clang:
-+    url: "https://github.com/kraj/meta-clang"
-+    branch: "scarthgap"
-+    commit: "aef850f7fa53121c74b244b7ae40d31fb9809ccf"
-+
-+  oe-core:
-+    url: "https://git.openembedded.org/openembedded-core"
-+    branch: "scarthgap"
-+    commit: "c374e6cfcdd2c8ba17d82ffcfdeb97d21144e2bf"
-+    layers:
-+      meta:
-+
-+  meta-tisdk:
-+    url: "https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git"
-+    branch: "scarthgap"
-+    commit: "487eab23a220d225cf31ca9649630f5b83488068"
-+    layers:
-+      meta-ti-foundational:
-+
-+  meta-edgeai:
-+    url: "https://git.ti.com/git/edgeai/meta-edgeai.git"
-+    branch: "scarthgap"
-+    commit: "42fb59bb661dd2a467e6df7f5ddf8ec21661083c"
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.xml
-new file mode 100644
-index 0000000..82681eb
---- /dev/null
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.00-config.xml
-@@ -0,0 +1,71 @@
-+<?xml version='1.0'?>
-+<config>
-+    <description>TI Processor SDK Analytics v11.01.00</description>
-+
-+    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
-+
-+    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='86e7a58c0e9904c33b1b94dddc3d683c2da22d1a'/>
-+
-+    <repos>
-+        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='b253a46d52348996c2abcd9d309c1a8da1e63ca1'>
-+            <layers>
-+                <layer>meta-arago-distro</layer>
-+                <layer>meta-arago-extras</layer>
-+                <layer>meta-arago-test</layer>
-+            </layers>
-+        </repo>
-+        <repo name='meta-qt6' url='https://code.qt.io/yocto/meta-qt6.git' branch='6.9' commit='559e316dc5facf962ed06e3ac5dd2ecc20a4ae5b'>
-+            <layers/>
-+        </repo>
-+        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='151273b120117468e70733020b6db864d8180c0b'>
-+            <layers/>
-+        </repo>
-+        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943'>
-+            <layers>
-+                <layer>meta-networking</layer>
-+                <layer>meta-python</layer>
-+                <layer>meta-oe</layer>
-+                <layer>meta-gnome</layer>
-+                <layer>meta-filesystems</layer>
-+                <layer>meta-multimedia</layer>
-+            </layers>
-+        </repo>
-+        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='0353868b3f625ee43a671a211245cc14cddbda7d'>
-+            <layers>
-+                <layer>meta-ti-extras</layer>
-+                <layer>meta-ti-bsp</layer>
-+            </layers>
-+        </repo>
-+        <repo name='meta-arm' url='https://git.yoctoproject.org/meta-arm' branch='scarthgap' commit='8e0f8af90fefb03f08cd2228cde7a89902a6b37c'>
-+            <layers>
-+                <layer>meta-arm</layer>
-+                <layer>meta-arm-toolchain</layer>
-+            </layers>
-+        </repo>
-+        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='aef850f7fa53121c74b244b7ae40d31fb9809ccf'>
-+            <layers/>
-+        </repo>
-+        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='c374e6cfcdd2c8ba17d82ffcfdeb97d21144e2bf'>
-+            <layers>
-+                <layer>meta</layer>
-+            </layers>
-+        </repo>
-+        <repo name='meta-tisdk' url='https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git' branch='scarthgap' commit='487eab23a220d225cf31ca9649630f5b83488068'>
-+            <layers>
-+                <layer>meta-ti-foundational</layer>
-+            </layers>
-+        </repo>
-+        <repo name='meta-edgeai' url='https://git.ti.com/git/edgeai/meta-edgeai.git' branch='scarthgap' commit='42fb59bb661dd2a467e6df7f5ddf8ec21661083c'>
-+            <layers/>
-+        </repo>
-+    </repos>
-+
-+    <tools>
-+        <tool type='oe-layersetup'>
-+            <var name='BITBAKE_INCLUSIVE_VARS' value='yes'/>
-+        </tool>
-+    </tools>
-+</config>
+diff --git a/bitbake-setup/arago-kirkstone-chromium-config.json b/bitbake-setup/arago-kirkstone-chromium-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-kirkstone-chromium-config.json
+rename to bitbake-setup/arago-kirkstone-chromium-config.conf.json
+diff --git a/bitbake-setup/arago-kirkstone-config.json b/bitbake-setup/arago-kirkstone-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-kirkstone-config.json
+rename to bitbake-setup/arago-kirkstone-config.conf.json
+diff --git a/bitbake-setup/arago-kirkstone-next-config.json b/bitbake-setup/arago-kirkstone-next-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-kirkstone-next-config.json
+rename to bitbake-setup/arago-kirkstone-next-config.conf.json
+diff --git a/bitbake-setup/arago-kirkstone-wip-config.json b/bitbake-setup/arago-kirkstone-wip-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-kirkstone-wip-config.json
+rename to bitbake-setup/arago-kirkstone-wip-config.conf.json
+diff --git a/bitbake-setup/arago-master-chromium-config.json b/bitbake-setup/arago-master-chromium-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-master-chromium-config.json
+rename to bitbake-setup/arago-master-chromium-config.conf.json
+diff --git a/bitbake-setup/arago-master-config.json b/bitbake-setup/arago-master-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-master-config.json
+rename to bitbake-setup/arago-master-config.conf.json
+diff --git a/bitbake-setup/arago-master-flutter-config.json b/bitbake-setup/arago-master-flutter-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-master-flutter-config.json
+rename to bitbake-setup/arago-master-flutter-config.conf.json
+diff --git a/bitbake-setup/arago-master-next-config.json b/bitbake-setup/arago-master-next-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-master-next-config.json
+rename to bitbake-setup/arago-master-next-config.conf.json
+diff --git a/bitbake-setup/arago-master-selinux-config.json b/bitbake-setup/arago-master-selinux-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-master-selinux-config.json
+rename to bitbake-setup/arago-master-selinux-config.conf.json
+diff --git a/bitbake-setup/arago-master-wip-config.json b/bitbake-setup/arago-master-wip-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-master-wip-config.json
+rename to bitbake-setup/arago-master-wip-config.conf.json
+diff --git a/bitbake-setup/arago-scarthgap-10x-config.json b/bitbake-setup/arago-scarthgap-10x-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-scarthgap-10x-config.json
+rename to bitbake-setup/arago-scarthgap-10x-config.conf.json
+diff --git a/bitbake-setup/arago-scarthgap-10x-next-config.json b/bitbake-setup/arago-scarthgap-10x-next-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-scarthgap-10x-next-config.json
+rename to bitbake-setup/arago-scarthgap-10x-next-config.conf.json
+diff --git a/bitbake-setup/arago-scarthgap-chromium-config.json b/bitbake-setup/arago-scarthgap-chromium-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-scarthgap-chromium-config.json
+rename to bitbake-setup/arago-scarthgap-chromium-config.conf.json
+diff --git a/bitbake-setup/arago-scarthgap-config.json b/bitbake-setup/arago-scarthgap-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-scarthgap-config.json
+rename to bitbake-setup/arago-scarthgap-config.conf.json
+diff --git a/bitbake-setup/arago-scarthgap-flutter-config.json b/bitbake-setup/arago-scarthgap-flutter-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-scarthgap-flutter-config.json
+rename to bitbake-setup/arago-scarthgap-flutter-config.conf.json
+diff --git a/bitbake-setup/arago-scarthgap-next-config.json b/bitbake-setup/arago-scarthgap-next-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-scarthgap-next-config.json
+rename to bitbake-setup/arago-scarthgap-next-config.conf.json
+diff --git a/bitbake-setup/arago-scarthgap-selinux-config.json b/bitbake-setup/arago-scarthgap-selinux-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-scarthgap-selinux-config.json
+rename to bitbake-setup/arago-scarthgap-selinux-config.conf.json
+diff --git a/bitbake-setup/arago-scarthgap-wip-config.json b/bitbake-setup/arago-scarthgap-wip-config.conf.json
+similarity index 100%
+rename from bitbake-setup/arago-scarthgap-wip-config.json
+rename to bitbake-setup/arago-scarthgap-wip-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.00.00.006-config.json b/bitbake-setup/coresdk/coresdk-09.00.00.006-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.00.00.006-config.json
+rename to bitbake-setup/coresdk/coresdk-09.00.00.006-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.00.00.007-config.json b/bitbake-setup/coresdk/coresdk-09.00.00.007-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.00.00.007-config.json
+rename to bitbake-setup/coresdk/coresdk-09.00.00.007-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.00.00.011-config.json b/bitbake-setup/coresdk/coresdk-09.00.00.011-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.00.00.011-config.json
+rename to bitbake-setup/coresdk/coresdk-09.00.00.011-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.01.00.001-config.json b/bitbake-setup/coresdk/coresdk-09.01.00.001-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.01.00.001-config.json
+rename to bitbake-setup/coresdk/coresdk-09.01.00.001-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.01.00.003-config.json b/bitbake-setup/coresdk/coresdk-09.01.00.003-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.01.00.003-config.json
+rename to bitbake-setup/coresdk/coresdk-09.01.00.003-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.01.00.007-config.json b/bitbake-setup/coresdk/coresdk-09.01.00.007-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.01.00.007-config.json
+rename to bitbake-setup/coresdk/coresdk-09.01.00.007-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.01.00.008-config.json b/bitbake-setup/coresdk/coresdk-09.01.00.008-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.01.00.008-config.json
+rename to bitbake-setup/coresdk/coresdk-09.01.00.008-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.02.00.008-config.json b/bitbake-setup/coresdk/coresdk-09.02.00.008-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.02.00.008-config.json
+rename to bitbake-setup/coresdk/coresdk-09.02.00.008-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.02.00.009-config.json b/bitbake-setup/coresdk/coresdk-09.02.00.009-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.02.00.009-config.json
+rename to bitbake-setup/coresdk/coresdk-09.02.00.009-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.02.00.010-config.json b/bitbake-setup/coresdk/coresdk-09.02.00.010-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.02.00.010-config.json
+rename to bitbake-setup/coresdk/coresdk-09.02.00.010-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-09.03.05-config.json b/bitbake-setup/coresdk/coresdk-09.03.05-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-09.03.05-config.json
+rename to bitbake-setup/coresdk/coresdk-09.03.05-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-10.00.07-config.json b/bitbake-setup/coresdk/coresdk-10.00.07-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-10.00.07-config.json
+rename to bitbake-setup/coresdk/coresdk-10.00.07-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-10.01.08-config.json b/bitbake-setup/coresdk/coresdk-10.01.08-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-10.01.08-config.json
+rename to bitbake-setup/coresdk/coresdk-10.01.08-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-10.01.10-config.json b/bitbake-setup/coresdk/coresdk-10.01.10-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-10.01.10-config.json
+rename to bitbake-setup/coresdk/coresdk-10.01.10-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-10.01.10-selinux-config.json b/bitbake-setup/coresdk/coresdk-10.01.10-selinux-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-10.01.10-selinux-config.json
+rename to bitbake-setup/coresdk/coresdk-10.01.10-selinux-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-11.00.09-config.json b/bitbake-setup/coresdk/coresdk-11.00.09-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-11.00.09-config.json
+rename to bitbake-setup/coresdk/coresdk-11.00.09-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-11.00.15-config.json b/bitbake-setup/coresdk/coresdk-11.00.15-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-11.00.15-config.json
+rename to bitbake-setup/coresdk/coresdk-11.00.15-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-11.01.05-config.json b/bitbake-setup/coresdk/coresdk-11.01.05-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-11.01.05-config.json
+rename to bitbake-setup/coresdk/coresdk-11.01.05-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-11.01.08-config.json b/bitbake-setup/coresdk/coresdk-11.01.08-config.conf.json
+similarity index 100%
+rename from bitbake-setup/coresdk/coresdk-11.01.08-config.json
+rename to bitbake-setup/coresdk/coresdk-11.01.08-config.conf.json
+diff --git a/bitbake-setup/distroless-kirkstone-config.json b/bitbake-setup/distroless-kirkstone-config.conf.json
+similarity index 100%
+rename from bitbake-setup/distroless-kirkstone-config.json
+rename to bitbake-setup/distroless-kirkstone-config.conf.json
+diff --git a/bitbake-setup/distroless-master-config.json b/bitbake-setup/distroless-master-config.conf.json
+similarity index 100%
+rename from bitbake-setup/distroless-master-config.json
+rename to bitbake-setup/distroless-master-config.conf.json
+diff --git a/bitbake-setup/distroless-scarthgap-config.json b/bitbake-setup/distroless-scarthgap-config.conf.json
+similarity index 100%
+rename from bitbake-setup/distroless-scarthgap-config.json
+rename to bitbake-setup/distroless-scarthgap-config.conf.json
+diff --git a/bitbake-setup/poky-kirkstone-config.json b/bitbake-setup/poky-kirkstone-config.conf.json
+similarity index 100%
+rename from bitbake-setup/poky-kirkstone-config.json
+rename to bitbake-setup/poky-kirkstone-config.conf.json
+diff --git a/bitbake-setup/poky-master-config.json b/bitbake-setup/poky-master-config.conf.json
+similarity index 100%
+rename from bitbake-setup/poky-master-config.json
+rename to bitbake-setup/poky-master-config.conf.json
+diff --git a/bitbake-setup/poky-master-wip-config.json b/bitbake-setup/poky-master-wip-config.conf.json
+similarity index 100%
+rename from bitbake-setup/poky-master-wip-config.json
+rename to bitbake-setup/poky-master-wip-config.conf.json
+diff --git a/bitbake-setup/poky-scarthgap-config.json b/bitbake-setup/poky-scarthgap-config.conf.json
+similarity index 100%
+rename from bitbake-setup/poky-scarthgap-config.json
+rename to bitbake-setup/poky-scarthgap-config.conf.json
+diff --git a/bitbake-setup/poky-scarthgap-wip-config.json b/bitbake-setup/poky-scarthgap-wip-config.conf.json
+similarity index 100%
+rename from bitbake-setup/poky-scarthgap-wip-config.json
+rename to bitbake-setup/poky-scarthgap-wip-config.conf.json
+diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.json
+rename to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.00-config.conf.json
+diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.json
+rename to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.conf.json
+diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.json
+rename to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.01.00-config.conf.json
+diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.json
+rename to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-09.02.00-config.conf.json
+diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.json
+rename to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.00.00-config.conf.json
+diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.json
+rename to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-10.01.00-config.conf.json
+diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.json
+rename to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.00.00-config.conf.json
+diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.json
+rename to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-config.conf.json
+diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.json b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.json
+rename to bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-selinux-11.01.07.05-config.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-gateway-10_00.json b/bitbake-setup/processor-sdk-linux/processor-sdk-gateway-10_00.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-gateway-10_00.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-gateway-10_00.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_06.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_06.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_06.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_06.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_07.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_07.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_07.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_00_00_07.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_06.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_06.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_06.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_06.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_07.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_07.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_07.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_01_00_07.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_04.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_04.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_04.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_04.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_05.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_05.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_05.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_02_00_05.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_03_06_05.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_03_06_05.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_03_06_05.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-09_03_06_05.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_07_06.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_07_06.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_07_06.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_07_06.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_08_06.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_08_06.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_08_06.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_00_08_06.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_01_08_01.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_01_08_01.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_01_08_01.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-10_01_08_01.conf.json
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_00_10_01.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_00_10_01.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_00_10_01.json
+rename to bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_00_10_01.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-09.00.00-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.00.00-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-09.00.00-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-09.00.00-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-09.01.00-am65xx-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.01.00-am65xx-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-09.01.00-am65xx-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-09.01.00-am65xx-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-09.01.00-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.01.00-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-09.01.00-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-09.01.00-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-09.01.00-legacy-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.01.00-legacy-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-09.01.00-legacy-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-09.01.00-legacy-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-09.02.00.08-am64x-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.02.00.08-am64x-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-09.02.00.08-am64x-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-09.02.00.08-am64x-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-09.03.05.02-legacy-config.json b/bitbake-setup/processor-sdk/processor-sdk-09.03.05.02-legacy-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-09.03.05.02-legacy-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-09.03.05.02-legacy-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.json b/bitbake-setup/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-11.00.05.02-am62lxx-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.json b/bitbake-setup/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-11.00.15.05-am62lxx-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.json b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.09-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.json b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-kirkstone-09.02.01.10-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.json b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.09-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.json b/bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-kirkstone-chromium-09.02.01.10-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.00.07.04-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-10.01.10.04-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.00.09.04-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-11.01.05.03-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.00.07.04-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-10.01.10.04-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.00.09.04-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.05.03-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-chromium-11.01.12.10-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-nonqt-11.01.05.03-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.00.09.04-config.conf.json
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.json b/bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.conf.json
+similarity index 100%
+rename from bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.json
+rename to bitbake-setup/processor-sdk/processor-sdk-scarthgap-selinux-11.01.05.03-config.conf.json
+diff --git a/src/Makefile b/src/Makefile
+index e63bd12..069ef03 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -10,7 +10,7 @@ TGT_KAS_TEMPLATES = $(patsubst templates/%,../kas/templates/%,$(patsubst %.xml,%
+ 
+ TMP_BITBAKE_SETUP_FLATTENED_CONFIGS = $(subst /,_,$(patsubst configs/%,%,$(SRC_CONFIGS)))
+ 
+-TGT_BITBAKE_SETUP_CONFIGS = $(patsubst %,../bitbake-setup/%,$(patsubst %.xml,%.json,$(patsubst configs/%,%,$(SRC_CONFIGS))))
++TGT_BITBAKE_SETUP_CONFIGS = $(patsubst %,../bitbake-setup/%,$(patsubst %.xml,%.conf.json,$(patsubst configs/%,%,$(SRC_CONFIGS))))
+ TGT_BITBAKE_SETUP_CONFIGS_LOCALCONF = $(patsubst %,../conf/fragments/localconf/configs/%,$(patsubst configs/%.xml,%.conf,$(SRC_CONFIGS)))
+ TGT_BITBAKE_SETUP_LOCALCONF_TEMPLATES = $(patsubst %,../conf/fragments/localconf/%,$(patsubst templates/%.xml,%,$(filter-out templates/bblayers%,$(SRC_TEMPLATES))))
+ TARGETS = $(TGT_OE_LAYERSETUP_CONFIGS) \
+@@ -99,7 +99,7 @@ endef
+ 	@$(xslt_kas_templates)
+ 
+ #------------------------------------------------------------------------------
+-# Bitbake-setup config.json
++# Bitbake-setup config.conf.json
+ #------------------------------------------------------------------------------
+ define xslt_bitbake_setup =
+ 	mkdir -p $(@D); \
+@@ -114,12 +114,12 @@ define xslt_bitbake_setup =
+ 	fi
+ endef
+ 
+-../bitbake-setup/%.json: xslt/bitbake-setup.xslt configs/%.xml
+-	loConfigName="$*"; \
++../bitbake-setup/%.conf.json: xslt/bitbake-setup.xslt configs/%.xml
++	@loConfigName="$*"; \
+ 	$(xslt_bitbake_setup)
+ 
+-../bitbake-setup/*.json: xslt/bitbake-setup-config-localconf.xslt
+-../bitbake-setup/*/*.json: xslt/bitbake-setup-config-localconf.xslt
++../bitbake-setup/*.conf.json: xslt/bitbake-setup-config-localconf.xslt
++../bitbake-setup/*/*.conf.json: xslt/bitbake-setup-config-localconf.xslt
+ 
+ #------------------------------------------------------------------------------
+ # Bitbake-setup config local-conf
 -- 
-2.34.1
+2.17.1
 
 
