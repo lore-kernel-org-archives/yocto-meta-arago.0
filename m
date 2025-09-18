@@ -2,50 +2,48 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D579CA1013
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F2E2CAC59A
 	for <webhook@archiver.kernel.org>; Thu, 18 Sep 2025 15:07:44 +0000 (UTC)
 Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web11.16930.1758208060354645735
+ by mx.groups.io with SMTP id smtpd.web10.16648.1758208060401275156
  for <meta-arago@lists.yoctoproject.org>;
  Thu, 18 Sep 2025 08:07:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=cH147aoS;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=VcXUKCrl;
  spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: afd@ti.com)
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58IF7c4X512463;
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58IF7cVW512459;
 	Thu, 18 Sep 2025 10:07:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1758208058;
-	bh=BL22v6vn8m45WX8sAOOnJxbr54DMXXh+c3A9A02jhPc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=cH147aoSnsw0bJl8kXeLQW4VyQKwTHLtmYod2RUN9F7QSPhTKbPUqYNTNibFB+gxW
-	 mesWS43IRTacOkRDj5DAK7ef+Gw894ZmoJ42fojpUaSJYoCrO9VBt+sjbnWY/4fHVL
-	 Mh/nibcSREI/cObkepoikawE5lZOKgYyWtHbctQc=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58IF7ctr2437973
+	bh=aAPR4vvtijM8NWfL7aUpT2HJcTCYW4gmzmX3Buo0PSc=;
+	h=From:To:CC:Subject:Date;
+	b=VcXUKCrl7JHB9kQ/CEHIOaO1h0k/RBZPzyukLRCDhQinmh/MYfKk42rXz7zjWY3vR
+	 V29nWVpNXc7quFhe0yAPLcvZB+NRsOfjGFIxJW6Zn71etu3Qep1gCpDXNjzw6gR8Ic
+	 Lujv4cujsi2+Kr7FuKSLhk8jBw6+h027b3MC62tM=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58IF7cqH2194928
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
 	Thu, 18 Sep 2025 10:07:38 -0500
-Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE203.ent.ti.com (10.64.6.61) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 18
  Sep 2025 10:07:37 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE202.ent.ti.com
- (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE203.ent.ti.com
+ (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
  Transport; Thu, 18 Sep 2025 10:07:37 -0500
 Received: from lelvem-mr05.itg.ti.com ([10.249.42.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58IF7b9o772640;
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58IF7b9n772640;
 	Thu, 18 Sep 2025 10:07:37 -0500
 From: Andrew Davis <afd@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
 CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][master][RFC 2/2] meta-arago-distro: Remove tisdk name from Arago packagegroups
-Date: Thu, 18 Sep 2025 10:07:36 -0500
-Message-ID: <20250918150736.1193684-2-afd@ti.com>
+Subject: [meta-arago][master][RFC 1/2] meta-arago-distro: Remove TI SDK branding from Arago images
+Date: Thu, 18 Sep 2025 10:07:35 -0500
+Message-ID: <20250918150736.1193684-1-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20250918150736.1193684-1-afd@ti.com>
-References: <20250918150736.1193684-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -54,204 +52,456 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 18 Sep 2025 15:07:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16594
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16595
 
-These packagegroups are all "arago" packagegroups, the tisdk in the
-name is a leftover from when the TI Core SDK was generated directly
-from Arago. Some packagegroups already do not have this in their names
-but many still do, update the names to be uniformly "arago".
+Arago is a reference distribution for TI hardware and a foundation for
+application/product specific Linux SDKs. While Arago can produce an SDK
+for TI products on its own this is not *the* "TI SDK" shipped today, which
+is generated by a layer called "meta-tisdk". This "meta-tisdk" produces
+images with the tisdk branding such as "tisdk-default-image" but as Arago
+provides images of the same name this is done by appending to the Arago
+version. This means the content of "tisdk-default-image" changes depending
+on what layers you have included. Instead there should be different names
+for images containing different content, the solution here is:
+
+ meta-arago -> arago-*-image
+ meta-tisdk -> tisdk-*-image
+
+The tisdk images can still be based on the arago images, but this way
+it is clear what you are getting based on the image names.
+
+Rename the images here in meta-arago to be prefixed with "arago", and
+remove some of the legacy "TI SDK" branding.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- .../recipes-core/images/arago-default-image.bb   | 16 ++++++++--------
- .../recipes-core/images/arago-thinlinux-image.bb |  6 +++---
- ...b => packagegroup-arago-addons-sdk-target.bb} |  0
- ...dk-addons.bb => packagegroup-arago-addons.bb} |  0
- ...ackagegroup-arago-connectivity-sdk-target.bb} |  0
- ...ity.bb => packagegroup-arago-connectivity.bb} |  0
- ...b => packagegroup-arago-crypto-sdk-target.bb} |  0
- ...dk-crypto.bb => packagegroup-arago-crypto.bb} |  0
- ...=> packagegroup-arago-graphics-sdk-target.bb} |  0
- ...raphics.bb => packagegroup-arago-graphics.bb} |  0
- ...t.bb => packagegroup-arago-gtk-sdk-target.bb} |  0
- ...go-tisdk-gtk.bb => packagegroup-arago-gtk.bb} |  0
- ... packagegroup-arago-multimedia-sdk-target.bb} |  0
- ...media.bb => packagegroup-arago-multimedia.bb} |  0
- ...-sysrepo.bb => packagegroup-arago-sysrepo.bb} |  0
- .../packagegroup-arago-toolchain-tisdk-target.bb | 12 ++++++------
- .../recipes-core/packagegroups/ti-world.bb       | 16 ++++++++--------
- 17 files changed, 25 insertions(+), 25 deletions(-)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-addons-sdk-target.bb => packagegroup-arago-addons-sdk-target.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-addons.bb => packagegroup-arago-addons.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-connectivity-sdk-target.bb => packagegroup-arago-connectivity-sdk-target.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-connectivity.bb => packagegroup-arago-connectivity.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-crypto-sdk-target.bb => packagegroup-arago-crypto-sdk-target.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-crypto.bb => packagegroup-arago-crypto.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-graphics-sdk-target.bb => packagegroup-arago-graphics-sdk-target.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-graphics.bb => packagegroup-arago-graphics.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-gtk-sdk-target.bb => packagegroup-arago-gtk-sdk-target.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-gtk.bb => packagegroup-arago-gtk.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-multimedia-sdk-target.bb => packagegroup-arago-multimedia-sdk-target.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-multimedia.bb => packagegroup-arago-multimedia.bb} (100%)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-tisdk-sysrepo.bb => packagegroup-arago-sysrepo.bb} (100%)
+ check_yocto_rules.json                           |  4 ++--
+ meta-arago-distro/README                         |  2 +-
+ meta-arago-distro/classes/tisdk-bundle.bbclass   |  2 +-
+ meta-arago-distro/conf/distro/arago.conf         |  2 +-
+ .../conf/distro/include/branding-bleeding.inc    |  4 ++--
+ ...age.bbappend => arago-default-image.bbappend} |  0
+ ...age.bbappend => arago-default-image.bbappend} |  0
+ .../bootstrap-initrd/bootstrap-initrd_1.0.bb     |  2 +-
+ .../{tisdk-base-image.bb => arago-base-image.bb} |  4 ++--
+ ...se-image.bb => arago-bootstrap-base-image.bb} |  4 ++--
+ ...otstrap-image.bb => arago-bootstrap-image.bb} |  4 ++--
+ ...tisdk-core-bundle.bb => arago-core-bundle.bb} |  8 ++++----
+ ...sdk-core-bundle.inc => arago-core-bundle.inc} |  4 ++--
+ ...k-default-image.bb => arago-default-image.bb} |  6 +++---
+ .../recipes-core/images/arago-jailhouse-image.bb | 14 ++++++++++++++
+ .../images/arago-jailhouse-inmate.bb             | 16 ++++++++++++++++
+ ...inlinux-image.bb => arago-thinlinux-image.bb} |  4 ++--
+ .../{tisdk-tiny-image.bb => arago-tiny-image.bb} |  6 +++---
+ ...tiny-initramfs.bb => arago-tiny-initramfs.bb} |  4 ++--
+ .../recipes-core/images/tisdk-jailhouse-image.bb | 14 --------------
+ .../images/tisdk-jailhouse-inmate.bb             | 16 ----------------
+ meta-arago-extras/README                         |  2 +-
+ .../recipes-core/packagegroups/ti-test.bb        |  2 +-
+ 23 files changed, 62 insertions(+), 62 deletions(-)
+ rename meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/{tisdk-default-image.bbappend => arago-default-image.bbappend} (100%)
+ rename meta-arago-distro/dynamic-layers/selinux/recipes-core/images/{tisdk-default-image.bbappend => arago-default-image.bbappend} (100%)
+ rename meta-arago-distro/recipes-core/images/{tisdk-base-image.bb => arago-base-image.bb} (77%)
+ rename meta-arago-distro/recipes-core/images/{tisdk-bootstrap-base-image.bb => arago-bootstrap-base-image.bb} (83%)
+ rename meta-arago-distro/recipes-core/images/{tisdk-bootstrap-image.bb => arago-bootstrap-image.bb} (81%)
+ rename meta-arago-distro/recipes-core/images/{tisdk-core-bundle.bb => arago-core-bundle.bb} (78%)
+ rename meta-arago-distro/recipes-core/images/{tisdk-core-bundle.inc => arago-core-bundle.inc} (84%)
+ rename meta-arago-distro/recipes-core/images/{tisdk-default-image.bb => arago-default-image.bb} (87%)
+ create mode 100644 meta-arago-distro/recipes-core/images/arago-jailhouse-image.bb
+ create mode 100644 meta-arago-distro/recipes-core/images/arago-jailhouse-inmate.bb
+ rename meta-arago-distro/recipes-core/images/{tisdk-thinlinux-image.bb => arago-thinlinux-image.bb} (87%)
+ rename meta-arago-distro/recipes-core/images/{tisdk-tiny-image.bb => arago-tiny-image.bb} (75%)
+ rename meta-arago-distro/recipes-core/images/{tisdk-tiny-initramfs.bb => arago-tiny-initramfs.bb} (88%)
+ delete mode 100644 meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
+ delete mode 100644 meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-default-image.bb b/meta-arago-distro/recipes-core/images/arago-default-image.bb
-index a171ab13..22969d4c 100644
---- a/meta-arago-distro/recipes-core/images/arago-default-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-default-image.bb
-@@ -15,17 +15,17 @@ IMAGE_INSTALL += "\
-     packagegroup-arago-console \
-     ti-test \
-     ti-test-extras \
--    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-graphics','',d)} \
--    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-gtk','',d)} \
-+    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-graphics','',d)} \
-+    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-gtk','',d)} \
-     ${@bb.utils.contains('DISTRO_FEATURES','opencl','packagegroup-arago-opencl','',d)} \
-     ${@bb.utils.contains('DISTRO_FEATURES','vulkan','packagegroup-arago-vulkan','',d)} \
--    packagegroup-arago-tisdk-connectivity \
--    packagegroup-arago-tisdk-crypto \
--    packagegroup-arago-tisdk-multimedia \
--    packagegroup-arago-tisdk-addons \
--    packagegroup-arago-tisdk-addons-extra \
-+    packagegroup-arago-connectivity \
-+    packagegroup-arago-crypto \
-+    packagegroup-arago-multimedia \
-+    packagegroup-arago-addons \
-+    packagegroup-arago-addons-extra \
-     ${ARAGO_DEFAULT_IMAGE_EXTRA_INSTALL} \
--    packagegroup-arago-tisdk-sysrepo \
-+    packagegroup-arago-sysrepo \
+diff --git a/check_yocto_rules.json b/check_yocto_rules.json
+index 9cf776df..e82929e5 100644
+--- a/check_yocto_rules.json
++++ b/check_yocto_rules.json
+@@ -12,8 +12,8 @@
+     },
+     "GUARD-1" : {
+         "skip_files" : [
+-            "meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/tisdk-default-image.bbappend",
+-            "meta-arago-distro/dynamic-layers/selinux/recipes-core/images/tisdk-default-image.bbappend",
++            "meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/arago-default-image.bbappend",
++            "meta-arago-distro/dynamic-layers/selinux/recipes-core/images/arago-default-image.bbappend",
+             "meta-arago-distro/dynamic-layers/selinux/recipes-kernel/linux/linux-ti-staging_%.bbappend",
+             "meta-arago-extras/recipes-extended/sysrepo/libyang_%.bbappend",
+             "meta-arago-test/dynamic-layers/qt6-layer/recipes-core/packagegroups/ti-test.bbappend",
+diff --git a/meta-arago-distro/README b/meta-arago-distro/README
+index d4ff2dd2..d5ec23af 100644
+--- a/meta-arago-distro/README
++++ b/meta-arago-distro/README
+@@ -1,4 +1,4 @@
+-meta-arago-distro provides Arago distribution configuration for TI SDK products
++meta-arago-distro provides Arago distribution configuration for TI products
+ 
+ This layer works with the latest Yocto Project release (currently 2.2+) and tracks
+ the stable/maintenance branches (currently "master") of the corresponding layers:
+diff --git a/meta-arago-distro/classes/tisdk-bundle.bbclass b/meta-arago-distro/classes/tisdk-bundle.bbclass
+index fb2073ef..cc5d1481 100644
+--- a/meta-arago-distro/classes/tisdk-bundle.bbclass
++++ b/meta-arago-distro/classes/tisdk-bundle.bbclass
+@@ -31,7 +31,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ # List of target side images to be built and packaged.  By default take
+ # the base image but this can be modified if desired to package
+ # additional images.
+-TARGET_IMAGES ?= "tisdk-base-image"
++TARGET_IMAGES ?= "arago-base-image"
+ 
+ # path to install the meta-toolchain package in the SDK
+ TISDK_TOOLCHAIN_PATH ?= "linux-devkit"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 1ad4b4ce..d9727088 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -121,7 +121,7 @@ RDEPENDS:pulseaudio-server:remove = "alsa-plugins-pulseaudio-conf"
+ PACKAGECONFIG:append:pn-kmscube = " gstreamer"
+ 
+ # Configure RAMFS for jailhouse linux-demo
+-JH_RAMFS_IMAGE = "tisdk-jailhouse-inmate"
++JH_RAMFS_IMAGE = "arago-jailhouse-inmate"
+ 
+ # Enable UI and scripting for perf
+ PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
+diff --git a/meta-arago-distro/conf/distro/include/branding-bleeding.inc b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
+index 4efbb225..9d470c16 100644
+--- a/meta-arago-distro/conf/distro/include/branding-bleeding.inc
++++ b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
+@@ -35,5 +35,5 @@ DATEH := "${@time.strftime('%Y%m%d%H',time.gmtime())}"
+ CORESDK_RTOS_FILE_PREFIX = "${DATEH}-"
+ CORESDK_RTOS_FILE_SUFFIX = ";downloadfilename=${CORESDK_RTOS_FILE_PREFIX}${DEFAULT_FIRMWARE_FILE}"
+ 
+-# Build and assemble TI-SDK, but don't package it
+-IMAGE_FSTYPES:pn-tisdk-core-bundle = ""
++# Build and assemble Arago SDK, but don't package it
++IMAGE_FSTYPES:pn-arago-core-bundle = ""
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/tisdk-default-image.bbappend b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/arago-default-image.bbappend
+similarity index 100%
+rename from meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/tisdk-default-image.bbappend
+rename to meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/arago-default-image.bbappend
+diff --git a/meta-arago-distro/dynamic-layers/selinux/recipes-core/images/tisdk-default-image.bbappend b/meta-arago-distro/dynamic-layers/selinux/recipes-core/images/arago-default-image.bbappend
+similarity index 100%
+rename from meta-arago-distro/dynamic-layers/selinux/recipes-core/images/tisdk-default-image.bbappend
+rename to meta-arago-distro/dynamic-layers/selinux/recipes-core/images/arago-default-image.bbappend
+diff --git a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
+index 57070459..c64f0303 100644
+--- a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
++++ b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
+@@ -8,7 +8,7 @@ CLEANBROKEN = "1"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-BOOSTRAP_IMAGE = "tisdk-bootstrap-base-image"
++BOOSTRAP_IMAGE = "arago-bootstrap-base-image"
+ 
+ TARGET = "bootstrap-rootfs-${MACHINE}.cpio"
+ 
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-base-image.bb b/meta-arago-distro/recipes-core/images/arago-base-image.bb
+similarity index 77%
+rename from meta-arago-distro/recipes-core/images/tisdk-base-image.bb
+rename to meta-arago-distro/recipes-core/images/arago-base-image.bb
+index f5d5f29b..bffc4a31 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-base-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-base-image.bb
+@@ -1,4 +1,4 @@
+-SUMMARY = "Arago TI SDK base image with test tools"
++SUMMARY = "Arago base image with test tools"
+ 
+ DESCRIPTION = "Arago SDK base image suitable for initramfs containing\
+  comprehensive test tools."
+@@ -16,4 +16,4 @@ IMAGE_INSTALL += "\
+     ${ARAGO_BASE_IMAGE_EXTRA_INSTALL} \
  "
  
- export IMAGE_BASENAME = "arago-default-image${ARAGO_IMAGE_SUFFIX}"
-diff --git a/meta-arago-distro/recipes-core/images/arago-thinlinux-image.bb b/meta-arago-distro/recipes-core/images/arago-thinlinux-image.bb
-index 18d3ced2..ae55d475 100644
---- a/meta-arago-distro/recipes-core/images/arago-thinlinux-image.bb
+-export IMAGE_BASENAME = "tisdk-base-image${ARAGO_IMAGE_SUFFIX}"
++export IMAGE_BASENAME = "arago-base-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb b/meta-arago-distro/recipes-core/images/arago-bootstrap-base-image.bb
+similarity index 83%
+rename from meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
+rename to meta-arago-distro/recipes-core/images/arago-bootstrap-base-image.bb
+index ce3b008e..b588ddc3 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-bootstrap-base-image.bb
+@@ -1,4 +1,4 @@
+-SUMMARY = "Arago TI SDK bootstrap base image for initramfs"
++SUMMARY = "Arago bootstrap base image for initramfs"
+ 
+ DESCRIPTION = "Image meant for basic system verification of linux kernel.\
+  Intended as basic test system, this image does not package the kernel\
+@@ -19,4 +19,4 @@ IMAGE_INSTALL += " \
+ 	${ARAGO_BOOTSTRAP_IMAGE_EXTRA_INSTALL} \
+ "
+ 
+-export IMAGE_BASENAME = "tisdk-bootstrap-base-image${ARAGO_IMAGE_SUFFIX}"
++export IMAGE_BASENAME = "arago-bootstrap-base-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb b/meta-arago-distro/recipes-core/images/arago-bootstrap-image.bb
+similarity index 81%
+rename from meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb
+rename to meta-arago-distro/recipes-core/images/arago-bootstrap-image.bb
+index 5fe0463d..18b89788 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-bootstrap-image.bb
+@@ -1,4 +1,4 @@
+-SUMMARY = "Arago TI SDK bootstrap image usable for board bringup"
++SUMMARY = "Arago bootstrap image usable for board bringup"
+ 
+ DESCRIPTION = "This image is a complete package containing a rootfs\
+  and an initrd with platform test utilities that can be used for new\
+@@ -19,4 +19,4 @@ IMAGE_INSTALL += " \
+ 	${ARAGO_BOOTSTRAP_IMAGE_EXTRA_INSTALL} \
+ "
+ 
+-export IMAGE_BASENAME = "tisdk-bootstrap-image${ARAGO_IMAGE_SUFFIX}"
++export IMAGE_BASENAME = "arago-bootstrap-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb b/meta-arago-distro/recipes-core/images/arago-core-bundle.bb
+similarity index 78%
+rename from meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
+rename to meta-arago-distro/recipes-core/images/arago-core-bundle.bb
+index 6c2afb9d..0eb3ef16 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
++++ b/meta-arago-distro/recipes-core/images/arago-core-bundle.bb
+@@ -1,11 +1,11 @@
+-SUMMARY = "Installer package for TI SDK - NOT for direct use on target"
++SUMMARY = "Installer package for Arago SDK - NOT for direct use on target"
+ 
+ DESCRIPTION = "This creates an installer including all the default images\
+  recommended including source, binaries, filesystems, etc.\
+- for TI SDK. This is meant to be used on the host system.\
++ for Arago SDK. This is meant to be used on the host system.\
+ "
+ 
+-require tisdk-core-bundle.inc
++require arago-core-bundle.inc
+ 
+ DEPLOY_SPL_NAME:omapl138 = ""
+ DEPLOY_SPL_NAME:k3 = "tispl.bin tiboot3.bin"
+@@ -19,5 +19,5 @@ DEPLOY_IMAGES_NAME:append:am65xx-hs-evm = " sysfw-am65x_sr2-hs-evm.itb"
+ DEPLOY_IMAGES_NAME:append:ti33x = " extlinux.conf"
+ DEPLOY_IMAGES_NAME:append:ti43x = " extlinux.conf"
+ 
+-ARAGO_TISDK_IMAGE ?= "tisdk-core-bundle"
++ARAGO_TISDK_IMAGE ?= "arago-core-bundle"
+ export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc b/meta-arago-distro/recipes-core/images/arago-core-bundle.inc
+similarity index 84%
+rename from meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
+rename to meta-arago-distro/recipes-core/images/arago-core-bundle.inc
+index 5f72e7b0..bb9ac59d 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
++++ b/meta-arago-distro/recipes-core/images/arago-core-bundle.inc
+@@ -1,4 +1,4 @@
+-# This include is for the common setting used to build TISDK images.  These images
++# This include is for the common setting used to build Arago SDK images.  These images
+ # include both host and target side content. 
+ LICENSE = "MIT"
+ 
+@@ -29,7 +29,7 @@ DTB_FILTER:j7200 = "j7200"
+ DTB_FILTER:j721s2 = "j721s2"
+ 
+ # List of target side images to build for the SDK
+-TARGET_IMAGES = "tisdk-base-image tisdk-default-image tisdk-thinlinux-image tisdk-bootstrap-image"
++TARGET_IMAGES = "arago-base-image arago-default-image arago-thinlinux-image arago-bootstrap-image"
+ 
+ TISDK_TOOLCHAIN = "meta-toolchain-arago-tisdk"
+ TOOLCHAIN_SUFFIX = "-tisdk"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b/meta-arago-distro/recipes-core/images/arago-default-image.bb
+similarity index 87%
+rename from meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+rename to meta-arago-distro/recipes-core/images/arago-default-image.bb
+index bc067857..a171ab13 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-default-image.bb
+@@ -1,6 +1,6 @@
+-SUMMARY = "Arago TI SDK full filesystem image"
++SUMMARY = "Arago full filesystem image"
+ 
+-DESCRIPTION = "Complete Arago TI SDK filesystem image containing complete\
++DESCRIPTION = "Complete Arago filesystem image containing complete\
+  applications and packages to entitle the SoC."
+ 
+ require arago-image.inc
+@@ -28,7 +28,7 @@ IMAGE_INSTALL += "\
+     packagegroup-arago-tisdk-sysrepo \
+ "
+ 
+-export IMAGE_BASENAME = "tisdk-default-image${ARAGO_IMAGE_SUFFIX}"
++export IMAGE_BASENAME = "arago-default-image${ARAGO_IMAGE_SUFFIX}"
+ 
+ DEVTOOLS = " \
+     linux-libc-headers-dev \
+diff --git a/meta-arago-distro/recipes-core/images/arago-jailhouse-image.bb b/meta-arago-distro/recipes-core/images/arago-jailhouse-image.bb
+new file mode 100644
+index 00000000..3cbd16d9
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/images/arago-jailhouse-image.bb
+@@ -0,0 +1,14 @@
++SUMMARY = "Arago image for Jailhouse Hypervisor"
++
++DESCRIPTION = "Arago image meant for running Jailhouse, a partitioning \
++Hypervisor based on Linux. This image is derived from arago-default-image and \
++contains additional firmware and management tools for Jailhouse.\
++"
++
++require recipes-core/images/arago-default-image.bb
++
++COMPATIBLE_MACHINE = "am62xx|am62pxx|am62lxx"
++
++IMAGE_INSTALL += " jailhouse"
++
++export IMAGE_BASENAME = "arago-jailhouse-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/arago-jailhouse-inmate.bb b/meta-arago-distro/recipes-core/images/arago-jailhouse-inmate.bb
+new file mode 100644
+index 00000000..934e8b02
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/images/arago-jailhouse-inmate.bb
+@@ -0,0 +1,16 @@
++SUMMARY = "Arago super minimal base image for jailhouse linux demo"
++
++DESCRIPTION = "Image meant for basic boot of linux inmate for jailhouse\
++This image is derived from arago-tiny-initramfs and contains additional\
++packages for OOB demo.\
++"
++
++require recipes-core/images/arago-tiny-initramfs.bb
++
++COMPATIBLE_MACHINE = "am62xx|am62pxx|am62lxx"
++
++IMAGE_FSTYPES += "cpio"
++
++PACKAGE_INSTALL += "jailhouse-inmate"
++
++export IMAGE_BASENAME = "arago-jailhouse-inmate${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb b/meta-arago-distro/recipes-core/images/arago-thinlinux-image.bb
+similarity index 87%
+rename from meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
+rename to meta-arago-distro/recipes-core/images/arago-thinlinux-image.bb
+index 5d1c26d8..18d3ced2 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
 +++ b/meta-arago-distro/recipes-core/images/arago-thinlinux-image.bb
-@@ -14,9 +14,9 @@ SYSTEMD_DEFAULT_TARGET = "${@bb.utils.contains('DISTRO_FEATURES','opengl','graph
- IMAGE_INSTALL += "\
-     packagegroup-arago-base \
-     packagegroup-arago-console \
--    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-graphics','',d)} \
--    packagegroup-arago-tisdk-connectivity \
--    packagegroup-arago-tisdk-crypto \
-+    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-graphics','',d)} \
-+    packagegroup-arago-connectivity \
-+    packagegroup-arago-crypto \
-     docker \
+@@ -1,4 +1,4 @@
+-SUMMARY = "Arago TI SDK Thin Linux image"
++SUMMARY = "Arago Thin Linux image"
+ 
+ DESCRIPTION = "Minimal bootable image with container to start the next\
+  complex system up."
+@@ -21,4 +21,4 @@ IMAGE_INSTALL += "\
      ${ARAGO_THIN_IMAGE_EXTRA_INSTALL} \
  "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-addons-sdk-target.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-addons-sdk-target.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-addons.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-addons.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-connectivity-sdk-target.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-target.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-connectivity-sdk-target.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-connectivity.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-connectivity.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-crypto-sdk-target.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-target.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-crypto-sdk-target.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-crypto.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-crypto.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-graphics-sdk-target.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-graphics-sdk-target.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-graphics.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-graphics.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-gtk-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gtk-sdk-target.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-gtk-sdk-target.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gtk-sdk-target.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-gtk.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gtk.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-gtk.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gtk.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-multimedia-sdk-target.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-multimedia-sdk-target.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-multimedia.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-multimedia.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-sysrepo.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysrepo.bb
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-sysrepo.bb
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysrepo.bb
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-index d3a90595..2baa1045 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-@@ -8,20 +8,20 @@ inherit packagegroup
  
- TISDK_TOOLCHAIN_BASE_TARGET = "\
-     packagegroup-arago-standalone-sdk-target \
--    packagegroup-arago-tisdk-multimedia-sdk-target \
-+    packagegroup-arago-multimedia-sdk-target \
+-export IMAGE_BASENAME = "tisdk-thinlinux-image${ARAGO_IMAGE_SUFFIX}"
++export IMAGE_BASENAME = "arago-thinlinux-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb b/meta-arago-distro/recipes-core/images/arago-tiny-image.bb
+similarity index 75%
+rename from meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
+rename to meta-arago-distro/recipes-core/images/arago-tiny-image.bb
+index 0bb6b798..27077aca 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-tiny-image.bb
+@@ -1,4 +1,4 @@
+-SUMMARY = "Arago TI SDK super minimal base image for initramfs"
++SUMMARY = "Arago super minimal base image for initramfs"
+ 
+ DESCRIPTION = "Image meant for basic boot of linux kernel. Intended as\
+  bare system, this image does not package the kernel in the\
+@@ -18,6 +18,6 @@ IMAGE_INSTALL += " \
+ 	${ARAGO_TINY_IMAGE_EXTRA_INSTALL} \
  "
  
- TISDK_TOOLCHAIN_EXTRA_TARGET = "\
--    packagegroup-arago-tisdk-connectivity-sdk-target \
--    packagegroup-arago-tisdk-crypto-sdk-target \
-+    packagegroup-arago-connectivity-sdk-target \
-+    packagegroup-arago-crypto-sdk-target \
- "
- TISDK_TOOLCHAIN_EXTRA_TARGET:omapl138 = ""
+-DEPENDS += " tisdk-tiny-initramfs"
++DEPENDS += " arago-tiny-initramfs"
  
- RDEPENDS:${PN} = "\
--    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-gtk-sdk-target','',d)} \
-+    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-gtk-sdk-target','',d)} \
-     ${TISDK_TOOLCHAIN_BASE_TARGET} \
-     ${TISDK_TOOLCHAIN_EXTRA_TARGET} \
--    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-graphics-sdk-target','',d)} \
-+    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-graphics-sdk-target','',d)} \
-     ${@bb.utils.contains('DISTRO_FEATURES','opencl','packagegroup-arago-opencl-sdk-target','',d)} \
--    packagegroup-arago-tisdk-addons-sdk-target \
-+    packagegroup-arago-addons-sdk-target \
+-export IMAGE_BASENAME = "tisdk-tiny-image${ARAGO_IMAGE_SUFFIX}"
++export IMAGE_BASENAME = "arago-tiny-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb b/meta-arago-distro/recipes-core/images/arago-tiny-initramfs.bb
+similarity index 88%
+rename from meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
+rename to meta-arago-distro/recipes-core/images/arago-tiny-initramfs.bb
+index 37b777f6..cf50529d 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
++++ b/meta-arago-distro/recipes-core/images/arago-tiny-initramfs.bb
+@@ -1,4 +1,4 @@
+-SUMMARY = "Arago TI SDK super minimal base image for initramfs"
++SUMMARY = "Arago super minimal base image for initramfs"
+ 
+ DESCRIPTION = "Image meant for basic boot of linux kernel. Intended as\
+  bare system, this image does not package the kernel in the\
+@@ -23,7 +23,7 @@ IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
+ 
+ PACKAGE_INSTALL = "packagegroup-arago-initramfs"
+ 
+-export IMAGE_BASENAME = "tisdk-tiny-initramfs${ARAGO_IMAGE_SUFFIX}"
++export IMAGE_BASENAME = "arago-tiny-initramfs${ARAGO_IMAGE_SUFFIX}"
+ 
+ # To further reduce the size of the rootfs, remove the /boot directory from
+ # the final image this is usually done by adding RDEPENDS_kernel-base = ""
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
+deleted file mode 100644
+index 1f96781a..00000000
+--- a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
++++ /dev/null
+@@ -1,14 +0,0 @@
+-SUMMARY = "Arago TI SDK image for Jailhouse Hypervisor"
+-
+-DESCRIPTION = "Arago TI SDK image meant for running Jailhouse, a partitioning \
+-Hypervisor based on Linux. This image is derived from tisdk-default-image and \
+-contains additional firmware and management tools for Jailhouse.\
+-"
+-
+-require recipes-core/images/tisdk-default-image.bb
+-
+-COMPATIBLE_MACHINE = "am62xx|am62pxx|am62lxx"
+-
+-IMAGE_INSTALL += " jailhouse"
+-
+-export IMAGE_BASENAME = "tisdk-jailhouse-image${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb
+deleted file mode 100644
+index 1a051161..00000000
+--- a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-inmate.bb
++++ /dev/null
+@@ -1,16 +0,0 @@
+-SUMMARY = "Arago TI SDK super minimal base image for jailhouse linux demo"
+-
+-DESCRIPTION = "Image meant for basic boot of linux inmate for jailhouse\
+-This image is derived from tisdk-tiny-initramfs and contains additional\
+-packages for OOB demo.\
+-"
+-
+-require recipes-core/images/tisdk-tiny-initramfs.bb
+-
+-COMPATIBLE_MACHINE = "am62xx|am62pxx|am62lxx"
+-
+-IMAGE_FSTYPES += "cpio"
+-
+-PACKAGE_INSTALL += "jailhouse-inmate"
+-
+-export IMAGE_BASENAME = "tisdk-jailhouse-inmate${ARAGO_IMAGE_SUFFIX}"
+diff --git a/meta-arago-extras/README b/meta-arago-extras/README
+index fc04e6af..9a4c5b25 100644
+--- a/meta-arago-extras/README
++++ b/meta-arago-extras/README
+@@ -1,4 +1,4 @@
+-meta-arago-extras provides additional TI SDK applications that are distro-agnostic
++meta-arago-extras provides additional TI applications that are distro-agnostic
+ 
+ This layer works with the latest Yocto Project release (currently 2.2+) and tracks
+ the stable/maintenance branches (currently "master") of the corresponding layers:
+diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+index cc194a45..4c16aece 100644
+--- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+@@ -160,7 +160,7 @@ RDEPENDS:${PN} = "\
+     ${TI_TEST_TI_TOOLS} \
  "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-index 64af6d93..f4445747 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-@@ -30,14 +30,14 @@ RDEPENDS:${PN} = "\
-     packagegroup-arago-base \
-     packagegroup-arago-console \
-     ti-test \
--    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-graphics','',d)} \
--    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-tisdk-gtk','',d)} \
--    packagegroup-arago-tisdk-connectivity \
--    packagegroup-arago-tisdk-crypto \
--    packagegroup-arago-tisdk-multimedia \
--    packagegroup-arago-tisdk-addons \
--    packagegroup-arago-tisdk-addons-extra \
--    ${@bb.utils.contains('DISTRO_FEATURES','opengl','','packagegroup-arago-base-tisdk-server-extra',d)} \
-+    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-graphics','',d)} \
-+    ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-gtk','',d)} \
-+    packagegroup-arago-connectivity \
-+    packagegroup-arago-crypto \
-+    packagegroup-arago-multimedia \
-+    packagegroup-arago-addons \
-+    packagegroup-arago-addons-extra \
-+    ${@bb.utils.contains('DISTRO_FEATURES','opengl','','packagegroup-arago-base-server-extra',d)} \
-     ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "${PYTHON2APPS}", "", d)} \
-     ${DEVTOOLS} \
-     ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
+ 
+-# Package group for things that should only be present in tisdk-default-image
++# Package group for things that should only be present in arago-default-image
+ PACKAGES += " ${PN}-extras"
+ RDEPENDS:${PN}-extras = "\
+     ${TI_TEST_EXTRAS} \
 -- 
 2.39.2
 
