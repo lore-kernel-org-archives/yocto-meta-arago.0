@@ -1,110 +1,107 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DFB96CAC592
-	for <webhook@archiver.kernel.org>; Fri, 19 Sep 2025 19:20:20 +0000 (UTC)
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
- by mx.groups.io with SMTP id smtpd.web11.4813.1758309619364711106
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1EC87CAC592
+	for <webhook@archiver.kernel.org>; Fri, 19 Sep 2025 19:55:11 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.5538.1758311703440486448
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 19 Sep 2025 12:20:19 -0700
+ Fri, 19 Sep 2025 12:55:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=iAcXSIfP;
- spf=pass (domain: list.ti.com, ip: 198.47.23.235, mailfrom: prc@list.ti.com)
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58JJKIEv781698
-	for <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 14:20:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758309618; i=@ti.com;
-	bh=EkWpPwuQODZJZYhcguPcip+9uI892PoaMCpZbIcFCZg=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=iAcXSIfPZ+ISyGRYaxt+NERQf8wxKoAyfJAyd6lv4sd2O2cCGkddFMU6eT7KZ41B8
-	 n9E0BDrTOLddWPOKKofYaIulcUQP/VVz6zivfbYdujD5jshn6ZqGOAe8mLSLt/VDsG
-	 uJ7PGszYTP8zOElBpRnNIqD7339VN4f5Nl8m9ap4=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58JJKImu3380155
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 14:20:18 -0500
-Received: from DFLE203.ent.ti.com (10.64.6.61) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 19
- Sep 2025 14:20:18 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE203.ent.ti.com
- (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 19 Sep 2025 14:20:18 -0500
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58JJKIr82788018;
-	Fri, 19 Sep 2025 14:20:18 -0500
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id 7F06616A91C; Fri, 19 Sep 2025 14:20:18 -0500 (CDT)
-From: PRC Automation <prc@list.ti.com>
-To: Antonios Christidis <a-christidis@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>
-Subject: Re: [meta-arago][scarthgap][PATCH v2 0/2] Add libsdl2 test support
-Date: Fri, 19 Sep 2025 14:20:18 -0500
-Message-ID: <20250919192018.2448019-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20250919191849.2622310-1-a-christidis@ti.com>
-References: <20250919191849.2622310-1-a-christidis@ti.com>
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9297940CBA;
+	Fri, 19 Sep 2025 19:55:02 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id VevpqvF6bNYv; Fri, 19 Sep 2025 19:55:02 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6918540C2E;
+	Fri, 19 Sep 2025 19:55:00 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id B89E3175209; Fri, 19 Sep 2025 15:54:58 -0400 (EDT)
+Date: Fri, 19 Sep 2025 15:54:58 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: reatmon@ti.com
+Cc: a-christidis@ti.com, meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][scarthgap][PATCH v1 1/2] libsdl2: Add tests
+ package
+Message-ID: <20250919195458.GR3125@denix.org>
+References: <20250917220826.2078836-1-a-christidis@ti.com>
+ <20250917220826.2078836-2-a-christidis@ti.com>
+ <93d5f953-8d52-4f76-aa16-9deb4fee60ff@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <93d5f953-8d52-4f76-aa16-9deb4fee60ff@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 19:20:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16604
+ <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 19:55:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16605
 
-meta-arago / na / 20250919191849.2622310-1-a-christidis
+On Thu, Sep 18, 2025 at 08:51:53AM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
+> 
+> 
+> On 9/17/2025 5:08 PM, a-christidis@ti.com wrote:
+> >From: Antonios Christidis <a-christidis@ti.com>
+> >
+> >The software provides tests, configure cmake to build and install them.
+> >Package the tests in -tests package.
+> >
+> >Signed-off-by: Antonios Christidis <a-christidis@ti.com>
+> >---
+> >  meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc     | 5 +++++
+> >  meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend | 4 ++++
+> >  2 files changed, 9 insertions(+)
+> >  create mode 100644 meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
+> >  create mode 100644 meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
+> >
+> >diff --git a/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc b/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
+> >new file mode 100644
+> >index 00000000..12e06295
+> >--- /dev/null
+> >+++ b/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
+> >@@ -0,0 +1,5 @@
+> >+EXTRA_OECMAKE:append = " -DSDL_TESTS=ON \
+> >+                         -DSDL_INSTALL_TESTS=ON \
+> >+                       "
+> >+PACKAGE_BEFORE_PN = "${PN}-tests"
+> >+FILES:${PN}-tests += "${libexecdir} /usr/share/installed-tests/SDL2"
+> 
+> 
+> I'm getting QA errors related to nativesdk-libsdl2.  I had to change
+> the above line to this:
+> 
+> FILES:${PN}-tests:append = " ${datadir}/installed-tests/SDL2"
+> FILES:${PN}-tests:append:class-nativesdk = " ${datadir}/installed-tests/SDL2"
 
-PRC Results: PASS
+Aren't those 2 the same? Wouldn't BBCLASSEXTEND handle it normally?
 
-=========================================================
-  check-yocto-patches: PASS
-=========================================================
-Patches
-----------------------------------------
-WARN - [meta-arago][scarthgap][PATCH v2 2/2] ti-test: Add libsdl2-tests to packagegroup
-    WARN: Revised patch missing a comment. (REVISION-1)
-        patch
-
-
-
-=========================================================
-  apply-yocto-patch: PASS
-=========================================================
-scarthgap
-=====================
-Summary:
-- Patch Series: [meta-arago][scarthgap][PATCH v2 0/2] Add libsdl2 test support
-- Submitter: From: <a-christidis@ti.com>
-From: Antonios Christidis <a-christidis@ti.com>
-- Date: Date: Fri, 19 Sep 2025 14:18:47 -0500
-- Num Patches: 2
-- Mailing List (public inbox) Commit SHA: e17fac463a62a75a5bb8594e9ce587dba7ea02aa
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: scarthgap-wip
-- Commit Author: LCPD Automation Script <lcpdbld@list.ti.com>
-- Commit Subject: CI/CD Auto-Merger: cicd.scarthgap.202509181257
-- Commit SHA: 96f3c5b8e2efec96de9db131992e56272becc174
-
-Patches
-----------------------------------------
-All patches applied
-
-
-
-=========================================================
-  check-yocto-repo: PASS
-=========================================================
-scarthgap
-=====================
-PASS
+Can you post the QA errors you were seeing?
 
 
-
+> The libexecdir was not needed, and I changed the /usr/share to use
+> the correct variable (datadir) in case someone wants to change the
+> directory names in the Yocto manner.  I moved to append just so that
+> the two lines looked the same.
+> 
+> I know this is also being submitted upstream, so these changes might
+> be needed for those patches as well.
+> 
+> 
+> >diff --git a/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend b/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
+> >new file mode 100644
+> >index 00000000..385aa801
+> >--- /dev/null
+> >+++ b/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
+> >@@ -0,0 +1,4 @@
+> >+LIBSDL2_TI = ""
+> >+LIBSDL2_TI:ti-soc = "libsdl2-ti.inc"
+> >+
+> >+require ${LIBSDL2_TI}
 
