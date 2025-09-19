@@ -1,115 +1,144 @@
-Return-Path: <a-limaye@ti.com>
+Return-Path: <a-christidis@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 31C3FCAC59A
-	for <webhook@archiver.kernel.org>; Fri, 19 Sep 2025 06:51:45 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web10.10123.1758264702869965083
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1CA4CAC59A
+	for <webhook@archiver.kernel.org>; Fri, 19 Sep 2025 19:06:50 +0000 (UTC)
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+ by mx.groups.io with SMTP id smtpd.web10.4582.1758308807519630156
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 18 Sep 2025 23:51:43 -0700
+ Fri, 19 Sep 2025 12:06:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=LKJC8nFu;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: a-limaye@ti.com)
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58J6pgwO185802
-	for <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 01:51:42 -0500
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=AHJ6u58G;
+ spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: a-christidis@ti.com)
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58JJ6kku298671
+	for <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 14:06:46 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758264702;
-	bh=xe1U1+KAXbX3+qGyMw9DB22BvyO6hYPVrTcCdYEj9kU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=LKJC8nFuDnRReKbShcN0lNe3jkYS9Ra5+eDn8MEjMnjxVvrSoA4WyCWgPy02JTyX6
-	 jLbCRIBe2siw70Q5JgAGugbfl7KUT/E8LN7Yd+jRn+kYseKLc/U6Oqd4QvcgYNa1IF
-	 k0xU6ky/Aj2sD57sGxghYY5XYeq0CKnjmgC9BjSQ=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58J6pgA93748404
+	s=ti-com-17Q1; t=1758308806;
+	bh=gPCrRecy/89ks1tZhSArRgJUW24eVicDbTcQ4APPPqw=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=AHJ6u58G1mRPr5CT2GvSKSREZmI/kMOL03FTW+4AL0eX0iXcmSF9XEQoWAeNwN4B6
+	 XUjkhcNCqXBdYAzhX9vSLR2DBXxvb4DLae8Em82kpdpyrsHbm0y2hRXb1/tWRo9uLJ
+	 d9aTtdV97NcMNNm6B2NzXkjN6sniplEEBL5z0rAg=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58JJ6khS3374128
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 01:51:42 -0500
-Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 14:06:46 -0500
+Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 19
- Sep 2025 01:51:41 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE211.ent.ti.com
- (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2025 14:06:46 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE200.ent.ti.com
+ (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 19 Sep 2025 01:51:41 -0500
-Received: from [172.24.234.127] (psdkl-workstation0.dhcp.ti.com [172.24.234.127])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58J6pdeQ2155363;
-	Fri, 19 Sep 2025 01:51:40 -0500
-Message-ID: <7e4db8d7-4fec-46f5-a99e-0f6486518e4e@ti.com>
-Date: Fri, 19 Sep 2025 12:21:39 +0530
+ Transport; Fri, 19 Sep 2025 14:06:46 -0500
+Received: from [128.247.81.112] (antonios-thinkstation-p3-tower.dhcp.ti.com [128.247.81.112])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58JJ6km32774548;
+	Fri, 19 Sep 2025 14:06:46 -0500
+Message-ID: <a4c9c49c-066a-4665-8af4-f2be0062a8c3@ti.com>
+Date: Fri, 19 Sep 2025 14:06:45 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][oe-layersetup][PATCH] configs: processor-sdk-linux:
- Add 11.01.02.01 release config
-To: Beleswar Padhi <b-padhi@ti.com>, <meta-arago@lists.yoctoproject.org>
-CC: <reatmon@ti.com>, <u-kumar1@ti.com>
-References: <20250919051922.3101673-1-b-padhi@ti.com>
+Subject: Re: [meta-arago][scarthgap][PATCH v1 1/2] libsdl2: Add tests package
+To: Ryan Eatmon <reatmon@ti.com>, <meta-arago@lists.yoctoproject.org>
+References: <20250917220826.2078836-1-a-christidis@ti.com>
+ <20250917220826.2078836-2-a-christidis@ti.com>
+ <93d5f953-8d52-4f76-aa16-9deb4fee60ff@ti.com>
 Content-Language: en-US
-From: Aniket Limaye <a-limaye@ti.com>
-In-Reply-To: <20250919051922.3101673-1-b-padhi@ti.com>
+From: Antonios Christidis <a-christidis@ti.com>
+In-Reply-To: <93d5f953-8d52-4f76-aa16-9deb4fee60ff@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by fllvem-ot03.ext.ti.com id 58JJ6kku298671
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 06:51:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16599
+ <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 19:06:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16600
 
-Beleswar,
+Dear Ryan,
 
-oe-layersetup structure has changed... to support multiple layersetup 
-tools, including the existing shell script.
 
-These various tools need this yocto layer config in diff formats like 
-json, yml, etc.
-So there is a script to convert the yocto config .txt to all of those 
-formats. Please run that script and resend the patch
+Thank you for the help and guidance for the fix ! Gonna send a v2 fixing=20
+the native-sdk issue.
 
-Refer https://git.ti.com/cgit/arago-project/oe-layersetup/tree/README#n62
+${libexecdir} is needed tho, otherwise the test binaries will be=20
+packaged within the "libsdl2" package and not "libsdl2-tests" package.
 
-You can find examples in recent release-config-addition-commits.
 
-Thanks,
-Aniket
+Kind Regards,
+Antonios
 
-On 19/09/25 10:49, Beleswar Padhi wrote:
-> Add release config for SDK 11.01.02.01 which will be used by AM57x and
-> AM57x-HS platforms.
-> 
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> ---
->   .../processor-sdk-linux-11_01_02_01.txt       | 21 +++++++++++++++++++
->   1 file changed, 21 insertions(+)
->   create mode 100644 configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01.txt
-> 
-> diff --git a/configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01.txt b/configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01.txt
-> new file mode 100644
-> index 0000000..9199dec
-> --- /dev/null
-> +++ b/configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01.txt
-> @@ -0,0 +1,21 @@
-> +# This file takes repo entries in the format
-> +# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-> +
-> +bitbake,https://git.openembedded.org/bitbake,2.8,982645110a19ebb94d519926a4e14c8a2a205cfd
-> +meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,67c473bc6d88a2cce13b2e8c36fcb79cb0015339,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
-> +#meta-browser,https://github.com/OSSystems/meta-browser.git,master,27ca52f635a31f5f9762813a8527dd31323549b7,layers=meta-chromium
-> +#meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
-> +meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,ade45671712b72e988d622caab51774f5a069c32,layers=
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,af1db2042caf8021d767dce1b26c08b59b96f3d1,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,c29a18fa39ede952f3f6108ec007c1906e2d9a0d,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
-> +meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rust,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=
-> +meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,0e2876e2ea7c28ddff5bc0052bdbc83dd07b7c98,layers=meta-ti-extras:meta-beagle:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,0f1e7bf92c89759f0ab74cfa5be4ee47b092ad46,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,scarthgap,057ee563305e9484b29d02347aeafdadc5ea28ed,layers=
-> +#meta-flutter,https://github.com/meta-flutter/meta-flutter.git,scarthgap,HEAD,layers=.:meta-flutter-apps
-> +oe-core,https://git.openembedded.org/openembedded-core,scarthgap,baa5e7ea5f37f54c2a00080798ad7fb4c0664f69,layers=meta
-> +meta-tisdk,https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git,am57x,982761ae3031c12ab7c270fb4e91b15198795299,layers=meta-ti-foundational
-> +
-> +OECORELAYERCONF=./sample-files/bblayers.conf.sample
-> +OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> +BITBAKE_INCLUSIVE_VARS=yes
-
+On 9/18/25 8:51 AM, Ryan Eatmon wrote:
+>
+>
+> On 9/17/2025 5:08 PM, a-christidis@ti.com wrote:
+>> From: Antonios Christidis <a-christidis@ti.com>
+>>
+>> The software provides tests, configure cmake to build and install them.
+>> Package the tests in -tests package.
+>>
+>> Signed-off-by: Antonios Christidis <a-christidis@ti.com>
+>> ---
+>> =C2=A0 meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 5 +++++
+>> =C2=A0 meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend | 4=
+ ++++
+>> =C2=A0 2 files changed, 9 insertions(+)
+>> =C2=A0 create mode 100644=20
+>> meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
+>> =C2=A0 create mode 100644=20
+>> meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
+>>
+>> diff --git a/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc=20
+>> b/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
+>> new file mode 100644
+>> index 00000000..12e06295
+>> --- /dev/null
+>> +++ b/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
+>> @@ -0,0 +1,5 @@
+>> +EXTRA_OECMAKE:append =3D " -DSDL_TESTS=3DON \
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ -DSDL_INSTALL_TESTS=3DON \
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "
+>> +PACKAGE_BEFORE_PN =3D "${PN}-tests"
+>> +FILES:${PN}-tests +=3D "${libexecdir} /usr/share/installed-tests/SDL2=
+"
+>
+>
+> I'm getting QA errors related to nativesdk-libsdl2.=C2=A0 I had to chan=
+ge=20
+> the above line to this:
+>
+> FILES:${PN}-tests:append =3D " ${datadir}/installed-tests/SDL2"
+> FILES:${PN}-tests:append:class-nativesdk =3D "=20
+> ${datadir}/installed-tests/SDL2"
+>
+> The libexecdir was not needed, and I changed the /usr/share to use the=20
+> correct variable (datadir) in case someone wants to change the=20
+> directory names in the Yocto manner.=C2=A0 I moved to append just so th=
+at=20
+> the two lines looked the same.
+>
+> I know this is also being submitted upstream, so these changes might=20
+> be needed for those patches as well.
+>
+>
+>> diff --git=20
+>> a/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend=20
+>> b/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
+>> new file mode 100644
+>> index 00000000..385aa801
+>> --- /dev/null
+>> +++ b/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
+>> @@ -0,0 +1,4 @@
+>> +LIBSDL2_TI =3D ""
+>> +LIBSDL2_TI:ti-soc =3D "libsdl2-ti.inc"
+>> +
+>> +require ${LIBSDL2_TI}
+>
 
