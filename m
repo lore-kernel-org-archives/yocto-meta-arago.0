@@ -1,135 +1,456 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <b-padhi@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 537BACAC592
-	for <webhook@archiver.kernel.org>; Fri, 19 Sep 2025 21:08:26 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.1104.1758316100956904840
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 053E5CAC5A8
+	for <webhook@archiver.kernel.org>; Mon, 22 Sep 2025 13:41:40 +0000 (UTC)
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+ by mx.groups.io with SMTP id smtpd.web11.52418.1758548493105273054
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 19 Sep 2025 14:08:21 -0700
+ Mon, 22 Sep 2025 06:41:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=ZfghGpJc;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: reatmon@ti.com)
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58JL8IoC787917;
-	Fri, 19 Sep 2025 16:08:18 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=SYqVT79a;
+ spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: b-padhi@ti.com)
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58MDfWcO792974
+	for <meta-arago@lists.yoctoproject.org>; Mon, 22 Sep 2025 08:41:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758316098;
-	bh=9V4HwO1pU3YAoVlpkubsvBEcIRW2YdA+6lOsdzCrX50=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ZfghGpJcIvM0yk3TZpzTyYx+euNEIAAPMRQDC9xNEsK7kX0diIWo9BzxHvweXiHbD
-	 4TqOhS1xDQa3pIjpn3G6D+wAKV/PCindE7CMeYUGxAzGjOLBpgeGCZeihRuJ02u/jT
-	 mCspHJJGJXVgCgkgpQOTuwTAf3XlTdW3A4HjXNBE=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58JL8Irv2609984
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 19 Sep 2025 16:08:18 -0500
-Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 19
- Sep 2025 16:08:17 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE204.ent.ti.com
- (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1758548492;
+	bh=8L96dMDNJ0aJdCsWt9/nAJZxeEBjY3J0xoa6r1RDmNA=;
+	h=From:To:CC:Subject:Date;
+	b=SYqVT79aKpIiU0sONmltUS2A4Q7rPOVdR23xLCl6kb16hnv5x7qGjr5hzyPh6prkz
+	 +YeYs704Lce2ZC70vLmZkWWO2MD/EaMo1QDQpakA5KaeoWlfpi9Gs4s15KW9ukEpLy
+	 ZHkubEibYdZnrA27fNn99R9/VM0U5S9SettOS/t4=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58MDfWWo1212396
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Mon, 22 Sep 2025 08:41:32 -0500
+Received: from DLEE208.ent.ti.com (157.170.170.97) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 22
+ Sep 2025 08:41:32 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE208.ent.ti.com
+ (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 19 Sep 2025 16:08:17 -0500
-Received: from [10.250.37.153] ([10.250.37.153])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58JL8HQe3183106;
-	Fri, 19 Sep 2025 16:08:17 -0500
-Message-ID: <051bfc54-72d7-4c3f-9084-aca09bae35f3@ti.com>
-Date: Fri, 19 Sep 2025 16:08:17 -0500
+ Transport; Mon, 22 Sep 2025 08:41:32 -0500
+Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [172.24.234.212])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58MDfT2h2858962;
+	Mon, 22 Sep 2025 08:41:30 -0500
+From: Beleswar Padhi <b-padhi@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: <reatmon@ti.com>, <u-kumar1@ti.com>, <a-limaye@ti.com>,
+        Beleswar Padhi
+	<b-padhi@ti.com>
+Subject: [meta-arago][oe-layersetup][PATCH v2] configs: processor-sdk-linux: Add 11.01.02.01 release config
+Date: Mon, 22 Sep 2025 19:11:26 +0530
+Message-ID: <20250922134126.2699628-1-b-padhi@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][scarthgap][PATCH v1 1/2] libsdl2: Add tests package
-To: Denys Dmytriyenko <denis@denix.org>
-CC: <a-christidis@ti.com>, <meta-arago@lists.yoctoproject.org>
-References: <20250917220826.2078836-1-a-christidis@ti.com>
- <20250917220826.2078836-2-a-christidis@ti.com>
- <93d5f953-8d52-4f76-aa16-9deb4fee60ff@ti.com>
- <20250919195458.GR3125@denix.org>
-Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <20250919195458.GR3125@denix.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 19 Sep 2025 21:08:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16606
+ <meta-arago@lists.yoctoproject.org>; Mon, 22 Sep 2025 13:41:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16607
 
+Add release config for SDK 11.01.02.01 which will be used by AM57x and
+AM57x-HS platforms.
 
+Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+---
+v2: Changelog:
+1. Added JSON, YML and XML formats along with txt configs.
 
-On 9/19/2025 2:54 PM, Denys Dmytriyenko wrote:
-> On Thu, Sep 18, 2025 at 08:51:53AM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
->>
->>
->> On 9/17/2025 5:08 PM, a-christidis@ti.com wrote:
->>> From: Antonios Christidis <a-christidis@ti.com>
->>>
->>> The software provides tests, configure cmake to build and install them.
->>> Package the tests in -tests package.
->>>
->>> Signed-off-by: Antonios Christidis <a-christidis@ti.com>
->>> ---
->>>   meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc     | 5 +++++
->>>   meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend | 4 ++++
->>>   2 files changed, 9 insertions(+)
->>>   create mode 100644 meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
->>>   create mode 100644 meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
->>>
->>> diff --git a/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc b/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
->>> new file mode 100644
->>> index 00000000..12e06295
->>> --- /dev/null
->>> +++ b/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
->>> @@ -0,0 +1,5 @@
->>> +EXTRA_OECMAKE:append = " -DSDL_TESTS=ON \
->>> +                         -DSDL_INSTALL_TESTS=ON \
->>> +                       "
->>> +PACKAGE_BEFORE_PN = "${PN}-tests"
->>> +FILES:${PN}-tests += "${libexecdir} /usr/share/installed-tests/SDL2"
->>
->>
->> I'm getting QA errors related to nativesdk-libsdl2.  I had to change
->> the above line to this:
->>
->> FILES:${PN}-tests:append = " ${datadir}/installed-tests/SDL2"
->> FILES:${PN}-tests:append:class-nativesdk = " ${datadir}/installed-tests/SDL2"
-> 
-> Aren't those 2 the same? Wouldn't BBCLASSEXTEND handle it normally?
+ ...sor-sdk-linux-11_01_02_01-config.conf.json | 158 ++++++++++++++++++
+ .../processor-sdk-linux-11_01_02_01.txt       |  21 +++
+ ...processor-sdk-linux-11_01_02_01-config.yml |  88 ++++++++++
+ ...processor-sdk-linux-11_01_02_01-config.xml |  86 ++++++++++
+ 4 files changed, 353 insertions(+)
+ create mode 100644 bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.conf.json
+ create mode 100644 configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01.txt
+ create mode 100644 kas/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.yml
+ create mode 100644 src/configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.xml
 
-I would have thought so, but it didn't.
-
-> Can you post the QA errors you were seeing?
-
-I'll have to rebuild without the fix to regenerate the errors...  I'll 
-try and do this Monday.
-
-> 
->> The libexecdir was not needed, and I changed the /usr/share to use
->> the correct variable (datadir) in case someone wants to change the
->> directory names in the Yocto manner.  I moved to append just so that
->> the two lines looked the same.
->>
->> I know this is also being submitted upstream, so these changes might
->> be needed for those patches as well.
->>
->>
->>> diff --git a/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend b/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
->>> new file mode 100644
->>> index 00000000..385aa801
->>> --- /dev/null
->>> +++ b/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
->>> @@ -0,0 +1,4 @@
->>> +LIBSDL2_TI = ""
->>> +LIBSDL2_TI:ti-soc = "libsdl2-ti.inc"
->>> +
->>> +require ${LIBSDL2_TI}
-
+diff --git a/bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.conf.json b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.conf.json
+new file mode 100644
+index 0000000..a873e99
+--- /dev/null
++++ b/bitbake-setup/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.conf.json
+@@ -0,0 +1,158 @@
++{
++  "version": "1.0",
++  "description": "TI Processor SDK Linux v11_01_02_01",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "2.8"
++      },
++      "path": "bitbake"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arago"
++    },
++    "meta-qt6": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://code.qt.io/yocto/meta-qt6.git"
++          }
++        },
++        "rev": "6.9"
++      },
++      "path": "meta-qt6"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-lts-mixins": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-lts-mixins"
++          }
++        },
++        "rev": "scarthgap/rust"
++      },
++      "path": "meta-lts-mixins"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arm"
++    },
++    "meta-clang": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/kraj/meta-clang"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-clang"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "oe-core"
++    },
++    "meta-tisdk": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git"
++          }
++        },
++        "rev": "am57x"
++      },
++      "path": "meta-tisdk"
++    }
++  },
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk/meta-ti-foundational","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
++      }
++    ]
++  }
++}
+diff --git a/configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01.txt b/configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01.txt
+new file mode 100644
+index 0000000..9199dec
+--- /dev/null
++++ b/configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01.txt
+@@ -0,0 +1,21 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,https://git.openembedded.org/bitbake,2.8,982645110a19ebb94d519926a4e14c8a2a205cfd
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,67c473bc6d88a2cce13b2e8c36fcb79cb0015339,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
++#meta-browser,https://github.com/OSSystems/meta-browser.git,master,27ca52f635a31f5f9762813a8527dd31323549b7,layers=meta-chromium
++#meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
++meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,ade45671712b72e988d622caab51774f5a069c32,layers=
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,af1db2042caf8021d767dce1b26c08b59b96f3d1,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,c29a18fa39ede952f3f6108ec007c1906e2d9a0d,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rust,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=
++meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,0e2876e2ea7c28ddff5bc0052bdbc83dd07b7c98,layers=meta-ti-extras:meta-beagle:meta-ti-bsp
++meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,0f1e7bf92c89759f0ab74cfa5be4ee47b092ad46,layers=meta-arm:meta-arm-toolchain
++meta-clang,https://github.com/kraj/meta-clang,scarthgap,057ee563305e9484b29d02347aeafdadc5ea28ed,layers=
++#meta-flutter,https://github.com/meta-flutter/meta-flutter.git,scarthgap,HEAD,layers=.:meta-flutter-apps
++oe-core,https://git.openembedded.org/openembedded-core,scarthgap,baa5e7ea5f37f54c2a00080798ad7fb4c0664f69,layers=meta
++meta-tisdk,https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git,am57x,982761ae3031c12ab7c270fb4e91b15198795299,layers=meta-ti-foundational
++
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/kas/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.yml b/kas/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.yml
+new file mode 100644
+index 0000000..8f09831
+--- /dev/null
++++ b/kas/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.yml
+@@ -0,0 +1,88 @@
++---
++header:
++  version: 17
++  includes:
++    - ../templates/bblayers.conf.yml
++    - ../templates/local-arago64-v2.conf.yml
++
++target: tisdk-default-image
++
++repos:
++  bitbake:
++    url: "https://git.openembedded.org/bitbake"
++    branch: "2.8"
++    commit: "982645110a19ebb94d519926a4e14c8a2a205cfd"
++    layers:
++      .: disabled
++
++  meta-arago:
++    url: "https://git.yoctoproject.org/meta-arago"
++    branch: "scarthgap"
++    commit: "67c473bc6d88a2cce13b2e8c36fcb79cb0015339"
++    layers:
++      meta-arago-distro:
++      meta-arago-extras:
++      meta-arago-test:
++
++  meta-qt6:
++    url: "https://code.qt.io/yocto/meta-qt6.git"
++    branch: "6.9"
++    commit: "ade45671712b72e988d622caab51774f5a069c32"
++
++  meta-virtualization:
++    url: "https://git.yoctoproject.org/meta-virtualization"
++    branch: "scarthgap"
++    commit: "af1db2042caf8021d767dce1b26c08b59b96f3d1"
++
++  meta-openembedded:
++    url: "https://git.openembedded.org/meta-openembedded"
++    branch: "scarthgap"
++    commit: "c29a18fa39ede952f3f6108ec007c1906e2d9a0d"
++    layers:
++      meta-networking:
++      meta-python:
++      meta-oe:
++      meta-gnome:
++      meta-filesystems:
++      meta-multimedia:
++
++  meta-lts-mixins:
++    url: "https://git.yoctoproject.org/meta-lts-mixins"
++    branch: "scarthgap/rust"
++    commit: "a8046d5ec53b1856169ac795aa87cb0d5db84c04"
++
++  meta-ti:
++    url: "https://git.yoctoproject.org/meta-ti"
++    branch: "scarthgap"
++    commit: "0e2876e2ea7c28ddff5bc0052bdbc83dd07b7c98"
++    layers:
++      meta-ti-extras:
++      meta-beagle:
++      meta-ti-bsp:
++
++  meta-arm:
++    url: "https://git.yoctoproject.org/meta-arm"
++    branch: "scarthgap"
++    commit: "0f1e7bf92c89759f0ab74cfa5be4ee47b092ad46"
++    layers:
++      meta-arm:
++      meta-arm-toolchain:
++
++  meta-clang:
++    url: "https://github.com/kraj/meta-clang"
++    branch: "scarthgap"
++    commit: "057ee563305e9484b29d02347aeafdadc5ea28ed"
++
++  oe-core:
++    url: "https://git.openembedded.org/openembedded-core"
++    branch: "scarthgap"
++    commit: "baa5e7ea5f37f54c2a00080798ad7fb4c0664f69"
++    layers:
++      meta:
++
++  meta-tisdk:
++    url: "https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git"
++    branch: "am57x"
++    commit: "982761ae3031c12ab7c270fb4e91b15198795299"
++    layers:
++      meta-ti-foundational:
+diff --git a/src/configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.xml b/src/configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.xml
+new file mode 100644
+index 0000000..fc39050
+--- /dev/null
++++ b/src/configs/processor-sdk-linux/processor-sdk-linux-11_01_02_01-config.xml
+@@ -0,0 +1,86 @@
++<?xml version='1.0'?>
++<config>
++    <description>TI Processor SDK Linux v11_01_02_01</description>
++
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++
++    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='982645110a19ebb94d519926a4e14c8a2a205cfd'/>
++
++    <repos>
++        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='67c473bc6d88a2cce13b2e8c36fcb79cb0015339'>
++            <layers>
++                <layer>meta-arago-distro</layer>
++                <layer>meta-arago-extras</layer>
++                <layer>meta-arago-test</layer>
++            </layers>
++        </repo>
++        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='27ca52f635a31f5f9762813a8527dd31323549b7' disabled='true'>
++            <layers>
++                <layer>meta-chromium</layer>
++            </layers>
++        </repo>
++        <repo name='meta-selinux' url='https://git.yoctoproject.org/meta-selinux' branch='scarthgap' commit='HEAD' disabled='true'>
++            <layers/>
++        </repo>
++        <repo name='meta-qt6' url='https://code.qt.io/yocto/meta-qt6.git' branch='6.9' commit='ade45671712b72e988d622caab51774f5a069c32'>
++            <layers/>
++        </repo>
++        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='af1db2042caf8021d767dce1b26c08b59b96f3d1'>
++            <layers/>
++        </repo>
++        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='c29a18fa39ede952f3f6108ec007c1906e2d9a0d'>
++            <layers>
++                <layer>meta-networking</layer>
++                <layer>meta-python</layer>
++                <layer>meta-oe</layer>
++                <layer>meta-gnome</layer>
++                <layer>meta-filesystems</layer>
++                <layer>meta-multimedia</layer>
++            </layers>
++        </repo>
++        <repo name='meta-lts-mixins' url='https://git.yoctoproject.org/meta-lts-mixins' branch='scarthgap/rust' commit='a8046d5ec53b1856169ac795aa87cb0d5db84c04'>
++            <layers/>
++        </repo>
++        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='0e2876e2ea7c28ddff5bc0052bdbc83dd07b7c98'>
++            <layers>
++                <layer>meta-ti-extras</layer>
++                <layer>meta-beagle</layer>
++                <layer>meta-ti-bsp</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arm' url='https://git.yoctoproject.org/meta-arm' branch='scarthgap' commit='0f1e7bf92c89759f0ab74cfa5be4ee47b092ad46'>
++            <layers>
++                <layer>meta-arm</layer>
++                <layer>meta-arm-toolchain</layer>
++            </layers>
++        </repo>
++        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='057ee563305e9484b29d02347aeafdadc5ea28ed'>
++            <layers/>
++        </repo>
++        <repo name='meta-flutter' url='https://github.com/meta-flutter/meta-flutter.git' branch='scarthgap' commit='HEAD' disabled='true'>
++            <layers>
++                <layer>.</layer>
++                <layer>meta-flutter-apps</layer>
++            </layers>
++        </repo>
++        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='baa5e7ea5f37f54c2a00080798ad7fb4c0664f69'>
++            <layers>
++                <layer>meta</layer>
++            </layers>
++        </repo>
++        <repo name='meta-tisdk' url='https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git' branch='am57x' commit='982761ae3031c12ab7c270fb4e91b15198795299'>
++            <layers>
++                <layer>meta-ti-foundational</layer>
++            </layers>
++        </repo>
++    </repos>
++
++    <tools>
++        <tool type='oe-layersetup'>
++            <var name='BITBAKE_INCLUSIVE_VARS' value='yes'/>
++        </tool>
++    </tools>
++</config>
 -- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+2.34.1
+
 
