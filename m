@@ -2,42 +2,42 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A454FCAC5BA
-	for <webhook@archiver.kernel.org>; Thu, 25 Sep 2025 19:30:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8932DCAC5BA
+	for <webhook@archiver.kernel.org>; Thu, 25 Sep 2025 19:30:35 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.167.1758828622358578509
+ by mx.groups.io with SMTP id smtpd.web11.187.1758828627124149391
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 25 Sep 2025 12:30:22 -0700
+ Thu, 25 Sep 2025 12:30:27 -0700
 Authentication-Results: mx.groups.io;
  dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8AAC740C56;
-	Thu, 25 Sep 2025 19:30:21 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 78C5540CAA;
+	Thu, 25 Sep 2025 19:30:26 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id STZTIWlpgO32; Thu, 25 Sep 2025 19:30:21 +0000 (UTC)
+	with ESMTP id WfRTSRR1gqQC; Thu, 25 Sep 2025 19:30:26 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6FE4640A30;
-	Thu, 25 Sep 2025 19:30:20 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 626F540A30;
+	Thu, 25 Sep 2025 19:30:25 +0000 (UTC)
 Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 225D2163ADF;
-	Thu, 25 Sep 2025 15:30:20 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 1EA70163B05;
+	Thu, 25 Sep 2025 15:30:25 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master][PATCH v2] linux-firmware-arago: correct removal of overlapping FW
-Date: Thu, 25 Sep 2025 15:30:19 -0400
-Message-Id: <20250925193019.2938469-1-denis@denix.org>
+Subject: [scarthgap][PATCH v2] linux-firmware-arago: correct removal of overlapping FW
+Date: Thu, 25 Sep 2025 15:30:24 -0400
+Message-Id: <20250925193024.2938544-1-denis@denix.org>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 25 Sep 2025 19:30:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16637
+ <meta-arago@lists.yoctoproject.org>; Thu, 25 Sep 2025 19:30:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16638
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
@@ -55,21 +55,28 @@ v2 - separate patches for master and scarthgap
 diff --git a/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmwa=
 re-arago.inc b/meta-arago-distro/recipes-kernel/linux-firmware/linux-firm=
 ware-arago.inc
-index 43c54575..30bf399d 100644
+index cb9573a1..76ca95bd 100644
 --- a/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware-arag=
 o.inc
 +++ b/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware-arag=
 o.inc
-@@ -1,6 +1,7 @@
--PR:append =3D ".arago2"
-+PR:append =3D ".arago3"
+@@ -1,4 +1,4 @@
+-PR:append =3D ".arago1"
++PR:append =3D ".arago2"
+=20
+ PACKAGES =3D+ "${PN}-ibt-18"
+=20
+@@ -8,7 +8,8 @@ FILES:${PN}-ibt-18 =3D "${nonarch_base_libdir}/firmware/i=
+ntel/ibt-18-*.sfi ${nonar
+=20
+ RDEPENDS:${PN}-ibt-18 +=3D "${PN}-ibt-license"
 =20
 +# meta-ti-bsp packages newer versions on these
  do_install:append() {
 -	rm -rf  ${D}/lib/firmware/ti-connectivity/
 -	rm -rf  ${D}/lib/firmware/cadence/
-+	rm -rf  ${D}${nonarch_base_libdir}/firmware//ti-connectivity/
-+	rm -rf  ${D}${nonarch_base_libdir}/firmware//cadence/
++	rm -rf  ${D}${nonarch_base_libdir}/firmware/ti-connectivity/
++	rm -rf  ${D}${nonarch_base_libdir}/firmware/cadence/
  }
 --=20
 2.25.1
