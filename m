@@ -1,98 +1,138 @@
-Return-Path: <y-hegde@ti.com>
+Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E554CAC5AA
-	for <webhook@archiver.kernel.org>; Thu, 25 Sep 2025 07:46:37 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web11.5982.1758786389882348688
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D6F9CAC5AA
+	for <webhook@archiver.kernel.org>; Thu, 25 Sep 2025 07:50:27 +0000 (UTC)
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+ by mx.groups.io with SMTP id smtpd.web11.6021.1758786624477912771
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 25 Sep 2025 00:46:30 -0700
+ Thu, 25 Sep 2025 00:50:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=LLs//24t;
- spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: y-hegde@ti.com)
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58P7kRsn1410085;
-	Thu, 25 Sep 2025 02:46:27 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=ZJ+Ghin8;
+ spf=pass (domain: list.ti.com, ip: 198.47.19.246, mailfrom: prc@list.ti.com)
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58P7oLqB1850486;
+	Thu, 25 Sep 2025 02:50:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758786387;
-	bh=pt1lzrOTqL68+pGHW90QiIFbr7Mc5/mmltiOWxLKrkQ=;
-	h=Date:From:To:CC:Subject;
-	b=LLs//24t1DBX0ja2+PtpQBmX/oyeD+XkAzcP3vROiTU4kthte3k1N26cV2X7EX1fB
-	 W45KzbtYbq2KrdWuzReVcF7EYm3I7nZmokWBVVrfcWX2OVkSbpWRQAY38QauaRjAAF
-	 oxaVG0sVlg2fzec8cAdkyWX36DN3Y9nmTFjuzWYo=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58P7kRQR3384327
+	s=ti-com-17Q1; t=1758786621; i=@ti.com;
+	bh=mteZQT4xnGCStkv0cwZol27GqFKTAyII1S9Hjhi3CQ8=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=ZJ+Ghin89l+NLUq2mNRkFhm25ZneSIuoeJdxE24q+DiFoNHQ33XhuYdkx7b4qLVfq
+	 413jLSvxc7vgjvuCEep3uIYqyUCgG4dLzfn/vdo3n1oWJbb/SMVeuIAfti0NMSdECH
+	 ZfnSblTPkX5IMr2NY8iWWMLROZ/rQPel9fU3jNqw=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58P7oL9W004954
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 25 Sep 2025 02:46:27 -0500
-Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 25 Sep 2025 02:50:21 -0500
+Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 25
- Sep 2025 02:46:26 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2025 02:50:20 -0500
+Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 25 Sep 2025 02:46:26 -0500
-Received: from localhost (yogi-work-pc.dhcp.ti.com [172.24.233.158])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58P7kPcR3118820;
-	Thu, 25 Sep 2025 02:46:26 -0500
-Date: Thu, 25 Sep 2025 13:16:24 +0530
-From: Yogesh Hegde <y-hegde@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denis@denix.org>,
+ Transport; Thu, 25 Sep 2025 02:50:20 -0500
+Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
+	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58P7oKkt1765868;
+	Thu, 25 Sep 2025 02:50:20 -0500
+Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
+	id AAEFB1801A0; Thu, 25 Sep 2025 02:50:20 -0500 (CDT)
+From: PRC Automation <prc@list.ti.com>
+To: Yogesh Hegde <y-hegde@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>, Ryan Eatmon <reatmon@ti.com>,
+        Denys
+ Dmytriyenko <denis@denix.org>,
         Praneeth Bajjuri <praneeth@ti.com>,
-        Prudhvi Veeramachaneni <prudhvi@ti.com>
-Subject: [meta-arago][master/scarthgap][PATCH v2]
- packagegroup-arago-tisdk-connectivity: Restrict BT_TI to legacy platforms
-Message-ID: <20250925074624.ozym2jd6qlxczwtr@yogi-work-pc>
+        Prudhvi
+ Veeramachaneni <prudhvi@ti.com>
+Subject: Re: [meta-arago][master/scarthgap][PATCH v2]
+Date: Thu, 25 Sep 2025 02:50:20 -0500
+Message-ID: <20250925075020.2444714-1-prc@list.ti.com>
+X-Mailer: git-send-email 2.43.5
+In-Reply-To: <20250925074624.ozym2jd6qlxczwtr@yogi-work-pc>
+References: <20250925074624.ozym2jd6qlxczwtr@yogi-work-pc>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 25 Sep 2025 07:46:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16628
+ <meta-arago@lists.yoctoproject.org>; Thu, 25 Sep 2025 07:50:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16629
 
-The bt-enable and bt-fw packages are only applicable for AM33X, AM43X and AM57XX
-legacy platforms, but was being included for all machines. While the
-bt-enable script performs noop for unsupported machines, it still adds
-unnecessary overhead to boot time and generates log noise.
+meta-arago / na / 20250925074624.ozym2jd6qlxczwtr
 
-Restrict the bt-enable and bt-fw packages to only be included for the
-specific machine overrides (ti33x, ti43x, am57xx) that actually require
-Bluetooth enablement support.
+PRC Results: PASS
 
-Signed-off-by: Yogesh Hegde <y-hegde@ti.com>
----
-v2:
-- Improved the subject as suggested by Ryan
-- Implemented the change to use CONNECTIVITY_RDEPENDS instead of BT_TI 
-  variable as suggested by Ryan
+=========================================================
+  check-yocto-patches: PASS
+=========================================================
+Patches
+----------------------------------------
+WARN - [meta-arago][master/scarthgap][PATCH v2] packagegroup-arago-tisdk-connectivity: Restrict BT_TI to legacy platforms
+    WARN: Commit message does not include file/recipe name: . (COMMIT-MESSAGE-2)
+        patch
 
- .../packagegroups/packagegroup-arago-tisdk-connectivity.bb   | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-index 5a91357b..0a8d4493 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-@@ -63,9 +63,12 @@ CONNECTIVITY_RDEPENDS = " \
-     ${WLAN_COMMON} \
-     ${WLAN_TI} \
-     ${BT_COMMON} \
--    ${BT_TI} \
- "
- 
-+CONNECTIVITY_RDEPENDS:append:ti33x = " ${BT_TI}"
-+CONNECTIVITY_RDEPENDS:append:ti43x = " ${BT_TI}"
-+CONNECTIVITY_RDEPENDS:append:am57xx = " ${BT_TI}"
-+
- RDEPENDS:${PN} = "\
-     ${CONNECTIVITY_RDEPENDS} \
- "
--- 
-2.34.1
+
+=========================================================
+  apply-yocto-patch: PASS
+=========================================================
+master
+=====================
+Summary:
+- Patch Series: [meta-arago][master/scarthgap][PATCH v2] packagegroup-arago-tisdk-connectivity: Restrict BT_TI to legacy platforms
+- Submitter: From: Yogesh Hegde <y-hegde@ti.com>
+- Date: Date: Thu, 25 Sep 2025 13:16:24 +0530
+- Num Patches: 1
+- Mailing List (public inbox) Commit SHA: 1160f033276e999e2ca086732fb1b9f2d3e6cbb4
+
+Applied to:
+- Repository: lcpd-prc-meta-arago
+- Base Branch: master-wip
+- Commit Author: Ryan Eatmon <reatmon@ti.com>
+- Commit Subject: ti-test: Make opencl-cts dependent on DISTRO_FEATURES
+- Commit SHA: d3532063218f5c47b5e912554a0b236eb25e61f4
+
+Patches
+----------------------------------------
+All patches applied
+
+scarthgap
+=====================
+Summary:
+- Patch Series: [meta-arago][master/scarthgap][PATCH v2] packagegroup-arago-tisdk-connectivity: Restrict BT_TI to legacy platforms
+- Submitter: From: Yogesh Hegde <y-hegde@ti.com>
+- Date: Date: Thu, 25 Sep 2025 13:16:24 +0530
+- Num Patches: 1
+- Mailing List (public inbox) Commit SHA: 1160f033276e999e2ca086732fb1b9f2d3e6cbb4
+
+Applied to:
+- Repository: lcpd-prc-meta-arago
+- Base Branch: scarthgap-wip
+- Commit Author: Ryan Eatmon <reatmon@ti.com>
+- Commit Subject: check_yocto_rules: Flip to regex for files
+- Commit SHA: 7aedd68536e2fdc3f84579560e8c5a99c98a12d0
+
+Patches
+----------------------------------------
+All patches applied
+
+
+
+=========================================================
+  check-yocto-repo: PASS
+=========================================================
+master
+=====================
+PASS
+
+scarthgap
+=====================
+PASS
+
+
 
 
