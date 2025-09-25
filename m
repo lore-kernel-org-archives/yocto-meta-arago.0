@@ -1,126 +1,77 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F77BCAC5B9
-	for <webhook@archiver.kernel.org>; Thu, 25 Sep 2025 19:20:25 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web11.5703.1758828020712668359
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A454FCAC5BA
+	for <webhook@archiver.kernel.org>; Thu, 25 Sep 2025 19:30:25 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.167.1758828622358578509
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 25 Sep 2025 12:20:21 -0700
+ Thu, 25 Sep 2025 12:30:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=XruIQq5I;
- spf=pass (domain: list.ti.com, ip: 198.47.19.245, mailfrom: prc@list.ti.com)
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58PJKJ9M1498105;
-	Thu, 25 Sep 2025 14:20:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758828019; i=@ti.com;
-	bh=D1pyjZPQUvOadO51HuXUlhx7jMZlNn8eAx0VD4TrXL0=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=XruIQq5IoN9HAE0PerFiItaPkDGjxikraN+66GFsA3z91U6svj4Aoj6KNS5y3ZWM5
-	 UhCnirQlfxdEB9hHySup++ICS0H/jAIqWdxF/rftyMHuO2R8ZC9pcepW1bYrnY/Z/R
-	 FVr9b041sdjMBG+ATXvfcRpgn0QohtXCdJpYM2KA=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58PJKJ7V391374
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 25 Sep 2025 14:20:19 -0500
-Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 25
- Sep 2025 14:20:18 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 25 Sep 2025 14:20:18 -0500
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58PJKIYG060951;
-	Thu, 25 Sep 2025 14:20:18 -0500
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id C91FB13F538; Thu, 25 Sep 2025 14:20:18 -0500 (CDT)
-From: PRC Automation <prc@list.ti.com>
-To: Denys Dmytriyenko <denys@konsulko.com>
-CC: <meta-arago@lists.yoctoproject.org>
-Subject: Re: [scarthgap/master][PATCH] linux-firmware-arago: correct removal of overlapping FW
-Date: Thu, 25 Sep 2025 14:20:18 -0500
-Message-ID: <20250925192018.1454789-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20250925191710.2937644-1-denis@denix.org>
-References: <20250925191710.2937644-1-denis@denix.org>
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8AAC740C56;
+	Thu, 25 Sep 2025 19:30:21 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id STZTIWlpgO32; Thu, 25 Sep 2025 19:30:21 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6FE4640A30;
+	Thu, 25 Sep 2025 19:30:20 +0000 (UTC)
+Received: from thorin.denix (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 225D2163ADF;
+	Thu, 25 Sep 2025 15:30:20 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master][PATCH v2] linux-firmware-arago: correct removal of overlapping FW
+Date: Thu, 25 Sep 2025 15:30:19 -0400
+Message-Id: <20250925193019.2938469-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 25 Sep 2025 19:20:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16636
+ <meta-arago@lists.yoctoproject.org>; Thu, 25 Sep 2025 19:30:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16637
 
-meta-arago / na / 20250925191710.2937644-1-denis
-
-PRC Results: FAIL
-
-=========================================================
-  check-yocto-patches: PASS
-=========================================================
-Patches
-----------------------------------------
-WARN - [scarthgap/master][PATCH] linux-firmware-arago: correct removal of overlapping FW
-    WARN: Commit message does not include file/recipe name: linux-firmware-arago: correct removal of overlapping FW. (COMMIT-MESSAGE-2)
-        patch
-
-
-
-=========================================================
-  apply-yocto-patch: FAIL
-=========================================================
-scarthgap
-=====================
-Summary:
-- Patch Series: [scarthgap/master][PATCH] linux-firmware-arago: correct removal of overlapping FW
-- Submitter: From: Denys Dmytriyenko <denis@denix.org>
 From: Denys Dmytriyenko <denys@konsulko.com>
-- Date: Date: Thu, 25 Sep 2025 15:17:10 -0400
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: 2f95d95eb505ede6807da4e744831828b0724e17
 
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: scarthgap
-- Commit Author: LCPD Automation Script <lcpdbld@list.ti.com>
-- Commit Subject: CI/CD Auto-Merger: cicd.scarthgap.202509250412
-- Commit SHA: 61ab0b00a3683d71c0fc9ac62e1200d85edbcecd
+Use the correct variable, instead of hard-coding /lib/firmware, when
+removing firmware images that overlap with the ones from meta-ti-bsp.
+This way it will work properly even when usrmerge is enabled.
 
-Patches
-----------------------------------------
-FAIL - [scarthgap/master][PATCH] linux-firmware-arago: correct removal of overlapping FW
-    error: patch failed: meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware-arago.inc:1
-    error: meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware-arago.inc: patch does not apply
-    Applying: linux-firmware-arago: correct removal of overlapping FW
-    Patch failed at 0001 linux-firmware-arago: correct removal of overlapping FW
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+v2 - separate patches for master and scarthgap
 
-master
-=====================
-Summary:
-- Patch Series: [scarthgap/master][PATCH] linux-firmware-arago: correct removal of overlapping FW
-- Submitter: From: Denys Dmytriyenko <denis@denix.org>
-From: Denys Dmytriyenko <denys@konsulko.com>
-- Date: Date: Thu, 25 Sep 2025 15:17:10 -0400
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: 2f95d95eb505ede6807da4e744831828b0724e17
+ .../recipes-kernel/linux-firmware/linux-firmware-arago.inc | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Ryan Eatmon <reatmon@ti.com>
-- Commit Subject: ti-test: Make opencl-cts dependent on DISTRO_FEATURES
-- Commit SHA: d3532063218f5c47b5e912554a0b236eb25e61f4
-
-Patches
-----------------------------------------
-All patches applied
-
-
+diff --git a/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmwa=
+re-arago.inc b/meta-arago-distro/recipes-kernel/linux-firmware/linux-firm=
+ware-arago.inc
+index 43c54575..30bf399d 100644
+--- a/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware-arag=
+o.inc
++++ b/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware-arag=
+o.inc
+@@ -1,6 +1,7 @@
+-PR:append =3D ".arago2"
++PR:append =3D ".arago3"
+=20
++# meta-ti-bsp packages newer versions on these
+ do_install:append() {
+-	rm -rf  ${D}/lib/firmware/ti-connectivity/
+-	rm -rf  ${D}/lib/firmware/cadence/
++	rm -rf  ${D}${nonarch_base_libdir}/firmware//ti-connectivity/
++	rm -rf  ${D}${nonarch_base_libdir}/firmware//cadence/
+ }
+--=20
+2.25.1
 
 
