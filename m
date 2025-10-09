@@ -2,46 +2,46 @@ Return-Path: <j-sahu@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2AF42CCA470
-	for <webhook@archiver.kernel.org>; Thu,  9 Oct 2025 06:19:35 +0000 (UTC)
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
- by mx.groups.io with SMTP id smtpd.web11.5653.1759990765844054055
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ADB23CCD184
+	for <webhook@archiver.kernel.org>; Thu,  9 Oct 2025 14:07:07 +0000 (UTC)
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+ by mx.groups.io with SMTP id smtpd.web11.1336.1760018819677033397
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 08 Oct 2025 23:19:26 -0700
+ Thu, 09 Oct 2025 07:06:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=vzoWbZ16;
- spf=pass (domain: ti.com, ip: 198.47.19.245, mailfrom: j-sahu@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=PxRrSnb5;
+ spf=pass (domain: ti.com, ip: 198.47.23.234, mailfrom: j-sahu@ti.com)
 Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5996JOUo4145602
-	for <meta-arago@lists.yoctoproject.org>; Thu, 9 Oct 2025 01:19:24 -0500
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 599E6xND097960
+	for <meta-arago@lists.yoctoproject.org>; Thu, 9 Oct 2025 09:06:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1759990764;
-	bh=vl51LnGqPhZE8kdKyd773hKJ2cfcopIbFHy1/MtYt44=;
+	s=ti-com-17Q1; t=1760018819;
+	bh=OovS6miK5GRDQVa/Cygbgoi9NrJ+nmRV1dWv8eJ65EU=;
 	h=From:To:CC:Subject:Date;
-	b=vzoWbZ16WYrW2Z0b8U0mZ5zFyX8txn+EcGIse7Y3TYWd36Fulc6YO6MI63hwGlOa6
-	 14YbWly8wtby4o2tV5NNiPJm5HW4iI94SyROrtg7PFTpy0PY0i4nDYWvQB5tvBl93A
-	 Rvx1LFoXiPlm/FtFXGMuHrPAIlLJy03yFWpsmP9E=
-Received: from DLEE215.ent.ti.com (dlee215.ent.ti.com [157.170.170.118])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5996JOLI1220079
+	b=PxRrSnb5NW9U1rsaPBL9SNTdhRrRt3vOzsfp7OxLyiCsm5h8IgikoIURirW312JJ2
+	 hW+ORJXVd+Rqvzweei0i4yNGvgT35l6PWleSbSJF7bZKR0vmkzkGpDqOk/nornH1k8
+	 tb0IwkCzdq7oqOE8p/0FnHJdozTAf4IxyMy3ewtE=
+Received: from DLEE209.ent.ti.com (dlee209.ent.ti.com [157.170.170.98])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 599E6wnP1480806
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Thu, 9 Oct 2025 01:19:24 -0500
-Received: from DLEE211.ent.ti.com (157.170.170.113) by DLEE215.ent.ti.com
- (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Thu, 9 Oct 2025 09:06:59 -0500
+Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 9 Oct
- 2025 01:19:24 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE211.ent.ti.com
- (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 09:06:58 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 9 Oct 2025 01:19:24 -0500
+ Transport; Thu, 9 Oct 2025 09:06:58 -0500
 Received: from jeevan-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (jeevan-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.233.81])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5996JMkQ4000157;
-	Thu, 9 Oct 2025 01:19:23 -0500
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 599E6u3t357036;
+	Thu, 9 Oct 2025 09:06:57 -0500
 From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
 CC: Ryan Eatmon <reatmon@ti.com>
-Subject: [meta-arago][oe-layersetup][master][PATCH] processor-sdk: Add new configs for Sitara SDK 11.01.16.13 Release
-Date: Thu, 9 Oct 2025 11:49:19 +0530
-Message-ID: <20251009061919.136075-1-j-sahu@ti.com>
+Subject: [meta-arago][oe-layersetup][master][PATCH v2] processor-sdk: Add Sitara SDK 11.01.16.13 Release configs
+Date: Thu, 9 Oct 2025 19:36:54 +0530
+Message-ID: <20251009140654.198238-1-j-sahu@ti.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -50,16 +50,16 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 09 Oct 2025 06:19:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16674
+ <meta-arago@lists.yoctoproject.org>; Thu, 09 Oct 2025 14:07:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16675
 
 - These configs are based on AM62P SR 1.2 and AM62L SR 1.1 revisions.
 
-- Add the configs processor-sdk-scarthgap-chromium-11.01.16.13-
-config, processor-sdk-scarthgap-11.01.16.13-config and
-processor-sdk-scarthgap-selinux-11.01.16.13-config for AM62P
+- The configs processor-sdk-scarthgap-chromium-11.01.16.13-config,
+processor-sdk-scarthgap-11.01.16.13-config and
+processor-sdk-scarthgap-selinux-11.01.16.13-config are used for building AM62P
 
-- Add processor-sdk-scarthgap-nonqt-11.01.16.13-config for AM62L
+- processor-sdk-scarthgap-nonqt-11.01.16.13-config is used for building AM62L
 
 Signed-off-by: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
 ---
