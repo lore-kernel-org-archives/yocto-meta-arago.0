@@ -2,48 +2,50 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 04F70CCD185
-	for <webhook@archiver.kernel.org>; Mon, 13 Oct 2025 11:55:09 +0000 (UTC)
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
- by mx.groups.io with SMTP id smtpd.web10.41554.1760356506573652115
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 043D3CCD185
+	for <webhook@archiver.kernel.org>; Mon, 13 Oct 2025 11:57:39 +0000 (UTC)
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+ by mx.groups.io with SMTP id smtpd.web10.41590.1760356656371135318
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 13 Oct 2025 04:55:06 -0700
+ Mon, 13 Oct 2025 04:57:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=V7nRWFXG;
- spf=pass (domain: ti.com, ip: 198.47.19.246, mailfrom: afd@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=w13f+6z8;
+ spf=pass (domain: ti.com, ip: 198.47.23.235, mailfrom: afd@ti.com)
 Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59DBt5UE1252298;
-	Mon, 13 Oct 2025 06:55:05 -0500
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59DBvZHx1336956;
+	Mon, 13 Oct 2025 06:57:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1760356505;
-	bh=712nRzSYM1lnoKLg2XNz+4FF+7NIGN9As/i1gZ/uFVc=;
-	h=From:To:CC:Subject:Date;
-	b=V7nRWFXGjd6HyI1vHyHfRw4d2KBfctDkpm7W7jPFo5Q/lcNpz2ibxeN5jrsO65iee
-	 f0lhVPUtSq5Gjox0iP7lRX65uNuGLgqXEocdnbPUiJtcgrqQpuEgWduYbzSqU7f780
-	 VWp0X0b8YPCRFn3gvTITtn8C3Vt93ufgC/6PKI8E=
-Received: from DFLE212.ent.ti.com (dfle212.ent.ti.com [10.64.6.70])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59DBt5Qa3158243
+	s=ti-com-17Q1; t=1760356655;
+	bh=0fPk/DbGRyLp7q3XG20zv81YUdSPa1xe3Kz0jKNihe8=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=w13f+6z8ozsHNjNKQLRaX+sfOHWwVbarxtKUSh6UxJL8XgrDGlIEiiC4EtWW9Ql0o
+	 t3sYGi82wrkmHC++6AfZAOL+qzffehnPuo59QrrGhwZ7umuAcqtdm4pGNl2Ol8LYh6
+	 OpzQKSPbU4L91v7KKzNPuBipsXz66SwWOFs2Cxdk=
+Received: from DLEE215.ent.ti.com (dlee215.ent.ti.com [157.170.170.118])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59DBvZGo3159349
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 13 Oct 2025 06:55:05 -0500
-Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE212.ent.ti.com
- (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 13 Oct 2025 06:57:35 -0500
+Received: from DLEE208.ent.ti.com (157.170.170.97) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 13 Oct
- 2025 06:55:04 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 06:57:35 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE208.ent.ti.com
+ (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 13 Oct 2025 06:55:04 -0500
+ Transport; Mon, 13 Oct 2025 06:57:35 -0500
 Received: from ula0226330.lan ([10.249.42.149])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59DBt4qM2000532;
-	Mon, 13 Oct 2025 06:55:04 -0500
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59DBvYEu2002827;
+	Mon, 13 Oct 2025 06:57:35 -0500
 From: Andrew Davis <afd@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
 CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][scarthgap][PATCH v3 1/2] gstreamer1.0-plugins-hevc: Remove this gstreamer plugin
-Date: Mon, 13 Oct 2025 06:55:03 -0500
-Message-ID: <20251013115504.3733584-1-afd@ti.com>
+Subject: [meta-arago][master][PATCH v3 2/2] meta-arago-extras: hevc-arm-decoder: Remove this recipe
+Date: Mon, 13 Oct 2025 06:57:34 -0500
+Message-ID: <20251013115734.3733931-2-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20251013115734.3733931-1-afd@ti.com>
+References: <20251013115734.3733931-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -51,168 +53,146 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 13 Oct 2025 11:55:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16685
+ <meta-arago@lists.yoctoproject.org>; Mon, 13 Oct 2025 11:57:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16686
 
-This allowed use of a proprietary HEVC/H.265 decoder for ARM A15 cores
-back when the open source decoders built into gstreamer were not mature.
-This is no longer the case and this plugin is not maintained nor
-is it buildable with the latest gstreamer. Remove this plugin.
+This was a proprietary HEVC/H.265 decoder for ARM A15 cores. This does
+not seem to function anymore and since it was delivered as a binary I
+am unable to fix it. Remove this recipe.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- .../packagegroup-arago-gst-sdk-target.bb      |  4 ---
- .../packagegroups/packagegroup-arago-gst.bb   |  4 ---
- ...01-Switch-submodule-common-to-github.patch | 26 --------------
- ...e.ac-stop-using-export-symbols-regex.patch | 32 -----------------
- .../gstreamer1.0-plugins-hevc_git.bb          | 36 -------------------
- 5 files changed, 102 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc/0001-Switch-submodule-common-to-github.patch
- delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc/0001-configure.ac-stop-using-export-symbols-regex.patch
- delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
+ ...group-arago-tisdk-multimedia-sdk-target.bb |  8 ---
+ .../packagegroup-arago-tisdk-multimedia.bb    |  1 -
+ .../hevc-arm-decoder/Testparams.cfg           | 23 ---------
+ .../hevc-arm-decoder/hevc-arm-decoder_git.bb  | 51 -------------------
+ 4 files changed, 83 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder/Testparams.cfg
+ delete mode 100644 meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-index 5555d360..e52bd49a 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
-@@ -15,10 +15,6 @@ GSTREAMER_DEPS = " \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
+index 6edc0dfd..a3753d7f 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
+@@ -6,13 +6,6 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- GSTREAMER_DEPS:append:arago = " gstreamer1.0-libav-dev"
+ inherit packagegroup
  
--#    gstreamer1.0-plugins-hevc-dev 
--GSTREAMER_DEPS:append:dra7xx = " \
+-MULTIMEDIA = ""
+-
+-MULTIMEDIA:append:dra7xx = " \
+-    hevc-arm-decoder-dev \
+-    hevc-arm-decoder-staticdev \
 -"
 -
- RDEPENDS:${PN} = " \
-     ${GSTREAMER_DEPS} \
+ AUDIO = " \
+     fftw-dev \
+     libsndfile1-dev \
+@@ -20,6 +13,5 @@ AUDIO = " \
+ 
+ RDEPENDS:${PN} = "\
+     ${AUDIO} \
+-    ${MULTIMEDIA} \
+     packagegroup-arago-gst-sdk-target \
  "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-index 685b8c55..2a4bc0eb 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-@@ -18,10 +18,6 @@ GSTREAMER_DEPS = " \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+index 1aa6b161..6eb49b46 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+@@ -22,7 +22,6 @@ MULTIMEDIA:omapl138 = ""
  
- GSTREAMER_DEPS:append:arago = " gstreamer1.0-libav"
+ MULTIMEDIA:append:dra7xx = " \
+     vis \
+-    hevc-arm-decoder \
+ "
  
--#    gstreamer1.0-plugins-hevc 
--GSTREAMER_DEPS:append:dra7xx = " \
--"
--
- GSTREAMER_ACCEL_MM = ""
- #GSTREAMER_ACCEL_MM:omap-a15 = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', "gstreamer1.0-plugins-ducati", '', d)}"
- #GSTREAMER_ACCEL_MM:append:dra7xx = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', " gstreamer1.0-plugins-vpe", '', d)}"
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc/0001-Switch-submodule-common-to-github.patch b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc/0001-Switch-submodule-common-to-github.patch
+ ACCEL_MM = ""
+diff --git a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder/Testparams.cfg b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder/Testparams.cfg
 deleted file mode 100644
-index 551ef9c2..00000000
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc/0001-Switch-submodule-common-to-github.patch
+index 5f018632..00000000
+--- a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder/Testparams.cfg
 +++ /dev/null
-@@ -1,26 +0,0 @@
--From d85ca8e83ea0537fd74d8bea3c358a3edddb87ac Mon Sep 17 00:00:00 2001
--From: Daniel Schultz <d.schultz@phytec.de>
--Date: Tue, 6 Aug 2024 11:26:55 +0200
--Subject: [PATCH] Switch submodule common to github
+@@ -1,23 +0,0 @@
+-# New Input File Format is as follows
+-# <ParameterName> = <ParameterValue> # Comment
+-################################################################################
+-# Parameters
+-################################################################################
+-#################################### No. of threads ############################
+-NumThreads = 2
+-################################### Files ######################################
+-InputFile   		= /usr/share/ti/video/TearOfSteel-Short-1280x720.265
+-OutputFile   		= /usr/share/ti/examples/h265vdec/TearOfSteel-Short-1280x720.yuv
+-ReferenceFile   	= /usr/share/ti/video/dummy
+-ImageWidth          = 1280  # Image width in Pels
+-ImageHeight         = 720   # Image height in Pels
+-FramesToDecode      = 50   # Number of frames to be coded
+-InputLowDelayMode   = 0     # 0->Entire frame, 1 -> Slice mode (Data sync mode)
+-OutputLowDelayMode  = 0     # 0->Entire frame, 1 -> Number of CTU rows (Data sync mode)
+-NumCTURows          = 0     # 0->Non-DataSync mode, Non-Zero positive when OutputLowDelayMode is set to Data sync mode
+-MetadataType        = 0     # 0->No Metadata, 1-SEI, 2-VUI 3-SEI and VUI
+-###################################################################
+-# Dynamic Parameters
+-###################################################################
+-DecodeHeader         = 0    # 0 -> Disable decode Header mode, 1 -> Enable decode Header mode
 -
--The freedesktop.org URL is currently not available. Therefore, this
--plugin won't build. Use the official GStreamer mirror on GitHub.
--
--Upstream-Status: Pending
--
--Signed-off-by: Daniel Schultz <d.schultz@phytec.de>
-----
-- .gitmodules | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--diff --git a/.gitmodules b/.gitmodules
--index a6b1eda..80ffbc5 100644
----- a/.gitmodules
--+++ b/.gitmodules
--@@ -1,3 +1,3 @@
-- [submodule "common"]
--	path = common
---	url = git://anongit.freedesktop.org/gstreamer/common
--+	url = https://github.com/GStreamer/common
----
--2.34.1
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc/0001-configure.ac-stop-using-export-symbols-regex.patch b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc/0001-configure.ac-stop-using-export-symbols-regex.patch
+diff --git a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
 deleted file mode 100644
-index e3df61ac..00000000
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc/0001-configure.ac-stop-using-export-symbols-regex.patch
+index 995dd6c8..00000000
+--- a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
 +++ /dev/null
-@@ -1,32 +0,0 @@
--From 0fcda9d85c96d5c39dffe21d3bdf01a038b911c9 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Tue, 22 Jan 2019 20:39:15 -0500
--Subject: [PATCH] configure.ac: stop using -export-symbols-regex
--
--The old regex is no longer correct for GStreamer 1.14.
--
--Bug-Debian: https://bugs.debian.org/894642
--
--Upstream-Status: Inappropriate [arago specific]
--
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-----
-- configure.ac | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--diff --git a/configure.ac b/configure.ac
--index fee3161..8159c60 100644
----- a/configure.ac
--+++ b/configure.ac
--@@ -81,7 +81,7 @@ fi
-- AC_SUBST(plugindir)
-- 
-- dnl set proper LDFLAGS for plugins
---GST_PLUGIN_LDFLAGS="-module -avoid-version -export-symbols-regex '^[_]*gst_plugin_desc\$\$' $GST_ALL_LDFLAGS"
--+GST_PLUGIN_LDFLAGS="-module -avoid-version $GST_ALL_LDFLAGS"
-- AC_SUBST(GST_PLUGIN_LDFLAGS)
-- 
-- AC_CONFIG_FILES([Makefile src/Makefile])
---- 
--2.7.4
--
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
-deleted file mode 100644
-index d17cb4f2..00000000
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
-+++ /dev/null
-@@ -1,36 +0,0 @@
--SUMMARY = "GStreamer plugin for ARM HEVC decoder"
--HOMEPAGE = "https://git.ti.com/processor-sdk/gst-plugin-hevc"
--LICENSE = "BSD-3-Clause"
--LIC_FILES_CHKSUM = "file://COPYING;md5=2827f94fc0a1adeff4d9702e97ce2979"
+@@ -1,51 +0,0 @@
+-SUMMARY = "ARM HEVC Decoder with Unit Test Application"
+-HOMEPAGE = "https://git.ti.com/processor-sdk/hevc_arm_decoder/"
+-LICENSE = "TI-TSPA"
+-LIC_FILES_CHKSUM = "file://Inc/exp_pp_h265decoder.h;beginline=1;endline=27;md5=51a0ae5cca603a21186bf6ff458f3be9"
+-PR = "r4"
 -
 -COMPATIBLE_MACHINE = "dra7xx"
 -
--SRC_URI = "git://git.ti.com/git/processor-sdk/gst-plugin-hevc.git;protocol=https;branch=master \
--           file://0001-configure.ac-stop-using-export-symbols-regex.patch \
--           file://0001-Switch-submodule-common-to-github.patch \
+-BRANCH = "master"
+-
+-SRC_URI = "git://git.ti.com/git/processor-sdk/hevc_arm_decode.git;protocol=https;branch=${BRANCH} \
+-           file://Testparams.cfg \
 -"
--SRCREV = "e4ea007d0ddeb95ae01742293454ef3c87a6e84c"
 -
--S = "${WORKDIR}/git"
+-SRCREV = "4004c553e672538d0c3b5fa2ea0490ec095d0060"
 -
--DEPENDS += "gstreamer1.0 gstreamer1.0-plugins-base hevc-arm-decoder gettext-native"
--
--inherit autotools-brokensep pkgconfig gettext
--
--PR = "r5"
+-PV = "01.00.00.01"
 -
 -do_configure() {
--    cd ${S}
--    chmod +x autogen.sh
--    ./autogen.sh --host=arm-linux --with-libtool-sysroot=${STAGING_DIR_TARGET} --prefix=/usr
+-    sed "s/-lpthread/-pthread/g" -i ${S}/Client/Build/ARM/makefile
 -}
 -
--EXTRA_OECONF += "--enable-maintainer-mode"
--EXTRA_OEMAKE += "'ERROR_CFLAGS=-Wno-deprecated-declarations'"
--CFLAGS += "-fcommon"
+-do_compile() {
+-    cd ${S}/Client/Build/ARM
+-    oe_runmake CC="${CC} -fpermissive" LINKER="${CC}"
+-}
 -
--FILES:${PN} += "${libdir}/gstreamer-1.0/*.so"
--FILES:${PN}-dbg += "${libdir}/gstreamer-1.0/.debug"
--FILES:${PN}-dev += "${libdir}/gstreamer-1.0/*.la"
+-do_install() {
+-    install -d ${D}${libdir}
+-    install -m 755 ${S}/Lib/h265vdec_pp_lib.a ${D}${libdir}
 -
--INSANE_SKIP:${PN} = "textrel"
+-    install -d ${D}${includedir}
+-    install -m 644 ${S}/Inc/exp_pp_h265decoder.h ${D}${includedir}
+-
+-    install -d ${D}${bindir}
+-    install -m 755 ${S}/Client/Build/ARM/Out/h265vdec_pp ${D}${bindir}
+-
+-    install -d ${D}${datadir}/ti/examples/h265vdec
+-    install -m 644 ${UNPACKDIR}/Testparams.cfg ${D}${datadir}/ti/examples/h265vdec
+-
+-    install -d ${D}${docdir}/${PN}
+-    for doc in ${S}/Docs/*; do
+-        install -m 664 ${doc} ${D}${docdir}/${PN}
+-    done
+-}
+-
+-FILES:${PN} += "\
+-    ${datadir}/ti/*  \
+-"
+-
+-INSANE_SKIP:${PN} += "ldflags"
 -- 
 2.39.2
 
