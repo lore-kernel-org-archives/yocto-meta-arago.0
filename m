@@ -1,112 +1,83 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5047ECCD199
-	for <webhook@archiver.kernel.org>; Mon, 20 Oct 2025 13:07:17 +0000 (UTC)
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
- by mx.groups.io with SMTP id smtpd.web11.18203.1760965630110540493
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D204CCD1BB
+	for <webhook@archiver.kernel.org>; Wed, 22 Oct 2025 17:05:06 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.636.1761152704210764929
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 20 Oct 2025 06:07:10 -0700
+ Wed, 22 Oct 2025 10:05:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=bjKy0dM8;
- spf=pass (domain: list.ti.com, ip: 198.47.23.234, mailfrom: prc@list.ti.com)
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59KD78UJ907695;
-	Mon, 20 Oct 2025 08:07:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1760965629; i=@ti.com;
-	bh=nmkNM12JED7WUwc6XSyXtwvf4vVZ92jjV4YuJClWHCA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=bjKy0dM83OyqKmPWxfQC1kOAxSs4/LCTCXFuWQjnI4m0F4/vB/9UmFjBs3fkLFF8w
-	 QmO73ic4ZAexxzOYGim+tUkM+ORfqWJh6Q1e5g3Eu3wz4vVxhcUASgYRe4CRBO6gUW
-	 nDSXZhht94WJA6q9Jcz7NxbRZs0j99vDhQNcpO0I=
-Received: from DFLE212.ent.ti.com (dfle212.ent.ti.com [10.64.6.70])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59KD78uL032658
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 20 Oct 2025 08:07:08 -0500
-Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE212.ent.ti.com
- (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 20 Oct
- 2025 08:07:08 -0500
-Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 20 Oct 2025 08:07:08 -0500
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59KD78R91664757;
-	Mon, 20 Oct 2025 08:07:08 -0500
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id 7203E13F538; Mon, 20 Oct 2025 08:07:08 -0500 (CDT)
-From: PRC Automation <prc@list.ti.com>
-To: LCPD Automation Script <lcpdbld@list.ti.com>
-CC: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys
- Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago][master][PATCH] CI/CD Auto-Merger: cicd.master.202510200100
-Date: Mon, 20 Oct 2025 08:07:08 -0500
-Message-ID: <20251020130708.576279-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20251020130348.270528-1-lcpdbld@list.ti.com>
-References: <20251020130348.270528-1-lcpdbld@list.ti.com>
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6F8CC40C3E;
+	Wed, 22 Oct 2025 17:05:03 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 45oJJ3x5XFHP; Wed, 22 Oct 2025 17:05:03 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2E7FE40BEC;
+	Wed, 22 Oct 2025 17:04:59 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 7F20116C1A0; Wed, 22 Oct 2025 13:04:58 -0400 (EDT)
+Date: Wed, 22 Oct 2025 13:04:58 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: rs@ti.com
+Cc: reatmon@ti.com, meta-arago@lists.yoctoproject.org, praneeth@ti.com,
+	s-jain1@ti.com
+Subject: Re: [meta-arago][scarthgap][PATCH 2/2] weston-init-arago: add
+ weston-init to the rprovides
+Message-ID: <20251022170458.GX3125@denix.org>
+References: <20251001183102.357345-1-rs@ti.com>
+ <20251001183102.357345-2-rs@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251001183102.357345-2-rs@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 20 Oct 2025 13:07:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16695
+ <meta-arago@lists.yoctoproject.org>; Wed, 22 Oct 2025 17:05:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16696
 
-meta-arago / na / 20251020130348.270528-1-lcpdbld
+On Wed, Oct 01, 2025 at 01:31:02PM -0500, rs@ti.com wrote:
+> From: Randolph Sapp <rs@ti.com>
+> 
+> I made this conflict with the core version of weston-init, but I forgot
+> to say it's actually a runtime provider of the same package to resolve
+> any issues with core package groups.
+> 
+> Fixes: d63830cd ("weston-init: weston-init -> weston-init-arago")
+> Signed-off-by: Randolph Sapp <rs@ti.com>
+> ---
+>  meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
+> index 033c32f1..395e996e 100644
+> --- a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
+> @@ -65,7 +65,7 @@ FILES:${PN} += "\
+>      "
+>  
+>  CONFFILES:${PN} += "${sysconfdir}/xdg/weston/weston.ini ${sysconfdir}/emptty/conf"
+> -RPROVIDES:${PN}:append = " virtual-emptty-conf"
+> +RPROVIDES:${PN}:append = " virtual-emptty-conf weston-init"
 
-PRC Results: PASS
+Now you also need an extra PREFERRED_RPROVIDER:
 
-=========================================================
-  check-yocto-patches: PASS
-=========================================================
-Patches
-----------------------------------------
-WARN - [meta-arago][master][PATCH] CI/CD Auto-Merger: cicd.master.202510200100
-    WARN: Commit message does not include file/recipe name: CI/CD Auto-Merger: cicd.master.202510200100. (COMMIT-MESSAGE-2)
-        patch
-
-
-
-=========================================================
-  apply-yocto-patch: PASS
-=========================================================
-master
-=====================
-Summary:
-- Patch Series: [meta-arago][master][PATCH] CI/CD Auto-Merger: cicd.master.202510200100
-- Submitter: From: LCPD Automation Script <lcpdbld@list.ti.com>
-- Date: Date: Mon, 20 Oct 2025 08:03:48 -0500
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: dccd078d7c7a29547f8be86e987cc3f65952a3fb
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Andrew Davis <afd@ti.com>
-- Commit Subject: meta-arago-extras: hevc-arm-decoder: Remove this recipe
-- Commit SHA: d1375d284422bc072890ed9bcdd08c18ba227be4
-
-Patches
-----------------------------------------
-All patches applied
+NOTE: Multiple providers are available for runtime weston-init (weston-init, weston-init-arago)
+Consider defining a PREFERRED_RPROVIDER entry to match weston-init
 
 
-
-=========================================================
-  check-yocto-repo: PASS
-=========================================================
-master
-=====================
-PASS
-
-
-
+>  RCONFLICTS:${PN} += "weston-init"
+>  
+>  USERADD_PARAM:${PN} = "--home /home/weston --shell /bin/sh --user-group -G video,input,render,nopasswdlogin weston"
+> -- 
+> 2.51.0
+> 
 
