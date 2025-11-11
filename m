@@ -2,72 +2,72 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C161DCCFA1A
-	for <webhook@archiver.kernel.org>; Tue, 11 Nov 2025 18:58:20 +0000 (UTC)
-Received: from CY3PR05CU001.outbound.protection.outlook.com (CY3PR05CU001.outbound.protection.outlook.com [40.93.201.31])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.25258.1762887490316747080
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB1DFCCFA1A
+	for <webhook@archiver.kernel.org>; Tue, 11 Nov 2025 18:58:50 +0000 (UTC)
+Received: from SA9PR02CU001.outbound.protection.outlook.com (SA9PR02CU001.outbound.protection.outlook.com [40.93.196.63])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.25268.1762887521435610388
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 11 Nov 2025 10:58:10 -0800
+ Tue, 11 Nov 2025 10:58:41 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=oKYisP8f;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.201.31, mailfrom: afd@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=Gwy0tNse;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.196.63, mailfrom: afd@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KE7LDis35IUeLBDAMlY6e1aBlPRNucsakiEC/ZiZ8BC07tYrqduPIjeiVlRIVFt7e0An7XqhndN88fToHNgDqC1r/InD71MaR1MdaDZvXPMURkPljDwyWiHyb7CSnmlJnvp8HBJqr6waY1parqX5EiwkE2noIWbRWcnpGBIH+lvtZK+CPfdfE1FBynNILxIAeid3USMViRvAyQd0KW0kpxp0ira5q8ywCHX+leqDye7nSQgKYv8HAEkq10vhfYyDx45bU9iFin/YZFkFAIhzwBYWh1zkdYsa8F3mONWueG+NkiY3f74LoYmA+ZMG8a/8Te/D/Cxta+kU2GIlekV/wA==
+ b=Tpzym+NfmWuMApFEvKi/9Y9bTzDcDLiHUN6VsdfsA7Ei81OXwEvAQD/bXuLCCl9Gi6Bgh+BPbETsFKf4DTp/9HqXCiYU6KlWJme/jMs6fUoO3e4K13U3UjmTA8xtg++GR2O5USOp9vJyJgFPjrxDu0EuPBVhjVTZp8SAOUB3FodozNIXbOi9B0zSTI+WDcSW0pK0N5Hw6EBoqn+KvEWdDk7j4H4rKaMEF0ZIZApnIGGbfG2X4obzYu3ZChZJEP7cRg5n6dQI8ljDQJ29l/lj0sG8Ujo67QU3SDFJeyrRW5J1wzfTMgDC3+ylyVQNr7DSKs34RuSmkJSStkU+sqYQzA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UwPG42QRT9sgQ5lbmn/qfH2Cl8krioRl5z5vYlXcSrU=;
- b=rqbnOlhpgj3xpxy+9evX+t9bLvB1WOl5p5klWqu5dYL773ygeIHvNceGUw2kzDWOwT+xUrY/oWP02KvlJR0JUCosOe9Y0j5NmPav99c8/wAZXFhGnjFdorrRB6TxWy0fUW903qX8QJ9PQpIAKwGIDHEZAEI25rRSPNJ/TRBwsbhr+0yfJVf+nZo/U4r5Ix26hvOZktWNmU3oG7jt5mtM6HuzvrCwOEx0MyQLpbAIuzsveeSVUJkYTnAjEXABSDIXl0rm/iq2hKiLPdgsF8p6qxJG8OozMXOM6t3F8qPbI4SZVXppWjqfYLkcMQJZVaAg3Ep+1R6vpnKwq4osPrGS9g==
+ bh=rekkcf0JbL8saoiVnlHyI1FpQ8BdpK7AYDTlcRCXqCg=;
+ b=kIGJ2Pt3/BpdCTKh2aQBMcLWlKjEPzvDp7M1LeallMDuzKbLg0z2pYzE/TzoLPaP+CnTLY3UVVK6eOCAedMXoDqj48m5+h9oBTIZK+yWgnI4Pr/vD0c6QtmB5Mn3ucXLJ+/6sh/ez9ICJixsFAeaSvxaciD6lpxCAj+zqcRBUFoTMescH+f7v1tBb3RKX+DGnwnLCUOrt6qW0ESmwTPHsmhPTspscuywLYagOblsoqVNzS9ZBYxB/UFENxlWeXzC4xYA733MObFM2aq6nlLWBjlVr3IKj9bVItcB/Uu+RADGOVjjTZF3yaWgBaIxFcV0yFB7zfQteJMN3Rq93FkXQw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UwPG42QRT9sgQ5lbmn/qfH2Cl8krioRl5z5vYlXcSrU=;
- b=oKYisP8fK5tqbAkCx3tvro4sNvSe+N7XdNRe3k6M9i7Al0LrWMvI4EpaV41gGY0nwaMhAn7+6PvF1LOGmlAq7q7DcE0YBapU2MNn9mS7ouSSgGVUHhEK8xWIsWIvXeiB4DuLC2pL4sPmZeWeeITCcDkB8HV+a+s7NKioCZMcIXM=
-Received: from BL6PEPF0001641F.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:22e:400:0:1004:0:f) by PH7PR10MB5770.namprd10.prod.outlook.com
- (2603:10b6:510:126::13) with Microsoft SMTP Server (version=TLS1_2,
+ bh=rekkcf0JbL8saoiVnlHyI1FpQ8BdpK7AYDTlcRCXqCg=;
+ b=Gwy0tNsetZn0ROzw7kHJ0D3NrSQUQV/bL9QR8yrdtIDzaZ2STnLoTgeHQerpl0kx+CfcVprN87DkJ6kTI0LoTlicZ/3Zn1dY2OjDoCfyxsuytWjxLDoJuY7J0wZhmqhaxwYMpc+cTjLxoVWotJabXmjYuu7uBP+rjo4eTyPTtp0=
+Received: from SJ0PR13CA0202.namprd13.prod.outlook.com (2603:10b6:a03:2c3::27)
+ by SN7PR10MB6305.namprd10.prod.outlook.com (2603:10b6:806:273::9) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9298.16; Tue, 11 Nov
- 2025 18:58:08 +0000
-Received: from BL6PEPF0001AB52.namprd02.prod.outlook.com
- (2a01:111:f403:f903::3) by BL6PEPF0001641F.outlook.office365.com
- (2603:1036:903:4::a) with Microsoft SMTP Server (version=TLS1_3,
+ 2025 18:58:37 +0000
+Received: from SJ1PEPF00002315.namprd03.prod.outlook.com
+ (2603:10b6:a03:2c3:cafe::dd) by SJ0PR13CA0202.outlook.office365.com
+ (2603:10b6:a03:2c3::27) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.15 via Frontend Transport; Tue,
- 11 Nov 2025 18:58:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ 11 Nov 2025 18:58:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- BL6PEPF0001AB52.mail.protection.outlook.com (10.167.241.4) with Microsoft
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SJ1PEPF00002315.mail.protection.outlook.com (10.167.242.169) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Tue, 11 Nov 2025 18:58:07 +0000
-Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9320.13 via Frontend Transport; Tue, 11 Nov 2025 18:58:36 +0000
+Received: from DFLE214.ent.ti.com (10.64.6.72) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 11 Nov
- 2025 12:58:03 -0600
-Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE212.ent.ti.com
- (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 12:58:33 -0600
+Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE214.ent.ti.com
+ (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 11 Nov
- 2025 12:58:03 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 12:58:33 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE206.ent.ti.com
+ (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 11 Nov 2025 12:58:03 -0600
+ Transport; Tue, 11 Nov 2025 12:58:33 -0600
 Received: from ula0226330.lan ([10.249.42.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ABIw3681415562;
-	Tue, 11 Nov 2025 12:58:03 -0600
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ABIwW7h1382799;
+	Tue, 11 Nov 2025 12:58:32 -0600
 From: Andrew Davis <afd@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
 	<meta-arago@lists.yoctoproject.org>
 CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][master][PATCH] init-ifupdown: Remove legacy network scripts
-Date: Tue, 11 Nov 2025 12:58:02 -0600
-Message-ID: <20251111185802.2351715-1-afd@ti.com>
+Subject: [meta-arago][master][PATCH] syslog-ng: Remove this recipe
+Date: Tue, 11 Nov 2025 12:58:32 -0600
+Message-ID: <20251111185832.2351798-1-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -75,225 +75,271 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB52:EE_|PH7PR10MB5770:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7c0a9432-dafb-412e-93c2-08de2154407d
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002315:EE_|SN7PR10MB6305:EE_
+X-MS-Office365-Filtering-Correlation-Id: d7e53a5b-d756-4c67-f32d-08de2154519b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|36860700013|1800799024|82310400026;
+	BCL:0;ARA:13230040|36860700013|1800799024|376014|82310400026;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?gBhwDa3BCqMZSR0Pf1xOw0HmYtErXO25nCiDtY1+MCHvyLYM244O1TSKhV6E?=
- =?us-ascii?Q?wKiL07VaCN+4TViE6DvoQpqevsrIKQ5sFgRdQZFDDTM93ZgTfaeqlpQdAyX9?=
- =?us-ascii?Q?MDIYn4q0Os9XoDz2vSXrBpvgXgevIs2euuj6chvvSRRt5FuIkButtnT9djDR?=
- =?us-ascii?Q?mORxiR6uI+XNTHkF8BIv3CNL7FYFBCZhOKk3nIClKlJsbJhwuwv2oUDI0Oym?=
- =?us-ascii?Q?ItLHBmjt394AjEZKkH/taWfN4nxd1RKbOgOgAzDXn+LFO+YqhJp+w43mowMg?=
- =?us-ascii?Q?sAUED5GvcOqgGfDo1K2cLG8vdX6iS/vOyjgRZU2ZF5uYfEaMd8PNFR91VDYJ?=
- =?us-ascii?Q?oI37ey+AG35ZNuZFQMnx9ggE3pax5EWiCDTXH5SVNc3sAJgchKlpHbEM2I0P?=
- =?us-ascii?Q?cybuGMx3aTsoPXVHlcw0EpSqbFiozp6jsa0GrR3M83gPsnGowjfeZoq+/NxW?=
- =?us-ascii?Q?mrHqsKGvcs1kd7e52mzx3k/3Km6xTShOsuap1m5sWBFEoqM2Y8O3W09xsEeA?=
- =?us-ascii?Q?Z1yUIqLcRsPdVBwpwEPSLaed8t45v6Grafochb22ZUPKqVDu/kMg3XR8EJ9f?=
- =?us-ascii?Q?sOL60zHbGTAgtPRpfV4q/9wvH0xWty85UIPO2Zy5BK+vyHQTLwdEoK1nIA07?=
- =?us-ascii?Q?ZWo+gy33gvuHvJtySWrSJMr9a0FCTUjoaGg6yF8kiD/4EB5JfVVUUss3Ebst?=
- =?us-ascii?Q?+R8wt7q/WE3c3vBO4WPvVKr4EVF6xLLZMzeuGNvnhT7Yt5PHBC591+bBkNjw?=
- =?us-ascii?Q?Sq2dnpN9WRHcq0iFa4PIj9HWpb0I91IA4AFyasVf4PwhHVRJbY+tvljj1MsT?=
- =?us-ascii?Q?yg1jU+uMyaoysJ5Mhg6iVNsVgBrLASPbCeeJoDb84aMsAAWWLf6L9eoH4k2o?=
- =?us-ascii?Q?vEUi8hBzhCmxci8Vw0mNJKRP0ouCky595JN06qjI2Zhxr96bj0I5+5Zw8DcB?=
- =?us-ascii?Q?c8G2FjL+ogKkF0+03blZm61oCDPRqzCL6KOYOC7Da8LVjmRdbmyTso/UvG09?=
- =?us-ascii?Q?TKqDL0AcmG1eqtvmh38N6WXa6367keooGcSpiSmmMc1kkbiWroulMjxBAnYc?=
- =?us-ascii?Q?7AeaB+vGJL5uMUbSz5wZ+LTHxY37XOlk2o0bexAqZO0Oddw8vucCY1QdmIgr?=
- =?us-ascii?Q?YaGBukffmmutTTpq8lHwfEOkFSLU/6ECfkUWWO6iORdprlmawGXFrek3TM0D?=
- =?us-ascii?Q?U+V9IrizOcMHcPQagAfnNr8S1aP6HA0iIiQp7TPapmLHYTIl7SVdcVIb3Euj?=
- =?us-ascii?Q?OS1jstvaPN+ag5OL+M6ZwZYI3SNCs71TaFzx7wvzAydGvMB9nd/3XQSnec6V?=
- =?us-ascii?Q?GfOLchkqTQqLkvqL/woLzixk286uZuW8A6Drg1gM3LfyRP6JBeiiIhQnsN7C?=
- =?us-ascii?Q?bfssn0UfMe3kd0D3I4C9pOhyn9pBWIz4t38796Aw+ucT5zlZnOi/AHH2jn0n?=
- =?us-ascii?Q?eWYLfQHK0wGLrGHBp/d0o6YWFV5GBCJmTPwchBhNcoHFiG/CVsyeqMFSYzcl?=
- =?us-ascii?Q?y05VlLpRtkB3KLVfefR5CkMEEvfdbnlGmjDDSZXoEQlJZ7BnIdIuBcapTThC?=
- =?us-ascii?Q?xsJk6tcDVR7ScnWuvdo=3D?=
+	=?us-ascii?Q?eNe5DUJ46NqFwtdw8ew6SXVVWMfqbh0ad0rdXXMPiF8g2t7pW9Ytkjb33Zu9?=
+ =?us-ascii?Q?ViFcfWk7ikOatYm9dOTMqjqKFK2i7ycg4Gtpc3wOXoXt5ipceEh8NnA3gAyb?=
+ =?us-ascii?Q?M/vtrCWhiX0feqBdB7tIFuweWLZM0kDbVeP3QV5ncWfSAjzr8dlrJ7vBDKRn?=
+ =?us-ascii?Q?uiW18udAyeH90spj4wqrelztoplqOwmre9iSTnlEIKqQGFWCI2ob+d21fdHo?=
+ =?us-ascii?Q?lp0A3cY2x4L2V5u07a3dSFqNPSOhaUqQrOPipHo51SJhcLWiYHzeVRcj+am3?=
+ =?us-ascii?Q?P1NNxzmRkLBB2a8yab0P9olcDyG39KLmzaw1JGFrT3Oh/GVzqtXSVRUlrFeF?=
+ =?us-ascii?Q?yWufS3CquI5G66W6m16ZHKaXYiL+HRFcFiPRfcpbfQpHvW9RfCQyUHYyw+wp?=
+ =?us-ascii?Q?+ESML8NSTFLTk0oHLA20Fx4NFbnWG5wiEvy3lRh3bU3sTzQtJk7Phhun4pa1?=
+ =?us-ascii?Q?6ByQu2AXpl7GqEltPnhers0IN7RnUmpWmEV+ylF76e3XABG7CknniSzjB5fv?=
+ =?us-ascii?Q?Tvgl6gMshwaeysjSTRKb1SjAxmeRQjDifmiuAmmfW1NtKuxLwBferSSKNHP+?=
+ =?us-ascii?Q?b8m0fUspjZ39iBv6jcA+xyeWr2t+ntfrYqUay8xAKOvLXTuCvLG9MIXm8nxH?=
+ =?us-ascii?Q?xG5RjONmwl+fiV94dLJTvky1juAw/P783JGT2Ckw/hVyhMpEhYCaHf8j361U?=
+ =?us-ascii?Q?OyEukJrh1+97f7Duv2DyFkTZZ4MdTVBW9XS6aKtK1gMZQoJkCly+yhE4tWFr?=
+ =?us-ascii?Q?bh/l/GNYRjMZS+v8yiiiPdDPG5bbOo1u58wSWshUgONrzBV/maViPHnpXTy9?=
+ =?us-ascii?Q?+BWjsWi+HqXsmhCONgsWsOc90Hrmo2g75DafhIsZmxF47/xTczrLJhmaBoG1?=
+ =?us-ascii?Q?Emdk9MXZY8bPd8kSXOcKj5VxAz+rYNaKFN9eTUHaskg5/1KFssjVAYhE7/ce?=
+ =?us-ascii?Q?U6iw1sWSwzy+8FNW7vE6UldPffIShecwvo8duY5OA4OK96fw2pR1bqmULjg9?=
+ =?us-ascii?Q?CgkTToiyaG1HvTEv7Qae0Havo5wX+U7FOvWY31gzLH7tBNdc23jkSKlMpYBy?=
+ =?us-ascii?Q?i1QPhwABQ1rV5bwhLzvuki3d9YOqan5O8h0pA+2+VN0eLKX+FwIlkWedLtiG?=
+ =?us-ascii?Q?aUTWnFciPlA/uLi1Aa3VfZ3kWWzHOx38Ngq+d7+6Wh68yn7xEU1Sq4t7aKu1?=
+ =?us-ascii?Q?Gh1Dt3TNm6qmWiw+4qQvp4094hySgffZt4GC0r+4Hw4BPJZaA7XDhiImfiae?=
+ =?us-ascii?Q?8XW/KAGHMhLve98DaLJ+ezrgJFVcyGZrDZlMi4TjWfyjrZJfbgMQ7F/agj+r?=
+ =?us-ascii?Q?6tZvtolP8X+uCWnzODmyaZGLt7hMz7+wrxnrxXH8Pfs42zMeurlJv24ZVraX?=
+ =?us-ascii?Q?F68u9WdZFHOok7Hp0/i0FygnmA/H6dmo3S6o92QKaZOPntNVLjNzxYC4O3Z+?=
+ =?us-ascii?Q?5uzZ/1sF6T6+Bm30M3WI1uCGQVmDr4UFDTIS0rKLfNi/4ZrlKCIxielXBOzi?=
+ =?us-ascii?Q?8KUysTqNyfT8p85FmDJlnUbX/3e3bjqlPDW+zbPGT+0MCFg0kcclQaG9aWym?=
+ =?us-ascii?Q?C6X1BfDTxcgQOOPlKPo=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 18:58:07.5517
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2025 18:58:36.2723
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c0a9432-dafb-412e-93c2-08de2154407d
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7e53a5b-d756-4c67-f32d-08de2154519b
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BL6PEPF0001AB52.namprd02.prod.outlook.com
+	SJ1PEPF00002315.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB5770
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR10MB6305
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 11 Nov 2025 18:58:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16743
+ <meta-arago@lists.yoctoproject.org>; Tue, 11 Nov 2025 18:58:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16744
 
-These were added back in 2012 to work around an issue with the versions
-in oe-core relating to our test farm, those issues have since been
-resolved in oe-core. Plus our tested images use systemd so these are
-no longer used anyway, remove them.
+The only thing this recipe did was add a custom config for syslog-ng. This
+config was nearly identical to the one in meta-oe other than one line for
+better systemd compat. Since 2018 that same change was made to meta-oe and
+this file was no longer named correctly to be pulled in anyway. It has
+been unused since then, remove it.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- .../init-ifupdown/init-ifupdown-arago.inc     |  4 --
- .../init-ifupdown/init-ifupdown/init          | 63 -------------------
- .../init-ifupdown/init-ifupdown/interfaces    | 36 -----------
- .../init-ifupdown/init-ifupdown_%.bbappend    |  4 --
- 4 files changed, 107 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-core/init-ifupdown/init-ifupd=
-own-arago.inc
- delete mode 100644 meta-arago-distro/recipes-core/init-ifupdown/init-ifupd=
-own/init
- delete mode 100644 meta-arago-distro/recipes-core/init-ifupdown/init-ifupd=
-own/interfaces
- delete mode 100644 meta-arago-distro/recipes-core/init-ifupdown/init-ifupd=
-own_%.bbappend
+ .../syslog-ng/files/syslog-ng.conf            | 155 ------------------
+ .../syslog-ng/syslog-ng-arago.inc             |   2 -
+ .../syslog-ng/syslog-ng_%.bbappend            |   4 -
+ 3 files changed, 161 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-support/syslog-ng/files/syslo=
+g-ng.conf
+ delete mode 100644 meta-arago-distro/recipes-support/syslog-ng/syslog-ng-a=
+rago.inc
+ delete mode 100644 meta-arago-distro/recipes-support/syslog-ng/syslog-ng_%=
+.bbappend
 
-diff --git a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown-ara=
-go.inc b/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown-arago.i=
-nc
+diff --git a/meta-arago-distro/recipes-support/syslog-ng/files/syslog-ng.co=
+nf b/meta-arago-distro/recipes-support/syslog-ng/files/syslog-ng.conf
 deleted file mode 100644
-index 0c1689c0..00000000
---- a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown-arago.inc
+index 25124af6..00000000
+--- a/meta-arago-distro/recipes-support/syslog-ng/files/syslog-ng.conf
 +++ /dev/null
-@@ -1,4 +0,0 @@
--# look for files in this layer first
--FILESEXTRAPATHS:prepend :=3D "${THISDIR}/init-ifupdown:"
--
--PR:append =3D ".arago1"
-diff --git a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/ini=
-t b/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/init
-deleted file mode 100644
-index 86aff881..00000000
---- a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/init
-+++ /dev/null
-@@ -1,63 +0,0 @@
--#!/bin/sh
+@@ -1,155 +0,0 @@
+-@version: 3.5
 -#
--### BEGIN INIT INFO
--# Provides:          networking
--# Required-Start:    $local_fs mountvirtfs
--# Required-Stop:     $local_fs
--# Default-Start:     S
--# Default-Stop:      0 6
--# Short-Description: Raise network interfaces and configure them
--### END INIT INFO
+-# Syslog-ng configuration file, compatible with default Debian syslogd
+-# installation. Originally written by anonymous (I can't find his name)
+-# Revised, and rewrited by me (SZALAY Attila <sasa@debian.org>)
 -
--PATH=3D/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+-# First, set some global options.
+-options { chain_hostnames(off); flush_lines(0); use_dns(no); use_fqdn(no);
+-	  owner("root"); group("adm"); perm(0640); stats_freq(0);
+-	  bad_hostname("^gconfd$");
+-};
 -
--if ! [ -x /sbin/ifup ]; then
--    exit 0
--fi
+-########################
+-# Sources
+-########################
+-# This is the default behavior of sysklogd package
+-# Logs may come from unix stream, but not from another machine.
+-#
+-source s_src { unix-dgram("/dev/log"); internal();
+-       	     file("/proc/kmsg" program_override("kernel"));
+-};
 -
--case "$1" in
--    start)
--        if sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mounts =
-|=20
--          grep -q "^/ nfs$"; then
--            echo "NOT configuring network interfaces: / is an NFS mount"
--        elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mount=
-s | =20
--          grep -q "^/ smbfs$"; then
--            echo "NOT configuring network interfaces: / is an SMB mount"
--	elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\2/p' /proc/mounts |=20
--          grep -qE '^(nfs|smbfs|ncp|coda)$'; then
--            echo "NOT configuring network interfaces: network shares still=
- mounted."
--        else
--            echo -n "Configuring network interfaces... "
--            ifup -a
--	    echo "done."
--      fi
--	;;
--    stop)
--        if sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mounts =
-|=20
--          grep -q "^/ nfs$"; then
--            echo "NOT deconfiguring network interfaces: / is an NFS mount"
--        elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mount=
-s | =20
--          grep -q "^/ smbfs$"; then
--            echo "NOT deconfiguring network interfaces: / is an SMB mount"
--	elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\2/p' /proc/mounts |=20
--          grep -qE '^(nfs|smbfs|ncp|coda)$'; then
--            echo "NOT deconfiguring network interfaces: network shares sti=
-ll mounted."
--        else
--            echo -n "Deconfiguring network interfaces... "
--            ifdown -a
--	    echo "done."
--        fi
--	;;
--    force-reload|restart)
--        echo -n "Reconfiguring network interfaces... "
--        ifdown -a
--        ifup -a
--	echo "done."
--	;;
--    *)
--	echo "Usage: /etc/init.d/networking {start|stop|restart|force-reload}"
--	exit 1
--	;;
--esac
+-# If you wish to get logs from remote machine you should uncomment
+-# this and comment the above source line.
+-#
+-#source s_net { tcp(ip(127.0.0.1) port(1000) authentication(required) encr=
+ypt(allow)); };
 -
--exit 0
-diff --git a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/int=
-erfaces b/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/interf=
-aces
+-########################
+-# Destinations
+-########################
+-# First some standard logfile
+-#
+-destination d_auth { file("/var/log/auth.log"); };
+-destination d_cron { file("/var/log/cron.log"); };
+-destination d_daemon { file("/var/log/daemon.log"); };
+-destination d_kern { file("/var/log/kern.log"); };
+-destination d_lpr { file("/var/log/lpr.log"); };
+-destination d_mail { file("/var/log/mail.log"); };
+-destination d_syslog { file("/var/log/syslog"); };
+-destination d_user { file("/var/log/user.log"); };
+-destination d_uucp { file("/var/log/uucp.log"); };
+-
+-# This files are the log come from the mail subsystem.
+-#
+-destination d_mailinfo { file("/var/log/mail/mail.info"); };
+-destination d_mailwarn { file("/var/log/mail/mail.warn"); };
+-destination d_mailerr { file("/var/log/mail/mail.err"); };
+-
+-# Logging for INN news system
+-#
+-destination d_newscrit { file("/var/log/news/news.crit"); };
+-destination d_newserr { file("/var/log/news/news.err"); };
+-destination d_newsnotice { file("/var/log/news/news.notice"); };
+-
+-# Some catch-all logfiles.
+-#
+-destination d_debug { file("/var/log/debug"); };
+-destination d_error { file("/var/log/error"); };
+-destination d_messages { file("/var/log/messages"); };
+-
+-# The root's console.
+-#
+-destination d_console { usertty("root"); };
+-
+-# Virtual console.
+-#
+-destination d_console_all { file("/dev/tty10"); };
+-
+-# The named pipe /dev/xconsole is for the nsole' utility.  To use it,
+-# you must invoke nsole' with the -file' option:
+-#
+-#    $ xconsole -file /dev/xconsole [...]
+-#
+-destination d_xconsole { pipe("/dev/xconsole"); };
+-
+-# Send the messages to an other host
+-#
+-#destination d_net { tcp("127.0.0.1" port(1000) authentication(on) encrypt=
+(on) log_fifo_size(1000)); };
+-
+-# Debian only
+-destination d_ppp { file("/var/log/ppp.log"); };
+-
+-########################
+-# Filters
+-########################
+-# Here's come the filter options. With this rules, we can set which
+-# message go where.
+-
+-filter f_dbg { level(debug); };
+-filter f_info { level(info); };
+-filter f_notice { level(notice); };
+-filter f_warn { level(warn); };
+-filter f_err { level(err); };
+-filter f_crit { level(crit .. emerg); };
+-
+-filter f_debug { level(debug) and not facility(auth, authpriv, news, mail)=
+; };
+-filter f_error { level(err .. emerg) ; };
+-filter f_messages { level(info,notice,warn) and
+-                    not facility(auth,authpriv,cron,daemon,mail,news); };
+-
+-filter f_auth { facility(auth, authpriv) and not filter(f_debug); };
+-filter f_cron { facility(cron) and not filter(f_debug); };
+-filter f_daemon { facility(daemon) and not filter(f_debug); };
+-filter f_kern { facility(kern) and not filter(f_debug); };
+-filter f_lpr { facility(lpr) and not filter(f_debug); };
+-filter f_local { facility(local0, local1, local3, local4, local5,
+-                        local6, local7) and not filter(f_debug); };
+-filter f_mail { facility(mail) and not filter(f_debug); };
+-filter f_news { facility(news) and not filter(f_debug); };
+-filter f_syslog3 { not facility(auth, authpriv, mail) and not filter(f_deb=
+ug); };
+-filter f_user { facility(user) and not filter(f_debug); };
+-filter f_uucp { facility(uucp) and not filter(f_debug); };
+-
+-filter f_cnews { level(notice, err, crit) and facility(news); };
+-filter f_cother { level(debug, info, notice, warn) or facility(daemon, mai=
+l); };
+-
+-filter f_ppp { facility(local2) and not filter(f_debug); };
+-filter f_console { level(warn .. emerg); };
+-
+-########################
+-# Log paths
+-########################
+-log { source(s_src); filter(f_auth); destination(d_auth); };
+-log { source(s_src); filter(f_cron); destination(d_cron); };
+-log { source(s_src); filter(f_daemon); destination(d_daemon); };
+-log { source(s_src); filter(f_kern); destination(d_kern); };
+-log { source(s_src); filter(f_lpr); destination(d_lpr); };
+-log { source(s_src); filter(f_syslog3); destination(d_syslog); };
+-log { source(s_src); filter(f_user); destination(d_user); };
+-log { source(s_src); filter(f_uucp); destination(d_uucp); };
+-
+-log { source(s_src); filter(f_mail); destination(d_mail); };
+-#log { source(s_src); filter(f_mail); filter(f_info); destination(d_mailin=
+fo); };
+-#log { source(s_src); filter(f_mail); filter(f_warn); destination(d_mailwa=
+rn); };
+-#log { source(s_src); filter(f_mail); filter(f_err); destination(d_mailerr=
+); };
+-
+-log { source(s_src); filter(f_news); filter(f_crit); destination(d_newscri=
+t); };
+-log { source(s_src); filter(f_news); filter(f_err); destination(d_newserr)=
+; };
+-log { source(s_src); filter(f_news); filter(f_notice); destination(d_newsn=
+otice); };
+-#log { source(s_src); filter(f_cnews); destination(d_console_all); };
+-#log { source(s_src); filter(f_cother); destination(d_console_all); };
+-
+-#log { source(s_src); filter(f_ppp); destination(d_ppp); };
+-
+-log { source(s_src); filter(f_debug); destination(d_debug); };
+-log { source(s_src); filter(f_error); destination(d_error); };
+-log { source(s_src); filter(f_messages); destination(d_messages); };
+-
+-log { source(s_src); filter(f_console); destination(d_console_all);
+-				    destination(d_xconsole); };
+-log { source(s_src); filter(f_crit); destination(d_console); };
+-
+-# All messages send to a remote site
+-#
+-#log { source(s_src); destination(d_net); };
+diff --git a/meta-arago-distro/recipes-support/syslog-ng/syslog-ng-arago.in=
+c b/meta-arago-distro/recipes-support/syslog-ng/syslog-ng-arago.inc
 deleted file mode 100644
-index 15460a45..00000000
---- a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown/interfaces
+index 6c6a8ff0..00000000
+--- a/meta-arago-distro/recipes-support/syslog-ng/syslog-ng-arago.inc
 +++ /dev/null
-@@ -1,36 +0,0 @@
--# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
--=20
--# The loopback interface
--auto lo
--iface lo inet loopback
--
--# Wireless interfaces
--iface wlan0 inet dhcp
--	wireless_mode managed
--	wireless_essid any
--	wpa-driver wext
--	wpa-conf /etc/wpa_supplicant.conf
--
--iface tiwlan0 inet dhcp
--	wireless_mode managed
--	wireless_essid any
--
--iface atml0 inet dhcp
--
--# Wired or wireless interfaces
--auto eth0
--iface eth0 inet dhcp
--        pre-up /bin/grep -v -e "ip=3D[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+" /=
-proc/cmdline > /dev/null
--        udhcpc_opts -R -b
--
--iface eth1 inet dhcp
--iface eth2 inet dhcp
--iface eth3 inet dhcp
--iface eth4 inet dhcp
--
--# Ethernet/RNDIS gadget (g_ether)
--# ... or on host side, usbnet and random hwaddr
--iface usb0 inet dhcp
--
--# Bluetooth networking
--iface bnep0 inet dhcp
-diff --git a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown_%.b=
-bappend b/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown_%.bbap=
-pend
+@@ -1,2 +0,0 @@
+-PR:append =3D ".arago0"
+-FILESEXTRAPATHS:prepend :=3D "${THISDIR}/files:"
+diff --git a/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_%.bbappe=
+nd b/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_%.bbappend
 deleted file mode 100644
-index 875b33de..00000000
---- a/meta-arago-distro/recipes-core/init-ifupdown/init-ifupdown_%.bbappend
+index 0dbc6349..00000000
+--- a/meta-arago-distro/recipes-support/syslog-ng/syslog-ng_%.bbappend
 +++ /dev/null
 @@ -1,4 +0,0 @@
--INIT_IFUPDOWN_ARAGO =3D ""
--INIT_IFUPDOWN_ARAGO:arago =3D "init-ifupdown-arago.inc"
+-SYSLOG_NG_ARAGO =3D ""
+-SYSLOG_NG_ARAGO:arago =3D "syslog-ng-arago.inc"
 -
--require ${INIT_IFUPDOWN_ARAGO}
+-require ${SYSLOG_NG_ARAGO}
 --=20
 2.39.2
 
