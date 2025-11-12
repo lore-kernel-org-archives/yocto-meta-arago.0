@@ -2,515 +2,503 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C819CD4F21
-	for <webhook@archiver.kernel.org>; Wed, 12 Nov 2025 22:54:43 +0000 (UTC)
-Received: from CY3PR05CU001.outbound.protection.outlook.com (CY3PR05CU001.outbound.protection.outlook.com [40.93.201.70])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.10980.1762988072929955230
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C98DCD4F22
+	for <webhook@archiver.kernel.org>; Wed, 12 Nov 2025 23:04:23 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (SJ2PR03CU001.outbound.protection.outlook.com [52.101.43.12])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.11298.1762988657619382271
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 12 Nov 2025 14:54:33 -0800
+ Wed, 12 Nov 2025 15:04:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=a4284/l1;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.201.70, mailfrom: rs@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=EEjmb3vj;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.43.12, mailfrom: rs@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X5hTlSnSYwDn9zAN9oXMqDvCkp61achgKzU8LLIN8JTSc2l8+1zQWMukXFIVs4HLmAhKji3pyMsNAhvf82s/Jrjn420lpClESA6Q/Y/R0BH85efGsa/kkK8oQqVdR379RvAs03g4qKdywqtpJkOIzgyLHJXKQNNDCK79XzRMbS8T7/8cQSczeOIzx+y0odTJSst97P6gno8K6hcIiG8Ly+hh19ZNjba7PLNLLpGWtQZ80bkS+sXXQjFBRI1oWASpYXI/pRdqtb1EKL7EHoTO9b5y8SIDWyaeB0Gw5K/8vJdB2bhEhNExlxP3LqnXO2Wqw9Kl7NV7BtPwJN+8tAzbSQ==
+ b=wkA+qMsAvPJnDuPmbj6qcfVfqVK/y2gTdMes9ZWRTQ++R7xJbkquNm6bBc4nh6OFdkFftxM1aJEGUzcVx6our01LYhHaiOpsdYujCjpBjR/7PUxKOHQNl1p+BOZesPQNix4L6H8ohLbkLU26SxvQpzF3/T4SBIzCDSTHGi6U6/4VarBGKlFaakFoz1qgy9Y+oD3q1bU4Un8MoGOARyZOTTQSUFyB/ljubZy0p7usPLJ7kwi0L6DdWs+5nHp6DtP0bsRrgqxYtqX8Wrmq1y+BbmlkbxuBx8wiM5mgnqf+Dm9CnD2GiIYpab3mNt+8hfO/g5yZSFKuL2u5IVyFmUovFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cYA2qKxIUBFKbP//FqwSGis10r42JejjR5FUTeFcwi0=;
- b=AqNPe0JivT5DhzlfkowkQV6LTJH+m+voX9TSAermF8yki+okbuuWNNUQWIBxYMSUhk7bsp4cNHXBozkN/YQA/PalGRmQAm3vPtidhnWildjGGeAbjb81sNylFzSyp96YeozK9kH7WjEvwrbHng+6StsIgOxo+K19cXaf7rdxBEMd26fcU28l4gNvEm6ZWA14/g3BtliUc5U6D9Gr69NKzR3LjY3gAeQY0pWQlxga36R4sRudqp/6QhGyjitMndiGMblfIzQ4Phxt+IJE61RtBbC3wG7jZPC+jpAz9b+OAi/spWYJ8i4S8fAVYTTe1Bddr1s5CW2zEsV4dyo46qOCdA==
+ bh=OGvqAHKhP9jaYMGdeAxpID0K7VWqPbMMwMIpz/lgDvA=;
+ b=WpQCgcaGHqnBsZVhwrbykKJXb4y+4vhAoBclpNlqnCD6+i0sQ4H3InwMtKHiBFMF4tDHBBHnIMgtb90pbzQSGEMxTRB3bHDtOqFWRhimP2K8dAqmm4iaWoubAwl6hrtCOvjBoTEOnPWiFrFLVOIZ2k6VbOFYOsiR6OAltLEFG+8KJN4Trmzww+5o4iplirblAb3JQKF8yNDnSLycwSnVqTPU8cfVHnNhPNxtjIIBfb/C17jAkGma7/u5aLuOi6Riu4vJ6VogW2o3OLR6p7Y3BTsOCrFxkg5lAHcBCkDEbjcif2pcgcMVehP9toYLbSDowW/24/xPLHLKfmkHN2ymSg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cYA2qKxIUBFKbP//FqwSGis10r42JejjR5FUTeFcwi0=;
- b=a4284/l1WZLqTSioaaP1Zng/fjXel1cXbgoaIa4XXzpn5MyVbbGSRUoA7tz8pNe6MXviWVWPM6FDoCkCs/gT/GjScErh/bSO0drBQJCYMVj4E4DyPKxheeya5k01/td/lcta5GYtHLVzBt0ECbnrpQ5/vWsSlWNbPk7Jsmrz4RE=
-Received: from BL1PR13CA0380.namprd13.prod.outlook.com (2603:10b6:208:2c0::25)
- by DS7PR10MB4895.namprd10.prod.outlook.com (2603:10b6:5:3a7::7) with
+ bh=OGvqAHKhP9jaYMGdeAxpID0K7VWqPbMMwMIpz/lgDvA=;
+ b=EEjmb3vjnodYEGdqRw4GwQPt1q5q3EClRgQ0v+TFOjQsfUBvYES9vXkhrdkoORJY3xBY/dNksIdwjSqhvk+e3NGxEFyvPF8scwI9V//1knPo7u1njiwTSHkOa/DT87KT2NHGq32jvGDVJAcBV5iYRgnwZGBE/oMvyez6yM5LntU=
+Received: from MW4PR03CA0257.namprd03.prod.outlook.com (2603:10b6:303:b4::22)
+ by DS0PR10MB8127.namprd10.prod.outlook.com (2603:10b6:8:203::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Wed, 12 Nov
- 2025 22:54:29 +0000
-Received: from BL6PEPF0001AB53.namprd02.prod.outlook.com
- (2603:10b6:208:2c0:cafe::74) by BL1PR13CA0380.outlook.office365.com
- (2603:10b6:208:2c0::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.6 via Frontend Transport; Wed,
- 12 Nov 2025 22:54:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.16; Wed, 12 Nov
+ 2025 23:04:15 +0000
+Received: from SJ1PEPF00001CE4.namprd03.prod.outlook.com
+ (2603:10b6:303:b4:cafe::d7) by MW4PR03CA0257.outlook.office365.com
+ (2603:10b6:303:b4::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.15 via Frontend Transport; Wed,
+ 12 Nov 2025 23:04:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- BL6PEPF0001AB53.mail.protection.outlook.com (10.167.241.5) with Microsoft
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SJ1PEPF00001CE4.mail.protection.outlook.com (10.167.242.20) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Wed, 12 Nov 2025 22:54:28 +0000
-Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9320.13 via Frontend Transport; Wed, 12 Nov 2025 23:04:14 +0000
+Received: from DLEE211.ent.ti.com (157.170.170.113) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 12 Nov
- 2025 16:54:22 -0600
-Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 17:04:11 -0600
+Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE211.ent.ti.com
+ (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 12 Nov
- 2025 16:54:22 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE213.ent.ti.com
- (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 17:04:10 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 12 Nov 2025 16:54:22 -0600
-Received: from localhost (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ACMsMWW3422373;
-	Wed, 12 Nov 2025 16:54:22 -0600
+ Transport; Wed, 12 Nov 2025 17:04:10 -0600
+Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ACN4AKs3443099;
+	Wed, 12 Nov 2025 17:04:10 -0600
+From: <rs@ti.com>
+To: <reatmon@ti.com>, <denis@denix.org>, <j-choudhary@ti.com>,
+	<tomi.valkeinen@ideasonboard.com>, <h-shenoy@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][scarthgap][PATCH] libdrm: remove any rogue specific overrides
+Date: Wed, 12 Nov 2025 17:02:44 -0600
+Message-ID: <20251112230243.190593-2-rs@ti.com>
+X-Mailer: git-send-email 2.51.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Date: Wed, 12 Nov 2025 16:54:22 -0600
-Message-ID: <DE733YTGAPRW.2ME0OXJ0QGH83@ti.com>
-From: Randolph Sapp <rs@ti.com>
-To: Ryan Eatmon <reatmon@ti.com>, <rs@ti.com>, <denis@denix.org>
-CC: <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago][scarthgap][PATCH] udev-aragoconf: aggregate
- generic udev rules
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251108011752.3782760-1-rs@ti.com>
- <ffca3dab-129d-4ad3-8ec8-3276bee0a3cc@ti.com>
-In-Reply-To: <ffca3dab-129d-4ad3-8ec8-3276bee0a3cc@ti.com>
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB53:EE_|DS7PR10MB4895:EE_
-X-MS-Office365-Filtering-Correlation-Id: 20e5267c-ed7b-427f-b64f-08de223e6f65
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE4:EE_|DS0PR10MB8127:EE_
+X-MS-Office365-Filtering-Correlation-Id: b1d972c0-37b7-4bf0-ff2e-08de223fccb8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|1800799024|82310400026|36860700013;
+	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700013;
 X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?RkxuWjYrcHQ3TG9NZDZqMi9CaysrbGwrSGRhajFuQm41U3A1c1JYOXJMNG5Q?=
- =?utf-8?B?NCtxdFlYblZFaXk1alMrQ1llVjJWczQvMjhxQnBtQkxRMzZ2a1lTT05OM2c5?=
- =?utf-8?B?SlZkVnlLbnpna295ZDRwOS9BSUJEWWl6aGgxSVcyUjluM3BhYm1QOHVrUjIy?=
- =?utf-8?B?YzRRRFV4bjhLcXA3SEFCMUp2UmxSSmh4emc0QTNySS9KaWhINVhldEZ0dDFT?=
- =?utf-8?B?VkoxU0VSRXFrekljK2lqRUU0bzJxSUtIcDFzSEZDYlA5RXBpQkJJU3YzM25O?=
- =?utf-8?B?R25GdjJrL2hqTmdNOFJFQ3ZVNzZIRDR2VWRNQnZ6WEtuRlVKeUNwM1M1Z25P?=
- =?utf-8?B?QXRjZmZGZkdxWEhkckFvZzVNSVNxLzExbVA3anltQnlsT292RGh0QlY1MjlR?=
- =?utf-8?B?MmlueFJ3aXFwMVZTcG4zc0xWM2lNR2NjSWxpN1ZTNjlrSWwxcjVtb2dBSExP?=
- =?utf-8?B?ZGhGa3lLZ3llT2lHZkhDQWQ4ZWlpNFdJQk1ZRzVndDNrbVV4MmxYMCt0aHE1?=
- =?utf-8?B?blNtWTZ2aUkyZjgzcmRaWTJ2bytFYlN4MytHQ3E4azhhYk5ENXpJcStFcVQw?=
- =?utf-8?B?dDlhUUJ2eW0xazQySUFLUlhFVGRtL1hpaWNxdDVoclplQm1SSzRXTS9seE5O?=
- =?utf-8?B?VThwTXZtb0ZuL2JxRFFzcUJuZkFXZlN5NWFFblVSMHprc0JHRjF3WUlmdHVi?=
- =?utf-8?B?WXBDaFJmbTBkZTFDUkwxd21PZm5hYmo1K1Q0TFgzSVVvRERuZXpmeTIyUlJ0?=
- =?utf-8?B?eEx4YVU3QW9hN0xpSUdhQ0NnN3lFTVU3MS8vamlHQW4raU16VlhCVlBTU05K?=
- =?utf-8?B?MTU5VzRmSWNQMGY1RVBqMmYyQTdxOVAxM1NQU3hXMXljZnpmU0VaQTIyeHdS?=
- =?utf-8?B?SDhmSFZyMFlobFhTREJ0dG45WnVidDd3Q3dzNCtIT3N4dVJNOTBqNXlkNkZ5?=
- =?utf-8?B?NVFBT3M4Y0lqM1dMRDNNRzdOZm5acFVrb2oxVGl2aUdPK0NuT3B0d04vOTdO?=
- =?utf-8?B?TWZ1a2Q4L3FoMGhJaG1hYlVteGZ2WEs0a2pKczRVbXVTU1RUZFRTeEk3TzUz?=
- =?utf-8?B?NTVtYU1ycitkSzVqK1BPcXl5bnNnNUdZR254UnVUcjF5V1RuRWxIcFlWSDhp?=
- =?utf-8?B?NnpNbHpmM0lyZUw5aGczajNzbTkxam8xdW1RZHBkSnJOcmNYczVBU01KK1ZU?=
- =?utf-8?B?VW9vbjBYendKVU0vdmhwaWVueU45bVdLTWU1a0RuTmdNcFhUQXVVZ2l4emxI?=
- =?utf-8?B?YUIrSzBZMDVPQ3kzSS9ucDM0YlFsTEN2NW5OU2xTTSs3RVhCOTdicUNKaUZo?=
- =?utf-8?B?cUJhY3BDRVM4YkVBVGVuQnNJZXIyblRNQzA4UTc4S2NVRk4xQ2tld2Z1NkRW?=
- =?utf-8?B?bG5OMVdnNEJ0cFJ6c2Y1NXNxa3RCV1NiSVNHaHdianlpU0FEdFlFN292b2lP?=
- =?utf-8?B?OFgzMFA2VW9XTFJXMmlMZHo3MTBuMUZXRGNJN0pTcmR5dVRMZXZjTnZGcm53?=
- =?utf-8?B?ODhNVzlVVG1ZRWdSa21JK2tDL01mVnQ5Y2V1OFBuTGVaY1RVRGhMY3J2U0Zy?=
- =?utf-8?B?ZThiSVA2UVNkelMra2RqbkYya21XV21WZHNYMDhxK0M5K2Fmb2FWVFdleS9m?=
- =?utf-8?B?Vmo0SnBreGoxMkpEU3p5c0pjeFpGZjRvSFNGcHJsRUJOMldwcHdOdlNJQ3Nk?=
- =?utf-8?B?aTNPbURZaFphUWZOQVNIVmkxcTgxNy9MQjZSZGtIUG1EYUk0dmtjQ05lNHFs?=
- =?utf-8?B?MHMwSVVrMFRXZzFFSDN1VG9DT2ltMkdRbCtEcUtKV1hOT1lKbTExalFDV01B?=
- =?utf-8?B?NkJ2Tk9SOSsrL2o2OFVqTXhYMEVJaTNFUk5jMnZ5dUJRdmh2dXFQTmlxdXhs?=
- =?utf-8?B?T2lmZUtpS0o3OGRlU2JUOFB2ZlZoTkdyNmN4dEFlWTlCZ2RSRHE0QXlWQXJZ?=
- =?utf-8?B?NnNOWXdTNFQyNHJGMVVvZTBrU3pPeDRWa3ZFSDZ1ZWU3bUEraTZSM3djNnlz?=
- =?utf-8?B?bC9iWTVLcmE1Q085ckYybHJKV3dyak9HK2hsditPUGIzUzJlNUNGK2ZpMTJO?=
- =?utf-8?B?ckFTTUF4QnJPL2J4aFI1UTFuTkRkeFNPSm8wUGFhbTVCUlMxdWJZSUorZXdS?=
- =?utf-8?Q?BeMg=3D?=
+	=?us-ascii?Q?/KJ6xNw0nUq6b2CyKijRTQVMMZICqkatDJJ0LLJ6Lq5CLYXxryI9UNnZzaiW?=
+ =?us-ascii?Q?uCYLHj/strR2EIva/J8QshHZ17AiGr0M4V5xMcyH1ZEekD4E44t2xqzUP4DA?=
+ =?us-ascii?Q?vOy36Vu2OVsEtUp73B1PW78705+dcObJzimnnv0wb/21OdjwH1S5NSq0kLob?=
+ =?us-ascii?Q?QIagUT+UmyT3nwu0b6orhWorBV0Pb1lFIqCydYc9Qfq+X1p5w7Ghznqc6Z4a?=
+ =?us-ascii?Q?j3eD8n+IBWc3XspTGI9H5+Izv8xu2/ZYAfTixlRI72wDCR9oFP+3aH0pZyj1?=
+ =?us-ascii?Q?cKN2X5VqZcc15dUKeGfzt0txmpIsiRReUN4WTo+9ZUu9IuCGWrTB/S7bpJt+?=
+ =?us-ascii?Q?dhuiEDznPdIzrcDQc5zDyqzqekTg0uXww5Zq7U5aMl5LAxDvZxfpStILhz+j?=
+ =?us-ascii?Q?1B+yVNqXMCT+bFmuYq8HJ5PYUKN6NCasIFtvbgm01CnYOitEo0irJH5ZyW2I?=
+ =?us-ascii?Q?9fNfRbox5iUmudICDCxxq1Q6QBxbCwgSssUPLi2BCZtuS0F/xlkZaT++IeNj?=
+ =?us-ascii?Q?kugyugJlRWD+Zn5xZ57Rjop43P6ybdGQ8Nv4fV3fUYmyYpQEgRZXGBkizw37?=
+ =?us-ascii?Q?60jUh5f/TbgXcNdM9IsHrY2b5yagdqUg26ZfTt+BnrmU1VeTcUC+d65xzNKG?=
+ =?us-ascii?Q?+L1cgktGskhVUjOvhmxISNxY86AIqvdrfUMQObPXBNlaak+NjQEpuUp1Hdtv?=
+ =?us-ascii?Q?HuSPEwWqNFfoDsSBsyvDbfIcuoIhe69ywofRE8djNkcmF+Fkx/NZx4kpckW5?=
+ =?us-ascii?Q?qLHmsPeQBld43HX5VI9xKsQjEL/c0zfJTUV0s5+tJBwQTrWI7Br+xXp4+mkC?=
+ =?us-ascii?Q?haF99DqgelBD5DldruXrrcmfR5q24GSM5+D+hgoAqIYERnLk/yhb0azkBYUT?=
+ =?us-ascii?Q?l3Uu9DNDgYMQCjzLjlcNw6a3VJ09xZH2KsmuDalRVaPkBjWrDlv/uLamfw1W?=
+ =?us-ascii?Q?sXM8wVinECwvxO4Ujl+c/H6BJ0ANuMnGfEOzZ2ovyy3Qr7VNia4OvxCr3g6q?=
+ =?us-ascii?Q?jw0zvLVvohnEKEbgF/ndDB6llX34s1B54RaQX9IEOQbaYw0TPT7uYhBonOfm?=
+ =?us-ascii?Q?u28/TpzwYkL9360JNlH1AWE/KkVdCS+qsg939bP3hPQYcqzvWelyzwRkOutF?=
+ =?us-ascii?Q?+4MNtESzqYfPNeKgiYVCYK316C7i1xx26aOFyvVk/YJLW1N+IoBj6RUD4V1C?=
+ =?us-ascii?Q?cEsgF544EJ5yfVDcVGnvCmj6z7EL1KkSWGoi0jnHhb+lFwE68vZSIn+7vZ8v?=
+ =?us-ascii?Q?2hvPJuAdljeNILb0uF3nxx/95vs+mgym6Hvdkx5AQikKuPZzHulYWD4g6T8X?=
+ =?us-ascii?Q?SwzTRy3V7IEFS2DFaErzFViYCdsnDv4H39DVJrhIphX2h593FWMYu5ZuN4Ag?=
+ =?us-ascii?Q?2MqItnoMF6evVsMmgHXESWQ9I6BVCJxwLOO2rSB+zAAxMEt1RhWTsEbCKQpI?=
+ =?us-ascii?Q?Dc3B9CU566gH1tKTQydiwp63F5MXvl1z1J+GEiQZlFOUQ6FcKURQSx4PoKL7?=
+ =?us-ascii?Q?1LYOw8KhP9Y5J2eJ9FITaz76yMx7mjwUb4LvMRZ8Z6NjTkSQ0FhDpH/JWp2C?=
+ =?us-ascii?Q?Ob9COWRsrnXkR9q6Ov8=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2025 22:54:28.4346
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2025 23:04:14.5165
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20e5267c-ed7b-427f-b64f-08de223e6f65
+X-MS-Exchange-CrossTenant-Network-Message-Id: b1d972c0-37b7-4bf0-ff2e-08de223fccb8
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BL6PEPF0001AB53.namprd02.prod.outlook.com
+	SJ1PEPF00001CE4.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB4895
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB8127
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 12 Nov 2025 22:54:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16748
+ <meta-arago@lists.yoctoproject.org>; Wed, 12 Nov 2025 23:04:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16749
 
-On Wed Nov 12, 2025 at 4:05 PM CST, Ryan Eatmon wrote:
->
-> Should there be a master series for this same change?
->
->
-> On 11/7/2025 7:17 PM, rs@ti.com wrote:
->> From: Randolph Sapp <rs@ti.com>
->>=20
->> These udev rules are specific to TI platforms and should not be
->> appending to the main systemd or eudev package. Split them into a
->> separate udev-aragoconf package to reduce duplication and cut down on
->> appended content.
->>=20
->> Signed-off-by: Randolph Sapp <rs@ti.com>
->> ---
->>   .../packagegroups/packagegroup-arago-base.bb  |  1 +
->>   .../recipes-core/systemd/systemd-arago.inc    | 27 ----------------
->>   .../systemd/systemd/usb1-rules.sh             |  3 --
->>   .../systemd/systemd/usb2-rules.sh             |  3 --
->>   .../recipes-core/udev/eudev-arago.inc         | 22 -------------
->>   .../udev/eudev/dra7xx/udev-cache.default      |  5 ---
->>   .../udev/eudev/keystone/udev-cache.default    |  5 ---
->>   .../recipes-core/udev/eudev/local.rules       | 26 ---------------
->>   .../recipes-core/udev/eudev_%.bbappend        |  4 ---
->>   .../udev-aragoconf}/37-can-am62.rules         |  0
->>   .../udev-aragoconf}/37-can-dra7.rules         |  0
->>   .../udev-aragoconf}/37-can-j7.rules           |  0
->>   .../udev-aragoconf}/37-can-ti33x.rules        |  0
->>   .../udev-aragoconf/50-arago.rules}            |  0
->>   .../{eudev =3D> udev-aragoconf}/usb1-rules.sh   |  0
->>   .../{eudev =3D> udev-aragoconf}/usb2-rules.sh   |  0
->>   .../recipes-core/udev/udev-aragoconf_1.bb     | 32 +++++++++++++++++++
->>   17 files changed, 33 insertions(+), 95 deletions(-)
->>   delete mode 100755 meta-arago-distro/recipes-core/systemd/systemd/usb1=
--rules.sh
->>   delete mode 100755 meta-arago-distro/recipes-core/systemd/systemd/usb2=
--rules.sh
->>   delete mode 100644 meta-arago-distro/recipes-core/udev/eudev-arago.inc
->>   delete mode 100644 meta-arago-distro/recipes-core/udev/eudev/dra7xx/ud=
-ev-cache.default
->>   delete mode 100644 meta-arago-distro/recipes-core/udev/eudev/keystone/=
-udev-cache.default
->>   delete mode 100644 meta-arago-distro/recipes-core/udev/eudev/local.rul=
-es
->>   delete mode 100644 meta-arago-distro/recipes-core/udev/eudev_%.bbappen=
+From: Randolph Sapp <rs@ti.com>
+
+These are being carried as local overrides in the rogue userspace
+libraries, and are only exercised in required paths. These patches were
+only ever required for the userspace side of the server itself, not for
+individual applications.
+
+Signed-off-by: Randolph Sapp <rs@ti.com>
+---
+
+Any remaining patches on libdrm are required for display testing or are
+functions specifically added for omapdrm and should be audited by the tagge=
 d
->>   rename meta-arago-distro/recipes-core/{systemd/systemd =3D> udev/udev-=
-aragoconf}/37-can-am62.rules (100%)
->>   rename meta-arago-distro/recipes-core/{systemd/systemd =3D> udev/udev-=
-aragoconf}/37-can-dra7.rules (100%)
->>   rename meta-arago-distro/recipes-core/{systemd/systemd =3D> udev/udev-=
-aragoconf}/37-can-j7.rules (100%)
->>   rename meta-arago-distro/recipes-core/{systemd/systemd =3D> udev/udev-=
-aragoconf}/37-can-ti33x.rules (100%)
->>   rename meta-arago-distro/recipes-core/{systemd/systemd/local.rules =3D=
-> udev/udev-aragoconf/50-arago.rules} (100%)
->>   rename meta-arago-distro/recipes-core/udev/{eudev =3D> udev-aragoconf}=
-/usb1-rules.sh (100%)
->>   rename meta-arago-distro/recipes-core/udev/{eudev =3D> udev-aragoconf}=
-/usb2-rules.sh (100%)
->>   create mode 100644 meta-arago-distro/recipes-core/udev/udev-aragoconf_=
-1.bb
->>=20
->> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-a=
-rago-base.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
-ago-base.bb
->> index 5cb4e30c..e27a9ca2 100644
->> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ba=
-se.bb
->> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ba=
-se.bb
->> @@ -22,6 +22,7 @@ ARAGO_BASE =3D "\
->>       bash \
->>       opkg-bash-completion \
->>       udev-extraconf \
->> +    udev-aragoconf \
->>       libgpiod \
->>       libgpiod-tools \
->>   "
->> diff --git a/meta-arago-distro/recipes-core/systemd/systemd-arago.inc b/=
-meta-arago-distro/recipes-core/systemd/systemd-arago.inc
->> index 44889345..0aac3c7b 100644
->> --- a/meta-arago-distro/recipes-core/systemd/systemd-arago.inc
->> +++ b/meta-arago-distro/recipes-core/systemd/systemd-arago.inc
->> @@ -3,28 +3,14 @@ PR:append =3D ".arago7"
->>   FILESEXTRAPATHS:prepend :=3D "${THISDIR}/systemd:"
->>  =20
->>   SRC_URI:append =3D " \
->> -    file://local.rules \
->> -    file://usb1-rules.sh \
->> -    file://usb2-rules.sh \
->>       file://10-eth.network \
->>       file://15-eth.network \
->>       file://30-wlan.network \
->>       file://60-usb.network \
->>       file://timesyncd.conf \
->> -    file://37-can-j7.rules \
->> -    file://37-can-am62.rules \
->> -    file://37-can-dra7.rules \
->> -    file://37-can-ti33x.rules \
->>   "
->>  =20
->>   do_install:append() {
->> -    install -d ${D}${sysconfdir}/udev/rules.d/
->> -    install -m 0644 ${WORKDIR}/local.rules ${D}${sysconfdir}/udev/rules=
-.d/
->> -
->> -    install -d ${D}${sysconfdir}/udev/scripts/
->> -    install -m 0755 ${WORKDIR}/usb1-rules.sh ${D}${sysconfdir}/udev/scr=
-ipts/
->> -    install -m 0755 ${WORKDIR}/usb2-rules.sh ${D}${sysconfdir}/udev/scr=
-ipts/
->> -
->>       install -d ${D}${sysconfdir}/systemd/network/
->>       install -m 0644 ${WORKDIR}/10-eth.network ${D}${sysconfdir}/system=
-d/network/
->>       install -m 0644 ${WORKDIR}/15-eth.network ${D}${sysconfdir}/system=
-d/network/
->> @@ -41,17 +27,4 @@ do_install:append() {
->>  =20
->>       install -d ${D}${sysconfdir}/systemd/
->>       install -m 0644 ${WORKDIR}/timesyncd.conf ${D}${sysconfdir}/system=
-d/
->> -
->> -    install -d ${D}${libdir}/udev/rules.d
->> -    install -m 0644 ${WORKDIR}/37-can-j7.rules ${D}${libdir}/udev/rules=
-.d/
->> -    install -m 0644 ${WORKDIR}/37-can-am62.rules ${D}${libdir}/udev/rul=
-es.d/
->> -    install -m 0644 ${WORKDIR}/37-can-dra7.rules ${D}${libdir}/udev/rul=
-es.d/
->> -    install -m 0644 ${WORKDIR}/37-can-ti33x.rules ${D}${libdir}/udev/ru=
-les.d/
->>   }
->> -
->> -FILES:udev +=3D " \
->> -    ${libdir}/udev/rules.d/37-can-j7.rules \
->> -    ${libdir}/udev/rules.d/37-can-am62.rules \
->> -    ${libdir}/udev/rules.d/37-can-dra7.rules \
->> -    ${libdir}/udev/rules.d/37-can-ti33x.rules \
->> -"
->> diff --git a/meta-arago-distro/recipes-core/systemd/systemd/usb1-rules.s=
-h b/meta-arago-distro/recipes-core/systemd/systemd/usb1-rules.sh
->> deleted file mode 100755
->> index 68e83511..00000000
->> --- a/meta-arago-distro/recipes-core/systemd/systemd/usb1-rules.sh
->> +++ /dev/null
->> @@ -1,3 +0,0 @@
->> -#!/bin/sh
->> -/sbin/modprobe g_ncm -r
->> -/sbin/modprobe g_ncm
->> diff --git a/meta-arago-distro/recipes-core/systemd/systemd/usb2-rules.s=
-h b/meta-arago-distro/recipes-core/systemd/systemd/usb2-rules.sh
->> deleted file mode 100755
->> index 97071264..00000000
->> --- a/meta-arago-distro/recipes-core/systemd/systemd/usb2-rules.sh
->> +++ /dev/null
->> @@ -1,3 +0,0 @@
->> -#!/bin/sh
->> -/sbin/modprobe g_zero -r
->> -/sbin/modprobe g_zero
->> diff --git a/meta-arago-distro/recipes-core/udev/eudev-arago.inc b/meta-=
-arago-distro/recipes-core/udev/eudev-arago.inc
->> deleted file mode 100644
->> index b0c44b17..00000000
->> --- a/meta-arago-distro/recipes-core/udev/eudev-arago.inc
->> +++ /dev/null
->> @@ -1,22 +0,0 @@
->> -# This fixes an issue with touchscreens not being detected with the def=
-ault
->> -# local.rules.  This can be removed when this change is picked up and
->> -# meta-arago switches to Dora
->> -
->> -# look for files in this layer first
->> -FILESEXTRAPATHS:prepend :=3D "${THISDIR}/eudev:"
->> -
->> -PR:append =3D ".arago5"
->> -
->> -PACKAGE_ARCH =3D "${MACHINE_ARCH}"
->> -
->> -SRC_URI:append =3D " \
->> -                  file://usb1-rules.sh \
->> -                  file://usb2-rules.sh"
->> -
->> -do_install:append() {
->> -    install -d ${D}/${bindir}
->> -
->> -    install -m 0755 ${WORKDIR}/usb1-rules.sh ${D}${bindir}/usb1-rules.s=
-h
->> -    install -m 0755 ${WORKDIR}/usb2-rules.sh ${D}${bindir}/usb2-rules.s=
-h
->> -    ln -sf libudev.so.1 ${D}${base_libdir}/libudev.so.0
->> -}
->> diff --git a/meta-arago-distro/recipes-core/udev/eudev/dra7xx/udev-cache=
-.default b/meta-arago-distro/recipes-core/udev/eudev/dra7xx/udev-cache.defa=
-ult
->> deleted file mode 100644
->> index b1aa63f8..00000000
->> --- a/meta-arago-distro/recipes-core/udev/eudev/dra7xx/udev-cache.defaul=
-t
->> +++ /dev/null
->> @@ -1,5 +0,0 @@
->> -# Default for /etc/init.d/udev
->> -
->> -# Comment this out to disable device cache
->> -#DEVCACHE=3D"/etc/dev.tar"
->> -PROBE_PLATFORM_BUS=3D"yes"
->> diff --git a/meta-arago-distro/recipes-core/udev/eudev/keystone/udev-cac=
-he.default b/meta-arago-distro/recipes-core/udev/eudev/keystone/udev-cache.=
-default
->> deleted file mode 100644
->> index b1aa63f8..00000000
->> --- a/meta-arago-distro/recipes-core/udev/eudev/keystone/udev-cache.defa=
-ult
->> +++ /dev/null
->> @@ -1,5 +0,0 @@
->> -# Default for /etc/init.d/udev
->> -
->> -# Comment this out to disable device cache
->> -#DEVCACHE=3D"/etc/dev.tar"
->> -PROBE_PLATFORM_BUS=3D"yes"
->> diff --git a/meta-arago-distro/recipes-core/udev/eudev/local.rules b/met=
-a-arago-distro/recipes-core/udev/eudev/local.rules
->> deleted file mode 100644
->> index f14352d5..00000000
->> --- a/meta-arago-distro/recipes-core/udev/eudev/local.rules
->> +++ /dev/null
->> @@ -1,26 +0,0 @@
->> -# There are a number of modifiers that are allowed to be used in some
->> -# of the different fields. They provide the following subsitutions:
->> -#
->> -# %n the "kernel number" of the device.
->> -#    For example, 'sda3' has a "kernel number" of '3'
->> -# %e the smallest number for that name which does not matches an existi=
-ng node
->> -# %k the kernel name for the device
->> -# %M the kernel major number for the device
->> -# %m the kernel minor number for the device
->> -# %b the bus id for the device
->> -# %c the string returned by the PROGRAM
->> -# %s{filename} the content of a sysfs attribute
->> -# %% the '%' char itself
->> -#
->> -
->> -# Try and modprobe for drivers for new hardware
->> -ACTION=3D=3D"add", DEVPATH=3D=3D"/devices/*", ENV{MODALIAS}=3D=3D"?*", =
-RUN{builtin}+=3D"kmod load $env{MODALIAS}"
->> -
->> -# Create a symlink to any touchscreen input device
->> -SUBSYSTEM=3D=3D"input", KERNEL=3D=3D"event[0-9]*", ENV{ID_INPUT_TOUCHSC=
-REEN}=3D=3D"1", SYMLINK+=3D"input/touchscreen0"
->> -
->> -# Auto-mount any SD cards
->> -ACTION=3D=3D"add", KERNEL=3D=3D"mmcblk[0-9]p[0-9]", SUBSYSTEM=3D=3D"blo=
-ck", RUN+=3D"/etc/udev/scripts/mount.sh"
->> -ACTION=3D=3D"remove", KERNEL=3D=3D"mmcblk[0-9]p[0-9]", SUBSYSTEM=3D=3D"=
-block", RUN+=3D"/etc/udev/scripts/mount.sh"
->> -ACTION=3D=3D"add", DEVPATH=3D=3D"/devices/44000000\.ocp/48880000\.omap_=
-dwc3_1/48890000\.usb/udc*", RUN+=3D"/usr/bin/usb1-rules.sh"
->> -ACTION=3D=3D"add", DEVPATH=3D=3D"/devices/44000000\.ocp/488c0000\.omap_=
-dwc3_2/488d0000\.usb/udc*", RUN+=3D"/usr/bin/usb2-rules.sh"
->> diff --git a/meta-arago-distro/recipes-core/udev/eudev_%.bbappend b/meta=
--arago-distro/recipes-core/udev/eudev_%.bbappend
->> deleted file mode 100644
->> index 51afb053..00000000
->> --- a/meta-arago-distro/recipes-core/udev/eudev_%.bbappend
->> +++ /dev/null
->> @@ -1,4 +0,0 @@
->> -EUDEV_ARAGO =3D ""
->> -EUDEV_ARAGO:arago =3D "eudev-arago.inc"
->> -
->> -require ${EUDEV_ARAGO}
->> diff --git a/meta-arago-distro/recipes-core/systemd/systemd/37-can-am62.=
-rules b/meta-arago-distro/recipes-core/udev/udev-aragoconf/37-can-am62.rule=
-s
->> similarity index 100%
->> rename from meta-arago-distro/recipes-core/systemd/systemd/37-can-am62.r=
-ules
->> rename to meta-arago-distro/recipes-core/udev/udev-aragoconf/37-can-am62=
-.rules
->> diff --git a/meta-arago-distro/recipes-core/systemd/systemd/37-can-dra7.=
-rules b/meta-arago-distro/recipes-core/udev/udev-aragoconf/37-can-dra7.rule=
-s
->> similarity index 100%
->> rename from meta-arago-distro/recipes-core/systemd/systemd/37-can-dra7.r=
-ules
->> rename to meta-arago-distro/recipes-core/udev/udev-aragoconf/37-can-dra7=
-.rules
->> diff --git a/meta-arago-distro/recipes-core/systemd/systemd/37-can-j7.ru=
-les b/meta-arago-distro/recipes-core/udev/udev-aragoconf/37-can-j7.rules
->> similarity index 100%
->> rename from meta-arago-distro/recipes-core/systemd/systemd/37-can-j7.rul=
-es
->> rename to meta-arago-distro/recipes-core/udev/udev-aragoconf/37-can-j7.r=
-ules
->> diff --git a/meta-arago-distro/recipes-core/systemd/systemd/37-can-ti33x=
-.rules b/meta-arago-distro/recipes-core/udev/udev-aragoconf/37-can-ti33x.ru=
-les
->> similarity index 100%
->> rename from meta-arago-distro/recipes-core/systemd/systemd/37-can-ti33x.=
-rules
->> rename to meta-arago-distro/recipes-core/udev/udev-aragoconf/37-can-ti33=
-x.rules
->> diff --git a/meta-arago-distro/recipes-core/systemd/systemd/local.rules =
-b/meta-arago-distro/recipes-core/udev/udev-aragoconf/50-arago.rules
->> similarity index 100%
->> rename from meta-arago-distro/recipes-core/systemd/systemd/local.rules
->> rename to meta-arago-distro/recipes-core/udev/udev-aragoconf/50-arago.ru=
-les
->> diff --git a/meta-arago-distro/recipes-core/udev/eudev/usb1-rules.sh b/m=
-eta-arago-distro/recipes-core/udev/udev-aragoconf/usb1-rules.sh
->> similarity index 100%
->> rename from meta-arago-distro/recipes-core/udev/eudev/usb1-rules.sh
->> rename to meta-arago-distro/recipes-core/udev/udev-aragoconf/usb1-rules.=
-sh
->> diff --git a/meta-arago-distro/recipes-core/udev/eudev/usb2-rules.sh b/m=
-eta-arago-distro/recipes-core/udev/udev-aragoconf/usb2-rules.sh
->> similarity index 100%
->> rename from meta-arago-distro/recipes-core/udev/eudev/usb2-rules.sh
->> rename to meta-arago-distro/recipes-core/udev/udev-aragoconf/usb2-rules.=
-sh
->> diff --git a/meta-arago-distro/recipes-core/udev/udev-aragoconf_1.bb b/m=
-eta-arago-distro/recipes-core/udev/udev-aragoconf_1.bb
->> new file mode 100644
->> index 00000000..c1ffa663
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-core/udev/udev-aragoconf_1.bb
->> @@ -0,0 +1,32 @@
->> +SUMMARY =3D "Udev rules for assorted TI SoCs"
->> +LICENSE =3D "MIT"
->> +LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfb=
-cb788c80a0384361b4de20420"
->> +
->> +inherit bin_package
->> +
->> +SRC_URI =3D " \
->> +    file://usb1-rules.sh \
->> +    file://usb2-rules.sh \
->> +    file://50-arago.rules \
->> +    file://37-can-j7.rules \
->> +    file://37-can-am62.rules \
->> +    file://37-can-dra7.rules \
->> +    file://37-can-ti33x.rules \
->> +"
->> +
->> +S =3D "${WORKDIR}"
->> +
->> +do_install() {
->> +    install -d ${D}${sysconfdir}/udev/scripts
->> +    install -m 0755 ${WORKDIR}/usb1-rules.sh ${D}${sysconfdir}/udev/scr=
-ipts/usb1-rules.sh
->> +    install -m 0755 ${WORKDIR}/usb2-rules.sh ${D}${sysconfdir}/udev/scr=
-ipts/usb2-rules.sh
->> +
->> +    install -d ${D}${libdir}/udev/rules.d
->> +    install -m 0644 ${WORKDIR}/50-arago.rules ${D}${libdir}/udev/rules.=
-d/
->> +    install -m 0644 ${WORKDIR}/37-can-j7.rules ${D}${libdir}/udev/rules=
-.d/
->> +    install -m 0644 ${WORKDIR}/37-can-am62.rules ${D}${libdir}/udev/rul=
-es.d/
->> +    install -m 0644 ${WORKDIR}/37-can-dra7.rules ${D}${libdir}/udev/rul=
-es.d/
->> +    install -m 0644 ${WORKDIR}/37-can-ti33x.rules ${D}${libdir}/udev/ru=
-les.d/
->> +}
->> +
->> +RDEPENDS:${PN} =3D "udev udev-extraconf"
+maintainers.
 
+ .../recipes-graphics/drm/libdrm-arago.inc     |   2 -
+ ...ync-add-support-for-pre-v4.7-kernels.patch |  95 --------
+ ...Add-sync_fence_info-and-sync_pt_info.patch | 215 ------------------
+ 3 files changed, 312 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-graphics/drm/libdrm/0001-libs=
+ync-add-support-for-pre-v4.7-kernels.patch
+ delete mode 100644 meta-arago-distro/recipes-graphics/drm/libdrm/0002-Add-=
+sync_fence_info-and-sync_pt_info.patch
 
-Yeah, have it ready. Was waiting for comments. If there are none I'll go ah=
-ead
-and submit it.
+diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm-arago.inc b/meta=
+-arago-distro/recipes-graphics/drm/libdrm-arago.inc
+index 68496668..80c607ca 100644
+--- a/meta-arago-distro/recipes-graphics/drm/libdrm-arago.inc
++++ b/meta-arago-distro/recipes-graphics/drm/libdrm-arago.inc
+@@ -4,8 +4,6 @@ SRC_URI +=3D " \
+ file://0001-Add-option-to-run-a-test-indefinitely.patch \
+ file://0001-omap-fix-omap_bo_size-for-tiled-buffers.patch \
+ file://0002-omap-add-OMAP_BO-flags-to-affect-buffer-allocation.patch \
+-file://0001-libsync-add-support-for-pre-v4.7-kernels.patch \
+-file://0002-Add-sync_fence_info-and-sync_pt_info.patch \
+ "
+=20
+ PR:append =3D ".arago4"
+diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-libsync-add=
+-support-for-pre-v4.7-kernels.patch b/meta-arago-distro/recipes-graphics/dr=
+m/libdrm/0001-libsync-add-support-for-pre-v4.7-kernels.patch
+deleted file mode 100644
+index d645bab6..00000000
+--- a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-libsync-add-suppor=
+t-for-pre-v4.7-kernels.patch
++++ /dev/null
+@@ -1,95 +0,0 @@
+-From 900afd25d9a35b2b8fd29f8c424aa3c3cd170d6f Mon Sep 17 00:00:00 2001
+-From: Brendan King <Brendan.King@imgtec.com>
+-Date: Tue, 13 Jun 2017 15:52:44 +0100
+-Subject: [PATCH 1/2] libsync: add support for pre-v4.7 kernels
+-
+-Add support for the the sync merge ioctl supported by older kernels.
+-
+-Upstream-Status: Pending
+-
+----
+- libsync.h | 44 +++++++++++++++++++++++++++++++++++++++++---
+- 1 file changed, 41 insertions(+), 3 deletions(-)
+-
+-diff --git a/libsync.h b/libsync.h
+-index f1a2f96d..c3b8a385 100644
+---- a/libsync.h
+-+++ b/libsync.h
+-@@ -40,6 +40,10 @@
+- extern "C" {
+- #endif
+-=20
+-+#ifndef SYNC_IOC_MAGIC
+-+#define SYNC_IOC_MAGIC		'>'
+-+#endif
+-+
+- #ifndef SYNC_IOC_MERGE
+- /* duplicated from linux/sync_file.h to avoid build-time dependency
+-  * on new (v4.7) kernel headers.  Once distro's are mostly using
+-@@ -53,10 +57,22 @@ struct sync_merge_data {
+- 	uint32_t	flags;
+- 	uint32_t	pad;
+- };
+--#define SYNC_IOC_MAGIC		'>'
+- #define SYNC_IOC_MERGE		_IOWR(SYNC_IOC_MAGIC, 3, struct sync_merge_data)
+- #endif
+-=20
+-+#ifndef SYNC_IOC_LEGACY_MERGE
+-+/* the legacy definitions are based on the contents of
+-+ * drivers/staging/android/uapi/sync.h in the v4.4 kernel.
+-+ */
+-+struct sync_legacy_merge_data {
+-+	int32_t	fd2;
+-+	char	name[32];
+-+	int32_t	fence;
+-+};
+-+
+-+#define SYNC_IOC_LEGACY_MERGE	_IOWR(SYNC_IOC_MAGIC, 1, \
+-+	struct sync_legacy_merge_data)
+-+#endif
+-=20
+- static inline int sync_wait(int fd, int timeout)
+- {
+-@@ -83,6 +99,24 @@ static inline int sync_wait(int fd, int timeout)
+- 	return ret;
+- }
+-=20
+-+static inline int sync_legacy_merge(const char *name, int fd1, int fd2)
+-+{
+-+	struct sync_legacy_merge_data data;
+-+	int ret;
+-+
+-+	data.fd2 =3D fd2;
+-+	strncpy(data.name, name, sizeof(data.name));
+-+
+-+	do {
+-+		ret =3D ioctl(fd1, SYNC_IOC_LEGACY_MERGE, &data);
+-+	} while (ret =3D=3D -1 && (errno =3D=3D EINTR || errno =3D=3D EAGAIN));
+-+
+-+	if (ret < 0)
+-+		return ret;
+-+
+-+	return data.fence;
+-+}
+-+
+- static inline int sync_merge(const char *name, int fd1, int fd2)
+- {
+- 	struct sync_merge_data data =3D {0};
+-@@ -95,8 +129,12 @@ static inline int sync_merge(const char *name, int fd1=
+, int fd2)
+- 		ret =3D ioctl(fd1, SYNC_IOC_MERGE, &data);
+- 	} while (ret =3D=3D -1 && (errno =3D=3D EINTR || errno =3D=3D EAGAIN));
+-=20
+--	if (ret < 0)
+--		return ret;
+-+	if (ret < 0) {
+-+		if (errno =3D=3D ENOTTY)
+-+			return sync_legacy_merge(name, fd1, fd2);
+-+		else
+-+			return ret;
+-+	}
+-=20
+- 	return data.fence;
+- }
+---=20
+-2.17.1
+-
+diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm/0002-Add-sync_fe=
+nce_info-and-sync_pt_info.patch b/meta-arago-distro/recipes-graphics/drm/li=
+bdrm/0002-Add-sync_fence_info-and-sync_pt_info.patch
+deleted file mode 100644
+index 2786c04d..00000000
+--- a/meta-arago-distro/recipes-graphics/drm/libdrm/0002-Add-sync_fence_inf=
+o-and-sync_pt_info.patch
++++ /dev/null
+@@ -1,215 +0,0 @@
+-From 09da458d04e048a80500feb7d167a4faac56f84e Mon Sep 17 00:00:00 2001
+-From: Brendan King <Brendan.King@imgtec.com>
+-Date: Thu, 24 Aug 2017 13:28:38 +0100
+-Subject: [PATCH 2/2] Add sync_fence_info and sync_pt_info
+-
+-For pre-4.7 kernels, sync_fence_info returns the data from the
+-SYNC_IOC_FENCE_INFO ioctl. For newer kernels, the SYNC_IOC_FILE_INFO
+-ioctl is called, and the data converted to SYNC_IOC_FENCE_INFO form.
+-
+-Upstream-Status: Pending
+-
+----
+- libsync.h | 172 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+- 1 file changed, 172 insertions(+)
+-
+-diff --git a/libsync.h b/libsync.h
+-index c3b8a385..44f7330d 100644
+---- a/libsync.h
+-+++ b/libsync.h
+-@@ -31,6 +31,7 @@
+- #include <assert.h>
+- #include <errno.h>
+- #include <stdint.h>
+-+#include <stdlib.h>
+- #include <string.h>
+- #include <sys/ioctl.h>
+- #include <sys/poll.h>
+-@@ -74,6 +75,54 @@ struct sync_legacy_merge_data {
+- 	struct sync_legacy_merge_data)
+- #endif
+-=20
+-+#ifndef SYNC_IOC_FILE_INFO
+-+/* duplicated from linux/sync_file.h to avoid a build-time dependency
+-+ * on new (v4.7) kernel headers.
+-+ */
+-+struct sync_fence_info {
+-+	char		obj_name[32];
+-+	char		driver_name[32];
+-+	int32_t		status;
+-+	uint32_t	flags;
+-+	uint64_t	timestamp_ns;
+-+};
+-+
+-+struct sync_file_info {
+-+	char		name[32];
+-+	int32_t		status;
+-+	uint32_t	flags;
+-+	uint32_t	num_fences;
+-+	uint32_t	pad;
+-+	uint64_t	sync_fence_info;
+-+};
+-+
+-+#define SYNC_IOC_FILE_INFO	_IOWR(SYNC_IOC_MAGIC, 4, struct sync_file_info=
+)
+-+#endif
+-+
+-+#ifndef SYNC_IOC_LEGACY_FENCE_INFO
+-+/* the legacy definitions are based on the contents of
+-+ * drivers/staging/android/uapi/sync.h in the v4.4 kernel.
+-+ */
+-+struct sync_pt_info {
+-+	uint32_t	len;
+-+	char		obj_name[32];
+-+	char		driver_name[32];
+-+	int32_t		status;
+-+	uint64_t	timestamp_ns;
+-+	uint8_t		driver_data[0];
+-+};
+-+
+-+struct sync_fence_info_data {
+-+	uint32_t	len;
+-+	char		name[32];
+-+	int32_t		status;
+-+	uint8_t		pt_info[0];
+-+};
+-+
+-+#define SYNC_IOC_LEGACY_FENCE_INFO	_IOWR(SYNC_IOC_MAGIC, 2, \
+-+	struct sync_fence_info_data)
+-+#endif
+-+
+- static inline int sync_wait(int fd, int timeout)
+- {
+- 	struct pollfd fds =3D {0};
+-@@ -179,6 +228,129 @@ static inline int sync_accumulate(const char *name, =
+int *fd1, int fd2)
+- 	return 0;
+- }
+-=20
+-+static inline struct sync_pt_info *sync_pt_info(
+-+					struct sync_fence_info_data *info,
+-+					struct sync_pt_info *pt_info)
+-+{
+-+	if (!pt_info)
+-+		pt_info =3D (struct sync_pt_info *)info->pt_info;
+-+	else
+-+		pt_info =3D (struct sync_pt_info *)((uint8_t *)pt_info +
+-+				pt_info->len);
+-+
+-+	if ((uint32_t)((uint8_t *)pt_info - (uint8_t *)info) >=3D info->len)
+-+		return NULL;
+-+
+-+	return pt_info;
+-+}
+-+
+-+static inline struct sync_fence_info_data *sync_legacy_fence_info(int fd)
+-+{
+-+	const uint32_t len =3D 4096;
+-+	struct sync_fence_info_data *info =3D malloc(len);
+-+	int ret;
+-+
+-+	if (!info)
+-+		return NULL;
+-+
+-+	info->len =3D len;
+-+
+-+	do {
+-+		ret =3D ioctl(fd, SYNC_IOC_LEGACY_FENCE_INFO, info);
+-+	} while (ret =3D=3D -1 && (errno =3D=3D EINTR || errno =3D=3D EAGAIN));
+-+
+-+	if (ret < 0) {
+-+		free(info);
+-+		return NULL;
+-+	}
+-+
+-+	return info;
+-+}
+-+
+-+static inline struct sync_fence_info_data *fence_info_from_file_info(
+-+					struct sync_file_info *file_info,
+-+					uint32_t num_fences)
+-+{
+-+	struct sync_fence_info_data *info;
+-+	size_t info_len;
+-+	struct sync_pt_info *pt_info =3D NULL;
+-+	struct sync_fence_info *fence_info;
+-+	uint32_t i;
+-+
+-+	info_len =3D sizeof(*info) + num_fences * sizeof(*pt_info);
+-+	info =3D malloc(info_len);
+-+	if (!info)
+-+		return NULL;
+-+
+-+	info->len =3D info_len;
+-+	strncpy(info->name, file_info->name, sizeof(info->name));
+-+	info->status =3D file_info->status;
+-+
+-+	fence_info =3D (struct sync_fence_info *)(uintptr_t)
+-+			file_info->sync_fence_info;
+-+	for (i =3D 0; i < num_fences; i++) {
+-+		pt_info =3D sync_pt_info(info, pt_info);
+-+		assert(pt_info);
+-+
+-+		pt_info->len =3D sizeof(*pt_info);
+-+		strncpy(pt_info->obj_name, fence_info->obj_name,
+-+			sizeof(pt_info->obj_name));
+-+		strncpy(pt_info->driver_name, fence_info->driver_name,
+-+			sizeof(pt_info->driver_name));
+-+		pt_info->status =3D fence_info->status;
+-+		pt_info->timestamp_ns =3D fence_info->timestamp_ns;
+-+
+-+		fence_info++;
+-+	}
+-+
+-+	return info;
+-+}
+-+
+-+static inline struct sync_fence_info_data *sync_fence_info(int fd)
+-+{
+-+	struct sync_fence_info_data *info =3D NULL;
+-+	struct sync_file_info initial_info =3D {""};
+-+	struct sync_file_info *file_info;
+-+	int ret;
+-+
+-+	do {
+-+		ret =3D ioctl(fd, SYNC_IOC_FILE_INFO, &initial_info);
+-+	} while (ret =3D=3D -1 && (errno =3D=3D EINTR || errno =3D=3D EAGAIN));
+-+
+-+	if (ret < 0) {
+-+		if (errno =3D=3D ENOTTY)
+-+			return sync_legacy_fence_info(fd);
+-+		else
+-+			return NULL;
+-+	}
+-+
+-+	file_info =3D calloc(1, sizeof(*file_info) + initial_info.num_fences *
+-+				sizeof(struct sync_fence_info));
+-+	if (!file_info)
+-+		return NULL;
+-+
+-+	file_info->num_fences =3D initial_info.num_fences;
+-+	file_info->sync_fence_info =3D (uint64_t)(uintptr_t)(file_info + 1);
+-+
+-+	do {
+-+		ret =3D ioctl(fd, SYNC_IOC_FILE_INFO, file_info);
+-+	} while (ret =3D=3D -1 && (errno =3D=3D EINTR || errno =3D=3D EAGAIN));
+-+
+-+	if (ret < 0)
+-+		goto free_file_info;
+-+
+-+	info =3D fence_info_from_file_info(file_info, initial_info.num_fences);
+-+
+-+free_file_info:
+-+	free(file_info);
+-+
+-+	return info;
+-+}
+-+
+-+static inline void sync_fence_info_free(struct sync_fence_info_data *info=
+)
+-+{
+-+	free(info);
+-+}
+- #if defined(__cplusplus)
+- }
+- #endif
+---=20
+-2.17.1
+-
+--=20
+2.51.1
+
 
