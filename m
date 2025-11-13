@@ -2,74 +2,74 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9FDDACDB462
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9235DCD98FD
 	for <webhook@archiver.kernel.org>; Thu, 13 Nov 2025 22:50:34 +0000 (UTC)
-Received: from SA9PR02CU001.outbound.protection.outlook.com (SA9PR02CU001.outbound.protection.outlook.com [40.93.196.39])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.5623.1763074225917396051
+Received: from CY3PR05CU001.outbound.protection.outlook.com (CY3PR05CU001.outbound.protection.outlook.com [40.93.201.13])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.5642.1763074230924398018
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 13 Nov 2025 14:50:26 -0800
+ Thu, 13 Nov 2025 14:50:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=e8wuNMNo;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.196.39, mailfrom: reatmon@ti.com)
+ dkim=pass header.i=@ti.com header.s=selector1 header.b=dUXvhP8/;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.201.13, mailfrom: reatmon@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bQk8s/fuDo2uGFsQDm0tsdivE6sOjXX3ojjdJVEy3OS+yy73LewGgcSa3ucNly/9LOynFu6vOEmDWh3XGZkiWmbUMERfpqq1/NoQ5dIwT41lhqKnjl8oTKeUSPFpX4Lt96HhhmqLav2xboDstorUvHBali2E8cDtaaCu4rTQQl/UyBk+B8Ez7oiv415B5IRE0xxGr0kSItF/NN6f3IV5QeZ5tfE01/ibB+y2j/Wd9muKR5TnYWQNr14Leydtf3sg/jOfMwBcMICRweyvgD4m+LL3erD1u62L/BWC1PiHAHLZ62ipBEtwbeG+1PMgCre9cUhyL5lqZ7mj3PxmFndSHA==
+ b=F2NDITJmxLsh0sBmvdiowd3SgYleXDKmj4wqwuXzWDh7aUQQYeTROGce9lBaqNC6uCqlRLJuN1+CSGMwu7gCiRb/WejEHWeB8kCd1kCyXk2HQW9/M4s3xHLLS1dX5bKkOBZfF0A0eAn9S8RPCdr9PjP2wIEBLofHaxVVPWnV+L584ZgIRg8yvoVpAZdah53XAJFWD1iGCqzbksud7WACmHNcf0pIgr7e3CQIAG9BHDsZ17WCy6q6Wy/aimbj7r3Zkzkrxy7hgxhL7stA7rlfSrNKHyyk3EdDeE0ZMFZOsYn9LAbXfwN3UiWlj0J9ijKBhbDtaE1OFLToKIc+4nAvgA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SA2DaIxiSarO1zPz5FbnvnhNfSy+V4wdnXikCxN/ieM=;
- b=xDEDl5ZlcFOzqmoKYNJaAbPhao05494vHJpSnvxYICeUoY68aPG9uPdM187zG5WDkWx5ewxWi8iIiCodrJc9jzsUdIHtKtYnxKabI0Nkar4JqgYwca0xtNR0gpDfs3YiBe9kDuDHqWHv+vex53mmZJlSiE707IO3suOE4dm5cFNN0CtymYkKbuPzEksnrX23gMK3Zi7ejxIX3cvZh6wXJJN5oZriIznwy1DOWkbfojiXOVM8ys1CqCSlwB7vwynXJ6dF9Ne7WggOwaRlW03/eDgqK7yuZKmxPemD0Hz+alRr2N/ZmutlaZQ7+FrZcKNys11gPZTS8dNeM+lPHq7CoQ==
+ bh=80Eu+eUn0CN/3f7VJjpdxC1LOLc86mN25Vrog9hI+8w=;
+ b=hpGi/tAHFonZwSgIuWD6a08LcrBAlcdZiucEXRsMAxJ9hkcgkYWAUcEV49JMdPJia3i94NmnYAPXFJfkIdBidfiHqU+F29PGMPkvY0LMT6Z779UVhG4WSEGk92APe1EoNk43UrIrJn8zIlwQ5Q3Kd2M+3F++q8IJ12bxS2IWT+cVnCSbJFNTF2xsgftqieBnJm5JCz+f5eXxKVi/HHVfxer/D52bnBdYNQ6LvSSUY36hU6puUvoSQQl6ZCMy24Gw59QT48CYGuVqo75/ZKXfEWK/TvUQ7WrR3r6wGM4GwtRiVBAQjsEX8EWY4uNfosUFQEGXKI5clT2cThdvtSl1NA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SA2DaIxiSarO1zPz5FbnvnhNfSy+V4wdnXikCxN/ieM=;
- b=e8wuNMNoDemgMLCayAi6HlDnYbkeD5uuIW6P8AF0z8QYLu7UaJ4CpKAbmzsuBxMnwZRKewXa4HaUNgjIdn/nliaage+B7sbrjaZggTSqUXtT+efRVLXsWWk1NEv4AHIot1u/kOyUA/aEyote/Kk80rkF4fSAquGF4YWhIlMxNZQ=
-Received: from DM6PR02CA0037.namprd02.prod.outlook.com (2603:10b6:5:177::14)
- by DS7PR10MB4863.namprd10.prod.outlook.com (2603:10b6:5:297::17) with
+ bh=80Eu+eUn0CN/3f7VJjpdxC1LOLc86mN25Vrog9hI+8w=;
+ b=dUXvhP8/KalrcorLq1Mism//L+drNRCOYJ+FaRSwGHW5TKXk4L7dZtKH8FQfHYUohrS67s5ieBmh490RiaTrIcKsPoUwTyo9s6v22htujr9bxOtYOv8jVn92R7K0i9D87KYE+8nMzuo4gIPvyCOtVHuHrcuqTLiJZQzWxsBLjxw=
+Received: from BY3PR04CA0019.namprd04.prod.outlook.com (2603:10b6:a03:217::24)
+ by SA2PR10MB4729.namprd10.prod.outlook.com (2603:10b6:806:11c::9) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Thu, 13 Nov
- 2025 22:50:23 +0000
-Received: from DS1PEPF00017098.namprd05.prod.outlook.com
- (2603:10b6:5:177:cafe::fd) by DM6PR02CA0037.outlook.office365.com
- (2603:10b6:5:177::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.17 via Frontend Transport; Thu,
- 13 Nov 2025 22:50:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ 2025 22:50:26 +0000
+Received: from SJ1PEPF000026CA.namprd04.prod.outlook.com
+ (2603:10b6:a03:217:cafe::d9) by BY3PR04CA0019.outlook.office365.com
+ (2603:10b6:a03:217::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.16 via Frontend Transport; Thu,
+ 13 Nov 2025 22:50:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- DS1PEPF00017098.mail.protection.outlook.com (10.167.18.102) with Microsoft
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SJ1PEPF000026CA.mail.protection.outlook.com (10.167.244.107) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Thu, 13 Nov 2025 22:50:22 +0000
-Received: from DFLE209.ent.ti.com (10.64.6.67) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9320.13 via Frontend Transport; Thu, 13 Nov 2025 22:50:25 +0000
+Received: from DFLE211.ent.ti.com (10.64.6.69) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 13 Nov
  2025 16:50:18 -0600
-Received: from DFLE202.ent.ti.com (10.64.6.60) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 13 Nov
  2025 16:50:18 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE202.ent.ti.com
- (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
  Transport; Thu, 13 Nov 2025 16:50:18 -0600
 Received: from sneezy (sneezy.dhcp.ti.com [128.247.81.222])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ADMoI2s976597;
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ADMoI89976600;
 	Thu, 13 Nov 2025 16:50:18 -0600
 Received: from reatmon by sneezy with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1vJg8w-00060F-87; Thu, 13 Nov 2025 16:50:18 -0600
+	id 1vJg8w-00060L-Bo; Thu, 13 Nov 2025 16:50:18 -0600
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
 	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap][PATCH 07/10] makedumpfile: Remove outdated recipe
-Date: Thu, 13 Nov 2025 16:50:14 -0600
-Message-ID: <20251113225017.22994-7-reatmon@ti.com>
+Subject: [meta-arago][scarthgap][PATCH 08/10] abseil-cpp: Do the version bump in a yocto-check-layer compliant manner
+Date: Thu, 13 Nov 2025 16:50:15 -0600
+Message-ID: <20251113225017.22994-8-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20251113225017.22994-1-reatmon@ti.com>
 References: <20251113225017.22994-1-reatmon@ti.com>
@@ -78,92 +78,171 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017098:EE_|DS7PR10MB4863:EE_
-X-MS-Office365-Filtering-Correlation-Id: 00303b0c-5ac4-4851-a33a-08de23070752
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000026CA:EE_|SA2PR10MB4729:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f26e5f5-b16e-463a-7b0b-08de23070952
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|36860700013|82310400026;
+	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?m+E5WOAhGtPGv/Zb3cS2t7b1dHSWWLAk3WQcPTxTZa2FI7DxLIp8C6AaOQe7?=
- =?us-ascii?Q?pT8xZeMVAn6fUsl/4mU4irb4D9ELhpqfnJLnHTdXADFbJTjno2IEHZkVIUBD?=
- =?us-ascii?Q?L25yctY3N+9ssvZaZLZtEmiVnQKfKkjK0fWLLYCrZEkJK73d+QzlGcjlzclk?=
- =?us-ascii?Q?DtF9S0Raq7cI8K+okjtOwFJrWCRnd6hxvtk5Cd8PD1uOkdhzVFdNZMK66VMl?=
- =?us-ascii?Q?AW71W6SclseKsqQMk4bP4zLsfXIOMOKHxsLy5gRgBXxsztuhSMIgRahctqLI?=
- =?us-ascii?Q?dqhBbWVCwIzNemEmDFVBX15aJNBn5dl4YLUFpyRC1Wdo+eA/DhCRXirPrMMm?=
- =?us-ascii?Q?9xD/rBD7KICMkh7MGcg+IkZnXFIfhlmj3y0J9kKA9owhpebxB3J9ak1lOxxv?=
- =?us-ascii?Q?2FHtoGdESpqi6yPz17xNVBypTOlNxQ7Iz9Q0EsM1GA5XFmZBiiFfdxshMpDg?=
- =?us-ascii?Q?daqQYxpnRqK4jskRI3boWG8D/od1ezZRkFcU8mKg3uS2ipqrK+SEohyBTxVR?=
- =?us-ascii?Q?g7rI5WJ1UaQ+teM0UTtKhdLIf2/jBJBmSc2YAddnUl0QbLh6SzWTQHnH2+ES?=
- =?us-ascii?Q?LXfyrLMfsErgtuHAdqcBLJRMqOINm+F/neQRn4Cyri4Q4B02pFuYuBxuNjWm?=
- =?us-ascii?Q?Biw/coAMeffTs9eL/ysPhNoX+wRSslFxSnlrjLMdcNLljf3w8HN1XW15ieLf?=
- =?us-ascii?Q?6HaZiMhJ/Hcx6oB9YBWCpqJXzwjuJZdQrUVzpkrZoT66l2JMwWp3nyrNOOA5?=
- =?us-ascii?Q?l9oXqxARdvkOD1o8zD5gIvG3k/eDFg/0X4q5qPa0hvRNw4ImIsuyeZo+kFYz?=
- =?us-ascii?Q?8NYBkX+6qsj4GSFyNACfHyf5s+z1plwtLwh15S4Le5X0ZNr3RkggkUc/8ep1?=
- =?us-ascii?Q?WG4qxxtZpxbC4IUKH/8MJY3SeehUJWBHcc8HT5RFvT7Db2YlIguDsyinjoqG?=
- =?us-ascii?Q?oLLyu4dN0uLwPlRu7LbVoj9QcqYsEPl/RRO8Wbw9EhlAoU6SsTr89WPXUlc9?=
- =?us-ascii?Q?lTLp9Wx26RIyJHR4cfyY1EZxSrO97jBSgrmpp2xsg9xwWrINooAT4tV2gwXd?=
- =?us-ascii?Q?B+/ltuLGZ03wapPKpm1/DwVOkfA7U+M+vQbynvNQoBlrGgCGXWjNrJSvYcpu?=
- =?us-ascii?Q?BNO9QrrNjaIstMiNIYm+s7875B4+HimJF8yA/VdPMMUJfFR4Hj2jlGl9axZc?=
- =?us-ascii?Q?902UKM/pSDD1VBP3YsQQXkSEj/uGE8Jfclv28ZW+sK8Ui8uN8nIIIGSo7Xwf?=
- =?us-ascii?Q?s2wFQhuS0JqHsf6s58pp8Thp5laQ+I8+OBc56zxdJSpAQINCkQRWxRGWptGC?=
- =?us-ascii?Q?ul6/ZRyBG7MvptwcQFNCLlMKfHN0PMDTR5uRC+vqILf6+xlDECbrffCAfRus?=
- =?us-ascii?Q?h69UnPXEjnPczTyxOtJSzdvsVRtstiNE/NmBgf/a9CgLPGpvqyxKvP8DmfJs?=
- =?us-ascii?Q?buBtePqEPZT8IsmwbQW3uxjTszDHYYNSHaFxCplBz9CU1RJZwBxBJy1YLBKO?=
- =?us-ascii?Q?Ny34ayJSx5URKa+Z229kZeFnYvMuUObwbjaVOsTJWyHuTbfHtihrCqMm4zD8?=
- =?us-ascii?Q?AVKq8CjAXKyJfMymY6k=3D?=
+	=?us-ascii?Q?gxxRj/j/d04omj9FBXm+f+C6lDG+EpMsuqzz2M3NhOUj75ZwavddRuJi5zf2?=
+ =?us-ascii?Q?PL80oEYYJX8J+OHzc6IJM0ehMz+D5uy4TJF8IWAKwRMWpeCfDeWfMY8Q6nZA?=
+ =?us-ascii?Q?cCJd4s3sLD6UM3KxhWAVgBQ1XWAid/FiPhzG/uBtU5HrHgaBPaem55tVo+f8?=
+ =?us-ascii?Q?uZ21LzjJVdFBMUnR+QLHEmeabmaAvNGY6OhoD10lRZEcKhEpf8kd8pQ1/goh?=
+ =?us-ascii?Q?o7Frp0hA3tjwTPCuB0b1rIrGhSR38gfIbNlDjwiRHWcziY2hoYYunvyOElw9?=
+ =?us-ascii?Q?beDeKrU3oSeGR7nosXuLK2DV2fN1/HBTdn7F9nA0v1oRx+Gld4aacJbUg7C4?=
+ =?us-ascii?Q?st9eDSqYTn0OsmaFqqb8Ji+t2xMqZaEfipdje6zvCTyE8pDbx7n34fSs2dPa?=
+ =?us-ascii?Q?LgM9XnRxHvnjAF391yes5QkAU2EpK/Mma6AKWOoXtCudKHMlIj2T9xSMVLqa?=
+ =?us-ascii?Q?/U+EW3djJxeEmbut+JjF6upi0B1z60fEcyyz/+n3pCVfp0jcD8Y6ZserrvjN?=
+ =?us-ascii?Q?XquiFY8ZxJEv2Jsb8TYtjwDwqmkchtSuF7CZhvhnbPHiwL4pM6DoyEtlEkdX?=
+ =?us-ascii?Q?bRtApN+XZE8gJ2X75ZgdJzn8M9VPxtrqXRntEzaz0499e7I/ts54BP4zPDkn?=
+ =?us-ascii?Q?X5QMSr/+Asj24IJ2qrmIdN2nWe5BxpO4/SOquccwE3tDJlf1dXWpNRUcbJ1d?=
+ =?us-ascii?Q?JNmc/+Sdcx0FjrA15zONHtXfVNPm7ZbYH/uHOH/Y2MZH2EYLee257R/I2Q4r?=
+ =?us-ascii?Q?jfL1RDhWW2/KhRZTCCyvdDQ7vKaeTNwJS8A9MQDuj1Kf02hxWZr37ptKniu+?=
+ =?us-ascii?Q?XWV58l5vaD+IfpsY9apABQJQbHtFOSOkmtajV42EChNmIrNrCb/jfr99BRAL?=
+ =?us-ascii?Q?KV6sjGd+7Vr6ujOEhXqleEJJlmXIyv6FfnMvtMkZIkQmNAI0REUG6kdApbzU?=
+ =?us-ascii?Q?na0LYVSBXm/YPZAINay17PoyAfjKXEx/mYZbZ9KezR5Q5YyXR54UtzswE/Cn?=
+ =?us-ascii?Q?Au+nYXtAUG8/P+BYoW6jaRyDqSHGkj2Uzh5YgmqjO0pCZgDzo6aw+O4rxD1n?=
+ =?us-ascii?Q?XcGsGBR4zmpVb6czmIj1TIYmQ1hEC6510O+LXRe0FpUMMCTPU2SSwqCcEre3?=
+ =?us-ascii?Q?JT0FCwqIMkNwyfEUiqsjufAOBzGQDTw5z69/UpspYmYBal7rX4rbTfiESyzX?=
+ =?us-ascii?Q?jnnd0K5MNr3nJbGzJMw/qI3LyjCz/uVPFdj7kUYyILWRrtfwY3Y2M5R2W2FG?=
+ =?us-ascii?Q?ZCvk4gCiCfTcJoztwO+XA9lofU5cl/Dejqn5wi5YkWNvrmkhyUmzPBNZ3jM7?=
+ =?us-ascii?Q?q+PvPAmQbWnCWCuRcuiWlJI6yQXf3HptWfY7J5wrPGyCVui1kEOiyt+oZ0LV?=
+ =?us-ascii?Q?F6dq3XZh7FmfkxY9wu2vj6NNTUVpP/NmpeLqj2vWfvvOt0CwTbnQxpQ8B0ry?=
+ =?us-ascii?Q?VbIGvFywsWskgd+wHNn/bMVXaLCDu5cUxTm7M4uZ58IJ9tMIHw85e5/nwaaj?=
+ =?us-ascii?Q?TWgR2BBMs8hYf/k=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2025 22:50:22.6748
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2025 22:50:25.9756
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 00303b0c-5ac4-4851-a33a-08de23070752
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f26e5f5-b16e-463a-7b0b-08de23070952
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	DS1PEPF00017098.namprd05.prod.outlook.com
+	SJ1PEPF000026CA.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB4863
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4729
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 13 Nov 2025 22:50:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16756
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16763
 
-There is a newer version of this recipe in oe-core, this is no longer
-needed.
+Yocto Project Compatibility requires that including a layer in a build
+not change recipes in other layers.  In this case, we were providing a
+newer version of a recipe that another layer provides.
+
+The proper way of doing this is to create a bbappend and only change the
+minimal things needed to perform your changes.  Additionally, to pass
+the yocto-check-layer the bbappend needs to be wrapped in a manner that
+only applies your changes in the event that you are making use of your
+layer.  For Arago, that means only if we are building Arago.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- .../makedumpfile/makedumpfile_1.5.0.bb         | 18 ------------------
- 1 file changed, 18 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-support/makedumpfile/makedumpfile_1.5.0.bb
+ .../abseil-cpp/abseil-cpp-arago.inc           | 17 ++++++
+ .../abseil-cpp/abseil-cpp_%.bbappend          |  4 ++
+ .../abseil-cpp/abseil-cpp_20240722.0.bb       | 54 -------------------
+ 3 files changed, 21 insertions(+), 54 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp-arago.inc
+ create mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_%.bbappend
+ delete mode 100644 meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb
 
-diff --git a/meta-arago-extras/recipes-support/makedumpfile/makedumpfile_1.5.0.bb b/meta-arago-extras/recipes-support/makedumpfile/makedumpfile_1.5.0.bb
+diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp-arago.inc b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp-arago.inc
+new file mode 100644
+index 00000000..99449654
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp-arago.inc
+@@ -0,0 +1,17 @@
++FILESEXTRAPATHS:prepend := "${THISDIR}/abseil-cpp:"
++
++PV = "20240722.0"
++
++SRCREV = "4447c7562e3bc702ade25105912dce503f0c4010"
++BRANCH = "lts_2024_07_22"
++
++SRC_URI:remove = "\
++    file://abseil-ppc-fixes.patch \
++    file://0004-PR-1644-unscaledcycleclock-remove-RISC-V-support.patch \
++    file://0001-PR-1739-container-internal-Explicitly-include-cstdin.patch \
++"
++
++SRC_URI += "\
++    file://0004-abseil-ppc-fixes.patch \
++    file://0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch \
++"
+diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_%.bbappend b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_%.bbappend
+new file mode 100644
+index 00000000..e1e08204
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_%.bbappend
+@@ -0,0 +1,4 @@
++ABSEIL_CPP_ARAGO = ""
++ABSEIL_CPP_ARAGO:arago = "abseil-cpp-arago.inc"
++
++require ${ABSEIL_CPP_ARAGO}
+diff --git a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb b/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb
 deleted file mode 100644
-index 2b7002f5..00000000
---- a/meta-arago-extras/recipes-support/makedumpfile/makedumpfile_1.5.0.bb
+index 4bfc2100..00000000
+--- a/meta-arago-extras/recipes-devtools/abseil-cpp/abseil-cpp_20240722.0.bb
 +++ /dev/null
-@@ -1,18 +0,0 @@
--SUMMARY = "Make dump file utility"
--LICENSE = "GPL-2.0-only"
+@@ -1,54 +0,0 @@
+-SUMMARY = "Abseil is a cpp library like STL"
+-DESCRIPTION = "Abseil provides pieces missing from the C++ standard. Contains \
+-additional useful libraries like algorithm, container, debugging, hash, memory, \
+-meta, numeric, strings, synchronization, time, types and utility."
+-HOMEPAGE = "https://abseil.io/"
+-SECTION = "libs"
+-LICENSE = "Apache-2.0"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=df52c6edb7adc22e533b2bacc3bd3915"
 -
--LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
+-SRCREV = "4447c7562e3bc702ade25105912dce503f0c4010"
+-BRANCH = "lts_2024_07_22"
+-SRC_URI = "git://github.com/abseil/abseil-cpp;branch=${BRANCH};protocol=https \
+-           file://0001-absl-always-use-asm-sgidefs.h.patch             \
+-           file://0002-Remove-maes-option-from-cross-compilation.patch \
+-           file://0003-Remove-neon-option-from-cross-compilation.patch \
+-           file://0004-abseil-ppc-fixes.patch \
+-           file://0005-Don-t-match-Wnon-virtual-dtor-in-the-flags-are-neede.patch \
+-          "
 -
--SRC_URI = "http://sourceforge.net/projects/makedumpfile/files/makedumpfile/1.5.0/makedumpfile-${PV}.tar.gz;name=makedumpfile"
+-S = "${WORKDIR}/git"
 -
--SRC_URI[makedumpfile.md5sum] = "e22277d77752c71525a79eab148abf55"
--SRC_URI[makedumpfile.sha256sum] = "8a771a22c6ba79dc505e55727f0cfd357ccb3c97defe21cefd5a67b64452fca7"
+-inherit cmake
 -
--DEPENDS = "zlib elfutils bzip2"
+-EXTRA_OECMAKE = "-DBUILD_SHARED_LIBS=ON \
+-                 -DBUILD_TESTING=OFF    \
+-                 -DABSL_ENABLE_INSTALL=ON \
+-                "
 -
--EXTRA_OEMAKE = "TARGET=${TARGET_ARCH}"
+-SYSROOT_DIRS:append:class-nativesdk:mingw32 = " ${bindir}"
 -
--do_install() {
--	install -d ${D}${bindir}/
--	install -c -m 755 ${S}/makedumpfile ${D}${bindir}/
+-PACKAGES_DYNAMIC += "^libabsl-*"
+-PACKAGES_DYNAMIC:class-native = ""
+-
+-PACKAGESPLITFUNCS =+ "split_dynamic_packages"
+-
+-python split_dynamic_packages() {
+-    libdir = d.getVar('libdir')
+-
+-    libpackages = do_split_packages(
+-        d,
+-        root=libdir,
+-        file_regex=r'^libabsl_(.*)\.so\..*$',
+-        output_pattern='libabsl-%s',
+-        description="abseil shared library %s",
+-        prepend=True,
+-        extra_depends='',
+-    )
+-    if libpackages:
+-        d.appendVar('RDEPENDS:' + d.getVar('PN'), ' ' + ' '.join(libpackages))
 -}
+-
+-ALLOW_EMPTY:${PN} = "1"
+-
+-BBCLASSEXTEND = "native nativesdk"
 -- 
 2.17.1
 
