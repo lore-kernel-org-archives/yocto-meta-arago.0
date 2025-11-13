@@ -2,74 +2,74 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 864F0CD98F6
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE7B2CDB467
 	for <webhook@archiver.kernel.org>; Thu, 13 Nov 2025 22:50:34 +0000 (UTC)
-Received: from BN1PR04CU002.outbound.protection.outlook.com (BN1PR04CU002.outbound.protection.outlook.com [52.101.56.24])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.5641.1763074230104478760
+Received: from MW6PR02CU001.outbound.protection.outlook.com (MW6PR02CU001.outbound.protection.outlook.com [52.101.48.69])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.5624.1763074226600929642
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 13 Nov 2025 14:50:30 -0800
+ Thu, 13 Nov 2025 14:50:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=vPiVrupm;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.56.24, mailfrom: reatmon@ti.com)
+ dkim=pass header.i=@ti.com header.s=selector1 header.b=Hax0v+4Z;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.48.69, mailfrom: reatmon@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RwePWgy4OudAQO/GisL4XYVL5C1nBFgMMKLXlTWNFAAaJv/rHq4+TRBLgXBsV+H12qteKIA53qabPsv5M52TBj20q88gI9VE0H3qs3BFHxsjgrJnWmWIT4xPczXI3Ur4gozUgHlOtP4FSUQfb7gbVG9nOtBr34h4z/RKqnzyRezbxZ7i2j0JqQii2NwS7j2heLifUxWFRIBkMrunQHWvTz75s2Dwy9aCQYo7XfU/CtKlajLk2mVC6uQNCq3qnRDeIuAaly/xOPKjrQf75sUNr2aHXKNKCL/gBA7t/n1ufynpTQ8fZ6Dn0v0f7E0ZvUcVEpRXGxL8XMnwnISRScomJg==
+ b=lk7wJ4kPR0wQXX1/zJg2H2xlSQJoUZX4FYdeMFY7bSqnMxBDpBJO2Bewx1uAuDcDQPfr8PBCfKGC9IVEX4uUZsad5ZYJPgf3Jg38Ctu89geNr8at/sky8huzSeWEyTTo2nT/cvGCWFk3TyeLboo9eLBCuoeu5Lr9X1zBESQxjLiwe9Ywze7W2IIfYyCEzT95ksR/IV9cDt5FCEfr4/pZIp+91ul7NPRg5FTG4nc/XYewOYoZPTHgOoNK6qFzT9AVHFQFBdCW+ugWYs0QO65pNdIWwi/TM+qLDVxahD5iMHHMeauEuyGFKSlEqPuaKG1S3kN6EK8D0ifqM7sTi//d+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ch/JNEc8M5oen6sW8ljwwbslu9tuIuftmjZ1YcMTUj4=;
- b=DFXNTitJvcOukmFnrtTP7jK2rxDcE6I9Mxy12Nswj2ookR9tb8wRqt6tGasF8XYW0TO0p3t/BFVrF/lC33pYXADDdDl3SVIaImTOoGJ9dqY+74gtSQSqTFUOcDUdQLBugMDT/yL/eQBKv/DSXMPtBRXUXNhLBFdDfP7xJjemV5MTiNSvipQCXunitPDU4lHF+HH/UJRk3ko6xpIUr8rGwY08Ib5YfgCKrYPwlZYCzJcioSgWfZE08uHZLZGrl/YeT7n/tu2TfM7N5l4wed3kVeujw7wUDrE/9kljUhLZvnHZLUXOcXdLIT2NuT5Bfm/QWgoU0mHwQ8Cr0ghkbpSYng==
+ bh=51GuG9UkQsmf79YpERAxd5TECWCQ3QfaMn7irFdW8dE=;
+ b=XWUaYb/wG+xam4upGDEEou85XKMIFk0lS9R8rJAUv6AHtF57BEBwVSNatwRKJM6ViLSdl5ZH968JVlPSxPjXUOJHR2/bljdl93qC7LLmOeoUI7JaZCN7jTYVj0j5fSKO0FLgQ92DKm1oe/fxA/QNvHz/kz8ID6TTSO+VSOvCBEocY4z4+Y7qFJD1ls3NCXKwaffHnioE0S7ELBdD16QG1Gg/boq/cqAL6B7tH42AfSZ6AyoXxwKeCyzxiQuDki6K8LR6tG3gY5uTS+xtjZV72ENnnr4ZHD+WSdMjSsWvvAriIusozpmdfYqsduTPktmD6rnQUzsqKYFBKq6ok6P1tQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ch/JNEc8M5oen6sW8ljwwbslu9tuIuftmjZ1YcMTUj4=;
- b=vPiVrupm4CRGCo1tspKUknvIOL2u4txI738rPta+5lwUVbl61lKdcig2G++4BG1IdYlXrOm7xaZOtuUKvWvwlWaYszcS4lrn1uJv8SU7MJTmfCDYh0pLu8mUEVAmN/H5tqESRo8qMO20Pf2lsWNW1yNPby3il7we11DGvAGeKyo=
-Received: from MN2PR18CA0018.namprd18.prod.outlook.com (2603:10b6:208:23c::23)
- by DS4PPF751CD7230.namprd10.prod.outlook.com (2603:10b6:f:fc00::d2c) with
+ bh=51GuG9UkQsmf79YpERAxd5TECWCQ3QfaMn7irFdW8dE=;
+ b=Hax0v+4Za7AqYZv9fKjgLlucU6jLuowhhZBN+YgzS0ZzqJFaLdTzSL6ZwtymKYd5dZ9PJncno7cIUOfex6eG7/N8Ior3D3k984hRL2jz5EZRN1CZ8GcAfXZAEBaV6WbdjdPLTVJLDOGVm83dvOMrCKgIP+JMa+hs4WFnS1U+Ptk=
+Received: from DM6PR02CA0042.namprd02.prod.outlook.com (2603:10b6:5:177::19)
+ by BLAPR10MB5075.namprd10.prod.outlook.com (2603:10b6:208:322::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9320.17; Thu, 13 Nov
- 2025 22:50:27 +0000
-Received: from MN1PEPF0000F0E1.namprd04.prod.outlook.com
- (2603:10b6:208:23c:cafe::1f) by MN2PR18CA0018.outlook.office365.com
- (2603:10b6:208:23c::23) with Microsoft SMTP Server (version=TLS1_3,
+ 2025 22:50:22 +0000
+Received: from DS1PEPF00017098.namprd05.prod.outlook.com
+ (2603:10b6:5:177:cafe::3) by DM6PR02CA0042.outlook.office365.com
+ (2603:10b6:5:177::19) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9320.17 via Frontend Transport; Thu,
- 13 Nov 2025 22:50:21 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ 13 Nov 2025 22:50:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- MN1PEPF0000F0E1.mail.protection.outlook.com (10.167.242.39) with Microsoft
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ DS1PEPF00017098.mail.protection.outlook.com (10.167.18.102) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9320.13 via Frontend Transport; Thu, 13 Nov 2025 22:50:23 +0000
-Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9320.13 via Frontend Transport; Thu, 13 Nov 2025 22:50:20 +0000
+Received: from DFLE208.ent.ti.com (10.64.6.66) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 13 Nov
  2025 16:50:18 -0600
-Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE213.ent.ti.com
- (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE208.ent.ti.com
+ (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 13 Nov
  2025 16:50:17 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
  Transport; Thu, 13 Nov 2025 16:50:17 -0600
 Received: from sneezy (sneezy.dhcp.ti.com [128.247.81.222])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ADMoHH31018038;
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5ADMoH9A976584;
 	Thu, 13 Nov 2025 16:50:17 -0600
 Received: from reatmon by sneezy with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1vJg8v-0005zk-Jl; Thu, 13 Nov 2025 16:50:17 -0600
+	id 1vJg8v-0005zq-Na; Thu, 13 Nov 2025 16:50:17 -0600
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
 	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap][PATCH 02/10] ti-test: Gate some of the packages behind DISTRO_FEATURE check
-Date: Thu, 13 Nov 2025 16:50:09 -0600
-Message-ID: <20251113225017.22994-2-reatmon@ti.com>
+Subject: [meta-arago][scarthgap][PATCH 03/10]  packagegroup-arago-tisdk-graphics*: Add DISTRO_FEATURE check for some packages
+Date: Thu, 13 Nov 2025 16:50:10 -0600
+Message-ID: <20251113225017.22994-3-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20251113225017.22994-1-reatmon@ti.com>
 References: <20251113225017.22994-1-reatmon@ti.com>
@@ -78,97 +78,123 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E1:EE_|DS4PPF751CD7230:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7804396c-6962-4045-e252-08de23070797
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017098:EE_|BLAPR10MB5075:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7251b10c-20a8-474a-babc-08de2307062f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
+	BCL:0;ARA:13230040|36860700013|1800799024|376014|82310400026;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?NaH9US5IRWXM755yIaWNeJNR5IT3FO71BXmYz1sqfyFtluza7H8cSTKEeoEa?=
- =?us-ascii?Q?FdV0QUg63M0Yra1IwVQxOrLCcODJ2IBOGb1Jj7ORY+M6gEzCbmVHOiZdTmvX?=
- =?us-ascii?Q?NUQZ3tvwHHeMeC7l+GB8ni53t7re5rw3RZwZxcpLOFAbidW3sy7Mj7gbz0zF?=
- =?us-ascii?Q?OxgPVgoAj9yG+bYrAjqaH6BS10Ev6jMTt+FJj/dMED+rH3d+Gt2dplUiRJKI?=
- =?us-ascii?Q?5o7kAe8Ea1lZrx7XaC69BANyLfEi3yrjHuYAKUColIa7UaNfbnA1FcKeoqf3?=
- =?us-ascii?Q?LcmejwIk7HF8tXsx07qpQ5hO8Dj8d/FxFvM0pCdQTm6JYXKmYpM3s5wCvqj3?=
- =?us-ascii?Q?C9t/Et3cQ+u2FNJhrkdxUqvcEMlxx7QM9F62xwighFm6QcjSxOXKPooh/dhF?=
- =?us-ascii?Q?7BmOuxOR/v2TYlGXftskF+RLJ0Q7SlPnBeMQI8URaRTbDjvYqYxyUPc/73yE?=
- =?us-ascii?Q?RymRjlwPt8vQ+22IB4pisWEyP4x9WhEiHhe8OqqohxA1pIVu9+739NnV+YlP?=
- =?us-ascii?Q?eJf9IR9rnN48jKAKxfg+d/a05AttwqVl/MZ+aAzuRl3dr3aomrazRTberX+N?=
- =?us-ascii?Q?2cYORIy6dRqKLqVmCDmEO892tEu8qMcVHXRKPOfQ0/T+xh0yTL9FJ0O9GBqx?=
- =?us-ascii?Q?++5PeRkwM+yaFn3/0np2CKwZ48qYs2dOc3VZzSSEUhmi9+m1obS/S4UqZTXC?=
- =?us-ascii?Q?uwHw41rDXDPArIo1u21rV2hrq4JhbJ691kb0IyX4MYTmINkgOarXT+3L4ta4?=
- =?us-ascii?Q?3gLIT5nf5d1kcJeAhIJPY2UTAhyjDVEbVdwYXCmHFdIjd6ySyTkGv9iofamp?=
- =?us-ascii?Q?f0XMDXzrtA0O6kHZWM82623NbYl7mPNVuubdtoOQprW0RRyzdqdCYlMFrDVP?=
- =?us-ascii?Q?Ogga9WGVjhMSo/PGOFK3dh2J9w5G+JFVYXo2q1w5/1+pqFRIq/2OXcgBXbfN?=
- =?us-ascii?Q?WFcmFLxg9N/GCaLVyg4J991iZwlxaB6xRR4MtPnQ7Azb5rvqBhUTy4QK2wQr?=
- =?us-ascii?Q?d8DOvsZAXYS9ab6bZLa+Uc1+6IUASP1JXSP8Qr73cEhakXTOV0T1508nMS3v?=
- =?us-ascii?Q?RufpacCfKRTlhpD3CNo5QuPqcDD/K15geRuEUJjHaCOKiPJbUFNSIpDEfRlM?=
- =?us-ascii?Q?CQp9S4gFBFrsNFIPji8YqvN4/ntoQ/O2wYkWZ7TsqL14Z1yMgDUju8QQ0G29?=
- =?us-ascii?Q?AaER0JV+lpYLQvglJGQbVmj7roWZpzuoKKDikPt9kZl0oKxlH+/VdjIcfjs9?=
- =?us-ascii?Q?yDvgq5ohoy+mMY1ggbDjBovDCiQj9DR3ha2O8Qn9Sce/O4qi9nl8BF5mMt6s?=
- =?us-ascii?Q?fH9la87c7OZnkFzQPeCtf4rE+Tb8ie6UynCAdZG4FcxgDxdbFvwMfzweBULA?=
- =?us-ascii?Q?MQae+uEYwT9RnoifxJQwk8TCI5L1pZHDm6ohwIDpRGw69ABOe14KNRfDHVhY?=
- =?us-ascii?Q?ksrN9ddEqo2pApYv+wlRvpqGJh6fqMHfXPHgEDL2EK03x9ohGzevi4fqgUZB?=
- =?us-ascii?Q?nhZjDYmLOjV7Zcxb8Wd8Y304W7E5N2bu27zWjlrHUN2RBaziW+NFIcDOy/5H?=
- =?us-ascii?Q?ZmiR/k7xOkEULzRYdM8=3D?=
+	=?us-ascii?Q?8nLOBIRwZHVGyzrGdZgqV1YdqquDDgC6jGjJbm1e75gfh5TXgQP3bhndHAQP?=
+ =?us-ascii?Q?vX9TDz7xTACjEbd2peBTfBs0l+ZymkBOL8bdPnwFFhB0dn5qWi1+XnB8+31V?=
+ =?us-ascii?Q?kJtHDq66x17wXobIz+bEMxDdnr7di6GUu/BGoYtoQkY8BDXkeir7leSDUfcp?=
+ =?us-ascii?Q?PoxMVVAYwoavXIGDsOWNz/lNLsCOVlUujCruQWROEGZ26cpLRgNZQ3UHniEZ?=
+ =?us-ascii?Q?D3Xxod0z8RbquqEuSTqwM+O5v8KWvcfsaRzmSAtvNs1q5PvEKKhszP/VbJ1j?=
+ =?us-ascii?Q?WqhKbfYz/j06bZf+LhU2DFIX+6DzuKqqu5wwzUiTS/IIfMeowdES5VKD1xWn?=
+ =?us-ascii?Q?QTgwH7mQa/PWVWcmem0iezXc+eXY2FF+a31elPlg6X6CemZlh/xFi0WqLP1y?=
+ =?us-ascii?Q?zn6IqHRcuja8Nco/Q4hSuv9/UGn7AwKptiJ7awK2U8vnZtdzQY1dFFnrBd5H?=
+ =?us-ascii?Q?bYyDglspOneH6vLiXEmr8zuX7o2SGDZJQ4AxgtBRTTIhmhgb8c2o6TsHWccH?=
+ =?us-ascii?Q?1S0LXT2AbzlybeCaYPesyUdXjrr7dkcgApt7+ZXU586GKukgGFSm4bMQpIVr?=
+ =?us-ascii?Q?dzT+8ccaZ4JTZpj8lkB/BqnlDq5oAN9jDlCr+geEP/Zvy67Id8UGVUzam55e?=
+ =?us-ascii?Q?6ZoGBT/4p34tQuGvA/2SiWg/q+WZXMJLE7rw9dVRBKtNCMq3Hv4/ryUoOoI3?=
+ =?us-ascii?Q?QVQKesc1xoCCeoSCToeMapQIg21oUE9R1QpRVeyCeW/ndxuEvo3y66b3MDMr?=
+ =?us-ascii?Q?fpRTLwvuKxYjQ+lHMjlpRUadg2VQpdqd8HZikWbCowZ/3viAbpnuHNwTNTzv?=
+ =?us-ascii?Q?pVt2oucLYpXYKED4UGtZZvVAuDVp+/bXMJaErHUxLtYs8d+HZCytZUJjCLxq?=
+ =?us-ascii?Q?ps7ay0VtLBzDRJ8PIsCvcOIDvMZlWBYsWNmMuGJ0ySGGANJnuxvT7s5B7wg3?=
+ =?us-ascii?Q?LtL8INQjiPgXicxcHS1UXsZlAR9Pv/ZpIP5GmdcxqF3rA5IiIzLbQ8xZSMkU?=
+ =?us-ascii?Q?mqqD0DWu5qsKQIGS7Z6b6lYSwKiGrpj1RO84A1cwS0HmBnCA0AKaaSoSM6IB?=
+ =?us-ascii?Q?AhNYZre5X6GWV6+waHU4tpliHhnazFwhUxvQClxA49g7e409nAtT1L9nzwlW?=
+ =?us-ascii?Q?yi/QZkqtdPDXzyL3MzKFzN8qhqRu7vSi7EJko5LjBYku3tJuFvBos+ImYAKQ?=
+ =?us-ascii?Q?NzjSXuOmnjGmuQ70tK+9YP+S5zsvsaTdwV1fEcOy10DbGxHzQQ/OK2RJ9OHX?=
+ =?us-ascii?Q?af+ElkoWOo7qODI23g0pFhd0qAgPNnlyTLYnscITJkOaxh30hBRNjOYYORsH?=
+ =?us-ascii?Q?Ahcx+BI77BuJbAC9pezBn5CEN4sMsMkK58mv7H8FHQmdj4YVXtkTa+gNA2rL?=
+ =?us-ascii?Q?Pvw8dp56cvnjuSJECQhCKG3HnmJx8/JgyJdtfcLRVNRlKdwTwXyD/VaRmZD1?=
+ =?us-ascii?Q?FLyqj1e+80RRwpAGBXVEx3TzDymZxwLaJ/iLrrigAobYWZzieHCkbKQecLGX?=
+ =?us-ascii?Q?7DOTUNvBxeYkEhVzUumDCTRL67ZvCRwhFAldLtlBCAevWuQNxgETefaZrnQ+?=
+ =?us-ascii?Q?pk1qHQPhxoXT7JcJsDY=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2025 22:50:23.1217
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2025 22:50:20.7783
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7804396c-6962-4045-e252-08de23070797
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7251b10c-20a8-474a-babc-08de2307062f
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	MN1PEPF0000F0E1.namprd04.prod.outlook.com
+	DS1PEPF00017098.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF751CD7230
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR10MB5075
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 13 Nov 2025 22:50:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16762
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16758
 
-Create two new variables to group packages that depends on "opengl" and
-"opencl".  Then add a DISTRO_FEATURE check to include the new variables.
+Create new variables to group packages that depends on "opengl".  Then
+add a DISTRO_FEATURE check to include the new variables.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- .../recipes-core/packagegroups/ti-test.bb          | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ ...packagegroup-arago-tisdk-graphics-sdk-target.bb | 14 +++++++++++---
+ .../packagegroup-arago-tisdk-graphics.bb           |  8 ++++++--
+ 2 files changed, 17 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-index c73f42f9..960e3c18 100644
---- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-@@ -67,14 +67,22 @@ TI_TEST_BASE:append:ti-soc = " \
-     mtd-utils-ubifs-tests \
- "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+index 4e792845..c0ab3a28 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+@@ -6,18 +6,26 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-+TI_TEST_EXTRAS_OPENGL = " \
-+    piglit \
-+    offscreendemo \
+ inherit packagegroup
+ 
+-RDEPENDS:${PN} = "\
++OPENGL_DEV = "\
+     libegl-dev \
+     libgl-dev \
+     libgles1-dev \
+     libgles2-dev \
+     libgles3-dev \
+-    libdrm-dev \
 +"
 +
-+TI_TEST_EXTRAS_OPENCL = " \
-+    opencl-cts \
++WAYLAND_DEV = "\
+     wayland-dev \
+     weston-dev \
+-    ${@bb.utils.contains('MACHINE_FEATURES', 'gc320', 'ti-gc320-libs-dev', '', d)} \
 +"
 +
- TI_TEST_EXTRAS = " \
-     python3-pillow \
-     pytesseract \
--    piglit \
-     python3-numpy \
-     wayland-utils \
--    offscreendemo \
--    opencl-cts \
-+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', '${TI_TEST_EXTRAS_OPENGL}', '', d)} \
-+    ${@bb.utils.contains('DISTRO_FEATURES', 'opencl', '${TI_TEST_EXTRAS_OPENCL}', '', d)} \
++RDEPENDS:${PN} = "\
++    libdrm-dev \
+     libsdl2-dev \
+     ktx-software-dev \
+     nlohmann-json-dev \
+     stb-dev \
++    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', '${OPENGL_DEV}', '', d)} \
++    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', '${WAYLAND_DEV}', '', d)} \
++    ${@bb.utils.contains('MACHINE_FEATURES', 'gc320', 'ti-gc320-libs-dev', '', d)} \
+ "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index fc1a5be3..deb3bb71 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -11,10 +11,14 @@ GFX_WAYLAND = "\
+     weston-examples \
  "
  
- TI_TEST_EXTRAS:append:ti-soc = " libsdl2-tests"
+-RDEPENDS:${PN} = "\
++OPENGL_PKGS = "\
+     libegl \
+     glmark2 \
+     kmscube \
+-    ${@bb.utils.contains('MACHINE_FEATURES', 'gc320', 'ti-gc320-tests', '', d)} \
++"
++
++RDEPENDS:${PN} = "\
++    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', "${OPENGL_PKGS}", '', d)} \
+     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', "${GFX_WAYLAND}", '', d)} \
++    ${@bb.utils.contains('MACHINE_FEATURES', 'gc320', 'ti-gc320-tests', '', d)} \
+ "
 -- 
 2.17.1
 
