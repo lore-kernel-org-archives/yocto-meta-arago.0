@@ -1,225 +1,218 @@
-Return-Path: <rs@ti.com>
+Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 22400CF58E3
-	for <webhook@archiver.kernel.org>; Wed, 19 Nov 2025 20:20:21 +0000 (UTC)
-Received: from BL0PR03CU003.outbound.protection.outlook.com (BL0PR03CU003.outbound.protection.outlook.com [52.101.53.4])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.16737.1763583605065240430
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A27FCF58F0
+	for <webhook@archiver.kernel.org>; Wed, 19 Nov 2025 20:42:51 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (SN4PR0501CU005.outbound.protection.outlook.com [40.93.194.51])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.17219.1763584966373188251
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 19 Nov 2025 12:20:15 -0800
+ Wed, 19 Nov 2025 12:42:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=psox8DHN;
- spf=temperror, err=temporary DNS error (domain: ti.com, ip: 52.101.53.4, mailfrom: rs@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=AtiZo4+h;
+ spf=pass (domain: list.ti.com, ip: 40.93.194.51, mailfrom: prc@list.ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cgqEK43di0U9nyLWhD1YpDaAtbuZjv7REwi41bjzAzYfbxqupFaZC/YYQdgGLbIRmfutiquC10fX31RY/q2/U8xs0Gkae0a0kk0TcKlt4pknNqJMeKRjUXLhewZ6JITovw6lNy45rsDf7ThKxPfS8aNQta9M9ByjnHdSNTnPzFQvE7nXk1MQaZ4Osur/pAz1hGyyPfXcFARueV/a0yOE4UL9ufb3BpB4sT3yqhxtPNLolsVUMrlFn+mYILeuW8KNwuZatwczFbQV0C2a28O4WFTkMxKI1/yL80/bW6QyqcDgcLkr43LVDFMV4xvxOALswTO/DmV+2lko6dwINO7nGg==
+ b=ytN12h+YrCG5qM0UMKNlWVZW/rN8kZzfU2qsmrf+dAm0VRup+BTuQL7McOXvMA3RlWAzGrCzNlHoupaYTOnf4oreJzWZjD/qI2KXkonlnBuD7VSNphRXIsu9xk+TjGc2VZNC5dnjvXKTnqpVqvPezMvK60JmJxV0z4+yivZ42lR9t/3kQ9vR80j7lyfSDkGLx1qlcL1+y94ST7bHKnWSRgjR7cOLDOEYPpsuVYx7JbCNlGtRCEAj17yHmDJqj7D4iuNLwfYlmXUMiy0sTWJ00q9k0/KskyODyGlsE7ejto5bcv/fOZ4E/nQsMHQzbfjRfR6y5PyLfHEherShb5cUXw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U1m2WZIO96RcdVCXtV3QPm957QtRXFcy+4jfvoceunM=;
- b=WYGx8IXUXmN67On97S9JLkfYTHHW0aY2pQcb9ZRsX5b87kZcJ511eCg09uLFmyKKOPp3CcqjjsAHbAncr0/xapeTloT3Vo9tlju44b5VR7QtqGhNo8iGoHDpBNUoE9b+jJvcNC6KOySqKWriK7vr5VOUiNT8csXos8/PJjNt+ue2VSZOdJd+0GDJlU3erJpVuyfnaKlyaAPMV5kLJq3t6+dWGKjnW4FI0kzj4P47ugwdna7ccweWbx1UwV3lODIAUlwSwPTkonN67hHDzDcJBivQuN8G+9wDbyTdHQw5FBY2SMrRL6gh38tUCOn/G7A4GrS1tgjEUOtHs9IdJLnm/w==
+ bh=wc5fKq2f5hMcpJTyonB6bdKJYTBeGhyErsFI0VH6F64=;
+ b=pSEYqnAhAWXn5LXlRM0zd04Tadq7ON4yTGaUERT3eX7WkqgtdNwdqF0nSJwWl8BzaVrQIeXBlvBZxduRqnxe9zhHXLM8vxHTrb1tpsgbxb3LOZYYYfVgbafMOz4rKGFVkvtjLW6XRLsmSLdReBYgshPLsN41Pwgui7t7FqtaMhodpLwgcprsiaT25K+n9rvz/pQx9G2EA9RHe/RE5/yradcGJFluqneOeyYRRVoy275AwpF3m5nobSugdMQFnBCMcVvtqqgM1K/2yBYI0/SZRXoCfxd10YYyaXxrRcfqyC0YtIJnPRvQZ3s6fV4DzRMbFyZDcpGDHVn+/3jF8tzrgg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
+ action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U1m2WZIO96RcdVCXtV3QPm957QtRXFcy+4jfvoceunM=;
- b=psox8DHNdXYqxLZUGbIp20K6Ii++xqya8JWkmmkd11UJO5HKm6MR/IJ0LNWk8aYFgTkN85PDv8sMx/LSikb6AA68kUKBZQk6WYquKzihqYZ5MYSyhhaR+oy9Qi+9EXHsVW6c6hiqhlxQOWjavgXYCkazSe69zYfRMVmJKG06HV8=
-Received: from PH0PR07CA0045.namprd07.prod.outlook.com (2603:10b6:510:e::20)
- by MN2PR10MB4125.namprd10.prod.outlook.com (2603:10b6:208:1df::18) with
+ bh=wc5fKq2f5hMcpJTyonB6bdKJYTBeGhyErsFI0VH6F64=;
+ b=AtiZo4+h8eXqEpp+xC5x8U5DSEG5Ph6xuW+7CVk4nAgRiM/Bfi3x9iIfzDn6mW6PPTQRMExTypk0SXiOnQW1qLGKL0K0wVvwb8vq3axA0ijwYNGuI3h+Swv+HIEyaT4bndYr04PkEZgYUAFhZp+OH6neYu4do+BhVaivn9axD3LvxXZqJSj/wUy+T63ba/xRzDENSdF3C6O0LFvAu9+SX4SiD93n2WUBP3/7XyF3JR31XQfU6n6HdA+EuJM6e5o4xFopXhJi1PahOKYCEhYQh+LWnCnzHpuNRr0s6jpM1Rev+fy04Aek5LzV7hcMoHyLkfJcsoYfi2s7ige4GtMZaw==
+Received: from CY5P221CA0138.NAMP221.PROD.OUTLOOK.COM (2603:10b6:930:1f::29)
+ by SN7PR10MB7032.namprd10.prod.outlook.com (2603:10b6:806:345::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.10; Wed, 19 Nov
- 2025 20:20:02 +0000
-Received: from SA2PEPF000015CC.namprd03.prod.outlook.com
- (2603:10b6:510:e:cafe::2b) by PH0PR07CA0045.outlook.office365.com
- (2603:10b6:510:e::20) with Microsoft SMTP Server (version=TLS1_3,
+ 2025 20:42:43 +0000
+Received: from CY4PEPF0000E9DA.namprd05.prod.outlook.com
+ (2603:10b6:930:1f:cafe::7a) by CY5P221CA0138.outlook.office365.com
+ (2603:10b6:930:1f::29) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9343.10 via Frontend Transport; Wed,
- 19 Nov 2025 20:20:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- SA2PEPF000015CC.mail.protection.outlook.com (10.167.241.202) with Microsoft
+ 19 Nov 2025 20:42:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=list.ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=list.ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ CY4PEPF0000E9DA.mail.protection.outlook.com (10.167.241.73) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9343.9 via Frontend Transport; Wed, 19 Nov 2025 20:20:00 +0000
-Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9343.9 via Frontend Transport; Wed, 19 Nov 2025 20:42:42 +0000
+Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
- 2025 14:19:59 -0600
-Received: from DFLE209.ent.ti.com (10.64.6.67) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 14:42:39 -0600
+Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 19 Nov
- 2025 14:19:59 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 14:42:39 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE202.ent.ti.com
+ (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 19 Nov 2025 14:19:59 -0600
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AJKJxgQ2473861;
-	Wed, 19 Nov 2025 14:19:59 -0600
-From: <rs@ti.com>
-To: <reatmon@ti.com>, <denis@denix.org>
-CC: <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH] udev-aragoconf: remove legacy usb rules
-Date: Wed, 19 Nov 2025 14:08:37 -0600
-Message-ID: <20251119200836.362773-2-rs@ti.com>
-X-Mailer: git-send-email 2.51.1
+ Transport; Wed, 19 Nov 2025 14:42:39 -0600
+Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5AJKgdIG2499546;
+	Wed, 19 Nov 2025 14:42:39 -0600
+Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
+	id 4E8679ACF4; Wed, 19 Nov 2025 14:42:39 -0600 (CST)
+From: PRC Automation <prc@list.ti.com>
+To: Randolph Sapp <rs@ti.com>
+CC: <reatmon@ti.com>, <denis@denix.org>, <meta-arago@lists.yoctoproject.org>
+Subject: Re: [meta-arago][master][PATCH] udev-aragoconf: remove legacy usb rules
+Date: Wed, 19 Nov 2025 14:42:39 -0600
+Message-ID: <20251119204239.2463768-1-prc@list.ti.com>
+X-Mailer: git-send-email 2.43.5
+In-Reply-To: <20251119200836.362773-2-rs@ti.com>
+References: <20251119200836.362773-2-rs@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015CC:EE_|MN2PR10MB4125:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8f70a8b0-d62f-4f05-a599-08de27a903dd
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9DA:EE_|SN7PR10MB7032:EE_
+X-MS-Office365-Filtering-Correlation-Id: d3035207-ce82-4368-8f74-08de27ac2ff4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
+	BCL:0;ARA:13230040|82310400026|376014|36860700013|61400799027;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?5yM8PEAIF2YBBDDqVUm3fQM1IfQ3I/iqFU3XBlGstyEmHc8v+TfUChfnAoLo?=
- =?us-ascii?Q?CnBs0nUGVNl0t8LGk5jQhyekLzCKHISrC+cMWMqLTg+yJ5ZLnNlDjgV4g7Im?=
- =?us-ascii?Q?XATndMwertBWZ+N5xtFkVObxj/Vj7yG8PFxh7uhWCcQCs6VIQuLCz2zVRG2P?=
- =?us-ascii?Q?E9BAf00HD3KUQZu92Ux5qsp7h1FWKGbClChcRpmckV0L2Rbhtjg6KZLXbSdQ?=
- =?us-ascii?Q?q8MtXxiM5qTZBupzRdLFF5QHT3N7GCyLuNSd6dgCDUtfsjLxmJqH+cfuODvw?=
- =?us-ascii?Q?9ZHQKXThpZ70eWuJsLcpsBBvb8IYvwRxqj01DxO/tVIceD0BhvX8PMgEP9G1?=
- =?us-ascii?Q?2nnUOK2FQpmMsOAIJM7TjpgCaJcvLnbR5U4s1FX7/ynA0minnViA8bVC/ZOp?=
- =?us-ascii?Q?M3KL1zddBx6kAlktvL32ax1gu5nyPnoEZYcc6RSzY9AXP2cZ49eu4vYLr8X8?=
- =?us-ascii?Q?MgIveB2egtjoYoNcA8+ShSJNrt/18awyj57TAg4YB6CF2VUe81DABAjI0Z4S?=
- =?us-ascii?Q?tyu8sW+makbyFJBY4IOpj3q8M2HeObwxHkJuhnUne6CWeVpP7flX8WoHAF6V?=
- =?us-ascii?Q?ej3+F+vXZTLoEbR+IN5YvVK+XPzXqvoj91AJo7pEQHq/Y3MqgFbrk8ruRgQr?=
- =?us-ascii?Q?A1HaiUeqKzpYt+gTVfpIKsdBj6IhjpIPDDH/1mXF8SUyXaLoomLZR3dQdyLs?=
- =?us-ascii?Q?nLnLbbDTbdB7xwx0rxIFkk/arolAmVBkrNLzc51ofkp20wDTNypyRngzaASx?=
- =?us-ascii?Q?+TiaZp2l68hNHBMEHGya5E6TMBxEc9Z+a60xeDin0sMI7TlLswy/YgldbHez?=
- =?us-ascii?Q?Fg4Eaui56QpZ1APuS6NzJMMJxis2b7+xW5/PdaHHfMfpp8bfOiDw5VdyghJp?=
- =?us-ascii?Q?CgtwoGIZBRKS2W5W+U/FHw9r/S43AytJ4ljAXmALS/MnyygR+O9Wj4NMtnCj?=
- =?us-ascii?Q?jqeSbt658CaRyA1evJi3y0oiDnKWU7Tq5T2QHv4RDu9flcySohHRtl9p4O25?=
- =?us-ascii?Q?n7HYUVrrdZ+kpW5wgsAoorbzKKmzWQwlHXQ/TFAuLRAEaXnwc1rjB5PfTwn0?=
- =?us-ascii?Q?SoyJafp4r2O/jFWzyPZfXbkonckcOrMl9fxqxpcfVykMOxb5/ZwLDF7u1lD8?=
- =?us-ascii?Q?24wcjD/SSLi7HGaAufhyV/M0kIo5+7b8p3XEwtEzjDfWFxh1av44XFCq+6m3?=
- =?us-ascii?Q?GOzLT8DRLxK0HrTLf29fPL54Pe2P7xn7/238UdiMHhP25m0dmg0QkZfqxoGZ?=
- =?us-ascii?Q?Tui1HbjpFiz97vO+Wt9yIucdfrdtaycndFqT1q1N0U8mgU1PlFH8NIgfzTlX?=
- =?us-ascii?Q?9DwqcRRt6nn/MRNu3O1viAAzeesOqNCHXZF5MhuMMwaR5bQSBoS7gtdeq0vZ?=
- =?us-ascii?Q?Jz8ADC3R7QnGr09u689sOnHZCvJ//pQyDEN34S7jMjHiNqBF5e6uMFYr8rZe?=
- =?us-ascii?Q?tsKhGDtnqI2XX98lFBmg2DO+h7lB5jmTAD0XIULESpjEoHu8gJdtQXV3K+a1?=
- =?us-ascii?Q?wgwG5mRyArtz0s+pDw+/XU/nIOCAfv6ljUPv05ahgKkP2L6un7R6guzFwwyg?=
- =?us-ascii?Q?qqO6/Gy5pwQnyjdIlrk=3D?=
+	=?us-ascii?Q?q1ksdqXTUdNFuwNapE4dOTAwDr7ZUuDjeyAp7UXg0GdW9HMRheWF6/x3y1jU?=
+ =?us-ascii?Q?izToberDPAqpzcFLUU21WdWh9fu5uoDAsOpcemp4ytVMjTLpgXAjEPFo76fR?=
+ =?us-ascii?Q?RWoYH9v/WTeKdRJuB2fPCQ8+hx+6WnJz5Pf8xiAPmSVhcqY/Xs3Cy1hM1vYD?=
+ =?us-ascii?Q?0Zij+wU9lit8aeeqyFID6uVOH3gKNOIm9kvqBzWuFdViv8v4IVv1UgtZac7a?=
+ =?us-ascii?Q?CWrT6xmtaPdWlqXsnRg4R9TVAqChEPKqCocjbGI7blKHP9nI+RXZDg6skZp8?=
+ =?us-ascii?Q?A4lb8mUyDZM97o5HcQ1Bozlypo17BUYNByGL5stm+9D0bWvtwLFFZcSvHL5J?=
+ =?us-ascii?Q?10iTHbPIkX4ntDgRDHgf2sRCdgrjvCnvslraJKhUYxOIMSgm+U5xDhvTaihW?=
+ =?us-ascii?Q?ZKqIr/vVLVZqfrvIU8rZiqMqef1sl1B1tGTTCAVzyuaUZBELfyQVQElfF8XN?=
+ =?us-ascii?Q?DBWzo9I3cicadyQfgvjC9AIXdy1Tdcvb2yXeWryiyVxc2rh6U0eGBkVBC41h?=
+ =?us-ascii?Q?BTd6LFBoICgpIycUaSuuttwbGKWUwSIEazuQ+7CUogP61xPYziXHLrUn2uCM?=
+ =?us-ascii?Q?U8dVuzr+vLRmhpYfVIuQ4up3FQh+B8Av4TjEkqlHa5yNFVOKJBdo2qPcO9V1?=
+ =?us-ascii?Q?E2q994hNP7fs05cwyMJTlJerzG9LDkHW3lGrDmh5GJO0PHnlyCwna/s8xdVT?=
+ =?us-ascii?Q?rUu6KRYO5p9BdZZUvwgsg4GlwHd9x3B6fTXScKD9llPRGd5qienZowC8C8rr?=
+ =?us-ascii?Q?sIkCuzjseb7eXx605hXOuzvYqQT71uD3immlVvfoS0zlyqoZp4/8mhf8/6NL?=
+ =?us-ascii?Q?XpTDdIJEP5XStPXSTtnmPtpxNu9Ha6yY4hxNrh8EI7DzzVBdInKLD0vB7ZEp?=
+ =?us-ascii?Q?he5U5NNNXxTk9Sn77FHcG8pK4g0nUKXpfB+DQx//GRYEyXKIeGOq5oFEbiBL?=
+ =?us-ascii?Q?hvijyNgM84RbAoPieIH0HaqQIWygC58O3vhnuGKloqDkHFEWcnkA8Od4aYAt?=
+ =?us-ascii?Q?lExTpOCRjmfYVJIMWuF7E6zKBDTyHTWJ4tNebGq9mL5Hg7Q2A6fbfj0HfKFn?=
+ =?us-ascii?Q?9ZSCrcMUgzG79/UsizcA3AlVrGZqmIR+vMdBjQRNFItz21OHHOkcQ5+MB6+7?=
+ =?us-ascii?Q?VeVISvKI4GU/BAN2rST6YjqgHPD3HJVGoH9DwGljS1bjka8wEnccMQNGS1JL?=
+ =?us-ascii?Q?0rLw/79r7pOH0KdT72N4m1JKfg6B5ybEeyTPWiPCEWOthjfAyrMosgaITIcn?=
+ =?us-ascii?Q?eoy3zwK6OChxccszrbdCxBZL1KwzJcTYRxPEZkA2hRUJ6PyNhM6ifYOjjvJx?=
+ =?us-ascii?Q?ufLG8lPk0JUJ9QOSFw2xsIK1n4TkUYVc7dUHXtHVIKHPvIIai9gE9FJKGHbD?=
+ =?us-ascii?Q?p2EuyRgrgk1pJvNU4NdXNTIypNvv1q2hgSZSloEHa40SGQqbARi0dEwC6yMk?=
+ =?us-ascii?Q?VTGscEG4LB3W6k2/RPajeO7r2bTKT1XtvgovhaXfka4l+sjdC1pay2p9Fj5t?=
+ =?us-ascii?Q?+39eSHDiy/IBaUyW9PkT5AZScODLgdRrhJBZ+PYpsTxQ/P6v/51ieAIkdjHs?=
+ =?us-ascii?Q?qU3/GV8yZ6RWD65Oxn4=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 20:20:00.0770
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(61400799027);DIR:OUT;SFP:1101;
+X-OriginatorOrg: list.ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2025 20:42:42.4701
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f70a8b0-d62f-4f05-a599-08de27a903dd
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3035207-ce82-4368-8f74-08de27ac2ff4
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	SA2PEPF000015CC.namprd03.prod.outlook.com
+	CY4PEPF0000E9DA.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR10MB4125
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR10MB7032
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 19 Nov 2025 20:20:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16802
+ <meta-arago@lists.yoctoproject.org>; Wed, 19 Nov 2025 20:42:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16803
 
+meta-arago / na / 20251119200836.362773-2-rs
+
+PRC Results: PASS
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-patches: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+Patches
+----------------------------------------
+WARN - [meta-arago][master][PATCH] udev-aragoconf: remove legacy usb rules
+    WARN: Commit message should not include directory path to recipe: udev-=
+aragoconf: remove legacy usb rules.
+              udev-aragoconf: (COMMIT-MESSAGE-3)
+        patch
+   =20
+    For details on the above errors/warnings visit: https://lists.yoctoproj=
+ect.org/g/meta-ti/wiki/40887
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  apply-yocto-patch: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Summary:
+- Patch Series: [meta-arago][master][PATCH] udev-aragoconf: remove legacy u=
+sb rules
+- Submitter: From: <rs@ti.com>
 From: Randolph Sapp <rs@ti.com>
+- Date: Date: Wed, 19 Nov 2025 14:08:37 -0600
+- Num Patches: 1
+- Mailing List (public inbox) Commit SHA: d8faeeff0c68ec6c93fc13f450ce1f07c=
+8169990
 
-These rules do not match the current structure of the USB DEVPATH and
-are not actually fired.
+Applied to:
+- Repository: lcpd-prc-meta-arago
+- Base Branch: master-wip
+- Commit Author: sadik <s-sadik@ti.com>
+- Commit Subject: coremark: add Coremark CPU benchmark
+- Commit SHA: 174dd3e5fc6920bfcf7ce267ff359ad2c302e469
 
-They were initially cited as being help scripts, but I think users
-should attempt to gracefully bring down the gadget interface on their
-own instead of relying on a script that will attempt to reload it post
-mode change.
+Patches
+----------------------------------------
+All patches applied
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
 
-Master version of: https://lists.yoctoproject.org/g/meta-arago/message/1678=
-8
 
- .../recipes-core/udev/udev-aragoconf/50-arago.rules         | 2 --
- .../recipes-core/udev/udev-aragoconf/usb1-rules.sh          | 3 ---
- .../recipes-core/udev/udev-aragoconf/usb2-rules.sh          | 3 ---
- meta-arago-distro/recipes-core/udev/udev-aragoconf_1.bb     | 6 ------
- 4 files changed, 14 deletions(-)
- delete mode 100755 meta-arago-distro/recipes-core/udev/udev-aragoconf/usb1=
--rules.sh
- delete mode 100755 meta-arago-distro/recipes-core/udev/udev-aragoconf/usb2=
--rules.sh
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-repo: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PASS
 
-diff --git a/meta-arago-distro/recipes-core/udev/udev-aragoconf/50-arago.ru=
-les b/meta-arago-distro/recipes-core/udev/udev-aragoconf/50-arago.rules
-index 4829ca14..3ff14eb0 100644
---- a/meta-arago-distro/recipes-core/udev/udev-aragoconf/50-arago.rules
-+++ b/meta-arago-distro/recipes-core/udev/udev-aragoconf/50-arago.rules
-@@ -22,5 +22,3 @@ SUBSYSTEM=3D=3D"input", KERNEL=3D=3D"event[0-9]*", ENV{ID=
-_INPUT_TOUCHSCREEN}=3D=3D"1", SYMLI
- # Auto-mount any SD cards
- ACTION=3D=3D"add", KERNEL=3D=3D"mmcblk[0-9]p[0-9]", SUBSYSTEM=3D=3D"block"=
-, RUN+=3D"/etc/udev/scripts/mount.sh"
- ACTION=3D=3D"remove", KERNEL=3D=3D"mmcblk[0-9]p[0-9]", SUBSYSTEM=3D=3D"blo=
-ck", RUN+=3D"/etc/udev/scripts/mount.sh"
--ACTION=3D=3D"add", DEVPATH=3D=3D"/devices/44000000\.ocp/48880000\.omap_dwc=
-3_1/48890000\.usb/udc*", RUN+=3D"/etc/udev/scripts/usb1-rules.sh"
--ACTION=3D=3D"add", DEVPATH=3D=3D"/devices/44000000\.ocp/488c0000\.omap_dwc=
-3_2/488d0000\.usb/udc*", RUN+=3D"/etc/udev/scripts/usb2-rules.sh"
-diff --git a/meta-arago-distro/recipes-core/udev/udev-aragoconf/usb1-rules.=
-sh b/meta-arago-distro/recipes-core/udev/udev-aragoconf/usb1-rules.sh
-deleted file mode 100755
-index 51dfd71a..00000000
---- a/meta-arago-distro/recipes-core/udev/udev-aragoconf/usb1-rules.sh
-+++ /dev/null
-@@ -1,3 +0,0 @@
--#!bin/sh
--/sbin/modprobe g_ncm -r
--/sbin/modprobe g_ncm
-diff --git a/meta-arago-distro/recipes-core/udev/udev-aragoconf/usb2-rules.=
-sh b/meta-arago-distro/recipes-core/udev/udev-aragoconf/usb2-rules.sh
-deleted file mode 100755
-index f00565e4..00000000
---- a/meta-arago-distro/recipes-core/udev/udev-aragoconf/usb2-rules.sh
-+++ /dev/null
-@@ -1,3 +0,0 @@
--#!bin/sh
--/sbin/modprobe g_zero -r
--/sbin/modprobe g_zero
-diff --git a/meta-arago-distro/recipes-core/udev/udev-aragoconf_1.bb b/meta=
--arago-distro/recipes-core/udev/udev-aragoconf_1.bb
-index e96e9d3e..e23688b1 100644
---- a/meta-arago-distro/recipes-core/udev/udev-aragoconf_1.bb
-+++ b/meta-arago-distro/recipes-core/udev/udev-aragoconf_1.bb
-@@ -5,8 +5,6 @@ LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;m=
-d5=3D3da9cfbcb788c80a0384
- inherit bin_package
-=20
- SRC_URI =3D " \
--    file://usb1-rules.sh \
--    file://usb2-rules.sh \
-     file://50-arago.rules \
-     file://37-can-j7.rules \
-     file://37-can-am62.rules \
-@@ -17,10 +15,6 @@ SRC_URI =3D " \
- S =3D "${UNPACKDIR}"
-=20
- do_install() {
--    install -d ${D}${sysconfdir}/udev/scripts
--    install -m 0755 ${UNPACKDIR}/usb1-rules.sh ${D}${sysconfdir}/udev/scri=
-pts/usb1-rules.sh
--    install -m 0755 ${UNPACKDIR}/usb2-rules.sh ${D}${sysconfdir}/udev/scri=
-pts/usb2-rules.sh
--
-     install -d ${D}${libdir}/udev/rules.d
-     install -m 0644 ${UNPACKDIR}/50-arago.rules ${D}${libdir}/udev/rules.d=
-/
-     install -m 0644 ${UNPACKDIR}/37-can-j7.rules ${D}${libdir}/udev/rules.=
-d/
---=20
-2.51.1
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  yocto-check-layers: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master - PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+All checks passed
+
+
 
 
