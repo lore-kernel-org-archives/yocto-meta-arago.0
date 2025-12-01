@@ -1,186 +1,216 @@
-Return-Path: <denis@denix.org>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB591D10371
-	for <webhook@archiver.kernel.org>; Wed, 26 Nov 2025 01:08:01 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.2683.1764119275277113277
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C542D116F3
+	for <webhook@archiver.kernel.org>; Mon,  1 Dec 2025 18:41:06 +0000 (UTC)
+Received: from SA9PR02CU001.outbound.protection.outlook.com (SA9PR02CU001.outbound.protection.outlook.com [40.93.196.16])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.104.1764614462720195569
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 25 Nov 2025 17:07:56 -0800
+ Mon, 01 Dec 2025 10:41:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3231E40C2E;
-	Wed, 26 Nov 2025 01:07:54 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id U9yf5NJZYi1W; Wed, 26 Nov 2025 01:07:54 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E640B40AC9;
-	Wed, 26 Nov 2025 01:07:50 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 440AC175B0C; Tue, 25 Nov 2025 20:07:50 -0500 (EST)
-Date: Tue, 25 Nov 2025 20:07:50 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: reatmon@ti.com
-Cc: Praneeth Bajjuri <praneeth@ti.com>,
-	Denys Dmytriyenko <denys@konsulko.com>,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][scarthgap][PATCH 09/10] libyang: Do the version
- bump in a yocto-check-layer compliant manner
-Message-ID: <20251126010750.GD11121@denix.org>
-References: <20251113225017.22994-1-reatmon@ti.com>
- <20251113225017.22994-9-reatmon@ti.com>
- <187B637C71326FC4.199483@lists.yoctoproject.org>
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=ZxK6uOL5;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.196.16, mailfrom: reatmon@ti.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=w9N6wivFkcbc5b1t9e4N0bFRlIqCZPSBpYxyF9a/s/zFUxSz7IkJz0JpPnEo9IpIcUqP1GCFfEAHEGIQev0QQqaKIDwqTEbJa0D9duudkKJl8/+to+nQRajVyU52Kgcj7ZBdxXKxuE7amvO3xdeGYSQp7I5V4EqaP/HWtdpe1hUJ2T7/4YgcYJJng6jDB0FIXJuvodzhZqyjVe0jX6XPpKh9D69+Nskrg5G2WJaoqPRBjPz2e+XkqHZ3B1j22cwhTYG28fbngxLTUx2gYYgYbjL8RDz2CfKVaURQZq3eZqp1v1NVIkSfPWvrAXdLfbxKorTrMFWumuOsHQ0OMTQI5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BwV8714Sc/GRD/AGV2aBHOG9M48y+sIph6v75jP+xiU=;
+ b=RTVAVxFrP0UHy4fBP3/TWZiyagaUBeULycmN16cAOENzmnu4bab+9B23Zx2/9N4HS172+I/Jq0sNKYXq7rd4LZTnhDURT9Sb39W261s4mR4LDwiwyiDPc/KFhobKm33wBCsHTB33dCznvUGtjKzBd2TVkuPB2NzTxUj05JVjuwLOyhmyFRsDDvpLbCPu6Hoz8Vp54pZH0YGJpk3lh4dmYuORV+x9F6NR7+FJCVVG5bRN0Z9guu1PE5RNaiImpd9qvqVH++Th8wnlW5M0njFzi2NAm1F2uqwKcmLJ6VuCWmI/OXUsm2nl7mPmvlyaow1xDABFQu+UEKELG33WjdV9Aw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BwV8714Sc/GRD/AGV2aBHOG9M48y+sIph6v75jP+xiU=;
+ b=ZxK6uOL5NGvWFDGAhr1HO4dNvxPbfe046n5mD+djYz996Iw4chjkIfaeWJwwko6MAutnsu9RV53qR4XwIBGeZG7mhbEHpO0mN6qf3jDghtT6iZR6C6qgyQlzxA6bmmYxiOJ/c9cVQp4GSU20GINbsya1OWDirBbL3tnqTybuL3Y=
+Received: from MN2PR20CA0042.namprd20.prod.outlook.com (2603:10b6:208:235::11)
+ by SJ0PR10MB5551.namprd10.prod.outlook.com (2603:10b6:a03:3d5::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
+ 2025 18:40:59 +0000
+Received: from BL02EPF0001A0FD.namprd03.prod.outlook.com
+ (2603:10b6:208:235:cafe::8e) by MN2PR20CA0042.outlook.office365.com
+ (2603:10b6:208:235::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.17 via Frontend Transport; Mon,
+ 1 Dec 2025 18:40:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ BL02EPF0001A0FD.mail.protection.outlook.com (10.167.242.104) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9388.8 via Frontend Transport; Mon, 1 Dec 2025 18:40:58 +0000
+Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
+ 2025 12:40:56 -0600
+Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
+ 2025 12:40:55 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 1 Dec 2025 12:40:55 -0600
+Received: from grumpy (grumpy.dhcp.ti.com [128.247.81.229])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B1IetVD917838;
+	Mon, 1 Dec 2025 12:40:55 -0600
+Received: from reatmon by grumpy with local (Exim 4.97)
+	(envelope-from <reatmon@ti.com>)
+	id 1vQ8pT-00000005kt3-3YNj;
+	Mon, 01 Dec 2025 12:40:55 -0600
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
+	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master][PATCH] libdrm: Update patch for recent version bump to 2.4.128
+Date: Mon, 1 Dec 2025 12:40:55 -0600
+Message-ID: <20251201184055.1371866-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <187B637C71326FC4.199483@lists.yoctoproject.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FD:EE_|SJ0PR10MB5551:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5953dd17-67bb-409c-d9d8-08de31092b82
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: 
+	=?us-ascii?Q?qH2vrGSQXitVtx/lGQX5SmlrsYy3PqB5he/CkpBmIIeAb80wUHaDTQfFQPuv?=
+ =?us-ascii?Q?s2g0LJV3n+tPm/aed6qit5fRxdOn8+2X7Ni3F7BFJKuh+ulroTvqIT4jtke2?=
+ =?us-ascii?Q?Jd2+GQk8rDwxG6RouConlVLYJcIfPWq5emilr+qpbYk05Hk301ejosV4b13Y?=
+ =?us-ascii?Q?CiFyDxn2y9z5Hk2GutpeUAUhehuhipgmn9tvqVXQNRJBAq99J7CRC5wlbSyf?=
+ =?us-ascii?Q?O8e0Y8kJAsvN+ttGHVURFR+OyRymKw8k1okuka1z+u50xXMlmayXOH3nQIgH?=
+ =?us-ascii?Q?w/4BrvOqwFfyq9rLI2VYzc1mwElntnKnfxJl+drQ68xnWO+P5z97UQj0MAXQ?=
+ =?us-ascii?Q?VmI8XKOTJtffvTsuJTjIkRo+dX3gOVufhPQdGDVZrZG8KyQzNj56lgsvmtI1?=
+ =?us-ascii?Q?R13XPGughMFKvUrXb32vqxXEr7PpQb6E+ZCKgB5Etl4bb8IvkFiiAu3laCb1?=
+ =?us-ascii?Q?pT6kAfAni+G72mXpZfNEMv8xkaTAOsVK2rGEHsfxxwPypRvpiZcUNWtK4GDD?=
+ =?us-ascii?Q?aCdMn4q1BHoMNZEuZ9h0/Eauy0fuBZjlhQoV2yJ5I4fg130mxAOdME3GuK2J?=
+ =?us-ascii?Q?RD6euuzvifc79ijvNApjwsCn2TXjkXOKH7JM3fcmyTmToVBo71vgyttq6R1L?=
+ =?us-ascii?Q?2IuiC2QmhDZB6gGX8IcfDFHYQ0u6ajie0O5TGieCHF1xVG6fWEVMc1mxt7GR?=
+ =?us-ascii?Q?vuzCxxKM8RAh6RESXwA2Rqrhi4VNiGpoO35IsmHe2vIg7PJX0uq6cLIGjvbq?=
+ =?us-ascii?Q?vEDeI88wKzgie3Iv3MUQQDPuQCU78sLQqBgvbdbK2ZyIP2NGYfKBdMTZTzNX?=
+ =?us-ascii?Q?scGVSev8uH49rlYkZMl8Tozn7Wm2kTQTrO5WvHPaLs9li1VJmANgQgfyDDsx?=
+ =?us-ascii?Q?1eWdYkRZiuQk9pQy+OExqZW6DfAufUbjk8zjeIq47Msl5tbQeAmHAw/qwwBC?=
+ =?us-ascii?Q?s9JAwM7IjXZudC1EruOkKSM+YBnxv4mJVal8xWSEuoUrlp62elR54tQnGzIF?=
+ =?us-ascii?Q?jBM5jKKl3rWVuIO4U+9TAIis6csZcjdGanQrtmmRFCEuP+qEcpmfnMaVqdj5?=
+ =?us-ascii?Q?VwA2rfoTYUzTyNHHH0mEdw3PLsrEywLowgI/7nVMIBv+qaQwkyLIVUpG0P9N?=
+ =?us-ascii?Q?GY844Dfxtxe/1KoCQd+PyeB7Rzo0N6qXKGQ96HH/s9FIKrdGM4ywTCCJWtDB?=
+ =?us-ascii?Q?QnRKppefiT08pasxh9k3eaPww/SSRntCKMU+FlwUqwQu7CMmVlTlRbWyB0tM?=
+ =?us-ascii?Q?MiyR1GW23qIuhv36q1k9zOAgh+LLYcriNb9/pKIoTINfFEveA7aWDpm8lS+G?=
+ =?us-ascii?Q?N10HbKfsr9O8fwY3UJPnl+hCZKPHee5MEiXjo2A+d8Ikym5HAdQBDk/BLg5Y?=
+ =?us-ascii?Q?Bl6aUM3ZoFL6Q53+Cj8QR/to+nc0aPbA8EXdAaujeNaovJTpm+wirxkSANFU?=
+ =?us-ascii?Q?QLBKfwL9fQrfyLOF0lKFJdECio2SC6n75IKNEzSTsABf9ADEFaYbEISSD5X0?=
+ =?us-ascii?Q?qcy732V1B+Y2WQX38w6HyrQChOrgjyZcHjc0Mq9YHigm+8+epUjHuiyL0jXC?=
+ =?us-ascii?Q?Pzp8jnLvjmBNj82nOpY=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 18:40:58.7024
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5953dd17-67bb-409c-d9d8-08de31092b82
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	BL02EPF0001A0FD.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB5551
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 26 Nov 2025 01:08:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16840
+ <meta-arago@lists.yoctoproject.org>; Mon, 01 Dec 2025 18:41:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16842
 
-On Tue, Nov 25, 2025 at 06:24:19PM -0500, Denys Dmytriyenko wrote:
-> On Thu, Nov 13, 2025 at 04:50:16PM -0600, Ryan Eatmon via lists.yoctoproject.org wrote:
-> > Yocto Project Compatibility requires that including a layer in a build
-> > not change recipes in other layers.  In this case, we were providing a
-> > newer version of a recipe that another layer provides.
-> > 
-> > The proper way of doing this is to create a bbappend and only change the
-> > minimal things needed to perform your changes.  Additionally, to pass
-> > the yocto-check-layer the bbappend needs to be wrapped in a manner that
-> > only applies your changes in the event that you are making use of your
-> > layer.  For Arago, that means only if we are building Arago.
-> > 
-> > Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> > ---
-> >  .../sysrepo/libyang-arago.inc                 |  9 ++++
-> >  .../sysrepo/libyang_%.bbappend                |  5 +++
-> >  .../recipes-extended/sysrepo/libyang_3.7.8.bb | 45 -------------------
-> >  3 files changed, 14 insertions(+), 45 deletions(-)
-> >  create mode 100644 meta-arago-extras/recipes-extended/sysrepo/libyang-arago.inc
-> >  delete mode 100644 meta-arago-extras/recipes-extended/sysrepo/libyang_3.7.8.bb
-> > 
-> > diff --git a/meta-arago-extras/recipes-extended/sysrepo/libyang-arago.inc b/meta-arago-extras/recipes-extended/sysrepo/libyang-arago.inc
-> > new file mode 100644
-> > index 00000000..b76701a8
-> > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-extended/sysrepo/libyang-arago.inc
-> > @@ -0,0 +1,9 @@
-> > +PV = "3.7.8"
-> > +
-> > +LIC_FILES_CHKSUM = "file://LICENSE;md5=9bb3d334294e8719f41c531e28a9a697"
-> > +
-> > +SRCREV = "03e294d83b610f89e8ba7b2156a80dc0ad534443"
-> > +
-> > +do_install:append () {
-> > +    oe_multilib_header  libyang/ly_config.h
-> > +}
-> 
-> So, there's a weird problem with this change on scarthgap.
-> 
-> Since meta-oe/scarthgap provides an older 2.1.148 version of libyang, the 
-> original approach for meta-arago was to completely override the entire recipe 
-> with newer 3.7.8 version.
-> 
-> Now, for YP Compat compliance, it was converted into a .bbappend that adjusts 
-> the older version from meta-oe.
-> 
-> That older recipe in meta-oe has a multilib fix on top of standard CMake 
-> do_install() in the form of an :append
-> 
-> do_install:append () {
->     oe_multilib_header  libyang/config.h
-> }
-> 
-> But the newer libyang renamed that config.h file into ly_config.h and now you 
-> have this code in our .bbappend
-> 
-> do_install:append () {
->     oe_multilib_header  libyang/ly_config.h
-> }
-> 
-> But both :appends get applied and this results in the following error message:
-> 
-> | ERROR: libyang-3.7.8-r0 do_install: oe_multilib_header: Unable to find header libyang/config.h.
-> 
-> There's no easy way to disable or overwrite an existing :append, besides 
-> completely overriding the entire do_install() or the recipe itself...
-> 
-> But it appears this error is not fatal and does not seem to fail the build.
+oe-core recently bumped the version of libdrm to 2.4.128 [1].  One of
+our patches needed to be updated to apply cleanly.
 
-Well, it does fail the first build from scratch, but seems to work fine on 
-consecutive builds from sstate...
+[1] https://git.openembedded.org/openembedded-core/commit/?id=3Dac7327583ae=
+f83fd400190506f3147623de38b68
 
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ ...1-Add-option-to-run-a-test-indefinitely.patch | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-> > diff --git a/meta-arago-extras/recipes-extended/sysrepo/libyang_%.bbappend b/meta-arago-extras/recipes-extended/sysrepo/libyang_%.bbappend
-> > index 608377e3..60d1258e 100644
-> > --- a/meta-arago-extras/recipes-extended/sysrepo/libyang_%.bbappend
-> > +++ b/meta-arago-extras/recipes-extended/sysrepo/libyang_%.bbappend
-> > @@ -1 +1,6 @@
-> > +LIBYANG_ARAGO = ""
-> > +LIBYANG_ARAGO:arago = "libyang-arago.inc"
-> > +
-> > +require ${LIBYANG_ARAGO}
-> > +
-> >  BBCLASSEXTEND = "native nativesdk"
-> > diff --git a/meta-arago-extras/recipes-extended/sysrepo/libyang_3.7.8.bb b/meta-arago-extras/recipes-extended/sysrepo/libyang_3.7.8.bb
-> > deleted file mode 100644
-> > index 3bea9bc2..00000000
-> > --- a/meta-arago-extras/recipes-extended/sysrepo/libyang_3.7.8.bb
-> > +++ /dev/null
-> > @@ -1,45 +0,0 @@
-> > -SUMMARY = "YANG data modeling language library"
-> > -DESCRIPTION = "libyang is a YANG data modelling language parser and toolkit written (and providing API) in C."
-> > -HOMEPAGE = "https://github.com/CESNET/libyang"
-> > -SECTION = "libs"
-> > -LICENSE = "BSD-3-Clause"
-> > -
-> > -LIC_FILES_CHKSUM = "file://LICENSE;md5=9bb3d334294e8719f41c531e28a9a697"
-> > -
-> > -SRCREV = "03e294d83b610f89e8ba7b2156a80dc0ad534443"
-> > -
-> > -SRC_URI = "git://github.com/CESNET/libyang.git;branch=master;protocol=https \
-> > -           file://0001-test_context-skip-test-case-test_searchdirs.patch \
-> > -           file://run-ptest \
-> > -           "
-> > -
-> > -S = "${WORKDIR}/git"
-> > -
-> > -# Main dependencies
-> > -inherit cmake pkgconfig lib_package ptest multilib_header
-> > -DEPENDS = "libpcre2"
-> > -DEPENDS += "${@bb.utils.contains('PTEST_ENABLED', '1', 'cmocka', '', d)}"
-> > -
-> > -EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release"
-> > -EXTRA_OECMAKE += " ${@bb.utils.contains('PTEST_ENABLED', '1', '-DENABLE_TESTS=ON -DENABLE_VALGRIND_TESTS=OFF', '', d)}"
-> > -
-> > -do_compile:prepend () {
-> > -    if [ ${PTEST_ENABLED} = "1" ]; then
-> > -        sed -i -e 's|${S}|${PTEST_PATH}|g' ${B}/tests/tests_config.h
-> > -        sed -i -e 's|${B}|${PTEST_PATH}|g' ${B}/tests/tests_config.h
-> > -    fi
-> > -}
-> > -
-> > -do_install:append () {
-> > -        oe_multilib_header  libyang/ly_config.h
-> > -}
-> > -
-> > -do_install_ptest () {
-> > -    install -d ${D}${PTEST_PATH}/tests
-> > -    cp -f ${B}/tests/utest_* ${D}${PTEST_PATH}/tests/
-> > -    cp -fR ${S}/tests/modules ${D}${PTEST_PATH}/tests/
-> > -    install -d ${D}${PTEST_PATH}/tests/plugins
-> > -    cp -f ${B}/tests/plugins/plugin_*.so ${D}${PTEST_PATH}/tests/plugins/
-> > -}
-> > -
-> > -FILES:${PN} += "${datadir}/yang/*"
-> > -- 
-> > 2.17.1
+diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-=
+to-run-a-test-indefinitely.patch b/meta-arago-distro/recipes-graphics/drm/l=
+ibdrm/0001-Add-option-to-run-a-test-indefinitely.patch
+index 2abe5045..5b051361 100644
+--- a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-=
+a-test-indefinitely.patch
++++ b/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-=
+a-test-indefinitely.patch
+@@ -21,7 +21,7 @@ diff --git a/tests/modetest/modetest.c b/tests/modetest/m=
+odetest.c
+ index d9e761e..687f7a4 100644
+ --- a/tests/modetest/modetest.c
+ +++ b/tests/modetest/modetest.c
+-@@ -1887,7 +1887,7 @@ static void clear_cursors(struct device *dev)
++@@ -1888,7 +1888,7 @@ static void clear_cursors(struct device *dev)
+  		bo_destroy(dev->mode.cursor_bo);
+  }
+ =20
+@@ -30,7 +30,7 @@ index d9e761e..687f7a4 100644
+  {
+  	unsigned int other_fb_id;
+  	struct bo *other_bo;
+-@@ -1945,7 +1945,7 @@ static void test_page_flip(struct device *dev, struc=
+t pipe_arg *pipes, unsigned
++@@ -1946,7 +1946,7 @@ static void test_page_flip(struct device *dev, struc=
+t pipe_arg *pipes, unsigned
+  		fd_set fds;
+ =20
+  		FD_ZERO(&fds);
+@@ -39,16 +39,16 @@ index d9e761e..687f7a4 100644
+  		FD_SET(dev->fd, &fds);
+  		ret =3D select(dev->fd + 1, &fds, NULL, NULL, &timeout);
+ =20
+-@@ -2179,7 +2179,7 @@ static void usage(char *name)
++@@ -2194,7 +2194,7 @@ static void usage(char *name)
+  	exit(0);
+  }
+ =20
+--static char optstr[] =3D "acdD:efF:M:P:ps:Cvrw:o:";
+-+static char optstr[] =3D "acdD:efF:M:P:ps:Cvrw:o:t";
++-static char optstr[] =3D "acdD:efF:M:P:ps:Cvrw:o:S:";
+++static char optstr[] =3D "acdD:efF:M:P:ps:Cvrw:o:S:t";
+ =20
+  int main(int argc, char **argv)
+  {
+-@@ -2196,6 +2196,7 @@ int main(int argc, char **argv)
++@@ -2208,6 +2208,7 @@ int main(int argc, char **argv)
+  	char *module =3D NULL;
+  	unsigned int i;
+  	unsigned int count =3D 0, plane_count =3D 0;
+@@ -56,7 +56,7 @@ index d9e761e..687f7a4 100644
+  	unsigned int prop_count =3D 0;
+  	struct pipe_arg *pipe_args =3D NULL;
+  	struct plane_arg *plane_args =3D NULL;
+-@@ -2299,6 +2300,9 @@ int main(int argc, char **argv)
++@@ -2314,6 +2315,9 @@ int main(int argc, char **argv)
+ =20
+  			prop_count++;
+  			break;
+@@ -66,7 +66,7 @@ index d9e761e..687f7a4 100644
+  		default:
+  			usage(argv[0]);
+  			break;
+-@@ -2449,7 +2453,7 @@ int main(int argc, char **argv)
++@@ -2464,7 +2468,7 @@ int main(int argc, char **argv)
+  				set_cursors(&dev, pipe_args, count);
+ =20
+  			if (test_vsync)
+--=20
+2.43.0
+
 
