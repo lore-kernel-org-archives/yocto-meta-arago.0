@@ -2,40 +2,40 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C542D116F3
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 56253D116F1
 	for <webhook@archiver.kernel.org>; Mon,  1 Dec 2025 18:41:06 +0000 (UTC)
-Received: from SA9PR02CU001.outbound.protection.outlook.com (SA9PR02CU001.outbound.protection.outlook.com [40.93.196.16])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.104.1764614462720195569
+Received: from BYAPR05CU005.outbound.protection.outlook.com (BYAPR05CU005.outbound.protection.outlook.com [52.101.85.46])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.100.1764614456974271552
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 01 Dec 2025 10:41:02 -0800
+ Mon, 01 Dec 2025 10:40:57 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=ZxK6uOL5;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.196.16, mailfrom: reatmon@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=OvcvTY0K;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.85.46, mailfrom: reatmon@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w9N6wivFkcbc5b1t9e4N0bFRlIqCZPSBpYxyF9a/s/zFUxSz7IkJz0JpPnEo9IpIcUqP1GCFfEAHEGIQev0QQqaKIDwqTEbJa0D9duudkKJl8/+to+nQRajVyU52Kgcj7ZBdxXKxuE7amvO3xdeGYSQp7I5V4EqaP/HWtdpe1hUJ2T7/4YgcYJJng6jDB0FIXJuvodzhZqyjVe0jX6XPpKh9D69+Nskrg5G2WJaoqPRBjPz2e+XkqHZ3B1j22cwhTYG28fbngxLTUx2gYYgYbjL8RDz2CfKVaURQZq3eZqp1v1NVIkSfPWvrAXdLfbxKorTrMFWumuOsHQ0OMTQI5g==
+ b=qnjr9vlTYs0nuKXzbYEuG8jhGhOB4eWdqoEA7uoqbZGEZWMTSB3/OJwlll5M++qVJjw5fQMgx7l8p6UpdFBjxVDRO7njYgViCprHmX581W5gy59fjbhJKT5wxU/zuTgqErR0YkKlSeC6MBouKYCUYRlGdeoMIHoFk0qJYxpMJOyphcXc4YQCmzXC7i5x9dcIMBKbnYv01i1PfpZgLjrfF8aXxfRwll8LBJFxYoFU6cNga3BEAnhY02bf6CVfVgyBApOmyge+hrj8bZmGI5MQlLVC36vdxMP/gpV9kboNsyiJOhxV6K4h/x3AHwa7jkZ1s/z7ruTtq7E6+nynMIP2og==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BwV8714Sc/GRD/AGV2aBHOG9M48y+sIph6v75jP+xiU=;
- b=RTVAVxFrP0UHy4fBP3/TWZiyagaUBeULycmN16cAOENzmnu4bab+9B23Zx2/9N4HS172+I/Jq0sNKYXq7rd4LZTnhDURT9Sb39W261s4mR4LDwiwyiDPc/KFhobKm33wBCsHTB33dCznvUGtjKzBd2TVkuPB2NzTxUj05JVjuwLOyhmyFRsDDvpLbCPu6Hoz8Vp54pZH0YGJpk3lh4dmYuORV+x9F6NR7+FJCVVG5bRN0Z9guu1PE5RNaiImpd9qvqVH++Th8wnlW5M0njFzi2NAm1F2uqwKcmLJ6VuCWmI/OXUsm2nl7mPmvlyaow1xDABFQu+UEKELG33WjdV9Aw==
+ bh=ZhKOZmrZQXOOno+iJ7cWFVAm3pb2ElPHofsD+VSpel0=;
+ b=e7cxyiPVYnivdsNb5DXOcz6B0AtUGarbhiW05mrzCMXBka5DQex9Aj4IxQmbDNNOnS7AELDhmG5rLOTIHFaXWM9fJqGmBy46CPfz6R+2dxNMzmX7TZeMrC2sxmEstLT/jM8HsF7Yks57p88Ct9tw91tnqCgE5zvxPGlPRD1Vt6VbCUt+jOQDe2BrPFYcWiH2ymxBDmwBpzvvNZvkhNl/dA08mgYH6cH+VXjk0a5ZVU2MvoNAhf7cbtQmxwmK67cBIL8HpT7C/xhVejicWwYtaWoVKK+zLq55pfOIFY44x2oFY17KjrPuzr+PPZ3dcgQeussY4xr//0inUIAPFsMAYQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BwV8714Sc/GRD/AGV2aBHOG9M48y+sIph6v75jP+xiU=;
- b=ZxK6uOL5NGvWFDGAhr1HO4dNvxPbfe046n5mD+djYz996Iw4chjkIfaeWJwwko6MAutnsu9RV53qR4XwIBGeZG7mhbEHpO0mN6qf3jDghtT6iZR6C6qgyQlzxA6bmmYxiOJ/c9cVQp4GSU20GINbsya1OWDirBbL3tnqTybuL3Y=
-Received: from MN2PR20CA0042.namprd20.prod.outlook.com (2603:10b6:208:235::11)
- by SJ0PR10MB5551.namprd10.prod.outlook.com (2603:10b6:a03:3d5::14) with
+ bh=ZhKOZmrZQXOOno+iJ7cWFVAm3pb2ElPHofsD+VSpel0=;
+ b=OvcvTY0KMgcYKZ27G1EXyRNchH0pXxx2Rd8l8w0SWV/u57JEaXcrisuD1O2Dv0t1+3ZVsm/GrwUj+BIt4Co9qmCuRdUmOX7RPgm0fRLEeMsmcVncUNkRSkkxHomVxtt/yEbqnR4ESX0gkBuWNf4Y0QiIGMdvXq37kWwn24OVbB8=
+Received: from SN1PR12CA0074.namprd12.prod.outlook.com (2603:10b6:802:20::45)
+ by IA0PR10MB7276.namprd10.prod.outlook.com (2603:10b6:208:3dc::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
- 2025 18:40:59 +0000
-Received: from BL02EPF0001A0FD.namprd03.prod.outlook.com
- (2603:10b6:208:235:cafe::8e) by MN2PR20CA0042.outlook.office365.com
- (2603:10b6:208:235::11) with Microsoft SMTP Server (version=TLS1_3,
+ 2025 18:40:54 +0000
+Received: from SA2PEPF00003F66.namprd04.prod.outlook.com
+ (2603:10b6:802:20:cafe::17) by SN1PR12CA0074.outlook.office365.com
+ (2603:10b6:802:20::45) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.17 via Frontend Transport; Mon,
- 1 Dec 2025 18:40:54 +0000
+ 1 Dec 2025 18:40:53 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
@@ -43,34 +43,34 @@ Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.23.195 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
 Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BL02EPF0001A0FD.mail.protection.outlook.com (10.167.242.104) with Microsoft
+ SA2PEPF00003F66.mail.protection.outlook.com (10.167.248.41) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Mon, 1 Dec 2025 18:40:58 +0000
-Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet201.ext.ti.com
+ 15.20.9388.8 via Frontend Transport; Mon, 1 Dec 2025 18:40:53 +0000
+Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet201.ext.ti.com
  (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
- 2025 12:40:56 -0600
-Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
- 2025 12:40:55 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE212.ent.ti.com
+ 2025 12:40:50 -0600
+Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE212.ent.ti.com
  (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
+ 2025 12:40:50 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 1 Dec 2025 12:40:55 -0600
+ Transport; Mon, 1 Dec 2025 12:40:50 -0600
 Received: from grumpy (grumpy.dhcp.ti.com [128.247.81.229])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B1IetVD917838;
-	Mon, 1 Dec 2025 12:40:55 -0600
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B1IeoqY917764;
+	Mon, 1 Dec 2025 12:40:50 -0600
 Received: from reatmon by grumpy with local (Exim 4.97)
 	(envelope-from <reatmon@ti.com>)
-	id 1vQ8pT-00000005kt3-3YNj;
-	Mon, 01 Dec 2025 12:40:55 -0600
+	id 1vQ8pO-00000005kqP-0DvH;
+	Mon, 01 Dec 2025 12:40:50 -0600
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
 	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH] libdrm: Update patch for recent version bump to 2.4.128
-Date: Mon, 1 Dec 2025 12:40:55 -0600
-Message-ID: <20251201184055.1371866-1-reatmon@ti.com>
+Subject: [meta-arago][master][PATCH] bpftool-native: Adapt bbappend to upstream change
+Date: Mon, 1 Dec 2025 12:40:49 -0600
+Message-ID: <20251201184050.1371702-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -78,138 +78,119 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FD:EE_|SJ0PR10MB5551:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5953dd17-67bb-409c-d9d8-08de31092b82
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F66:EE_|IA0PR10MB7276:EE_
+X-MS-Office365-Filtering-Correlation-Id: c357acb9-21d3-4c94-84db-08de31092881
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?qH2vrGSQXitVtx/lGQX5SmlrsYy3PqB5he/CkpBmIIeAb80wUHaDTQfFQPuv?=
- =?us-ascii?Q?s2g0LJV3n+tPm/aed6qit5fRxdOn8+2X7Ni3F7BFJKuh+ulroTvqIT4jtke2?=
- =?us-ascii?Q?Jd2+GQk8rDwxG6RouConlVLYJcIfPWq5emilr+qpbYk05Hk301ejosV4b13Y?=
- =?us-ascii?Q?CiFyDxn2y9z5Hk2GutpeUAUhehuhipgmn9tvqVXQNRJBAq99J7CRC5wlbSyf?=
- =?us-ascii?Q?O8e0Y8kJAsvN+ttGHVURFR+OyRymKw8k1okuka1z+u50xXMlmayXOH3nQIgH?=
- =?us-ascii?Q?w/4BrvOqwFfyq9rLI2VYzc1mwElntnKnfxJl+drQ68xnWO+P5z97UQj0MAXQ?=
- =?us-ascii?Q?VmI8XKOTJtffvTsuJTjIkRo+dX3gOVufhPQdGDVZrZG8KyQzNj56lgsvmtI1?=
- =?us-ascii?Q?R13XPGughMFKvUrXb32vqxXEr7PpQb6E+ZCKgB5Etl4bb8IvkFiiAu3laCb1?=
- =?us-ascii?Q?pT6kAfAni+G72mXpZfNEMv8xkaTAOsVK2rGEHsfxxwPypRvpiZcUNWtK4GDD?=
- =?us-ascii?Q?aCdMn4q1BHoMNZEuZ9h0/Eauy0fuBZjlhQoV2yJ5I4fg130mxAOdME3GuK2J?=
- =?us-ascii?Q?RD6euuzvifc79ijvNApjwsCn2TXjkXOKH7JM3fcmyTmToVBo71vgyttq6R1L?=
- =?us-ascii?Q?2IuiC2QmhDZB6gGX8IcfDFHYQ0u6ajie0O5TGieCHF1xVG6fWEVMc1mxt7GR?=
- =?us-ascii?Q?vuzCxxKM8RAh6RESXwA2Rqrhi4VNiGpoO35IsmHe2vIg7PJX0uq6cLIGjvbq?=
- =?us-ascii?Q?vEDeI88wKzgie3Iv3MUQQDPuQCU78sLQqBgvbdbK2ZyIP2NGYfKBdMTZTzNX?=
- =?us-ascii?Q?scGVSev8uH49rlYkZMl8Tozn7Wm2kTQTrO5WvHPaLs9li1VJmANgQgfyDDsx?=
- =?us-ascii?Q?1eWdYkRZiuQk9pQy+OExqZW6DfAufUbjk8zjeIq47Msl5tbQeAmHAw/qwwBC?=
- =?us-ascii?Q?s9JAwM7IjXZudC1EruOkKSM+YBnxv4mJVal8xWSEuoUrlp62elR54tQnGzIF?=
- =?us-ascii?Q?jBM5jKKl3rWVuIO4U+9TAIis6csZcjdGanQrtmmRFCEuP+qEcpmfnMaVqdj5?=
- =?us-ascii?Q?VwA2rfoTYUzTyNHHH0mEdw3PLsrEywLowgI/7nVMIBv+qaQwkyLIVUpG0P9N?=
- =?us-ascii?Q?GY844Dfxtxe/1KoCQd+PyeB7Rzo0N6qXKGQ96HH/s9FIKrdGM4ywTCCJWtDB?=
- =?us-ascii?Q?QnRKppefiT08pasxh9k3eaPww/SSRntCKMU+FlwUqwQu7CMmVlTlRbWyB0tM?=
- =?us-ascii?Q?MiyR1GW23qIuhv36q1k9zOAgh+LLYcriNb9/pKIoTINfFEveA7aWDpm8lS+G?=
- =?us-ascii?Q?N10HbKfsr9O8fwY3UJPnl+hCZKPHee5MEiXjo2A+d8Ikym5HAdQBDk/BLg5Y?=
- =?us-ascii?Q?Bl6aUM3ZoFL6Q53+Cj8QR/to+nc0aPbA8EXdAaujeNaovJTpm+wirxkSANFU?=
- =?us-ascii?Q?QLBKfwL9fQrfyLOF0lKFJdECio2SC6n75IKNEzSTsABf9ADEFaYbEISSD5X0?=
- =?us-ascii?Q?qcy732V1B+Y2WQX38w6HyrQChOrgjyZcHjc0Mq9YHigm+8+epUjHuiyL0jXC?=
- =?us-ascii?Q?Pzp8jnLvjmBNj82nOpY=3D?=
+	=?us-ascii?Q?vCTGNMJjzmXEIElHTCazXSiOScoMAT4CYjQklJg3NQObo3Bm0zbT8/BMg8lD?=
+ =?us-ascii?Q?5mlV1ON7+X6+zP5qI/OPS2pcnCUznXeJvrlLKRHkK6yfuWg2YW0DM0wDVN9d?=
+ =?us-ascii?Q?XVKGOZGqA2D84KIg6Rm/y2+iPSkSLbxz447I8vYQBfIulo9gMOTm3pt1yDYc?=
+ =?us-ascii?Q?1C4Q17h1IIaDNrOnbZDOyTo1/0RkJyjgibalv6sm+rLRwyUrJx6LpEEN85vI?=
+ =?us-ascii?Q?iY4lBzWbcTfgMSqsGWSznHjsIorY3X7Dmsa2CMUaNsxbgJIsYZF2GCgxtsli?=
+ =?us-ascii?Q?EocnJC55lctBtCNx0lJWN2n00eWeSNIbNT7YC4UsGi03EuGMseMwZegSonhp?=
+ =?us-ascii?Q?ymtGsaa4YVul6Qd0SfqmGsf5DO+VqvU4ZS58gM9Qd0py+oa5rphZK5PeLrIb?=
+ =?us-ascii?Q?gJEIPw2Z3swHTJWNPLwaFGzn+VhUMYkeK3R5iW/db6DcHNUVoOwJ5C1dU3kw?=
+ =?us-ascii?Q?iF0uzVTz5xtQ7YYv5I3r5bdz3DWk644Zum6/pEFnLB61X/PMLUPu08UTb+oi?=
+ =?us-ascii?Q?GZTXPLB95uVfl0bY6L+qHLupje/PxbsLZSnscm6Fnwr8Q/C11zwHykiF/jDa?=
+ =?us-ascii?Q?r4JblzvyYdyPsgCBPvpnSty8S4J9/81o1XT7619TK250uPcIOwVnCyCGW25k?=
+ =?us-ascii?Q?mj5UO9sW4M5tW0P9/tHTkd81SjR+YplFQhgv/yxDOmxN/WjandBauGXJC9PM?=
+ =?us-ascii?Q?oBMCo629RH8vGk7w+0l7rl0g6eyGna4k5fUufkmFC8dS+/tC6OUviF6GXJZH?=
+ =?us-ascii?Q?cYKzrCjmFlzifV486d+cFRWmPlH1ES3J92IS7FHhV1JTwt+Vnr9RXIjp6Y1U?=
+ =?us-ascii?Q?E96rQ7fJ9Nxs8tkznr5TmFUxCAjL/209xGZv+For1ABjYEnCmej+cbJOwya9?=
+ =?us-ascii?Q?jqmYkZVjNTfGour0peSBuLHEeTy7k6+lrhY1l+AUlnLedmmmV7lR9Z2wuQCs?=
+ =?us-ascii?Q?SeBEW1TN45JfY34n6IL0AclxiKO+c15iMPQTluHDPQHAF9LeciCovAifM1T1?=
+ =?us-ascii?Q?u5puyUuH3O2sAEFCojNJYWSYOEEa1mVy86pbYrZ6qGXup1ODbH81+fvZtaNi?=
+ =?us-ascii?Q?PBP2P7UkqOs1ZCIoLKXTMoI7pYH4SXxlfZuHQxBZN2jpY8llX3emrRq15I+q?=
+ =?us-ascii?Q?fnI5Nt2VgQUWBbutrcMnvxR0W56fl2HG/P0sXYfAdoKSnxWzIQxEjLlBmcu+?=
+ =?us-ascii?Q?jn25+BraqMJDfLV7fTMfEUcVAZ4ikD0Jo2X3njepVv2ZCzNSDEMW9HsoTCAE?=
+ =?us-ascii?Q?hrYJknxrh0/hXaGRKdibQ4F5r79YaR0D/hSVNh/61EewBvergZcLPj9+8hcy?=
+ =?us-ascii?Q?iZtLEgaTh5VPonJ2zJwIWXngTNs24LvEXhr2R8SUAG21nQJR7k0Vo9O83wJ1?=
+ =?us-ascii?Q?ohQQSkw5BhLyN/zFBTxOqxGkh/nX+j70ZVZyctEJtDL1SKOs1qwcMbGTWNU7?=
+ =?us-ascii?Q?z7Kn+D3qZIgIqHitOmtLhiElhKfHWGmj/MfgyyvzldZshZsAACvf/B/yTkrs?=
+ =?us-ascii?Q?l+0eUen9d/45/zG4LAnvvxGcskZKM1X4aqKJq8yXqv9HxVeo9ATfRPcTpYlx?=
+ =?us-ascii?Q?69fOClydWMXyUOM5D9w=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1101;
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 18:40:58.7024
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 18:40:53.6718
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5953dd17-67bb-409c-d9d8-08de31092b82
+X-MS-Exchange-CrossTenant-Network-Message-Id: c357acb9-21d3-4c94-84db-08de31092881
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BL02EPF0001A0FD.namprd03.prod.outlook.com
+	SA2PEPF00003F66.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB5551
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR10MB7276
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Mon, 01 Dec 2025 18:41:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16842
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16841
 
-oe-core recently bumped the version of libdrm to 2.4.128 [1].  One of
-our patches needed to be updated to apply cleanly.
+meta-openembedded broke the bpftool-native package out into a new recipe
+[1].  Our bpftool patch was changing something in bpftool-native, so we
+need to rename our bbappend to match.
 
-[1] https://git.openembedded.org/openembedded-core/commit/?id=3Dac7327583ae=
-f83fd400190506f3147623de38b68
+[1] https://git.openembedded.org/meta-openembedded/commit/?id=3D6d3a6503720=
+b10b0edd6e70ee3595032e0aa975b
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- ...1-Add-option-to-run-a-test-indefinitely.patch | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ .../recipes-devtools/bpftool/bpftool-native-ti.inc            | 1 +
+ .../recipes-devtools/bpftool/bpftool-native_%.bbappend        | 4 ++++
+ meta-arago-test/recipes-devtools/bpftool/bpftool-ti.inc       | 1 -
+ meta-arago-test/recipes-devtools/bpftool/bpftool.bbappend     | 4 ----
+ 4 files changed, 5 insertions(+), 5 deletions(-)
+ create mode 100644 meta-arago-test/recipes-devtools/bpftool/bpftool-native=
+-ti.inc
+ create mode 100644 meta-arago-test/recipes-devtools/bpftool/bpftool-native=
+_%.bbappend
+ delete mode 100644 meta-arago-test/recipes-devtools/bpftool/bpftool-ti.inc
+ delete mode 100644 meta-arago-test/recipes-devtools/bpftool/bpftool.bbappe=
+nd
 
-diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-=
-to-run-a-test-indefinitely.patch b/meta-arago-distro/recipes-graphics/drm/l=
-ibdrm/0001-Add-option-to-run-a-test-indefinitely.patch
-index 2abe5045..5b051361 100644
---- a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-=
-a-test-indefinitely.patch
-+++ b/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-=
-a-test-indefinitely.patch
-@@ -21,7 +21,7 @@ diff --git a/tests/modetest/modetest.c b/tests/modetest/m=
-odetest.c
- index d9e761e..687f7a4 100644
- --- a/tests/modetest/modetest.c
- +++ b/tests/modetest/modetest.c
--@@ -1887,7 +1887,7 @@ static void clear_cursors(struct device *dev)
-+@@ -1888,7 +1888,7 @@ static void clear_cursors(struct device *dev)
-  		bo_destroy(dev->mode.cursor_bo);
-  }
- =20
-@@ -30,7 +30,7 @@ index d9e761e..687f7a4 100644
-  {
-  	unsigned int other_fb_id;
-  	struct bo *other_bo;
--@@ -1945,7 +1945,7 @@ static void test_page_flip(struct device *dev, struc=
-t pipe_arg *pipes, unsigned
-+@@ -1946,7 +1946,7 @@ static void test_page_flip(struct device *dev, struc=
-t pipe_arg *pipes, unsigned
-  		fd_set fds;
- =20
-  		FD_ZERO(&fds);
-@@ -39,16 +39,16 @@ index d9e761e..687f7a4 100644
-  		FD_SET(dev->fd, &fds);
-  		ret =3D select(dev->fd + 1, &fds, NULL, NULL, &timeout);
- =20
--@@ -2179,7 +2179,7 @@ static void usage(char *name)
-+@@ -2194,7 +2194,7 @@ static void usage(char *name)
-  	exit(0);
-  }
- =20
---static char optstr[] =3D "acdD:efF:M:P:ps:Cvrw:o:";
--+static char optstr[] =3D "acdD:efF:M:P:ps:Cvrw:o:t";
-+-static char optstr[] =3D "acdD:efF:M:P:ps:Cvrw:o:S:";
-++static char optstr[] =3D "acdD:efF:M:P:ps:Cvrw:o:S:t";
- =20
-  int main(int argc, char **argv)
-  {
--@@ -2196,6 +2196,7 @@ int main(int argc, char **argv)
-+@@ -2208,6 +2208,7 @@ int main(int argc, char **argv)
-  	char *module =3D NULL;
-  	unsigned int i;
-  	unsigned int count =3D 0, plane_count =3D 0;
-@@ -56,7 +56,7 @@ index d9e761e..687f7a4 100644
-  	unsigned int prop_count =3D 0;
-  	struct pipe_arg *pipe_args =3D NULL;
-  	struct plane_arg *plane_args =3D NULL;
--@@ -2299,6 +2300,9 @@ int main(int argc, char **argv)
-+@@ -2314,6 +2315,9 @@ int main(int argc, char **argv)
- =20
-  			prop_count++;
-  			break;
-@@ -66,7 +66,7 @@ index d9e761e..687f7a4 100644
-  		default:
-  			usage(argv[0]);
-  			break;
--@@ -2449,7 +2453,7 @@ int main(int argc, char **argv)
-+@@ -2464,7 +2468,7 @@ int main(int argc, char **argv)
-  				set_cursors(&dev, pipe_args, count);
- =20
-  			if (test_vsync)
+diff --git a/meta-arago-test/recipes-devtools/bpftool/bpftool-native-ti.inc=
+ b/meta-arago-test/recipes-devtools/bpftool/bpftool-native-ti.inc
+new file mode 100644
+index 00000000..213a0f4e
+--- /dev/null
++++ b/meta-arago-test/recipes-devtools/bpftool/bpftool-native-ti.inc
+@@ -0,0 +1 @@
++DEBUG_PREFIX_MAP:remove =3D "-fcanon-prefix-map"
+diff --git a/meta-arago-test/recipes-devtools/bpftool/bpftool-native_%.bbap=
+pend b/meta-arago-test/recipes-devtools/bpftool/bpftool-native_%.bbappend
+new file mode 100644
+index 00000000..3d084dcc
+--- /dev/null
++++ b/meta-arago-test/recipes-devtools/bpftool/bpftool-native_%.bbappend
+@@ -0,0 +1,4 @@
++BPFTOOL_NATIVE_TI =3D ""
++BPFTOOL_NATIVE_TI:ti-soc =3D "bpftool-native-ti.inc"
++
++require ${BPFTOOL_NATIVE_TI}
+diff --git a/meta-arago-test/recipes-devtools/bpftool/bpftool-ti.inc b/meta=
+-arago-test/recipes-devtools/bpftool/bpftool-ti.inc
+deleted file mode 100644
+index 0310ebaa..00000000
+--- a/meta-arago-test/recipes-devtools/bpftool/bpftool-ti.inc
++++ /dev/null
+@@ -1 +0,0 @@
+-DEBUG_PREFIX_MAP:remove:class-native =3D "-fcanon-prefix-map"
+diff --git a/meta-arago-test/recipes-devtools/bpftool/bpftool.bbappend b/me=
+ta-arago-test/recipes-devtools/bpftool/bpftool.bbappend
+deleted file mode 100644
+index b2dfa9d5..00000000
+--- a/meta-arago-test/recipes-devtools/bpftool/bpftool.bbappend
++++ /dev/null
+@@ -1,4 +0,0 @@
+-BPFTOOL_TI =3D ""
+-BPFTOOL_TI:ti-soc =3D "bpftool-ti.inc"
+-
+-require ${BPFTOOL_TI}
 --=20
 2.43.0
 
