@@ -2,340 +2,310 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28341D3B981
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2696ED3B989
 	for <webhook@archiver.kernel.org>; Tue,  9 Dec 2025 17:05:04 +0000 (UTC)
-Received: from CH5PR02CU005.outbound.protection.outlook.com (CH5PR02CU005.outbound.protection.outlook.com [40.107.200.6])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.12824.1765299899839491473
+Received: from CH5PR02CU005.outbound.protection.outlook.com (CH5PR02CU005.outbound.protection.outlook.com [40.107.200.60])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.12941.1765299898802461945
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 09 Dec 2025 09:05:00 -0800
+ Tue, 09 Dec 2025 09:04:59 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=sdcQjG6r;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.200.6, mailfrom: reatmon@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=lp2fEsnd;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.200.60, mailfrom: reatmon@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rzSJw0nhela9QxpjMcPPuA1OOdUzoeksbBFu/Ph1785T0ZBhr+B8eWSdfAGFKMQWD6cpLD7jkPIAhePg2ozJdkgr1Ht3t/trPOVhkUOftwJFGisThDCYDQvxWsRpot8TLx6N+2MU32KZ4yxiCCH0fZOc4vJLNnICZvJqTAGT/7ufgM9Yw6dumrTF0t2/V1QTE8osNhOkf7//ciqzXK7Al5DDRDDZd/z3MT9xv7DvH9NR309hzKTs/B4dVxpgogRBSMojspYHeH8PxE+blARa3d51K6NRQ7npvIALbQIHTiUTD1iCBiA8bfRcnE7D/XQvIapJXRXdYnVnQHKcIwW9cA==
+ b=xvYGYoJ9X1wXrTuxKkn/MEy9VsXCX/00V9Fe3kcdcCE6iXyGKO/6AxL/D1tuYeh2ZoY5h30QtxdMK1LAN+ChKA8Tpa+uhLPYzX4D72GtIC+WzE55rO5Fr70NGr1M34vx91QpSylvNfNPS6hXgkR5TnML5WGCO5DYgutVSzaaY0qe5jsTgfkvhX0Wvb8zRMyDFad7ZhBvjOqLRQZiCcfN/NO+bPWmxF2M8t/px/sJDU12HNXrlOjJmj9v8EaeP4cL60RX2uky41jDTylLqrhpTr85C6H2fnfJkptalTm46F/98sTlvuB/KxVtS25qytSwRUW9mt4BfEN7F6hzEyKZGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CxMHjPoFE7jBPL1U2aJ1H79VUDB3jqSF4s+9VnHmPa0=;
- b=xRFVtE+sA570ZAc1Mec44m0NEbo07DV2txxGw1Ortr35iZhtpacCsuqATSEodQUBR/P8O6bdbwQD1LxuwhvQLmmavPZcqGvgJt+CvB464oFNoaJCp8QAYZRCGUvwf10brQ1mzcDBzBNCDoW50GmLk3FwIFSi23ePmojBliqZ31mlpDdDZC5JPFRgZh76gtzoGc5wdWfc5C2rxtuuzpPRq8GbV7Zog5K2wBNXNwHXVGblHE9yOknRf1D+jqe/hSEhQof3T/qlap/1PZsEOU0PsnSuuH7ERUgfc63rjdAJuHwpwcMmHXRwrdLdW6/hSbISckKpn5DKfICmUj7LYJ2usw==
+ bh=WuMkihQF+b7Jo6wlZO20TzxlxA3D1y2v6HuqnlHliYk=;
+ b=Z2G0B1ksLfTWHpiTHswgyIK40O+qzAlbvyBswc4CBKhg2RomvQABomSOLA100gK43//OPAA1IAo1LVogUwgLasYe1hnDS8GFxYnTXGzpiM8SgFHIlPtHLuWqkmVlUOs0UGNlDaNbcZuPJbtObeTLpJA+ynJwcD7O/9nMpI43sYFhlpX83r/MPqF13Xseawu6F4nHGS6Zea8xSwbwJs2C57H56IaUBbqDDGbDZbmKQ3otjF0VcwWQ56wTvgdd99mHvbHe5uIYOWegMMjICgFSwu44rJ03UJVW4Hl1s2hZo1IUEV9q7anJWTuIhK3c6pzqBgUA7Az2q1MMh1VBK2PIbw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CxMHjPoFE7jBPL1U2aJ1H79VUDB3jqSF4s+9VnHmPa0=;
- b=sdcQjG6r1r8XqWVmBZrbabdQkCpOizvFXPMhBDvPthCK3tHV7JxjttQh0IkV7hQjj+s6liyF7gwIho2TFBGl2Z41m8B+p9ox+vr4h4sXhYjVX2utlgP533jJV/Owc9yfnuVa7Tf+hp6xbJgrTHbHgtLpyQJ2Ac5ogsLzfR7GNWk=
-Received: from BN9PR03CA0484.namprd03.prod.outlook.com (2603:10b6:408:130::9)
- by BY5PR10MB4305.namprd10.prod.outlook.com (2603:10b6:a03:20e::18) with
+ bh=WuMkihQF+b7Jo6wlZO20TzxlxA3D1y2v6HuqnlHliYk=;
+ b=lp2fEsndhogTlNnlPzme+VWxZXqhmodk3c79qY/PscC7h7sos90SXP26GIJW7ti3hLHsPkqROWfMq0ff0MbLfVSdBqiNlwBEpXk50vRzPpHGbrcgroCs7HZwOiT+kMZbZcGTddbEhIIbGI+XM1YPEDnO+zZ7S1ANB6Dkx3b7eMo=
+Received: from SJ0PR13CA0080.namprd13.prod.outlook.com (2603:10b6:a03:2c4::25)
+ by CY8PR10MB6780.namprd10.prod.outlook.com (2603:10b6:930:9b::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.7; Tue, 9 Dec
- 2025 17:04:54 +0000
-Received: from BN2PEPF0000449D.namprd02.prod.outlook.com
- (2603:10b6:408:130:cafe::a0) by BN9PR03CA0484.outlook.office365.com
- (2603:10b6:408:130::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.14 via Frontend Transport; Tue,
- 9 Dec 2025 17:04:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.6; Tue, 9 Dec
+ 2025 17:04:55 +0000
+Received: from SJ5PEPF000001CA.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c4:cafe::3f) by SJ0PR13CA0080.outlook.office365.com
+ (2603:10b6:a03:2c4::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.6 via Frontend Transport; Tue, 9
+ Dec 2025 17:04:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BN2PEPF0000449D.mail.protection.outlook.com (10.167.243.148) with Microsoft
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SJ5PEPF000001CA.mail.protection.outlook.com (10.167.242.39) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Tue, 9 Dec 2025 17:04:51 +0000
-Received: from DLEE208.ent.ti.com (157.170.170.97) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9412.4 via Frontend Transport; Tue, 9 Dec 2025 17:04:53 +0000
+Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 9 Dec
  2025 11:04:47 -0600
-Received: from DLEE214.ent.ti.com (157.170.170.117) by DLEE208.ent.ti.com
- (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE214.ent.ti.com (10.64.6.72) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 9 Dec
- 2025 11:04:47 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE214.ent.ti.com
- (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 11:04:46 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE214.ent.ti.com
+ (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
  Transport; Tue, 9 Dec 2025 11:04:46 -0600
 Received: from grumpy (grumpy.dhcp.ti.com [128.247.81.229])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B9H4kdT1540728;
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B9H4k0N1519064;
 	Tue, 9 Dec 2025 11:04:46 -0600
 Received: from reatmon by grumpy with local (Exim 4.97)
 	(envelope-from <reatmon@ti.com>)
-	id 1vT18o-0000000A4tz-39nt;
+	id 1vT18o-0000000A4ts-2zCU;
 	Tue, 09 Dec 2025 11:04:46 -0600
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
 	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
-Subject: [oe-layersetup][master][PATCH 3/4] coresdk-11.02.05-config: add config for CoreSDK 11.02.05 release
-Date: Tue, 9 Dec 2025 11:04:45 -0600
-Message-ID: <20251209170446.2402102-3-reatmon@ti.com>
+Subject: [oe-layersetup][master][PATCH 1/4] coresdk-11.01.07-config: add config for CoreSDK 11.01.07 release
+Date: Tue, 9 Dec 2025 11:04:43 -0600
+Message-ID: <20251209170446.2402102-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251209170446.2402102-1-reatmon@ti.com>
-References: <20251209170446.2402102-1-reatmon@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF0000449D:EE_|BY5PR10MB4305:EE_
-X-MS-Office365-Filtering-Correlation-Id: d4ba36e6-efee-430f-898c-08de37451150
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CA:EE_|CY8PR10MB6780:EE_
+X-MS-Office365-Filtering-Correlation-Id: 62abf9af-a564-407b-4e02-08de3745124b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700013|13003099007;
+	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024|13003099007;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?00DvZMfM+SFCgJnubvM4UwUsEDmDlCBYGFJKaTK1143vVciA/wdtY4ktdXc/?=
- =?us-ascii?Q?yxGOTEAjx1SHBB5iMc7V4oES/iuVxLRBapDMJl7PpLBLN43xF5AkRJYJA+Jl?=
- =?us-ascii?Q?jSvX6ZtryJHbVRxgTg8N8A1kSHunmT5mKfTeQnyZIo5wHFBDWfM53oHQZl8R?=
- =?us-ascii?Q?DsuP5NCEkh8MlXC0c1xVpEGJ1JMQmCV/incl9loZcKKiDjjsVx66H3+dkN2m?=
- =?us-ascii?Q?Hbki6BOi9WFIIs79HwGRH9q6eFS4l9YFyzhUK0kdpwiMZOn84i7aeuWkSoI5?=
- =?us-ascii?Q?rSsSDaD/BixLj9gS9s75091WPe+KjksXAt7JQ4s768gsfIVsttGpgMdkeNPv?=
- =?us-ascii?Q?L99n09gNwRpEUIptety17va7lLvVzTzMGDpR+Rv//8l4bOtntbODAtpD1rjK?=
- =?us-ascii?Q?O/55thtzSFmhow6pDnC95TcAQKxnlKSVfOkhETqRsWhokeltV9Z3wG7yxTq+?=
- =?us-ascii?Q?ZruaTbSTkw8Yo70XLTqQvZl/3C0KU5txMyusMb0CzwM4nr7fH06J9mfuzTTq?=
- =?us-ascii?Q?x6oikwMqgUJ9QQPpMoN2qdP4+VOqEpOFobavY1mzte/MNjZA36zEwyeOpG3Y?=
- =?us-ascii?Q?UgK1+BuqZGFTgN35FlbwXUes70T2mlQxaA+WGkpeXppObScAgBTfNtWTDYqE?=
- =?us-ascii?Q?/ylIpe2Q9e6wxPDtKNGeEPLvG96aJa82zX2idTYXY5KAPexLYn7LWygAcBFj?=
- =?us-ascii?Q?wHRdddRaEMwjPKYMb3q7kIZF3lntyWCYOiQTFjzgE0XJDKJiKoZZ0qK2CUCZ?=
- =?us-ascii?Q?d80oCfc96K6gguJ9RCE8rm37IWqUAXpejSk/+KE4Pud9ejhmy0xHEYwskeBv?=
- =?us-ascii?Q?fsLq9DUO4qdH1/xUN9FRP6AfWhoRX4ZuP2XBx2X6uYkjR64b0HT1Po16U1H5?=
- =?us-ascii?Q?0yd90XxhtkMC6SSD0xkxN/vMMx838TenuKtft/Ez/phcWap+iAlOfPcplMdv?=
- =?us-ascii?Q?UBR1qZp91K0gsUbXNI9i1zZ9jYuaGFgR6eF4zps4o8+zDc8N38eEZ/rfYfYz?=
- =?us-ascii?Q?YJVQZWpp1wKEoOtJPsLf5pxTblncT1ng0ek04tKwDdZvBiDovOwAkUvvTInJ?=
- =?us-ascii?Q?gQk1f1a7P6qKXWRK0f/N+0sn9DjeyRyapi4S808wgInM7wYmZNItMiafawBL?=
- =?us-ascii?Q?aEQojVuA4IvAOXSZPXy/3v+b7wufpEY2ySYKH79qMTmI6u5ac8v1/DQQVzm4?=
- =?us-ascii?Q?ixftpxN3+0/rjoYhQq5mjHCkw5Td9fqOrWdWwVtwp0k2UhvwOkBS4TqMMvFF?=
- =?us-ascii?Q?O1jJZOAtC1syrYp4tLIdqCb/G5ZV/2HWaI0+ihS2NdSkL1FO9ZfCzTirsKSh?=
- =?us-ascii?Q?NkZ3Jgx/DlXK6iOSTrerdHrl9iAf0+8AiSnIioHHFYnRg458mmkjlDTlNlis?=
- =?us-ascii?Q?pZLpNtohkycOHSzeJp+qrsCt6/I7aFRcEWzZKbJmPx+BOSSFsMLZ4gXKo7VF?=
- =?us-ascii?Q?I9IpvEPRcibbGORKIb6MOF5B3GWW98VG4SKB8ciXU5oarqAPRSKyYW7FD6Ma?=
- =?us-ascii?Q?a/dMKIxZq0B8tLc=3D?=
+	=?us-ascii?Q?fFwF3JKhzSKdLiHUQxhArtbSOomdu03k/WSYpNx9RpOiPpHAZo8Rlibi4P+q?=
+ =?us-ascii?Q?baY26DCLO0nVxcmj7xggbm2RiMXU9FHL9BZpuFJnZNgyxMxZAzuHXmZ+bNfT?=
+ =?us-ascii?Q?d9lIzlwZVRSESB+6uW/M2QFOxF8PkjkadtOpo1hmOz/FZzEhhi/zCqh9CeX4?=
+ =?us-ascii?Q?2N2J4FoN2sOidKLFN18k1PbFAMI1YPHZzAs6EcIIXiIPtVvPhhOgwcj5sVoL?=
+ =?us-ascii?Q?Gcwm9z4BzUD2FGUlSbH6q2WMNkHOvGy5yYVsiqtAhUAPCbiJZTW1U2YwgNRy?=
+ =?us-ascii?Q?xzfZ1q9U0skrjXPfYJnxneAg3tsdPBQ788rtrz3T5XCl9kdLYzfJh9qM/XOF?=
+ =?us-ascii?Q?6Qw43i+ICREyuDqdt+Gou30he3tS7yQ2SB4Mmu/JfZcAlqZZL+2pkUTmuajc?=
+ =?us-ascii?Q?KJRuNOEslggJ+XuuWzfjmI/yO7oMpGVsAnAlVny7KlXAdpzu+tis0K+FpjyT?=
+ =?us-ascii?Q?gETxhLuazg42UlfdUktDNtXjfPuuVn6nWVzZFNCLpoKAkPnpvFSnmfdblboX?=
+ =?us-ascii?Q?ZKBO+rVFKGgOxc/pZR9BQSEZgoKPYQBJW3ktiNnnvG9cpisxZBsqB4EY7WA2?=
+ =?us-ascii?Q?hnyDG/3DnwEBMi+0bzodd1ZZCL1flOR/1Z7UG8P4QuPuTFg95SA5Pwt/pHHw?=
+ =?us-ascii?Q?5fLxpa8sXDliEv3db//Bu3ZMIiy7MhhGtMk7BGB1i68tj4m0/CqCaimnMOIt?=
+ =?us-ascii?Q?LzfbbJukeHrH/srmGeOpH0kNvHbmgtNZpD89n9GIUZJonyxZGYUonH8h+a2D?=
+ =?us-ascii?Q?bMzTPRCrGMLc7h1og/dogXBrISZcHlZj7sctSMNLGM8I+qqrmHOX5OSeYgj3?=
+ =?us-ascii?Q?KnttfGWji68UuBaDBMXSrCMRM431sdQQFuV1cKGDbyKcOcNqnFgn7R7XmS1m?=
+ =?us-ascii?Q?wPHR95o/Sj3VpOcL5Gp2RNEUYBz/trIvbEoX1kQ39hkQGqKa3E+PeOd1qGoL?=
+ =?us-ascii?Q?20ZTlM3QdQnp2CMnK5YcojSKwuVH2diUorrjmTgB7wbnFqnMIMy+8TfH09eC?=
+ =?us-ascii?Q?iIxPoFaOy7RlrTQDFfyh7rUqjjDD8fNjN0b6CvBbHUyBLbZdZpX+IhBT2H5e?=
+ =?us-ascii?Q?uSqah0lEFiNMtn4+9GbJrrzq6csmQ3jaB043bgv6Fr1M+9DPkHUr2M9b/nAk?=
+ =?us-ascii?Q?b6QbvTQyB8YsSMwK6+AqItCfeBwlT6RRN77v4cbHUrfKsacnWHNlkIykfx6L?=
+ =?us-ascii?Q?I3WD5WQEc3Ji6YydpqbmmZpsW19CUZSUaVBtK+bioPfqrxGhcAh/Ln+7uBSg?=
+ =?us-ascii?Q?Tg0IKWq31pQzaEfKLD5g2QofBrMYfJZt+SrDKvGJybmmeHrnOO1Suq4pbqHe?=
+ =?us-ascii?Q?l93U3NowQOJH23IKoaTKDJC7Qa3aGdHM1uLPsqCwAd0pLfR4F4L9pjyUN3dd?=
+ =?us-ascii?Q?A8/C3T4gMaXX/ck+RsSv74S9GODIfhpTR2r8atTbvmIGtaIBhpqe/atzgaL9?=
+ =?us-ascii?Q?zWVpOMTcTP4ozLVQAYTvRUwb6TJRbk9sT+wOyyPm8vVeixDGFzC5u4hzNOZO?=
+ =?us-ascii?Q?gH5+3CeeNKSi3ew=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013)(13003099007);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024)(13003099007);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2025 17:04:51.5299
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2025 17:04:53.1745
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4ba36e6-efee-430f-898c-08de37451150
+X-MS-Exchange-CrossTenant-Network-Message-Id: 62abf9af-a564-407b-4e02-08de3745124b
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BN2PEPF0000449D.namprd02.prod.outlook.com
+	SJ5PEPF000001CA.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR10MB4305
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR10MB6780
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Tue, 09 Dec 2025 17:05:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16881
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16880
 
-From: LCPD Automation Script <lcpdbld@list.ti.com>
+Add config for CoreSDK 11.01.07 release.
 
-Add config for CoreSDK 11.02.05 release.
-
-Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- ...nf.json =3D> coresdk-11.02.05-config.conf.json} |  2 +-
- .../coresdk-11.02.05-config.txt}                 |  4 +++-
- .../coresdk-11.02.05-config.yml}                 |  8 --------
- ...16-config.xml =3D> coresdk-11.02.05-config.xml} | 16 ++++++++--------
- 4 files changed, 12 insertions(+), 18 deletions(-)
- copy bitbake-setup/coresdk/{coresdk-11.01.08-config.conf.json =3D> coresdk=
--11.02.05-config.conf.json} (99%)
- copy configs/{processor-sdk/processor-sdk-scarthgap-11.02.05.02-config.txt=
- =3D> coresdk/coresdk-11.02.05-config.txt} (82%)
- copy kas/{processor-sdk/processor-sdk-scarthgap-11.02.05.02-config.yml =3D=
-> coresdk/coresdk-11.02.05-config.yml} (91%)
- copy src/configs/coresdk/{coresdk-11.01.16-config.xml =3D> coresdk-11.02.0=
-5-config.xml} (85%)
+ ....json =3D> coresdk-11.01.07-config.conf.json} |  2 +-
+ .../coresdk-11.01.07-config.txt}               |  4 ++--
+ .../coresdk-11.01.07-config.yml}               | 12 ------------
+ .../coresdk-11.01.07-config.xml}               | 18 +++++++++---------
+ 4 files changed, 12 insertions(+), 24 deletions(-)
+ copy bitbake-setup/coresdk/{coresdk-11.01.05-config.conf.json =3D> coresdk=
+-11.01.07-config.conf.json} (99%)
+ copy configs/{processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-=
+config.txt =3D> coresdk/coresdk-11.01.07-config.txt} (87%)
+ copy kas/{processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-conf=
+ig.yml =3D> coresdk/coresdk-11.01.07-config.yml} (87%)
+ copy src/configs/{processor-sdk-analytics/processor-sdk-analytics-11.01.07=
+.05-config.xml =3D> coresdk/coresdk-11.01.07-config.xml} (89%)
 
-diff --git a/bitbake-setup/coresdk/coresdk-11.01.08-config.conf.json b/bitb=
-ake-setup/coresdk/coresdk-11.02.05-config.conf.json
+diff --git a/bitbake-setup/coresdk/coresdk-11.01.05-config.conf.json b/bitb=
+ake-setup/coresdk/coresdk-11.01.07-config.conf.json
 similarity index 99%
-copy from bitbake-setup/coresdk/coresdk-11.01.08-config.conf.json
-copy to bitbake-setup/coresdk/coresdk-11.02.05-config.conf.json
-index 8658e2f..c9f684f 100644
---- a/bitbake-setup/coresdk/coresdk-11.01.08-config.conf.json
-+++ b/bitbake-setup/coresdk/coresdk-11.02.05-config.conf.json
+copy from bitbake-setup/coresdk/coresdk-11.01.05-config.conf.json
+copy to bitbake-setup/coresdk/coresdk-11.01.07-config.conf.json
+index e07227f..5fd29ca 100644
+--- a/bitbake-setup/coresdk/coresdk-11.01.05-config.conf.json
++++ b/bitbake-setup/coresdk/coresdk-11.01.07-config.conf.json
 @@ -1,6 +1,6 @@
  {
    "version": "1.0",
--  "description": "TI CoreSDK v11.01.08",
-+  "description": "TI CoreSDK v11.02.05",
+-  "description": "TI CoreSDK v11.01.05",
++  "description": "TI CoreSDK v11.01.07",
    "sources": {
      "oe-layersetup": {
        "git-remote": {
-diff --git a/configs/processor-sdk/processor-sdk-scarthgap-11.02.05.02-conf=
-ig.txt b/configs/coresdk/coresdk-11.02.05-config.txt
-similarity index 82%
-copy from configs/processor-sdk/processor-sdk-scarthgap-11.02.05.02-config.=
-txt
-copy to configs/coresdk/coresdk-11.02.05-config.txt
-index 31e590a..97f290e 100644
---- a/configs/processor-sdk/processor-sdk-scarthgap-11.02.05.02-config.txt
-+++ b/configs/coresdk/coresdk-11.02.05-config.txt
+diff --git a/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.=
+07.05-config.txt b/configs/coresdk/coresdk-11.01.07-config.txt
+similarity index 87%
+copy from configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.=
+05-config.txt
+copy to configs/coresdk/coresdk-11.01.07-config.txt
+index 26457d0..87c4c6d 100644
+--- a/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-c=
+onfig.txt
++++ b/configs/coresdk/coresdk-11.01.07-config.txt
 @@ -2,8 +2,9 @@
  # repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:la=
 yern]
 =20
- bitbake,https://git.openembedded.org/bitbake,2.8,8dcf084522b9c66a6639b5f11=
-7f554fde9b6b45a
+ bitbake,https://git.openembedded.org/bitbake,2.8,86e7a58c0e9904c33b1b94ddd=
+c3d683c2da22d1a
 -meta-tisdk,https://github.com/TexasInstruments/meta-tisdk.git,scarthgap,11=
-.02.05.02,layers=3Dmeta-ti-foundational:meta-ti-ml
- meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,11.02.05,laye=
+.01.07.05,layers=3Dmeta-ti-foundational
+ meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,11.01.07,laye=
 rs=3Dmeta-arago-distro:meta-arago-extras:meta-arago-test
 +#meta-browser,https://github.com/OSSystems/meta-browser.git,master,27ca52f=
 635a31f5f9762813a8527dd31323549b7,layers=3Dmeta-chromium
 +#meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,lay=
 ers=3D
- meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,c7d71f4cece4d1fe3110c94=
-5b9bd40ca82960e05,layers=3D
+ meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,2b4e60e319348ae2d53072b=
+901645f30b4cc42bf,layers=3D
  meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scart=
-hgap,af1db2042caf8021d767dce1b26c08b59b96f3d1,layers=3D
+hgap,a5449c0c50aa07d02186f548fe6bb6c1ce8823dc,layers=3D
  meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap=
-,f1f248262d662315159ee96c604f97415d1dbe6a,layers=3Dmeta-networking:meta-pyt=
+,e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943,layers=3Dmeta-networking:meta-pyt=
 hon:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
-@@ -11,6 +12,7 @@ meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mix=
-ins,scarthgap/rust,a804
- meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,11.02.05,layers=3Dm=
-eta-ti-extras:meta-beagle:meta-ti-bsp
- meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,a81c19915b5b9e71e=
-d394032e9a50fd06919e1cd,layers=3Dmeta-arm:meta-arm-toolchain
- meta-clang,https://github.com/kraj/meta-clang,scarthgap,731488911f55ebfe74=
-6068512b426351192f82f2,layers=3D
-+#meta-flutter,https://github.com/meta-flutter/meta-flutter.git,scarthgap,H=
-EAD,layers=3D.:meta-flutter-apps
- oe-core,https://git.openembedded.org/openembedded-core,scarthgap,06d498131=
-3ce67a8d53b1c14be9845b4b5a9f4cf,layers=3Dmeta
+@@ -12,7 +13,6 @@ meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,11=
+.01.07,layers=3Dmeta-ti-e
+ meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,8e0f8af90fefb03f0=
+8cd2228cde7a89902a6b37c,layers=3Dmeta-arm:meta-arm-toolchain
+ meta-clang,https://github.com/kraj/meta-clang,scarthgap,aef850f7fa53121c74=
+b244b7ae40d31fb9809ccf,layers=3D
+ oe-core,https://git.openembedded.org/openembedded-core,scarthgap,24c0ab180=
+45920bb5c1e965c0ea6d176fd6de234,layers=3Dmeta
+-meta-edgeai,https://git.ti.com/git/edgeai/meta-edgeai.git,scarthgap,11.01.=
+07.05,layers=3D
 =20
  OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
-diff --git a/kas/processor-sdk/processor-sdk-scarthgap-11.02.05.02-config.y=
-ml b/kas/coresdk/coresdk-11.02.05-config.yml
-similarity index 91%
-copy from kas/processor-sdk/processor-sdk-scarthgap-11.02.05.02-config.yml
-copy to kas/coresdk/coresdk-11.02.05-config.yml
-index b12cd5e..67db1c8 100644
---- a/kas/processor-sdk/processor-sdk-scarthgap-11.02.05.02-config.yml
-+++ b/kas/coresdk/coresdk-11.02.05-config.yml
-@@ -15,14 +15,6 @@ repos:
+ OECORELOCALCONF=3D./sample-files/local-arago64-v2.conf.sample
+diff --git a/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.07.0=
+5-config.yml b/kas/coresdk/coresdk-11.01.07-config.yml
+similarity index 87%
+copy from kas/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-c=
+onfig.yml
+copy to kas/coresdk/coresdk-11.01.07-config.yml
+index 2993b0d..ef39bd6 100644
+--- a/kas/processor-sdk-analytics/processor-sdk-analytics-11.01.07.05-confi=
+g.yml
++++ b/kas/coresdk/coresdk-11.01.07-config.yml
+@@ -15,13 +15,6 @@ repos:
      layers:
        .: disabled
 =20
 -  meta-tisdk:
 -    url: "https://github.com/TexasInstruments/meta-tisdk.git"
 -    branch: "scarthgap"
--    commit: "11.02.05.02"
+-    commit: "11.01.07.05"
 -    layers:
 -      meta-ti-foundational:
--      meta-ti-ml:
 -
    meta-arago:
      url: "https://git.yoctoproject.org/meta-arago"
      branch: "scarthgap"
-diff --git a/src/configs/coresdk/coresdk-11.01.16-config.xml b/src/configs/=
-coresdk/coresdk-11.02.05-config.xml
-similarity index 85%
-copy from src/configs/coresdk/coresdk-11.01.16-config.xml
-copy to src/configs/coresdk/coresdk-11.02.05-config.xml
-index 427ad3d..58e12ae 100644
---- a/src/configs/coresdk/coresdk-11.01.16-config.xml
-+++ b/src/configs/coresdk/coresdk-11.02.05-config.xml
-@@ -1,16 +1,16 @@
+@@ -86,8 +79,3 @@ repos:
+     commit: "24c0ab18045920bb5c1e965c0ea6d176fd6de234"
+     layers:
+       meta:
+-
+-  meta-edgeai:
+-    url: "https://git.ti.com/git/edgeai/meta-edgeai.git"
+-    branch: "scarthgap"
+-    commit: "11.01.07.05"
+diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11=
+.01.07.05-config.xml b/src/configs/coresdk/coresdk-11.01.07-config.xml
+similarity index 89%
+copy from src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01=
+.07.05-config.xml
+copy to src/configs/coresdk/coresdk-11.01.07-config.xml
+index 904c44a..416ab01 100644
+--- a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.01.07.=
+05-config.xml
++++ b/src/configs/coresdk/coresdk-11.01.07-config.xml
+@@ -1,6 +1,6 @@
  <?xml version=3D'1.0'?>
  <config>
--    <description>TI CoreSDK v11.01.16</description>
-+    <description>TI CoreSDK v11.02.05</description>
+-    <description>TI Processor SDK Analytics v11.01.07.05</description>
++    <description>TI CoreSDK v11.01.07</description>
 =20
      <xi:include href=3D'../../common/distro_arago.xml' xmlns:xi=3D'http://=
 www.w3.org/2001/XInclude'/>
      <xi:include href=3D'../../common/machines.xml' xmlns:xi=3D'http://www.=
 w3.org/2001/XInclude'/>
-     <xi:include href=3D'../../templates/bblayers.conf.xml' xmlns:xi=3D'htt=
-p://www.w3.org/2001/XInclude'/>
-     <xi:include href=3D'../../templates/local-arago64-v2.conf.xml' xmlns:x=
-i=3D'http://www.w3.org/2001/XInclude'/>
-=20
--    <bitbake url=3D'https://git.openembedded.org/bitbake' branch=3D'2.8' c=
-ommit=3D'1c9ec1ffde75809de34c10d3ec2b40d84d258cb4'/>
-+    <bitbake url=3D'https://git.openembedded.org/bitbake' branch=3D'2.8' c=
-ommit=3D'8dcf084522b9c66a6639b5f117f554fde9b6b45a'/>
+@@ -10,11 +10,6 @@
+     <bitbake url=3D'https://git.openembedded.org/bitbake' branch=3D'2.8' c=
+ommit=3D'86e7a58c0e9904c33b1b94dddc3d683c2da22d1a'/>
 =20
      <repos>
--        <repo name=3D'meta-arago' url=3D'https://git.yoctoproject.org/meta=
--arago' branch=3D'scarthgap' commit=3D'11.01.16'>
-+        <repo name=3D'meta-arago' url=3D'https://git.yoctoproject.org/meta=
--arago' branch=3D'scarthgap' commit=3D'11.02.05'>
+-        <repo name=3D'meta-tisdk' url=3D'https://github.com/TexasInstrumen=
+ts/meta-tisdk.git' branch=3D'scarthgap' commit=3D'11.01.07.05'>
+-            <layers>
+-                <layer>meta-ti-foundational</layer>
+-            </layers>
+-        </repo>
+         <repo name=3D'meta-arago' url=3D'https://git.yoctoproject.org/meta=
+-arago' branch=3D'scarthgap' commit=3D'11.01.07'>
              <layers>
                  <layer>meta-arago-distro</layer>
-                 <layer>meta-arago-extras</layer>
-@@ -31,7 +31,7 @@
-         <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
-.org/meta-virtualization' branch=3D'scarthgap' commit=3D'af1db2042caf8021d7=
-67dce1b26c08b59b96f3d1'>
-             <layers/>
-         </repo>
--        <repo name=3D'meta-openembedded' url=3D'https://git.openembedded.o=
-rg/meta-openembedded' branch=3D'scarthgap' commit=3D'e621da947048842109db1b=
-4fd3917a02e0501aa2'>
-+        <repo name=3D'meta-openembedded' url=3D'https://git.openembedded.o=
-rg/meta-openembedded' branch=3D'scarthgap' commit=3D'f1f248262d662315159ee9=
-6c604f97415d1dbe6a'>
-             <layers>
-                 <layer>meta-networking</layer>
-                 <layer>meta-python</layer>
-@@ -44,20 +44,20 @@
-         <repo name=3D'meta-lts-mixins' url=3D'https://git.yoctoproject.org=
-/meta-lts-mixins' branch=3D'scarthgap/rust' commit=3D'a8046d5ec53b1856169ac=
-795aa87cb0d5db84c04'>
-             <layers/>
-         </repo>
--        <repo name=3D'meta-ti' url=3D'https://git.yoctoproject.org/meta-ti=
-' branch=3D'scarthgap' commit=3D'11.01.16'>
-+        <repo name=3D'meta-ti' url=3D'https://git.yoctoproject.org/meta-ti=
-' branch=3D'scarthgap' commit=3D'11.02.05'>
-             <layers>
-                 <layer>meta-ti-extras</layer>
-                 <layer>meta-beagle</layer>
-                 <layer>meta-ti-bsp</layer>
+@@ -22,6 +17,14 @@
+                 <layer>meta-arago-test</layer>
              </layers>
          </repo>
--        <repo name=3D'meta-arm' url=3D'https://git.yoctoproject.org/meta-a=
-rm' branch=3D'scarthgap' commit=3D'0f1e7bf92c89759f0ab74cfa5be4ee47b092ad46=
-'>
-+        <repo name=3D'meta-arm' url=3D'https://git.yoctoproject.org/meta-a=
-rm' branch=3D'scarthgap' commit=3D'a81c19915b5b9e71ed394032e9a50fd06919e1cd=
-'>
-             <layers>
-                 <layer>meta-arm</layer>
-                 <layer>meta-arm-toolchain</layer>
-             </layers>
-         </repo>
--        <repo name=3D'meta-clang' url=3D'https://github.com/kraj/meta-clan=
-g' branch=3D'scarthgap' commit=3D'057ee563305e9484b29d02347aeafdadc5ea28ed'=
->
-+        <repo name=3D'meta-clang' url=3D'https://github.com/kraj/meta-clan=
-g' branch=3D'scarthgap' commit=3D'731488911f55ebfe746068512b426351192f82f2'=
->
++        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
+ta-browser.git' branch=3D'master' commit=3D'27ca52f635a31f5f9762813a8527dd3=
+1323549b7' disabled=3D'true'>
++            <layers>
++                <layer>meta-chromium</layer>
++            </layers>
++        </repo>
++        <repo name=3D'meta-selinux' url=3D'https://git.yoctoproject.org/me=
+ta-selinux' branch=3D'scarthgap' commit=3D'HEAD' disabled=3D'true'>
++            <layers/>
++        </repo>
+         <repo name=3D'meta-qt6' url=3D'https://code.qt.io/yocto/meta-qt6.g=
+it' branch=3D'6.9' commit=3D'2b4e60e319348ae2d53072b901645f30b4cc42bf'>
              <layers/>
          </repo>
-         <repo name=3D'meta-flutter' url=3D'https://github.com/meta-flutter=
-/meta-flutter.git' branch=3D'scarthgap' commit=3D'HEAD' disabled=3D'true'>
-@@ -66,7 +66,7 @@
-                 <layer>meta-flutter-apps</layer>
-             </layers>
-         </repo>
--        <repo name=3D'oe-core' url=3D'https://git.openembedded.org/openemb=
-edded-core' branch=3D'scarthgap' commit=3D'4cf131ebd157b79226533b5a5074691d=
-d0e1a4ab'>
-+        <repo name=3D'oe-core' url=3D'https://git.openembedded.org/openemb=
-edded-core' branch=3D'scarthgap' commit=3D'06d4981313ce67a8d53b1c14be9845b4=
-b5a9f4cf'>
-             <layers>
+@@ -62,9 +65,6 @@
                  <layer>meta</layer>
              </layers>
+         </repo>
+-        <repo name=3D'meta-edgeai' url=3D'https://git.ti.com/git/edgeai/me=
+ta-edgeai.git' branch=3D'scarthgap' commit=3D'11.01.07.05'>
+-            <layers/>
+-        </repo>
+     </repos>
+=20
+     <tools>
 --=20
 2.43.0
 
