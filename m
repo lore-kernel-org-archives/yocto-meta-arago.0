@@ -1,623 +1,165 @@
-Return-Path: <s-sinha@ti.com>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A9E45D68BED
-	for <webhook@archiver.kernel.org>; Thu, 18 Dec 2025 08:03:12 +0000 (UTC)
-Received: from CH5PR02CU005.outbound.protection.outlook.com (CH5PR02CU005.outbound.protection.outlook.com [40.107.200.2])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.36794.1766044982875627087
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 48B24D74956
+	for <webhook@archiver.kernel.org>; Fri, 19 Dec 2025 06:14:07 +0000 (UTC)
+Received: from CY3PR05CU001.outbound.protection.outlook.com (CY3PR05CU001.outbound.protection.outlook.com [40.93.201.53])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.11520.1766124837609214464
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 18 Dec 2025 00:03:03 -0800
+ Thu, 18 Dec 2025 22:13:58 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=NyKzOo2D;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.200.2, mailfrom: s-sinha@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=tpXh+3jN;
+ spf=pass (domain: list.ti.com, ip: 40.93.201.53, mailfrom: lcpdbld@list.ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eZR8U+UhG63V1zLCvQtmfjGDwjh5BVoS6GH6KosPrsVvXxUZbl9C5N+4OFCYZ4qbeJP+2tZwpZBBx4tBJLIF/OCtF9h6LUpaJB8cDGuSPVhRbwn/7LHYEGbMYm2pkhivt2KcEwv8Kg75fivjtWJqQYJz6hwOOE8iZmbAVivt+tPJbMLTmnNbLLJAi2MQYPauXuOdr2cljyIkbV5ib6MlCJV3QDOIYgH7ezRBHkm025J+8gCvamOdJT8dXcHALT2GjqWSHGeDEVVReVY8ZEyzEbGq3idClPRwGCF7Wm7ScLSZtUhZUM2I/gDT2+6h38SFy1JNvdesJAHuCowCX3LHYw==
+ b=gWm1k9ZwjYSEXF1rqOOr6Ng0LJKmtMX4GqdaaSTB5O6KXag+uQMa6ASkP4FCYcRw59x18Nukn6YzxDoSEW5cWLQ3DkGjJRU9eMfQOoOJjGQ7TrOeI5I/ZuQtfazUsY8FRlJz0iXVT/R9NT9LfnIU95ngVpnFUNVyIPWl/WehuGO5Y00uBSWdt55vACCBCHSSGpErWG82QUETBO7MMOXwhAA7sD/xqGw9G0fqK6FRAig+e2Yaxt2FKjALVx4PbYZ0i42wzN2bI76AVF7gGC+LlMoYW5gXcm0I9+1s7bLE6dCtrd+jh7OHbuOfL1V1r4vLejRXmPMN/3uO6KigQAOQFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7ManO36VOUMWPIhBgZCa0MStlcphhW9FcVuiZPn56DU=;
- b=d0d7swiqfiCU4jQheW1Lmk2Tku01fK/7Ybz+C6bE8ZXIWQv7e57jQgOnershxr/Oii0GFdvYvcPUsMVTME9PL7rMginwVJfhGLkkCoq8gDCqjQlzZ6q0t+T7hJmw1FDD0QNAqsK+x9dTmrK+2FY1mre3cEpvz1U7ohzSUXmYgAdSbJsCAPmncgUkTjjcqNHTwRuN2mqwXyyUoZAEZoRnyhrx1xfboNDk/W3JaRoeA4ijSfotnwtJhNmdYy5a4XP/F1ZWBUVpbElNFMn/eNT6bJRoS+wr95/07K6VFegF7goEhupypF4aLwlRfSMOspLfJi8ELyKum9fwHJvFgtMETg==
+ bh=vQd1pFZjOVEzLlDjV0JjKZof9r2HdaTnwiGWkCaE1LI=;
+ b=pwbo5mUYpIvCBMDKcKZuPz+QardxscKGFuqUl7WvL14NAJidzoG7US1KuyTaFcbnyxby+diPxwlX9Kr4rnDv4jWHYPfV/q3bSDqcGsr+aE4WrZaUaf/5xx2b3WLUnpIp5n/HZgaxNctsNoJq25zn5BrPqqC1xGUxgpgqc0BE4hXBRG/9tDDVig4/ELgYWnaMe5uVFK3LLA8ouw+Im5/SJmGaccj9xS5EnAkyTuz0LPvDsA7x/dEG/hnuwhNzyLLFyMcJTCdDbEXdhh9YMpHOVFIL+pQM7JFrluW3FJ9cMPByvBt8Awe7cVUVM4nEQlRJSbeNJ1VOivwGL1TI4s8dbg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
+ action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7ManO36VOUMWPIhBgZCa0MStlcphhW9FcVuiZPn56DU=;
- b=NyKzOo2DqmaGiqeSTaWWbBCqE09K7oNKCs2Stp3S9E+9MzGC9FyBkfxvG6QYOwIKu7laoGNGvs5GjGs7lGsFRPVrfl0VywApuzVOlZio/w1eGfuMSf4IAETB82XyhhZd+todM0zy2KDlExJHU3M5dDVBfOcxdTM1IwRXK11CTxE=
-Received: from SJ0PR03CA0089.namprd03.prod.outlook.com (2603:10b6:a03:331::34)
- by IA3PR10MB8065.namprd10.prod.outlook.com (2603:10b6:208:50f::9) with
+ bh=vQd1pFZjOVEzLlDjV0JjKZof9r2HdaTnwiGWkCaE1LI=;
+ b=tpXh+3jN5hzDTDtK3IYJyhgiZ3Z70CRYA/tTPAtv+5wsmFJ6FUBasRFeqlUmmM4cBwfiMkwIlrqF0XpHxJxmEJVC6oWtRe347YG0EFBhPIYO7ZQnAq4Y3IuREMF8RTO8LGV/bCrmbgxqLkyuY/u7Bj1JyJbeQ+iG2+itsXvU9qiRFyYQ0h1DbKW3z13bFUNETpxjfXXUCh2FEudWOGVo11KfIfULnJqHUfk9Zq2fOqSJNG7M0N8GhmJ2dLHisYSt7u3WYl5O5Vg4Cs7r8WI86ECUxqM67Pvc/y2XVuqXmjjLHLY1vn9vqfAYFBlRfDrT2lgHqBEYgxBw/y4ML5ervQ==
+Received: from SN7PR04CA0009.namprd04.prod.outlook.com (2603:10b6:806:f2::14)
+ by MN6PR10MB7423.namprd10.prod.outlook.com (2603:10b6:208:46c::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Thu, 18 Dec
- 2025 08:02:59 +0000
-Received: from CO1PEPF000066E9.namprd05.prod.outlook.com
- (2603:10b6:a03:331:cafe::1) by SJ0PR03CA0089.outlook.office365.com
- (2603:10b6:a03:331::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.6 via Frontend Transport; Thu,
- 18 Dec 2025 08:02:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- CO1PEPF000066E9.mail.protection.outlook.com (10.167.249.11) with Microsoft
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.9; Fri, 19 Dec
+ 2025 06:13:54 +0000
+Received: from SA2PEPF00003AE4.namprd02.prod.outlook.com
+ (2603:10b6:806:f2:cafe::c0) by SN7PR04CA0009.outlook.office365.com
+ (2603:10b6:806:f2::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.7 via Frontend Transport; Fri,
+ 19 Dec 2025 06:13:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=list.ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=list.ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SA2PEPF00003AE4.mail.protection.outlook.com (10.167.248.4) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9434.6 via Frontend Transport; Thu, 18 Dec 2025 08:02:55 +0000
-Received: from DFLE206.ent.ti.com (10.64.6.64) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 18 Dec
- 2025 02:02:45 -0600
-Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 18 Dec
- 2025 02:02:45 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE208.ent.ti.com
- (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9434.6 via Frontend Transport; Fri, 19 Dec 2025 06:13:54 +0000
+Received: from DLEE210.ent.ti.com (157.170.170.112) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 19 Dec
+ 2025 00:13:50 -0600
+Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE210.ent.ti.com
+ (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 19 Dec
+ 2025 00:13:49 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE200.ent.ti.com
+ (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 18 Dec 2025 02:02:45 -0600
-Received: from localhost (robotics.dhcp.ti.com [172.24.235.192])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BI80Jq12956280;
-	Thu, 18 Dec 2025 02:00:19 -0600
-From: Shreyash Sinha <s-sinha@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: <reatmon@ti.com>, Shreyash Sinha <s-sinha@ti.com>
-Subject: [meta-arago][oe-layersetup][PATCH v2] configs: processor-sdk-analytics: Add 11.2 release config
-Date: Thu, 18 Dec 2025 13:30:17 +0530
-Message-ID: <20251218080017.586628-1-s-sinha@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Transport; Fri, 19 Dec 2025 00:13:49 -0600
+Received: from fllvdckhpci102.itg.ti.com (fllvdckhpci102.itg.ti.com [10.64.72.97])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BJ6Dnrg447974;
+	Fri, 19 Dec 2025 00:13:49 -0600
+Received: by fllvdckhpci102.itg.ti.com (Postfix, from userid 60899)
+	id C4E652A69; Fri, 19 Dec 2025 00:13:49 -0600 (CST)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>, "Denys
+ Dmytriyenko" <denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][scarthgap][PATCH] CI/CD Auto-Merger: cicd.scarthgap.202512181848
+Date: Fri, 19 Dec 2025 00:13:49 -0600
+Message-ID: <20251219061349.1872555-1-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 2.43.5
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000066E9:EE_|IA3PR10MB8065:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40b70d0a-a82e-41aa-c5b1-08de3e0bd9d1
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003AE4:EE_|MN6PR10MB7423:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8105072a-896e-4623-dcfb-08de3ec5c97a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013|13003099007;
+	BCL:0;ARA:13230040|36860700013|82310400026|376014|1800799024;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?EfemkOd3qrjPRhpvKvVi3gpMpQtMe/8EqWv2FTzSuma38p8/ohHlwIJ6XQWE?=
- =?us-ascii?Q?0rKBdfnOXuU4exBwVHtyVNSo3ZBth0Tv/xZaF6V/QEpExwwFDr0//gdIYrKt?=
- =?us-ascii?Q?d08dm2W7Fxzk+egNhwUG0pMaoj77s/xEs79PAaN0L1ZYuwm0RjT1HCsyi0JZ?=
- =?us-ascii?Q?Czic4rGvui89boV7tkCkzly0DXp8hJ+pdlLJ53yorjC1Rxwb/xKNqMZigNBA?=
- =?us-ascii?Q?uGuT+wGX0J8Sc/AD84J9w/vJ5A8n/r6l/V+anVysAApf1Itj2YZgesVlTgq3?=
- =?us-ascii?Q?Cpzgu7zhE+ffNtCOSmhdgwhIDPu06tb3yCJ8PT8bz9q7G64Ecb0uSRhXcz0p?=
- =?us-ascii?Q?fvdcMTVkuclD31A49L95todS+QGZNIeiKg0QX6Rwd6kyeM3jVPW3Zr33nVah?=
- =?us-ascii?Q?UmH/00wnKz6kadFC5y/UdpDYofiGRSI4CBaTfcufcUWuaHdkI90JmyO0Ine9?=
- =?us-ascii?Q?AZUvJEta+JsG0TWuH1lwDKDO6hvAP/KtXbg2yOi84K9p5xFfLl8pU2SdwFJt?=
- =?us-ascii?Q?JZ2xDQO2K39tUkRiZ+sRN684/sRtkXKCyufGkcEK0nWaIzAwgZyp3hfZSKjU?=
- =?us-ascii?Q?J6e6GcdmA/FlUDem0WpRRWd05gVGZlsmRSqFaAk39ZFtoXJfS200lekL6dJB?=
- =?us-ascii?Q?+zlUkpG0IKgAo5aZnAkhbmzp1dYhhh22c230w7fnT80Rc5pQeCdInx24hiX+?=
- =?us-ascii?Q?ommpuCyjZ+18axnLs/gs4MYl/76KX2XhXNHus8/qfcL073cNQ4gOG3uN0jEB?=
- =?us-ascii?Q?aK9+VEiCkn55WFl97Bdwt7lyUdHhuswoqBP3p4xXY7LESS0MS6XEkv5d/dGm?=
- =?us-ascii?Q?okHzP8tl/UquG4MqhYnSelP1KS5Ughy1e18FEDfn85AG15Wm2Ojndw7mWYbC?=
- =?us-ascii?Q?Et8uiQtRijxNvxonMN5v0Uf/aQGTuvazXACBDBCCKowe55BvaYcMLw/TmGiL?=
- =?us-ascii?Q?zg8CeFFVZAb500l2mtCfGBMqJOam71+EVoKNIAaqSpIWtBRbvVH2dpqPfNnl?=
- =?us-ascii?Q?RtlAEIs2RX7dUeaScECPp994kqmFtGdqkIdL4j522y2845rE5HYL4kFpAxew?=
- =?us-ascii?Q?6MW2u+vNL4RH8NEOC1B7PdExVwuKuTRCzYW+Dx2G3uIvMoAb3ItNoPSQ33FU?=
- =?us-ascii?Q?QF8l3BLlgSmFLgJdoE/sf7c6ZOt22KWXyxXRLcBzsmEQsX/QwXue4bL5rGzl?=
- =?us-ascii?Q?mYuEfrUA2uB0CYiCJ1sSn8N0MuFEJ0StUKSTEha83QI+z/g94T30FbJXTlMU?=
- =?us-ascii?Q?OqjWscFY1wRI7g/I3PXZSyrJWpEdXpnoWQTg5oa6vLEuXJYK4Ot/qCPCz4PQ?=
- =?us-ascii?Q?G038SVtNAP/VyGDdrONc7TFIPCgO3LE3+Tm4AO50v76CRfxltw0VcvQ0UhyM?=
- =?us-ascii?Q?u8V6HCs+4mDbwy5QJA3RCeaXpOi7bqlRgBIfKiFtSdfigZZGDQEfdzlCPgSX?=
- =?us-ascii?Q?VdLMeQRyeqPa4nW1MmUUKFq3kfrKxc9regitx/2drIhMDK/ZNM0bq0fQKzER?=
- =?us-ascii?Q?Ydz62oBe/EDyKmw=3D?=
+	=?us-ascii?Q?33yHEYIIfbSQMHAXJmksmCT1+aTjiRFP20OSl8gCx9zKQXG8K4o/3FLUB3yo?=
+ =?us-ascii?Q?JYEHr9kSHqInHzXZm0uuzv4M13rDXdV8pcUZU6Dip0FhoHwd+qZOSVAVy6AC?=
+ =?us-ascii?Q?QaXn77N8hjVxDi2SfarBddklUs7O16AS9D7f9/oPvOVhG6odESvUPGvF4s0E?=
+ =?us-ascii?Q?TNSpP5nM1jq3a9ewD8IQaI5of78yimPesht1ib4GgVf4J5cdCnxVxNq20Ch8?=
+ =?us-ascii?Q?G/6ix52TRuX0qqrPxycUViO6QnrLJqrrgsCombstXH//idlUX8ZWzG5FgJxq?=
+ =?us-ascii?Q?vwK83bE0qehghMYAArk/OAFOMLpfsr/en4BtW8BK2rsc3cL+iIQvt1Pk8HAL?=
+ =?us-ascii?Q?q9M+sQ44pcQQumbQRif8QimTAjWKXrxU4tpSFKKj7lnrtw5hLMppPbPVHiGJ?=
+ =?us-ascii?Q?O8QNTlwJJ2Ji6xYPN7Gco/LGTKGP4SG3SPEe6Bw7UtD5a1dbyhHOfUbQIUWP?=
+ =?us-ascii?Q?I3eQ4DFfVSfIMSjCqgC2dpyjWSCHCHgCrZF+6iLosVBpVdvHphsW1aCKRKRH?=
+ =?us-ascii?Q?4f4Qd/CcRKyK1f1yCUCVCROqoETORXRHJw7X+5p0D/sFiDJ7zqQSb2OvCr9E?=
+ =?us-ascii?Q?qTumjzHV92gnmQFs8XIPOj9hFYnWkzpiM1vQfz0wYdU69lF3JHVL9IJZAjtn?=
+ =?us-ascii?Q?qjVocPT9O8AxclwrbGb3TJETbH2uxYTZaAm7ZaufwSmNN9LeLLvc893vJIgk?=
+ =?us-ascii?Q?f9OhGPOZkgNvMPysNrL6M6GFimPNUZoV1jPmQkhPHdohHJbV4TR6q9bGiWvb?=
+ =?us-ascii?Q?xQF86ia3EzVzUl/xBVmr3qY/MvwR36TAY/KcfbK/YHkaS9M5Hanfc1WXHKpS?=
+ =?us-ascii?Q?LctC/NKN3STY951PuuIGk7Rel80z0g3waaw/zIHzx/S326MZ+rq7cofzdBHV?=
+ =?us-ascii?Q?S2mBE9EpiV7FcYIsXQGoo+/ZaBb3CvMLbMJ440Z6WI4B7GAgYcD95JYb3eph?=
+ =?us-ascii?Q?Qs7Bo6FTfRpywFj1MVfI+uN947OLeSetNPEkpg1C1IS80HKmeGS88TCd30Tt?=
+ =?us-ascii?Q?ySjl+CpQKPbRqrSOlnEtMzpd4U7KAJHzy8/zFcUXWCD0U6peMkQvSqpe96Wy?=
+ =?us-ascii?Q?8HiXx7SkvyV1R90Fa0CqOwgFT0SCep92/KWwS45qLsn80NsTfoUW0cM/8rpP?=
+ =?us-ascii?Q?Fpjz0dJX5FzQjyqZRd9UJg9lQYJ4WS6Vkow6TN6OK09Did0PHfBsuALss5Au?=
+ =?us-ascii?Q?RqX5kyRlVbrSEjuMpX2A5CKbl20rZ0EXk0rayn5Q4dmVziR2/zKlpMjwPzEp?=
+ =?us-ascii?Q?IYzSOVkG+hF1LDZGVuL7NmHfh1xfWuPcnsretFPuQ8U22qN42W8PAEDdhESa?=
+ =?us-ascii?Q?6EXfSIjMP/Lu/gqPPqi+H5I4z+vetQvfkqIheJ0GQfSI1At9pNLUxCA1aCkJ?=
+ =?us-ascii?Q?aqE+nuNm9gmQbQKTIn8R1DI+g2R5XaqY/bU3POJWpITcAEMGKQD8N45lwre9?=
+ =?us-ascii?Q?hK/bwFKEzOzc+8iFTD8ad/kbIMHYtWKnMGR0CI40cW49v27qxqV6LRoxpCbt?=
+ =?us-ascii?Q?rx6KAy+AoQGr8qHMhuplysZEiu3x53FgO+4nVMO+Pi0AXbwJYfU5NOvLw4q/?=
+ =?us-ascii?Q?gAYMtnVm2xNiT7ImALk=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013)(13003099007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 08:02:55.2545
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: list.ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2025 06:13:54.2672
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40b70d0a-a82e-41aa-c5b1-08de3e0bd9d1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8105072a-896e-4623-dcfb-08de3ec5c97a
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	CO1PEPF000066E9.namprd05.prod.outlook.com
+	SA2PEPF00003AE4.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8065
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR10MB7423
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 18 Dec 2025 08:03:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16894
+ <meta-arago@lists.yoctoproject.org>; Fri, 19 Dec 2025 06:14:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16895
 
-Signed-off-by: Shreyash Sinha <s-sinha@ti.com>
+Updated the value(s) for:
+  ltp-ddt: SRCREV
+
+Changelogs:
+  ltp-ddt: https://git.ti.com/cgit/test-automation/ltp-ddt/log/?qt=3Drange&=
+q=3D5c3f50a492aa9133a89ff3d67833674cc1018180..d23395da4e67855a7d7ce476e44f7=
+9b8e604998e
+
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
 ---
- ...or-sdk-analytics-11.02.00-config.conf.json | 169 ++++++++++++++++++
- ...rocessor-sdk-analytics-11.02.00-config.txt |  22 +++
- ...rocessor-sdk-analytics-11.02.00-config.yml |  93 ++++++++++
- ...rocessor-sdk-analytics-11.02.00-config.xml |  89 +++++++++
- 4 files changed, 373 insertions(+)
- create mode 100644 bitbake-setup/processor-sdk-analytics/processor-sdk-ana=
-lytics-11.02.00-config.conf.json
- create mode 100644 configs/processor-sdk-analytics/processor-sdk-analytics=
--11.02.00-config.txt
- create mode 100644 kas/processor-sdk-analytics/processor-sdk-analytics-11.=
-02.00-config.yml
- create mode 100644 src/configs/processor-sdk-analytics/processor-sdk-analy=
-tics-11.02.00-config.xml
+ meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-=
-11.02.00-config.conf.json b/bitbake-setup/processor-sdk-analytics/processor=
--sdk-analytics-11.02.00-config.conf.json
-new file mode 100644
-index 0000000..72a43fb
---- /dev/null
-+++ b/bitbake-setup/processor-sdk-analytics/processor-sdk-analytics-11.02.0=
-0-config.conf.json
-@@ -0,0 +1,169 @@
-+{
-+  "version": "1.0",
-+  "description": "TI Processor SDK Analytics v11.02.00",
-+  "sources": {
-+    "oe-layersetup": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git=
-"
-+          }
-+        },
-+        "rev": "master"
-+      },
-+      "path": "oe-layersetup"
-+    },
-+    "bitbake": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.openembedded.org/bitbake"
-+          }
-+        },
-+        "rev": "2.8"
-+      },
-+      "path": "bitbake"
-+    },
-+    "meta-arago": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.yoctoproject.org/meta-arago"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-arago"
-+    },
-+    "meta-qt6": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://code.qt.io/yocto/meta-qt6.git"
-+          }
-+        },
-+        "rev": "6.9"
-+      },
-+      "path": "meta-qt6"
-+    },
-+    "meta-virtualization": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.yoctoproject.org/meta-virtualization"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-virtualization"
-+    },
-+    "meta-openembedded": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.openembedded.org/meta-openembedded"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-openembedded"
-+    },
-+    "meta-lts-mixins": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.yoctoproject.org/meta-lts-mixins"
-+          }
-+        },
-+        "rev": "scarthgap/rust"
-+      },
-+      "path": "meta-lts-mixins"
-+    },
-+    "meta-ti": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.yoctoproject.org/meta-ti"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-ti"
-+    },
-+    "meta-arm": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.yoctoproject.org/meta-arm"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-arm"
-+    },
-+    "meta-clang": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://github.com/kraj/meta-clang"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-clang"
-+    },
-+    "oe-core": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.openembedded.org/openembedded-core"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "oe-core"
-+    },
-+    "meta-tisdk": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-tisdk"
-+    },
-+    "meta-edgeai": {
-+      "git-remote": {
-+        "remotes": {
-+          "origin": {
-+            "uri": "https://git.ti.com/git/edgeai/meta-edgeai.git"
-+          }
-+        },
-+        "rev": "scarthgap"
-+      },
-+      "path": "meta-edgeai"
-+    }
-+  },
-+  "bitbake-setup": {
-+    "configurations": [
-+      {
-+        "name": "arago",
-+        "description": "TI Arago distro build",
-+        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-ara=
-go-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","m=
-eta-openembedded/meta-networking","meta-openembedded/meta-python","meta-ope=
-nembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-f=
-ilesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/=
-meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-=
-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk/=
-meta-ti-foundational","meta-edgeai","oe-layersetup" ],
-+        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
-+        "oe-fragments-one-of": {
-+          "machine": {
-+            "description": "Available target machines",
-+            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","mac=
-hine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57=
-xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-=
-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","mac=
-hine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx=
--hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/=
-beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beaglep=
-lay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/=
-j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","m=
-achine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j7=
-84s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle=
-2" ]
-+          },
-+          "distro": {
-+            "description": "Available distributions",
-+            "options": [ "distro/arago" ]
-+          }
-+        }
-+      }
-+    ]
-+  }
-+}
-diff --git a/configs/processor-sdk-analytics/processor-sdk-analytics-11.02.=
-00-config.txt b/configs/processor-sdk-analytics/processor-sdk-analytics-11.=
-02.00-config.txt
-new file mode 100644
-index 0000000..6d9e2e7
---- /dev/null
-+++ b/configs/processor-sdk-analytics/processor-sdk-analytics-11.02.00-conf=
-ig.txt
-@@ -0,0 +1,22 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:la=
-yern]
-+
-+bitbake,https://git.openembedded.org/bitbake,2.8,8dcf084522b9c66a6639b5f11=
-7f554fde9b6b45a
-+meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,b9c8be5cceb1b=
-67c6d14a871fe20e599542999f1,layers=3Dmeta-arago-distro:meta-arago-extras:me=
-ta-arago-test
-+#meta-browser,https://github.com/OSSystems/meta-browser.git,master,27ca52f=
-635a31f5f9762813a8527dd31323549b7,layers=3Dmeta-chromium
-+#meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,lay=
-ers=3D
-+meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,c7d71f4cece4d1fe3110c94=
-5b9bd40ca82960e05,layers=3D
-+meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scart=
-hgap,17ac21e7d7f6f40a87618b22278b63bcfa14dbf2,layers=3D
-+meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap=
-,89a01c3d9ad1f8fce6aeb4dd0e694cfa28d42099,layers=3Dmeta-networking:meta-pyt=
-hon:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
-+meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rus=
-t,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=3D
-+meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,802cd01e783aeec00af=
-81d99cd242f20ede3adc9,layers=3Dmeta-ti-extras:meta-beagle:meta-ti-bsp
-+meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,a81c19915b5b9e71e=
-d394032e9a50fd06919e1cd,layers=3Dmeta-arm:meta-arm-toolchain
-+meta-clang,https://github.com/kraj/meta-clang,scarthgap,731488911f55ebfe74=
-6068512b426351192f82f2,layers=3D
-+#meta-flutter,https://github.com/meta-flutter/meta-flutter.git,scarthgap,H=
-EAD,layers=3D.:meta-flutter-apps
-+oe-core,https://git.openembedded.org/openembedded-core,scarthgap,1fbd9eddb=
-df0da062df0510cabff6f6ee33d5752,layers=3Dmeta
-+meta-tisdk,https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git,scarthgap,71=
-e97d787810978a21dc536dfe59d0c821b554fd,layers=3Dmeta-ti-foundational
-+meta-edgeai,https://git.ti.com/git/edgeai/meta-edgeai.git,scarthgap,e814c2=
-3648afeb0efd277ae6a9fce9aba0aee025,layers=3D
-+
-+OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=3D./sample-files/local-arago64-v2.conf.sample
-+BITBAKE_INCLUSIVE_VARS=3Dyes
-diff --git a/kas/processor-sdk-analytics/processor-sdk-analytics-11.02.00-c=
-onfig.yml b/kas/processor-sdk-analytics/processor-sdk-analytics-11.02.00-co=
-nfig.yml
-new file mode 100644
-index 0000000..929d5df
---- /dev/null
-+++ b/kas/processor-sdk-analytics/processor-sdk-analytics-11.02.00-config.y=
-ml
-@@ -0,0 +1,93 @@
-+---
-+header:
-+  version: 17
-+  includes:
-+    - ../templates/bblayers.conf.yml
-+    - ../templates/local-arago64-v2.conf.yml
-+
-+target: tisdk-default-image
-+
-+repos:
-+  bitbake:
-+    url: "https://git.openembedded.org/bitbake"
-+    branch: "2.8"
-+    commit: "8dcf084522b9c66a6639b5f117f554fde9b6b45a"
-+    layers:
-+      .: disabled
-+
-+  meta-arago:
-+    url: "https://git.yoctoproject.org/meta-arago"
-+    branch: "scarthgap"
-+    commit: "b9c8be5cceb1b67c6d14a871fe20e599542999f1"
-+    layers:
-+      meta-arago-distro:
-+      meta-arago-extras:
-+      meta-arago-test:
-+
-+  meta-qt6:
-+    url: "https://code.qt.io/yocto/meta-qt6.git"
-+    branch: "6.9"
-+    commit: "c7d71f4cece4d1fe3110c945b9bd40ca82960e05"
-+
-+  meta-virtualization:
-+    url: "https://git.yoctoproject.org/meta-virtualization"
-+    branch: "scarthgap"
-+    commit: "17ac21e7d7f6f40a87618b22278b63bcfa14dbf2"
-+
-+  meta-openembedded:
-+    url: "https://git.openembedded.org/meta-openembedded"
-+    branch: "scarthgap"
-+    commit: "89a01c3d9ad1f8fce6aeb4dd0e694cfa28d42099"
-+    layers:
-+      meta-networking:
-+      meta-python:
-+      meta-oe:
-+      meta-gnome:
-+      meta-filesystems:
-+      meta-multimedia:
-+
-+  meta-lts-mixins:
-+    url: "https://git.yoctoproject.org/meta-lts-mixins"
-+    branch: "scarthgap/rust"
-+    commit: "a8046d5ec53b1856169ac795aa87cb0d5db84c04"
-+
-+  meta-ti:
-+    url: "https://git.yoctoproject.org/meta-ti"
-+    branch: "scarthgap"
-+    commit: "802cd01e783aeec00af81d99cd242f20ede3adc9"
-+    layers:
-+      meta-ti-extras:
-+      meta-beagle:
-+      meta-ti-bsp:
-+
-+  meta-arm:
-+    url: "https://git.yoctoproject.org/meta-arm"
-+    branch: "scarthgap"
-+    commit: "a81c19915b5b9e71ed394032e9a50fd06919e1cd"
-+    layers:
-+      meta-arm:
-+      meta-arm-toolchain:
-+
-+  meta-clang:
-+    url: "https://github.com/kraj/meta-clang"
-+    branch: "scarthgap"
-+    commit: "731488911f55ebfe746068512b426351192f82f2"
-+
-+  oe-core:
-+    url: "https://git.openembedded.org/openembedded-core"
-+    branch: "scarthgap"
-+    commit: "1fbd9eddbdf0da062df0510cabff6f6ee33d5752"
-+    layers:
-+      meta:
-+
-+  meta-tisdk:
-+    url: "https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git"
-+    branch: "scarthgap"
-+    commit: "71e97d787810978a21dc536dfe59d0c821b554fd"
-+    layers:
-+      meta-ti-foundational:
-+
-+  meta-edgeai:
-+    url: "https://git.ti.com/git/edgeai/meta-edgeai.git"
-+    branch: "scarthgap"
-+    commit: "e814c23648afeb0efd277ae6a9fce9aba0aee025"
-diff --git a/src/configs/processor-sdk-analytics/processor-sdk-analytics-11=
-.02.00-config.xml b/src/configs/processor-sdk-analytics/processor-sdk-analy=
-tics-11.02.00-config.xml
-new file mode 100644
-index 0000000..36e7a1b
---- /dev/null
-+++ b/src/configs/processor-sdk-analytics/processor-sdk-analytics-11.02.00-=
-config.xml
-@@ -0,0 +1,89 @@
-+<?xml version=3D'1.0'?>
-+<config>
-+    <description>TI Processor SDK Analytics v11.02.00</description>
-+
-+    <xi:include href=3D'../../common/distro_arago.xml' xmlns:xi=3D'http://=
-www.w3.org/2001/XInclude'/>
-+    <xi:include href=3D'../../common/machines.xml' xmlns:xi=3D'http://www.=
-w3.org/2001/XInclude'/>
-+    <xi:include href=3D'../../templates/bblayers.conf.xml' xmlns:xi=3D'htt=
-p://www.w3.org/2001/XInclude'/>
-+    <xi:include href=3D'../../templates/local-arago64-v2.conf.xml' xmlns:x=
-i=3D'http://www.w3.org/2001/XInclude'/>
-+
-+    <bitbake url=3D'https://git.openembedded.org/bitbake' branch=3D'2.8' c=
-ommit=3D'8dcf084522b9c66a6639b5f117f554fde9b6b45a'/>
-+
-+    <repos>
-+        <repo name=3D'meta-arago' url=3D'https://git.yoctoproject.org/meta=
--arago' branch=3D'scarthgap' commit=3D'b9c8be5cceb1b67c6d14a871fe20e5995429=
-99f1'>
-+            <layers>
-+                <layer>meta-arago-distro</layer>
-+                <layer>meta-arago-extras</layer>
-+                <layer>meta-arago-test</layer>
-+            </layers>
-+        </repo>
-+        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'27ca52f635a31f5f9762813a8527dd3=
-1323549b7' disabled=3D'true'>
-+            <layers>
-+                <layer>meta-chromium</layer>
-+            </layers>
-+        </repo>
-+        <repo name=3D'meta-selinux' url=3D'https://git.yoctoproject.org/me=
-ta-selinux' branch=3D'scarthgap' commit=3D'HEAD' disabled=3D'true'>
-+            <layers/>
-+        </repo>
-+        <repo name=3D'meta-qt6' url=3D'https://code.qt.io/yocto/meta-qt6.g=
-it' branch=3D'6.9' commit=3D'c7d71f4cece4d1fe3110c945b9bd40ca82960e05'>
-+            <layers/>
-+        </repo>
-+        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
-.org/meta-virtualization' branch=3D'scarthgap' commit=3D'17ac21e7d7f6f40a87=
-618b22278b63bcfa14dbf2'>
-+            <layers/>
-+        </repo>
-+        <repo name=3D'meta-openembedded' url=3D'https://git.openembedded.o=
-rg/meta-openembedded' branch=3D'scarthgap' commit=3D'89a01c3d9ad1f8fce6aeb4=
-dd0e694cfa28d42099'>
-+            <layers>
-+                <layer>meta-networking</layer>
-+                <layer>meta-python</layer>
-+                <layer>meta-oe</layer>
-+                <layer>meta-gnome</layer>
-+                <layer>meta-filesystems</layer>
-+                <layer>meta-multimedia</layer>
-+            </layers>
-+        </repo>
-+        <repo name=3D'meta-lts-mixins' url=3D'https://git.yoctoproject.org=
-/meta-lts-mixins' branch=3D'scarthgap/rust' commit=3D'a8046d5ec53b1856169ac=
-795aa87cb0d5db84c04'>
-+            <layers/>
-+        </repo>
-+        <repo name=3D'meta-ti' url=3D'https://git.yoctoproject.org/meta-ti=
-' branch=3D'scarthgap' commit=3D'802cd01e783aeec00af81d99cd242f20ede3adc9'>
-+            <layers>
-+                <layer>meta-ti-extras</layer>
-+                <layer>meta-beagle</layer>
-+                <layer>meta-ti-bsp</layer>
-+            </layers>
-+        </repo>
-+        <repo name=3D'meta-arm' url=3D'https://git.yoctoproject.org/meta-a=
-rm' branch=3D'scarthgap' commit=3D'a81c19915b5b9e71ed394032e9a50fd06919e1cd=
-'>
-+            <layers>
-+                <layer>meta-arm</layer>
-+                <layer>meta-arm-toolchain</layer>
-+            </layers>
-+        </repo>
-+        <repo name=3D'meta-clang' url=3D'https://github.com/kraj/meta-clan=
-g' branch=3D'scarthgap' commit=3D'731488911f55ebfe746068512b426351192f82f2'=
->
-+            <layers/>
-+        </repo>
-+        <repo name=3D'meta-flutter' url=3D'https://github.com/meta-flutter=
-/meta-flutter.git' branch=3D'scarthgap' commit=3D'HEAD' disabled=3D'true'>
-+            <layers>
-+                <layer>.</layer>
-+                <layer>meta-flutter-apps</layer>
-+            </layers>
-+        </repo>
-+        <repo name=3D'oe-core' url=3D'https://git.openembedded.org/openemb=
-edded-core' branch=3D'scarthgap' commit=3D'1fbd9eddbdf0da062df0510cabff6f6e=
-e33d5752'>
-+            <layers>
-+                <layer>meta</layer>
-+            </layers>
-+        </repo>
-+        <repo name=3D'meta-tisdk' url=3D'https://git.ti.com/git/ti-sdk-lin=
-ux/meta-tisdk.git' branch=3D'scarthgap' commit=3D'71e97d787810978a21dc536df=
-e59d0c821b554fd'>
-+            <layers>
-+                <layer>meta-ti-foundational</layer>
-+            </layers>
-+        </repo>
-+        <repo name=3D'meta-edgeai' url=3D'https://git.ti.com/git/edgeai/me=
-ta-edgeai.git' branch=3D'scarthgap' commit=3D'e814c23648afeb0efd277ae6a9fce=
-9aba0aee025'>
-+            <layers/>
-+        </repo>
-+    </repos>
-+
-+    <tools>
-+        <tool type=3D'oe-layersetup'>
-+            <var name=3D'BITBAKE_INCLUSIVE_VARS' value=3D'yes'/>
-+        </tool>
-+    </tools>
-+</config>
+diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb b=
+/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
+index 67a8e3e2..ae01783e 100644
+--- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
++++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20250130.bb
+@@ -12,7 +12,7 @@ PE =3D "1"
+ PR =3D "r1"
+ PV:append =3D "+git"
+=20
+-SRCREV =3D "5c3f50a492aa9133a89ff3d67833674cc1018180"
++SRCREV =3D "d23395da4e67855a7d7ce476e44f79b8e604998e"
+ BRANCH ?=3D "master"
+=20
+ SRC_URI:remove =3D "git://github.com/linux-test-project/ltp.git;branch=3Dm=
+aster;protocol=3Dhttps"
 --=20
-2.34.1
+2.43.5
 
 
