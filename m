@@ -2,228 +2,220 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 56391EE498E
-	for <webhook@archiver.kernel.org>; Tue, 30 Dec 2025 16:51:44 +0000 (UTC)
-Received: from MW6PR02CU001.outbound.protection.outlook.com (MW6PR02CU001.outbound.protection.outlook.com [52.101.48.46])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.67795.1767113503573165315
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E653EE498F
+	for <webhook@archiver.kernel.org>; Tue, 30 Dec 2025 16:51:54 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com (BL2PR02CU003.outbound.protection.outlook.com [52.101.52.70])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.67890.1767113505423089275
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 30 Dec 2025 08:51:43 -0800
+ Tue, 30 Dec 2025 08:51:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=TCkvMXlM;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.48.46, mailfrom: reatmon@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=AYiyj7M+;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.52.70, mailfrom: reatmon@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eVEnCmkMfDvOpghNZV9+TZN/M1aCG3OL5v8DfAr/UiyGtQJxYzNfVg2DA+ChbWY4VETjjd94MU06PBkr0GuuP0Sa4TLWK9U/AUijAZegm8ShJkMEeGu562wbdDub7W1a0Iksj14B51/mNqO2RO9g4WSiGCBcDuerk6ejTRq2smWyUD8lOzJn5/EQydQXppfyHmOWvGvcvaiA1g90qvxArG9tDcw03I4NGDzRmrvSpwazS34aRNjX79SDPSZ2L5xblSrsCcUg3ZR3je2iYiN5fQygnU9b9GVVAu+peuZGGeTwPHn3wWjuaSrvQ63glP5+CbqDTtNkp6xkp/yegHZ/lg==
+ b=Osmit0CIMyAPhweoGpLTOP3xZh9kCVwtjM97ABAu/xgwWlzU+so98nO4pik34gXxVqtwzuHtdCCV1KmIFHI0xF1bPIYHGO8ZvKDzYDvM1WTVYgsqlslnTtqioP7Rnf5iMnfN66GDwMkC2cd9B6L/K3RUgBaF20aLzyzHAM+MsTvca6C3tBuV8uFiptvospahCzptzYcbX6j0BTIscejLyXMh+lmuviYoG/Bxp1HarOJ7bkYtYrhvc+JG3qvmHrcy5jAFQPnh80cQC0VHoQnLGzHjKqAS/Dd2CD8wXc4xySs0WoMHx6pi0JJu+H0u0t7pz6WSKiDfMBtAwD1Vf7Btaw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GXsbXN3nTcK1qTSNZMl9YHWQN14zF9qqwDyJdeVu6pc=;
- b=N+S+IXRdkYtXTgcT1SwHiS17PIRcGW1tGjjtZeK0deP78rR+2ZYhvHPzaL0er0PfM8WmHa9/yVvWKMqxZH3XfLj45KX7AMIwlRq1xh8gO9Ki1jeY0P6xHweOB40EaHCOyxbeQvYRClXIfTuqvNgG6yzHbTVOjHx07W511EzaWvH7xJUwzJLxwBzvFy6HRw6hPlakS4eRQB3uFufn0sSDKPtKAhL7CyktRFCM6iTxuJQkV9qtqHZ2b2ouXz8jYioPX3Q7/qUJU5B8ftJAtb9Nlowu8OK+CPcDKHgUta6M/kWaTpJvR60/nZ5rMexrGZxpd98N6Ntt6CHsgi1gZ1/Drg==
+ bh=IGDVBPMkv6PsSQzEl0CMi0dUbHrBm3vRk6cW27scxZk=;
+ b=K22nPnWbxWN/UtE8gJm8djJVI3u7LuKxPf3/wxn3wOUCIVtFZRU/49WM1Vb2Os46y1u8Y8khmOmOspYPC+jcgDPIIFTtXNdlvbuXqiOjhDeLFUYlRDlGNGlAviUbXC4RN2HzHAFP3uTgcRC25CeziEVUutSyMtfDxnfn4GlHnNndGu6izP7MmrX+nDhuBjcEWszs09xEjvxn/OdkG7+BWONwG7CnB28uRv69ilBy4B0vwzCAiD1Ccn0CoVlCU1Cy5EJLSRwtTXl0gtMqBHVZt8EhTbGpB7jaeM95ElGY3RZBxmQq+gdJh+fsoQS54s8vPW1ypjlvu5wrCdZLd83yTA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GXsbXN3nTcK1qTSNZMl9YHWQN14zF9qqwDyJdeVu6pc=;
- b=TCkvMXlM5cRG56DO4ztSwuHjdp2Dm1utZYRAIt5NOecu63MJ4QqyUajGwqBj+vG7OGwFhng5v9lm3Rv88St38ixsAyPCZ8ZekiFC34FMafqqN+9Bah/qt0uDPyb8QWfggheiLH/QEu0d/GK2Fjk3JmntVoGNF8R2xxl14ox3mc0=
-Received: from CH0PR03CA0277.namprd03.prod.outlook.com (2603:10b6:610:e6::12)
- by SJ0PR10MB5802.namprd10.prod.outlook.com (2603:10b6:a03:426::14) with
+ bh=IGDVBPMkv6PsSQzEl0CMi0dUbHrBm3vRk6cW27scxZk=;
+ b=AYiyj7M+cCkvxUObUU7ReioQt4ypA7bZZeDkoZUH29yRjLzTVIkXVXsUbl1bqF8khAYTDDIh8GSU6JT5NqSvi+vOJVHnQqyqWE7/YH2TydT4ELHQBXWzfy2AFwuvyNWyONpkpJiz/ojNSVfVsSIAfBnD0lWq5etOlj4HuUkdLOA=
+Received: from BY5PR04CA0023.namprd04.prod.outlook.com (2603:10b6:a03:1d0::33)
+ by SN7PR10MB6979.namprd10.prod.outlook.com (2603:10b6:806:328::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Tue, 30 Dec
- 2025 16:51:40 +0000
-Received: from DS2PEPF00003445.namprd04.prod.outlook.com
- (2603:10b6:610:e6:cafe::ad) by CH0PR03CA0277.outlook.office365.com
- (2603:10b6:610:e6::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Tue, 30 Dec
+ 2025 16:51:41 +0000
+Received: from CO1PEPF000044F4.namprd05.prod.outlook.com
+ (2603:10b6:a03:1d0:cafe::da) by BY5PR04CA0023.outlook.office365.com
+ (2603:10b6:a03:1d0::33) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9456.14 via Frontend Transport; Tue,
- 30 Dec 2025 16:51:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ 30 Dec 2025 16:51:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- DS2PEPF00003445.mail.protection.outlook.com (10.167.17.72) with Microsoft
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ CO1PEPF000044F4.mail.protection.outlook.com (10.167.241.74) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9478.4 via Frontend Transport; Tue, 30 Dec 2025 16:51:37 +0000
-Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9478.4 via Frontend Transport; Tue, 30 Dec 2025 16:51:39 +0000
+Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 30 Dec
  2025 10:51:35 -0600
-Received: from DFLE210.ent.ti.com (10.64.6.68) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 30 Dec
  2025 10:51:35 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE200.ent.ti.com
+ (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
  Transport; Tue, 30 Dec 2025 10:51:35 -0600
 Received: from grumpy (grumpy.dhcp.ti.com [128.247.81.229])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BUGpZdM997570;
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BUGpZ9b997567;
 	Tue, 30 Dec 2025 10:51:35 -0600
 Received: from reatmon by grumpy with local (Exim 4.97)
 	(envelope-from <reatmon@ti.com>)
-	id 1vacwZ-0000000Ei0z-2Qlw;
+	id 1vacwZ-0000000Ei0w-2J4D;
 	Tue, 30 Dec 2025 10:51:35 -0600
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
 	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH 2/4] cryptodev-module: Remove patch
-Date: Tue, 30 Dec 2025 10:51:30 -0600
-Message-ID: <20251230165135.3505628-2-reatmon@ti.com>
+Subject: [meta-arago][master][PATCH 1/4] cifs-utils: Remove bbappend and patch
+Date: Tue, 30 Dec 2025 10:51:29 -0600
+Message-ID: <20251230165135.3505628-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251230165135.3505628-1-reatmon@ti.com>
-References: <20251230165135.3505628-1-reatmon@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003445:EE_|SJ0PR10MB5802:EE_
-X-MS-Office365-Filtering-Correlation-Id: fefa0892-0b11-4885-75b3-08de47c3b2ec
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F4:EE_|SN7PR10MB6979:EE_
+X-MS-Office365-Filtering-Correlation-Id: 695e4f83-c3c4-44f4-4845-08de47c3b417
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|82310400026|36860700013|1800799024;
+	BCL:0;ARA:13230040|36860700013|1800799024|376014|82310400026;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?qbKhftL624ZFSbEGI5VQ8DFbtcSSq45+5XS4vIxn4xgQzCVkJed50L/ElpO3?=
- =?us-ascii?Q?7/BaFSPR1aCViX2ygLb1ejlsBcJjt5ki7v1eCFg8AfGXkFd3tkNzm7amwtd8?=
- =?us-ascii?Q?U8BoOCWk/6RJ13YvXHKTw4bNapIdtKzelDz7v/3wf3CxttVToaPVSy0HHCXz?=
- =?us-ascii?Q?5jQzKM2E329QN4KcRFnZg6wxL8gZWqmzqK+x88FI3mVbvqnUXOFjw3fwV6lR?=
- =?us-ascii?Q?j6+6fsOs8XXxyJeTtXgxd7ppLIa8/IA1Sw6pVCqhQ0P3L/b0hA3hnsPJK+wu?=
- =?us-ascii?Q?ouEOU3JturT5XDvKXHduVzthjxM46cd62OfaE7KmczMQy9LAv/8FM0Uhju2Y?=
- =?us-ascii?Q?j70Mc2WN5ygaOFQZt7TI4Q+psihSxxSfQNTp0WUtXswZpBG8W4mWoM7XlVrO?=
- =?us-ascii?Q?kFi94AREzVd+zriK8ZXL4PPpchawen2KObcKPoO/dwmtSgYQQ7O9InTNDLvv?=
- =?us-ascii?Q?md/WqyG+YRyvJZXbckFzQX2tarmFsbjaiXf1F8eeQ2OZ4ggbaEZhFrisKRq1?=
- =?us-ascii?Q?5ZjoH2sKEv9TgOnhPfd3wgJHYHKurlfS7yE41+FgoPdsLFau9k/iNj0gO+EO?=
- =?us-ascii?Q?kJ3aQi4IgXfWgeEBrp0+kvoSvq9KdZp8zxSh/dj/dBrHIQvqFG0hW7I79oNY?=
- =?us-ascii?Q?mQMbQdrKnkYFcykY3L5DG0sVieJrDC7t8Vfh7mZ6grnANyovJ083fLmFardZ?=
- =?us-ascii?Q?y3SE8yImPFxN8rvcJ57t/akrX2mKmxNp2FD2Otk4obHVLh+tQ1YKt+Cq4eoY?=
- =?us-ascii?Q?47ekx18APNYFFmE5Ao0REXAt15mqrT3R1htF7XiukgheBrzLs08UwzEEf5yN?=
- =?us-ascii?Q?juvWdQfR7BUeQ/TKK7zYIMc4M1omnqUZNR3ddU9Ne/TVkATGxB5XzLWwj3cn?=
- =?us-ascii?Q?ux6Vsbx/2SKLlg/7KE4hcUo8CNKQLlTipZh3zrko76W49RIr5EJnPK+A9Bp3?=
- =?us-ascii?Q?fBLjvymWpyLK0/upaJRdpQ5QkksU/BIz2xC24HD9fQ39YGhl8ZeT9zAQhAdQ?=
- =?us-ascii?Q?7CjpSs7fXcowV9LkYCH1byJQ+YqcmoVf0HAkfUgRyQuApPFPXEBY7cA6Sh7V?=
- =?us-ascii?Q?an0WUITcdTLmccIEAKXnS+symf/n/XpziV5lbr7vbr6KilBnGL+7h07Xlhwo?=
- =?us-ascii?Q?dY9T85kI0xPocxyyS5q8IHHDj+eDOyWJ36ZQkNPI086D2gtPPBNCFC4F+oBB?=
- =?us-ascii?Q?0PasAj3JPZWPPpJfgtBEYHVTZVX1yYMI/LK2rbnnK8qyq4gQWuhYZy0CiaS7?=
- =?us-ascii?Q?LISJPb6MjrhbJO/Y5azW9dU+Ee/ruCS3+Uh82bTeOPJFVRiCdeanScVhGFI9?=
- =?us-ascii?Q?NTk9Yf+btSZijbFh3Ziy72XoXoJWsdRW99S2zajS2KPaeRzsYAphcMCdslt5?=
- =?us-ascii?Q?tWdwUciNeBxumWFZ5RNCGhw8p5OdJSO8WGT1TrRZB/Pdh/s5Pi7cgTQZQTE5?=
- =?us-ascii?Q?n5/lGqwTcOcXoSVEb2eNMgaDWu/rRvmiZW7FiP6WP/Hc1Fp7JmB4ZBshh1eQ?=
- =?us-ascii?Q?1R2hsnrTjLqNl/awwN6x3FdZc12gS9jrlGGUqt4yYa7yFyQiqGlb/MoMgfnw?=
- =?us-ascii?Q?eE7/fSn1HtioXLGq+cg=3D?=
+	=?us-ascii?Q?v+7BSEHLpoHbp6RQktsglHw9jW00zSnsH2y9ugmTwVSzJ7g+fEhhx79oySlk?=
+ =?us-ascii?Q?717D/EEtoIo7yYP6dPsgAW6GsFDlC7akp9B42kajpZ1dgu7WH97khYWA2FvI?=
+ =?us-ascii?Q?5esAvONa53BmsXVM3pMvZjmJwpAKfwnSJI1hmBjpwRCDgvAnr6kO/p0dQIVe?=
+ =?us-ascii?Q?phnfVxOVzNKcyM31QmCzeOzlM03lSXcxf6lPAottNK2PW5scZ9GuscSKnuxD?=
+ =?us-ascii?Q?GHfALtXdVITwrYNrjdE3AmhZC60c2JzRpDqxe9cVWSC3lVKYptXwiGT2YKes?=
+ =?us-ascii?Q?UC+se2nhtYsP8WM0nhaFD8bAc/QkIYWyBSTLmbLdAsrUkNikn7o341wI+hvU?=
+ =?us-ascii?Q?qF60Ll0zpoLZ6FlUkhpF1xDgP7uRN8GT0f+vLK0w8RxFJ4j8iknMTakrE5pZ?=
+ =?us-ascii?Q?7pXqbjv5ZA2e1/BsrmPKreFQQEbR5TFWrjXivorNwwlfmEisuZ9yjov4AIBe?=
+ =?us-ascii?Q?rp5nn1u7QGj2oG6ENA6w0GWx55gd3SYEVyCBJVKK1VFM4su9UcXIPPO58XuQ?=
+ =?us-ascii?Q?ftXXCuqzbKo/J2DhHb7Jjzo9uesSe3HsGesOyybYFk7tF714dlPbeSls0zWP?=
+ =?us-ascii?Q?tSkGD6pPGgWjRMeGjpw0DYVzyMtcwEPfhHeW0z7wVkSxBz77rMUoNIcho6uk?=
+ =?us-ascii?Q?ZNcwloIrZr/Z5AcrqW/vzQIkYCzBDol2h/jAQpFAJpjlfZct1yAv2YvSunrS?=
+ =?us-ascii?Q?ikDQwbbS6FSDxup/Gpvq3Lhq8/7EeueqiVYAIY3Uh8AebRnLSjez3U+7FHP7?=
+ =?us-ascii?Q?JYaPQNUmFaKFKcFdcObvHr3N+V04snnaqWKSJth3naHr0npsuyKcHlrpLevx?=
+ =?us-ascii?Q?HsqAKc7iK/feFxdCQR8MkUX2k8Oc+OJqR60D7Grz6HhjhLtT8DqjPTT08X/7?=
+ =?us-ascii?Q?49uwUc7oayFtMcuxWvgQZHVyhx3BIpL+7T7w1c6yJMRDeicEwdiWaHN1jh4P?=
+ =?us-ascii?Q?qaljWtMLnzkQUu3zGmbGODijXDvAspcv/S1dP4IpxYTMIbiDKkISYL7rU3Wj?=
+ =?us-ascii?Q?JFS2hB7hj/vwKH8aaHDeppk5i3Jv/FKGhbhpl9CW9wdmeVXo3qGoeYvoZi29?=
+ =?us-ascii?Q?Klv6twrGVM58ybKZzEM/YJ8WREWCDHubnotS+9CVKboFrMw44FC5gyqFUaKr?=
+ =?us-ascii?Q?hwYIkqo+uy+0oWIcweO8iF5jSwRuPqHC3CR5GIyLnDvnvr8fqPR+ncRUcy2l?=
+ =?us-ascii?Q?xm7Z+lChzOG9b/64FU8kHjPEnci+AwUcll2e6egqL4zyS4Gnq0ALEjGi9a+a?=
+ =?us-ascii?Q?d/E9/lzU3cWojDwShxDhnwOZkPLSS6nO1IckOMhfFZUct7CnTtNj8w0uew1g?=
+ =?us-ascii?Q?05+QB3S0xojzsNdtAvnMSzrvSxDV+wDp5B6c5aGKJMyN1Ng0mz+AOSP/QM7c?=
+ =?us-ascii?Q?YljTYUawfjNU2pLjIpGOgSVQLf6t5AIs8Vg+lsxp3+x/uBGmg+mpqq8qNm4k?=
+ =?us-ascii?Q?atA1hszT278+2xbaBCy1eP53V9y63Gc5XtxYP7P/VdqZb4l7Yvek/40t6DUw?=
+ =?us-ascii?Q?jKV2yc46QSoVxBGzy3/jCe18Ogf5jghnr6TuAcK1i2YtX/tieXQVKFesagJY?=
+ =?us-ascii?Q?YbgED0l3x94NJRKg2KA=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2025 16:51:37.8199
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Dec 2025 16:51:39.8117
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fefa0892-0b11-4885-75b3-08de47c3b2ec
+X-MS-Exchange-CrossTenant-Network-Message-Id: 695e4f83-c3c4-44f4-4845-08de47c3b417
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	DS2PEPF00003445.namprd04.prod.outlook.com
+	CO1PEPF000044F4.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB5802
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR10MB6979
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 30 Dec 2025 16:51:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16910
+ <meta-arago@lists.yoctoproject.org>; Tue, 30 Dec 2025 16:51:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16911
 
-Upstream has bumped to a version that already has this patch.
+The only reason for this bbappend was to apply the patch, but the patch
+has been incorporated upstream.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- .../cryptodev/cryptodev-module-arago.inc      |  4 --
- .../0001-Fix-build-for-Linux-6-18-rc1.patch   | 53 -------------------
- 2 files changed, 57 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-kernel/cryptodev/cryptodev-mo=
-dule/0001-Fix-build-for-Linux-6-18-rc1.patch
-
-diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module-ar=
-ago.inc b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module-arago=
+ .../recipes-support/cifs/cifs-utils-arago.inc |  4 ---
+ ...automake-treat-sbin-as-exec-not-data.patch | 35 -------------------
+ .../cifs/cifs-utils_7.0.bbappend              |  4 ---
+ 3 files changed, 43 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-support/cifs/cifs-utils-arago=
 .inc
-index 9bd89679..74688f1c 100644
---- a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module-arago.inc
-+++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module-arago.inc
-@@ -1,7 +1,3 @@
- PR:append =3D ".arago0"
-=20
- KERNEL_MODULE_AUTOLOAD +=3D "cryptodev"
--
--FILESEXTRAPATHS:prepend :=3D "${THISDIR}/cryptodev-module:"
--
--SRC_URI +=3D "file://0001-Fix-build-for-Linux-6-18-rc1.patch"
-diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module/00=
-01-Fix-build-for-Linux-6-18-rc1.patch b/meta-arago-distro/recipes-kernel/cr=
-yptodev/cryptodev-module/0001-Fix-build-for-Linux-6-18-rc1.patch
+ delete mode 100644 meta-arago-distro/recipes-support/cifs/cifs-utils/0001-=
+cifs-utils-Make-automake-treat-sbin-as-exec-not-data.patch
+ delete mode 100644 meta-arago-distro/recipes-support/cifs/cifs-utils_7.0.b=
+bappend
+
+diff --git a/meta-arago-distro/recipes-support/cifs/cifs-utils-arago.inc b/=
+meta-arago-distro/recipes-support/cifs/cifs-utils-arago.inc
 deleted file mode 100644
-index d7f1d05c..00000000
---- a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module/0001-Fix-=
-build-for-Linux-6-18-rc1.patch
+index 87b49cc6..00000000
+--- a/meta-arago-distro/recipes-support/cifs/cifs-utils-arago.inc
 +++ /dev/null
-@@ -1,53 +0,0 @@
--From 08644db02d43478f802755903212f5ee506af73b Mon Sep 17 00:00:00 2001
--From: =3D?UTF-8?q?Joan=3D20Bruguera=3D20Mic=3DC3=3DB3?=3D <joanbrugueram@g=
-mail.com>
--Date: Sat, 6 Sep 2025 20:36:38 +0000
--Subject: [PATCH] Fix build for Linux 6.18-rc1
--MIME-Version: 1.0
--Content-Type: text/plain; charset=3DUTF-8
--Content-Transfer-Encoding: 8bit
+@@ -1,4 +0,0 @@
+-FILESEXTRAPATHS:prepend :=3D "${THISDIR}/cifs-utils:"
 -
--It's no longer required to use nth_page() when iterating pages within a
--single scatterlist entry.
+-SRC_URI +=3D "file://0001-cifs-utils-Make-automake-treat-sbin-as-exec-not-=
+data.patch"
 -
--Note I believe this code path in `sg_advance` is currently unreachable:
--It is only called from `get_userbuf_srtp`, passing in a scatterlist
--copied from one created by `__get_userbuf`, which only generates
--entries such that `sg->offset + sg->length <=3D PAGE_SIZE`.
--On the other hand, this code path in `sg_advance` requires that
--`sg->offset + sg->length > sg->offset + consumed >=3D PAGE_SIZE`.
+diff --git a/meta-arago-distro/recipes-support/cifs/cifs-utils/0001-cifs-ut=
+ils-Make-automake-treat-sbin-as-exec-not-data.patch b/meta-arago-distro/rec=
+ipes-support/cifs/cifs-utils/0001-cifs-utils-Make-automake-treat-sbin-as-ex=
+ec-not-data.patch
+deleted file mode 100644
+index dd9c7958..00000000
+--- a/meta-arago-distro/recipes-support/cifs/cifs-utils/0001-cifs-utils-Mak=
+e-automake-treat-sbin-as-exec-not-data.patch
++++ /dev/null
+@@ -1,35 +0,0 @@
+-From fd5f395514256572c451127006a68483106cf2b8 Mon Sep 17 00:00:00 2001
+-From: Daniel Parks <danielrparks@ti.com>
+-Date: Fri, 3 Jun 2022 15:34:59 -0500
+-Subject: [PATCH] cifs-utils: Make automake treat /sbin as exec, not data
 -
--See also: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.g=
-it/commit/?id=3Df8f03eb5f0f91fddc9bb8563c7e82bd7d3ba1dd0
--          https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.g=
-it/commit/?id=3Dce00897b94bc5c62fab962625efcf1ab824d3688
+-Otherwise, $(DESTDIR)/sbin doesn't get created until install-data on a
+--j1 build and install-exec-hook can fail because it might not exist.
 -
--Upstream-Status: Backport [https://github.com/cryptodev-linux/cryptodev-li=
-nux/commit/08644db02d43478f802755903212f5ee506af73b]
+-Steps to reproduce this bug:
+-$ autoreconf -i
+-$ ./configure
+-$ mkdir image
+-$ make DESTDIR=3Dimage install -j1
 -
--Signed-off-by: Joan Bruguera Mic=C3=B3 <joanbrugueram@gmail.com>
+-Upstream-Status: Pending
+-Signed-off-by: Daniel Parks <danielrparks@ti.com>
 ----
-- util.c | 5 +++++
-- 1 file changed, 5 insertions(+)
+- Makefile.am | 4 ++--
+- 1 file changed, 2 insertions(+), 2 deletions(-)
 -
--diff --git a/util.c b/util.c
--index 9eba4836..d4267816 100644
----- a/util.c
--+++ b/util.c
--@@ -21,6 +21,7 @@
+-diff --git a/Makefile.am b/Makefile.am
+-index e9be6b3..edb1b7f 100644
+---- a/Makefile.am
+-+++ b/Makefile.am
+-@@ -1,8 +1,8 @@
+- AM_CFLAGS =3D -Wall -Wextra -D_FORTIFY_SOURCE=3D2 $(PIE_CFLAGS) $(RELRO_C=
+FLAGS)
+- ACLOCAL_AMFLAGS =3D -I aclocal
 -=20
-- #include <crypto/scatterwalk.h>
-- #include <linux/scatterlist.h>
--+#include <linux/version.h>
-- #include "util.h"
--=20
-- /* These were taken from Maxim Levitsky's patch to lkml.
--@@ -44,8 +45,12 @@ struct scatterlist *sg_advance(struct scatterlist *sg, =
-int consumed)
-- 	sg->length -=3D consumed;
--=20
-- 	if (sg->offset >=3D PAGE_SIZE) {
--+#if (LINUX_VERSION_CODE >=3D KERNEL_VERSION(6, 18, 0))
--+		struct page *page =3D sg_page(sg) + (sg->offset / PAGE_SIZE);
--+#else
-- 		struct page *page =3D
-- 			nth_page(sg_page(sg), sg->offset / PAGE_SIZE);
--+#endif
-- 		sg_set_page(sg, page, sg->length, sg->offset % PAGE_SIZE);
-- 	}
--=20
+--root_sbindir =3D $(ROOTSBINDIR)
+--root_sbin_PROGRAMS =3D mount.cifs
+-+root_exec_sbindir =3D $(ROOTSBINDIR)
+-+root_exec_sbin_PROGRAMS =3D mount.cifs
+- mount_cifs_SOURCES =3D mount.cifs.c mtab.c resolve_host.c util.c
+- mount_cifs_LDADD =3D $(LIBCAP) $(CAPNG_LDADD) $(RT_LDADD)
+- include_HEADERS =3D cifsidmap.h
+diff --git a/meta-arago-distro/recipes-support/cifs/cifs-utils_7.0.bbappend=
+ b/meta-arago-distro/recipes-support/cifs/cifs-utils_7.0.bbappend
+deleted file mode 100644
+index 4c9ce8db..00000000
+--- a/meta-arago-distro/recipes-support/cifs/cifs-utils_7.0.bbappend
++++ /dev/null
+@@ -1,4 +0,0 @@
+-CIFS_UTILS_ARAGO =3D ""
+-CIFS_UTILS_ARAGO:arago =3D "cifs-utils-arago.inc"
+-
+-require ${CIFS_UTILS_ARAGO}
 --=20
 2.43.0
 
