@@ -1,259 +1,307 @@
-Return-Path: <denis@denix.org>
+Return-Path: <a-limaye@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 12945CD042D
-	for <webhook@archiver.kernel.org>; Tue,  6 Jan 2026 01:44:25 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.81200.1767663861016058075
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 668A9C47BCD
+	for <webhook@archiver.kernel.org>; Tue,  6 Jan 2026 09:14:07 +0000 (UTC)
+Received: from BYAPR05CU005.outbound.protection.outlook.com (BYAPR05CU005.outbound.protection.outlook.com [52.101.85.48])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.86277.1767690841727624361
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 05 Jan 2026 17:44:21 -0800
+ Tue, 06 Jan 2026 01:14:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 205CD40CBA;
-	Tue,  6 Jan 2026 01:44:20 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id agZajqFQQ9na; Tue,  6 Jan 2026 01:44:20 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CF93F40A30;
-	Tue,  6 Jan 2026 01:44:16 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 21E311774BE; Mon,  5 Jan 2026 20:44:16 -0500 (EST)
-Date: Mon, 5 Jan 2026 20:44:16 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: reatmon@ti.com
-Cc: Andrew Davis <afd@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][master][PATCH 2/2] telnetd: Move telnet daemon
- scripts to meta-arago-test
-Message-ID: <20260106014416.GI11121@denix.org>
-References: <20260105221926.2503358-1-afd@ti.com>
- <20260105221926.2503358-2-afd@ti.com>
- <58492a2d-1cfb-4289-ba1a-f86939d54b36@ti.com>
- <2068f564-6855-4087-905e-c7da0c151ddb@ti.com>
- <4d22d3da-ecd4-4897-a0ca-d20ccfbf4686@ti.com>
+ dkim=pass header.i=@ti.com header.s=selector1 header.b=Paqs7S3K;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.85.48, mailfrom: a-limaye@ti.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=E1SKK9RQF0sKkxcqMJ6onUcUZvElm8HE6JNpcVzf2vUQIQ4aEFoSBdQ69/J/z1it+nI9dUVUYIDjrp1jCADfHGTP52uzZ/vOpP8F4RgwPtD6zt0+l9lm7F5Uixr9k3+Um1S0ofsvodw6yGoayZopHljAzphWrGLdpNphnhgxTR4n2TvisZpaWyp6LvTalqxxeCdwZ4ATpzDNputh+4JvWEcd9Zm38AoaemPokK/zfFjxSJPnsTzlky3tE86cgMpB4FNsn/v84DkH0HI15oU3e0L93VDEDfj1/EgNU+6YfoM/CxxdAX3OvRsaUGPnsWqqxx4R7D9PyTwPWsbNx3mtZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1/ORMHKOSG7I7mYbYl82t1ctvlqcscLhwtYtAYlcosI=;
+ b=RSRMxtf1watTVqq5H7sDaTyHoq/JoNKftngLC7089BoPko45DmD+nS9gn3WJ32UUgCaT5AryyEnnxptiqDMIqMreIiKWkBiICR0rSGFw1/wgabVujSiEMVJQCuYkskJVjxV0VWg17KESQnqlfRfeszSZVoCwjtREQRWiGsCJSvKRiVcVCD1NLkJNP9mbquGqfowh+NTkAyy8Bcvd24425hPGp2ht8vfanBt2e9pxJSvUm7I8gvShOT9agCtgELdEXq+wS6vABG1Z0MjtOve20Wxdlownqkvw5oXfcANb7dp3rlLTGUmP7NvP0foox7YhrMmWWwHL59WeyhAAYS3Rcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1/ORMHKOSG7I7mYbYl82t1ctvlqcscLhwtYtAYlcosI=;
+ b=Paqs7S3KTIOvgNSvMMeSvuaYvMQygHEbtpUwB3BnTMG1x0x42rMF5ZYsUFaRAMd+9RKWgR+UvoaLivn8IrtmRCJtxrmKuowGxQ/EShHwbEKgV6CpbJApPDkTp9bgI+O1hEKQsxx34X0XSgTsdCvXp7LV+TkziGyJAf7bglmceDE=
+Received: from CH2PR02CA0013.namprd02.prod.outlook.com (2603:10b6:610:4e::23)
+ by DS0PR10MB997626.namprd10.prod.outlook.com (2603:10b6:8:315::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Tue, 6 Jan
+ 2026 09:13:59 +0000
+Received: from CH3PEPF00000014.namprd21.prod.outlook.com
+ (2603:10b6:610:4e:cafe::4e) by CH2PR02CA0013.outlook.office365.com
+ (2603:10b6:610:4e::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.2 via Frontend Transport; Tue, 6
+ Jan 2026 09:13:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ CH3PEPF00000014.mail.protection.outlook.com (10.167.244.119) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.0 via Frontend Transport; Tue, 6 Jan 2026 09:13:57 +0000
+Received: from DFLE201.ent.ti.com (10.64.6.59) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 6 Jan
+ 2026 03:13:52 -0600
+Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 6 Jan
+ 2026 03:13:52 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE206.ent.ti.com
+ (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 6 Jan 2026 03:13:52 -0600
+Received: from [172.24.234.127] (psdkl-workstation0.dhcp.ti.com [172.24.234.127])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6069DoGN2774599;
+	Tue, 6 Jan 2026 03:13:51 -0600
+Message-ID: <08c69245-044f-4630-86e1-fbbae1dab093@ti.com>
+Date: Tue, 6 Jan 2026 14:43:50 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-In-Reply-To: <4d22d3da-ecd4-4897-a0ca-d20ccfbf4686@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][master][PATCH] meta-arago-test: recipes-core: Add
+ udev rules for MCAN to meta-arago-test
+To: Anurag Dutta <a-dutta@ti.com>, <reatmon@ti.com>
+CC: <gehariprasath@ti.com>, <meta-arago@lists.yoctoproject.org>
+References: <20260106060815.868724-1-a-dutta@ti.com>
+Content-Language: en-US
+From: Aniket Limaye <a-limaye@ti.com>
+In-Reply-To: <20260106060815.868724-1-a-dutta@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF00000014:EE_|DS0PR10MB997626:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9bdf94f4-ec49-4bb6-e588-08de4d03ec36
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|376014;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?REJZQW5rMTNUL3h0NWxaUlVTU0RiSnBBRU5TZGhneWlWOWg5S056MUlPV2dw?=
+ =?utf-8?B?eGRKcE1saHRVTnp4T1ZKOThHUld1RHhtTzdFK200VUVpeUxDUUVlTkpkSTRH?=
+ =?utf-8?B?MFo0elNSQlUvQ283T0l5NWF6eUhpSW54Q2Y2OWFHYk4rUEdYVGVQQVBYbFow?=
+ =?utf-8?B?dThpZHBkdW5jUkpoUkJjbVUwVTNHK3F3QzNwNTZKK2hNZWlxS0kzS05EV3d5?=
+ =?utf-8?B?MmQwOGJqcmMyNzdBWVZCNi8rMFlDSzZkdTN4WkF6MG5uT2Q2anZDYTBvVEFU?=
+ =?utf-8?B?bDM3azc5eWFVcnpiUnBFeXBuK0t1WmYxbUZzaG11ME1HK2cxRDQwK21IMCtL?=
+ =?utf-8?B?R3pueE8vQjk4SWViQmQ5dnhJdFBUSDhaczQ1SVI4Wmp6R0ErRlBLLzVpTFRk?=
+ =?utf-8?B?dkNDei9udStFS3VwUGl4VXJuaDhvL1pEZDdOMlQ1UDhzZUkvNmJLbm9yMlZj?=
+ =?utf-8?B?R3FqbE84UzdvL1VSQzVkVHlkYzRTdmE0MmFrdnJXSkhCa1ptWUpHQVgwNmpY?=
+ =?utf-8?B?Mlg3dWdVem45K0hWZyt5WWZnR1ErWjUvVzFDSjNFWlNWRTFtU3JvWXhJK012?=
+ =?utf-8?B?dFQrbW81eGlIWDh3RnBKQThkQ1FkbVpVR0hHeG5Qc09LUlNSNy9ocmd2VWdF?=
+ =?utf-8?B?TmM4WVlhSCtSTVhtWEo5cGlaV0hYNm1FR0cvbGNHREdCSmN2dnhFeVZOcDlt?=
+ =?utf-8?B?RUwrS0h4MVB1QytBaEc3ZUgwd0lBV0hiaCs0UmUwZnkzQy9jbnBiTmtySjJV?=
+ =?utf-8?B?cFJnaWdEc1ozdERpM01RYzlYOXhXNjNXMUFrbFhmS0pnSEpzUkRMeXlkRDJn?=
+ =?utf-8?B?T20xeTV2YTZYSGxVUWgzb25ubWdWTENUajJiNDF3T01PQzIzMkZTRU41MS9a?=
+ =?utf-8?B?TytzcUFEdXlRUUtuM1N4bHd2YXRYTzVXenNvTTdFRkRjbmJCdDN5ZWdYN2h4?=
+ =?utf-8?B?RENybExKSmZKYWVaRSsyV2FPcXQ5NXVHTEVncEpqN2VvY0FxVFZRT2dhQkFO?=
+ =?utf-8?B?SG5Fam0yZ2diNy9BNDg4SWVWVGlUMTljQVVpSVMyaDdvM2RKQjVmWUYzUklt?=
+ =?utf-8?B?T0dCcGFNbkNjdHBudElmMXUwQnprM3IzeVFjSUkwOHRFZEp2RWF2RUNCa2da?=
+ =?utf-8?B?UmFOTTBxQ2gzTHdZZ3VuTFBNRjVUbGF0MStJR2Q4b0g2MDRnbE1ZSzRPTU1r?=
+ =?utf-8?B?Ni9ycUlzVzdKUWVBM2FYZTYzUnZrVE41MXBoaWgybTZZNkE2bkdyano2bTVH?=
+ =?utf-8?B?K2NCSUZzQUl6V2p2aW1VZlBJcGhCSkdGL3FHTVBIa2svczlMbmhoaUNYM0wv?=
+ =?utf-8?B?RDRJNnF5T0FQeENhZmY2a0xBNFdYRHNDd0FCZGcrMlhtRDEwY3dZaldiUlVj?=
+ =?utf-8?B?Y0xLQmhOL1BvU25NUmxvWkdoUXY3cElLZXRKc0VkVDRpYktXM3Z1ajNvc2pK?=
+ =?utf-8?B?eWsrTzNKZ0VyZDVEK1FGSTNiSmthNGh6MG9jU3lqOHplZ1FueStCSVNwVXRz?=
+ =?utf-8?B?d24wZ1QwaW5vNFBkSDBQV1VVakRLY3k1cmNSdHVNbWxyZ1I5QmE1ZkpzT2JT?=
+ =?utf-8?B?TENUOHBINWxkN2tIVGtrVUdYR0NsanNqZElrVCtxTWkvUWxhMDRmbDhKODIw?=
+ =?utf-8?B?ZHdEWHJmS3VNVjllQkFjQVRwK09teFFqZGJ3MTR3L0VPVUh5cUQ0dmk1NTZz?=
+ =?utf-8?B?S3lFOEZ1WTMxVGNmU1ZOYlBHYm1tV3lmWktRRitnM0I3MUZyMFozTHhLL0lY?=
+ =?utf-8?B?RTFEM25WWXZ5M1ZzOWQ1Z1psT3V2eWRKUDd5U0VjM205RGtYS04xUWtaTjlE?=
+ =?utf-8?B?U2pvYmM2OUFFdW5pUFY2VEh1eDdwUnU5V2Jscmd4bDJrVnVsZEEvS3JTQXpQ?=
+ =?utf-8?B?NVVHcXc4UVAyY3ROOTRROVIxWWpSKzhqckRlZ2paSDFWMU00SGZKclJrVE5k?=
+ =?utf-8?B?WkxvYkI4cmVncnNBb0ZsSmxYNzNBRjFQLzhSN2ZDcUhieC93SllKNVpQOWwy?=
+ =?utf-8?B?UjdGZThhdklaQUtBeW90L0ZGWUsrREVTS3VkK3hxYjJvMGFJck9tcUxVUlRa?=
+ =?utf-8?B?NDhrRVJnWURVeFVNU3BxOTlGcXBiYUxDeGJCTHZCTjhMaDliVVNaekd3MVRW?=
+ =?utf-8?Q?MJOs=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2026 09:13:57.6036
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9bdf94f4-ec49-4bb6-e588-08de4d03ec36
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	CH3PEPF00000014.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB997626
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 06 Jan 2026 01:44:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16931
+ <meta-arago@lists.yoctoproject.org>; Tue, 06 Jan 2026 09:14:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16932
 
-There's a standard DEBUG_BUILD variable that can be reused for this. But.=
-..
+Hi Anurag,
 
-It is a build-time condition, which means you end up with two separate bu=
-ilds=20
-for release and debugging. Do you test both? Or how can you ensure testin=
-g=20
-debug build also covers the release build properly?
+On 06/01/26 11:38, Anurag Dutta wrote:
+> Copy udev rules from meta-arago-distro to meta-arago-test so that MCAN tests
+> run successfully with other distros such as "poky" as well.
+> 
+> Signed-off-by: Anurag Dutta <a-dutta@ti.com>
+> ---
+>   .../recipes-core/packagegroups/ti-test.bb     |  1 +
+>   .../udev/udev-aragoconf/37-can-am62.rules     |  4 +++
+>   .../udev/udev-aragoconf/37-can-dra7.rules     |  2 ++
+>   .../udev/udev-aragoconf/37-can-j7.rules       | 20 ++++++++++++++
+>   .../udev/udev-aragoconf/37-can-ti33x.rules    |  2 ++
+>   .../udev/udev-aragoconf/50-arago.rules        | 24 +++++++++++++++++
+>   .../recipes-core/udev/udev-aragoconf_1.bb     | 26 +++++++++++++++++++
+>   7 files changed, 79 insertions(+)
+>   create mode 100644 meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-am62.rules
+>   create mode 100644 meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-dra7.rules
+>   create mode 100644 meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-j7.rules
+>   create mode 100644 meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-ti33x.rules
+>   create mode 100644 meta-arago-test/recipes-core/udev/udev-aragoconf/50-arago.rules
+>   create mode 100644 meta-arago-test/recipes-core/udev/udev-aragoconf_1.bb
+> 
 
-The idea of only building release images and then installing test package=
-s at=20
-run-time for testing was to mitigate the above ambiguity...
+You need to move these instead of creating another copy of these files...
 
-That said, I don't understand why it has to drive the run-time testing ov=
-er=20
-telnet or ssh? Isn't the early boot testing already done over serial? Can=
- the=20
-user-space Linux testing be done over serial as well?
+meta-arago-distro depends on meta-arago-test anyway... so these files 
+should exist in -test
 
---=20
-Denys
+> diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> index dad5571c..96e0038a 100644
+> --- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> +++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> @@ -61,6 +61,7 @@ TI_TEST_BASE = "\
+>       v4l-utils \
+>       xdp-tools-arago \
+>       yavta \
+> +    udev-aragoconf \
+>   "
 
+1. TI_TEST_TI_TOOLS is probably a better place for this since this is 
+applicable only for ti-soc
+2. The package lists in this file are sorted in lexicographic order.
 
-On Mon, Jan 05, 2026 at 07:25:24PM -0600, Ryan Eatmon via lists.yoctoproj=
-ect.org wrote:
->=20
->=20
-> On 1/5/2026 5:36 PM, Andrew Davis wrote:
-> >On 1/5/26 4:23 PM, Ryan Eatmon wrote:
-> >>
-> >>This one may not work.=A0 This assumes that you have ti-test
-> >>intstalled (which not all images do).=A0 And without ti-test in
-> >>the image, then you cannot telnet to the board during test.
-> >>
-> >
-> >Why would you need to telnet onto a board to check on test if you are
-> >not testing? If you are testing, then you would have ti-test.
->=20
-> The base image is kept small to do network based tests.  They then
-> install the ti-test package from the NAS.  But that assumes that the
-> test framework could telnet to the board after boot in order to run
-> commands...  That's the scenario I'm thinking of.
->=20
-> The best solution is to update all of the tests to use ssh, but that
-> still means we are still hardcoding something in the file system to
-> allow connecting in a bad way.
->=20
-> What if we also combined the above with a variable that we set in
-> the local.conf during our builds, but is off by default.  And that
-> varible override would make us include the ti-test-required.  We
-> could even just add that setting to the local.conf...
->=20
->=20
-> >Removing this from images that are not specifically meant for use by o=
-ur
-> >test automation is 100% intentional. Right now anyone can telnet into,
-> >as root, without a password, all of our images. As much as we love to =
-claim
-> >no one should be using these images as a base for their production ima=
-ge,
-> >absolutly every single customer is anyway. Which means we have a huge
-> >security foot-gun here, and customers *will* end up shipping devices w=
-ith
-> >this massive security issue.
-> >
-> >Andrew
-> >
-> >>
-> >>On 1/5/2026 4:19 PM, Andrew Davis wrote:
-> >>>These are only used (and only ever should be used) in testing images=
-.
-> >>>Move these out of the base distro images and only into images includ=
-ing
-> >>>the ti-test packagegroup. Move the recipes themselves also over to
-> >>>meta-arago-test.
-> >>>
-> >>>Signed-off-by: Andrew Davis <afd@ti.com>
-> >>>---
-> >>>=A0 check_yocto_rules.json=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
- | 4 ++--
-> >>>=A0 .../recipes-core/packagegroups/packagegroup-arago-base.bb=A0=A0=A0=
-=A0 | 2 --
-> >>>=A0 .../initscript-telnetd/initscript-telnetd.bb=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 | 0
-> >>>=A0 .../initscript-telnetd/initscript-telnetd/telnetd=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0 | 0
-> >>>=A0 .../recipes-connectivity/systemd-telnetd/systemd-telnetd.bb=A0=A0=
- | 0
-> >>>=A0 .../systemd-telnetd/systemd-telnetd/telnetd.service=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0 | 0
-> >>>=A0 meta-arago-test/recipes-core/packagegroups/ti-test.bb=A0=A0=A0=A0=
-=A0=A0=A0=A0 | 2 ++
-> >>>=A0 7 files changed, 4 insertions(+), 4 deletions(-)
-> >>>=A0 rename {meta-arago-distro =3D> meta-arago-test}/recipes-connecti=
-vity/initscript-telnetd/initscript-telnetd.bb
-> >>>(100%)
-> >>>=A0 rename {meta-arago-distro =3D> meta-arago-test}/recipes-connecti=
-vity/initscript-telnetd/initscript-telnetd/telnetd
-> >>>(100%)
-> >>>=A0 rename {meta-arago-distro =3D> meta-arago-test}/recipes-connecti=
-vity/systemd-telnetd/systemd-telnetd.bb
-> >>>(100%)
-> >>>=A0 rename {meta-arago-distro =3D> meta-arago-test}/recipes-connecti=
-vity/systemd-telnetd/systemd-telnetd/telnetd.service
-> >>>(100%)
-> >>>
-> >>>diff --git a/check_yocto_rules.json b/check_yocto_rules.json
-> >>>index 7b3e20db..26275421 100644
-> >>>--- a/check_yocto_rules.json
-> >>>+++ b/check_yocto_rules.json
-> >>>@@ -27,8 +27,6 @@
-> >>>=A0=A0=A0=A0=A0 "PV-1" :{
-> >>>=A0=A0=A0=A0=A0=A0=A0=A0=A0 "skip_files" : [
-> >>>"meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb",
-> >>>-            "meta-arago-distro/recipes-connectivity/initscript-teln=
-etd/initscript-telnetd.bb",
-> >>>-            "meta-arago-distro/recipes-connectivity/systemd-telnetd=
-/systemd-telnetd.bb",
-> >>>"meta-arago-distro/recipes-core/arago-gpl-notice/arago-gpl-notice.bb=
-",
-> >>>"meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-serv=
-er.bb",
-> >>>"meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb",
-> >>>@@ -38,6 +36,8 @@
-> >>>"meta-arago-extras/recipes-extended/sysrepo/nw-configurator.bb",
-> >>>"meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
-ugins-ducati_git.bb",
-> >>>"meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
-ugins-vpe_git.bb"
-> >>>+            "meta-arago-test/recipes-connectivity/initscript-telnet=
-d/initscript-telnetd.bb",
-> >>>+            "meta-arago-test/recipes-connectivity/systemd-telnetd/s=
-ystemd-telnetd.bb",
-> >>>=A0=A0=A0=A0=A0=A0=A0=A0=A0 ]
-> >>>=A0=A0=A0=A0=A0 }
-> >>>=A0 }
-> >>>diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegro=
-up-arago-base.bb b/meta-arago-distro/recipes-core/packagegroups/packagegr=
-oup-arago-base.bb
-> >>>index b80697e5..d36b4397 100644
-> >>>--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arag=
-o-base.bb
-> >>>+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arag=
-o-base.bb
-> >>>@@ -16,8 +16,6 @@ ARAGO_BASE =3D "\
-> >>>=A0=A0=A0=A0=A0 mtd-utils \
-> >>>=A0=A0=A0=A0=A0 mtd-utils-ubifs \
-> >>>=A0=A0=A0=A0=A0 curl \
-> >>>-=A0=A0=A0 initscript-telnetd \
-> >>>-=A0=A0=A0 systemd-telnetd \
-> >>>=A0=A0=A0=A0=A0 ethtool \
-> >>>=A0=A0=A0=A0=A0 bash \
-> >>>=A0=A0=A0=A0=A0 opkg-bash-completion \
-> >>>diff --git a/meta-arago-distro/recipes-connectivity/initscript-telne=
-td/initscript-telnetd.bb b/meta-arago-test/recipes-connectivity/initscrip=
-t-telnetd/initscript-telnetd.bb
-> >>>similarity index 100%
-> >>>rename from meta-arago-distro/recipes-connectivity/initscript-telnet=
-d/initscript-telnetd.bb
-> >>>rename to meta-arago-test/recipes-connectivity/initscript-telnetd/in=
-itscript-telnetd.bb
-> >>>diff --git a/meta-arago-distro/recipes-connectivity/initscript-telne=
-td/initscript-telnetd/telnetd b/meta-arago-test/recipes-connectivity/init=
-script-telnetd/initscript-telnetd/telnetd
-> >>>similarity index 100%
-> >>>rename from meta-arago-distro/recipes-connectivity/initscript-telnet=
-d/initscript-telnetd/telnetd
-> >>>rename to meta-arago-test/recipes-connectivity/initscript-telnetd/in=
-itscript-telnetd/telnetd
-> >>>diff --git a/meta-arago-distro/recipes-connectivity/systemd-telnetd/=
-systemd-telnetd.bb b/meta-arago-test/recipes-connectivity/systemd-telnetd=
-/systemd-telnetd.bb
-> >>>similarity index 100%
-> >>>rename from meta-arago-distro/recipes-connectivity/systemd-telnetd/s=
-ystemd-telnetd.bb
-> >>>rename to meta-arago-test/recipes-connectivity/systemd-telnetd/syste=
-md-telnetd.bb
-> >>>diff --git a/meta-arago-distro/recipes-connectivity/systemd-telnetd/=
-systemd-telnetd/telnetd.service b/meta-arago-test/recipes-connectivity/sy=
-stemd-telnetd/systemd-telnetd/telnetd.service
-> >>>similarity index 100%
-> >>>rename from meta-arago-distro/recipes-connectivity/systemd-telnetd/s=
-ystemd-telnetd/telnetd.service
-> >>>rename to meta-arago-test/recipes-connectivity/systemd-telnetd/syste=
-md-telnetd/telnetd.service
-> >>>diff --git
-> >>>a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-> >>>b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-> >>>index 22957218..ebac81c2 100644
-> >>>--- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-> >>>+++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-> >>>@@ -22,6 +22,7 @@ TI_TEST_BASE =3D "\
-> >>>=A0=A0=A0=A0=A0 hwspinlocktest \
-> >>>=A0=A0=A0=A0=A0 hdparm \
-> >>>=A0=A0=A0=A0=A0 i2c-tools \
-> >>>+=A0=A0=A0 initscript-telnetd \
-> >>>=A0=A0=A0=A0=A0 iozone3 \
-> >>>=A0=A0=A0=A0=A0 iproute2-tc \
-> >>>=A0=A0=A0=A0=A0 iproute2-devlink \
-> >>>@@ -57,6 +58,7 @@ TI_TEST_BASE =3D "\
-> >>>=A0=A0=A0=A0=A0 stress \
-> >>>=A0=A0=A0=A0=A0 stress-ng \
-> >>>=A0=A0=A0=A0=A0 strongswan \
-> >>>+=A0=A0=A0 systemd-telnetd \
-> >>>=A0=A0=A0=A0=A0 tcpdump \
-> >>>=A0=A0=A0=A0=A0 v4l-utils \
-> >>>=A0=A0=A0=A0=A0 xdp-tools-arago \
+Thanks,
+Aniket
+
+>   
+>   TI_TEST_BASE:append:ti-soc = " \
+> diff --git a/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-am62.rules b/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-am62.rules
+> new file mode 100644
+> index 00000000..59dc8075
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-am62.rules
+> @@ -0,0 +1,4 @@
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="4e08000.can", NAME="mcu_mcan0"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="4e18000.can", NAME="mcu_mcan1"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="20701000.can", NAME="main_mcan0"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="20711000.can", NAME="main_mcan1"
+> diff --git a/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-dra7.rules b/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-dra7.rules
+> new file mode 100644
+> index 00000000..3b14150d
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-dra7.rules
+> @@ -0,0 +1,2 @@
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="4ae3c000.can", NAME="main_dcan1"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="48480000.can", NAME="main_dcan2"
+> diff --git a/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-j7.rules b/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-j7.rules
+> new file mode 100644
+> index 00000000..f2804ecd
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-j7.rules
+> @@ -0,0 +1,20 @@
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="40528000.can", NAME="mcu_mcan0"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="40568000.can", NAME="mcu_mcan1"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2701000.can", NAME="main_mcan0"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2711000.can", NAME="main_mcan1"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2721000.can", NAME="main_mcan2"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2731000.can", NAME="main_mcan3"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2741000.can", NAME="main_mcan4"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2751000.can", NAME="main_mcan5"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2761000.can", NAME="main_mcan6"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2771000.can", NAME="main_mcan7"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2781000.can", NAME="main_mcan8"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2791000.can", NAME="main_mcan9"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="27a1000.can", NAME="main_mcan10"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="27b1000.can", NAME="main_mcan11"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="27c1000.can", NAME="main_mcan12"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="27d1000.can", NAME="main_mcan13"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2681000.can", NAME="main_mcan14"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="2691000.can", NAME="main_mcan15"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="26a1000.can", NAME="main_mcan16"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="26b1000.can", NAME="main_mcan17"
+> diff --git a/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-ti33x.rules b/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-ti33x.rules
+> new file mode 100644
+> index 00000000..62d650fe
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-core/udev/udev-aragoconf/37-can-ti33x.rules
+> @@ -0,0 +1,2 @@
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="481cc000.can", NAME="main_dcan0"
+> +SUBSYSTEM=="net", ACTION=="add", KERNELS=="481d0000.can", NAME="main_dcan1"
+> diff --git a/meta-arago-test/recipes-core/udev/udev-aragoconf/50-arago.rules b/meta-arago-test/recipes-core/udev/udev-aragoconf/50-arago.rules
+> new file mode 100644
+> index 00000000..3ff14eb0
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-core/udev/udev-aragoconf/50-arago.rules
+> @@ -0,0 +1,24 @@
+> +# There are a number of modifiers that are allowed to be used in some
+> +# of the different fields. They provide the following subsitutions:
+> +#
+> +# %n the "kernel number" of the device.
+> +#    For example, 'sda3' has a "kernel number" of '3'
+> +# %e the smallest number for that name which does not matches an existing node
+> +# %k the kernel name for the device
+> +# %M the kernel major number for the device
+> +# %m the kernel minor number for the device
+> +# %b the bus id for the device
+> +# %c the string returned by the PROGRAM
+> +# %s{filename} the content of a sysfs attribute
+> +# %% the '%' char itself
+> +#
+> +
+> +# Try and modprobe for drivers for new hardware
+> +ACTION=="add", DEVPATH=="/devices/*", ENV{MODALIAS}=="?*", RUN{builtin}+="kmod load $env{MODALIAS}"
+> +
+> +# Create a symlink to any touchscreen input device
+> +SUBSYSTEM=="input", KERNEL=="event[0-9]*", ENV{ID_INPUT_TOUCHSCREEN}=="1", SYMLINK+="input/touchscreen0"
+> +
+> +# Auto-mount any SD cards
+> +ACTION=="add", KERNEL=="mmcblk[0-9]p[0-9]", SUBSYSTEM=="block", RUN+="/etc/udev/scripts/mount.sh"
+> +ACTION=="remove", KERNEL=="mmcblk[0-9]p[0-9]", SUBSYSTEM=="block", RUN+="/etc/udev/scripts/mount.sh"
+> diff --git a/meta-arago-test/recipes-core/udev/udev-aragoconf_1.bb b/meta-arago-test/recipes-core/udev/udev-aragoconf_1.bb
+> new file mode 100644
+> index 00000000..49d00b54
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-core/udev/udev-aragoconf_1.bb
+> @@ -0,0 +1,26 @@
+> +SUMMARY = "Udev rules for assorted TI SoCs"
+> +LICENSE = "MIT"
+> +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> +
+> +inherit bin_package
+> +
+> +SRC_URI = " \
+> +    file://50-arago.rules \
+> +    file://37-can-j7.rules \
+> +    file://37-can-am62.rules \
+> +    file://37-can-dra7.rules \
+> +    file://37-can-ti33x.rules \
+> +"
+> +
+> +S = "${WORKDIR}"
+> +
+> +do_install() {
+> +    install -d ${D}${libdir}/udev/rules.d
+> +    install -m 0644 ${WORKDIR}/50-arago.rules ${D}${libdir}/udev/rules.d/
+> +    install -m 0644 ${WORKDIR}/37-can-j7.rules ${D}${libdir}/udev/rules.d/
+> +    install -m 0644 ${WORKDIR}/37-can-am62.rules ${D}${libdir}/udev/rules.d/
+> +    install -m 0644 ${WORKDIR}/37-can-dra7.rules ${D}${libdir}/udev/rules.d/
+> +    install -m 0644 ${WORKDIR}/37-can-ti33x.rules ${D}${libdir}/udev/rules.d/
+> +}
+> +
+> +RDEPENDS:${PN} = "udev udev-extraconf"
+
 
