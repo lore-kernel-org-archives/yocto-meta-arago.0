@@ -2,241 +2,219 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 84019D26D8C
-	for <webhook@archiver.kernel.org>; Fri,  9 Jan 2026 18:26:11 +0000 (UTC)
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (SN4PR2101CU001.outbound.protection.outlook.com [40.93.195.36])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.16739.1767983161618074495
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 87B29D26D8E
+	for <webhook@archiver.kernel.org>; Fri,  9 Jan 2026 18:29:01 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com (CH5PR02CU005.outbound.protection.outlook.com [40.107.200.63])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.16855.1767983335271243138
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 09 Jan 2026 10:26:01 -0800
+ Fri, 09 Jan 2026 10:28:55 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=TO999UG4;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.195.36, mailfrom: reatmon@ti.com)
+ dkim=pass header.i=@ti.com header.s=selector1 header.b=LYfTi9tD;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.200.63, mailfrom: reatmon@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=knCjAwVVOUWKugRDFpSFMVe58x6QWooik7O7Kob29d0faROoY83digst2vyKwL2WLNKB7HnjdQ1fvBOZqPnEdBhu/ydLSi71eYzgx6IOs8MojQHzSc4DSplHNWsCMKzTWon0ea4moZHi3Vu3nmPiF8AiOUiZHvLKhkGeFA2NvdTDweCJYQV5L9nx5EwMRMSanCKGNlT2TZwd9xYkJxbTzgtyNq1xHPVHiW2EPHJfjSYN60z3wDOiXAJISeDYYmH1h9vFnTVH4LOpoCYcRZDkJ8IAwum9XCUxTum8HkDRPWVgSaTFqnwiYfTXk2UO+2ijJt1aNypSSOmvefqgJMGkAw==
+ b=GAUzKx4HKwmHHcBxMPijUaNtY4LkGN+M0sHqcfgdRXdYKISaXYcKrb+osfzoNPhOrV0WdzjksX4lvuo9u0AxazcMTzFXHORfUcsLsKtnFiHTnf+v49I/xRgmoKCuVjS7AKnGqSiK3vG4Tbaps+bVsP9oS43xk+01ve3XCMXFpqCjnHv+k06ANE6PI+ghEJJQ0tVjFj5je6eEdhzwLA5vPt4GfUm7r8MvY+erIbrEvqEMYOLA72wDuVG2SPOLL+5CFLrVnX8A+IPKp7ZatSspZt8iYh8XlRdfDWnqcjFKUVmhwDjMpcm9Io+3T/otbmsFFG1BOWtKoxWIn22QrEq/9Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JrRN9WF56eb8vMPlfd5cXvSJ4FvOwpXqN0GAbvZytAU=;
- b=BwWty8qQzYqspRv22Bar44lkTLVfycYQa82KB0r34ynT4ywLSNkzG5yhpx0egaLcIBPHuMuwQToNXdZMid/OPPpQIlceifSOgeUjUsPEw1XJF00nj5CUixvK55fsd0mCVtlLc01Yi31DWNIm2ItiGmHSPpRqQAv7eDolHQonUs0QGjMkEnAY3rV9t2ogbQ1SAo3vK6s0zMcVpPsOdxKgkO7fXM0vlaoc2M4of4NshZQs5nS5BCClpTbtiHMi8hePUgBQI6MI7AC/GNgfPLWmE5Hp+9FhyrDD46QZVR9Yrw5pwNRMeBtybIKZPk7pXJuvx9/IrPhvJJ46TrBQUrM62Q==
+ bh=swfny1Bl/DRfs1YVhMrRYlkFCAFdQXua41/gEinRC8k=;
+ b=ll1lyUwtER+cgBRvskA1i04oRnEUqd4AozlL2oc2rOyB6rQcNYj4pZxoMXk0wrpsQXzJJGBeURz1aEsI/b7dbFTb48w2FBFPVLkxsh18Dr7UUprJ5SHbhQA3oXiTFhysvH85kkKxqkqip9FcvEn/NILSuWrgmshy/T7aBkO/nNYmMyf2ibtSnO+t1UUIWEzzGFeTA1fZSmQ6gW5FzI+hBpUJ4uB5Epsy/mIs+v4YcLV+tEq/TR/bl+mUvhYyvyPy0jjZB/mO+0RRWOBmt2jrIkrkSYoUU/8QMzbiUXYiUxIF0S24mwrqS/BRgnTp0GtOb31tmwnJJ/LEfumXKSpT5g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JrRN9WF56eb8vMPlfd5cXvSJ4FvOwpXqN0GAbvZytAU=;
- b=TO999UG465nchiwH9ncb1cOoQCZulEBUyohbbrJHCFtp8yB3Wtidqhh8QeeFzIxbJWdbJ8r+DwiIQebpXixn+DcTxJJ00lQvkKMNPQEg2J7h3w5LS0cP7M7ywKYgvthypd27tDfoP1p0YtWtwHFlQ5QwBfQI3FdWsLBebicfEYA=
-Received: from PH0PR07CA0032.namprd07.prod.outlook.com (2603:10b6:510:e::7) by
- IA1PR10MB7357.namprd10.prod.outlook.com (2603:10b6:208:3ff::17) with
+ bh=swfny1Bl/DRfs1YVhMrRYlkFCAFdQXua41/gEinRC8k=;
+ b=LYfTi9tDv3T5aRqk75VlYrf8/9t/1o/KvKZZOeRVdSIbVB2kfrDBZMhYDqKBwQ8uwpa8RnSFCUwBoUkzpRkINn0fYmKdwoRyhKuAI4kBiWElqdHhmR94AouqyNrMjj2t4o+Yl57b3PAGYKIzqhWGEDitPWISsoOr+LYJO5lds6Y=
+Received: from BYAPR11CA0079.namprd11.prod.outlook.com (2603:10b6:a03:f4::20)
+ by IA4PR10MB8518.namprd10.prod.outlook.com (2603:10b6:208:56a::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9499.4; Fri, 9 Jan
- 2026 18:25:59 +0000
-Received: from CY4PEPF0000EE31.namprd05.prod.outlook.com
- (2603:10b6:510:e:cafe::92) by PH0PR07CA0032.outlook.office365.com
- (2603:10b6:510:e::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.4 via Frontend Transport; Fri, 9
- Jan 2026 18:25:59 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9456.14; Fri, 9 Jan
+ 2026 18:28:49 +0000
+Received: from BY1PEPF0001AE1C.namprd04.prod.outlook.com
+ (2603:10b6:a03:f4:cafe::37) by BYAPR11CA0079.outlook.office365.com
+ (2603:10b6:a03:f4::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9499.3 via Frontend Transport; Fri, 9
+ Jan 2026 18:28:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CY4PEPF0000EE31.mail.protection.outlook.com (10.167.242.37) with Microsoft
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ BY1PEPF0001AE1C.mail.protection.outlook.com (10.167.242.105) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.1 via Frontend Transport; Fri, 9 Jan 2026 18:25:59 +0000
-Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9520.1 via Frontend Transport; Fri, 9 Jan 2026 18:28:48 +0000
+Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 9 Jan
- 2026 12:25:59 -0600
-Received: from DLEE211.ent.ti.com (157.170.170.113) by DLEE215.ent.ti.com
+ 2026 12:28:48 -0600
+Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 9 Jan
+ 2026 12:28:48 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE215.ent.ti.com
  (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 9 Jan
- 2026 12:25:58 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE211.ent.ti.com
- (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 9 Jan 2026 12:25:58 -0600
+ Transport; Fri, 9 Jan 2026 12:28:48 -0600
 Received: from [10.249.42.85] ([10.249.42.85])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 609IPwJi474836;
-	Fri, 9 Jan 2026 12:25:58 -0600
-Message-ID: <0f248559-9e3b-489b-b473-404ded0c359a@ti.com>
-Date: Fri, 9 Jan 2026 12:25:58 -0600
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 609ISmv9477780;
+	Fri, 9 Jan 2026 12:28:48 -0600
+Message-ID: <6058face-2e40-47f9-8f75-43271061453e@ti.com>
+Date: Fri, 9 Jan 2026 12:28:48 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH v2] ti-core-initramfs: Shrink size of
- initramfs
+Subject: Re: [meta-arago][master][PATCH v2] conf: Add support for bsp-ti-6_18
+ to ti-core-initramfs
 To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
 	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
-References: <1889231A663B8440.2339348@lists.yoctoproject.org>
+References: <188922F928D4DF96.2339348@lists.yoctoproject.org>
 Content-Language: en-US
 From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <1889231A663B8440.2339348@lists.yoctoproject.org>
+In-Reply-To: <188922F928D4DF96.2339348@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE31:EE_|IA1PR10MB7357:EE_
-X-MS-Office365-Filtering-Correlation-Id: bcf63c98-931f-4240-6504-08de4fac8997
+X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE1C:EE_|IA4PR10MB8518:EE_
+X-MS-Office365-Filtering-Correlation-Id: 28adc1bb-d8d6-4e23-2b67-08de4faceea0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026|34020700016|7142099003;
+	BCL:0;ARA:13230040|376014|82310400026|1800799024|34020700016|36860700013;
 X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?em5wVkJaeURVSHFBdjRvK3ZodHNmWVlDb1U1T1pUL3BrZDNUZ1BrMTRWaEp4?=
- =?utf-8?B?dE12ekZHYU9GRWZxQnBmYk5lNzI1S1NVZXhEV0xKeVlXRDlkek5zRnAzZjJY?=
- =?utf-8?B?a3pPckJsTGFlb2xsNG9hUUgvRkZxcFdycXRpR0ZGbWF5cWcxaFhaRERwTTN4?=
- =?utf-8?B?YUh1NmZid0VUOC95M1VFVkdOTGU5ZndRT2FBeWFvNU0zMGtiQ0oxUGU1eFhH?=
- =?utf-8?B?Uk05YUJkTjdUeEpIRSt4ak5YTkVyT3dtbVgxakxrWlhyMk5HNGxsRTJobHZB?=
- =?utf-8?B?UytVSjVvMUJpNHRsQWZOWUh4MGtrQ2VIaGw3d1V0cEdzREVITEFtVmp2V0lC?=
- =?utf-8?B?VkwyY0F1ZWNZeG1aa1dlaFVFeXZvM3ZqVzF1NXpMbGkzK3RrVmE0bnBQZmhR?=
- =?utf-8?B?TElRNjF3Q24zVXMweTZ4dC9pVjhXYm14RUY0UlUvMW9CbWZlSmYvNitNakF2?=
- =?utf-8?B?RDc3ei93RGFOL2k2b2xRWm1aOVRBb1plMVMvSVFMV1dST0M1Uk95eHdRV29p?=
- =?utf-8?B?bDNkL1JUS3draTJzS2RMYytxTWtCdGNRMXFoNFdYZlEvclM1NVB2V0xLQnVR?=
- =?utf-8?B?d01hd1lVQ3RSbS9sdlpaSjNLcEtpZXFTMFExdlBrdmFWU2FyczZXajdacHlv?=
- =?utf-8?B?WUFrZzMzRGtUWm5rTFc1MmZQMXlncVBOckN6ajJhV3FEL3h1T1lITzY5RUxk?=
- =?utf-8?B?dUQwYzgxS3NyL2I2bWxzVmROVERxblRjTTdsMUh0UXI4bHRZSXYwOTFac2lt?=
- =?utf-8?B?ZWtyNjU4cmdqamJ5TjZmM05yVThZL0JJZlRhaENQWXRIZ2lrQ1EzTnZmSjJP?=
- =?utf-8?B?cVhHdzRwRjA5ZEdDdkliN0pnaEI0UTFDcnZ5cnNPcmo1akZ0MG5lZXhLM2lX?=
- =?utf-8?B?Qi9oQjZHNmRSNUM0THdZdGh4REFsQWhNM0pwRjlJdm8wMmR3d05oaGJHcGJD?=
- =?utf-8?B?TTYrdW1KbmNCbFJrQU5BU0VGQXNmYndkaEU3cGxXV1NZdDNxdFpRbHBFRERQ?=
- =?utf-8?B?RG1vQkNvUkFack9MTmdYMTFXUDZUM2pNb0s4bmE0eThmZXZjaUVUSlBUYmtM?=
- =?utf-8?B?MktTMzRIa0tWQjhTRVVMVnJMSnlqbEdHby9EU3hEWmdjL1BRMk9wN1d0UUhM?=
- =?utf-8?B?SGV6K2krNzIwd2xaL1VqQ0R5NXNHeERUNnpPNjc0aXYzQ2laM0F6c3VBb3Bh?=
- =?utf-8?B?dS9PT3l3Mk9jWVEzd1laQmtQOHRTM3RMZnJ2dFB1aUNHaG1lUFV2d0xydmlZ?=
- =?utf-8?B?SFNlcVRBVXc3SWdZcXNKOFVxWlJQOXg2UUpVcDd2ZzhxYmlWZjJ1TjY5Q1BM?=
- =?utf-8?B?ZkRnL3ZVSVBPNEZEdDJNSjBOUjNzOWhjMHpZN2trOGVsdnh0QzdJVFQ0VWNR?=
- =?utf-8?B?MmdTb1Fua1o4aEhwV0VxeXJtdlJRQUFkYWFmY1J1UVU5RkkwaGE2R2JRcWtn?=
- =?utf-8?B?a0xDYVNMNk5vK09RTXpkNm51ZEFRZmNpY0RTZ1FKaEJXdWgrUS8vOFF3Mmxo?=
- =?utf-8?B?M0lGMFU4Z0FHUGtMY25Yc2hMSWJ5d2o1elVpc3U3cUYrWk9RQVZveENycFB5?=
- =?utf-8?B?ZFdIZ0xyVWg2eUhFUDNZblZlSitjRFE2ajV4bXN6NzlMdGRGSUNyTTNrRG55?=
- =?utf-8?B?WWtQcW1KaElKdHl5TjBUQTFLdFk3MEdrSHVJTnhhY0hKdE4rbmdIR2JqN3RG?=
- =?utf-8?B?SFpwT0JUR0d4dWE4U2R5UHZlRUt0NWlPaXFIVTNtT0ZLaXRoM1J6dTVRZHMz?=
- =?utf-8?B?T0ZHem8vMDVjUlBOMDRXU1VXZGJ1TmdlM2NyWVBXL2QrWHpwdWtQN0djVEYx?=
- =?utf-8?B?V3pBd3l2WlpUakRKb0c3ck9INVE2a1FsbUFuZW5xVTM4bGkzcFBMb2RRZ1VV?=
- =?utf-8?B?WFVDTDVoM1BGcW9EaS8xM01SK1BmLzNsSzRKenBzWjR4WEgxNDNZRUdscU16?=
- =?utf-8?B?Z2svbE51eHk5OER4RnVLblhQTzZHVnJwaWI0QW5TUHVqWUU5WVRwTWdaWkJZ?=
- =?utf-8?B?L0hJUlFQNmlTWnE0NGJzdUVQOHIwZjN3TTBJQTArTVFRSXRZNmJGVGdOOWt2?=
- =?utf-8?B?WU9penpic3hWQTFWeENNRlhHREZva3UzYVFmazZ2MXhISTkzd29ISWFMalFO?=
- =?utf-8?Q?bXko=3D?=
+	=?utf-8?B?V0Fadkc5NXM0WTVYTjQ3UVMzaVliQnYwUWErdkFOMWowQ1pRTWI3RHdHQk0z?=
+ =?utf-8?B?RUd1aU1lcGxnZ0FhTnVCYjhFUHdLTm44QmZKeVdqdmwvazNRMGxCQjk3Y2lF?=
+ =?utf-8?B?MUNJamUxSTV1WVEyanhQZVVzcTBHeFhmeXlKNHFaZ3EwYzhWeURYQVNuQ3BM?=
+ =?utf-8?B?d1BHaWdpSGpZVFZsdHdBWGVuQWRyQUQzZU5GSjhPZWZkN2YxRHFoeWpTeFV1?=
+ =?utf-8?B?OHdQV3liVHFGNXNMLy9ncVRuMWVNZTZaMEpXSmJMSGg1VVQyL2VoclRsR01K?=
+ =?utf-8?B?Ykl5dHlsamZPZ2xPRDFWejczSi9wSnFFSmlnTVZ6RVE1cThxbklwMEZsNzk2?=
+ =?utf-8?B?SmlFSTdRbThGdmpFN3U4YkFjTVlVSW44N1p4RU5xYjVHRzlVMit3NkZ0REov?=
+ =?utf-8?B?cXhaU0RJbHU2MVFUWWhCbkJxWFJDN2NySjQzVTV4OUM5MGlCUS9obm05T3pP?=
+ =?utf-8?B?UFdaUFo4WTBaYnVBYWNKVS82VkJHVFRWSGlzbFhKZGc0ZkhPb3d4NnIzWWVR?=
+ =?utf-8?B?cStaZzF4MWQyTzU3N1lvMWcxbUpUUktvcGoyaUdMRWVmRUhzT1lEQ2VUZVkz?=
+ =?utf-8?B?aytLRlAyYzRtbTV4bmNoQ25CMnBSSlB3WmUvK2VPdHFFb2JhRzZyWWcxM21B?=
+ =?utf-8?B?QUJ0MGgvVnkxS0xFMG02YmxLT25oT3oyejZvU09sSjR1TVg0YU5XQkxPdms0?=
+ =?utf-8?B?MG50NDBVczZzNFE5VzdsN3dNWWFlMWFlRm91NStnRUhMa3hlTUNnQlMzSWVa?=
+ =?utf-8?B?NHNIV3FrVHZSZFJqbityeGFCV3MvbGoxeitOZHFQZlBjVDVHbnIwaU5uc0k3?=
+ =?utf-8?B?aTNCVUZnTWRiaG83b041dnlEcHVmeU9PZGNsRnl1eU9NNGo5UlhsRmNJSUVX?=
+ =?utf-8?B?MUx1Z0tCZkVHdXRUTVk4akRUa2Yra09pTXA4dS9aVTFzd21yZ1BXNHo1TVhS?=
+ =?utf-8?B?bVlGSW43QlE5dmRpZENlQzBJWnpBTEVUSUdjdWdTdmJFUnFTV3IwcFJwWng5?=
+ =?utf-8?B?UndYd1l5NFhyaWh0ZURqWlJoQlRRUzhUWWN4aDBuQ2graUdHVTBUWGR5SER5?=
+ =?utf-8?B?KzFERzVnSytCUUxwTnV3b3l1N1BXdzZJZEltbDEwRGpjSnE4ZEpSc2dJNnhr?=
+ =?utf-8?B?bDFRd2dqK3lBYWNiK0ZUR3diOXU4WThOYklmQUpUbHREMjRPYUhVTTNDVmNx?=
+ =?utf-8?B?MlhIeXhvVXZDeXRjM2xQR0hoTXc1cDF5NE91UENnUjBpWStDdnE1eExIOTFv?=
+ =?utf-8?B?TEJIZHFodyttMHlSdG1mQkxWclhaTmFOZ0lISEJRdUVyVVJZTVN0dFVTL0Zm?=
+ =?utf-8?B?SWRsczYyZm5paWN0T29weGU4bS8xeFV1d3dhUUZ4YTBvTEtGelhlQXozanZv?=
+ =?utf-8?B?Y2dtbFRMQjB0UkU4OTVjaERGMzNReVNmUkZUK0NXYlFoUFB6KzZsb2haQXA1?=
+ =?utf-8?B?VU9aSnpDblNHNTJjNVYxZFNTTVdvakMyaFJrV2h0SzhVeU9qQksyTlozSEN0?=
+ =?utf-8?B?Rjhpd3RNQWQwQ2RJVm1qcHNXZnk1V2lvd2tSdHNqdHh2MjhuYU9JZVExaHdm?=
+ =?utf-8?B?dXhESnN0L0dWYVVEMmRPbW9hbXcybUd5WjJQczhjS2pEaWVDUnMyRnFHTmZ0?=
+ =?utf-8?B?UEZRcFhUY0MrZzE1S3RIRHpwK0g2MUlzcDN2T3JVZ2Noc2I0T0xDc2NOQ29G?=
+ =?utf-8?B?UU5iN2h3Mmc2aVl3SHpBQXUyNldnUkNvSXNPUEgyNllYSWhZYkZsMEtmR0lU?=
+ =?utf-8?B?ZWdXUHJudk9KVElMY0NyWDFHSnl6Z3pEOHBTU0pzcUU5eDhkYXJabmRGUi9j?=
+ =?utf-8?B?bmczelExNGJOMEtZT1RVbE9USjhCR3poRDZkd2NiTjZkR0RycjB1Q0FjTStG?=
+ =?utf-8?B?U2huQituTGdrYWhxVENFZjJFZWpwS3ppelI1MnkyM2lxbk5FRTRndjJ4bGxL?=
+ =?utf-8?B?aXYzRFpydkxOam9kZ2ZyUTl6Y2h3ZFNvY0JmUFRXNktQSDljQ1QyWGZxeXIx?=
+ =?utf-8?B?Tys3WE1IMDRJWURQdDliVHFzMXlORGVXWmNyRy96T2t1aGhUMEFWcnNwbTlp?=
+ =?utf-8?B?VzhwcmVvcGRUUzVLMng2NmRWWmdqQzJqUVcvb3pFay85UWJkSzl3NUdaWVRC?=
+ =?utf-8?Q?n/cc=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026)(34020700016)(7142099003);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(34020700016)(36860700013);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2026 18:25:59.3690
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2026 18:28:48.8328
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bcf63c98-931f-4240-6504-08de4fac8997
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28adc1bb-d8d6-4e23-2b67-08de4faceea0
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	CY4PEPF0000EE31.namprd05.prod.outlook.com
+	BY1PEPF0001AE1C.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB7357
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR10MB8518
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 09 Jan 2026 18:26:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16946
+ <meta-arago@lists.yoctoproject.org>; Fri, 09 Jan 2026 18:29:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16947
 
 
-dang it...  wrong list.
+Wrong list.  I'm on a roll today...
 
 
-
-On 1/9/2026 12:22 PM, Ryan Eatmon via lists.yoctoproject.org wrote:
-> License-Update: Moving away from packagegroup-core-boot.bb removed the
-> LICENSE setting.  Just adding it back in.
-> 
-> It looks like we were modelling this initramfs off of the wrong example
-> from poky.  This setup produces a much smaller initramfs.
+On 1/9/2026 12:19 PM, Ryan Eatmon via lists.yoctoproject.org wrote:
+> With the 6.18 we are moving to using an initramfs to provide non-default
+> modules for booting.  So add that override to the machines that need it.
 > 
 > Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 > ---
-> v2: Add missing License-Udate.
+> v2: Forgot to add ti-soc.inc to the commit.
 > 
->   .../packagegroup-ti-core-initramfs.bb         | 12 ++++---
->   .../recipes-ti/initramfs/ti-core-initramfs.bb | 33 +++++++++----------
->   2 files changed, 22 insertions(+), 23 deletions(-)
+>   meta-ti-bsp/conf/machine/include/am62axx.inc | 5 +++--
+>   meta-ti-bsp/conf/machine/include/j721e.inc   | 1 +
+>   meta-ti-bsp/conf/machine/include/j784s4.inc  | 1 +
+>   meta-ti-bsp/conf/machine/include/ti-soc.inc  | 3 +++
+>   4 files changed, 8 insertions(+), 2 deletions(-)
 > 
-> diff --git a/meta-ti-bsp/recipes-ti/initramfs/packagegroup-ti-core-initramfs.bb b/meta-ti-bsp/recipes-ti/initramfs/packagegroup-ti-core-initramfs.bb
-> index 86b69aff..c759808c 100644
-> --- a/meta-ti-bsp/recipes-ti/initramfs/packagegroup-ti-core-initramfs.bb
-> +++ b/meta-ti-bsp/recipes-ti/initramfs/packagegroup-ti-core-initramfs.bb
-> @@ -1,16 +1,18 @@
->   SUMMARY = "Minimal initramfs for boot requirements"
+> diff --git a/meta-ti-bsp/conf/machine/include/am62axx.inc b/meta-ti-bsp/conf/machine/include/am62axx.inc
+> index 08111f82..1fd4a1ac 100644
+> --- a/meta-ti-bsp/conf/machine/include/am62axx.inc
+> +++ b/meta-ti-bsp/conf/machine/include/am62axx.inc
+> @@ -12,5 +12,6 @@ OPTEEMACHINE = "k3-am62x"
 >   
-> -require recipes-core/packagegroups/packagegroup-core-boot.bb
-> +LICENSE = "MIT"
-> +
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> +
-> +inherit packagegroup
+>   MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "cnm-wave-fw"
 >   
->   TI_INITRAMFS_KERNEL_MODULES ?= ""
+> -TI_INITRAMFS_KERNEL_MODULES:append:bsp-mainline  = " kernel-module-tps6594-i2c kernel-module-tps6594-regulator kernel-module-tps6594-core"
+> -TI_INITRAMFS_KERNEL_MODULES:append:bsp-next  = " kernel-module-tps6594-i2c kernel-module-tps6594-regulator kernel-module-tps6594-core"
+> +TI_INITRAMFS_KERNEL_MODULES:append:bsp-ti-6_18 = " kernel-module-tps6594-i2c kernel-module-tps6594-regulator kernel-module-tps6594-core"
+> +TI_INITRAMFS_KERNEL_MODULES:append:bsp-mainline = " kernel-module-tps6594-i2c kernel-module-tps6594-regulator kernel-module-tps6594-core"
+> +TI_INITRAMFS_KERNEL_MODULES:append:bsp-next = " kernel-module-tps6594-i2c kernel-module-tps6594-regulator kernel-module-tps6594-core"
+> diff --git a/meta-ti-bsp/conf/machine/include/j721e.inc b/meta-ti-bsp/conf/machine/include/j721e.inc
+> index 5ec43049..29566dac 100644
+> --- a/meta-ti-bsp/conf/machine/include/j721e.inc
+> +++ b/meta-ti-bsp/conf/machine/include/j721e.inc
+> @@ -20,5 +20,6 @@ TI_VXE_VXD_DRIVER:bsp-ti-6_6 = ""
 >   
->   RDEPENDS:${PN} += "\
->       ${TI_INITRAMFS_KERNEL_MODULES} \
-> +    ${VIRTUAL-RUNTIME_base-utils} \
-> +    base-passwd \
->       initramfs-framework-base \
->       initramfs-module-udev \
->       initramfs-module-nfsrootfs \
-> -    nfs-utils \
-> -    nfs-utils-client \
->   "
-> -
-> -RDEPENDS:${PN}:remove = "grub-efi kernel"
-> diff --git a/meta-ti-bsp/recipes-ti/initramfs/ti-core-initramfs.bb b/meta-ti-bsp/recipes-ti/initramfs/ti-core-initramfs.bb
-> index 1a102d82..223fef7a 100644
-> --- a/meta-ti-bsp/recipes-ti/initramfs/ti-core-initramfs.bb
-> +++ b/meta-ti-bsp/recipes-ti/initramfs/ti-core-initramfs.bb
-> @@ -7,29 +7,26 @@ DESCRIPTION = "Image meant to probe boot essential modules\
+>   MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "cadence-mhdp-fw vxd-dec-fw ti-eth-fw-j721e ${TI_VXE_VXD_DRIVER}"
 >   
->   LICENSE = "MIT"
+> +TI_INITRAMFS_KERNEL_MODULES:append:bsp-ti-6_18 = " kernel-module-cdns-pltfrm kernel-module-ti-j721e-ufs"
+>   TI_INITRAMFS_KERNEL_MODULES:append:bsp-mainline = " kernel-module-cdns-pltfrm kernel-module-ti-j721e-ufs"
+>   TI_INITRAMFS_KERNEL_MODULES:append:bsp-next = " kernel-module-cdns-pltfrm kernel-module-ti-j721e-ufs"
+> diff --git a/meta-ti-bsp/conf/machine/include/j784s4.inc b/meta-ti-bsp/conf/machine/include/j784s4.inc
+> index 6ba427cb..42c95b11 100644
+> --- a/meta-ti-bsp/conf/machine/include/j784s4.inc
+> +++ b/meta-ti-bsp/conf/machine/include/j784s4.inc
+> @@ -14,5 +14,6 @@ OPTEEMACHINE = "k3-j784s4"
 >   
-> -inherit core-image
-> -
-> -IMAGE_NAME = "ti-core-initramfs"
-> -
-> -IMAGE_NAME_SUFFIX = ""
-> +INITRAMFS_FSTYPES = "cpio cpio.xz"
+>   MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "cadence-mhdp-fw cnm-wave-fw ti-eth-fw-j784s4"
 >   
-> -IMAGE_FEATURES:remove = "package-management"
-> +INITRAMFS_MAXSIZE = "65536"
+> +TI_INITRAMFS_KERNEL_MODULES:append:bsp-ti-6_18 = " kernel-module-cdns-pltfrm kernel-module-ti-j721e-ufs"
+>   TI_INITRAMFS_KERNEL_MODULES:append:bsp-mainline = " kernel-module-cdns-pltfrm kernel-module-ti-j721e-ufs"
+>   TI_INITRAMFS_KERNEL_MODULES:append:bsp-next = " kernel-module-cdns-pltfrm kernel-module-ti-j721e-ufs"
+> diff --git a/meta-ti-bsp/conf/machine/include/ti-soc.inc b/meta-ti-bsp/conf/machine/include/ti-soc.inc
+> index ca182968..74346430 100644
+> --- a/meta-ti-bsp/conf/machine/include/ti-soc.inc
+> +++ b/meta-ti-bsp/conf/machine/include/ti-soc.inc
+> @@ -33,14 +33,17 @@ BUILD_CORE_INITRAMFS_IMAGE = "ti-core-initramfs"
+>   BUILD_CORE_INITRAMFS_IMAGE_FILE = "${BUILD_CORE_INITRAMFS_IMAGE}.cpio.xz"
 >   
-> -INITRAMFS_FSTYPES = "cpio cpio.xz"
-> +IMAGE_NAME = "ti-core-initramfs"
+>   BUILD_CORE_INITRAMFS_IMAGE_STEP ?= ""
+> +BUILD_CORE_INITRAMFS_IMAGE_STEP:bsp-ti-6_18 = "${BUILD_CORE_INITRAMFS_IMAGE}:do_image_complete"
+>   BUILD_CORE_INITRAMFS_IMAGE_STEP:bsp-mainline = "${BUILD_CORE_INITRAMFS_IMAGE}:do_image_complete"
+>   BUILD_CORE_INITRAMFS_IMAGE_STEP:bsp-next = "${BUILD_CORE_INITRAMFS_IMAGE}:do_image_complete"
 >   
-> -IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
-> +export IMAGE_BASENAME = "${IMAGE_NAME}"
+>   do_image_wic[depends] += "${BUILD_CORE_INITRAMFS_IMAGE_STEP}"
 >   
->   PACKAGE_INSTALL = "packagegroup-ti-core-initramfs"
+>   TI_WKS_INITRAMFS ?= ""
+> +TI_WKS_INITRAMFS:bsp-ti-6_18 = ",initrd=${BUILD_CORE_INITRAMFS_IMAGE_FILE}"
+>   TI_WKS_INITRAMFS:bsp-mainline = ",initrd=${BUILD_CORE_INITRAMFS_IMAGE_FILE}"
+>   TI_WKS_INITRAMFS:bsp-next = ",initrd=${BUILD_CORE_INITRAMFS_IMAGE_FILE}"
 >   
-> -export IMAGE_BASENAME = "${IMAGE_NAME}"
-> +# Ensure the initramfs only contains the bare minimum
-> +IMAGE_FEATURES = ""
-> +IMAGE_LINGUAS = ""
->   
-> -IMAGE_OVERHEAD_FACTOR = "1.1"
-> +# on the kernel image.
-> +PACKAGE_EXCLUDE = "kernel-image-*"
-> +
-> +IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
-> +IMAGE_NAME_SUFFIX ?= ""
-> +IMAGE_ROOTFS_SIZE = "8192"
-> +IMAGE_ROOTFS_EXTRA_SPACE = "0"
->   
-> -# To further reduce the size of the rootfs, remove the /boot directory from
-> -# the final image this is usually done by adding RDEPENDS_kernel-base = ""
-> -# in the configuration file. In our case we can't use this method. Instead we
-> -# just wipe out the content of "/boot" before creating the image.
-> -ROOTFS_POSTPROCESS_COMMAND += "empty_boot_dir; "
-> -empty_boot_dir () {
-> -	rm -rf ${IMAGE_ROOTFS}/boot/*
-> -}
-> +inherit image
+> +IMAGE_BOOT_FILES:append:bsp-ti-6_18 = " ${BUILD_CORE_INITRAMFS_IMAGE_FILE}"
+>   IMAGE_BOOT_FILES:append:bsp-mainline = " ${BUILD_CORE_INITRAMFS_IMAGE_FILE}"
+>   IMAGE_BOOT_FILES:append:bsp-next = " ${BUILD_CORE_INITRAMFS_IMAGE_FILE}"
 
 -- 
 Ryan Eatmon                reatmon@ti.com
