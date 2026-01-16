@@ -1,73 +1,78 @@
-Return-Path: <j-sahu@ti.com>
+Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0545BC982C7
-	for <webhook@archiver.kernel.org>; Fri, 16 Jan 2026 14:37:47 +0000 (UTC)
-Received: from DM1PR04CU001.outbound.protection.outlook.com (DM1PR04CU001.outbound.protection.outlook.com [52.101.61.36])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.7430.1768574257147625166
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 40470C982C9
+	for <webhook@archiver.kernel.org>; Fri, 16 Jan 2026 14:58:37 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com (CO1PR03CU002.outbound.protection.outlook.com [52.101.46.29])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.7908.1768575512575181332
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 16 Jan 2026 06:37:37 -0800
+ Fri, 16 Jan 2026 06:58:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=il7MwDlz;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.61.36, mailfrom: j-sahu@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=pW9SAb/z;
+ spf=pass (domain: list.ti.com, ip: 52.101.46.29, mailfrom: prc@list.ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qpGOCZ3IjWkWtf6EvtBMTMCqqcmr3oxFXuZBxym4ZaJEspzBVygWHhx4aIqiIfNYssyMSBJ6OVgVg9NxZx0Hg3zd61B1EMKvUPb9tCVUlMzgdr0tdM0jshKJHVZmLQUnJS2AIEKMhnHQzLIjxpsu+LV6vQ+7X+WJgSiwTDFU5RCOaj/zvbg0B1Rsk3l0OLh/XmxqGzLk+XohT1hznIpU2VlhijSBOG+OCxOE7ejNrKTWhxNij1Q7fkZmENbghpI1+YdbELY9AslNJrmY8icsSc8HbfU7RKEIIO6g6UylxEpA9hW1GHtfpZMvE3W6AtnH8ATttdobZhJXw2vvPXKWrw==
+ b=FoBiIQeOAt/rAwcZ9VfEF44KHR6qGNzbG4RwFZzW4Sx6nJ8HSqScN/b0ouSxol047aARBk4SnGYYBRD+ASmQKPsKxPSZZFRRnjQv3W/8mwFXdu8LUCctlII1bEXZSDV4F63ebPSQLaIpZDRbB+MnGJsVdgLUHr3yR8kRzmLh73BmeR1e+Cq5+YVLH301FcPZCv+elozmFKOMluHSSSyaI0JI6o/xaqx6rrUEvtiUe1vxlIvBsU4uk04o977Aiiximh68MOFi63DCVU1C++UbkBFjRaCArnbh3ThdQAr/M41pmUT6ozwBsNHT5wHKXACyIp/0hEd9GVqFc0qBxEGSIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=au6bZJS0mmUiRhL8UqsQhVYkNWIUWJgnK6wkAbHKBrs=;
- b=ZIxXxa5giHPYuA9LPufYaxdFWmldwJ7A+gc115PIEl3Dqw5jaiUnoZD7LwXThRP+RFy80V/zjUbKRXnozjsxmORS8syDaJ1nxu3DIpT30FpeZAIZvNAv83M3RCy77hClfFlr6W6wZFKcuwMFZZ9t3gVQCJPtqD3Rmjx++YJOha55kGIZWfVFzBwK+KafUb6VYxlNNlKpn49h9KmiDF6CHc8nOvwVwGqpwB67lrPtBpEz8NwuW/cAkWXodKU/HQ8YuzwGDtEn2/YF/o3n18N4nWUp5cLjlr6S9CxrudgY5I8IiyMkFAAL9KZifMTzOtScLWjKs9lm4ZxteZZGG6g98A==
+ bh=35Rc5MPN+2TzFtjKzaAziArPxQZC7oNWQ50gWbiXSo4=;
+ b=tXJp2kygDm06LlaB9fDqPYZ7Q+nSSwelVdI5ZLPEVvV0uj50c5GeOKxz+4QXL6zNj3maANbQEe/N+iCNjTPFw7BiVRcxiuWcGZXWIfz8rCMYDaSn7hw7VRx+lifJOjk0MDdpOQiYjsm+07qbJgtDyR9/qOZw+yB5GpcBmMiAhkUyOBqYQdsnhQmBfd1qr1sdHrJAy8E0d6nRsDgKYw6H7x6/D9n7Ohh/iW74j8DlUntInb3faH0kEdgspHrHfcDd8Jzp3KFXfociK3Ajn8xZemyNzDAD3vraLAI75ikG720k2lwJ8Mrtl4UzUFAi4n2FocToxtTpnW6HcDeS/wmV6Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=konsulko.com smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
+ action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=au6bZJS0mmUiRhL8UqsQhVYkNWIUWJgnK6wkAbHKBrs=;
- b=il7MwDlzmtT4FJUxl06FqJ5Wt257DH3DhlVuHwYqjjqlLY94FywoA0HNKFckEgdGw5oZVeNs4njUh36nglLgEMaFyW45Thqz/W2v28O9cW+wjIfdh8VcB9jX/bsfmMbfQx67huPu6k6WTvvp2cY+phn9aeHEuK0UGWT8oqzfS8E=
-Received: from BYAPR21CA0027.namprd21.prod.outlook.com (2603:10b6:a03:114::37)
- by CO6PR10MB5620.namprd10.prod.outlook.com (2603:10b6:303:14b::22) with
+ bh=35Rc5MPN+2TzFtjKzaAziArPxQZC7oNWQ50gWbiXSo4=;
+ b=pW9SAb/zY/5eeX8MC/7Fyi2nA4AoJ0phEizaXfgFOsFAA2sV1XIj2ZgIOQajV+yKvIH3sKD+N3Fd2CXlKh2b4nmnFKG+5meQQ+PcDHZjbUxoyqmHwfC0pgqBmqkqLSt4j3a2HIle7q6XNHkFzHTgDUNbwTa2ZAnbpSMT5v2qenMPvI4lpzFck56rRgjbj3LA9L8eCTBjhCanDdq1aJssT3b/Cxmqw/sQHD4Q06xDTjnk8SV+TuTCF0zjJplMMLXCMMKIW5LkalceWbm3m8G6cUjrOkIlCVDY9b6wfWB8dO+niSXlLEOxCNUptGMo6RfkEKGvSVxddQOJApCsc2iU/g==
+Received: from SJ0PR03CA0340.namprd03.prod.outlook.com (2603:10b6:a03:39c::15)
+ by SJ2PR10MB7112.namprd10.prod.outlook.com (2603:10b6:a03:4c6::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Fri, 16 Jan
- 2026 14:37:33 +0000
-Received: from SJ1PEPF000023D5.namprd21.prod.outlook.com
- (2603:10b6:a03:114:cafe::18) by BYAPR21CA0027.outlook.office365.com
- (2603:10b6:a03:114::37) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.4 via Frontend Transport; Fri,
- 16 Jan 2026 14:37:16 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- SJ1PEPF000023D5.mail.protection.outlook.com (10.167.244.70) with Microsoft
+ 2026 14:58:29 +0000
+Received: from SJ1PEPF00001CE0.namprd05.prod.outlook.com
+ (2603:10b6:a03:39c:cafe::6) by SJ0PR03CA0340.outlook.office365.com
+ (2603:10b6:a03:39c::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.9 via Frontend Transport; Fri,
+ 16 Jan 2026 14:58:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=list.ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=list.ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SJ1PEPF00001CE0.mail.protection.outlook.com (10.167.242.8) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.0 via Frontend Transport; Fri, 16 Jan 2026 14:37:33 +0000
-Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9542.4 via Frontend Transport; Fri, 16 Jan 2026 14:58:28 +0000
+Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 08:37:32 -0600
-Received: from DLEE208.ent.ti.com (157.170.170.97) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 08:58:28 -0600
+Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE215.ent.ti.com
+ (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 08:37:32 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE208.ent.ti.com
- (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 08:58:27 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE213.ent.ti.com
+ (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 16 Jan 2026 08:37:32 -0600
-Received: from jeevan-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (jeevan-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.233.81])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60GEbPJY3417786;
-	Fri, 16 Jan 2026 08:37:30 -0600
-From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denys@konsulko.com>
-Subject: [meta-arago][master][PATCH v2 2/2] meson: Add patch to fix Qt6 private header detection for cross-compilation
-Date: Fri, 16 Jan 2026 20:07:22 +0530
-Message-ID: <20260116143722.2135247-2-j-sahu@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Transport; Fri, 16 Jan 2026 08:58:27 -0600
+Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60GEwRDp3304881;
+	Fri, 16 Jan 2026 08:58:27 -0600
+Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
+	id AAD2F9ACF4; Fri, 16 Jan 2026 08:58:27 -0600 (CST)
+From: PRC Automation <prc@list.ti.com>
+To: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>, Ryan Eatmon <reatmon@ti.com>, "Denys
+ Dmytriyenko" <denys@konsulko.com>
+Subject: Re: [meta-arago][master][PATCH v2 1/2] gstreamer1.0-plugins-good: Add QT6 PACKAGECONFIG support
+Date: Fri, 16 Jan 2026 08:58:27 -0600
+Message-ID: <20260116145827.7730-1-prc@list.ti.com>
+X-Mailer: git-send-email 2.43.5
 In-Reply-To: <20260116143722.2135247-1-j-sahu@ti.com>
 References: <20260116143722.2135247-1-j-sahu@ti.com>
 MIME-Version: 1.0
@@ -76,208 +81,147 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D5:EE_|CO6PR10MB5620:EE_
-X-MS-Office365-Filtering-Correlation-Id: a4c8e4a5-1795-43a8-3162-08de550cc904
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE0:EE_|SJ2PR10MB7112:EE_
+X-MS-Office365-Filtering-Correlation-Id: d6c4d111-35ec-4436-f173-08de550fb57a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|34020700016|36860700013|1800799024|82310400026|376014;
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013|34020700016|13003099007;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?wVz2DmuQQb4/eFiU+7Zx1GpVKBNWWbdaWNxgxcUo/dljODWtzmd/XwI4afAv?=
- =?us-ascii?Q?xQ7V5LBrt7QuOsIoXzRc7uBnogHMVYvfSCTPmo+EKFdzPiLSbu1a8Thj7b8u?=
- =?us-ascii?Q?REIC8R9qY9oy63/6GYM0hmmPJoy+b85cW7ayDqvCwcwAxvuypnfNm24Qe0Bq?=
- =?us-ascii?Q?nRbbhR931r4fahncIyuJpg/S5QFW54FAyk3FiEQlXr+FBkv/tVBxu1euOqAm?=
- =?us-ascii?Q?xVzkvyQXL6tVqFf38eqbdPdI2pnwGSN/USWH/gq2U7MY48iGtMb1Atf2T9MU?=
- =?us-ascii?Q?5qorgCGm5KWWxS2roPBRhmxzWfpxhIK25h7CS4brzHOQhA5QdgaquqBQGtBm?=
- =?us-ascii?Q?BwGIoTSfm3bKFwAtR+am4dGFTeXSsvK8WT6e9wVzGHVsagWuUHhaV/AtEVrQ?=
- =?us-ascii?Q?6hbWGkNg9vHgtfRyheeg1gr6aGV6ZZWKXMbi1miAd9CdJWo+cfwxsfLY0pdd?=
- =?us-ascii?Q?SZDu/FSsu51Azq5NZ5Q2xno3Kjfrp1ub3aiJalbjXiXo4mpL3fHH/KXV0w++?=
- =?us-ascii?Q?a1RcWEXruWeQz1XRSGVR9YWG/rq7XC5hZeFC3mZ65gJU+Ae2jiSNO1caMNcs?=
- =?us-ascii?Q?s78Icd1rWogbmBe3AFCpD3uyzEqGmqd6fblVsLbHe677p/2IgvoUJusv7bp9?=
- =?us-ascii?Q?k9q3/xZ4aQvYsbTjyJgV0uPV39D6LBE4wuKseFf/Z6Uyi3ALyVljihXB7h7w?=
- =?us-ascii?Q?v1IrRXOrjeibVeNKsxClEZEB93kkAHDyLQ1xEbhEbNq1iE+84uBTMGOC/1g0?=
- =?us-ascii?Q?v4UihmaG4kfCW4gTNF9rwDTWf1pObDdMHE8BcE+7ZDMIKIlKmLAt9PlXl/0e?=
- =?us-ascii?Q?+YJhEDqNrQDFKHVUyryHWHPB6O4oTChTE2SON382c5RaxULTGb6AtkrU3hkM?=
- =?us-ascii?Q?X4Ak8cYEYK4gXhoRF307Slg8Z8ELL4otx7pxQ0P6ViHFNIEAQhMPX0FBw+LB?=
- =?us-ascii?Q?89/EZxy/q6TFLM06ySQa5bHEh7IXUa336ba7EEWlWYOrgGepWZlAB3CUiorx?=
- =?us-ascii?Q?c6hhfJcWHLAioi3g3O8QXW/R9EFPByHu621Ux42VoRCGPX04VDESvghCGcTo?=
- =?us-ascii?Q?+sJlnwuQKQ1u7Kj8Q77aiJhTEzRva0RBeckgptdefqgGHTVR1VNA1Gn7RyHA?=
- =?us-ascii?Q?hMtqrI6e2G6K4xrhaaVKrrwSbkqRrB3XZ2qSF9eYWuhQBl3guZ3NpRxypGfo?=
- =?us-ascii?Q?c4FjehxBwz/LxYZDqoHZg6mA1ZMMz+d69YGaBaWozymu7AQhnKQO5PgwCpmw?=
- =?us-ascii?Q?hj/VtfHy8y3YDwKK3s73uLG9PJphFNDe+cnju8hqRJWyxZEZXW6uZpw+2PkA?=
- =?us-ascii?Q?e7SYb7Dcq442qW1M35fQoqynPnN7/87Occ9F54z7DYDrkm3IjkqrP1hLceeA?=
- =?us-ascii?Q?KCChVwFEAKUsafDzrg8+hgrnmuFe5N9yNWf/7ZST3vNk01bs0AbmwkB7lI6p?=
- =?us-ascii?Q?/ZCy2kSZfM3zNaCyWKSXs+9CzysMV43OzOXYRdE+ApsFkOygZVCOfxagsJfU?=
- =?us-ascii?Q?SAOKDek7mxDee+jXGwZynlUMICs54iAHqvk584Qjmkn77NtB6EhDoeGAJqEB?=
- =?us-ascii?Q?dZTnM3oT1W4+5Ht8gWjzHmDNExAtJSlECorpq/0KaxgC1CQzkPC9zXcF9dPi?=
- =?us-ascii?Q?rctk9zM1JGgb7we9mP0T7tA=3D?=
+	=?us-ascii?Q?MYcL0yqLYT+5TzmOo1+JKdvSgpGN18NOT7NuzCyQ+oso0EGn5jErTh56Iq8j?=
+ =?us-ascii?Q?39MTWUpmdVmheR7K5ZQT0XBuijVmufmzMnjbhjgDhaRR2u4rHyZz/mPCtAWm?=
+ =?us-ascii?Q?vSKZDEWkXASC0rULsvDQt5SKVErAKgh1+nCqXh9utt2QJeNqKbGXZ8PovzaQ?=
+ =?us-ascii?Q?BwTLHIbiKZNWVZkE5gpHIQINSIJxDhy86ztNxtmuIopn5KX9NIIZAdIJ4ynE?=
+ =?us-ascii?Q?9GW9sQH648Qvt26M1YTDbkHPpAiopIU6AQeZhvGaKGiA7Ye2Sa5MwWIzmMlc?=
+ =?us-ascii?Q?MseRqx9KR3R6fz+bi2h0Ov1yQHk6kpqMYIf96d99JygbYMvsNEkwXEGIj1uY?=
+ =?us-ascii?Q?BTnW7k4Gmeb/iCAZO2Au3Iw3pkgJ2jdgTnppGoDfEMB2Xsx2dGI1X860LKQA?=
+ =?us-ascii?Q?UdO54XrA+4EqXt0eMWUMHuluAGmfTIv1BZmSs67/a8yQMwxKyruqV7WhQjIw?=
+ =?us-ascii?Q?HvAsNNh1wud/ykZ8O/5fOhdvE8yTDaitl9Fv/f2kIPZPBZCMDLtlmAhrVH6B?=
+ =?us-ascii?Q?EQetg7RU7cAktQSLfu/ekxp+imjSoq4TrSZ/34+rvQI3bpacsi8JiCCSKj+6?=
+ =?us-ascii?Q?OnW74033n+9bFxGAg1T+Iu1uNR91TnMTxaBaE+lZjYRfiXfnB0sLKkFEoag+?=
+ =?us-ascii?Q?tnKV+6XFoqNhjQeUlIwdIQcoPWhq6R717RXD2KQoTVYw0rmcMlNqhPdllsCL?=
+ =?us-ascii?Q?ouRsOR7yQadKbYEQ/JxSs0g7peVh+EvtLfh/g8Y9JoHACekVeaYQMOA5hei/?=
+ =?us-ascii?Q?5mdwfSxGwh4ve1j+KeKHsomOXWw3ZnXsTyET7Mrw1IxXmRR7ovhUyeP5K3XF?=
+ =?us-ascii?Q?J2XAW+c7fzuB7giUZgTZS9dCiVFnvGgnEyTqWbluKMGmPpBL9WgX2xfrCCYe?=
+ =?us-ascii?Q?SC1xbEnR1zZ/vuOmBapGHdk1cK5nrp00VU9iCfqrKI6I8al+vZ4xHtIWjBBY?=
+ =?us-ascii?Q?vTOymlc2eVZKKSHzn9Z4eSUadQ6C+hAxmmhRndkQyk58fmJH5d8OkqANuP5m?=
+ =?us-ascii?Q?SOJYSro4gJLgGs/M9z1A3oB852tzFqzBU6w9OarTI63q/vVF1eJIGm4ud15e?=
+ =?us-ascii?Q?kWzouaTAI/lCE2t0m0BE+K4uYsr3vPR7EKU/zxmGKh756aV16jBwkfhffN5/?=
+ =?us-ascii?Q?gQUAx4MET4sLjrBncz4cGTsNQX0vD7yxM2PjTwrqiM/xMZlS5wD75Wx4RCKd?=
+ =?us-ascii?Q?t5ZAKhJRMiD5Ogr4R5NIR/od3UQDSYMkp6YdKBFHt5HcwZwN3wGNj/dt/TYw?=
+ =?us-ascii?Q?yeuxEYgPjC5bjmmIwU0tBn1D18scpsNaaDYYgDGb6Moy1M5Z9/zr7Z87C13Y?=
+ =?us-ascii?Q?njOh0XHDN/xO3P4G2HbyWcoCCTOL97eG8/RXfhwgyzPUrpH1r3MFFh9J9FDF?=
+ =?us-ascii?Q?bb1vfcAYgOyLNNjPjzSkkMUQfr8kEhctk6xg2lpCafxbrfqnVkzuh7V1E9zC?=
+ =?us-ascii?Q?v3UKJv0LDXbpnNkOD3rY3QTFj94dZCGmhOzRfiH3fcV7pymvkAILHFzlu2jg?=
+ =?us-ascii?Q?YCm/iAPaAS0SWDFm7Htw/FvUVbUqvUPte5vw5jlcMkk6u6cIXRikZaTlxOc3?=
+ =?us-ascii?Q?pFx8CeLe1MpDdiOtm412l5mWrSQ4Iv35RtwM5MRkHEf91cajyb0E3A3/D+On?=
+ =?us-ascii?Q?uqhGKiU9DiXnzm2jsU1eyMGjYkpZMHKDzq1I4iPtXRakEjoO7uteKpNDw+wZ?=
+ =?us-ascii?Q?R9kBPw=3D=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.194;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(34020700016)(36860700013)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 14:37:33.2347
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013)(34020700016)(13003099007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: list.ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 14:58:28.9451
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4c8e4a5-1795-43a8-3162-08de550cc904
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6c4d111-35ec-4436-f173-08de550fb57a
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	SJ1PEPF000023D5.namprd21.prod.outlook.com
+	SJ1PEPF00001CE0.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR10MB5620
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR10MB7112
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 16 Jan 2026 14:37:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16967
+ <meta-arago@lists.yoctoproject.org>; Fri, 16 Jan 2026 14:58:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16968
 
-GStreamer commit 6efccf0ee18a[0] introduced dependency on Qt private header=
-s
-for building Qt6 qmlgl plugins. This exposed a bug in meson's Qt dependency
-detection where it checks the build host filesystem instead of the sysroot
-for private header paths.
+meta-arago / na / 20260116143722.2135247-1-j-sahu
 
-Add patch to fix meson's inability to check Qt private header paths in the
-sysroot during cross-compilation that sets PKG_CONFIG_SYSROOT_DIR and prepe=
-nds
-sysroot to Qt private header paths.
+PRC Results: PASS
 
-[0]: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/commit/6efccf0ee1=
-8a3cf7f426a5acceaa716e7c41f5dd
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-patches: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+Patches
+----------------------------------------
+WARN - [meta-arago][master][PATCH v2 1/2] gstreamer1.0-plugins-good: Add QT=
+6 PACKAGECONFIG support
+    WARN: Revised patch missing a comment. (REVISION-1)
+        patch
+   =20
+    For details on the above errors/warnings visit: https://lists.yoctoproj=
+ect.org/g/meta-ti/wiki/40887
+WARN - [meta-arago][master][PATCH v2 2/2] meson: Add patch to fix Qt6 priva=
+te header detection for cross-compilation
+    WARN: Revised patch missing a comment. (REVISION-1)
+        patch
+   =20
+    For details on the above errors/warnings visit: https://lists.yoctoproj=
+ect.org/g/meta-ti/wiki/40887
 
-Signed-off-by: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
----
- .../recipes-devtools/meson/meson-qt6.inc      |  5 ++
- ...respect-PKG_CONFIG_SYSROOT_DIR-for-c.patch | 72 +++++++++++++++++++
- .../recipes-devtools/meson/meson_%.bbappend   |  4 ++
- 3 files changed, 81 insertions(+)
- create mode 100644 meta-arago-extras/dynamic-layers/qt6-layer/recipes-devt=
-ools/meson/meson-qt6.inc
- create mode 100644 meta-arago-extras/dynamic-layers/qt6-layer/recipes-devt=
-ools/meson/meson/0001-qt-dependencies-respect-PKG_CONFIG_SYSROOT_DIR-for-c.=
-patch
- create mode 100644 meta-arago-extras/dynamic-layers/qt6-layer/recipes-devt=
-ools/meson/meson_%.bbappend
 
-diff --git a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-devtools/me=
-son/meson-qt6.inc b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-devt=
-ools/meson/meson-qt6.inc
-new file mode 100644
-index 00000000..4a6cd19b
---- /dev/null
-+++ b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-devtools/meson/mes=
-on-qt6.inc
-@@ -0,0 +1,5 @@
-+FILESEXTRAPATHS:prepend :=3D "${THISDIR}/meson:"
-+
-+SRC_URI:append =3D " \
-+    file://0001-qt-dependencies-respect-PKG_CONFIG_SYSROOT_DIR-for-c.patch=
- \
-+"
-diff --git a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-devtools/me=
-son/meson/0001-qt-dependencies-respect-PKG_CONFIG_SYSROOT_DIR-for-c.patch b=
-/meta-arago-extras/dynamic-layers/qt6-layer/recipes-devtools/meson/meson/00=
-01-qt-dependencies-respect-PKG_CONFIG_SYSROOT_DIR-for-c.patch
-new file mode 100644
-index 00000000..ff14dc1c
---- /dev/null
-+++ b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-devtools/meson/mes=
-on/0001-qt-dependencies-respect-PKG_CONFIG_SYSROOT_DIR-for-c.patch
-@@ -0,0 +1,72 @@
-+From 39f0e9c9b620b4289da61422022e507144a681b0 Mon Sep 17 00:00:00 2001
-+From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
-+Date: Fri, 9 Jan 2026 17:44:57 +0530
-+Subject: [PATCH] qt: respect PKG_CONFIG_SYSROOT_DIR for cross-compilation
-+
-+When cross-compiling with Yocto/OpenEmbedded, pkg-config returns paths
-+without the sysroot prefix (e.g., /usr/include/QtCore), but the actual
-+files are in the recipe-sysroot. The _qt_get_private_includes() function
-+checks the host filesystem instead of the sysroot for Qt private headers.
-+
-+This patch adds PKG_CONFIG_SYSROOT_DIR support to prepend sysroot when
-+checking directory existence and when returning paths. Changes only
-+activate when PKG_CONFIG_SYSROOT_DIR is set, preserving native builds.
-+
-+Also fixes dirname assignment to use full path instead of basename.
-+
-+Related issue: https://github.com/mesonbuild/meson/issues/15456
-+
-+Upstream-Status: Inappropriate [Yocto-specific sysroot handling]
-+
-+Signed-off-by: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
-+---
-+ mesonbuild/dependencies/qt.py | 21 ++++++++++++++++-----
-+ 1 file changed, 16 insertions(+), 5 deletions(-)
-+
-+diff --git a/mesonbuild/dependencies/qt.py b/mesonbuild/dependencies/qt.py
-+index c245e5c..a3846ec 100644
-+--- a/mesonbuild/dependencies/qt.py
-++++ b/mesonbuild/dependencies/qt.py
-+@@ -42,16 +42,24 @@ def _qt_get_private_includes(mod_inc_dir: str, module:=
- str, mod_version: str) ->
-+     if int(mod_version.split('.')[0]) < 5:
-+         return []
-+
-++    # Respect PKG_CONFIG_SYSROOT_DIR for cross-compilation
-++    sysroot =3D os.environ.get('PKG_CONFIG_SYSROOT_DIR', '')
-+     private_dir =3D os.path.join(mod_inc_dir, mod_version)
-+     # fallback, let's try to find a directory with the latest version
-+-    if os.path.isdir(mod_inc_dir) and not os.path.exists(private_dir):
-+-        dirs =3D [filename for filename in os.listdir(mod_inc_dir)
-+-                if os.path.isdir(os.path.join(mod_inc_dir, filename))]
-++    # Check in sysroot for cross-compilation
-++    check_mod_inc =3D os.path.join(sysroot, mod_inc_dir.lstrip('/')) if s=
-ysroot else mod_inc_dir
-++    check_private =3D os.path.join(sysroot, private_dir.lstrip('/')) if s=
-ysroot else private_dir
-++    if os.path.isdir(check_mod_inc) and not os.path.exists(check_private)=
-:
-++        dirs =3D [filename for filename in os.listdir(check_mod_inc)
-++                if os.path.isdir(os.path.join(check_mod_inc, filename))]
-+
-+         for dirname in sorted(dirs, reverse=3DTrue):
-+             if len(dirname.split('.')) =3D=3D 3:
-+-                private_dir =3D dirname
-++                private_dir =3D os.path.join(mod_inc_dir, dirname)
-+                 break
-++    # Prepend sysroot to returned paths for cross-compilation
-++    if sysroot and not private_dir.startswith(sysroot):
-++        private_dir =3D os.path.join(sysroot, private_dir.lstrip('/'))
-+     return [private_dir, Path(private_dir, f'Qt{module}').as_posix()]
-+
-+
-+@@ -192,7 +200,10 @@ class QtPkgConfigDependency(_QtBase, PkgConfigDepende=
-ncy, metaclass=3Dabc.ABCMeta)
-+             if self.private_headers:
-+                 qt_inc_dir =3D mod.get_variable(pkgconfig=3D'includedir')
-+                 mod_private_dir =3D os.path.join(qt_inc_dir, 'Qt' + m)
-+-                if not os.path.isdir(mod_private_dir):
-++                # Check in sysroot for cross-compilation
-++                sysroot =3D os.environ.get('PKG_CONFIG_SYSROOT_DIR', '')
-++                check_dir =3D os.path.join(sysroot, mod_private_dir.lstri=
-p('/')) if sysroot else mod_private_dir
-++                if not os.path.isdir(check_dir):
-+                     # At least some versions of homebrew don't seem to se=
-t this
-+                     # up correctly. /usr/local/opt/qt/include/Qt + m_name=
- is a
-+                     # symlink to /usr/local/opt/qt/include, but the pkg-c=
-onfig
-+--
-+2.34.1
-diff --git a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-devtools/me=
-son/meson_%.bbappend b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-d=
-evtools/meson/meson_%.bbappend
-new file mode 100644
-index 00000000..1512fdf6
---- /dev/null
-+++ b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-devtools/meson/mes=
-on_%.bbappend
-@@ -0,0 +1,4 @@
-+MESON_QT6 =3D ""
-+MESON_QT6:arago =3D "meson-qt6.inc"
-+
-+require ${MESON_QT6}
---=20
-2.34.1
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  apply-yocto-patch: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Summary:
+- Patch Series: [meta-arago][master][PATCH v2 1/2] gstreamer1.0-plugins-goo=
+d: Add QT6 PACKAGECONFIG support
+- Submitter: From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
+- Date: Date: Fri, 16 Jan 2026 20:07:21 +0530
+- Num Patches: 2
+- Mailing List (public inbox) Commit SHA: 2ff7465844b3a4e1d427c5313992ea1ff=
+538de20
+
+Applied to:
+- Repository: lcpd-prc-meta-arago
+- Base Branch: master-wip
+- Commit Author: Ryan Eatmon <reatmon@ti.com>
+- Commit Subject: packagegroup-arago-console: Fix package names for alsa-ut=
+ils-*
+- Commit SHA: be06bc570c51981bdb0b71de0eec0dda1b52d2f6
+
+Patches
+----------------------------------------
+All patches applied
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-repo: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PASS
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  yocto-check-layers: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master - PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+All checks passed
+
+
 
 
