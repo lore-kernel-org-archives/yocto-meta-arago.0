@@ -1,69 +1,120 @@
-Return-Path: <denis@denix.org>
+Return-Path: <j-sahu@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 72339D29C31
-	for <webhook@archiver.kernel.org>; Mon, 19 Jan 2026 14:29:51 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.35762.1768832987623911728
- for <meta-arago@lists.yoctoproject.org>;
- Mon, 19 Jan 2026 06:29:48 -0800
-Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B6D6A40C6C;
-	Mon, 19 Jan 2026 14:29:46 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Juu_n4Zqw-q2; Mon, 19 Jan 2026 14:29:46 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 64678406B9;
-	Mon, 19 Jan 2026 14:29:41 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 8FEA4177AA6; Mon, 19 Jan 2026 09:29:40 -0500 (EST)
-Date: Mon, 19 Jan 2026 09:29:40 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: max.oss.09@gmail.com
-Cc: reatmon@ti.com, denys@konsulko.com, meta-arago@lists.yoctoproject.org,
-	praneeth@ti.com, Max Krummenacher <max.krummenacher@toradex.com>
-Subject: Re: [meta-arago][master][PATCH v4] packagegroup-arago-console: Fix
- package names for alsa-utils-*
-Message-ID: <20260119142940.GU11121@denix.org>
-References: <3b1583b6-bd10-4dcb-b339-57d37c0c7049@ti.com>
- <20260119125927.646098-2-max.oss.09@gmail.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 310E1D2ECF7
+	for <webhook@archiver.kernel.org>; Tue, 20 Jan 2026 05:50:52 +0000 (UTC)
+Subject: Re: [master][PATCH v2 1/2] gstreamer1.0-plugins-good: Add QT6 PACKAGECONFIG support
+To: meta-arago@lists.yoctoproject.org
+From: "Jeevan" <j-sahu@ti.com>
+X-Originating-Location: IN (103.146.116.10)
+X-Originating-Platform: Linux Firefox 146
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260119125927.646098-2-max.oss.09@gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Date: Mon, 19 Jan 2026 21:50:51 -0800
+References: <20260116143722.2135247-1-j-sahu@ti.com> <c9350640-cf97-4939-b788-63173838cd35@ti.com>
+In-Reply-To: <c9350640-cf97-4939-b788-63173838cd35@ti.com>
+Message-ID: <256810.1768888251478858363@lists.yoctoproject.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 19 Jan 2026 14:29:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16983
+ <meta-arago@lists.yoctoproject.org>; Tue, 20 Jan 2026 05:50:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/16984
 
-On Mon, Jan 19, 2026 at 01:59:28PM +0100, max.oss.09@gmail.com wrote:
-> From: Max Krummenacher <max.krummenacher@toradex.com>
-> 
-> Hi
-> 
-> FYI.
-> 
-> I run into issues installing alsa-utils. Some of the dynamically split
-> packages are empty making alsa-utils depend on empty packages which
-> made do_rootfs fail.
-> 
-> I guess you will run eventually into the same issue.
-> 
-> I sent a patch which works around the issue:
-> 
-> https://lore.kernel.org/all/20260119124722.646039-1-max.oss.09@gmail.com/
+On Fri, Jan 16, 2026 at 11:47 PM, Andrew Davis wrote:
 
-FYI:
-https://lore.kernel.org/openembedded-core/20260116174128.1478960-1-ross.burton@arm.com/T/
+>
+> On 1/16/26 8:37 AM, Jeevan via lists.yoctoproject.org wrote:
+> > GStreamer's Qt6 qmlgl plugin enables video rendering in Qt6/QML applica=
+tions
+> > by providing GstGLVideoItem QML element. This plugin is essential for
+> > integrating GStreamer pipelines with Qt6 Quick/QML user interfaces.
+> >=20
+> > Enable Qt6 PACKAGECONFIG to build the qmlgl plugin when qt6-layer is pr=
+esent
+> > utilizing dynamic-layer.
+> >=20
+> > Signed-off-by: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
+> > ---
+> >   meta-arago-extras/conf/layer.conf                     |  4 ++++
+> >   .../gstreamer/gstreamer1.0-plugins-good_1.26-qt6.inc  | 11 ++++++++++=
++
+> >   .../gstreamer1.0-plugins-good_1.26.%.bbappend         |  4 ++++
+> >   3 files changed, 19 insertions(+)
+> >   create mode 100644
+> meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer/g=
+streamer1.0-plugins-good_1.26-qt6.inc
+> >   create mode 100644
+> meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer/g=
+streamer1.0-plugins-good_1.26.%.bbappend
+> >=20
+> > diff --git a/meta-arago-extras/conf/layer.conf
+> b/meta-arago-extras/conf/layer.conf
+> > index 3927a913..1a4a5bdd 100644
+> > --- a/meta-arago-extras/conf/layer.conf
+> > +++ b/meta-arago-extras/conf/layer.conf
+> > @@ -22,3 +22,7 @@ LAYERDEPENDS_meta-arago-extras =3D " \
+> >       networking-layer \
+> >       openembedded-layer \
+> >   "
+> > +
+> > +BBFILES_DYNAMIC +=3D " \
+> > +    qt6-layer:${LAYERDIR}/dynamic-layers/qt6-layer/recipes*/*/*.bbappe=
+nd \
+> > +"
+> > diff --git
+> b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer=
+/gstreamer1.0-plugins-good_1.26-qt6.inc
+> > new file mode 100644
+> > index 00000000..e30440e1
+> > --- /dev/null
+> > +++
+> b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer=
+/gstreamer1.0-plugins-good_1.26-qt6.inc
+> > @@ -0,0 +1,11 @@
+> > +PACKAGECONFIG:append =3D " qt6"
+> > +
+> > +QT6WAYLANDDEPENDS =3D "${@bb.utils.contains("DISTRO_FEATURES", "waylan=
+d",
+> "qtwayland", "", d)}"
+> > +
+> > +PACKAGECONFIG[qt6] =3D "-Dqt6=3Denabled, -Dqt6=3Ddisabled, qtbase qtba=
+se-native
+> qtdeclarative qttools-native ${QT6WAYLANDDEPENDS}"
+>=20
+> This part could be sent upstream to oe-core master.
+>=20
+> Andrew
+>=20
 
--- 
-Denys
+Good point. I have sent the patch to oe-core master[0].
+
+[0]: https://lists.openembedded.org/g/openembedded-core/message/229607
+
+> > +
+> > +# Qt tools like rcc, moc and uic are located in /usr/libexec, instead =
+of
+> > +# /usr/bin, which is not in PATH by default.
+> > +do_configure:prepend:class-target() {
+> > +	export PATH=3D${STAGING_DIR_NATIVE}${libexecdir}:$PATH
+> > +}
+> > diff --git
+> b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer=
+/gstreamer1.0-plugins-good_1.26.%.bbappend
+> > new file mode 100644
+> > index 00000000..27426f4d
+> > --- /dev/null
+> > +++
+> b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer=
+/gstreamer1.0-plugins-good_1.26.%.bbappend
+> > @@ -0,0 +1,4 @@
+> > +GSTREAMER1p0_PLUGINS_GOOD_1p26_QT6 =3D ""
+> > +GSTREAMER1p0_PLUGINS_GOOD_1p26_QT6:arago =3D
+> "gstreamer1.0-plugins-good_1.26-qt6.inc"
+> > +
+> > +require ${GSTREAMER1p0_PLUGINS_GOOD_1p26_QT6}
+>=20
+>
 
