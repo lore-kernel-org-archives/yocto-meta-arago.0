@@ -1,264 +1,206 @@
-Return-Path: <y-hegde@ti.com>
+Return-Path: <j-sahu@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 860DAC44500
-	for <webhook@archiver.kernel.org>; Thu, 22 Jan 2026 06:49:27 +0000 (UTC)
-Received: from SA9PR02CU001.outbound.protection.outlook.com (SA9PR02CU001.outbound.protection.outlook.com [40.93.196.8])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.31778.1769064560845489730
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 09658C44500
+	for <webhook@archiver.kernel.org>; Thu, 22 Jan 2026 12:31:19 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com (BL2PR02CU003.outbound.protection.outlook.com [52.101.52.50])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.36336.1769085074189028793
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 21 Jan 2026 22:49:21 -0800
+ Thu, 22 Jan 2026 04:31:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=I7cx1reM;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.196.8, mailfrom: y-hegde@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=iEz+otWC;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.52.50, mailfrom: j-sahu@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X5M68lYZqhHHuND9vukEazCll8dT/WPZtF0wd2uUcVahLe7iKR2unp92IlBgZG0tyqfA2l085CARlB+VypPEilQYUm6K326pBkt4VGVZghx9L2NkJIFOMjXDiCxQs+AnTFJvyea5DNX3H+zXArnR4HjZ8N3AO91C9/zGSmf4ObPSEdfDAdpOgjFzQo5zJsdtBHFsGlykVY6YWgjrv+Z5pAuow7GJJivZrCbjP8oegiX0KYLYw/n+TmgnFGtmCXfWIuQhAmBBkUnGjdm6a8rWshZkNNivLGSa2uBaHcSp9IJfKwZh/plA/G73iCpiko15Da4li9gR6frJUHf8zu8yIQ==
+ b=ULIQ0bpwhcm2gnXK9uR6udIQMBY6SuDh5PmEPCXqsHjiE0jGa5SraoSiDXRcA+CnEYWSD7WXJELpzafBa0pFuaWieMVNyzImItkDfl3biBx18fjOLXZBLhkfCSKxlFQiAL4Oys2J3ty/BSklfeyg+XIW0W47lXQ6+JFkLbyNyCdDzVBrI1FogrB1+V772CfEAtPqcJBxKcOTnmABFi0NB2GAFjp3G/wnYBGuoUEUv4DW+2y5cOtunH30lzUo725gqzvIbekHtMIhJ/vJqkLYCRxKjcXO/LvhUKi3+6eZ3ZwTos4ULAh5S3mBe39eGarva8nmClFNymBmWn4+ZsnASQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5rCI1hz6Q6ElSnmyjGAVB7x4r0mAn62i+x6VHg1oGtA=;
- b=VEZYrljtwzh0AvuPi3xPLaqLbFj1iOVRJVfe/SX4SWLx9nk0B54qJ4QE+U4gGqwSGDMmIFHy2qROMkGbR9m150B9PDivk3eu5RUGxVrSk2uEvURzeexGwc0p9acdvjvxe1lXv8fQ35T2Le96sI1sU/sKoE9iHjTn8x9RlFg05mQ9yqqVjU0ZihmTu9W2ujPzwLtKAIVfnNuhjtgOlSedsgtdG484/LkaQiieFaO+4BRxUzDcVPtzZ3Ysr49Ib7sxV0MtQ9Wy9JeNRg6F3KfOGjpmKk/8g+3GaHZ5aneJXOl66BcEKC9DpJMWHd6wxaP6+VSXAWettwpLonjmrL7Teg==
+ bh=iBOZs3btWl60tgddnU72rq3OhDf0pTUtdGELeESPj44=;
+ b=JX8OxUmRSjUU3do1NrcA5cyeN27zEl5LugWaRE0DNJqnhKxbjrXmmdia/NP4bWhjEvxirm5WrFvtXiMxoGJAkrUdGtij7/beCFD84uyNpj1oEl3wTJzupQxoUm6Uo8wH0vHkO1qrMXFIPYO37Fv+b8JO2ddlJ/ol1iv93UGwqF+JHi4QeRiMclH2plVN2eP+4hWCDGJVI5+SOsFwivf2MKx9EPw0pUC4bgORlBmoilz/cXmMAHaImTh7qg7M5vTKM3Nui0KifIDpNiBrBkVDpKlyfuihu9e9StAyaqfLWfykw8FMFgDsgNzYDcdwE8HCEbx9PyGCeQS6fLHSYmjXYg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=denix.org smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
+ 198.47.23.194) smtp.rcpttodomain=konsulko.com smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5rCI1hz6Q6ElSnmyjGAVB7x4r0mAn62i+x6VHg1oGtA=;
- b=I7cx1reM6jn+dvbk964SZo4EQYCxKdbQdMjqGh3xiVYMyyGnhJkvVJx9ioKzFn9bHI65Apvyn07ytoCvadmFCAUCHFM9KbFf/zLhWgFS6e2CTqa34cs/PWu4y2ozPmsYWIcA3VJSXBMiFLlOZSaDsTW7gzRZdv7GeJrnjK6Dcqk=
-Received: from MN2PR12CA0019.namprd12.prod.outlook.com (2603:10b6:208:a8::32)
- by MW4PR10MB6369.namprd10.prod.outlook.com (2603:10b6:303:1ec::14) with
+ bh=iBOZs3btWl60tgddnU72rq3OhDf0pTUtdGELeESPj44=;
+ b=iEz+otWCy2hFsUaauuk4HGfLYFR/guo3nLLuq0zgay5MmOxSzvMWjcLjlINMoVVvviSIl0N7ZzYt/J1YTVbqwlvcFxsW1mTN4rtGPSdCzjF1NG07dWpDXI0EUnOK41GZXZLY6I5lgmawkVvZtNfG1WKCRMPAzKbvIBURPoqskKs=
+Received: from BLAPR05CA0031.namprd05.prod.outlook.com (2603:10b6:208:335::12)
+ by LV0PR10MB997686.namprd10.prod.outlook.com (2603:10b6:408:340::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 22 Jan
- 2026 06:49:15 +0000
-Received: from BL02EPF0001A0FE.namprd03.prod.outlook.com
- (2603:10b6:208:a8:cafe::38) by MN2PR12CA0019.outlook.office365.com
- (2603:10b6:208:a8::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.11 via Frontend Transport; Thu,
- 22 Jan 2026 06:49:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Thu, 22 Jan
+ 2026 12:31:11 +0000
+Received: from BL6PEPF0001AB4F.namprd04.prod.outlook.com
+ (2603:10b6:208:335:cafe::9) by BLAPR05CA0031.outlook.office365.com
+ (2603:10b6:208:335::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.3 via Frontend Transport; Thu,
+ 22 Jan 2026 12:31:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BL02EPF0001A0FE.mail.protection.outlook.com (10.167.242.105) with Microsoft
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ BL6PEPF0001AB4F.mail.protection.outlook.com (10.167.242.73) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Thu, 22 Jan 2026 06:49:13 +0000
-Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9564.3 via Frontend Transport; Thu, 22 Jan 2026 12:31:11 +0000
+Received: from DLEE214.ent.ti.com (157.170.170.117) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 22 Jan
- 2026 00:49:13 -0600
-Received: from DLEE203.ent.ti.com (157.170.170.78) by DLEE213.ent.ti.com
- (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 06:31:11 -0600
+Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE214.ent.ti.com
+ (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 22 Jan
- 2026 00:49:12 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 06:31:11 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE204.ent.ti.com
+ (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 22 Jan 2026 00:49:12 -0600
-Received: from localhost (yogi-work-pc.dhcp.ti.com [10.24.72.146])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60M6nB5u002927;
-	Thu, 22 Jan 2026 00:49:12 -0600
-Date: Thu, 22 Jan 2026 12:19:11 +0530
-From: Yogesh Hegde <y-hegde@ti.com>
-To: <v-singh1@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>, <denis@denix.org>
-Subject: Re: [meta-arago] [master][RFC PATCH]
- packagegroup-arago-tisdk-connectivity: Enable zeroconf ip support
-Message-ID: <20260122064911.njy4xh57r356ag2g@yogi-work-pc>
-References: <20260119110339.3585220-1-v-singh1@ti.com>
+ Transport; Thu, 22 Jan 2026 06:31:11 -0600
+Received: from jeevan-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (jeevan-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.233.81])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60MCV9Q0554005;
+	Thu, 22 Jan 2026 06:31:09 -0600
+From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denys@konsulko.com>
+Subject: [meta-arago][master][PATCH v3 1/2] gstreamer1.0-plugins-good: Enable QT6 PACKAGECONFIG support
+Date: Thu, 22 Jan 2026 18:01:06 +0530
+Message-ID: <20260122123107.3001250-1-j-sahu@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260119110339.3585220-1-v-singh1@ti.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FE:EE_|MW4PR10MB6369:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59ab3934-dabc-4246-b2de-08de59825acb
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4F:EE_|LV0PR10MB997686:EE_
+X-MS-Office365-Filtering-Correlation-Id: b2cbe35a-1e36-42c9-1921-08de59b22092
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|4022899009|376014|82310400026|1800799024|36860700013;
+	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?xbTqiqINGPOIqQmRBtUtbAFgtXqPR/CZUGRCIB3pstwsr9xqgHBH6Y+VR6AR?=
- =?us-ascii?Q?AoRmQkKanehJ6A2WG4+UTxBTW5tIvUipRuKNKjDkFm8OrWcPzg7Eon7ftjcf?=
- =?us-ascii?Q?pSa9QIInjL3ohErl6Oxx5Hj7CPbqWDn+1BTZXPK3FWxRuUuJp1U+/GGLz/Fw?=
- =?us-ascii?Q?a7qVAS1fZgZvg01jQpUUM6rIJmxigSB+//ZvHrUDJje4nf23XezsgkZY8jut?=
- =?us-ascii?Q?IGJDdrkTEqCWL2NTU2sbFQiJ9MNCC+HglYtE5/S7ePvHmMIHiKiJk5xxb6Nd?=
- =?us-ascii?Q?Zg3dAWiV7xMD0TXv7TMOSmwPW5xgxTWxDXu5kVqJcswQ0c9SrqDdkFJeWlyQ?=
- =?us-ascii?Q?b5C77rT/yi6Vl5PIUUuAHm5FpypyaVE/RguvHiAGypLF/CEWnYdV3WF3kuka?=
- =?us-ascii?Q?dP4Cjdua5m/PhpvIss1M5JSTr52ijWuC99/Yvxt+I1T+asIh/YfMyM5AVDSx?=
- =?us-ascii?Q?/mIkCVDGzmYpdNNCsnd53jz30L/M9vay75A60K5559F3FK2qpn7E/6zCHst9?=
- =?us-ascii?Q?fDALQxEBA0b5gIFgN020pHvgweQihMcEuiCWLvcKtbtgg0HJ6fwSbMKS9Ymv?=
- =?us-ascii?Q?zs/lalMAVQJzf3+MY3OBd2emlzDrnYerZZGTZ3tD/ApmF+iGYjsr0NQ453r9?=
- =?us-ascii?Q?kksiiSnHsfxJVik5dEitEHcQR1/V5M1kcb8Prw97yUKmSHPf2/XmwZ2kaukO?=
- =?us-ascii?Q?fpu828t3fPJ78HUcZFeYFqbisNyVpQhNBy0nIPlj3ZAmhEk0b4b/clpjNaiG?=
- =?us-ascii?Q?a7Ka+pt/n6cIPSv8xULupWJe1ifaMZounLwKjBnnvG5wT4F5ZElEil+m713g?=
- =?us-ascii?Q?gEBaLZtExShGX/znljLzY8p6cp6gkH+6unBD5gCM1EFiisVSrRiLSZbTEO+s?=
- =?us-ascii?Q?DoA9h16YHtF4mZ98VlhoOinIu3CSFnsbvyH8XlHFtxVqbp64WZxu1r8sFvzQ?=
- =?us-ascii?Q?pVEszP46dUOX1wFBy+z19JmuPLo8vdmzpwK8ymJ4jMqbePHwZdUrrmsf6t88?=
- =?us-ascii?Q?a8fDvte04u9E/So867m7pkOGVewhICqOyvOCdOFJ9DGfdb3JosPos+LqBVqo?=
- =?us-ascii?Q?N07bHCq7DeqACjSWeucYW8upgWTxRi7595mKIdEA5sHaSDowPoYZgBRwmk5X?=
- =?us-ascii?Q?jMtiLnVnutvqsAM/L9OzngAhmPLqVTYAMjVHfYc1hZOJfJtSFivcAQWgu8UY?=
- =?us-ascii?Q?f+gXQQIXBkHQeAiEV5B8EQm3xqKgcGFBH5vN7ucjSPuC2rHNmhB1MaxVi9Wk?=
- =?us-ascii?Q?Nr1eRcP32CHyfcsOTu/+ikq/20WAIhJKRbeXEoyTLp1rjLyPfsl/pBUSr2im?=
- =?us-ascii?Q?+7izRhCNk6gfFTKW04hRoiX1L4TZEiw0RbVzi4J9L5xkNeViYO51tiCTcwfz?=
- =?us-ascii?Q?a9+PvJAhO57DzOjv62VBmSNnFSNeqrVnWdF/nK70k4w136uUQ9fMadHMW/p2?=
- =?us-ascii?Q?pIK5F7FGkl8dmrNsE4kRwr3ji4aHT4BoOmniYc6l1vzRo+rjWV564nwT9rTG?=
- =?us-ascii?Q?tjLEtDI/O40wOtPAA446MujEyubDgL42zzz5QjvbJJv83/95yqTVGZzm+RYb?=
- =?us-ascii?Q?Klxl9LTpk67hi5tHZ0upJU3fm1XWe+pZdItPflHU9vrK0C7rzkckSKTuXpIC?=
- =?us-ascii?Q?aX+vLWH/41UpjLNwNGEWTWvSrY6RAwT68umGl3y7z8LwT4fcj5A/Rcv2Tgix?=
- =?us-ascii?Q?lM1S/A=3D=3D?=
+	=?us-ascii?Q?3qb9Ci35r0jNuc05E0w96P+Kq4mtFnoWayGRQ7CCCFipp9gvThxFg2GEYIkS?=
+ =?us-ascii?Q?KQPt24L5dDcgurXajpSGZMS7NqeXqDzwgt6Lpe3V7Vm1lbdWn+3NuGDqKsz8?=
+ =?us-ascii?Q?lzLRIt2kwDB/A9SnTtbMyWwhXu4BQSSyzoTGIzI0psKXkVdZwr95Y6LFKdnm?=
+ =?us-ascii?Q?JGstJYKfOLSgxzFarPtIiVKRCF+ewAzRTqYL0SMC/UUKeGcKf8bsBEZeC5Uw?=
+ =?us-ascii?Q?afObt2nTwqBlC5GRMMIFpJs0W1uEid+GpPWoXc1esh6g5joQsAdU4BEgl2Ua?=
+ =?us-ascii?Q?0FAfml8t2VHXK78CZ7hPL4pNtxF9pMaSXfIa39loJ/cYX8PZky5ZGdYLQV7v?=
+ =?us-ascii?Q?aS7zNowGyiZEFLvy9KqywriAHnL3zcBRn4SsZDqnYxpCW46hH3Tkl2lgGykJ?=
+ =?us-ascii?Q?YGecVN4T3Y0fNwdt1CARsjuoHkjnG1kpS7TYIHkVserxdlh49tzd1ys3TnDd?=
+ =?us-ascii?Q?EQjcMqUkCVez88v5JzSqbN1kG59o0IpDGmg+mNHpUDtUmS/vCRagz0V4JcVh?=
+ =?us-ascii?Q?JgCi+i7QozNSnJHybRH0xZRJqMlq9mr+6Tp1NZHeFwVB2K2+Hy94UC/kO2Tj?=
+ =?us-ascii?Q?Ki6g8uOoVV5xL/jK9ZDbN4AyVhNSdl2CXWPiyjHOO7Lu4IWT6wow8kID/0gC?=
+ =?us-ascii?Q?O6Rx6nTwopAtIBNRVfL8/lwbX7aefaIiDu5szSTD3qecIH/xskhUDG3/EkaI?=
+ =?us-ascii?Q?TIhAR7Q+srn39bLoUbaJw/pyS0SblzaRvanAkzETy/UAXfD7jxjXPWI4Z0Pq?=
+ =?us-ascii?Q?Hr7/Gm3DJW9mg4oeLCRB7yzGwUJlK7x56Zlm9Xbi3UWX693+WaN2IvW/gANX?=
+ =?us-ascii?Q?BuMoxCeVSlJT+73A7OdV4PJwPodg+3XGFVhCunKGVj3doHU3djzDooWClp6r?=
+ =?us-ascii?Q?jtQACzCDSXOnf9RVjzkfsLwuP07Rmq+lTV8lvIacNlCEJh4P2oQ7VkPxz+J6?=
+ =?us-ascii?Q?bKtjAC61G2mBZUoPaaBuxgg4T0GhaE/qbiAW5tFf5ZZnSGJrjjobraJp66Ko?=
+ =?us-ascii?Q?IQ0pLDM/lFxHLHgOW847Ikb9ZlDmgQIEZFB8krwmK/6CzUoWHKA2BYCj63zf?=
+ =?us-ascii?Q?UBCyo21dibqmhfvLFeZ+gQBvBlLWI5Joq1jl68HGgsFPCJME5GUN1lLf6qWf?=
+ =?us-ascii?Q?8h2E6Z/YchZT8PgnB+cU8Y9vhPrSO/njusAfk8c04Wru0o8mqUeWu42DQwbc?=
+ =?us-ascii?Q?K5aQQek/JIymoLE2PyJR8F1QpGRBHbSniuGgfIg4HUq2xSaJbMLQizupX9kq?=
+ =?us-ascii?Q?NSQjvSS6ZO89TYrQjbIDodAhSVBwxjkwXu3wS4U1T5eSANGHnJ33jlIuOeS3?=
+ =?us-ascii?Q?+wyv32MPccZUU+tRu88peDHbzs2qUjciDBg7/18ZtJVX/NEpmhx7NalQJNhe?=
+ =?us-ascii?Q?Sq851x9dK2qMXBr+jOuJ+QrqE01k8W7EDr6MBaN9asdresQ8891271jcKktt?=
+ =?us-ascii?Q?V4b6rTikCVQHcKsf8UKJX2jWmqSCC375zKlaB91QSte8UML9F/UmYiuTTOaG?=
+ =?us-ascii?Q?KZTR7LgruJdKl1/TrcQOUq/53MORVlqXof9IisAyLLrvOdHyOknU0Ab8SGSL?=
+ =?us-ascii?Q?VFCsT5FWnZkiHltE5MyhPTLm5CeMflLr9rYD3iSq0WQER0MSBW64mlitWj6A?=
+ =?us-ascii?Q?cTHAXBUoDx/jXSDLSy1HzfVVPWyHP8neu4SmowJV5sovoYeEYzMMC6UtHCFY?=
+ =?us-ascii?Q?nY8Lpg=3D=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(4022899009)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 06:49:13.5952
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 12:31:11.7500
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59ab3934-dabc-4246-b2de-08de59825acb
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2cbe35a-1e36-42c9-1921-08de59b22092
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BL02EPF0001A0FE.namprd03.prod.outlook.com
+	BL6PEPF0001AB4F.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR10MB6369
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV0PR10MB997686
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 22 Jan 2026 06:49:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17004
+ <meta-arago@lists.yoctoproject.org>; Thu, 22 Jan 2026 12:31:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17005
 
-On 16:33-20260119, vishnu singh via lists.yoctoproject.org wrote:
-> From: Vishnu Singh <v-singh1@ti.com>
-> 
-> Dante DEP useage zeroconf for Dante network IP addresses.
-> Zeroconf provide the IP network without manual configuation,
-> and avahi-autoipd is for auto ip assignment.
-> To get the zeroconf ip at bootup, zeroconf-autoip service is used.
-There are few typos in description. useage -> usage and configuation ->
-configuration. 
-> 
-> Signed-off-by: Vishnu Singh <v-singh1@ti.com>
-> ---
->  .../zeroconf-autoip/zeroconf-autoip.bb        | 30 +++++++++++++++++++
->  .../zeroconf-autoip/zeroconf-autoip/README    |  1 +
->  .../zeroconf-autoip/zeroconf-autoip@.service  | 12 ++++++++
->  .../packagegroup-arago-tisdk-connectivity.bb  |  7 +++++
->  4 files changed, 50 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip.bb
->  create mode 100644 meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip/README
->  create mode 100644 meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip/zeroconf-autoip@.service
-> 
-> diff --git a/meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip.bb b/meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip.bb
-> new file mode 100644
-> index 00000000..4b59a7e6
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip.bb
-> @@ -0,0 +1,30 @@
-> +SUMMARY = "Zerconf autoip"
-Typo Zerconf -> Zeroconf.
-> +DESCRIPTION = "Zeroconf IP assignment using avahi autoipd"
-> +LICENSE = "MIT"
-README file contains TI-TFL, It is a bit confusing due to 2 different
-licenses mentioned. Can you clarify the correct license and include
-the correct license text in the README. 
-> +LIC_FILES_CHKSUM = "file://README;md5=102e8ceedf1b96837ba2eefc0d47f4e6"
-> +
-> +FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-> +
-> +COMPATIBLE_MACHINE = "am62dxx"
-> +
-> +SRC_URI = "file://zeroconf-autoip@.service \
-> +	file://README \
-> +"
-> +
-> +S = "${UNPACKDIR}"
-> +
-> +inherit systemd
-> +
-> +SYSTEMD_SERVICE:${PN} = "zeroconf-autoip@eth0.service zeroconf-autoip@eth1.service"
-> +SYSTEMD_AUTO_ENABLE = "enable"
-> +
-> +do_install() {
-> +	install -d ${D}${systemd_system_unitdir}
-> +	install -m 0644 ${WORKDIR}/zeroconf-autoip@.service ${D}${systemd_system_unitdir}/
-> +}
-> +
-> +FILES:${PN}= " \
-> +	${systemd_system_unitdir} \
-> +	${systemd_system_unitdir}/zeroconf-autoip@.service \
-> +"
-systemd bbclass automatically handles service files, I think it is safe
-to drop the FILES variable completely. 
-> +PR = "r0"
-> diff --git a/meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip/README b/meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip/README
-> new file mode 100644
-> index 00000000..1ad1d419
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip/README
-> @@ -0,0 +1 @@
-> +TI-TFL
-> diff --git a/meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip/zeroconf-autoip@.service b/meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip/zeroconf-autoip@.service
-> new file mode 100644
-> index 00000000..952a8c60
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/zeroconf-autoip/zeroconf-autoip/zeroconf-autoip@.service
-> @@ -0,0 +1,12 @@
-> +[Unit]
-> +Description=zerocnf-autoipd for %i interface
-> +After=network.target
-> +
-> +[Service]
-> +ExecStart=/usr/sbin/avahi-autoipd --force-bind %i
-> +ExecStop=/usr/sbin/avahi-autoipd -k %i
-> +Restart=on-failure
-> +RestartSec=30
-> +
-> +[Install]
-> +WantedBy=multi-user.target
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> index 0a8d4493..66aa4872 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> @@ -53,6 +53,11 @@ BT_TI = "\
->      bt-enable \
->      bt-fw \
->  "
-> +ZEROCONF_TI = "\
-> +	zeroconf \
-> +	avahi-autoipd \
-Since services in zeroconf-autoip uses avahi-autoipd, best to include
-avahi-autoipd as RDEPENDS in zeroconf-autoip recipe.
-> +	zeroconf-autoip \
-> +"
->  
->  CONNECTIVITY_RDEPENDS = " \
->      htop \
-> @@ -68,6 +73,8 @@ CONNECTIVITY_RDEPENDS = " \
->  CONNECTIVITY_RDEPENDS:append:ti33x = " ${BT_TI}"
->  CONNECTIVITY_RDEPENDS:append:ti43x = " ${BT_TI}"
->  CONNECTIVITY_RDEPENDS:append:am57xx = " ${BT_TI}"
-> +CONNECTIVITY_RDEPENDS:append:am62dxx = " ${ZEROCONF_TI}"
-> +
->  
->  RDEPENDS:${PN} = "\
->      ${CONNECTIVITY_RDEPENDS} \
-> -- 
-> 2.50.1
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#16997): https://lists.yoctoproject.org/g/meta-arago/message/16997
-> Mute This Topic: https://lists.yoctoproject.org/mt/117382985/9980049
-> Group Owner: meta-arago+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/meta-arago/unsub [y-hegde@ti.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+GStreamer's Qt6 qmlgl plugin enables video rendering in Qt6/QML application=
+s
+by providing GstGLVideoItem QML element. This plugin is essential for
+integrating GStreamer pipelines with Qt6 Quick/QML user interfaces.
 
-Thanks 
-Yogesh 
+Enable Qt6 PACKAGECONFIG which are added in oe-core[0] to build the qmlgl
+plugin when qt6-layer is present utilizing dynamic-layer.
+
+[0]: https://git.openembedded.org/openembedded-core/commit/?h=3Dmaster-next=
+&id=3D0a6acd465deb1ee2d30e26b7662ad4abdc459bdb
+
+Signed-off-by: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
+---
+Changes in v3: Rename files to arago standard and upstream qt6 packageconfi=
+gs
+Changes in v2: fix PRC failures
+
+ meta-arago-extras/conf/layer.conf                          | 4 ++++
+ .../gstreamer/gstreamer1.0-plugins-good_1.26-arago.inc     | 7 +++++++
+ .../gstreamer/gstreamer1.0-plugins-good_1.26.%.bbappend    | 4 ++++
+ 3 files changed, 15 insertions(+)
+ create mode 100644 meta-arago-extras/dynamic-layers/qt6-layer/recipes-mult=
+imedia/gstreamer/gstreamer1.0-plugins-good_1.26-arago.inc
+ create mode 100644 meta-arago-extras/dynamic-layers/qt6-layer/recipes-mult=
+imedia/gstreamer/gstreamer1.0-plugins-good_1.26.%.bbappend
+
+diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/lay=
+er.conf
+index 3927a913..1a4a5bdd 100644
+--- a/meta-arago-extras/conf/layer.conf
++++ b/meta-arago-extras/conf/layer.conf
+@@ -22,3 +22,7 @@ LAYERDEPENDS_meta-arago-extras =3D " \
+     networking-layer \
+     openembedded-layer \
+ "
++
++BBFILES_DYNAMIC +=3D " \
++    qt6-layer:${LAYERDIR}/dynamic-layers/qt6-layer/recipes*/*/*.bbappend \
++"
+diff --git a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/=
+gstreamer/gstreamer1.0-plugins-good_1.26-arago.inc b/meta-arago-extras/dyna=
+mic-layers/qt6-layer/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good=
+_1.26-arago.inc
+new file mode 100644
+index 00000000..8c89e68a
+--- /dev/null
++++ b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.26-arago.inc
+@@ -0,0 +1,7 @@
++PACKAGECONFIG:append =3D " qt6"
++
++# Qt tools like rcc, moc and uic are located in /usr/libexec, instead of
++# /usr/bin, which is not in PATH by default.
++do_configure:prepend:class-target() {
++	export PATH=3D${STAGING_DIR_NATIVE}${libexecdir}:$PATH
++}
+diff --git a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/=
+gstreamer/gstreamer1.0-plugins-good_1.26.%.bbappend b/meta-arago-extras/dyn=
+amic-layers/qt6-layer/recipes-multimedia/gstreamer/gstreamer1.0-plugins-goo=
+d_1.26.%.bbappend
+new file mode 100644
+index 00000000..0ceb558c
+--- /dev/null
++++ b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.26.%.bbappend
+@@ -0,0 +1,4 @@
++GSTREAMER1p0_PLUGINS_GOOD_1p26_ARAGO =3D ""
++GSTREAMER1p0_PLUGINS_GOOD_1p26_ARAGO:arago =3D "gstreamer1.0-plugins-good_=
+1.26-arago.inc"
++
++require ${GSTREAMER1p0_PLUGINS_GOOD_1p26_ARAGO}
+--=20
+2.34.1
+
 
