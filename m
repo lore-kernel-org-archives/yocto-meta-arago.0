@@ -2,40 +2,40 @@ Return-Path: <p-bhagat@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB261D6CFDB
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BDBF0D6CFDC
 	for <webhook@archiver.kernel.org>; Fri, 23 Jan 2026 06:04:15 +0000 (UTC)
-Received: from PH7PR06CU001.outbound.protection.outlook.com (PH7PR06CU001.outbound.protection.outlook.com [52.101.201.46])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.61923.1769148253710936293
+Received: from CH5PR02CU005.outbound.protection.outlook.com (CH5PR02CU005.outbound.protection.outlook.com [40.107.200.61])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.61919.1769148241944560325
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 22 Jan 2026 22:04:13 -0800
+ Thu, 22 Jan 2026 22:04:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=cVwJhLem;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.201.46, mailfrom: p-bhagat@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=eCIUfGFP;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.200.61, mailfrom: p-bhagat@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u2AgzkJrFC8C3B85Tj3mPhqN6h4smEx9KBW8aMmItMVXPbQyPU/GYekkg/ASrpc8QI6LCp4BHrEm5zZxSlgYBWQpLbmiPAs3XSHp8DDtGYfJzcYlQIK29B4MnH2SSFWJTbw3INEltCqMjObN6cxQc7m7pYWa4FSANjf3vq7tkMKPPPYq+G+p5xZ56ztyMdZ+ZlGfyZHAMOQv1x+grXuvL29ECMHOGGd0qvEyVNDUttVUcOykF8Gm1PYSBVSrZjw0FoftKf1929g9tCJpz36GrHUO/TW5S28jprZA+CH96kkPTZ22NMLFeGoFnNUmXs5FjAHrWFWG+5cLMgG55jN7UA==
+ b=SjkPV+rHnVQV5T3KoKw7c7B9e9TAcGjXQlOs64w8+pGfea0IkbyHkUbdPZb55XYlY8lHI6Odn0AgZq73LldfpfGVtLeWmGOKaFj35v5IaGlOfnIqceNuaAYxTsvwKNYxGYoRYRrLiyODZh0Octhoivv55SktreIifgl7AYu9GQtO1j3r5Rvoi7EbyCpCivBt42CJBowUlQCKIoNDaNfyx33pftD2zdnSIguvkQKPvj/ta5C/Y9/o3NJGudg4/jNfYBiGAGYQfOY3eSm68aK8Kr4zmfAdtr/HYSuaDccs6IhwD+YvGFE4riuri99C64ASx4qBT1K/aOZEQFMUaHDJIg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VKuFnltgsQTf+NxbPKhGlcVP8y0hko4rUEzfgQuMOoo=;
- b=D0/qGcNiDMU8Sa0ZjTaMZUQBvQiIcDz0Gj5TWc75LF+Z6guAY9W0itR1i2jzRt2BKHjD/71okx36ad+JtaJ/XyXEFJzK84lYoZd8UqTdA4kzXXxInDxgvXjWrLsa/f2efbLIn7mAvjPBdDkWp6WRG0VsAdPSE272jIL+AFiUZ9rLQI5qw9/W8eHfwvwZH562dvQHVoLrwcQVrUc+5UBNQsVjnBopcqLfxXU35LDRm3stA6+k9ZyFX3X4E31WR2VmwTnLz/5krYJBIwhvcjd8zONpWLgJBCONk2j0Zy0r9//tJD5okTQtB7pzuAvk3m+HZNcqZ88qlkG+vFvgy219xQ==
+ bh=wymEV5HxEKrHs/kG+GMQ51V/IXKUeVznOeNxBnuqM5I=;
+ b=cA18ZWz1Vj2kniJJ2p6pnGP5C7AMU/XguMRK4B/ru7+4tmzsR+dcwKDAE0qnhjILTBP+4YSepueZyBJeN6k46eY0ud30WRHMdtKJCuOQ+SEtavNvrSj2lViFBiR9HKAsBAKCKmMtQjxvw4kPu0qGGUCCN44c+fwO2Vz0qD0md/5PQNY5wJWhNXmNYltmjjmGu3N0DBxmqPhxqXcZAlzeloapUsRrHmhHCJS16OAZXxuBUa5K1kbobAddEKkd0G2ZbYLzdiQR+kUvpvZgxYfYp/Ewg5jh9Z/fiohJFBpxhnyJ0pLruuCNn1ss/4has8x4BRXbYZ0K19ECyWzdxFd0tQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  198.47.23.194) smtp.rcpttodomain=denix.org smtp.mailfrom=ti.com; dmarc=pass
  (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
  (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VKuFnltgsQTf+NxbPKhGlcVP8y0hko4rUEzfgQuMOoo=;
- b=cVwJhLemfkQ3x9dLqHE17PHCB87E07aZKuSa3VZN6mAywovSNBpygsDwia9roVJTkJ0F4/pQ1G+l6QRzSNiBvBz7yfxaJF+bGbiw9Oy7mS4enEVJUCogr0rxeNis8vuHCMZlwZGjsL4L6jvbpf/6pS9CqWZRAGhnzpG3Wu46dHo=
-Received: from BYAPR01CA0048.prod.exchangelabs.com (2603:10b6:a03:94::25) by
- DS4PR10MB997622.namprd10.prod.outlook.com (2603:10b6:8:318::16) with
+ bh=wymEV5HxEKrHs/kG+GMQ51V/IXKUeVznOeNxBnuqM5I=;
+ b=eCIUfGFP2l413QseDJQpda18JGVwnVRy53wFDXS1InCVkOpI8tgeAJpznctMD2/LQ2R4NmJ0pXr4UVEkXopadr0y+F5ZnO8O9aOCKbvpSp6utUB2dm2S7LyZlmni4Bw8AaxJN+aO+BbEo71MgDO250moaeigbIMqNrYErlMGLfQ=
+Received: from BYAPR03CA0022.namprd03.prod.outlook.com (2603:10b6:a02:a8::35)
+ by PH8PR10MB6314.namprd10.prod.outlook.com (2603:10b6:510:1cd::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
- 2026 06:04:11 +0000
-Received: from SJ1PEPF000026CA.namprd04.prod.outlook.com
- (2603:10b6:a03:94:cafe::45) by BYAPR01CA0048.outlook.office365.com
- (2603:10b6:a03:94::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.11 via Frontend Transport; Fri,
- 23 Jan 2026 06:04:04 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.10; Fri, 23 Jan
+ 2026 06:03:59 +0000
+Received: from SJ1PEPF000026C6.namprd04.prod.outlook.com
+ (2603:10b6:a02:a8:cafe::ee) by BYAPR03CA0022.outlook.office365.com
+ (2603:10b6:a02:a8::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.12 via Frontend Transport; Fri,
+ 23 Jan 2026 06:03:58 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
@@ -43,135 +43,158 @@ Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.23.194 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
 Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- SJ1PEPF000026CA.mail.protection.outlook.com (10.167.244.107) with Microsoft
+ SJ1PEPF000026C6.mail.protection.outlook.com (10.167.244.103) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Fri, 23 Jan 2026 06:04:09 +0000
+ 15.20.9564.3 via Frontend Transport; Fri, 23 Jan 2026 06:03:57 +0000
 Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet200.ext.ti.com
  (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 23 Jan
- 2026 00:04:08 -0600
+ 2026 00:03:56 -0600
 Received: from DLEE203.ent.ti.com (157.170.170.78) by DLEE215.ent.ti.com
  (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 23 Jan
- 2026 00:04:08 -0600
+ 2026 00:03:56 -0600
 Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE203.ent.ti.com
  (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 23 Jan 2026 00:04:08 -0600
+ Transport; Fri, 23 Jan 2026 00:03:56 -0600
 Received: from localhost (ula0502350.dhcp.ti.com [172.24.233.249])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60N647xa1827280;
-	Fri, 23 Jan 2026 00:04:08 -0600
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60N63tiU1826983;
+	Fri, 23 Jan 2026 00:03:56 -0600
 From: Paresh Bhagat <p-bhagat@ti.com>
 To: <meta-arago@lists.yoctoproject.org>, <denis@denix.org>, <praneeth@ti.com>,
 	<reatmon@ti.com>
 CC: <v-singh1@ti.com>, <c-shilwant@ti.com>, <khasim@ti.com>, <afd@ti.com>,
 	<devarsht@ti.com>
-Subject: [scarthgap][RFC PATCH 3/3] tisdk-default-image: Add audio server support for am62dxx
-Date: Fri, 23 Jan 2026 11:33:48 +0530
-Message-ID: <20260123060348.2493115-4-p-bhagat@ti.com>
+Subject: [scarthgap][RFC PATCH 0/3] Add pipeWire audio stack for am62dxx
+Date: Fri, 23 Jan 2026 11:33:45 +0530
+Message-ID: <20260123060348.2493115-1-p-bhagat@ti.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260123060348.2493115-1-p-bhagat@ti.com>
-References: <20260123060348.2493115-1-p-bhagat@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000026CA:EE_|DS4PR10MB997622:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e975a48-5d01-4733-4615-08de5a453959
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000026C6:EE_|PH8PR10MB6314:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2116e237-675a-48e3-3788-08de5a453214
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
+	BCL:0;ARA:13230040|376014|36860700013|1800799024|82310400026;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?OPFCZoyH7VPvEVpr5pI07hrt8x4Agb74e5ObwSW+Osds6r2r5a0VLpGN5voj?=
- =?us-ascii?Q?fvBcm3gJvaEh2B3j54t3nzxVh/ZOdhJd6vxrUXHdgSV4PqHZ19brIavnmqrM?=
- =?us-ascii?Q?JT9nEHnS50wRhGdHhbXy7FLc4NW5j2shmKfqmfMO6CJLFgfSW2tN/QIomMDx?=
- =?us-ascii?Q?RXqcHcbov1piVq/E+3bdeRJMgwNQ4X82p9CwIZczs/6RIftuhf7FhJXq956C?=
- =?us-ascii?Q?FtBokIf6fyxv8kLhWnp8qikbk7BNKx9ootxeCiNpN7S4Fx6vHsjG27L4LKDm?=
- =?us-ascii?Q?MPwnKDKQ84MVKZTHV4ikHYS0vsg6aRyDdY7dhqek19n/r295+f1+ECsaQnga?=
- =?us-ascii?Q?OVwfejcHQNRoCkByvMALjqSrDe5D+HWCQ2DYGgaF3duHV4IW5C1rkUw6NkV0?=
- =?us-ascii?Q?cahi3DvioMiuo7aAC8t65lwxS1N2RBDX1cMsiKW+UgbuRyExM6bPjEjYf97l?=
- =?us-ascii?Q?FMcX/qVPF7zUYLhPdcu13XAGdfvIsGM070DE2oZYZoCMYcBH32uc1VJlLX9y?=
- =?us-ascii?Q?jwLGRtISZ5KgugWM3KENNw+og8LZVwRoGdAZP2WAAi2ml0VxDcupHQlK3jkH?=
- =?us-ascii?Q?/HADk7u0HiMjtTQWJTDFt7H22IvXojVyHNo4OHpFJFeaSVkI7iJS2Dt3vch2?=
- =?us-ascii?Q?pCZsqA0XQZQwxaNN1IY3nOH5QHzrGSi1z3uZNtArgKcNsPq26G9ZxJ/Y3Qte?=
- =?us-ascii?Q?ZUfYG6gYl/AMOJUCbFUKtEDU6+hv4iHu67A907OGqojBb9xh0obp8DABvSTT?=
- =?us-ascii?Q?v6B0HRQS2WqcUg8KqPJPGz4rk3Y54T3N3ZRL1MEHukgF+RJFFJOMclFvU439?=
- =?us-ascii?Q?pqQ2c4yaaxcMU3NXIGjFigt7M4mVPtZpEXOees7t+hJ5ko/LPxyA8koSxqlz?=
- =?us-ascii?Q?PulhO4Uyf2hHMRHRA7vnKLOw9K7E6E9wv23dAngBs2vSRt7qEK72IgTPQ6KV?=
- =?us-ascii?Q?pr1+Hb1xayVgGnW+M857WfkKPvNfEyR0TPoOB19WiY+9p7RtD+JkXJgEsnq/?=
- =?us-ascii?Q?h2tikwVLIjbvxtp4TZ63xKqhZ7BqNMzL/haFJkBymEmF4s8oH2QJCUSHSLHw?=
- =?us-ascii?Q?SBwsF9+egRbL814qWU9+bD5CfPhgva4kyx6gUcolNsdcimnkoPNsGHc1WsHf?=
- =?us-ascii?Q?tLgdKfmRNFgJwlggwzncDkMYdSFf1OR9xORwy3A6LmQ8w0NDiVzPGSjyXmqp?=
- =?us-ascii?Q?y8iixh+9npkxkCp/2P0z9kFlFkJfDOQC9bbUYCpDMy1oeqSAi29Ibvg46Vla?=
- =?us-ascii?Q?BAgR+JUrdntKkp7POymJAlBDOiZ6ZY6BHMxq+ph0T0us7fgSJYjZR+Et1Bky?=
- =?us-ascii?Q?RNKJ/4QoQx+sYjrFo2hAaGAq2KxbuT7jLOPG75vVKpUyotaX1LsjbiRZ4hFC?=
- =?us-ascii?Q?Bx7Q1tSjhqNCAZQ+6V/LALjZDWRbiWGikVztWiXAIaZ/rY0aRiph3XUm26BO?=
- =?us-ascii?Q?FJXrh2BXgJW+IoMSTcXsues6EseVOraPqSgOer8gtfBgD7ppkwGPqvpkLbOO?=
- =?us-ascii?Q?xQdIfSocczdbAHcZmE3SOlDtrKT1QTq4h6fJv9pzQl00OZrlHocf7++5M6fJ?=
- =?us-ascii?Q?YrA3wW3AmioKRRTFu3vuBeNQmHM/TEPQB8euc1YwTQPTSSDB/Gst94TRCx+j?=
- =?us-ascii?Q?nf76zKo17ZVRMU4eA70dtLhEMxw4GmPtDxpigXUaVd/fSo3/5YJDPMB043ob?=
- =?us-ascii?Q?qKEgkw=3D=3D?=
+	=?us-ascii?Q?wp8PwGXe4ThjNBktaFFdiuVxpl8jVaSnyHh+uYrgBz2maz1ILBzdVglVgqdP?=
+ =?us-ascii?Q?pqtW8HYMZM2saCu/rUewjfF/6vfYsH7GOlgw58I2vt9+Mf5OZWVY15CtvLrn?=
+ =?us-ascii?Q?KkR2pHUZDH3qecuUQHP2IAuw8I/GJ9juZ6yTWG9LVSZij1t/oR8Ra1fb+g+x?=
+ =?us-ascii?Q?syitHGsCo3CFMAoIHiQxACyfstSARmFRN6Z1PyDpQK8JbmsYTdw18DgVyba8?=
+ =?us-ascii?Q?AjAgB6DMjPMMIf7QyTub5zhVgZvPFEMYKvqYZyXf78/7MChemvFjPvCYOxE5?=
+ =?us-ascii?Q?LwHMNUTUWodp/+En5OXuWLljbU1hpnKqC7YdJxUP7kb8SmoKi5tWeSEVCWHl?=
+ =?us-ascii?Q?QPWaT7ZeY5S6NOOr9lrMi3LTA7m4xanHr6DiCNI111bAc3ifbY9RD4g+kBml?=
+ =?us-ascii?Q?yWu0kkN7RJo4Acl3RnvHbUdKFUGrZlD4n6FJLmJd7F8pAW6cwHhT+Aixqngz?=
+ =?us-ascii?Q?DD+5gcnCmcxElVkEfkfQxiC5RSf1VwR5J4sayjNYmL1jZwrFVUYYf2KXdDF/?=
+ =?us-ascii?Q?nqOjbQydKE5LugIfeGX64FqFaHw4UKrJ2I6RyiunHFPqj3ylqjwXDEdfBtUT?=
+ =?us-ascii?Q?zOK7DNcF7olFGbAXMPnM6ShfARnoPm6E6OYnKcepSlQEfFpMM4aeLC4iA1O+?=
+ =?us-ascii?Q?gBvj1ZOrVKygMGJaFxQX+HQspNttBCiJwGisykLpOWLrh1EwUNcDCXbnwgBh?=
+ =?us-ascii?Q?ovzKg9yd/b8cpIQJpcAtIV8ofqRhnJQMDGvcU+RbBMq5KGei2EC2q0fHb0bY?=
+ =?us-ascii?Q?4PcpdLhY6eA09TFlxCFzj0t6ZoMKK9rCHgouQOegMPWvfH6t5VGZIlrAyEI5?=
+ =?us-ascii?Q?IffAjn3HBWYjSbjf+ptI/aucrfRdb02mPZzC73LCf+pGnUrlczRG3gDF4QkA?=
+ =?us-ascii?Q?ruyONOJkkKxINxdEsdw+bFHuceSNHH6N4P0ZW9HcnjBk1Xro0Zex9kRUO/3I?=
+ =?us-ascii?Q?zP5Gf/bKQtAhtoQD7ZSGFkCQz0LPqrsL+oSwSDUbNZtXSFcstISYt6PEfvtR?=
+ =?us-ascii?Q?DTtB4oqDMahF3lNezA6ihoaFMCqcrKHDvCeSRnFJO0Hq9Eh23TaroeDlRkZY?=
+ =?us-ascii?Q?sPsXLjHjgqxN84Wp5wYiz1Jeh09lmLNbRwsc8yg9scFeDdnZGhme0vnrArJz?=
+ =?us-ascii?Q?RazWbLKS8Xc+HxkalWXqZ2tIkgWQZRlS1FtklIG9gINEVwRnJ1H9zqq3crII?=
+ =?us-ascii?Q?MZBZmApA8S9nMlFyA7xb9CqHjyuypt39RApooReLx4YUbLUU1UfBein9tt3I?=
+ =?us-ascii?Q?yMoHh+g8pUgMBy0XdcuH4KGdghHOZMwHqHKiviHzEZKWTk62t0ltffrp7wOe?=
+ =?us-ascii?Q?DCw9R1Aj03kIXxs6FEmfj4wLtJARsZ831S0qK4kFUn/tUc5dSm2VT3+kr4rM?=
+ =?us-ascii?Q?lg8U2W5wBxMNd7Za/zJSi+Be+sHb4F/aLeV5KqUO34j88SJEpJUBpIhDExth?=
+ =?us-ascii?Q?muADHFvMTeu67jWJ9WYQEObBRAKB6Pc+gPw8eEORNw5LViIZqukvkcboXjYP?=
+ =?us-ascii?Q?IJY+Iztlo0e9t7CDWln3gGZ/+L2wbLK/dsmShgap1rUMUtnpCZK0IBwM7X8O?=
+ =?us-ascii?Q?I5LPfkyRo3bdn8YkqJQ7ZfUPhI4NJuHQr79VZZs4HGuwqR4RT/phuqF1LQKl?=
+ =?us-ascii?Q?Ig=3D=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 06:04:09.3268
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 06:03:57.1366
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e975a48-5d01-4733-4615-08de5a453959
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2116e237-675a-48e3-3788-08de5a453214
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	SJ1PEPF000026CA.namprd04.prod.outlook.com
+	SJ1PEPF000026C6.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR10MB997622
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR10MB6314
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Fri, 23 Jan 2026 06:04:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17023
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17021
 
-Add pipewire and wireplumber audio stack support for am62dxx:
-- Include pipewire core components and tools
-- Add ALSA and PulseAudio compatibility layers
-- Include wireplumber session manager
-- Add GStreamer pipewire plugin
-- Configure pipewire with proper modules and plugins
+This patch series introduces PipeWire audio support for AM62Dxx platform,
+replacing PulseAudio with the modern PipeWire audio server architecture.
 
-Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
----
- .../recipes-core/images/tisdk-default-image.bb  | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+PipeWire is a modern audio/video server that provides low-latency, high-per=
+formance
+audio processing with better resource management and flexible routing capab=
+ilities.
+WirePlumber serves as the session manager, providing policy management and =
+device
+configuration for PipeWire, enabling automatic audio routing and device han=
+dling.
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b=
-/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-index 264d1b2d..d5db6fd4 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-@@ -47,3 +47,20 @@ IMAGE_INSTALL +=3D "\
-     ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
-     docker \
- "
-+
-+IMAGE_INSTALL:append:am62dxx =3D " \
-+    pipewire \
-+    pipewire-tools \
-+    pipewire-alsa \
-+    pipewire-pulse \
-+    wireplumber \
-+    speexdsp \
-+    libpipewire \
-+    pipewire-spa-plugins-meta \
-+    pipewire-spa-tools \
-+    pipewire-modules-meta \
-+    pipewire-alsa-card-profile \
-+    gstreamer1.0-pipewire \
-+"
-+PACKAGECONFIG:append:am62dxx:pn-pipewire =3D " pipewire-jack pipewire-modu=
-les pipewire-spa-plugins"
-+PACKAGECONFIG:remove:am62dxx:pn-pipewire =3D " jack"
+More info can be found here:
+- https://pipewire.org/
+- https://docs.pipewire.org/
+
+PipeWire offers several advantages over PulseAudio:
+- Lower latency and better real-time performance.
+- Unified handling of both audio and video streams.
+- Better support for professional audio applications.
+- Improved security model with per-client sandboxing.
+- More efficient resource usage and power management.
+- Native support for modern audio formats and sample rates.
+
+The series includes:
+
+Patch 1: Add PipeWire configuration files with capture and multichannel set=
+up.
+
+Patch 2: Add WirePlumber configuration with audio defaults service.
+
+Patch 3: Enable PipeWire audio stack in tisdk-default-image for am62dxx.
+
+This implementation provides a complete audio solution with ALSA and PulseA=
+udio
+compatibility layers, ensuring backward compatibility while leveraging Pipe=
+Wire's
+advanced capabilities.
+
+Paresh Bhagat (3):
+  recipes-multimedia: Add pipewire configuration files
+  recipes-multimedia: Add wireplumber audio configuration
+  tisdk-default-image: Add audio server support for am62dxx
+
+ .../images/tisdk-default-image.bb             | 17 +++++++++++
+ .../pipewire/pipewire/90-multichannel.conf    | 17 +++++++++++
+ .../pipewire/pipewire/92-capture.conf         | 17 +++++++++++
+ .../pipewire/pipewire_1.0.9.bbappend          | 14 +++++++++
+ .../wireplumber/set-audio-defaults.service    | 14 +++++++++
+ .../wireplumber/set-audio-defaults.sh         | 30 +++++++++++++++++++
+ .../wireplumber/wireplumber_0.5.1.bbappend    | 25 ++++++++++++++++
+ 7 files changed, 134 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-multimedia/pipewire/pipewire/=
+90-multichannel.conf
+ create mode 100644 meta-arago-distro/recipes-multimedia/pipewire/pipewire/=
+92-capture.conf
+ create mode 100644 meta-arago-distro/recipes-multimedia/pipewire/pipewire_=
+1.0.9.bbappend
+ create mode 100644 meta-arago-distro/recipes-multimedia/wireplumber/wirepl=
+umber/set-audio-defaults.service
+ create mode 100755 meta-arago-distro/recipes-multimedia/wireplumber/wirepl=
+umber/set-audio-defaults.sh
+ create mode 100644 meta-arago-distro/recipes-multimedia/wireplumber/wirepl=
+umber_0.5.1.bbappend
+
 --=20
 2.34.1
 
