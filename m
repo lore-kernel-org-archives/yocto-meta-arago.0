@@ -1,286 +1,335 @@
-Return-Path: <afd@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0653FD6CFA7
-	for <webhook@archiver.kernel.org>; Fri, 23 Jan 2026 22:39:31 +0000 (UTC)
-Received: from BL0PR03CU003.outbound.protection.outlook.com (BL0PR03CU003.outbound.protection.outlook.com [52.101.53.44])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.8021.1769207968043266408
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E097D340B5
+	for <webhook@archiver.kernel.org>; Tue, 27 Jan 2026 16:43:51 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (SJ2PR03CU001.outbound.protection.outlook.com [52.101.43.39])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.16058.1769532227709191868
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 23 Jan 2026 14:39:28 -0800
+ Tue, 27 Jan 2026 08:43:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=c/1/4u5N;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.53.44, mailfrom: afd@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=CT7SJVYY;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.43.39, mailfrom: reatmon@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Kd1JeuCi0ql2Bl6i1urONCGSTTq22N3N7SxnvNmI/hh+3aq2cJopYEmdDShxK86VVZNRd/+Y40YIAQwSWjuRY0H4I6DylEYX2mkCvOJ+idnFpwHN0fVyCiLrhEivR8G2Xr92dCDl455tinJz0iF57yQkw1o1o9b7RFKc2xs97o1obWCSbT5o1GzSe6pK3Y5mk4BqlRyOwYyIyy4FbR/bc15GrdeMBsgdAm7nhSBFlHfOJWxKNrL6oAP82kfiOKAjNX/diiikHJKqUsM8XuMPcIN33anYHgKJc8B3Gtd+V3mTkOfCu6lqtkO2hMrVGad7JyUn0HVBdMM1VEk4T7/u5w==
+ b=kg+s5LrdRV8fi9DWJ/imxz/vVy7jxB1ANwArj6yzDtPAZkALYyV2EaSzEssKZWymJxXxlB9W96/FbM0k1mV+Q+f4Tt5RvUu+gb9cA2v9nHi6LkoTZxK22CZhCvhsO0gvLq/DBkBuef0vHFNf9if3t7QpdBCqZmVBinbCtCQskwNP9CRX2lf+N2T89RZWR/GA6uNENZKtYTf+FIvoXBl2ut/jPkn83XeE7spTys+3f4XXbFJkmE6KbT+mx5ZxQVx+Q+gf+U32AtjNcxAUDbj019xVTq/OuBzSc6muv/CkAxBJtVurWtDv/MhtWJQNj17+CoNghI8MAMdBPCq2P7PECQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Fz+uh/iVTKWx2gbReLWN+Ub4hOTFC+2W14xoeHYqt2Q=;
- b=sh82mD3W5dC2L0RRUTJZOrLIk76HpA9pV0SsSjuk4yTb4knb2FcZSDzK+Rob3iv1JPL/898hCgbjN4rLLwn6DBbUTMdOr8uKqLks6104Tgi86MK/eXy4SW7pFpd1ORaYfBpON7Ta4HkZnmDeOsMoEpMSVvjw3iq38ngilkapLB2blrp085ZvR7dWDsFdLQdzyHB7OgDHK62+aUdlD5oUxpnV1N9xvp2kZlAdgT+RysI1oa0aNVHgTmhKU8kbXOl5OJnnuZzaNPwKOWncDZqpgEmb/IRkM7dMiBcUqZ2SYlTrBV4rEskAwC5zb8OJCePVlzjI1bX9I1h7bZwrZDF4ig==
+ bh=oxkhC9iL65RRCdESaPffNX0vF5VsuZGVyXW/+F1citg=;
+ b=EOr4CSezUi0yPnScTL+/3x7gxgZ/gCo57FR4zT9/LbwT2tSeVOZFyzg9U7FOqpPXOsYEGX3VpN3CZENW4fCEWEbpLagtUX9S1qymYZa1c/5PFeJdd3f8pSJQDfXM1uJfl+ZFHebTBDWaJ5gMm3di9STig1INq4ZkHNiW2Kk/HY3zU+TB+TcQ5tO/eC7i+mRrdl30LmwcD1Gnc545fR2qZJkzIffrp0ypDUgWeJhmeu5pEXZVPm5+7UNLqXO2zOhPFGEX8ZVXJxcHCt7GOM4q5mLZ5gmwDMFEkf5N/Ldpp1cSS0LkIzvxzEYsFBfqTxmcaew5vFardZK03ieZJCW4Kg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Fz+uh/iVTKWx2gbReLWN+Ub4hOTFC+2W14xoeHYqt2Q=;
- b=c/1/4u5NNPZ4JafvS1gbsp4+BrOuwuzdjOs93+SW76sOCBk3cyPfIC8HCXOp0mDrOGpCMOBo2K5e/MzvtQ68U9gmih+I1AlivcB6d+KoKtr+YIZEqkpd+PofmyW/YuPpGJTxkhxJCJUZl8F3FBcSVkDaInCRshSCoh0NP7gICc8=
-Received: from BN9PR03CA0508.namprd03.prod.outlook.com (2603:10b6:408:130::33)
- by BN0PR10MB4965.namprd10.prod.outlook.com (2603:10b6:408:126::20) with
+ bh=oxkhC9iL65RRCdESaPffNX0vF5VsuZGVyXW/+F1citg=;
+ b=CT7SJVYYLb3UNTuxtxbFlvp9r/SnT2mwQDdjtVWGa6uN1xyMUihlaX44T6erHLPz7Mk3zc2A1roJwTKN38wGnTAAlzNK3smKwoOEkrt6gQpyD1ghGvnXeqV3ulpOyM1PavQCNUI9zBBvRRfF/9kRc7IqX02t0GfqKrgtV8Y5Duc=
+Received: from BN0PR03CA0048.namprd03.prod.outlook.com (2603:10b6:408:e7::23)
+ by SJ0PR10MB5694.namprd10.prod.outlook.com (2603:10b6:a03:3ed::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
- 2026 22:39:25 +0000
-Received: from BN3PEPF0000B06B.namprd21.prod.outlook.com
- (2603:10b6:408:130:cafe::1) by BN9PR03CA0508.outlook.office365.com
- (2603:10b6:408:130::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.10 via Frontend Transport; Fri,
- 23 Jan 2026 22:39:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.15; Tue, 27 Jan
+ 2026 16:43:45 +0000
+Received: from BN3PEPF0000B073.namprd04.prod.outlook.com
+ (2603:10b6:408:e7:cafe::1a) by BN0PR03CA0048.outlook.office365.com
+ (2603:10b6:408:e7::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.16 via Frontend Transport; Tue,
+ 27 Jan 2026 16:43:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- BN3PEPF0000B06B.mail.protection.outlook.com (10.167.243.70) with Microsoft
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ BN3PEPF0000B073.mail.protection.outlook.com (10.167.243.118) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.0 via Frontend Transport; Fri, 23 Jan 2026 22:39:23 +0000
-Received: from DFLE209.ent.ti.com (10.64.6.67) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 23 Jan
- 2026 16:39:23 -0600
-Received: from DFLE209.ent.ti.com (10.64.6.67) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 23 Jan
- 2026 16:39:22 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9564.3 via Frontend Transport; Tue, 27 Jan 2026 16:43:43 +0000
+Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 27 Jan
+ 2026 10:43:27 -0600
+Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 27 Jan
+ 2026 10:43:27 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 23 Jan 2026 16:39:22 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60NMdMXJ3044070;
-	Fri, 23 Jan 2026 16:39:22 -0600
-Message-ID: <873619a2-8202-418b-9733-b7d674abd5e0@ti.com>
-Date: Fri, 23 Jan 2026 16:39:22 -0600
+ Transport; Tue, 27 Jan 2026 10:43:27 -0600
+Received: from grumpy (grumpy.dhcp.ti.com [128.247.81.229])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60RGhR56819458;
+	Tue, 27 Jan 2026 10:43:27 -0600
+Received: from reatmon by grumpy with local (Exim 4.97)
+	(envelope-from <reatmon@ti.com>)
+	id 1vkmA3-00000001dl9-0uZb;
+	Tue, 27 Jan 2026 10:43:27 -0600
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
+	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master][PATCH] *-telnetd: Remove telnetd services
+Date: Tue, 27 Jan 2026 10:43:27 -0600
+Message-ID: <20260127164327.391138-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH 1/2] tisdk-default-image: Use core
- packagegroup to include valgrind
-To: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
-	<meta-arago@lists.yoctoproject.org>
-References: <20260105222205.2503660-1-afd@ti.com>
- <7ce43428-3d8f-4f94-8aba-6ca0e3fbc8b2@ti.com>
- <5ba0de48-895c-47cd-a9ee-b00fabd09ca6@ti.com>
- <4b515701-587e-47e4-9e6c-4a36c7fffb16@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <4b515701-587e-47e4-9e6c-4a36c7fffb16@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B06B:EE_|BN0PR10MB4965:EE_
-X-MS-Office365-Filtering-Correlation-Id: 14ae1a16-1690-4db5-60c6-08de5ad041c1
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B073:EE_|SJ0PR10MB5694:EE_
+X-MS-Office365-Filtering-Correlation-Id: 32604b23-4252-4419-d1da-08de5dc33b9f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
+	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|376014;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?9F9KspKkDi4oLQT6DKuKuMmDfxqrk7WBszalv7zXRq/SZJXe0ONXOgsEVqnN?=
- =?us-ascii?Q?UZjAByIA+N7YlbPLH0xwwDZOBd91eiQds4UawE5OfB0Ia3MhIOA9cIm1STYm?=
- =?us-ascii?Q?OZ1dObD2UMipdE2Vyb7dqmSnDBX/vbYmAPnxTCN4SMAxNLjikIJCsz0S0eMv?=
- =?us-ascii?Q?cEZF4tYssZqsnsW6dlrJLsPaLblkceQpZWPV5XUqWWGMuXstDoW/MGtOOPXk?=
- =?us-ascii?Q?KJndZ9Vtr7VqRjlIVSQJm9TkSQwJ5t+R+DnHryY1wgMO/UWesrTSFmT6o12p?=
- =?us-ascii?Q?+QYKGzGDbP6WkrKWMRY/2JIH+qML2fFw/1S44iSe39SNZiKJWPODORkjwK74?=
- =?us-ascii?Q?Ez8mObM6NTOOd4zBbMhW6RzRzNkjP4YOLM3y3565b+PXt6wSFJxts9hDHih7?=
- =?us-ascii?Q?1SDcw+4ww9zMTygFHl6+Q/w/Okpg00xb6pjZt2bLHVObR+6ydxHubv+u3pB7?=
- =?us-ascii?Q?QtH++wn2GJtYN7ZWmtIeAUBIjTX7QeCxt91NStpccDg41lpsi7scNHtMz8Z1?=
- =?us-ascii?Q?n/RgYJ+P56wGGPJOuYaJ5PUWjmmsQFADZUWQ13ArvB38HvaEAUtA0TUJkrBo?=
- =?us-ascii?Q?SBRFRApl7QioQ+/B62aBj6st9jbRAwW/wis0eH1M3Ix52TKShgQR5n2thrsE?=
- =?us-ascii?Q?0kSP2K2ZkTJrXnRSy3GRaZCx1EnIBJDtVzLcg6dSY+CNNQ3OPZBx1f104o07?=
- =?us-ascii?Q?vdPs8wL/iCXhx5ycmxgvXYUvf0YRCHEhKhVMl2r+7Rdbq8HEly9iGARNxLGj?=
- =?us-ascii?Q?VwaxPaENMxbo2w8s2kDtPvP9M5XssrwCaowGBKAzhLnO8iZOH1USEIDeWmr0?=
- =?us-ascii?Q?SUt/5Dr1JMoyezSYALZZO1VPNXIY0Ui5xrBvSzT6iPab/Y3Rdf1Ovd9wk93Q?=
- =?us-ascii?Q?t5Ykqkc09NHboOyG/w5HhfFFJrarFqu2Q/X1f2scQQ73f/W5LJObCcqgHAw5?=
- =?us-ascii?Q?4pDNEkdrsqyVd9E8L8fPK6cvopUJBMEJBNYxtyhiDha7QuFpa/rEUS+TF2Tl?=
- =?us-ascii?Q?y+1SyvjGiqIlwQOFZvFj2b2sZgEgC0HapEqb3jRje/6K7QK0drkvqCiqfQvq?=
- =?us-ascii?Q?vjWjYLrwk+GsBit0WidIXSuEL20f4mVrB3uaExm/buA8wBcSS0jmSiCiHLZq?=
- =?us-ascii?Q?W+QJBcdfpfgRhcSU8RirMyAbBg1IzU28h+J6tCewVOu2gwOVoCK2AxWGqJzJ?=
- =?us-ascii?Q?hbwM9iSROrwgOYuLvtYO8R+IGfY1TBXGPjL588TyegWXScxboLZza3xiAqFx?=
- =?us-ascii?Q?equHpMS7iDcW/ig90PBruYOlZZhI6WuptIhY8OsVkhnJtQAV77pYvbEKvu5n?=
- =?us-ascii?Q?m/R+ghixKXn/aWf9SOOzNItDp13k3TcOHQY33sdd+4IiE2ZPmZnZLzvkyBE/?=
- =?us-ascii?Q?es2ETsZmksIFLLI/fc4sFVl0p+1cGzlmgbjA2KBESta/yVMnrlnBVTLkv05V?=
- =?us-ascii?Q?eGXPtpfBQxDGNMnzUOgQ/YnEZtWFH7OrcaReCxFDiovvzTsX24Bzy2WQ9ILH?=
- =?us-ascii?Q?N5mm+4Dhi9VtydS1zv93/Mj/V/kLAPn+gUA/TFc7H/yrtn9iQqoXzQlljMwt?=
- =?us-ascii?Q?ZleDHvDI9wSJ0dxizG4cVUyfNS7hQE0QlgWLaHKpTsyGu13bK2a9WDUI7o7c?=
- =?us-ascii?Q?qSzf3C/+zApNTBEnQOl275QwBaMlli5jalH/g1Eomx8P/x/FEhlxedzJlVdk?=
- =?us-ascii?Q?bVAXVA=3D=3D?=
+	=?us-ascii?Q?hfEvdre3ecspH3ImpQbHOuzOMTyALo2xUMACgs1FTUTI0t8Xn9bgkWLYyAvJ?=
+ =?us-ascii?Q?/I/+ymTSGIS/DT/oksfr/VERkJnVvdDDTctS+JaE4tj9l4YaS2pqLPwFQbjj?=
+ =?us-ascii?Q?XiruIHYMyhEdlE9t6RAneVj0FqRTUAdavWQdGPmw6nh32T2kgDdM8tejxhUV?=
+ =?us-ascii?Q?cMHRX9ieip1bZDVu/ClbCxvWoU6Sc7aKxAVT8fqBKLN85yscv+l2Hwe/kYCU?=
+ =?us-ascii?Q?OCc0eXyeI4YW2KsyO07PVOp4H7YYtCjY97lBk1XPjtFnYquYuLShmKbJ6CgO?=
+ =?us-ascii?Q?9jD4v9aK84/k9eAKeKIlKWgx+lMKBcKvHK5HwzXx+xaV65Cf4i9C5RGhp6rK?=
+ =?us-ascii?Q?DkiOfpOjAjQjfBu+gNv+76Od5tBADbY0pxvbWKqlZqEJ85gdeyN7MbBW136T?=
+ =?us-ascii?Q?cyhbS4/0wXmngzNxNOaEggJ5jEUdfDvIII38oyoDul4W0X40u/zGb5XGEqPi?=
+ =?us-ascii?Q?iaAnoPZxIFkT7e3Lkdo+n860JrkOyGafJgvp4bogp6Vti0pBP/93VDcKtwyN?=
+ =?us-ascii?Q?1gF1Ql59n4HMOxTqI8rEhQYpSE7a68WMgM9it5z1sd3dKDMYN32XD67rZc//?=
+ =?us-ascii?Q?brUjy0dF9D7N2MSlpirKh42sgWWbmXJ6rvCsJVONEwzOPIOjCWN/YDLJE6d1?=
+ =?us-ascii?Q?nUHYz2jh+OiJsgtS0NT4Q+vuLY7toWLlvwNq5zfgSLi8eEYLjsYgujrl9/kf?=
+ =?us-ascii?Q?BxRwDwDvKTntljkteS38RVJM29I/KY2OWkJoNRXEPWJ7IfTn1fldjf2NjZ1p?=
+ =?us-ascii?Q?d4CSacgS+JiVw7fLqu1TJEEIjeLIkuVbws4N0N/1M5cTu8QDjELdrNCJXW9z?=
+ =?us-ascii?Q?+QUDO5XaI65F9q/uSOR2wsG+M6gvaA9xmIIKwQC7MmxPLiRCBQ2FPG5/fqVE?=
+ =?us-ascii?Q?S5DwmJXPLZcKB56wyEMzt86h1gZkWdl7HgiNSvF7+8Rb0Kjk1sPk6JNE0W53?=
+ =?us-ascii?Q?Rz71brBALT73UE+StQMwvTNmbjcxXX/z7Ngk9jlCVTLSKU5EBoNTAOZn/Sx4?=
+ =?us-ascii?Q?a3cSvCDUwtIU2/JUtIT1TzXFPRYDuXXMKP9w5D/k/P8G/JKUsKWfGN80njWg?=
+ =?us-ascii?Q?lc+wy/Y31x+S6A+4qUi1PkR4kpBzbx0QfZyVcHllzPd2XhFGRlCWmgpeqjsN?=
+ =?us-ascii?Q?BqFZYqYbIEf29EXUDapif/vFV6+38XQarhip/LuxC+82Oq/sOYFVpM/ninlJ?=
+ =?us-ascii?Q?ZZ6i5XpUwdgelmBSgH2atjRIrv8dycvlkfDMq9INnf2UI8H3QJ+A2M8TPjcN?=
+ =?us-ascii?Q?hgzNN9a5mWiruPZLXyFKOsoBMIArsGD5g2XwGy546WJU2PmyWEdXEeUZF2LE?=
+ =?us-ascii?Q?Czw5ggWYzl41YdF1Z1ILkgjei9JNrkzWWPHsj90cb1J6PC1C54VwULUA+Yv7?=
+ =?us-ascii?Q?pHZO6898/qabCSU1MhMT4Jl38vcKwZSjiadhJ5r3uVauNtlv5+cA/rro/YRE?=
+ =?us-ascii?Q?iaZq0PbhZs75HTiAU2Cuf3wzpp20Gl7fVnEs9SOIYoM34tRHBKty/vqndQhS?=
+ =?us-ascii?Q?4eF2etlIDe6/zO8fh+3pjVbbrA2QFB9z7YMqcql+lTj2ssI4Wq6xAwTTma92?=
+ =?us-ascii?Q?+pMKavuOYwBMvwzS/vUuEF/xLI3y7h1FzQ4+w2lpZVrOqX1JWT2m9r9wbFep?=
+ =?us-ascii?Q?Qm3iWOXUsFSkC8ognTo5gagjg9se0bA9Sem6SDBs568443twNH0eM4BKOC8v?=
+ =?us-ascii?Q?mi1fbA=3D=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1101;
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 22:39:23.4823
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2026 16:43:43.2384
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14ae1a16-1690-4db5-60c6-08de5ad041c1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32604b23-4252-4419-d1da-08de5dc33b9f
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BN3PEPF0000B06B.namprd21.prod.outlook.com
+	BN3PEPF0000B073.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB4965
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB5694
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 23 Jan 2026 22:39:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17040
+ <meta-arago@lists.yoctoproject.org>; Tue, 27 Jan 2026 16:43:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17041
 
-On 1/23/26 4:26 PM, Ryan Eatmon wrote:
->=20
->=20
-> On 1/23/2026 3:30 PM, Andrew Davis wrote:
->> On 1/22/26 4:42 PM, Ryan Eatmon wrote:
->>>
->>>
->>> Build issue with this patch.=C2=A0 Including that packagegroup includes=
- the lttng package which is a tracing tool.=C2=A0 That code requires that t=
-he kernel have CONFIG_TRACEPOINTS turned on to compile, but it is not turne=
-d on for our kernels.
->>>
->>
->> Looks like there was a fix for this, but it is not functioning as it sho=
-uld,
->>
->> https://git.openembedded.org/openembedded-core/tree/meta/recipes-kernel/=
-lttng/lttng-modules/0001-src-Kbuild-change-missing-CONFIG_TRACEPOINTS-to-wa=
-rn.patch
->=20
-> Sigh.
->=20
-> ifdef CONFIG_LOCALVERSION=C2=A0=C2=A0 # Check if dot-config is included.
->  =C2=A0 ifeq ($(CONFIG_TRACEPOINTS),)
->  =C2=A0=C2=A0=C2=A0 $(warning The option CONFIG_TRACEPOINTS needs to be e=
-nabled in your kernel configuration)
->  =C2=A0=C2=A0=C2=A0 DISABLE_MODULE =3D y
->  =C2=A0 endif # CONFIG_TRACEPOINTS
-> endif # ifdef CONFIG_LOCALVERSION
->=20
-> ifneq ($(DISABLE_MODULE),y)
->=20
->=20
->  > grep CONFIG_LOCALVERSION .config
-> CONFIG_LOCALVERSION=3D""
-> CONFIG_LOCALVERSION_AUTO=3Dy
->=20
-> So the checking code doesn't kick in because CONFIG_LOCALVERSION is ""...
->=20
-> Does the #ifdef return false if the variable is set to "" ?
->=20
->=20
+Remove all of the services that start telnetd.  It is time to retire
+this service in favor of ssh for connecting to the boards.
 
-You would think it would still work, but yeah I noticed the same, I just
-removed the `ifdef CONFIG_LOCALVERSION` check altogether and the rest
-of the `ifeq` checks do still work as they should.
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ .../initscript-telnetd/initscript-telnetd.bb  | 18 ---------
+ .../initscript-telnetd/telnetd                | 40 -------------------
+ .../systemd-telnetd/systemd-telnetd.bb        | 20 ----------
+ .../systemd-telnetd/telnetd.service           | 29 --------------
+ .../packagegroups/packagegroup-arago-base.bb  |  2 -
+ 5 files changed, 109 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-connectivity/initscript-telne=
+td/initscript-telnetd.bb
+ delete mode 100644 meta-arago-distro/recipes-connectivity/initscript-telne=
+td/initscript-telnetd/telnetd
+ delete mode 100644 meta-arago-distro/recipes-connectivity/systemd-telnetd/=
+systemd-telnetd.bb
+ delete mode 100644 meta-arago-distro/recipes-connectivity/systemd-telnetd/=
+systemd-telnetd/telnetd.service
 
-Surprised this must have been broken upstream for a while now, either
-no one uses lttng-modules/lttng-tools, or everyone just uses a kernel
-with `TRACEPOINTS` set. (actually it seems our v6.12 kernel *does* have
-this set, the issue is also `CONFIG_KPROBES` must be set too, so even
-when we fix the LOCALVERSION thing, we will need to add `KPROBES` to
-the first check).
-
->=20
->=20
->>> We need to resolve this issue before we can take this patch series.
->>>
->>> scratch/builds/arago-master-wip/build/build/arago-tmp-default/work/am62=
-pxx_evm-oe-linux/lttng-modules/2.14.3/sources/lttng-modules-2.14.3/src/lttn=
-g-tracepoint.c: In function 'lttng_tracepoint_coming':
->>> /scratch/builds/arago-master-wip/build/build/arago-tmp-default/work/am6=
-2pxx_evm-oe-linux/lttng-modules/2.14.3/sources/lttng-modules-2.14.3/src/ltt=
-ng-tracepoint.c:227:36: error: 'struct module' has no member named 'num_tra=
-cepoints'
->>> =C2=A0=C2=A0 227 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for =
-(i =3D 0; i < tp_mod->mod->num_tracepoints; i++) {
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~
->>> /scratch/builds/arago-master-wip/build/build/arago-tmp-default/work/am6=
-2pxx_evm-oe-linux/lttng-modules/2.14.3/sources/lttng-modules-2.14.3/src/ltt=
-ng-tracepoint.c:232:61: error: 'struct module' has no member named 'tracepo=
-ints_ptrs'
->>> =C2=A0=C2=A0 232 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tp =3D lttng_tracepoint_ptr_d=
-eref(&tp_mod->mod->tracepoints_ptrs[i]);
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~
->>> /scratch/builds/arago-master-wip/build/build/arago-tmp-default/work/am6=
-2pxx_evm-oe-linux/lttng-modules/2.14.3/sources/lttng-modules-2.14.3/src/ltt=
-ng-tracepoint.c: In function 'lttng_tracepoint_going':
->>> /scratch/builds/arago-master-wip/build/build/arago-tmp-default/work/am6=
-2pxx_evm-oe-linux/lttng-modules/2.14.3/sources/lttng-modules-2.14.3/src/ltt=
-ng-tracepoint.c:268:36: error: 'struct module' has no member named 'num_tra=
-cepoints'
->>> =C2=A0=C2=A0 268 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for =
-(i =3D 0; i < tp_mod->mod->num_tracepoints; i++) {
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~
->>> /scratch/builds/arago-master-wip/build/build/arago-tmp-default/work/am6=
-2pxx_evm-oe-linux/lttng-modules/2.14.3/sources/lttng-modules-2.14.3/src/ltt=
-ng-tracepoint.c:273:61: error: 'struct module' has no member named 'tracepo=
-ints_ptrs'
->>> =C2=A0=C2=A0 273 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tp =3D lttng_tracepoint_ptr_d=
-eref(&tp_mod->mod->tracepoints_ptrs[i]);
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~
->>>
->>>
->>>
->>>
->>> On 1/5/2026 4:22 PM, Andrew Davis wrote:
->>>> This packagegroup includes valgrind and handles the arch compatibility
->>>> selection for us.
->>>>
->>>> Signed-off-by: Andrew Davis <afd@ti.com>
->>>> ---
->>>> =C2=A0 meta-arago-distro/recipes-core/images/tisdk-default-image.bb | =
-2 +-
->>>> =C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image=
-.bb b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
->>>> index bc067857..a35e8321 100644
->>>> --- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
->>>> +++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
->>>> @@ -34,12 +34,12 @@ DEVTOOLS =3D " \
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 linux-libc-headers-dev \
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 build-essential \
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 packagegroup-core-tools-debug \
->>>> +=C2=A0=C2=A0=C2=A0 packagegroup-core-tools-profile \
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 git \
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dtc \
->>>> =C2=A0 "
->>>> =C2=A0 IMAGE_INSTALL +=3D "\
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${DEVTOOLS} \
->>>> -=C2=A0=C2=A0=C2=A0 ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'v=
-algrind', '', d)} \
->>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 docker \
->>>> =C2=A0 "
->>>
->>
->=20
+diff --git a/meta-arago-distro/recipes-connectivity/initscript-telnetd/init=
+script-telnetd.bb b/meta-arago-distro/recipes-connectivity/initscript-telne=
+td/initscript-telnetd.bb
+deleted file mode 100644
+index 8398e7f3..00000000
+--- a/meta-arago-distro/recipes-connectivity/initscript-telnetd/initscript-=
+telnetd.bb
++++ /dev/null
+@@ -1,18 +0,0 @@
+-SUMMARY =3D "Initscripts for telnetd"
+-LICENSE =3D "MIT"
+-LIC_FILES_CHKSUM =3D "file://telnetd;beginline=3D2;endline=3D18;md5=3Dd134=
+d0d385c53f9201a270fef8448f29"
+-PR  =3D "r1"
+-
+-SRC_URI =3D "file://telnetd"
+-
+-S =3D "${UNPACKDIR}"
+-
+-INITSCRIPT_NAME =3D "telnetd"
+-INITSCRIPT_PARAMS =3D "defaults 10"
+-
+-inherit update-rc.d
+-
+-do_install () {
+-	install -d ${D}${sysconfdir}/init.d/
+-	install -c -m 755 ${S}/telnetd ${D}${sysconfdir}/init.d/telnetd
+-}
+diff --git a/meta-arago-distro/recipes-connectivity/initscript-telnetd/init=
+script-telnetd/telnetd b/meta-arago-distro/recipes-connectivity/initscript-=
+telnetd/initscript-telnetd/telnetd
+deleted file mode 100644
+index a99f23ef..00000000
+--- a/meta-arago-distro/recipes-connectivity/initscript-telnetd/initscript-=
+telnetd/telnetd
++++ /dev/null
+@@ -1,40 +0,0 @@
+-#! /bin/sh
+-#Permission is hereby granted, free of charge, to any person obtaining a c=
+opy
+-#of this software and associated documentation files (the "Software"), to =
+deal
+-#in the Software without restriction, including without limitation the rig=
+hts
+-#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-#copies of the Software, and to permit persons to whom the Software is
+-#furnished to do so, subject to the following conditions:
+-#
+-#The above copyright notice and this permission notice shall be included i=
+n
+-#all copies or substantial portions of the Software.
+-#
+-#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS O=
+R
+-#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL T=
+HE
+-#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING F=
+ROM,
+-#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+-#THE SOFTWARE.
+-
+-telnetd=3D/usr/sbin/telnetd
+-
+-test -x "$telnetd" || exit 0
+-
+-case "$1" in
+-  start)
+-    echo -n "Starting telnet daemon"
+-    start-stop-daemon --start --quiet --exec $telnetd
+-    echo "."
+-    ;;
+-  stop)
+-    echo -n "Stopping telnet daemon"
+-    start-stop-daemon --stop --quiet --exec $telnetd
+-    echo "."
+-    ;;
+-  *)
+-    echo "Usage: /etc/init.d/telnetd {start|stop}"
+-    exit 1
+-esac
+-
+-exit 0
+diff --git a/meta-arago-distro/recipes-connectivity/systemd-telnetd/systemd=
+-telnetd.bb b/meta-arago-distro/recipes-connectivity/systemd-telnetd/system=
+d-telnetd.bb
+deleted file mode 100644
+index ff52213e..00000000
+--- a/meta-arago-distro/recipes-connectivity/systemd-telnetd/systemd-telnet=
+d.bb
++++ /dev/null
+@@ -1,20 +0,0 @@
+-SUMMARY =3D "telnetd"
+-DESCRIPTION =3D "systemd config for starting telnetd."
+-LICENSE =3D "MIT"
+-LIC_FILES_CHKSUM =3D "file://telnetd.service;beginline=3D1;endline=3D17;md=
+5=3Dd134d0d385c53f9201a270fef8448f29"
+-
+-SRC_URI =3D "file://telnetd.service"
+-
+-S =3D "${UNPACKDIR}"
+-
+-inherit systemd
+-
+-SYSTEMD_PACKAGES =3D "${PN}"
+-SYSTEMD_SERVICE:${PN} =3D "telnetd.service"
+-SYSTEMD_AUTO_ENABLE:${PN} =3D "enable"
+-
+-do_install:append () {
+-    # install systemd unit files
+-    install -d ${D}${systemd_system_unitdir}
+-    install -m 0644 ${S}/telnetd.service ${D}${systemd_system_unitdir}
+-}
+diff --git a/meta-arago-distro/recipes-connectivity/systemd-telnetd/systemd=
+-telnetd/telnetd.service b/meta-arago-distro/recipes-connectivity/systemd-t=
+elnetd/systemd-telnetd/telnetd.service
+deleted file mode 100644
+index d8b34373..00000000
+--- a/meta-arago-distro/recipes-connectivity/systemd-telnetd/systemd-telnet=
+d/telnetd.service
++++ /dev/null
+@@ -1,29 +0,0 @@
+-#Permission is hereby granted, free of charge, to any person obtaining a c=
+opy
+-#of this software and associated documentation files (the "Software"), to =
+deal
+-#in the Software without restriction, including without limitation the rig=
+hts
+-#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-#copies of the Software, and to permit persons to whom the Software is
+-#furnished to do so, subject to the following conditions:
+-#
+-#The above copyright notice and this permission notice shall be included i=
+n
+-#all copies or substantial portions of the Software.
+-#
+-#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS O=
+R
+-#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL T=
+HE
+-#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING F=
+ROM,
+-#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+-#THE SOFTWARE.
+-
+-[Unit]
+-Description=3DTelnet Server
+-After=3Dlocal-fs.target
+-
+-[Service]
+-RemainAfterExit=3Dtrue
+-Type=3Doneshot
+-ExecStart=3D/usr/sbin/telnetd
+-
+-[Install]
+-WantedBy=3Dmulti-user.target
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arag=
+o-base.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago=
+-base.bb
+index b80697e5..d36b4397 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.=
+bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.=
+bb
+@@ -16,8 +16,6 @@ ARAGO_BASE =3D "\
+     mtd-utils \
+     mtd-utils-ubifs \
+     curl \
+-    initscript-telnetd \
+-    systemd-telnetd \
+     ethtool \
+     bash \
+     opkg-bash-completion \
+--=20
+2.43.0
 
 
