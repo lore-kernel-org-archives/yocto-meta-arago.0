@@ -1,148 +1,307 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <a-dutta@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E4A9DD46C16
-	for <webhook@archiver.kernel.org>; Thu, 29 Jan 2026 02:39:33 +0000 (UTC)
-Received: from DM5PR21CU001.outbound.protection.outlook.com (DM5PR21CU001.outbound.protection.outlook.com [52.101.62.61])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.6732.1769654369187829818
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67DF2D49C9F
+	for <webhook@archiver.kernel.org>; Fri, 30 Jan 2026 11:06:39 +0000 (UTC)
+Received: from CH1PR05CU001.outbound.protection.outlook.com (CH1PR05CU001.outbound.protection.outlook.com [52.101.193.58])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.8016.1769771192906966858
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 28 Jan 2026 18:39:29 -0800
+ Fri, 30 Jan 2026 03:06:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=HOxpJXFb;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.62.61, mailfrom: reatmon@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=Q6kdVFZh;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.193.58, mailfrom: a-dutta@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gyEAzOiMMErxlKmwXhPkMvYsBLr1mC3EKd801fGb0obQdlVjKFWX5dR+mp0SLAypq+RLnmXJttpSqF71v6J6kbf6NeEAPiudOJqRRXLXxpD+15AFOt75Ufu7/Pztylg5xoBlLKePFADSwRMf+O4i35g1ytpFpLj2Jw2s3I/KfRDScHdxw/1SK46K9Hc0k4B88lAV9+D6y5ZszYE3No1LtVvL4EPZAF7+5Ce8hAMO/zxfbKX4m66V1nYMJt7se6WP9Y1Sbnvbsn+++ijhSDyNuJJcOlHxfKA7Ija8KGLChk4m4Gkkmriej39rQj/rg5Vnl2EiAXGRhoPkFkcCSpvTMA==
+ b=Y6t+EmOESS7daAX4i6lZCPync70qU9S422mbJ9iTVzf93dCiwoJ0hzqZRGZyPRhg/m8qKIlwyLJW/wnnOWt0Qa+j76mvNjkVHKw7rqM5qtJYmjTypR7ceLD5kcvXNbeixid0grdBMprPAIMZfLKLqA5FLRoE3EFf5d1aV5s+Q4LvWV1Fxy05LscaCZgHxo+Rdk7CG/Brr4MbAlFLDiOkTFPKPgc5JhJPHgIAdZ01wJskzegyPOevT6lRl9rYsoX6gY7XncfrN97WOdFhNU2nuuJjcZoraNonQ5gVWeGZTtCg7IbTv20MBUrnv2Xz4QTxI88A+VT8EyC2qHbLZjxBFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BK8Z+RAW4TberNniqhnWPRZtg2Mrw/KENLa+04zb5vM=;
- b=Aje92AVunEqxEwULzHqBcz3h68JRDYBt5Rr8ui2ATaPqo8vYTQhdXhOkjKRIXYv94VTACM9VusvDbwjHSwKYSx2/iESQOrnZm+TXfiqz6GCLvKZ2WOVYCXQUV4FW1CgdP8OlHM1Ypocif+AHNkFm2M0wqUz3eCa6wl/aMugARmUqoqgBFVvLmj5tgVKVBuCzhDfrSYvolcVPV4WzF1NBDciZLYNCqZ/spTnIquMSeB1FivX5f+YHsn1s+jMbFibw/7EhcLE01rtfa5uNw8n8a9/K6ejv+NWe5WLT40bZMX05RKsFum5CfKR6qkhOSRe9ko2G41aSOjUHslbZyFJ7uw==
+ bh=2BjbuRtdDXNFBQRzQyL7wOhQFXISMcorp9DE2f4CYGo=;
+ b=KUEBgTfTbdDJ9xLwNvUyr0FkQ6gC/P+E4QfU0PRFdEE3bJ77Jkncr/mTeOqgA0ACcI+3VeehPK3j8u/RaYt9by94hFUGyaOL6/rKzBft3dHbz4wstvsuSvU2IjE4dJN/rDDS7djYoWiD1oXVd4v1e3p8+JnVMBl60Zzi1x7xnywEUZRnkvyJv4Ouh8XJNFyXhxfxTyAF+A8qAl05oJ5D7KUPhkPudbKZZwPO1SEoHqBR+Rls1nTAb38um5a/bplMdeHdO1rtMK+PK2bPHeg0ZRbFEq5tOs4wKPK+DfEpkv5LQrdN/5KR7lkXr/OcmStA6rIQyJrygkk7sY3ZCuiVMg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BK8Z+RAW4TberNniqhnWPRZtg2Mrw/KENLa+04zb5vM=;
- b=HOxpJXFbthlOAxTBoSdXSke1RLK7B5rUmxC8r8HfiZLbVZZi6WKZUYU9F+vGpwtUPKO4/aNp2Gnz2XQJ/F2pAB7rST9Dhkzky2W3dg7ASP3q2W2wnYERfY/lyHWoXYDWZIVMu3kVBW/oQu7yR+JwSw5Pa2lzFZUwRENjiDbplA0=
-Received: from BN9P220CA0011.NAMP220.PROD.OUTLOOK.COM (2603:10b6:408:13e::16)
- by CYXPR10MB7973.namprd10.prod.outlook.com (2603:10b6:930:dd::17) with
+ bh=2BjbuRtdDXNFBQRzQyL7wOhQFXISMcorp9DE2f4CYGo=;
+ b=Q6kdVFZhiWSWtzrwIxwj/Fy7XlM+KEAa2kSDbqm4EJ6NGe0CRupf0O7T3M/jzEW4SohMBrxo2iuFnJQPZlpMa3sMh6Bm1IhxxblFvjaCjNYSiQ3LHaW70reXvXHr3dEOFKVX3NWopfybblxtaWTgwxr02iFjQh9SAoavwuAjW5g=
+Received: from DS7PR03CA0062.namprd03.prod.outlook.com (2603:10b6:5:3bb::7) by
+ SA1PR10MB5844.namprd10.prod.outlook.com (2603:10b6:806:22b::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Thu, 29 Jan
- 2026 02:39:24 +0000
-Received: from BN2PEPF00004FC1.namprd04.prod.outlook.com
- (2603:10b6:408:13e:cafe::65) by BN9P220CA0011.outlook.office365.com
- (2603:10b6:408:13e::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.8 via Frontend Transport; Thu,
- 29 Jan 2026 02:39:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.10; Fri, 30 Jan
+ 2026 11:06:27 +0000
+Received: from CY4PEPF0000E9D1.namprd03.prod.outlook.com
+ (2603:10b6:5:3bb:cafe::ec) by DS7PR03CA0062.outlook.office365.com
+ (2603:10b6:5:3bb::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.10 via Frontend Transport; Fri,
+ 30 Jan 2026 11:06:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- BN2PEPF00004FC1.mail.protection.outlook.com (10.167.243.187) with Microsoft
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ CY4PEPF0000E9D1.mail.protection.outlook.com (10.167.241.136) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Thu, 29 Jan 2026 02:39:22 +0000
-Received: from DFLE214.ent.ti.com (10.64.6.72) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 28 Jan
- 2026 20:39:20 -0600
-Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE214.ent.ti.com
- (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 28 Jan
- 2026 20:39:19 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9564.3 via Frontend Transport; Fri, 30 Jan 2026 11:06:25 +0000
+Received: from DLEE208.ent.ti.com (157.170.170.97) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 30 Jan
+ 2026 05:06:25 -0600
+Received: from DLEE206.ent.ti.com (157.170.170.90) by DLEE208.ent.ti.com
+ (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 30 Jan
+ 2026 05:06:24 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE206.ent.ti.com
+ (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 28 Jan 2026 20:39:19 -0600
-Received: from [10.249.32.25] ([10.249.32.25])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60T2dJH12999730
-	for <meta-arago@lists.yoctoproject.org>; Wed, 28 Jan 2026 20:39:19 -0600
-Message-ID: <6de7de03-280a-4be5-99b0-31292b6508fb@ti.com>
-Date: Wed, 28 Jan 2026 20:39:19 -0600
+ Transport; Fri, 30 Jan 2026 05:06:24 -0600
+Received: from a-dutta.dhcp.ti.com (a-dutta.dhcp.ti.com [172.24.235.228])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 60UB6MeB1611894;
+	Fri, 30 Jan 2026 05:06:23 -0600
+From: Anurag Dutta <a-dutta@ti.com>
+To: <reatmon@ti.com>
+CC: <denis@denix.org>, <gehariprasath@ti.com>, <a-limaye@ti.com>,
+	<meta-arago@lists.yoctoproject.org>, <a-dutta@ti.com>
+Subject: [meta-ti][master][PATCH v3] meta-ti-bsp: Add udev rules for MCAN to meta-ti
+Date: Fri, 30 Jan 2026 16:36:22 +0530
+Message-ID: <20260130110622.2338091-1-a-dutta@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: <meta-arago@lists.yoctoproject.org>
-From: Ryan Eatmon <reatmon@ti.com>
-Subject: test
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF00004FC1:EE_|CYXPR10MB7973:EE_
-X-MS-Office365-Filtering-Correlation-Id: bdb73924-9440-4368-50e9-08de5edf9c2d
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D1:EE_|SA1PR10MB5844:EE_
+X-MS-Office365-Filtering-Correlation-Id: e2c5577e-fc0d-4819-ec87-08de5fef9c78
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024;
+	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
 X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?Z2xiYnQxcW9DdGo1SXF1aDR4c05OTHN5dy81SkJ6YWZyY3E4bVI3YWFVQ3Ev?=
- =?utf-8?B?cEVqR0ZjeWhZVUJJQ3h0d3BpNG1uaWZKZGZldVlwRGV1UUNpeW8rN3R1MnRm?=
- =?utf-8?B?dWdoaDU0a1B4Wjl0c3NpRXJScGtiT2pkS21GQW5CT21CZmRWZWljVTZKa0pv?=
- =?utf-8?B?d1NTcG5QRlR1TU5qZExrK0dFMEpkT3I1U1Bta0g3ZW9WMUZia0xGWXMzS2gr?=
- =?utf-8?B?R1N4Vy9IZXdiM3F5bjdlYklIUHZEYzNOQ0t0S0pSSWxHNnRXRzlvdmZxKzFq?=
- =?utf-8?B?QnlMUW9IT0J2RUNIQWREcFZ0QitFWGtoRmh5RU1PeERwaUpQZTJqQ1JKTUhw?=
- =?utf-8?B?Tm9XT281Q0ZrRnpCUXpKUXBEbCt0T2lNK1p2eDVNUWI2eWM2VHNaWDIySWl2?=
- =?utf-8?B?emhmT0p4d3Bld2JTeVBhU0c2SmRPc2c3Wkk4L1lWL09WaTlVZ2pScTc1Wk5t?=
- =?utf-8?B?MnAwVGsyZTZwWkFIdG9xS1lqdDcvS254NUwyeFlEbkZqRlFMWllFWEtNbTl3?=
- =?utf-8?B?cUhUZWJOcENFL0gvQkYyZjhJVFJwTlQ3ZXRITkNWRVNMSHhESlg1YWhGWHN6?=
- =?utf-8?B?QUt4TWY1eUFpeUJnVnE1RjRRNjJjSHBTQWhHUnpiRnRnNzJMeGZzWTROUGZD?=
- =?utf-8?B?NDFVL3RQdEk2bGttcmtFQTdqbW16bGxKc1dKU2sxZ0pNQm1SM2dSVFZKOUVW?=
- =?utf-8?B?Z3hUSVR2WU44ZW5CVkttMVJPclZqSzN1TytsOFYzdkNJNkZKZ2Zydkx4NTVL?=
- =?utf-8?B?R2Z6VzhHWnovcXBYNERXa1BSSGhOaHR5dzUvRjRRK1VuSTJmVFFpMmoxUHJR?=
- =?utf-8?B?T1lBNDVvWnFZRm0zMTVzQWwrN0JuR2kwNEw1Wnd5ekpmVFRodWliQUNHU2Fn?=
- =?utf-8?B?NmRCcnBXUkdSUVBqVUpEN1BqcXYzR2p5ckhiK0l6eUplSkVMQmNhMjhpRng5?=
- =?utf-8?B?dkN6UFJhS0lQelZBc3gwQW4ySURkSFRpdHlGUkpDME03ZGhpUUtJV1RCTm5j?=
- =?utf-8?B?cVJXeGYweVEvbjBJV3JiYlVGekh3MVpFSzBweThWNGVodVp4Rldwb1VIVzFy?=
- =?utf-8?B?eG5aczVWbmNUZzdadDJqalhKVVpDZ0VtblY2SFB3bTZHb2tYM0o0emtKaGFk?=
- =?utf-8?B?VytYT0RTdndjMlJGaWloUVVFYmRCQlFhVXZhL2VwVDBFZnJaekpNQURUN0Zj?=
- =?utf-8?B?MVR1NU1uOXVEWGI1Y21IOEVhNVkwYTVveVAxMFhNVXkza2VSeGQrb1dwUmVD?=
- =?utf-8?B?VERNLzI4T2dpRVhEaHZYWGJTOXJzbzdhMjRNU1hOL0FSeWF2c05lOWcvU0Rs?=
- =?utf-8?B?d25lR21DLzRYci9XSjdmaU9IeFBsT0lDVEVTOVJHVUllN0JhUnp0K3JhUk56?=
- =?utf-8?B?V0RVWGtuNjZqUVlxcFhYTW1UOW9walYvbTI4MThoK0JWQUVuK01WcjBLcVNw?=
- =?utf-8?B?VlRzb3Q5bFQ5b1RxUTU2S2hINFNXcTNyQWhrWENQOENpTU93UVNUSmdlWDVS?=
- =?utf-8?B?UDJZdlNLdFdGajFERTViekVFVnZmT2gzWDFlQU5OZ3NlQXk3UHRMYVgzTkR1?=
- =?utf-8?B?ZTZCaGdqQy90ZmlmL2tWRUsyUjdHaVY4TjFkTk1yTlNYTU9vbEFsQ2FTbGlv?=
- =?utf-8?B?MkhLV2l6S3VEbHIvWFZKcnVzbWFmTGJEby9MTXQvbjdMKzBJeW9ZM3VEZWVn?=
- =?utf-8?B?WHB5V0QwOWg4dWRSU1NqL2hHRW8vSGVUSVdENEppSFBBNFpINU44Z2Qyc2R0?=
- =?utf-8?B?eXdDUjAvcnlSSWgyUGtsT1hveW4zUkRFVWdZM0NPalRXQjhyejJTOG83eE9C?=
- =?utf-8?B?VldRSW40QXdsTmVhU2sxck1HRUo2Zm9Iai9oVE9nak9oSndvTnZkQ0Z5MnFZ?=
- =?utf-8?B?S2JlNTJyNUFTOHBON3F4RUVTTThjWCtEVmFtNzBBa1FvaDBYYzhkaTBnM1Rs?=
- =?utf-8?B?WEFUREVUU1lkb0YrWHd5STZvRjNDa3puTWJGZzhYZ0dxbEhKNWR3aTF1dU1Y?=
- =?utf-8?B?ZDdySHc3WjN3RDlza21jeTVLNWszT01SamhZMG4xUThIUjZkVWR2VEM0b1I2?=
- =?utf-8?B?NURETkdkeXRuSGF1VnZJMW81WFZDbGpVV3plN3BSeGtaRDNXY3dteHlldlI0?=
- =?utf-8?B?OS92d0V2bnlUNlIvRTdmelNCMytKZXRyeFQzMTVTYTBsZjJlT0NINlI1U1dY?=
- =?utf-8?B?aG9Qd05kTVFYZDhzQ0JsNUFKTTBLT0ZZL2JuNys0bjhFdEhGRkFkWjdaRWdG?=
- =?utf-8?B?WnFCU2J1RDdQV3F3QkFod1VwM2x3PT0=?=
+	=?us-ascii?Q?ty7pONkavUsN17ubtktNqJnlrhYkrc1LBbEZsck1sQpHDwtYbpWTLKVqJh27?=
+ =?us-ascii?Q?4+oHKah8eAAOFYTrMypQJLwiikTdTCuRcj68LOZ45aI0UxHpgxmvUjz1KklH?=
+ =?us-ascii?Q?9640j9KetDm6r0mifCbGEziPx9mddOHBxwqWhGBMTSWhZLU5xOOTzPNHGPhO?=
+ =?us-ascii?Q?YmkuwOr3iRn2yUU3fZKK9J9BFtdY1zDlbk7b8VbJ8ksSG39I0R845I5Z7AyU?=
+ =?us-ascii?Q?Fir6wukRI9MIbeU9EyDFZeC0IAmNAPYcwsXc8QERyat6dXsY77S5N3yORm36?=
+ =?us-ascii?Q?eOo5uHI+nWAbI84tpny+wNSlleyZczQqT6NiirH2mKbvzJA9TSS1mNMJbEsr?=
+ =?us-ascii?Q?h3FHMj80mXQb62+v4XX7yLYaJ9rU/jdQknYghx8hjAn14F0hCRHAckCkAovc?=
+ =?us-ascii?Q?5Qi6W3t6vHDrvupxFowuo/fDRcwCQya7mC+iNkK8Uti8HxjEj3Rj0Q5ih85Q?=
+ =?us-ascii?Q?McCGF/HIIPqKLIgC4ugg7rRHP0kN/rJRuCBHa7VWgeVvYbi1iB6hbGrRu9Yo?=
+ =?us-ascii?Q?UmbMtn110SMRFTwmOPljbfiqla1gHC4BLKxtG0ZVD18d7VesO8MAx4MO3Anb?=
+ =?us-ascii?Q?h+7wyt9CgJxDpjcXeJVMT70NMC8OW7AETheRDKMMnlFcSCGGcCLujhdOVwYm?=
+ =?us-ascii?Q?4uwa+W0nHa5f3t1IIzJvrbbOAjD1bldGfCFK5+Tkqz5Tqu3eNqMnxhoNtuiK?=
+ =?us-ascii?Q?PkjYJWLOH56t7lQUlPbgHhdnRWW2JEBtBQ+XhGgpJOPQn/I7bCpFr7zqBV57?=
+ =?us-ascii?Q?3xpxD+K6tRGaQ+ggQIp84zrA+47Y4mwUNFYnIRjk2k4wn1/kCW2s/vQY3ER0?=
+ =?us-ascii?Q?UxbYZRF959R5zTcqqD5Wzsm1BB1Ec5EZwHmQlYCxMhFtlSTuq5GHBbqhc+rW?=
+ =?us-ascii?Q?XgrozY7QV6hM5xpO0q+GJsD5yF4fkw/Q8yYbNHQusZnUMHIPJVJ68PixPOZm?=
+ =?us-ascii?Q?haPy5e35jep1+xndo+07ZW7CnbKfKJ3DLIvZoo4ZkJUoxteQ85lWDhQXm2DO?=
+ =?us-ascii?Q?pxk5eYxBkZ3Jw/cqmiCigQodCBbzzuwjFJPkzMJFKbbjuOSAy6CPrWNb2Ghp?=
+ =?us-ascii?Q?H4UUnmyBsZesdapB77jcl1/kPaE4A5kSDkuiKhPt2TW205hXic/jvQsdYLNA?=
+ =?us-ascii?Q?I79/g/qKHUiYkoP0iaEk2Z66X0wiKaRDRATrN7B1IDRB9KhTN3LHKIPKU9oH?=
+ =?us-ascii?Q?lQ6owVco9go4ZIbJBFGggRNIogNkraBJEFyaqooUXr2cqwg0J5QJz8UmjXW0?=
+ =?us-ascii?Q?ujnUu8xlXO3CDET51FGrAQLkcWgDKifCIov2NovH4El+XAeFYfat1DTQjxdg?=
+ =?us-ascii?Q?9MqxphWrmRuQfqDozaNpHOFjqWxa/PloT2Fg7lCwFudQPqg9PgdXRQYyNuzk?=
+ =?us-ascii?Q?Ytu7hcN8NZkQj+f5z+DbjBGJ/3GUrPp4AAA0wNJUbHZ7pfZ6AnY4ZHt7oY84?=
+ =?us-ascii?Q?7vcackiwXmCb/sicx6ztPDcUhCNGrGkIkIggBW2G37gM3EhI8p8CgyGVAHOk?=
+ =?us-ascii?Q?mjBVE9Cf3L1eMIVG0pQsv7k+h00ZeD41bqG33aAHGck8Gv7zkFJhgtjYBLs7?=
+ =?us-ascii?Q?jNk1Mk9tCRd9DZMIEv3tjRLneWWib7F/t6LRAyi64xoPebXfGsgQq+1CKBu9?=
+ =?us-ascii?Q?WzDAyU23fnNDzxpmeaYWdEw=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	2ITYAMdsOgTUGl1IufwcUEUcU2fjYc+SsKS0durG8z3hC9o1XntPZ7D3QFcQiFJiHLuA/dfxU808OPadwliFwn8UHoKNPrNGy+Mwk+yBT/Ai6yiiksU0yDyA8QJhk2IBbZP3B1UHAhApKqC8t6LFgLp1PH1TzuTh5Q8c/63CroIBw14EJ4+yrDOBniZ3DOX8cGGb5rQjREDP5ecHvykONE1y+h/BUUGZsoLiTMcY7YsK8NLcuAf0RMobFHEWqaqRkDRD1tCWIFQxperHfLfHZAN/FmAeylsm0cVA1jNqfoFiSaMVMQWOODMpxfISLssGO+RFRIloj/Io81qAETokxz6J1+jWCDz+8hUzJ6DPrUf9tLgf6doykkX3NJnN++NSFQmAxo9reO0pd93CZlSqZzqClNbFt4Xm6IdbR7qFtTcRvAtqmHDF1RNFAvfzp3A/
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 02:39:22.2863
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 11:06:25.9210
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bdb73924-9440-4368-50e9-08de5edf9c2d
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2c5577e-fc0d-4819-ec87-08de5fef9c78
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BN2PEPF00004FC1.namprd04.prod.outlook.com
+	CY4PEPF0000E9D1.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR10MB7973
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB5844
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 29 Jan 2026 02:39:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17043
+ <meta-arago@lists.yoctoproject.org>; Fri, 30 Jan 2026 11:06:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17044
 
+Add MCAN udev rules to meta-ti so that MCAN tests run
+successfully.
 
-Testing connectivity with yocto lists...
+Signed-off-by: Anurag Dutta <a-dutta@ti.com>
+---
+Tested on j721s2 (poky) : https://gist.github.com/anuragdutta731/67c24da161=
+6e74efa2b117a3bd88ada6
 
--- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+Link to v1 : https://lore.kernel.org/all/20260106060815.868724-1-a-dutta@ti=
+.com/
+changelog v2:
+1. moved all the rules from meta-arago-distro to meta-arago-test
+2. removed udev* from meta-arago-distro/recipes-core/packagegroups/packageg=
+roup-arago-base.bb
+
+Link to v2: https://lore.kernel.org/all/20260107052154.1598698-1-a-dutta@ti=
+.com/
+changelog v3:
+1.Added the udev rules to meta-ti
+
+ meta-ti-bsp/conf/machine/include/k3.inc       |  2 +-
+ .../udev/udev-ticonf/37-can-am62.rules        |  4 ++++
+ .../udev/udev-ticonf/37-can-dra7.rules        |  2 ++
+ .../udev/udev-ticonf/37-can-j7.rules          | 20 +++++++++++++++++
+ .../udev/udev-ticonf/37-can-ti33x.rules       |  2 ++
+ .../recipes-core/udev/udev-ticonf_1.bb        | 22 +++++++++++++++++++
+ 6 files changed, 51 insertions(+), 1 deletion(-)
+ create mode 100644 meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-am62.r=
+ules
+ create mode 100644 meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-dra7.r=
+ules
+ create mode 100644 meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-j7.rul=
+es
+ create mode 100644 meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-ti33x.=
+rules
+ create mode 100644 meta-ti-bsp/recipes-core/udev/udev-ticonf_1.bb
+
+diff --git a/meta-ti-bsp/conf/machine/include/k3.inc b/meta-ti-bsp/conf/mac=
+hine/include/k3.inc
+index 698b46d7..68129df9 100644
+--- a/meta-ti-bsp/conf/machine/include/k3.inc
++++ b/meta-ti-bsp/conf/machine/include/k3.inc
+@@ -39,7 +39,7 @@ UBI_VOLNAME =3D "rootfs"
+=20
+ # List common SoC features, may need to add touchscreen for specific machi=
+nes
+ MACHINE_FEATURES =3D "apm usbgadget usbhost vfat ext2 alsa pci optee-ftpm"
+-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D "ti-pka-fw"
++MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D "ti-pka-fw udev-ticonf"
+=20
+ IMAGE_FSTYPES +=3D "tar.xz wic.xz wic.bmap"
+=20
+diff --git a/meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-am62.rules b/=
+meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-am62.rules
+new file mode 100644
+index 00000000..59dc8075
+--- /dev/null
++++ b/meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-am62.rules
+@@ -0,0 +1,4 @@
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"4e08000.can", NAME=
+=3D"mcu_mcan0"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"4e18000.can", NAME=
+=3D"mcu_mcan1"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"20701000.can", NAME=
+=3D"main_mcan0"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"20711000.can", NAME=
+=3D"main_mcan1"
+diff --git a/meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-dra7.rules b/=
+meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-dra7.rules
+new file mode 100644
+index 00000000..3b14150d
+--- /dev/null
++++ b/meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-dra7.rules
+@@ -0,0 +1,2 @@
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"4ae3c000.can", NAME=
+=3D"main_dcan1"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"48480000.can", NAME=
+=3D"main_dcan2"
+diff --git a/meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-j7.rules b/me=
+ta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-j7.rules
+new file mode 100644
+index 00000000..f2804ecd
+--- /dev/null
++++ b/meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-j7.rules
+@@ -0,0 +1,20 @@
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"40528000.can", NAME=
+=3D"mcu_mcan0"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"40568000.can", NAME=
+=3D"mcu_mcan1"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2701000.can", NAME=
+=3D"main_mcan0"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2711000.can", NAME=
+=3D"main_mcan1"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2721000.can", NAME=
+=3D"main_mcan2"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2731000.can", NAME=
+=3D"main_mcan3"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2741000.can", NAME=
+=3D"main_mcan4"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2751000.can", NAME=
+=3D"main_mcan5"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2761000.can", NAME=
+=3D"main_mcan6"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2771000.can", NAME=
+=3D"main_mcan7"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2781000.can", NAME=
+=3D"main_mcan8"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2791000.can", NAME=
+=3D"main_mcan9"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"27a1000.can", NAME=
+=3D"main_mcan10"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"27b1000.can", NAME=
+=3D"main_mcan11"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"27c1000.can", NAME=
+=3D"main_mcan12"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"27d1000.can", NAME=
+=3D"main_mcan13"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2681000.can", NAME=
+=3D"main_mcan14"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2691000.can", NAME=
+=3D"main_mcan15"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"26a1000.can", NAME=
+=3D"main_mcan16"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"26b1000.can", NAME=
+=3D"main_mcan17"
+diff --git a/meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-ti33x.rules b=
+/meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-ti33x.rules
+new file mode 100644
+index 00000000..62d650fe
+--- /dev/null
++++ b/meta-ti-bsp/recipes-core/udev/udev-ticonf/37-can-ti33x.rules
+@@ -0,0 +1,2 @@
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"481cc000.can", NAME=
+=3D"main_dcan0"
++SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"481d0000.can", NAME=
+=3D"main_dcan1"
+diff --git a/meta-ti-bsp/recipes-core/udev/udev-ticonf_1.bb b/meta-ti-bsp/r=
+ecipes-core/udev/udev-ticonf_1.bb
+new file mode 100644
+index 00000000..1ef487c2
+--- /dev/null
++++ b/meta-ti-bsp/recipes-core/udev/udev-ticonf_1.bb
+@@ -0,0 +1,22 @@
++SUMMARY =3D "Udev rules for assorted TI SoCs"
++LICENSE =3D "MIT"
++LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb7=
+88c80a0384361b4de20420"
++
++inherit bin_package
++
++SRC_URI =3D " \
++    file://37-can-j7.rules \
++    file://37-can-am62.rules \
++    file://37-can-dra7.rules \
++    file://37-can-ti33x.rules \
++"
++
++S =3D "${WORKDIR}"
++
++do_install() {
++    install -d ${D}${libdir}/udev/rules.d
++    install -m 0644 ${WORKDIR}/37-can-j7.rules ${D}${libdir}/udev/rules.d/
++    install -m 0644 ${WORKDIR}/37-can-am62.rules ${D}${libdir}/udev/rules.=
+d/
++    install -m 0644 ${WORKDIR}/37-can-dra7.rules ${D}${libdir}/udev/rules.=
+d/
++    install -m 0644 ${WORKDIR}/37-can-ti33x.rules ${D}${libdir}/udev/rules=
+.d/
++}
+--=20
+2.34.1
+
 
