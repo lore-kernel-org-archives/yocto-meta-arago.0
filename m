@@ -1,213 +1,229 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <j-sahu@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 62222E9D407
-	for <webhook@archiver.kernel.org>; Wed,  4 Feb 2026 15:56:18 +0000 (UTC)
-Received: from DM1PR04CU001.outbound.protection.outlook.com (DM1PR04CU001.outbound.protection.outlook.com [52.101.61.9])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.23749.1770220574060391128
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 693FAE9D408
+	for <webhook@archiver.kernel.org>; Wed,  4 Feb 2026 16:08:48 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (SN4PR0501CU005.outbound.protection.outlook.com [40.93.194.8])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.24083.1770221312658757959
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 04 Feb 2026 07:56:14 -0800
+ Wed, 04 Feb 2026 08:08:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=g8fM+8f8;
- spf=pass (domain: list.ti.com, ip: 52.101.61.9, mailfrom: prc@list.ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=MrVC2qOX;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.194.8, mailfrom: j-sahu@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pJ0FCGLdqos0+3JJn2WXyMDbkAesJG+5pjVklLcL0XucdhusWQHoiRBoZKy/PenntM2jR1x7X3dWxCMw8/T9q3b7H2pJdvPibjFAUdBijp4CiFX7Tv24e9Cx8+jUGUQo+wPHsGgxvhJQ44r3XpCafDBngD7TQlmGC3SMzDFIx+U/StDiif+112K9hJhJ7Uv6/wsxajlSXaeZI4WBeaxLDCab+H1hhk8mYSOT6YJWwJSSwXmIHJt7ionmuiGDfWilhWLZ8Obn7nvZ34I4NKpSZ4ky2Re5SYGbO4dw1TlWCz4vNjl4q5QJXHRj6onXthFnE5FWT7Rlh835VoattvIutQ==
+ b=vS/yZRtdsZM8BOcI3cL8TxYw+bxKeHuSbYG1mBiVo4sEUH1y28qmIYoXoNzkpfGSuuHP8XFkRamcYGBBis9hN6EA/nfR5XRCbIvLRuJKYmJuuiEU+sFcZA/A3gzYBUQjMORBdeDk09QCuwDgZQjxiJvlNb1sx7wlaeOnEiWQH9vIS/j/GjUNBKygR6cjcZyPdo5PoehfE6wtRiWaHMvvC/U0ZAHdSxYizqdxp88dMunqHLMLaTWiuq1+dFHR8KBC7cAwVsAscxQ4dOcl/2Ei4lQVKV/0OxGpLxXuXinzFDuU3+phKxC72EDk2fZk6pwEe0vXrcLQYHiWBq2iix9RWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9hKA7KOK1/qWsIrw0Qja7+4/PW+94ajhGFO/RSoaYHg=;
- b=ATyp9PaeNjLdG42EfxJ5+Wa05/xU3v2+agFdx2Idik2G9fGcawsL3kdHpCo+I1/wZdutWNXzqQGdjyeN3XSEP/Ko7RgCoUu9DoYSQJgAjWzCRZe3pDt4I9e08iVKyomdrpvFPlvptr87fU0SRDc17WDbf9H09XPQXhkUOr4iEqPq3eiyNCAfJdLt92NoliVikvCJussw3kE8rjHAXFwo+/a80EC0kgCSjOoxetA7EqL67pLsM+aZoeudYspx5w+m3tr2bFi+QyS3PiBia8nj6YeGg2Ym1IJHjI+KEjto+8Qk2AgcLPoL7jspCVdCAfDgNDhxBRs+vjq8Y57pUH2lbg==
+ bh=18EMib/6iLE7AC8RmTZ0PPUMXh4diMZLkI6ttP/7oDw=;
+ b=JZD5niaU7VDc/NaXddPmzdr7cd4mirMNo2bYUNCfClI5EwsNs4XX44E6C+bmLM5y9dfyQuNsnKG7icooT/6b8TGyuOogndfLi2Et8qC35ivQD4goDftoy5f170KmMkTduXu5NH4Y0QeurmgbK0KOpkwuhXCf0aR5EwarQU5VX/0GWq0v488C4VZOlZ06J/lY4mL9XwaxQrWM1G9tHANhWTKwa8Vjjd12akzcnpCk97b08B37836zqVTEbi/Iz3mz+vaiNeFiXUMcStKSQEzMrNFzxMbGzIkZ8LfH7IFZ9FLyEL+MAdEo3HCAleVbIpG/7fVrveQRh3m0W5wQdcqWTA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
- s=selector1;
+ 198.47.21.195) smtp.rcpttodomain=konsulko.com smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9hKA7KOK1/qWsIrw0Qja7+4/PW+94ajhGFO/RSoaYHg=;
- b=g8fM+8f8Mg1eEs1ZVRMR/Yk+NU98BR1kkuTaY1M2Yuk6C2RmLMbUhsyXq+zaqkXHmTv4lu2WTn1FhiFQcP0gNW05dFV6u5CHDTAfId46lteH5gVP2EtxHcMhVoW1LYQlxadq7rETVNCykCT8VpojNIohKsPv/mTjT36zz7QrSmv/IotiqWSVOHhYv81PkXHP/04RCrUinaKdxr/bHD4niyYpzBXCgOLYAbVc+s2RJKbJ0kEmKQ5woqtv7xwlNw9F++cvkImkMh3P7p462DA5gXyFyBY54ONDRrmDeI4d9noETObGBoTKy6v9tybcqDYMDqA42+Dd7mONrJX2FSVPqw==
-Received: from PH7P220CA0012.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:326::19)
- by SJ2PR10MB7558.namprd10.prod.outlook.com (2603:10b6:a03:549::18) with
+ bh=18EMib/6iLE7AC8RmTZ0PPUMXh4diMZLkI6ttP/7oDw=;
+ b=MrVC2qOXfO+bDCQw0LCRxzWkpQYBjKiCk6mpPGJM041RcATowHnN222Y+JoXWlV80nYA6fRGUi8BrQcnqe7376RupiID5gzQLJxwuhcj9qaDdM1FOjUELCNz80QoNq1grftr/QjbhBtGNr8do8hZ7CKMJitHVfdodsXKQAZjKzs=
+Received: from SJ0PR05CA0057.namprd05.prod.outlook.com (2603:10b6:a03:33f::32)
+ by SJ1PR10MB5953.namprd10.prod.outlook.com (2603:10b6:a03:48c::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Wed, 4 Feb
- 2026 15:56:09 +0000
-Received: from MW1PEPF00016159.namprd21.prod.outlook.com
- (2603:10b6:510:326:cafe::3b) by PH7P220CA0012.outlook.office365.com
- (2603:10b6:510:326::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Wed, 4 Feb
+ 2026 16:08:24 +0000
+Received: from CO1PEPF000075EF.namprd03.prod.outlook.com
+ (2603:10b6:a03:33f:cafe::a4) by SJ0PR05CA0057.outlook.office365.com
+ (2603:10b6:a03:33f::32) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.12 via Frontend Transport; Wed,
- 4 Feb 2026 15:56:08 +0000
+ 4 Feb 2026 16:08:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=list.ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=list.ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.21.195 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
 Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- MW1PEPF00016159.mail.protection.outlook.com (10.167.249.84) with Microsoft
+ CO1PEPF000075EF.mail.protection.outlook.com (10.167.249.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.0 via Frontend Transport; Wed, 4 Feb 2026 15:56:08 +0000
-Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet201.ext.ti.com
+ 15.20.9587.10 via Frontend Transport; Wed, 4 Feb 2026 16:08:22 +0000
+Received: from DFLE212.ent.ti.com (10.64.6.70) by flwvzet201.ext.ti.com
  (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Feb
- 2026 09:55:38 -0600
-Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 10:08:18 -0600
+Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE212.ent.ti.com
+ (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Feb
- 2026 09:55:38 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE213.ent.ti.com
- (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 10:08:18 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 4 Feb 2026 09:55:38 -0600
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 614Ftckn1374855;
-	Wed, 4 Feb 2026 09:55:38 -0600
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id 6ACA89ACF4; Wed,  4 Feb 2026 09:55:38 -0600 (CST)
-From: PRC Automation <prc@list.ti.com>
-To: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, Ryan Eatmon <reatmon@ti.com>, "Denys
- Dmytriyenko" <denys@konsulko.com>
-Subject: Re: [meta-arago][master][PATCH] pulseaudio-service: Add systemd service for system-wide audio daemon
-Date: Wed, 4 Feb 2026 09:55:38 -0600
-Message-ID: <20260204155538.3316116-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20260204155219.2386647-1-j-sahu@ti.com>
-References: <20260204155219.2386647-1-j-sahu@ti.com>
+ Transport; Wed, 4 Feb 2026 10:08:18 -0600
+Received: from jeevan-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (jeevan-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.233.81])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 614G8GGH1393315;
+	Wed, 4 Feb 2026 10:08:17 -0600
+From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denys@konsulko.com>
+Subject: [meta-arago][master][PATCH v2] pulseaudio-service: Add systemd service for system-wide audio daemon
+Date: Wed, 4 Feb 2026 21:38:13 +0530
+Message-ID: <20260204160813.2393421-1-j-sahu@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW1PEPF00016159:EE_|SJ2PR10MB7558:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e7b2fb1-d9a2-4e64-fa35-08de6405e936
+X-MS-TrafficTypeDiagnostic: CO1PEPF000075EF:EE_|SJ1PR10MB5953:EE_
+X-MS-Office365-Filtering-Correlation-Id: 26f06bd9-f041-4397-8d0c-08de64079edf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700013;
+	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026|18082099003;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?v21NEfaDRKJgJQkuTz7M3EzKaTDu8fuvGW8882JP0Q2Hoon+/kK02Z5JreRe?=
- =?us-ascii?Q?0OMo/k/gmZBQR48a0jriVQUIyAiTiWP6tlUnq39n0JtfRE89zVnGKv+yiAsM?=
- =?us-ascii?Q?J80PNZ4JEaFBsX1i9mt9MMqutIEfLTMmZ7LI4kNLHnjPEKieZA56U0nLOQd8?=
- =?us-ascii?Q?318ojaczLJyB9LztyHq1V3fJmczitoabTc6tPKZve2C93AbPr4EHe9MYuijc?=
- =?us-ascii?Q?Q8p8OYVPfFwG+saxUk2py+DmZ7wXxY6YshDN7+CScUEHrk4g3PlreM8SBK71?=
- =?us-ascii?Q?xH5kavBX+ILJi9TGB3JTFn+MW1LTysuML1nmVfFHgDbR3dRpADtmD24NRHDy?=
- =?us-ascii?Q?r1D/Z38SsyRfo+AxOSjV0SublcQk05ZMPNyf1Fi21t4a4wOyP5eBqdlZ/pIT?=
- =?us-ascii?Q?BcDNS0coan9yOL2tH213XmHMk+yM+WAc0VsG0RbJei9Uf8K7XwdzteUGjPBB?=
- =?us-ascii?Q?nzHQ4LdHKM9iAjCMhEc3Lvh4d7wj4q7hhfgPQX06oSso4e9m3MQA2h6XM75p?=
- =?us-ascii?Q?ReZlUTD5/5DjsmfS4rUXtYr/FjcLKIOG3aVbOCcsrx1LOjNsNrcCIl+/OO26?=
- =?us-ascii?Q?IBOdX7voLe4sMnyX7Aa+ZeeZSkPJNj6O+tIXMYiYXYWCncL69B3yFGeq9wK6?=
- =?us-ascii?Q?C0J6g2CiFAKA3KsOtoxP3OhUsNGygwnkvgTTZzzZ9k5bX5fNs+/kh84vECDy?=
- =?us-ascii?Q?L+fg6vw4hdSzc1/2BHCZuasjvmTVLEO00rU+f7Om95JVJYMARRuxL+MaMAMP?=
- =?us-ascii?Q?2WlM0Y2R9M+jmVOsef17lVxxbynlrOzSsSaEaLUPUGYCCnSphTy/dyCqDKGD?=
- =?us-ascii?Q?Jl7qGa5OtKcGFsQPbHJusZ4FP7y5wZPA0u9u17Evk6PUeGmqxV15PKQFwu4g?=
- =?us-ascii?Q?ZRwFphnXIl1b+4EeWPy1EzYgotAGQRhRGwlleHm8wud1/g+RayzqhDaOFIiM?=
- =?us-ascii?Q?MgJOStRbpFTO0zOs7RhZSqKxW9AvVhZHB2mPYRqo8Rx/1NuKo/wcNHHbS6Ir?=
- =?us-ascii?Q?bRaYiN6vw+KaMQOFol+SW56FIquHJOreSF1ypW6vGL/gS/TZ5MRp+kfX//7h?=
- =?us-ascii?Q?wugzvrBHHeNkoUgf06P+oOXHAszlYF/Qv75DPirFrOMyctV8oYu6TaPeavhm?=
- =?us-ascii?Q?T+J86DpzK2egWqtGZFKW9rX9CbMQqa+2RVOWw9WYYMZXqNWreEOWCGMf/+Lb?=
- =?us-ascii?Q?85H1jbXvsJ1ha5zfpNIknz9Rcf4kVVR+/Spp24qu39HmcgaQ9BSAqe1mQAnG?=
- =?us-ascii?Q?xokj2NAoybyLcsJlG7468Tg/ghhMAhd7rIl5sQKCXE/TfkZmJUmca5I5vEUi?=
- =?us-ascii?Q?Jmvj/v124gsD3xUskqKgT6WIK8utCW4It3biCgtTw6j3LFUNgL6O50kFhhmR?=
- =?us-ascii?Q?DNlJhl1LaUEuWhAl8dTdal5yYNw+FF4K36BYM7+cmJ6xUp0UGiw/w3xuqsQn?=
- =?us-ascii?Q?Ex05zjGVwJabzSqa+KbER0Dx2r3sIRt+YVsHo1JcLUht+dJvEAspN3vZEjSE?=
- =?us-ascii?Q?0kWJepjY7DCrq3ebQat9c2XwQiCh3jbfiZLUaDSUHLnY/9BY04nfzpbDIfDw?=
- =?us-ascii?Q?gQmqco6CEzvTf8BpOv/YyCG52I4UYq/o5/8Y+0KM+FbZR/StRQ7qo4NRyHK/?=
- =?us-ascii?Q?nOtn/iZgh1EIXNATU1TJn6U=3D?=
+	=?us-ascii?Q?Gh3UlVDgx2H0PZ00vEDKewxfKUndu8LVMf8smq7bMOfzMiOWRzop7VYEnJTe?=
+ =?us-ascii?Q?/7opatVvCs0OJsAnjpSsKMm3PEZPf+LCE9GLsRdhZBCSleXR7y+dR8HXDmja?=
+ =?us-ascii?Q?LVE486/ndvj6gyapsWhFOVVXPxn7pqfbtrsnN5OUnmKe3s4YT6osLwMT4DtV?=
+ =?us-ascii?Q?/iaB8OXvc39Wb9r1tPEB9dUKRccaHl/D0IP5zXoV0VFwDrdyG2t0ThnRwNS7?=
+ =?us-ascii?Q?8+lXBE+afXZHoMRfYv06QVjIYWM9dC4TN+osY9fbfpaXdWbWLT6fr5qOUidg?=
+ =?us-ascii?Q?uqM/4tnWyorflNqoB9qgMA4lszu3izMTVsnWKTRye3dW+GtqIYKxnSEtu5jN?=
+ =?us-ascii?Q?YpMm2EXnUo3L0ye5PPtf/TOCGzpHehupi5DGhITmV68rq6QaPz28uiNNYDwu?=
+ =?us-ascii?Q?X5zh+XygGQTDKrKKPx78D5sjZKecbqhvK5E+ffH3JYRQXgBIgwA3yBtmNBAh?=
+ =?us-ascii?Q?BVGUmf2aQhM+UvAg1G7NFvOcWxuVm1ywsPpWipxoiKegXWrHWY5ifv70Km/l?=
+ =?us-ascii?Q?Yv3s/Aw1A+UHyDAbx+cPJNo1in40jJiiGgIf7EC0ZxX9FAtH5pmlbRIp9JL+?=
+ =?us-ascii?Q?ynZsjQPP6cstb5lko2NM9buNas5pL1JYbesjuI0Ws8oDj294azp+uzNPFhUS?=
+ =?us-ascii?Q?5utUsZbsIFIdYE2seuH66LBl+VCJSz7SbzJEtEoiPAOVh9epD9Uaegyw/XJS?=
+ =?us-ascii?Q?RU13pFv99SxoGcw3gPxmCl9Lps9e4yZtXPyRgDiHSNf58iB4TvKO4lOjDFcH?=
+ =?us-ascii?Q?gTlyhkOxsC42po3veNXdO+clz+QXAoPnb+ie9QK9NzfdKbDpNmxVX3CVu67X?=
+ =?us-ascii?Q?1KkYQdG5GlV7z35oK9XY10cCYHf7rsxZPjNkJSJCbHx0T4M8Ui1dM18sBLM0?=
+ =?us-ascii?Q?FvdAvT0VuOPpp/63l7Wlb4JQkb7OmEVgurg/wPVx1KkqL8AVK5ql+lX8g8De?=
+ =?us-ascii?Q?GxWc0YzyMmSVizgQ7x0yTLdk4C5j8rmNKc3pVbvD9MeaiAnEotmMZVIyBVLI?=
+ =?us-ascii?Q?QNbQrgHwY6lznxO3nHrJ7l5nP1g+qjj606KKV3Cj03AGUThisC/VCbPJE/m4?=
+ =?us-ascii?Q?EAbtF/SLMHN3bH2i07+iW+MTGh1gJ+5kO1nuS17JEw4iDPNMPwsENMNPBHHa?=
+ =?us-ascii?Q?Hij/pbeoXLvyXSc5j9E3HQMSClTgUjuXnATxfal4i6oYWxp2d0vXC+VDTBIW?=
+ =?us-ascii?Q?dB0qZvEB1iUKTsiUtqXjLOradj+ivVDKPyeYllThk4Yfn6ftpyEeXxswHkCL?=
+ =?us-ascii?Q?i6JwYezeEapLpa8zrirTq8yPZv2i8AUEPT7od8w1dnHQi7anqxPJNfp03M9Q?=
+ =?us-ascii?Q?qrrCG1lay7OZUrXne21zKFxkD6+gWPqJKwKjm3TkUIW9tNAlBQRMuylULYpY?=
+ =?us-ascii?Q?h4CZRzJs2SOut26hJqe4fzwaza0kI2gMk9zIVwm+0V/JgMR1ilYquu8iaoPA?=
+ =?us-ascii?Q?P98DkJ1fgmz7pzDbwnnWzn09pez7EBBBheD829z3JfOgD+u12UWjKS44sLYU?=
+ =?us-ascii?Q?j+/x8qxp6NM2vLfMKejCnlrM9JC3lQfIoDD3gFJ63f0AhqaLQEGrEtEYtGDo?=
+ =?us-ascii?Q?6L3NyoiLJAhS+VcwgXYimOLTamQh2vuYUfiYrwQzFXHFgjDv40AeVkHcKfZX?=
+ =?us-ascii?Q?HUMzHKXC2EXMdMXE5TbWpACeJLZdRhdo1g7mXPnej3/azEHKyNIdvdJusroQ?=
+ =?us-ascii?Q?R4D26A=3D=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026)(18082099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	rvL8JinzABG4/ApH4Whsw6Xi0lgSfr09ZGG8BzIc5IrRAtlrs5GA5apmEN9hAmBX5x9PtGegpD5Nh4gOa7kBzcIbibQw1DisktidPaeAXxRq7Orn4GDQBLZo5tpiWpkJID5ilf1UIeCMK1o+LQuA5+gQ4Y1yjwCVB8G5q3QjcukKxfEfRRhgbYt2J13ts5Par0zLJYqnMCdhvsmqrPAdFhgz9J1Wd5EJwlZyup7OjUGnSVlFC/jswvFyc5LZQNDucNdkQfU+TgHQ8S9MSPmxTf4Vh94CuDYf0FR3gwmo92DXmHG636TsxDCiiR+/wNnNP001QbQAL+Lc9jTBVjY0barAsOflhd0ncjeEHIyUv7BlyR5opJeI5EDAcRIztMDGDQbgDaAHXNDNkSntmXiBwGuxUaARhX6nmQ8nqrw/sVWvL/HD36nVz7rq0SE707I4
-X-OriginatorOrg: list.ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 15:56:08.2217
+	6kktCe/YwQ+lpvgsSzhY/32J7BQNGtdMZyvmsV8rRMuXkuJlzEW1SQ9CUXIOfLPO81Np+4eJ5ul16L9s8MJ+YEImZTlhUyuigKuYzJp4bqNZB0ASHRkQvl5IgimbnBho/VpJ5BybkjjuBelcN7QJ9HOPVbkkgmTR/yyK3aYpDYRjukObvNSCYCinvDM5D9df3fbgrAOZrCn7OywpDTAOOrXQkxKubTQk9ax02S02+udipaU8pw7ZgHPVfL9M/HxSN94iypQsmgDt9bqN55nENCE7P6Smp2VvvotkLwsWggr9/ZhIUzcXiqR1yK/wO2GZA6guZ3yvbIl8qP7Zzlw0089PIGtRjHg2+B1fogO2EobFJb0VOFqp8qo49341cEZbO/lMEprNzj4soBEYBHn5IA9Nc2GI7sp4vlH1rd8/gJ8V6679m8+s7UqCPcE2IvaK
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 16:08:22.4880
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e7b2fb1-d9a2-4e64-fa35-08de6405e936
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26f06bd9-f041-4397-8d0c-08de64079edf
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	MW1PEPF00016159.namprd21.prod.outlook.com
+	CO1PEPF000075EF.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR10MB7558
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR10MB5953
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 04 Feb 2026 15:56:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17078
+ <meta-arago@lists.yoctoproject.org>; Wed, 04 Feb 2026 16:08:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17079
 
-meta-arago / na / 20260204155219.2386647-1-j-sahu
+Add a systemd service to run PulseAudio in system mode where multiple
+applications need audio access without user sessions. Depends on
+pulseaudio-server to ensure audio/pulse groups exist.
 
-PRC Results: FAIL
+Enable this service by default to provide system-wide audio for all
+applications.
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Patches
-----------------------------------------
-All patches passed
+Signed-off-by: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
+---
+Changes in v2: Add SUMMARY, PV and PR.
 
+ .../pulseaudio/files/pulseaudio.service       | 11 ++++++
+ .../pulseaudio/pulseaudio-service.bb          | 39 +++++++++++++++++++
+ 2 files changed, 50 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/pulseaudio/files/p=
+ulseaudio.service
+ create mode 100644 meta-arago-extras/recipes-multimedia/pulseaudio/pulseau=
+dio-service.bb
 
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  apply-yocto-patch: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [meta-arago][master][PATCH] pulseaudio-service: Add systemd=
- service for system-wide audio daemon
-- Submitter: From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
-- Date: Date: Wed, 4 Feb 2026 21:22:19 +0530
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: 178b67069851613e6a41b2cb1ae30379a=
-8120ebb
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Andrew Davis <afd@ti.com>
-- Commit Subject: meta-arago-distro: Remove tisdk name from Arago packagegr=
-oups
-- Commit SHA: 5fb7dfe249b07778f706eb50635e2c5a2c56b13d
-
-Patches
-----------------------------------------
-All patches applied
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-repo: FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-FAIL
-    WARN: Are you missing a PV =3D "...". (PV-1)
-        meta-arago-extras/recipes-multimedia/pulseaudio/pulseaudio-service.=
-bb
-   =20
-    ERROR: You must have a SUMMARY =3D "...". (SUMMARY-1)
-        meta-arago-extras/recipes-multimedia/pulseaudio/pulseaudio-service.=
-bb
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
-
-
+diff --git a/meta-arago-extras/recipes-multimedia/pulseaudio/files/pulseaud=
+io.service b/meta-arago-extras/recipes-multimedia/pulseaudio/files/pulseaud=
+io.service
+new file mode 100644
+index 00000000..1d3ac435
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/pulseaudio/files/pulseaudio.serv=
+ice
+@@ -0,0 +1,11 @@
++[Unit]
++Description=3DPulseAudio Sound System
++After=3Dalsa-restore.service
++
++[Service]
++BusName=3Dorg.pulseaudio.Server
++ExecStart=3D/usr/bin/pulseaudio --system
++Restart=3Dalways
++
++[Install]
++WantedBy=3Dmulti-user.target
+diff --git a/meta-arago-extras/recipes-multimedia/pulseaudio/pulseaudio-ser=
+vice.bb b/meta-arago-extras/recipes-multimedia/pulseaudio/pulseaudio-servic=
+e.bb
+new file mode 100644
+index 00000000..5ce849fc
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/pulseaudio/pulseaudio-service.bb
+@@ -0,0 +1,39 @@
++SUMMARY =3D "PulseAudio systemd service for system-wide audio"
++DESCRIPTION =3D "Systemd service to run PulseAudio in system mode for embe=
+dded systems"
++LICENSE =3D "MIT"
++LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0b=
+cf8506ecda2f7b4f302"
++
++PV =3D "1.0"
++PR =3D "r0"
++
++inherit ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', =
+d)}
++inherit useradd
++
++DEPENDS =3D "pulseaudio"
++
++# Ensure pulseaudio-server is installed to create audio group
++RDEPENDS:${PN} =3D "pulseaudio-server"
++
++SRC_URI =3D "\
++    file://pulseaudio.service \
++"
++
++S =3D "${UNPACKDIR}"
++
++SYSTEMD_PACKAGES =3D "${PN}"
++SYSTEMD_SERVICE:${PN} =3D "pulseaudio.service"
++SYSTEMD_AUTO_ENABLE:${PN} =3D "disable"
++
++FILES:${PN} =3D " \
++    ${systemd_system_unitdir}/pulseaudio.service \
++"
++
++USERADD_PACKAGES =3D "${PN}"
++GROUPMEMS_PARAM:${PN} =3D "--add root --group audio"
++
++do_install() {
++    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}=
+; then
++        install -d ${D}${systemd_system_unitdir}
++        install -m 0644 ${S}/pulseaudio.service ${D}${systemd_system_unitd=
+ir}/
++    fi
++}
+--=20
+2.34.1
 
 
