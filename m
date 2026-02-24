@@ -1,232 +1,403 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3222EEC2A4
-	for <webhook@archiver.kernel.org>; Mon, 23 Feb 2026 22:30:05 +0000 (UTC)
-Received: from SA9PR02CU001.outbound.protection.outlook.com (SA9PR02CU001.outbound.protection.outlook.com [40.93.196.46])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.7241.1771885795573160587
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EA4B6F4BB95
+	for <webhook@archiver.kernel.org>; Tue, 24 Feb 2026 22:22:16 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com (PH0PR06CU001.outbound.protection.outlook.com [40.107.208.32])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.32679.1771971730621154814
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 23 Feb 2026 14:29:55 -0800
+ Tue, 24 Feb 2026 14:22:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=JlspRLGI;
- spf=pass (domain: list.ti.com, ip: 40.93.196.46, mailfrom: prc@list.ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=OrJYo+Ys;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.208.32, mailfrom: reatmon@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MB4R+GodGZaxMDjHLiycay9gJPiTWKSSi7L+OkydrBKCgeDNDW5tWmq2PiYFTXBhN7HSTNYijP1KnYSygFVj1TLLNzEikcSikoGLHbxvFLHjMX7hnlkbLmOSzYZfz75XwI1Sl8hOWyrwDVKLe1M5ooJyixufk8AQCfioJmeXRt2o315t4Ylf/OXEtigxtDu6bHl8gDoQcOrCaiToWg7rA5VrSlmQhAjOgdi0OZrNTO9TQmIzWr4lygXwDnapUbsJxjjZLJuaJIaz7SmBLdlXVilqQjUm5GJl5J6bVyD2sWfjcLTr2CU1tzowONFumzGP7kCHx4bKhTx6rrnmzjrSag==
+ b=MRXvLfCiezJtnwyJCzZWuhSizv5crGbbEG6nJspmAHkvtEbnS14uuaTXFlWqHyRzdTz+lj2+k9FjjTIw220UjYmHkswC7dDDTHtRkjWRzlMpVeKyoDkKH9jfWMiGHoNjIg1x/VhxzsteLnUnHL6a3Z8dZXYP2UaponSglU6tpzKaSEro9EE0Jk42LpNOinieEPltQMQ6fcS554lKpYKTjITtd3yPte4JOVLDhtGlOkrQvxxYbe7kBNjarIR1YjRo0ChddI1pRRfpla/5tybxGYGuCiTBuPZfwL71BF+iOlYYVECGZT9+lpeowGg3JMg/J1u3cJIWyWc4ZED9JCnaYQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yiV/6PWnsfh0oOSBAq+oqlq/HqjsrKhiDnQ9bRUgHaE=;
- b=VnxQCHsR07jStWBm81KcDw6cNvKXt41Idvq13u7IYyn0CsuGTHIKFQli32XQzEx4VMX3cgwVM/GHhm6wzJdZUtVCHxuiimN+9YJx/1bsIc3hK5fT+cdIY5NAmAMtQgtq2STSEgTwJkavzW3b9SUn6DMajHtoUCbNJfZCjOc9T6lNHK6fIuyk8vNxRzqXPJSXSqvbFQfo9BtmPI6bNLwUHZAkAsTGdn/fJesKhaNyqatUXO+pniwgwLJ9tr24h7m/NT66TyElgkGasEXGW8AkjuM6b8YW7GeVZm9NQFieKTc7gTtqTTKy3c5WajrGqGo7EY9xprmrxRJGbN1t4dOjxA==
+ bh=i2vMUPQPbdcpmpryW46v/pZTAuKJvK80V8ezRUXmGXc=;
+ b=hksKtb4Uy7f0fOvzYKb9LgSzTYfBRtIlN2CPnV24Ob+0zzBQ+MinxSxtdPD/GrPw2WeJtlAspdfAcZpMoODrCFB8BMYRvKK5FzICVbAZdT2QTklJATNj+8ezT7Tnlwqs2I4nMl5oHngkW0weCigoPbcM7tR//+JncojHpel7l+6Plk6nX7fceURPVaiXIJKnTyYI0BbJ6r/8I82Hyeyap9g69MkXfSJYPYJ4rQDSCYHNg9aL7MWD/aZ/KLkpDypGIERrrmBST1mPCG9utIQzo+quMeJzayVYPPFuwKIjqSGEkBlt/hQxogofIjzWlemuHxDQsE8t/iWkCZr5oExGFg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
- s=selector1;
+ 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yiV/6PWnsfh0oOSBAq+oqlq/HqjsrKhiDnQ9bRUgHaE=;
- b=JlspRLGInuJQMvL+sYKAp5itzzQyUdzrQeBePX15j6RgIM7PbDA54ze+2T7OhmVoqnWYbwUwq4QQ+mcpje73SRXVPKdlS22VvrjZLMabfCxeMsgHA/82ZGPAknvJ+/0wuxVMB0Z1H2FQSmHmSQ2OLaDmLDgeIWOgIqRfPHlNA2x9IlexV3C3+BEi0IWVEJNdr632QvstrJVLi6l8buSjBPLwhMJKjoLJyFvusCK+JkOChyqCELpS/ULa8NQFzYRitJhY5z/3RaYDSVu8L40gVdZygsruudtp3prihRmd/OasXuIhaBheqP1JxyzmC+xbjvdmjueJvFavbEgQmUL2iw==
-Received: from CYZPR02CA0014.namprd02.prod.outlook.com (2603:10b6:930:a1::16)
- by LV8PR10MB7824.namprd10.prod.outlook.com (2603:10b6:408:1e7::8) with
+ bh=i2vMUPQPbdcpmpryW46v/pZTAuKJvK80V8ezRUXmGXc=;
+ b=OrJYo+YsYAdFAoOy04wxNaasJc6fsFVqpApKQphkQeVfJN35o7XzDhLvMTrGXa0uGY2R5A3x3c7p7eiY5x381epquCkU+E7SbjmUTMWcapZ2VnLyxu+GGYcd6xN8FjUOHF5nVKLqKdiQX6OkJt1aOt5CWy3PiIfadLqHv9e6XZQ=
+Received: from SN7PR04CA0168.namprd04.prod.outlook.com (2603:10b6:806:125::23)
+ by CY8PR10MB6491.namprd10.prod.outlook.com (2603:10b6:930:5d::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Mon, 23 Feb
- 2026 22:29:51 +0000
-Received: from CY4PEPF0000EE3F.namprd03.prod.outlook.com
- (2603:10b6:930:a1:cafe::18) by CYZPR02CA0014.outlook.office365.com
- (2603:10b6:930:a1::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.21 via Frontend Transport; Mon,
- 23 Feb 2026 22:29:46 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=list.ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=list.ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- CY4PEPF0000EE3F.mail.protection.outlook.com (10.167.242.17) with Microsoft
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Tue, 24 Feb
+ 2026 22:22:07 +0000
+Received: from SA2PEPF000015CA.namprd03.prod.outlook.com
+ (2603:10b6:806:125:cafe::b9) by SN7PR04CA0168.outlook.office365.com
+ (2603:10b6:806:125::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.22 via Frontend Transport; Tue,
+ 24 Feb 2026 22:21:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SA2PEPF000015CA.mail.protection.outlook.com (10.167.241.200) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Mon, 23 Feb 2026 22:29:51 +0000
-Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
- 2026 16:29:50 -0600
-Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE215.ent.ti.com
+ 15.20.9632.12 via Frontend Transport; Tue, 24 Feb 2026 22:22:05 +0000
+Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 24 Feb
+ 2026 16:22:05 -0600
+Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 24 Feb
+ 2026 16:22:05 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE215.ent.ti.com
  (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
- 2026 16:29:50 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 23 Feb 2026 16:29:50 -0600
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61NMTodH1112331;
-	Mon, 23 Feb 2026 16:29:50 -0600
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id 6121C138B5B; Mon, 23 Feb 2026 16:29:50 -0600 (CST)
-From: PRC Automation <prc@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>
-CC: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
+ Transport; Tue, 24 Feb 2026 16:22:05 -0600
+Received: from grumpy (grumpy.dhcp.ti.com [128.247.81.229])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61OMM5Xx3491331;
+	Tue, 24 Feb 2026 16:22:05 -0600
+Received: from reatmon by grumpy with local (Exim 4.97)
+	(envelope-from <reatmon@ti.com>)
+	id 1vv0n7-00000005R2W-0pkZ;
+	Tue, 24 Feb 2026 16:22:05 -0600
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
 	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago][master][PATCH] *: Remove unused patches
-Date: Mon, 23 Feb 2026 16:29:50 -0600
-Message-ID: <20260223222950.3371873-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20260223220731.1224087-1-reatmon@ti.com>
-References: <20260223220731.1224087-1-reatmon@ti.com>
+Subject: [meta-arago][master][PATCH] iperf: Remove old recipe
+Date: Tue, 24 Feb 2026 16:22:01 -0600
+Message-ID: <20260224222205.1295569-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3F:EE_|LV8PR10MB7824:EE_
-X-MS-Office365-Filtering-Correlation-Id: aedd8f51-6112-4de8-b1e9-08de732b0f64
+X-MS-TrafficTypeDiagnostic: SA2PEPF000015CA:EE_|CY8PR10MB6491:EE_
+X-MS-Office365-Filtering-Correlation-Id: 275423d7-8a05-4e5f-16b1-08de73f32463
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
+	BCL:0;ARA:13230040|36860700013|34070700014|376014|82310400026|1800799024;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?NFd/JglOLD5avBp5PoR1h6U20ntSD5XJ8Ze/rCdhWJQE5zf6YnW8Vqj7n6aZ?=
- =?us-ascii?Q?AsXWQGvx7oQ72H6bpgOR7G4/xpcj0dEwW8mMHDejp5nuuLX+SczM1+aexiMT?=
- =?us-ascii?Q?kmyImOcV5ys/QmnCSjQIkEw8A/YAwNDCfiV4EVFPI7XCjZe/YQLkLEkBLWO0?=
- =?us-ascii?Q?X0jLuVvNCk3zsKlTVPmHwl2ICwoHCSi6exuCmkw5W0YRKXpLJYQKwILBZHss?=
- =?us-ascii?Q?VsBzLgGKsq/LtyKo8AoAlvVcGmJwd1x+tlrFSKE5k9EIUbh40nXBzHE00xMR?=
- =?us-ascii?Q?MqvKsT/NGIi4DgVW3U0w1Yo89o/UhYkFQrBzz7wTsxj/rPDPcarg7S3Lfotf?=
- =?us-ascii?Q?8V4i/dbnd9SimWuZo9ZL9w1wS2C1eHmKuQjhvdsBFhZ+quqpr9rDTaTgxJd0?=
- =?us-ascii?Q?W4tuurVly8hzeK2Jfkv2GYo5aN+T+wz4pGHUl7oO4A7DcIcV4xApJTTmkxup?=
- =?us-ascii?Q?JWEVKbNok+cGVLHwVx5bi751kl1AAfrD1cPtkc7rGGddRvjAaHbUUrnrF4KG?=
- =?us-ascii?Q?0qY3fgyVYXAcjwRpSZymSfe/c8+1XK5xbQNG9jnRqixEKMuuKMAWhtkpfqqO?=
- =?us-ascii?Q?BAl8/T2x73sJtE5Y7Pggv8j21iGjc1agoffmcT6ZqJFPgGOMztIv8o6rjXBO?=
- =?us-ascii?Q?YTPC1dOI91dZY0n/btSh9yT8VXO4X8Wmxm3oBmWyQNOo9EkhQ/8cFyyLGJiK?=
- =?us-ascii?Q?e1VSE2VqLCcZT6k7Ba+B5iKerGnUesFUWieGBbplKvdwxQIui4DROz+6cv5j?=
- =?us-ascii?Q?fR4SoK/e7uAyanQzRXw+8nBlSntDhT5zeofSn1hubpXvpwqHxKLfRhavP/J8?=
- =?us-ascii?Q?kXWcc/VdCcphEFViHULWmhI1nMv8d8jHmYCzQwFpgM9h9a4uaOTvMd2k4TQA?=
- =?us-ascii?Q?iM1MCWApMtsH264ZVXRxruaiXMjNOrLnIKQ5hAD8T4k2oRo22qIjMMwqa9xs?=
- =?us-ascii?Q?bhgvyRTGjm5JO1XHDFaeL2ItfxNACccnCl1rgCbQOreY7vc1rZcPL2C1HloN?=
- =?us-ascii?Q?cJCwKpRfDZ5ee7LNIv5wjixZm4kY9mVjWjaF1GfCGqWHRuyt7dT2e+RwBuG3?=
- =?us-ascii?Q?J3vFnUV3v/SZdI5V60ZqvYUbf61sdSwsXd9Gv9BlBB5upWz/YzMvIZbTJwdf?=
- =?us-ascii?Q?XOivYbjY0owp1S5Nh6tOOr7GMVyz8z04KH9oyW4rqHI/Ksh6WZ2y8WzZNBk5?=
- =?us-ascii?Q?zTi9ek1ibZlm7cBh20MpHoawcuOhvvpcq9pB5Axjl03pUPJ8RpaHDXe//bzi?=
- =?us-ascii?Q?8o+pkCLe5iiv+HQfOtDnHTD0d3fpS+zPw35DmuZhL5PzeOFt7k+kT/t/dxw1?=
- =?us-ascii?Q?reBQPsZmhI0u1vZomn8UefMGRXpd01i/TPaREmfNoehOq3a4f9isZ4Bvj9T3?=
- =?us-ascii?Q?08Ef/jTEs35pZwhchzyzaOFc+6SPRxCowka6h0Vy1UeFqv0n0n8rOTYuCha7?=
- =?us-ascii?Q?B41ZKtzezIAdJvKPLoVIEIocJdI9Z4WFbsFHTVB1uTqaCGeRbD8cbo9Vackf?=
- =?us-ascii?Q?K47DzB7rKUXd3JwGUv9DnBga8hmuXFvab/E7IcNfFPxIA8GkejU21DtSlSzq?=
- =?us-ascii?Q?baaxYUefuK9++mOv/xPdARM9vramfi03g3rDg6I9oLTpvBnDiEViZPEfzwxu?=
- =?us-ascii?Q?JRh8BPPiu7YUD5V5C/3KI5BdV1kcArsnbHtVsUs85jBb?=
+	=?us-ascii?Q?iFONVPw8Y32mONRjjr4i/hR9E6W1pUvOP83pgk5hqAgW4bKLzLS4vYG5d9Nr?=
+ =?us-ascii?Q?pxspvPaXM4G0Reqt3pWsJqRQRfw9cwtZLNcn2eow8HpkBmmA8AUz0Ugls4dQ?=
+ =?us-ascii?Q?4y/yoB6nNLn9vN/UquTkYkuzN5eeKVuOMJi6YvyVw4X7Zh0uCHTq6HLLTxvH?=
+ =?us-ascii?Q?T2rmOq4Lu6h4BEz6rnaFr0eYm8kMBFht7RWXqsm6mw9hWeHuU1UO3QnjDFn/?=
+ =?us-ascii?Q?DRIr8wJLP2kKicNFWeJW15IrzJursQCSjL6eHxRQpJFh8nDRPtbbv5MGPAc1?=
+ =?us-ascii?Q?xVh0zFFpVoOqU1hFJFUKcR5FHICDwXBn6y0WrkcVjcSp/bZOkJlBSuXcTzSl?=
+ =?us-ascii?Q?2XT+kqwGzddNAGoFOWQ6gbdfV+phLFcqGXuKuSQSxGeAvmBeaWn1Oq8ocaKI?=
+ =?us-ascii?Q?X5v5lBsSV7i4fzsrNgMTG2TGHmwY1SxGkcnaqRe4RdFDNcZNJ/ePuApK3G9O?=
+ =?us-ascii?Q?ytizY8bedWgYR/tfjK0DCG+pPd0bvd4xqLkc22xLGAyI0fKv+6J85fgErY0F?=
+ =?us-ascii?Q?+EnytRYeEUdra1MpiOo9s3fkrQtMgalEsZrbCT/8sITA7G+Av3r7lveroU6U?=
+ =?us-ascii?Q?hsVIVmUGYawvhDwXocnZ3QyEiOGcmfaWc2v2DynmAxWhc5LT4ZZ5USEy5Dcr?=
+ =?us-ascii?Q?RhmsioriURSbsaA7RIRA52lhiilUc4qrzRj6osxcCV8VBURjd0+9wTBfXmXj?=
+ =?us-ascii?Q?vM3ruqRe3jK2hff1Xj6BtG6PkxQQuIYNcON/0pa4GitAYglX8AXiI/Zdlp1Q?=
+ =?us-ascii?Q?Oqy0koALS5KqTWaUziw0em7Qn5WYBqhJEtWeobEsPkRoe2DNjrM4KBCfbWZL?=
+ =?us-ascii?Q?8d3L3tRGciz3KvwxgkDSyNxGlmq35zpXasCtSCucW9r1/L4oEGTHfhE2mEzJ?=
+ =?us-ascii?Q?OyTZf7Z4hCzFmcFvozhEn5J24JdwsQ9fkftPF/dyKVzrmULFjLKT6cyMAwEs?=
+ =?us-ascii?Q?xjhBOauLtz5MFfEvEb4W2jSwi4iTLY5AgeXCqTBbXjYC+Z46wqaCL9YqJUyp?=
+ =?us-ascii?Q?Y9Ksx3hCKxpf1AZ/Tg/i/eWEL+MGjIhR0BujaJjxGzNZio1xY6M1m3CWCA5z?=
+ =?us-ascii?Q?N9KgcgO9vQ3852OxV5CuVXzYGnW5sATkV3Tlid/iLEld5MS/YAhTQj7aQBVI?=
+ =?us-ascii?Q?Tco++siMEqLfof2m+JCJ/kgwNJwNi+bNRQ+c3v047m6B4zSsdeFJIURGE6U6?=
+ =?us-ascii?Q?UCacvewWzxeqMhDLz17u2TaU3uW4xjT+3LHzn/Vm6Izv1bOLykGAa1wzX0pu?=
+ =?us-ascii?Q?is2QJpv1oTXbLtgS/VwHfZ5LDix4m3cJu8U1tf4ELxn9XEqe2We0fqXwwNnt?=
+ =?us-ascii?Q?aTqoFJ9k3OzF2cXgHYqufq0PM2KH/R23k9kAmsTkpsGdq+pQZPfC34EP+/OR?=
+ =?us-ascii?Q?VP9dhUX+yCP5TC5/8mW9dQU4wigV0JKZ+cjC9CQvmS8S0ssspWHmdO/+KTj0?=
+ =?us-ascii?Q?Z96QgIxeFEyo6cAqchtoZ+/LYswwfjR3YxJ+5znJ+PneCWvAxmPaOFWaL+Vz?=
+ =?us-ascii?Q?hBF1iFZHB4DtFubmFO3SCeeGvEaNN2SvSz+9ccPiFYBsUhUnZGHrBz+/xKhi?=
+ =?us-ascii?Q?aDI/r/zcpB9uCYAI63/pBXNj1i75kYP+yNHP++uu20iWHDg4EKLGpO8u04Hr?=
+ =?us-ascii?Q?Vg=3D=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(34070700014)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	hrtJx2476Q3VrK3WxCFX9k9hBS8j/QOBOKHUxtCdCJ+CsM+pwrMbaRZ+z6lp5y7h4rTB/wXrZn8rI1E3RRNBABQ8oyCgBmU42wkzDTswjFPnLQzebelxZ4YEErm+j/mh/S6jkcbICkq5AcyVzYol5CroUt93TzcVgvMLsAUhB8aKu6++oVLS65K3qYGqEDmLfeM1rp0SFzTIj7IWISsZE56TTZkMS+BdNDC2prMIAMqlfpxohH9wGmrfLA0/fvHOOuYs1IBgyz8HdHGtKfkutDZQH9AtGR9Kk5rJh+7hvXto9Y3vvgQGIwfChERwmK94W3zLktOyV/7eMiusz7VVQPX6bMFAC7QTGHyEPCjV3a0lyfmHdDT1iPLSoWT2IdK8SRTHRHPe3x7l1v0BhjuEvG3hgmLB1fQH01uS+75gM0vuKJ8mNZOYwe/OVCJq0TO9
-X-OriginatorOrg: list.ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2026 22:29:51.1389
+	Pw6gZCwkUW5uI+lEr8uKTv/UIcbmDNn+Wf2gB2oYbS2dEn1eRy0wvIrBVslbuFIlLS+cKlGnFJFbtEY1sBrBQGuFmorHD4ITvbRcKLRdo0LivV31fgyv6tP2UQ9NURmYL601Oo3/aqzKRtuoSqyOX0o/tHq92PRrvLYkKLJGTdsZbZI0FXLDOcLV+rfVBFlZALv4C4ahAZTewjxqAyS/zOtI63j2YRqMkcWgMIrJIUrusDrf3DOmfm8/Ci8myQTK+84KnszkgXKFNs/qFZ3uRYphmwEhfWTZDqlyivEURg1GQ9eYUxiJ7T0iyRRl6akVSMbQwDEj+cxE/9ni87dEc4P6wypMCUzy4IOM//Ir9ZnGeyR5l1s7fgN+4yjcPG/nABYvwFxSnKREBYXo/tWZKBcTNAz7dt9wwMQBp+zLrfAzIF/toV37CUZe3N37QOA8
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 22:22:05.7162
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: aedd8f51-6112-4de8-b1e9-08de732b0f64
+X-MS-Exchange-CrossTenant-Network-Message-Id: 275423d7-8a05-4e5f-16b1-08de73f32463
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	CY4PEPF0000EE3F.namprd03.prod.outlook.com
+	SA2PEPF000015CA.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR10MB7824
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR10MB6491
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 23 Feb 2026 22:30:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17135
+ <meta-arago@lists.yoctoproject.org>; Tue, 24 Feb 2026 22:22:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17136
 
-meta-arago / na / 20260223220731.1224087-1-reatmon
+We missed this when we moved to iperf3 a while back.  Fix the last
+reference in packagegroup-arago-bootstrap and remove the iperf recipe.
 
-PRC Results: FAIL
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ .../packagegroup-arago-bootstrap.bb           |  4 +-
+ .../0001-fix-out-of-tree-config.patch         | 54 -------------------
+ ...e-math.h-include-that-breaks-aarch64.patch | 42 ---------------
+ .../iperf-2.0.5/0002-fix-bool-size-m4.patch   | 19 -------
+ .../iperf-2.0.5/iperf-2.0.5_ManPage.patch     | 10 ----
+ .../recipes-benchmark/iperf/iperf_2.0.5.bb    | 23 --------
+ 6 files changed, 2 insertions(+), 150 deletions(-)
+ delete mode 100644 meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/000=
+1-fix-out-of-tree-config.patch
+ delete mode 100644 meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/000=
+1-headers.h-remove-math.h-include-that-breaks-aarch64.patch
+ delete mode 100644 meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/000=
+2-fix-bool-size-m4.patch
+ delete mode 100755 meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/ipe=
+rf-2.0.5_ManPage.patch
+ delete mode 100644 meta-arago-test/recipes-benchmark/iperf/iperf_2.0.5.bb
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Patches
-----------------------------------------
-All patches passed
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  apply-yocto-patch: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [meta-arago][master][PATCH] *: Remove unused patches
-- Submitter: From: Ryan Eatmon <reatmon@ti.com>
--From: Ryan Eatmon <reatmon@ti.com>
--From: Wei Gao <wegao@suse.com>
-- Date: Date: Mon, 23 Feb 2026 16:07:31 -0600
--Date: Wed, 12 Mar 2025 10:37:01 -0500
--Date: Sun, 14 Dec 2025 02:15:20 +0000
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: a5b9a91022e7734a098be655c8c01cd87=
-cb292fc
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-next
-- Commit Author: Brandon Brnich <b-brnich@ti.com>
-- Commit Subject: gstreamer: Fix CMA Exhaustion in latest gstreamer
-- Commit SHA: 92479493d820fd6a617a4605ed2612649f0c4aa7
-
-Patches
-----------------------------------------
-All patches applied
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-repo: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-PASS
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  yocto-check-layers: FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master - FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-ERROR: <build-dir>/sources/meta-virtualization/recipes-containers/container=
--registry/container-registry-populate.bb: QA Issue: task do_populate_regist=
-ry has network enabled
-
-ERROR: Signature change for container-registry-populate
-   container-registry-populate:do_populate_registry: f61474a7d29d8198acfc6b=
-2114ead84532cd60880a168f8dcc054d5c9a3e2c16 -> 7ec2edb3b42764d8e8dc9f7380895=
-851afa5cc050af7d6fc665b2d2cffd3e052
-      bitbake-diffsigs --task container-registry-populate do_populate_regis=
-try --signature f61474a7d29d8198acfc6b2114ead84532cd60880a168f8dcc054d5c9a3=
-e2c16 7ec2edb3b42764d8e8dc9f7380895851afa5cc050af7d6fc665b2d2cffd3e052
-      NOTE: Reconnecting to bitbake server...
-      Taint (by forced/invalidated task) changed from nostamp(uuid4):cdf8be=
-a1-11e1-4ec4-9cbf-0c9eef4546e0 to nostamp(uuid4):5b83945a-7130-4aa9-94e7-ff=
-dabc7117ee
-
-
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arag=
+o-bootstrap.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-=
+arago-bootstrap.bb
+index a1b9636d..e7a28eb8 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-boots=
+trap.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-boots=
+trap.bb
+@@ -23,13 +23,13 @@ UTILS =3D " \
+ 	 ethtool  \
+ 	 pciutils \
+ 	 stress-ng \
+-	 iperf \
++	 iperf3 \
+ 	 lmbench \
+ 	 usbutils \
+ 	 devmem2 \
+ 	 phytool \
+ "
+-	=20
++
+ UTILS:append:ti-soc =3D " \
+     mtd-utils-ubifs-tests \
+ "
+diff --git a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0001-fix-o=
+ut-of-tree-config.patch b/meta-arago-test/recipes-benchmark/iperf/iperf-2.0=
+.5/0001-fix-out-of-tree-config.patch
+deleted file mode 100644
+index 003d2523..00000000
+--- a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0001-fix-out-of-t=
+ree-config.patch
++++ /dev/null
+@@ -1,54 +0,0 @@
+-iperf: fix out of tree configuration
+-
+-The configure step uses a package header to check for support of types/dec=
+lares,
+-this package header encapsulates all the required system header for provid=
+ing
+-the needed resources. When configured from an out of tree directory the pa=
+ckage
+-header is not found due to the hard path.
+-We now make the path for package header relative to our 'srcdir' so it is
+-found appropriately.
+-
+-Upstream-Status: Inappropriate [oe specific]
+-
+-Signed-off-by: Awais Belal <awais_belal@mentor.com>
+----
+-diff --git a/configure.ac b/configure.ac
+-index 2b3fd20..d420f9e 100644
+---- a/configure.ac
+-+++ b/configure.ac
+-@@ -176,8 +176,8 @@ dnl Check for system services
+-=20
+- dnl check for multicast
+- if test "$ac_cv_multicast" !=3D no; then
+--  AC_CHECK_TYPES(struct ip_mreq,,,[#include "compat/headers_slim.h"])
+--  AC_CHECK_DECLS(IP_ADD_MEMBERSHIP,,,[#include "compat/headers_slim.h"])
+-+  AC_CHECK_TYPES(struct ip_mreq,,,[#include "${srcdir}/compat/headers_sli=
+m.h"])
+-+  AC_CHECK_DECLS(IP_ADD_MEMBERSHIP,,,[#include "${srcdir}/compat/headers_=
+slim.h"])
+-   AC_MSG_CHECKING(for multicast support)
+-   ac_cv_multicast=3Dno
+-   if test "$ac_cv_have_decl_IP_ADD_MEMBERSHIP" =3D yes; then
+-@@ -193,9 +193,9 @@ fi
+-=20
+- dnl check for IPv6
+- if test "$ac_cv_have_ipv6" !=3D no; then
+--  AC_CHECK_TYPES(struct sockaddr_storage,,,[#include "compat/headers_slim=
+.h"])
+--  AC_CHECK_TYPES(struct sockaddr_in6,,,[#include "compat/headers_slim.h"]=
+)
+--  AC_CHECK_DECLS(AF_INET6,,,[#include "compat/headers_slim.h"])
+-+  AC_CHECK_TYPES(struct sockaddr_storage,,,[#include "${srcdir}/compat/he=
+aders_slim.h"])
+-+  AC_CHECK_TYPES(struct sockaddr_in6,,,[#include "${srcdir}/compat/header=
+s_slim.h"])
+-+  AC_CHECK_DECLS(AF_INET6,,,[#include "${srcdir}/compat/headers_slim.h"])
+-   AC_MSG_CHECKING(for IPv6 headers and structures)
+-   ac_cv_have_ipv6=3Dno
+-   if test "$ac_cv_type_struct_sockaddr_storage" =3D yes; then
+-@@ -211,9 +211,9 @@ fi
+-=20
+- if test "$ac_cv_have_ipv6" =3D yes; then
+-   if test "$ac_cv_multicast" =3D yes; then
+--    AC_CHECK_TYPES(struct ipv6_mreq,,,[#include "compat/headers_slim.h"])
+--    AC_CHECK_DECLS(IPV6_ADD_MEMBERSHIP,,,[#include "compat/headers_slim.h=
+"])
+--    AC_CHECK_DECLS(IPV6_MULTICAST_HOPS,,,[#include "compat/headers_slim.h=
+"])
+-+    AC_CHECK_TYPES(struct ipv6_mreq,,,[#include "${srcdir}/compat/headers=
+_slim.h"])
+-+    AC_CHECK_DECLS(IPV6_ADD_MEMBERSHIP,,,[#include "${srcdir}/compat/head=
+ers_slim.h"])
+-+    AC_CHECK_DECLS(IPV6_MULTICAST_HOPS,,,[#include "${srcdir}/compat/head=
+ers_slim.h"])
+-     AC_MSG_CHECKING(for IPv6 multicast support)
+-     ac_cv_have_ipv6_multicast=3Dno
+-     if test "$ac_cv_type_struct_ipv6_mreq" =3D yes; then
+diff --git a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0001-heade=
+rs.h-remove-math.h-include-that-breaks-aarch64.patch b/meta-arago-test/reci=
+pes-benchmark/iperf/iperf-2.0.5/0001-headers.h-remove-math.h-include-that-b=
+reaks-aarch64.patch
+deleted file mode 100644
+index 8d9e03f6..00000000
+--- a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0001-headers.h-re=
+move-math.h-include-that-breaks-aarch64.patch
++++ /dev/null
+@@ -1,42 +0,0 @@
+-From c9d104a51f4f62e157f01e1fd47f534aa22a9d81 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Tue, 26 Jun 2018 15:55:31 -0400
+-Subject: [PATCH] headers.h: remove math.h include that breaks aarch64
+-MIME-Version: 1.0
+-Content-Type: text/plain; charset=3DUTF-8
+-Content-Transfer-Encoding: 8bit
+-
+-| In file included from .../aarch64-linux-gnu/include/c++/7.2.1/cmath:42:0=
+,
+-|                  from .../aarch64-linux-gnu/include/c++/7.2.1/math.h:36,
+-|                  from ../../iperf-2.0.5/include/headers.h:85,
+-|                  from ../../iperf-2.0.5/include/Timestamp.hpp:63,
+-|                  from ../../iperf-2.0.5/compat/delay.cpp:53:
+-| .../aarch64-linux-gnu/include/c++/7.2.1/bits/cpp_type_traits.h:205:12: e=
+rror: redefinition of =E2=80=98struct std::__is_integer<int>=E2=80=99
+-|      struct __is_integer<int>
+-|             ^~~~~~~~~~~~~~~~~
+-| .../aarch64-linux-gnu/include/c++/7.2.1/bits/cpp_type_traits.h:138:12: n=
+ote: previous definition of =E2=80=98struct std::__is_integer<int>=E2=80=99
+-|      struct __is_integer<bool>
+-|             ^~~~~~~~~~~~~~~~~~
+-
+-Upstream-Status: Inappropriate [oe specific]
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- include/headers.h | 1 -
+- 1 file changed, 1 deletion(-)
+-
+-diff --git a/include/headers.h b/include/headers.h
+-index 4667bfe..7e5efd7 100644
+---- a/include/headers.h
+-+++ b/include/headers.h
+-@@ -82,7 +82,6 @@
+- #include <errno.h>
+- #include <string.h>
+- #include <time.h>
+--#include <math.h>
+-=20
+- #ifdef WIN32
+-=20
+---=20
+-2.7.4
+-
+diff --git a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0002-fix-b=
+ool-size-m4.patch b/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/000=
+2-fix-bool-size-m4.patch
+deleted file mode 100644
+index a6001b10..00000000
+--- a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0002-fix-bool-siz=
+e-m4.patch
++++ /dev/null
+@@ -1,19 +0,0 @@
+-
+-Upstream-Status: Pending
+-
+---- iperf-2.0.5/m4/dast.m4.orig	2016-06-15 11:42:03.945581785 -0400
+-+++ iperf-2.0.5/m4/dast.m4	2016-06-15 11:42:11.053581641 -0400
+-@@ -11,7 +11,12 @@
+-=20
+- AC_DEFUN(DAST_CHECK_BOOL, [
+-=20
+--AC_CHECK_SIZEOF(bool)
+-+if test "$ac_cv_header_stdbool_h" =3D yes; then
+-+  AC_CHECK_SIZEOF(bool,,[#include <stdbool.h>])
+-+else
+-+    AC_CHECK_SIZEOF(bool)
+-+fi
+-+
+- if test "$ac_cv_sizeof_bool" =3D 0 ; then
+-   AC_DEFINE(bool, int)
+- fi
+diff --git a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/iperf-2.0.=
+5_ManPage.patch b/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/iperf=
+-2.0.5_ManPage.patch
+deleted file mode 100755
+index 97cf1ff4..00000000
+--- a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/iperf-2.0.5_ManPa=
+ge.patch
++++ /dev/null
+@@ -1,10 +0,0 @@
+-Upstream-Status: Inappropriate [arago specific]
+-
+-diff --git iperf-2.0.5/man/Makefile.am iperf-2.0.5/man/Makefile.am
+- index ed97bc6..728873f 100644
+---- iperf-2.0.5/man/Makefile.am
+-+++ iperf-2.0.5/man/Makefile.am
+-@@ -1,2 +1 @@
+--man_MANS =3D iperf.1
+--dist_man_MANS =3D $(man_MANS)
+-+dist_man_MANS =3D iperf.1
+diff --git a/meta-arago-test/recipes-benchmark/iperf/iperf_2.0.5.bb b/meta-=
+arago-test/recipes-benchmark/iperf/iperf_2.0.5.bb
+deleted file mode 100644
+index f073894f..00000000
+--- a/meta-arago-test/recipes-benchmark/iperf/iperf_2.0.5.bb
++++ /dev/null
+@@ -1,23 +0,0 @@
+-SUMMARY =3D "Tool to measure maximum TCP bandwidth and allow parameter tun=
+ing"
+-DESCRIPTION =3D "Iperf is a tool to measure maximum TCP bandwidth, allowin=
+g the tuning of various parameters and UDP characteristics"
+-HOMEPAGE =3D "http://dast.nlanr.net/Projects/Iperf/"
+-SECTION =3D "console/network"
+-LICENSE =3D "BSD-2-Clause"
+-LIC_FILES_CHKSUM =3D "file://COPYING;md5=3De8478eae9f479e39bc3497519336029=
+8"
+-
+-SRC_URI =3D " ${SOURCEFORGE_MIRROR}/iperf/${BP}.tar.gz \
+-            file://iperf-2.0.5_ManPage.patch \
+-            file://0001-fix-out-of-tree-config.patch \
+-            file://0002-fix-bool-size-m4.patch \
+-            file://0001-headers.h-remove-math.h-include-that-breaks-aarch6=
+4.patch \
+-          "
+-
+-SRC_URI[md5sum] =3D "44b5536b67719f4250faed632a3cd016"
+-SRC_URI[sha256sum] =3D "636b4eff0431cea80667ea85a67ce4c68698760a9837e1e9d1=
+3096d20362265b"
+-
+-inherit autotools pkgconfig
+-
+-EXTRA_OECONF =3D "--exec-prefix=3D${STAGING_DIR_HOST}${layout_exec_prefix}=
+"
+-
+-PACKAGECONFIG ??=3D "${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6=
+', '', d)}"
+-PACKAGECONFIG[ipv6] =3D "--enable-ipv6,--disable-ipv6,"
+--=20
+2.43.0
 
 
