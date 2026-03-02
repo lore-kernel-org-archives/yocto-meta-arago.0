@@ -1,216 +1,916 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 062CEEA4E11
-	for <webhook@archiver.kernel.org>; Mon,  2 Mar 2026 15:01:36 +0000 (UTC)
-Received: from DM5PR21CU001.outbound.protection.outlook.com (DM5PR21CU001.outbound.protection.outlook.com [52.101.62.65])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.162358.1772463692853475487
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 81556EA4E26
+	for <webhook@archiver.kernel.org>; Mon,  2 Mar 2026 15:55:36 +0000 (UTC)
+Received: from PH8PR06CU001.outbound.protection.outlook.com (PH8PR06CU001.outbound.protection.outlook.com [40.107.209.56])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.163894.1772466927915001227
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 02 Mar 2026 07:01:33 -0800
+ Mon, 02 Mar 2026 07:55:28 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=nPB4cW3G;
- spf=pass (domain: list.ti.com, ip: 52.101.62.65, mailfrom: prc@list.ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=AUq+hxCo;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.209.56, mailfrom: afd@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ndu4BqYDRWcMIVwfSsVNOG4IeFRRHlujtsG8v2+AB3qLKm8bAXLIM/H0x1Nve/oxTvaQVZZGvRlHL2hKcKRdDVGzAJoKbae9Uq0lM+X1iBqhjnLyCK53gVvUUwAoKqt7u9+40DnY4faGDDpfkn3ZY5UtwyS5qRkb46E8kJkqjdD9KAtwQM1o0B8giJLJ/KOYxtYA18644SEGhpyZCfuT9W3pYY8b4AT+zK5vETlPaat1Lfvd8/aQ4N9BD1mn1I7IXZmGrZcsgm9T3xf54rkGBzCekU7VoO0hD1KAWdr759j6lolz9mCGE/Q0dgXCFgdEzcoDosE0iRrbR6fX+UkCMA==
+ b=vTZT12DV//RiTuUm0SHYPd9V9qNDJSsEqkLZDamDybQxTM8SOnMDUOakxcOxoknolK8vzge84xo8S7Ggci62KRbBTzbmKoN/UH6exWjdLvO1uyEe9INWYZ6mp7AMTcOYu4Ee/Nnt9GBSUqHmjz3uDOOFnm6nDeL1r2GnRIyAFKZxvRMwkfrzcNKzx8HhjfxlJy6U8y0ulLryywlO84imyU6PMm7h4vKeW2sO1w0orUJBpxdXY2XVsQDKOUC7UqelyJlJExPP6z8BQ4DbJ7pL8mhrQiYBYXeFkDPAcEn7VCS8nI6j6sc+yesMfT2Sq9nVmuWmKo6k0x/MRWrkzWStxA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RZl4cD1QcgqrIt/QPC0DEL7iofheQVzR4RoOMn8G6kk=;
- b=x3VgPgx2Q4VctaOQeVdLceJnSqZFRwAvCW54QMGf0t9WJ6K6VLGGymwPab7OiNcCTB3VMvg9yK3d2k6SGJkW+t/TxXhpRUtdlMANlez1QPYLAnGRYwDXxnzmBnRUx2izqhAOlenBhneCHuPm5CQOTxood0X7UnTcjkVWox4huMzX4BqK8GOhMczfgvz6cAWjPaGCqinQI2bflv1P+JP889VmZ2fYw2KQLSO9qg90t53ozAdxAvie0E407YZ5PcZnWj8gU5RmuWCUCVfjir8G/0vj93ksAoh1iDB51PFugVcOIr2pA6WEafk6WTGRm6te8n7nr82UPToq+Xj4cJAWfg==
+ bh=RdwIigjrChYl5CSBz5Q3+YpEgAm/bQInHit5m0OGZcA=;
+ b=OZCwDACZPexdVn3I80//41397eAJsZUwjDa3u6OEl72/rclWwTTeui0hupkw9Cgdbuhj2TPGt73VMgZHkXZSGMT7eKnNmxOVZXcz4vPyhrsWxFIRFIDyEFJZK9+YjNcrzHl+iddP6LOEY6B/141Z8t/XqUogxV36iTpqds8BmsXoRXuwzSRQNcps3GhAT+hKXLI9objc6Ejz+861+gpnFmqRkgbDsfuRF25+jsgEKrxYy53uzEYuuDOoDsOEACQYYiQrowDHuc8Kuji/a65zQLhwLCDtMAepDdzQFtKr4Lcwd5fS0ufbCqmOD/pBKiJqvUZH4LvWdP4NpgwSXaNTig==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
- s=selector1;
+ 198.47.21.195) smtp.rcpttodomain=konsulko.com smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RZl4cD1QcgqrIt/QPC0DEL7iofheQVzR4RoOMn8G6kk=;
- b=nPB4cW3GqWCoE6GoH7MNWbKJ8Y9YkfYSeOHRv5SOZjrNkDrTSjgfUun9tJ72QDFzc/XmbKDyse8uur2zuDb18V97ajbCN+oFAVVubhskPnoSMdQFwGjXvjLhyx5m0i93jqcJxbp/+8pJ9pF3YBuw6fqSyNmT6RmaBhEbIKB1UqfjJXTlokafCUF7shmuCg8RNO41JrO+bBm6O8QEWud4AN9rYOGIgtQytcRZx6BOMvCn27n8zEB8EWPyOYvUNXbXaQtEMbsfKYNknQrOcYbLws/cBq99q8IDllW/iNiH79lX1DzgagYAvKsTRnEKo5wyzfg4gYDRju2oLWojKxY8/g==
-Received: from BN9PR03CA0766.namprd03.prod.outlook.com (2603:10b6:408:13a::21)
- by MW4PR10MB5809.namprd10.prod.outlook.com (2603:10b6:303:185::19) with
+ bh=RdwIigjrChYl5CSBz5Q3+YpEgAm/bQInHit5m0OGZcA=;
+ b=AUq+hxCoAfaGWqEv/Ig9afy8Yy4LxUqHc4hY6leSDZeR2CsqLOqp/IiggdNm71zYEt1pvd1JNbBI1esams2GxtyVplwSM4K+8k6+jGDl5nTABGdm7dIZVxfklAGWwsCxtaTOEfPfP1hMtqCO/IjtFtNTHpoE113164INGOBK6Zw=
+Received: from PH8PR05CA0005.namprd05.prod.outlook.com (2603:10b6:510:2cc::14)
+ by SA1PR10MB997607.namprd10.prod.outlook.com (2603:10b6:806:4b7::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
- 2026 15:01:27 +0000
-Received: from BN2PEPF0000449F.namprd02.prod.outlook.com
- (2603:10b6:408:13a:cafe::3b) by BN9PR03CA0766.outlook.office365.com
- (2603:10b6:408:13a::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.16; Mon, 2 Mar
+ 2026 15:55:24 +0000
+Received: from CY4PEPF0000EE39.namprd03.prod.outlook.com
+ (2603:10b6:510:2cc:cafe::b8) by PH8PR05CA0005.outlook.office365.com
+ (2603:10b6:510:2cc::14) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.21 via Frontend Transport; Mon,
- 2 Mar 2026 15:01:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=list.ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=list.ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- BN2PEPF0000449F.mail.protection.outlook.com (10.167.243.150) with Microsoft
+ 2 Mar 2026 15:55:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ CY4PEPF0000EE39.mail.protection.outlook.com (10.167.242.11) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 15:01:25 +0000
-Received: from DFLE213.ent.ti.com (10.64.6.71) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 15:55:22 +0000
+Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
- 2026 09:00:37 -0600
-Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE213.ent.ti.com
- (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 09:55:09 -0600
+Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
- 2026 09:00:36 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE204.ent.ti.com
- (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 09:55:08 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE208.ent.ti.com
+ (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 2 Mar 2026 09:00:36 -0600
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 622F0a8I472938;
-	Mon, 2 Mar 2026 09:00:36 -0600
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id B768313F521; Mon,  2 Mar 2026 09:00:36 -0600 (CST)
-From: PRC Automation <prc@list.ti.com>
-To: Pratham Deshmukh <p-deshmukh@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, <afd@ti.com>, <reatmon@ti.com>,
-	<c-shilwant@ti.com>, <denys@konsulko.com>, <v-singh1@ti.com>, <khasim@ti.com>
-Subject: Re: [PATCH 0/2] meta-arago-extras: Migrate ONNX framework v1.16.1to v1.18.0 and ONNXRuntime v1.20.1 to v1.23.2
-Date: Mon, 2 Mar 2026 09:00:36 -0600
-Message-ID: <20260302150036.2889338-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20260302145846.828106-1-p-deshmukh@ti.com>
-References: <20260302145846.828106-1-p-deshmukh@ti.com>
+ Transport; Mon, 2 Mar 2026 09:55:08 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 622Ft8Sk545982;
+	Mon, 2 Mar 2026 09:55:08 -0600
+Message-ID: <ad05ea0f-ec1b-47ce-9688-260c981de850@ti.com>
+Date: Mon, 2 Mar 2026 09:55:08 -0600
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] meta-arago-extras: Migrate ONNXRuntime v1.20.1 to
+ v1.23.2
+To: Pratham Deshmukh <p-deshmukh@ti.com>, <meta-arago@lists.yoctoproject.org>
+CC: <reatmon@ti.com>, <c-shilwant@ti.com>, <denys@konsulko.com>,
+	<v-singh1@ti.com>, <khasim@ti.com>
+References: <20260302145846.828106-1-p-deshmukh@ti.com>
+ <20260302145846.828106-3-p-deshmukh@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20260302145846.828106-3-p-deshmukh@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF0000449F:EE_|MW4PR10MB5809:EE_
-X-MS-Office365-Filtering-Correlation-Id: fd019ad4-3d3c-4089-5e0a-08de786c936f
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE39:EE_|SA1PR10MB997607:EE_
+X-MS-Office365-Filtering-Correlation-Id: 68e53646-e343-4a71-f2da-08de78741cc6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|82310400026|1800799024|34020700016|36860700013|13003099007;
+	BCL:0;ARA:13230040|1800799024|34020700016|36860700013|376014|82310400026|13003099007;
 X-Microsoft-Antispam-Message-Info: 
-	9ZMdB7tGGZFLA9vohE/C8RzNc6boj3oJjDbns9Yg03EvyyYbvgnoRvcNrGOsKGdxnjBJqoHQzLrQgxvV4RYPHeziFTReHqbxKUHIpWoDmG4d6b8/SL3+Y55KgVW3X1VLVlATyFhp/aDlQqqS5Cf6E9/ai4yzNHRqg5Su+cdFgnut6B8MOEdL1WgCB3Qy2KEJwJiKpgCGuK5NonwDyBRkPevqUTIEGHwcUtY2bvepxMdT+X7M+KTsWzKz51UHEOXOidCx3uJr1nCz+8/7P1dUs8nYFHCSDwbkSHPddxhE2PT/crKYdtSvKmYvoG6Vm8BUGuzw6/F++CLZoKcFkZLWETZDjj8tYWQZ7t9x3IH/vQ7POSp4IqDwkaX22jiaWjl8Ld3h2SXjWgWtZzH/FB1dwfrzVXTub1QajPa9FNEM4W7xKzZBAiktySYJWokI0M4bsNbyN99KrC8UdVBYFYckikpseJpYf0gd+u751sYm9LKXF8FLThzUvaD4e34kM35aATGxNT+ICWjkI6KwxTuZyyiHVIdQlvl74QsuQVju0DgnhbQW75jp+I2VKKcVG2WMY7RdUsIvmzK4Ohk3Y2EbYncHy1G0pBoho0ySWSRWOaLmemMWWyhSKv9NcDI2V6IgAVvLvdrdVysTfJnxKWOTf3E0CT5QhQIDNSytb5vO3n06gPhiw/FqKIY584qjbRnz3+2wr9TMBDd8mcWNkFV3tw/i+zbGf2vnGUNzykBt3R+AmqwXDmTkF1FsxJL9Z/c5RYJKdsPdIAgCDt+khc3XPXtD2eWaUAPheB6bVPiBlN/odF5EJaTqgi2qZgR0cPaHljxqVqapoKm+z8rRU3Bndw==
+	C7OOKsgzWlEb7VoaanDj3u1Z8sq77fblykCJZYAlHSjruhgjWq8GgrxUP07QF+KFbM/z+fzt0d7CBBICcgqWqUWo+yvWj3VnPtz+NLhluL0CDkM6SkyD6LkY6W+RwswufrQcrsRWvkeK83JObTWLtRbe+zMTaVTWGEYlGMUKpLjZnr55MzfqxDnpE1MVRKoTtDaBS229ufSTX7r8l3j2J5AJEyEMM7hZzTjnoIg1yUm3U2Ph1c3fUhFfTwSvNVJLU0NSfzFCNzThWeA2M7ngGhHc5XwPNiwnkLKUYkt1auBs8dnjG0pk7h4QeFAqlDp1HC3X419IHOAXZ4V1g1VXoPjuOoxjId2l+zKRZJLysBTHsvemmvRNxOnh98FG8Xj01HBhxYmuTpGDyps8g86D0zvNEvAsYqPZOYsCoznLdDIOI++7S/akeY83oOfH3fu03pucTFaoX6nYHz1IzuX3f/8Nst9rkOmORgn70ojar6xHfKuHO1k5t8A8m0dHg1KaOq4qFkyycv7C9sGowICaWVdEPfdCM/oDU5NpFsC2+4BgAr3f1KibAmyaa+n9QtymfxrEiIP7yH3/buFR3a6cFTwLFa306Yh9VxgSlMwGwwY+q+JkPDxMYiY8bskBYP3da2BABo/86H2UWy+7mgqrhbbhzS3gF8zAxb+tInHA9fJTLWB/plpGUs1w9f+hz8jhmkGOKxfqsPiKL073F4Vt3mm2Dmr72H8xmEp/vLpl9l9CW5hPxxvSgEvcMu+Za6NULhMYjUyiAGwxMIEqIOPo5VUITNO61FBWS9oxdQHGzn8=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(34020700016)(36860700013)(13003099007);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(34020700016)(36860700013)(376014)(82310400026)(13003099007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	PIYXmNVsz3DgaP7qeXnZ9G9yBHjm4glIjlzE8wT97Em3uneN2qMBqbhb6OBseNWNykLwwL7oRxab+UdPN/Occqwd7RBNzZmn7axFQ/RwzV/z4vC+2jQhiLJolVfqhxRWbgi91Hu42NWdaozw9Ee5GohpexfCC2TAvuNZNqI6d2drCf47ft+rbHQu0J6yN2DdDnoxkYRyUYLLoitOYCK5y7j0ph8uejD8XGnWHMVlJcVJvr/evZpe3YA7o5BoYikIK1mF45ht0jjMXZTefqNtVS8coc8hPBj5dXUZBg70EETebnPwXHOMy+Ak8fcuGzcG0hNkgVQxHrcT3tU8gq2mIz7hinShejSB4WzghS67whr71Y7TurFgSvCS5Hc7lN8BT6tAb5EJ3wrHN697aWniPUMQtkmMt7AoWQHLwmsHkxqw0lCnsdiQqGDy00nMQQ9x
-X-OriginatorOrg: list.ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 15:01:25.7292
+	b75A0/ZhHeezn1xxDhC4TI39fi1xb5OydOEChQu4LUcaPHIpwpnN3Tme3LnzIWkapv4+dAwlstKZzg6YKf1Cg4eC6nFgneMuK4DkR0+uSyvOqP5MOSx5V0gcA8Vk3zMig3uThV3oqdlYWsmhMfq+AsoJlf9xta02QBj2ANfoPfBUHQdoj0TK3grlU7xKk2llB7iX2bcqQVAHenotZj0G7IcIS1n98h6jN/MZhThX7MqziKruDERmMOawUo8jecDfMBHa2yv1AZZSW0gvwMoSveJAsnFB5zk/vjDpOcLHhvvuWgRGaSWV6gKg4gYvIV19koW2VUi2GigHKXpgYR+kq/NqT4prXPezqni+w/xtSo2usfvSAZvh965TRqb/rrItG8HNsLkzhzI8gYqMGv7JNol/OLq9J336tXUR5zkBJeEV2pdAOvlGYDpll/C7NVPy
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 15:55:22.6724
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd019ad4-3d3c-4089-5e0a-08de786c936f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68e53646-e343-4a71-f2da-08de78741cc6
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BN2PEPF0000449F.namprd02.prod.outlook.com
+	CY4PEPF0000EE39.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR10MB5809
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB997607
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 02 Mar 2026 15:01:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17173
+ <meta-arago@lists.yoctoproject.org>; Mon, 02 Mar 2026 15:55:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17175
 
-meta-arago / na / 20260302145846.828106-1-p-deshmukh
+On 3/2/26 8:58 AM, Pratham Deshmukh wrote:
+> We are migrating ONNXRuntime from v1.20.1 to the latest
+> stable version v1.23.2.
+>=20
+> Removed Patches (Fixed Upstream):
+>    =E2=80=A2 0001-Remove-executable-permission-bit-from-source-files.patc=
+h
+>      - Upstream Link: https://github.com/microsoft/onnxruntime/blob/rel-1=
+.23.2/onnxruntime/contrib_ops/cpu/utils/console_dumper.h#L6
+>    =E2=80=A2 0002-cmake-Fix-typo-in-option-text-s-buildings-bindings.patc=
+h
+>      - Upstream Link: https://github.com/microsoft/onnxruntime/blob/rel-1=
+.23.2/cmake/CMakeLists.txt#L64
 
-PRC Results: FAIL
+These are not really the "Upstream link", they just point to the changed li=
+nes,
+in this case for instance to point to the actual commit would be:
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Patches
-----------------------------------------
-WARN - [PATCH 1/2] meta-arago-extras: Migrate ONNX v1.16.1 to v1.18.0
-    WARN: Missing branches specifier [master/scarthgap/XXXXX]. (META-2)
-        patch:68
-            Subject: [PATCH 1/2] meta-arago-extras: Migrate ONNX v1.16.1 to=
- v1.18.0
-   =20
-    WARN: Commit message should not include directory path to recipe: meta-=
-arago-extras: Migrate ONNX v1.16.1 to v1.18.0.
-              meta-arago-extras (COMMIT-MESSAGE-3)
-        patch
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
-WARN - [PATCH 2/2] meta-arago-extras: Migrate ONNXRuntime v1.20.1 to v1.23.=
-2
-    WARN: Missing branches specifier [master/scarthgap/XXXXX]. (META-2)
-        patch:68
-            Subject: [PATCH 2/2] meta-arago-extras: Migrate ONNXRuntime v1.=
-20.1 to v1.23.2
-   =20
-    WARN: Commit message should not include directory path to recipe: meta-=
-arago-extras: Migrate ONNXRuntime v1.20.1 to v1.23.2.
-              meta-arago-extras (COMMIT-MESSAGE-3)
-        patch
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
+https://github.com/microsoft/onnxruntime/commit/fd22509e3645a23e62c51680b53=
+4201c324d3342
 
+>    =E2=80=A2 0003-ACL-Do-not-add-LD_LIBRARY_PATH-to-search-path-when-n.pa=
+tch
+>      - Upstream Link: https://github.com/microsoft/onnxruntime/blob/rel-1=
+.23.2/cmake/onnxruntime_providers_acl.cmake#L16
+>    =E2=80=A2 0004-Do-not-include-CMAKE_CXX_FLAGS-in-build-information-.pa=
+tch
+>      - Upstream Link: https://github.com/microsoft/onnxruntime/blob/rel-1=
+.23.2/cmake/CMakeLists.txt
+>    =E2=80=A2 0005-cmake-Print-out-result-of-find_package.patch
+>      - With the updated helper_functions.cmake this patch is no needed.
+>=20
+>    Added Patches (New Requirements):
+>    =E2=80=A2 0001-Added-the-missing-header-to-fix-uint32_t-compilation.pa=
+tch
+>      - Fixes missing stdint.h include causing uint32_t compilation errors
+>=20
+> Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
+> ---
+>   ...g-header-to-fix-uint32_t-compilation.patch |  27 +++
+>   ...ble-permission-bit-from-source-files.patch |  72 --------
+>   ...-in-option-text-s-buildings-bindings.patch |  25 ---
+>   ...D_LIBRARY_PATH-to-search-path-when-n.patch |  32 ----
+>   ...MAKE_CXX_FLAGS-in-build-information-.patch |  30 ----
+>   ...ake-Print-out-result-of-find_package.patch |  37 ----
+>   .../onnxruntime/onnxruntime_1.20.1.bb         | 157 -----------------
+>   .../onnxruntime/onnxruntime_1.23.2.bb         | 163 ++++++++++++++++++
 
+When making these patches, try lower -M values in git to get it to
+detect these renames.
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  apply-yocto-patch: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [PATCH 0/2] meta-arago-extras: Migrate ONNX framework v1.16=
-.1to v1.18.0 and ONNXRuntime v1.20.1 to v1.23.2
-- Submitter: From: Pratham Deshmukh <p-deshmukh@ti.com>
-- Date: Date: Mon, 2 Mar 2026 20:28:44 +0530
-- Num Patches: 2
-- Mailing List (public inbox) Commit SHA: f1d53c08e24f7ba12392b9435678731d1=
-54d6ae9
+Andrew
 
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Ryan Eatmon <reatmon@ti.com>
-- Commit Subject: arago.conf: Remove temporary hack for DEFAULTTUNE on armv=
-7a
-- Commit SHA: 58966cd5a2d433b4c915e652f21f2e2b2475ec21
-
-Patches
-----------------------------------------
-All patches applied
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-repo: FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-FAIL
-    ERROR: Patch is not referenced in any recipe. (REPO-1)
-        meta-arago-extras/recipes-framework/onnx/onnx/0001-Apply-onnx-patch=
-.patch
-   =20
-    ERROR: Patch is not referenced in any recipe. (REPO-1)
-        meta-arago-extras/recipes-framework/onnx/onnx/0002-cmake-Fix-Protob=
-uf-target-check-by-calling-find_pack.patch
-   =20
-    ERROR: Patch is not referenced in any recipe. (REPO-1)
-        meta-arago-extras/recipes-framework/onnx/onnx/0003-cmake-Remove-Pro=
-tobuf-directory-exports-from-config-.patch
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
-
-
+>   8 files changed, 190 insertions(+), 353 deletions(-)
+>   create mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnx=
+runtime/0001-Added-the-missing-header-to-fix-uint32_t-compilation.patch
+>   delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnx=
+runtime/0001-Remove-executable-permission-bit-from-source-files.patch
+>   delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnx=
+runtime/0002-cmake-Fix-typo-in-option-text-s-buildings-bindings.patch
+>   delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnx=
+runtime/0003-ACL-Do-not-add-LD_LIBRARY_PATH-to-search-path-when-n.patch
+>   delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnx=
+runtime/0004-Do-not-include-CMAKE_CXX_FLAGS-in-build-information-.patch
+>   delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnx=
+runtime/0005-cmake-Print-out-result-of-find_package.patch
+>   delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnx=
+runtime_1.20.1.bb
+>   create mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnx=
+runtime_1.23.2.bb
+>=20
+> diff --git a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/=
+0001-Added-the-missing-header-to-fix-uint32_t-compilation.patch b/meta-arag=
+o-extras/recipes-framework/onnxruntime/onnxruntime/0001-Added-the-missing-h=
+eader-to-fix-uint32_t-compilation.patch
+> new file mode 100644
+> index 00000000..21e0a301
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0001-Ad=
+ded-the-missing-header-to-fix-uint32_t-compilation.patch
+> @@ -0,0 +1,27 @@
+> +From cb67823df8cfa19cf1c0c0ddd1b9aa29ee7773ba Mon Sep 17 00:00:00 2001
+> +From: Pratham Deshmukh <p-deshmukh@ti.com>
+> +Date: Thu, 12 Feb 2026 16:02:40 +0530
+> +Subject: [PATCH] Added the missing header to fix uint32_t compilation er=
+ror.
+> +
+> +Upstream-Status: Backport [https://github.com/microsoft/onnxruntime/comm=
+it/d6e712c]
+> +
+> +Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
+> +---
+> + onnxruntime/core/common/semver.h | 1 +
+> + 1 file changed, 1 insertion(+)
+> +
+> +diff --git a/onnxruntime/core/common/semver.h b/onnxruntime/core/common/=
+semver.h
+> +index a07c24f016..98bb6a2cef 100644
+> +--- a/onnxruntime/core/common/semver.h
+> ++++ b/onnxruntime/core/common/semver.h
+> +@@ -3,6 +3,7 @@
+> +
+> + #pragma once
+> +
+> ++#include <cstdint>
+> + #include <optional>
+> + #include <string_view>
+> +
+> +--
+> +2.34.1
+> +
+> diff --git a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/=
+0001-Remove-executable-permission-bit-from-source-files.patch b/meta-arago-=
+extras/recipes-framework/onnxruntime/onnxruntime/0001-Remove-executable-per=
+mission-bit-from-source-files.patch
+> deleted file mode 100644
+> index b64e32ca..00000000
+> --- a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0001-Re=
+move-executable-permission-bit-from-source-files.patch
+> +++ /dev/null
+> @@ -1,72 +0,0 @@
+> -From 626066499c34c524924302342fc071f32442caae Mon Sep 17 00:00:00 2001
+> -From: Andrew Davis <afd@ti.com>
+> -Date: Sun, 12 Jan 2025 12:48:49 -0600
+> -Subject: [PATCH] Remove executable permission bit from source files
+> -
+> -These are source files, not executables, do not set the executable
+> -permission bit on these files.
+> -
+> -Upstream-Status: Pending
+> -
+> -Signed-off-by: Andrew Davis <afd@ti.com>
+> ----
+> - onnxruntime/contrib_ops/cpu/utils/console_dumper.h           | 1 +
+> - onnxruntime/core/optimizer/bias_softmax_fusion.cc            | 0
+> - onnxruntime/core/providers/acl/acl_execution_provider.h      | 0
+> - onnxruntime/core/providers/acl/acl_fwd.h                     | 0
+> - onnxruntime/core/providers/acl/acl_provider_factory.cc       | 0
+> - onnxruntime/core/providers/acl/math/gemm.cc                  | 0
+> - onnxruntime/core/providers/acl/nn/batch_norm.cc              | 0
+> - onnxruntime/core/providers/acl/nn/batch_norm.h               | 0
+> - onnxruntime/test/optimizer/graph_transform_test.cc           | 0
+> - onnxruntime/test/optimizer/graph_transform_test_layernorm.cc | 0
+> - 10 files changed, 1 insertion(+)
+> - mode change 100755 =3D> 100644 onnxruntime/core/optimizer/bias_softmax_=
+fusion.cc
+> - mode change 100755 =3D> 100644 onnxruntime/core/providers/acl/acl_execu=
+tion_provider.h
+> - mode change 100755 =3D> 100644 onnxruntime/core/providers/acl/acl_fwd.h
+> - mode change 100755 =3D> 100644 onnxruntime/core/providers/acl/acl_provi=
+der_factory.cc
+> - mode change 100755 =3D> 100644 onnxruntime/core/providers/acl/math/gemm=
+.cc
+> - mode change 100755 =3D> 100644 onnxruntime/core/providers/acl/nn/batch_=
+norm.cc
+> - mode change 100755 =3D> 100644 onnxruntime/core/providers/acl/nn/batch_=
+norm.h
+> - mode change 100755 =3D> 100644 onnxruntime/test/optimizer/graph_transfo=
+rm_test.cc
+> - mode change 100755 =3D> 100644 onnxruntime/test/optimizer/graph_transfo=
+rm_test_layernorm.cc
+> -
+> -diff --git a/onnxruntime/contrib_ops/cpu/utils/console_dumper.h b/onnxru=
+ntime/contrib_ops/cpu/utils/console_dumper.h
+> -index 9ebc44f441..64bd2b7b18 100644
+> ---- a/onnxruntime/contrib_ops/cpu/utils/console_dumper.h
+> -+++ b/onnxruntime/contrib_ops/cpu/utils/console_dumper.h
+> -@@ -3,6 +3,7 @@
+> -
+> - #pragma once
+> - #include <string>
+> -+#include <iostream>
+> - #include "core/framework/ort_value.h"
+> - #include "core/framework/float16.h"
+> - #include "contrib_ops/cpu/utils/debug_macros.h"
+> -diff --git a/onnxruntime/core/optimizer/bias_softmax_fusion.cc b/onnxrun=
+time/core/optimizer/bias_softmax_fusion.cc
+> -old mode 100755
+> -new mode 100644
+> -diff --git a/onnxruntime/core/providers/acl/acl_execution_provider.h b/o=
+nnxruntime/core/providers/acl/acl_execution_provider.h
+> -old mode 100755
+> -new mode 100644
+> -diff --git a/onnxruntime/core/providers/acl/acl_fwd.h b/onnxruntime/core=
+/providers/acl/acl_fwd.h
+> -old mode 100755
+> -new mode 100644
+> -diff --git a/onnxruntime/core/providers/acl/acl_provider_factory.cc b/on=
+nxruntime/core/providers/acl/acl_provider_factory.cc
+> -old mode 100755
+> -new mode 100644
+> -diff --git a/onnxruntime/core/providers/acl/math/gemm.cc b/onnxruntime/c=
+ore/providers/acl/math/gemm.cc
+> -old mode 100755
+> -new mode 100644
+> -diff --git a/onnxruntime/core/providers/acl/nn/batch_norm.cc b/onnxrunti=
+me/core/providers/acl/nn/batch_norm.cc
+> -old mode 100755
+> -new mode 100644
+> -diff --git a/onnxruntime/core/providers/acl/nn/batch_norm.h b/onnxruntim=
+e/core/providers/acl/nn/batch_norm.h
+> -old mode 100755
+> -new mode 100644
+> -diff --git a/onnxruntime/test/optimizer/graph_transform_test.cc b/onnxru=
+ntime/test/optimizer/graph_transform_test.cc
+> -old mode 100755
+> -new mode 100644
+> -diff --git a/onnxruntime/test/optimizer/graph_transform_test_layernorm.c=
+c b/onnxruntime/test/optimizer/graph_transform_test_layernorm.cc
+> -old mode 100755
+> -new mode 100644
+> diff --git a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/=
+0002-cmake-Fix-typo-in-option-text-s-buildings-bindings.patch b/meta-arago-=
+extras/recipes-framework/onnxruntime/onnxruntime/0002-cmake-Fix-typo-in-opt=
+ion-text-s-buildings-bindings.patch
+> deleted file mode 100644
+> index 88423190..00000000
+> --- a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0002-cm=
+ake-Fix-typo-in-option-text-s-buildings-bindings.patch
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -From be67663e9a44d146033aeb97804145a60b4032db Mon Sep 17 00:00:00 2001
+> -From: Andrew Davis <afd@ti.com>
+> -Date: Thu, 16 Jan 2025 12:35:03 -0600
+> -Subject: [PATCH] [cmake] Fix typo in option text s/buildings/bindings
+> -
+> -Upstream-Status: Pending
+> -
+> -Signed-off-by: Andrew Davis <afd@ti.com>
+> ----
+> - cmake/CMakeLists.txt | 2 +-
+> - 1 file changed, 1 insertion(+), 1 deletion(-)
+> -
+> -diff --git a/cmake/CMakeLists.txt b/cmake/CMakeLists.txt
+> -index d90a2a3550..e0cde678db 100644
+> ---- a/cmake/CMakeLists.txt
+> -+++ b/cmake/CMakeLists.txt
+> -@@ -77,7 +77,7 @@ option(onnxruntime_GENERATE_TEST_REPORTS "Enable test =
+report generation" OFF)
+> - option(onnxruntime_ENABLE_STATIC_ANALYSIS "Enable static analysis" OFF)
+> - option(onnxruntime_USE_CUSTOM_STATIC_ANALYSIS_RULES "Use a custom SDL R=
+ule. It is mainly for our CI build" OFF)
+> - option(onnxruntime_REDIRECT_STATIC_ANALYSIS_OUTPUTS_TO_FILE "Use a cust=
+om SDL Rule. It is mainly for our CI build" OFF)
+> --option(onnxruntime_ENABLE_PYTHON "Enable python buildings" OFF)
+> -+option(onnxruntime_ENABLE_PYTHON "Enable python bindings" OFF)
+> - # Enable it may cause LNK1169 error
+> - option(onnxruntime_ENABLE_MEMLEAK_CHECKER "Experimental: Enable memory =
+leak checker in Windows debug build" OFF)
+> - option(onnxruntime_USE_CUDA "Build with CUDA support" OFF)
+> diff --git a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/=
+0003-ACL-Do-not-add-LD_LIBRARY_PATH-to-search-path-when-n.patch b/meta-arag=
+o-extras/recipes-framework/onnxruntime/onnxruntime/0003-ACL-Do-not-add-LD_L=
+IBRARY_PATH-to-search-path-when-n.patch
+> deleted file mode 100644
+> index 75cb9b18..00000000
+> --- a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0003-AC=
+L-Do-not-add-LD_LIBRARY_PATH-to-search-path-when-n.patch
+> +++ /dev/null
+> @@ -1,32 +0,0 @@
+> -From b1689f3f963f4c07d3329a838569ac4c2fa2bd5f Mon Sep 17 00:00:00 2001
+> -From: Andrew Davis <afd@ti.com>
+> -Date: Thu, 16 Jan 2025 12:38:13 -0600
+> -Subject: [PATCH] [ACL] Do not add LD_LIBRARY_PATH to search path when no=
+t
+> - defined
+> -
+> -If LD_LIBRARY_PATH is not defined a blank "-L" is added to the
+> -link command. This causes the next object to be linked to get
+> -treated as if it was a search path and causes link failure.
+> -
+> -Upstream-Status: Pending
+> -
+> -Signed-off-by: Andrew Davis <afd@ti.com>
+> ----
+> - cmake/onnxruntime_providers_acl.cmake | 4 +++-
+> - 1 file changed, 3 insertions(+), 1 deletion(-)
+> -
+> -diff --git a/cmake/onnxruntime_providers_acl.cmake b/cmake/onnxruntime_p=
+roviders_acl.cmake
+> -index e23d289271..19d41dc73f 100644
+> ---- a/cmake/onnxruntime_providers_acl.cmake
+> -+++ b/cmake/onnxruntime_providers_acl.cmake
+> -@@ -13,7 +13,9 @@
+> -     onnxruntime_common onnxruntime_framework onnx onnx_proto ${PROTOBUF=
+_LIB} flatbuffers::flatbuffers Boost::mp11 safeint_interface
+> -   )
+> -
+> --  target_link_libraries(onnxruntime_providers_acl -L$ENV{LD_LIBRARY_PAT=
+H})
+> -+  if (DEFINED ENV{LD_LIBRARY_PATH})
+> -+    target_link_libraries(onnxruntime_providers_acl -L$ENV{LD_LIBRARY_P=
+ATH})
+> -+  endif()
+> -   add_dependencies(onnxruntime_providers_acl ${onnxruntime_EXTERNAL_DEP=
+ENDENCIES})
+> -   set_target_properties(onnxruntime_providers_acl PROPERTIES FOLDER "ON=
+NXRuntime")
+> -   target_include_directories(onnxruntime_providers_acl
+> diff --git a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/=
+0004-Do-not-include-CMAKE_CXX_FLAGS-in-build-information-.patch b/meta-arag=
+o-extras/recipes-framework/onnxruntime/onnxruntime/0004-Do-not-include-CMAK=
+E_CXX_FLAGS-in-build-information-.patch
+> deleted file mode 100644
+> index e8f086a8..00000000
+> --- a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0004-Do=
+-not-include-CMAKE_CXX_FLAGS-in-build-information-.patch
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -From 7ea6e35d3630f8c19080a0cb5a4a4c55c242a36b Mon Sep 17 00:00:00 2001
+> -From: Andrew Davis <afd@ti.com>
+> -Date: Thu, 16 Jan 2025 12:40:57 -0600
+> -Subject: [PATCH] Do not include CMAKE_CXX_FLAGS in build information str=
+ing
+> -
+> -While this information can be useful, it often includes information
+> -that may be specific to the build machine (like include paths with
+> -usernames, e.g. -I /home/myname/externalproject/fakeroot/inlcude).
+> -
+> -This causes issues for reproducible builds (resulting binaries will
+> -be different between different build machines).
+> -
+> -Upstream-Status: Pending
+> -
+> -Signed-off-by: Andrew Davis <afd@ti.com>
+> ----
+> - cmake/CMakeLists.txt | 1 -
+> - 1 file changed, 1 deletion(-)
+> -
+> -diff --git a/cmake/CMakeLists.txt b/cmake/CMakeLists.txt
+> -index e0cde678db..e0d8fd0a17 100644
+> ---- a/cmake/CMakeLists.txt
+> -+++ b/cmake/CMakeLists.txt
+> -@@ -1439,7 +1439,6 @@ if (Git_FOUND)
+> -   string(APPEND ORT_BUILD_INFO "git-branch=3D${ORT_GIT_BRANCH}, git-com=
+mit-id=3D${ORT_GIT_COMMIT}, ")
+> - endif()
+> - string(APPEND ORT_BUILD_INFO "build type=3D${CMAKE_BUILD_TYPE}")
+> --string(APPEND ORT_BUILD_INFO ", cmake cxx flags: ${CMAKE_CXX_FLAGS}")
+> - configure_file(onnxruntime_config.h.in ${CMAKE_CURRENT_BINARY_DIR}/onnx=
+runtime_config.h)
+> - get_property(onnxruntime_GENERATOR_IS_MULTI_CONFIG GLOBAL PROPERTY GENE=
+RATOR_IS_MULTI_CONFIG)
+> diff --git a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/=
+0005-cmake-Print-out-result-of-find_package.patch b/meta-arago-extras/recip=
+es-framework/onnxruntime/onnxruntime/0005-cmake-Print-out-result-of-find_pa=
+ckage.patch
+> deleted file mode 100644
+> index 249aadee..00000000
+> --- a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0005-cm=
+ake-Print-out-result-of-find_package.patch
+> +++ /dev/null
+> @@ -1,37 +0,0 @@
+> -From a73d9b9f4dba6d164e128d6c768d1b0a04e969ab Mon Sep 17 00:00:00 2001
+> -From: Andrew Davis <afd@ti.com>
+> -Date: Thu, 16 Jan 2025 12:47:27 -0600
+> -Subject: [PATCH] [cmake] Print out result of find_package
+> -
+> -A verbose only message is already printed that states the CMake will
+> -attempt to find a package using find_package():
+> -
+> -> Trying find_package(...) before FetchContent
+> -
+> -But it never prints if the package was found this way or not.
+> -Add this result message.
+> -
+> -Upstream-Status: Pending
+> -
+> -Signed-off-by: Andrew Davis <afd@ti.com>
+> ----
+> - cmake/external/helper_functions.cmake | 3 +++
+> - 1 file changed, 3 insertions(+)
+> -
+> -diff --git a/cmake/external/helper_functions.cmake b/cmake/external/help=
+er_functions.cmake
+> -index e3f2211f96..9ca6a967da 100644
+> ---- a/cmake/external/helper_functions.cmake
+> -+++ b/cmake/external/helper_functions.cmake
+> -@@ -138,9 +138,12 @@ macro(onnxruntime_fetchcontent_makeavailable)
+> -         unset(__cmake_fpArgs)
+> -
+> -         if(${__cmake_contentName}_FOUND)
+> -+          message(VERBOSE "Found ${__cmake_contentName} with find_packa=
+ge()")
+> -           FetchContent_SetPopulated(${__cmake_contentName})
+> -           FetchContent_GetProperties(${__cmake_contentName})
+> -           continue()
+> -+        else()
+> -+          message(VERBOSE "Could not find ${__cmake_contentName} with f=
+ind_package()")
+> -         endif()
+> -       endif()
+> -     else()
+> diff --git a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_=
+1.20.1.bb b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_1.2=
+0.1.bb
+> deleted file mode 100644
+> index a5026484..00000000
+> --- a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_1.20.1.=
+bb
+> +++ /dev/null
+> @@ -1,157 +0,0 @@
+> -DESCRIPTION =3D "ONNX Runtime is a cross-platform, high performance mach=
+ine learning inferencing framework"
+> -SUMMARY =3D "ONNX Runtime Python package & C++ library"
+> -HOMEPAGE =3D "https://www.onnxruntime.ai/"
+> -LICENSE =3D "MIT"
+> -LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D0f7e3b1308cb5c00b372a6e788357=
+32d"
+> -
+> -SRC_URI =3D "\
+> -	git://github.com/microsoft/onnxruntime.git;protocol=3Dhttps;branch=3Dre=
+l-1.20.1 \
+> -	git://github.com/HowardHinnant/date.git;protocol=3Dhttps;branch=3Dmaste=
+r;name=3Ddate;destsuffix=3D${S}/cmake/external/date \
+> -	git://github.com/pytorch/cpuinfo.git;protocol=3Dhttps;branch=3Dmain;nam=
+e=3Dcpuinfo;destsuffix=3D${S}/cmake/external/cpuinfo \
+> -	git://github.com/google/flatbuffers.git;protocol=3Dhttps;branch=3Dmaste=
+r;name=3Dflatbuffers;destsuffix=3D${S}/cmake/external/flatbuffers \
+> -	git://github.com/dcleblanc/SafeInt.git;protocol=3Dhttps;branch=3Dmaster=
+;name=3Dsafeint;destsuffix=3D${S}/cmake/external/safeint \
+> -	git://gitlab.com/libeigen/eigen.git;protocol=3Dhttps;branch=3D3.4;name=
+=3Deigen;destsuffix=3D${S}/cmake/external/eigen \
+> -	git://github.com/google/nsync.git;protocol=3Dhttps;branch=3Dmaster;name=
+=3Dnsync;destsuffix=3D${S}/cmake/external/nsync \
+> -"
+> -SRC_URI +=3D "\
+> -	file://0002-cmake-Fix-typo-in-option-text-s-buildings-bindings.patch \
+> -	file://0003-ACL-Do-not-add-LD_LIBRARY_PATH-to-search-path-when-n.patch =
+\
+> -	file://0004-Do-not-include-CMAKE_CXX_FLAGS-in-build-information-.patch =
+\
+> -	file://0005-cmake-Print-out-result-of-find_package.patch \
+> -	file://0001-Remove-executable-permission-bit-from-source-files.patch \
+> -"
+> -
+> -SRCREV_FORMAT =3D "default"
+> -SRCREV =3D "5c1b7ccbff7e5141c1da7a9d963d660e5741c319"
+> -SRCREV_date =3D "6e921e1b1d21e84a5c82416ba7ecd98e33a436d0"
+> -SRCREV_cpuinfo =3D "ca678952a9a8eaa6de112d154e8e104b22f9ab3f"
+> -SRCREV_flatbuffers =3D "0100f6a5779831fa7a651e4b67ef389a8752bd9b"
+> -SRCREV_safeint =3D "4cafc9196c4da9c817992b20f5253ef967685bf8"
+> -SRCREV_eigen =3D "e7248b26a1ed53fa030c5c459f7ea095dfd276ac"
+> -SRCREV_nsync =3D "13de152c2a1cd73ff4df97bd2c406b6d15d34af3"
+> -
+> -# Only compatible with armv7a, armv7ve, and aarch64
+> -COMPATIBLE_MACHINE =3D "(^$)"
+> -COMPATIBLE_MACHINE:aarch64 =3D "(.*)"
+> -COMPATIBLE_MACHINE:armv7a =3D "${@bb.utils.contains("TUNE_FEATURES","neo=
+n","(.*)","(^$)",d)}"
+> -COMPATIBLE_MACHINE:armv7ve =3D "${@bb.utils.contains("TUNE_FEATURES","ne=
+on","(.*)","(^$)",d)}"
+> -
+> -DEPENDS +=3D "\
+> -	onnx \
+> -	abseil-cpp \
+> -	protobuf \
+> -	protobuf-native \
+> -	boost \
+> -	re2 \
+> -	nlohmann-json \
+> -	microsoft-gsl \
+> -"
+> -
+> -PYTHON_DEPENDS =3D "\
+> -	python3 \
+> -	python3-numpy \
+> -	python3-numpy-native \
+> -	python3-pybind11 \
+> -	python3-pybind11-native \
+> -"
+> -
+> -PYTHON_RDEPENDS =3D "\
+> -	python3 \
+> -	python3-onnx \
+> -	python3-numpy \
+> -	python3-protobuf \
+> -	python3-coloredlogs \
+> -	python3-flatbuffers \
+> -	python3-sympy \
+> -"
+> -
+> -OECMAKE_SOURCEPATH =3D "${S}/cmake"
+> -
+> -PACKAGECONFIG ??=3D "python sharedlib unittests acl"
+> -
+> -PACKAGECONFIG[python] =3D "-Donnxruntime_ENABLE_PYTHON=3DON, -Donnxrunti=
+me_ENABLE_PYTHON=3DOFF, ${PYTHON_DEPENDS}"
+> -PACKAGECONFIG[sharedlib] =3D "-Donnxruntime_BUILD_SHARED_LIB=3DON, -Donn=
+xruntime_BUILD_SHARED_LIB=3DOFF"
+> -PACKAGECONFIG[unittests] =3D "-Donnxruntime_BUILD_UNIT_TESTS=3DON, -Donn=
+xruntime_BUILD_UNIT_TESTS=3DOFF, googletest"
+> -
+> -PACKAGECONFIG[acl] =3D "-Donnxruntime_USE_ACL=3DON, -Donnxruntime_USE_AC=
+L=3DOFF, arm-compute-library"
+> -PACKAGECONFIG[armnn] =3D "-Donnxruntime_USE_ARMNN=3DON, -Donnxruntime_US=
+E_ARMNN=3DOFF, armnn"
+> -PACKAGECONFIG[armnn-relu] =3D "-Donnxruntime_ARMNN_RELU_USE_CPU=3DON, -D=
+onnxruntime_ARMNN_RELU_USE_CPU=3DOFF"
+> -PACKAGECONFIG[armnn-bn] =3D "-Donnxruntime_ARMNN_BN_USE_CPU=3DON, -Donnx=
+runtime_ARMNN_BN_USE_CPU=3DOFF"
+> -
+> -EXTRA_OECMAKE:append =3D " \
+> -	-DFETCHCONTENT_FULLY_DISCONNECTED=3DON \
+> -	-DFETCHCONTENT_SOURCE_DIR_DATE=3D${S}/cmake/external/date \
+> -	-DFETCHCONTENT_SOURCE_DIR_PYTORCH_CPUINFO=3D${S}/cmake/external/cpuinfo=
+ \
+> -	-DFETCHCONTENT_SOURCE_DIR_PYTORCH_CLOG=3D${S}/cmake/external/cpuinfo \
+> -	-DFETCHCONTENT_SOURCE_DIR_FLATBUFFERS=3D${S}/cmake/external/flatbuffers=
+ \
+> -	-DFETCHCONTENT_SOURCE_DIR_SAFEINT=3D${S}/cmake/external/safeint \
+> -	-DFETCHCONTENT_SOURCE_DIR_EIGEN=3D${S}/cmake/external/eigen \
+> -	-DFETCHCONTENT_SOURCE_DIR_GOOGLE_NSYNC=3D${S}/cmake/external/nsync \
+> -"
+> -
+> -EXTRA_OECMAKE:append =3D " \
+> -	-DONNX_CUSTOM_PROTOC_EXECUTABLE=3D${STAGING_BINDIR_NATIVE}/protoc \
+> -	-Donnx_SOURCE_DIR=3D${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR} \
+> -	-DPython_INCLUDE_DIR=3D${STAGING_INCDIR}/${PYTHON_DIR}${PYTHON_ABI} \
+> -	--compile-no-warning-as-error \
+> -	--log-level=3DVERBOSE \
+> -"
+> -
+> -inherit ${@bb.utils.contains('PACKAGECONFIG', 'python', 'python3native',=
+ '', d)}
+> -inherit python3-dir cmake
+> -
+> -do_install:append() {
+> -	CP_ARGS=3D"-Prf --preserve=3Dmode,timestamps --no-preserve=3Downership"
+> -
+> -	# Install test binaries and data in test package
+> -	install -d ${D}${bindir}/${BPN}-tests
+> -	install -m 0755 ${B}/libcustom_op_library.so ${D}${bindir}/${BPN}-tests
+> -	install -m 0755 ${B}/libcustom_op_get_const_input_test_library.so ${D}$=
+{bindir}/${BPN}-tests
+> -	install -m 0755 ${B}/libcustom_op_local_function.so ${D}${bindir}/${BPN=
+}-tests
+> -	install -m 0755 ${B}/libcustom_op_invalid_library.so ${D}${bindir}/${BP=
+N}-tests
+> -	install -m 0755 ${B}/libtest_execution_provider.so ${D}${bindir}/${BPN}=
+-tests
+> -	install -m 0755 ${B}/onnxruntime_customopregistration_test ${D}${bindir=
+}/${BPN}-tests
+> -	install -m 0755 ${B}/onnxruntime_global_thread_pools_test ${D}${bindir}=
+/${BPN}-tests
+> -	install -m 0755 ${B}/onnxruntime_logging_apis_test ${D}${bindir}/${BPN}=
+-tests
+> -	install -m 0755 ${B}/onnxruntime_mlas_test ${D}${bindir}/${BPN}-tests
+> -	install -m 0755 ${B}/onnxruntime_perf_test ${D}${bindir}/${BPN}-tests
+> -	install -m 0755 ${B}/onnxruntime_shared_lib_test ${D}${bindir}/${BPN}-t=
+ests
+> -	install -m 0755 ${B}/onnxruntime_test_all ${D}${bindir}/${BPN}-tests
+> -	cp $CP_ARGS ${B}/testdata ${D}${bindir}/${BPN}-tests
+> -
+> -	# Install python tests and data
+> -	cp $CP_ARGS ${S}/onnxruntime/test/python/* ${D}${bindir}/${BPN}-tests
+> -
+> -	# Install the Python package.
+> -	if ${@bb.utils.contains('PACKAGECONFIG', 'python', 'true', 'false', d)}=
+; then
+> -		install -d ${D}${PYTHON_SITEPACKAGES_DIR}
+> -		cp $CP_ARGS ${B}/onnxruntime ${D}${PYTHON_SITEPACKAGES_DIR}
+> -		find ${D}${PYTHON_SITEPACKAGES_DIR} -name "libonnx*.so*" -exec rm {} \=
+;
+> -	fi
+> -}
+> -
+> -# Add Python package
+> -PACKAGE_BEFORE_PN +=3D "python3-${PN}"
+> -FILES:python3-${PN} +=3D "${PYTHON_SITEPACKAGES_DIR}"
+> -RDEPENDS:python3-${PN} +=3D "${PYTHON_RDEPENDS} onnxruntime"
+> -
+> -# Add Python tests package
+> -PACKAGE_BEFORE_PN +=3D "python3-${PN}-tests"
+> -FILES:python3-${PN}-tests +=3D "\
+> -	${bindir}/${BPN}-tests/*.py \
+> -	${bindir}/${BPN}-tests/contrib_ops \
+> -	${bindir}/${BPN}-tests/quantization \
+> -	${bindir}/${BPN}-tests/transformers \
+> -"
+> -RDEPENDS:python3-${PN}-tests +=3D "python3-${PN}"
+> -
+> -# Add tests package
+> -PACKAGE_BEFORE_PN +=3D "${PN}-tests"
+> -FILES:${PN}-tests =3D "${bindir}/${BPN}-tests"
+> -INSANE_SKIP:${PN}-tests +=3D "libdir"
+> -
+> -# package unversioned .so files in PN (they are not dev symlinks)
+> -FILES_SOLIBSDEV =3D "${libdir}/libonnxruntime.so"
+> -FILES:${PN} +=3D "${libdir}/libonnxruntime_providers_shared.so"
+> -
+> -INSANE_SKIP:${PN}-dbg +=3D "libdir"
+> diff --git a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_=
+1.23.2.bb b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_1.2=
+3.2.bb
+> new file mode 100644
+> index 00000000..f47523ca
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_1.23.2.=
+bb
+> @@ -0,0 +1,163 @@
+> +DESCRIPTION =3D "ONNX Runtime is a cross-platform, high performance mach=
+ine learning inferencing framework"
+> +SUMMARY =3D "ONNX Runtime Python package & C++ library"
+> +HOMEPAGE =3D "https://www.onnxruntime.ai/"
+> +LICENSE =3D "MIT"
+> +LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D0f7e3b1308cb5c00b372a6e788357=
+32d"
+> +
+> +SRC_URI =3D "\
+> +      git://github.com/microsoft/onnxruntime.git;protocol=3Dhttps;branch=
+=3Drel-1.23.2 \
+> +      git://github.com/HowardHinnant/date.git;protocol=3Dhttps;branch=3D=
+master;name=3Ddate;destsuffix=3D${S}/_deps/date-src \
+> +      git://github.com/pytorch/cpuinfo.git;protocol=3Dhttps;branch=3Dmai=
+n;name=3Dcpuinfo;destsuffix=3D${S}/_deps/pytorch_cpuinfo-src \
+> +      git://github.com/google/flatbuffers.git;protocol=3Dhttps;branch=3D=
+master;name=3Dflatbuffers;destsuffix=3D${S}/_deps/flatbuffers-src \
+> +      git://github.com/dcleblanc/SafeInt.git;protocol=3Dhttps;branch=3Dm=
+aster;name=3Dsafeint;destsuffix=3D${S}/_deps/safeint-src \
+> +      git://github.com/eigen-mirror/eigen.git;protocol=3Dhttps;branch=3D=
+master;name=3Deigen;destsuffix=3D${S}/_deps/eigen3-src \
+> +      git://github.com/google/nsync.git;protocol=3Dhttps;branch=3Dmaster=
+;name=3Dnsync;destsuffix=3D${S}/_deps/google_nsync-src \
+> +      git://github.com/boostorg/mp11.git;protocol=3Dhttps;branch=3Dmaste=
+r;name=3Dmp11;destsuffix=3D${S}/_deps/mp11-src \
+> +      git://github.com/dmlc/dlpack.git;protocol=3Dhttps;branch=3Dmain;na=
+me=3Ddlpack;destsuffix=3D${S}/_deps/dlpack-src \
+> +      git://github.com/abseil/abseil-cpp.git;protocol=3Dhttps;branch=3Dl=
+ts_2025_05_12;name=3Dabseil-cpp;destsuffix=3D${S}/_deps/abseil_cpp-src \
+> +      git://github.com/google/re2.git;protocol=3Dhttps;branch=3Dmain;nam=
+e=3Dre2;destsuffix=3D${S}/_deps/re2-src \
+> +"
+> +SRC_URI +=3D "\
+> +	file://0001-Added-the-missing-header-to-fix-uint32_t-compilation.patch =
+\
+> +"
+> +
+> +SRCREV_FORMAT =3D "default"
+> +SRCREV =3D "a83fc4d58cb48eb68890dd689f94f28288cf2278"
+> +SRCREV_date =3D "6e921e1b1d21e84a5c82416ba7ecd98e33a436d0"
+> +SRCREV_cpuinfo =3D "8a1772a0c5c447df2d18edf33ec4603a8c9c04a6"
+> +SRCREV_flatbuffers =3D "0100f6a5779831fa7a651e4b67ef389a8752bd9b"
+> +SRCREV_safeint =3D "4cafc9196c4da9c817992b20f5253ef967685bf8"
+> +SRCREV_eigen =3D "1d8b82b0740839c0de7f1242a3585e3390ff5f33"
+> +SRCREV_nsync =3D "13de152c2a1cd73ff4df97bd2c406b6d15d34af3"
+> +SRCREV_mp11 =3D "0a0b5fb001ce0233ae3a6f99d849c0649e5a7361"
+> +SRCREV_dlpack =3D "5c210da409e7f1e51ddf445134a4376fdbd70d7d"
+> +SRCREV_abseil-cpp =3D "bc257a88f7c1939f24e0379f14a3589e926c950c"
+> +SRCREV_re2 =3D "6dcd83d60f7944926bfd308cc13979fc53dd69ca"
+> +
+> +#Only compatible with armv7a, armv7ve, and aarch64
+> +COMPATIBLE_MACHINE =3D "(^$)"
+> +COMPATIBLE_MACHINE:aarch64 =3D "(.*)"
+> +COMPATIBLE_MACHINE:armv7a =3D "${@bb.utils.contains("TUNE_FEATURES","neo=
+n","(.*)","(^$)",d)}"
+> +COMPATIBLE_MACHINE:armv7ve =3D "${@bb.utils.contains("TUNE_FEATURES","ne=
+on","(.*)","(^$)",d)}"
+> +
+> +DEPENDS +=3D "\
+> +	onnx \
+> +	protobuf \
+> +	protobuf-native \
+> +	boost \
+> +	nlohmann-json \
+> +	microsoft-gsl \
+> +"
+> +
+> +PYTHON_DEPENDS =3D "\
+> +	python3 \
+> +	python3-numpy \
+> +	python3-numpy-native \
+> +	python3-pybind11 \
+> +	python3-pybind11-native \
+> +"
+> +
+> +PYTHON_RDEPENDS =3D "\
+> +	python3 \
+> +	python3-onnx \
+> +	python3-numpy \
+> +	python3-protobuf \
+> +	python3-coloredlogs \
+> +	python3-flatbuffers \
+> +	python3-sympy \
+> +"
+> +
+> +OECMAKE_SOURCEPATH =3D "${S}/cmake"
+> +
+> +PACKAGECONFIG ??=3D "python sharedlib unittests acl"
+> +
+> +PACKAGECONFIG[python] =3D "-Donnxruntime_ENABLE_PYTHON=3DON, -Donnxrunti=
+me_ENABLE_PYTHON=3DOFF, ${PYTHON_DEPENDS}"
+> +PACKAGECONFIG[sharedlib] =3D "-Donnxruntime_BUILD_SHARED_LIB=3DON, -Donn=
+xruntime_BUILD_SHARED_LIB=3DOFF"
+> +PACKAGECONFIG[unittests] =3D "-Donnxruntime_BUILD_UNIT_TESTS=3DON, -Donn=
+xruntime_BUILD_UNIT_TESTS=3DOFF, googletest"
+> +
+> +PACKAGECONFIG[acl] =3D "-Donnxruntime_USE_ACL=3DON, -Donnxruntime_USE_AC=
+L=3DOFF, arm-compute-library"
+> +PACKAGECONFIG[armnn] =3D "-Donnxruntime_USE_ARMNN=3DON, -Donnxruntime_US=
+E_ARMNN=3DOFF, armnn"
+> +PACKAGECONFIG[armnn-relu] =3D "-Donnxruntime_ARMNN_RELU_USE_CPU=3DON, -D=
+onnxruntime_ARMNN_RELU_USE_CPU=3DOFF"
+> +PACKAGECONFIG[armnn-bn] =3D "-Donnxruntime_ARMNN_BN_USE_CPU=3DON, -Donnx=
+runtime_ARMNN_BN_USE_CPU=3DOFF"
+> +
+> +
+> +EXTRA_OECMAKE:append =3D " \
+> +      -DFETCHCONTENT_FULLY_DISCONNECTED=3DON \
+> +      -DFETCHCONTENT_SOURCE_DIR_DATE=3D${S}/_deps/date-src \
+> +      -DFETCHCONTENT_SOURCE_DIR_PYTORCH_CPUINFO=3D${S}/_deps/pytorch_cpu=
+info-src \
+> +      -DFETCHCONTENT_SOURCE_DIR_PYTORCH_CLOG=3D${S}/_deps/pytorch_cpuinf=
+o-src \
+> +      -DFETCHCONTENT_SOURCE_DIR_FLATBUFFERS=3D${S}/_deps/flatbuffers-src=
+ \
+> +      -DFETCHCONTENT_SOURCE_DIR_SAFEINT=3D${S}/_deps/safeint-src \
+> +      -DFETCHCONTENT_SOURCE_DIR_EIGEN3=3D${S}/_deps/eigen3-src \
+> +      -DFETCHCONTENT_SOURCE_DIR_GOOGLE_NSYNC=3D${S}/_deps/google_nsync-s=
+rc \
+> +      -DFETCHCONTENT_SOURCE_DIR_ABSEIL_CPP=3D${S}/_deps/abseil_cpp-src \
+> +      -DFETCHCONTENT_SOURCE_DIR_MP11=3D${S}/_deps/mp11-src \
+> +      -DFETCHCONTENT_SOURCE_DIR_DLPACK=3D${S}/_deps/dlpack-src \
+> +      -DFETCHCONTENT_SOURCE_DIR_RE2=3D${S}/_deps/re2-src \=09
+> +"
+> +EXTRA_OECMAKE:append =3D " \
+> +	-DONNX_CUSTOM_PROTOC_EXECUTABLE=3D${STAGING_BINDIR_NATIVE}/protoc \
+> +	-Donnx_SOURCE_DIR=3D${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR} \
+> +	-DPython_INCLUDE_DIR=3D${STAGING_INCDIR}/${PYTHON_DIR}${PYTHON_ABI} \
+> +        --compile-no-warning-as-error \
+> +	--log-level=3DVERBOSE \
+> +"
+> +
+> +inherit ${@bb.utils.contains('PACKAGECONFIG', 'python', 'python3native',=
+ '', d)}
+> +inherit python3-dir cmake
+> +
+> +do_install:append() {
+> +	CP_ARGS=3D"-Prf --preserve=3Dmode,timestamps --no-preserve=3Downership"
+> +
+> +	# Install test binaries and data in test package
+> +	install -d ${D}${bindir}/${BPN}-tests
+> +	install -m 0755 ${B}/libcustom_op_library.so ${D}${bindir}/${BPN}-tests
+> +	install -m 0755 ${B}/libcustom_op_get_const_input_test_library.so ${D}$=
+{bindir}/${BPN}-tests
+> +	install -m 0755 ${B}/libcustom_op_local_function.so ${D}${bindir}/${BPN=
+}-tests
+> +	install -m 0755 ${B}/libcustom_op_invalid_library.so ${D}${bindir}/${BP=
+N}-tests
+> +	install -m 0755 ${B}/libtest_execution_provider.so ${D}${bindir}/${BPN}=
+-tests
+> +	install -m 0755 ${B}/onnxruntime_customopregistration_test ${D}${bindir=
+}/${BPN}-tests
+> +	install -m 0755 ${B}/onnxruntime_global_thread_pools_test ${D}${bindir}=
+/${BPN}-tests
+> +	install -m 0755 ${B}/onnxruntime_logging_apis_test ${D}${bindir}/${BPN}=
+-tests
+> +	install -m 0755 ${B}/onnxruntime_mlas_test ${D}${bindir}/${BPN}-tests
+> +	install -m 0755 ${B}/onnxruntime_perf_test ${D}${bindir}/${BPN}-tests
+> +	install -m 0755 ${B}/onnxruntime_shared_lib_test ${D}${bindir}/${BPN}-t=
+ests
+> +	install -m 0755 ${B}/onnxruntime_test_all ${D}${bindir}/${BPN}-tests
+> +	cp $CP_ARGS ${B}/testdata ${D}${bindir}/${BPN}-tests
+> +
+> +	# Install python tests and data
+> +	cp $CP_ARGS ${S}/onnxruntime/test/python/* ${D}${bindir}/${BPN}-tests
+> +
+> +	# Install the Python package.
+> +	if ${@bb.utils.contains('PACKAGECONFIG', 'python', 'true', 'false', d)}=
+; then
+> +		install -d ${D}${PYTHON_SITEPACKAGES_DIR}
+> +		cp $CP_ARGS ${B}/onnxruntime ${D}${PYTHON_SITEPACKAGES_DIR}
+> +		find ${D}${PYTHON_SITEPACKAGES_DIR} -name "libonnx*.so*" -exec rm {} \=
+;
+> +	fi
+> +}
+> +
+> +# Add Python package
+> +PACKAGE_BEFORE_PN +=3D "python3-${PN}"
+> +FILES:python3-${PN} +=3D "${PYTHON_SITEPACKAGES_DIR}"
+> +RDEPENDS:python3-${PN} +=3D "${PYTHON_RDEPENDS} onnxruntime"
+> +
+> +# Add Python tests package
+> +PACKAGE_BEFORE_PN +=3D "python3-${PN}-tests"
+> +FILES:python3-${PN}-tests +=3D "\
+> +	${bindir}/${BPN}-tests/*.py \
+> +	${bindir}/${BPN}-tests/contrib_ops \
+> +	${bindir}/${BPN}-tests/quantization \
+> +	${bindir}/${BPN}-tests/transformers \
+> +"
+> +RDEPENDS:python3-${PN}-tests +=3D "python3-${PN}"
+> +
+> +# Add tests package
+> +PACKAGE_BEFORE_PN +=3D "${PN}-tests"
+> +FILES:${PN}-tests =3D "${bindir}/${BPN}-tests"
+> +INSANE_SKIP:${PN}-tests +=3D "libdir"
+> +
+> +# package unversioned .so files in PN (they are not dev symlinks)
+> +FILES_SOLIBSDEV =3D "${libdir}/libonnxruntime.so"
+> +FILES:${PN} +=3D "${libdir}/libonnxruntime_providers_shared.so"
+> +
+> +INSANE_SKIP:${PN}-dbg +=3D "libdir"
 
 
