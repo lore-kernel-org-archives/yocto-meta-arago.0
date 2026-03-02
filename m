@@ -1,228 +1,148 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E3579EB3637
-	for <webhook@archiver.kernel.org>; Mon,  2 Mar 2026 21:02:01 +0000 (UTC)
-Received: from DM1PR04CU001.outbound.protection.outlook.com (DM1PR04CU001.outbound.protection.outlook.com [52.101.61.46])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.2606.1772485311544843343
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 670D8EB3641
+	for <webhook@archiver.kernel.org>; Mon,  2 Mar 2026 22:55:52 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com (CH4PR04CU002.outbound.protection.outlook.com [40.107.201.65])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.5261.1772492147076773410
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 02 Mar 2026 13:01:52 -0800
+ Mon, 02 Mar 2026 14:55:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=PH/i0HjI;
- spf=pass (domain: list.ti.com, ip: 52.101.61.46, mailfrom: prc@list.ti.com)
+ dkim=pass header.i=@ti.com header.s=selector1 header.b=CkSJFxS8;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.201.65, mailfrom: afd@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WUOIm8x1RYh3HzBNsvP0vPG28yQlKAvSuSqs30tjl1F2iSbKAikyQBc+d/KPnijuAcgl2lG57cWYVQgsEpYIDYYwZXyLX7NtwnDJANBPLyHIp0Ncm+r4xMoGKKB/SaEXLpWyiCbhvBvCCAt/vjVE/1ZHpZ3O2uI8plZg9BsWUGCjEhgtgAzmHTw55QPyXwrpwKyuFr/8iXIW8//VQYWEZA4QpUpiSTb0yQ31lvJTRQnQnLzy8i4k68i2uWFbvt5CCPJt9QjMe6N2kURvBlFQRWLyqtmBVVfLswT5LPfIQYTJWr35BceAy8BRGGq+5eRw2USGJo7EjWlExYdo2GURLw==
+ b=RpAdxSlaBwou57xCYtw8MVeRaLuI9k9m0qzor1auQzkcd+tRI8dDSiGSrg+xlBtsIc0042niQpPr8UPSpKE+BRcaUfsBY+RcuN3HqO5hbUKKp7dswmNf+EyyPaDRd73LXrBerKOEtZp/gZTPfMNW0BCppnl6c91lzWlF/hdnvUBkFqhW7HpVbPtKpGY3TBUTf5M+OTLTcCSS+L3l20on97drHlqreq3VNYuvT6UQTs7RrRvqOkVGNd3IFJpGFkctDbkRoRvlrnJy0bCDW6xrMIyHFyArJ+LUMoovU/IQeRohf5E0C8I9ehVaDzhTnbcOSiT1g/jhrDZgpqvQqhR3fg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eFU0a+NsuTOhlC2SKT3lST2cYjB7cxe/qexPMwQqSsw=;
- b=EkJmj5VcofEZRfjJu5nGcYb6OMkz4c1LnbUCYoH6vpvkDJUheLTnczUWEkJ5jb0CFHiz8WvFMz7avKEaftJlC1uo/zk/6mp8C+FqtNU6kXsmgIebLr5PVV6su02gdOGmS9lkRK8qfa4ix+DbDIOMPNw6IvmTIQtxBVErRzxGrrxfVu27nem2uIhhhkE2yLZ6ea3NXVlQfNmgbgB00WZquPe880aHDkyzmG6ZhuNXfmm4QcqpD6RJQ0QtppywCHkQYA1Oul2RFBCOi2+Ksf0yb9MptJ+0WM+TvgG6qyNTtrKaf0Py5zRZXpjiTu/8iicSDl9ssl0yXyF4FL27oBuucA==
+ bh=Q99v2sTrvD0w+azvJ5GvAaLiJdtmynuw9CSp83fiaps=;
+ b=HtLKe86OFAASiMWCRiHSLs5Hx5LNuyJE/7OJ1d9VsHjaLY0d5CSa2qnCSLep055COl57VGttH2KRiK7SnHXGAx9mbDrtCSh4nz8rbQKN4TRSzitQn8mi/pGZ5wnRRpMXokP088WXlN/a9yaRpcn3G7y8wXoRziolwBlwNEN/vGSeZMcTxk1afmKJow4gEjzQUtmfdRI7SJWVjXJ3OCcUo+B6eceUYMI4NryC76shntu7Uoo+aw9gHP63q2OJ/l6az3qSAEAqJAXFF5SK4meBd1DnJptJmxJ/Lq211W/RE4+pRSfgFjZ2qd6CbYcqR2gQyib8lrgqCtA5M2OpprFjtg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
- s=selector1;
+ 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eFU0a+NsuTOhlC2SKT3lST2cYjB7cxe/qexPMwQqSsw=;
- b=PH/i0HjIzsVVa6JSjmQWIkDiWaIaqkKsF9I7IbS8n60q2D1eavHNnRJX04nGOXxJzMuLRm0j7rzDgRTF+RI9WqQEWaijPhPIoBgUErynq1nQffjz3Y0nzOt8LhZv36wQaX0gVQUONW1dnfnUdeBUbgeffCNswoR4hTSr3cLqJXQ6ngxB48wQBabusaToGWGOWBIRW+eQr3IbfthRnU8BVuE/fWDscpCnO5oF+QtEV+bcC7NH3Q/FzffwPQH3OBUZMdnoo0CB+Pw/6GnfMBtzlm8NvTPAPsbwSkSvwsIrJabLKxNpADDn1MxPaoPMKy91Gi+I5JVL+0X4gD8d8acPOQ==
-Received: from DS7PR06CA0046.namprd06.prod.outlook.com (2603:10b6:8:54::13) by
- MN2PR10MB4365.namprd10.prod.outlook.com (2603:10b6:208:199::21) with
+ bh=Q99v2sTrvD0w+azvJ5GvAaLiJdtmynuw9CSp83fiaps=;
+ b=CkSJFxS8Eewm31MHL1VKQP0odiZibyT4NuYJO2/vrxAISR8X7jJdKZEKR6fjqO0T4+yVTPaJL4GdfPZ+5HAHD4Fdoj5aj0+7edaiq+keR3PROGIwNNyB5PKi0HxJWlIRj4fQo7dNlakjFpdr7qkjnrf+oB34cwiOyyK9p5q2SnM=
+Received: from PH8PR20CA0022.namprd20.prod.outlook.com (2603:10b6:510:23c::22)
+ by IA4PR10MB8350.namprd10.prod.outlook.com (2603:10b6:208:55d::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
- 2026 21:01:45 +0000
-Received: from CH3PEPF00000014.namprd21.prod.outlook.com
- (2603:10b6:8:54:cafe::e3) by DS7PR06CA0046.outlook.office365.com
- (2603:10b6:8:54::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.21 via Frontend Transport; Mon,
- 2 Mar 2026 21:01:33 +0000
+ 2026 22:55:44 +0000
+Received: from CY4PEPF0000EE3A.namprd03.prod.outlook.com
+ (2603:10b6:510:23c:cafe::f1) by PH8PR20CA0022.outlook.office365.com
+ (2603:10b6:510:23c::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.26 via Frontend Transport; Mon,
+ 2 Mar 2026 22:55:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=list.ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=list.ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.21.194 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
 Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- CH3PEPF00000014.mail.protection.outlook.com (10.167.244.119) with Microsoft
+ CY4PEPF0000EE3A.mail.protection.outlook.com (10.167.242.12) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.0 via Frontend Transport; Mon, 2 Mar 2026 21:01:44 +0000
-Received: from DFLE205.ent.ti.com (10.64.6.63) by flwvzet200.ext.ti.com
+ 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 22:55:43 +0000
+Received: from DFLE207.ent.ti.com (10.64.6.65) by flwvzet200.ext.ti.com
  (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
- 2026 15:01:32 -0600
-Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 16:55:42 -0600
+Received: from DFLE203.ent.ti.com (10.64.6.61) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
- 2026 15:01:32 -0600
-Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 16:55:42 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE203.ent.ti.com
+ (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 2 Mar 2026 15:01:32 -0600
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 622L1W9F2861482;
-	Mon, 2 Mar 2026 15:01:32 -0600
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id AF4F49ACF4; Mon,  2 Mar 2026 15:01:31 -0600 (CST)
-From: PRC Automation <prc@list.ti.com>
-To: Thorsten Lannynd <t-lannynd@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, <detheridge@ti.com>,
-	<b-brnich@ti.com>, <a-christidis@ti.com>
-Subject: Re: [meta-arago][master][PATCH 1/4] meta-arago-test: Add curl-cffi  recipe
-Date: Mon, 2 Mar 2026 15:01:31 -0600
-Message-ID: <20260302210131.2910144-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20260302205436.1117890-1-t-lannynd@ti.com>
-References: <20260302205436.1117890-1-t-lannynd@ti.com>
+ Transport; Mon, 2 Mar 2026 16:55:42 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 622Mtg9P1058334;
+	Mon, 2 Mar 2026 16:55:42 -0600
+Message-ID: <c7bb76ec-980b-4086-a399-c7e76774e713@ti.com>
+Date: Mon, 2 Mar 2026 16:55:41 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][master][PATCH 3/4] meta-arago-test: Add curl-cffi
+ and yt-dlp to ti-test-extras
+To: <t-lannynd@ti.com>, <meta-arago@lists.yoctoproject.org>
+CC: <detheridge@ti.com>, <b-brnich@ti.com>, <a-christidis@ti.com>
+References: <20260302205436.1117890-1-t-lannynd@ti.com>
+ <20260302205436.1117890-3-t-lannynd@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20260302205436.1117890-3-t-lannynd@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000014:EE_|MN2PR10MB4365:EE_
-X-MS-Office365-Filtering-Correlation-Id: d86be983-2d97-4675-cb82-08de789ee904
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3A:EE_|IA4PR10MB8350:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8af9722f-c226-4e7e-4af8-08de78aed584
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|34020700016|376014|13003099007;
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|34020700016|376014;
 X-Microsoft-Antispam-Message-Info: 
-	GQAR8G51/r1DUVyXuuPsifdjcKRqv9C4nZOrCgPRyD7OeTbJboMn3f6D+PKyYlmKKvYl5dQe7DhfDdMJOzrjMtS7QCwZm9v1gf1Pqzsf6fPRcB8CHSxqeIdZFlqAX8ueKcL4ZSRmpSdvKNgtDktZz3eFlFc3FU0xDeXj0FTzAcgF0hQvtnReM4c2MgrmIPd8dWQh1jfviJGtARZqOWIhG9vEWVYC60FfRZGNUXSLl8bjm8yBWIgehCnRA+Mp/f1DrfJdANS284FkNTY/ihVylgsu8FxKxm+FTtwFjVcaai5C5/va9FZQYo41FQxBhja4d+FPeKoPWTxRHhncDmJqvc8+fPFTEe5dxa659EbYwpnM1rJlCSKlKe5xBTNImSF7d1ogM3RxYwz3oGdPeRhvK4dDE14nG4qFiaVGtzL3Np0Re8VHLRYjIloA7KVTeIDp7SC6nBpRqk1dF/r6q0wttM6icQlnGd0xwxtrlYs/idcToj7GF4hnqmLICsR6WvEPAGP/w5yKgpKu/tiopO0TYAe7NWxjAoOpBmMtEt4D28QKMTK16IScH/3dkNP/9aBErtHleeYL+2VcGPDypWEcupqIYaKycz9/BG+fy1EwwLN0P3tMbLxggQfdJDK8dxeUHQWcsp3prUFn69iE4zBXH+EV8kil8SIUs8W9tidv+D70fvbgMohPttHU1YjRx5sVV4F/bHgjmhRRKt6LQIf95J5syUk+TDJx9pGw40ZGsEHVsud+5w+IxwvmllA66huRC6/NkszzeB2Oto1UdxijzPlNvQaleKljbfomfuLsGJJ9jgXzwkBDXFpVadkcZWBvLdqhOa3HAVnduv4D+KMjyg==
+	UuWf8IysSpjElu6Y0toT5sU3MWfo1KB9f5EsnH1AZRSgE6AlRwSPbpYzOByen2w0yBUdQrchOO1Fqc/+25mtzZOh/r1MfGX9wSuLh3Y/Fyizm2U4k0K3c7gEC5ZZaEXjApWa/Ap5bOfzRiiYEIO39Lis3CJN0V/kkudYBNrLlQ95WoRLzKiXc1gSWQWmZ7V/m4gcsqmNcYFQpH6DI6IDDmesheqmHXC6biWu+wXIdT90b8KUQw4pWOeEz5GBn+Yk6h+4Hqo46xsdzjnru5UNOhcqsk9vhSfmuooYFnkkmRhxRxpuxigjWUWfpRMF0C3OpC+a+RXp2OOPJLxWjSoxqr+DnZ6i+3C2qvR3ZFclS6LWcU664I80cvxpXZ4r2InU2FzZyMmHIBArGCl/DX5Z+XVjjLLQQ9Xsbz0qbO49XPTwdwac9WzyJQPsZTw2SV63jhUkgrLxl8geFfigH770PSqEArCNTgHVVsPPR9lglJI+LhzmDMe4be5YWzFPyjH2CyI4ATL3FyNBCQSRa9AEaD5kTc6zXErPtFlL5KBviKkFkfPnPUTDUaX4I0zJcFHvq9hAQX4fqs/LGD+kHncnXi+zI1521DJIXSHNlI/IKrrk+ZusQjAqLO+2d+4ed1x88TwA+gJuIQiWdfTh9yxM44MaFPBtu03rqTczSXp2NfAhhGScgZcPtpyJaVQ2JLXaRqcVIH+dvyiEzjoMOBX75oHB50ygrucXNhQ3t+nxNS3F0Yz/Kycp1kpRXK0oR5/2qe6fIIC6nlwm72veUP5BvBJxYIXy6d2GCCNQPyeotoIqBOno224GvGj9G4dmjO0/htF9fkzo+ulxBytH3NhYsQ==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(34020700016)(376014)(13003099007);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(34020700016)(376014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	i1n2k5OI6nS8RHjq+YDXxUCt9Hb5bf32C0Tvs+kj78brU8Q9R/k8yfrurVP5npzb3rTaDbJkE3Nk5poKzMVO5NJlvzCPq7TNIiwMkKqcO6Gop/aIfEWqQy8D6ZSAOisPy5iKK1ywrcTJkn8p+C87AbUsEb0dzdjlrvvn/4gEWNtls/Vk9+HxIEpslWekeRF/rfvsBWAWQS1YelEDObAnc0uN6PW7stSRFHU9OMMFeB6GqmAgvdZjVVqL98niyDGTGeN9VX62KpBvi+z2A54hmX+HWjUPFuVmwPOMKJ2YGxtNqxgeAnIib/jWOn2P9ktaBkP4VbfDQlHec5VS22R3Obr4rDJZlu2wEWzwbF5XmiquB5ypohfHhLUoZCJ4sN/wmAgm0dz0n7ZvnyVyQhAbr0fww1OKt8k5ZFMOYNB4S2hhSkO/cWFxapJu1vBYoxTu
-X-OriginatorOrg: list.ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 21:01:44.1810
+	kvvTZ9TaSInVt9gjMdUkBv7lm/GdCnLXjmQg+CXPcs3c5N4kyc4fNPK6u8Jb9Q/Bc7lig9cKmhIETS/k6wpKboMZ4oRZJF+SDyrRMgUrVIakc8EIHwbamYKbFBFm2LsPd5mh4XNQEpjEX1RX2itzXnHJGN9p33sZtpp2hk4mRTDM0HonsPqdfUgNMV3uUZZRDEg2O68xD2yPoznjqiE3Qwmr0PZCyXubnEZadoiRrt096oi5NZ6UgBYZAeoEsjLtYhQwJe/1aGJSYgO6exqabT+twNGiN7vcfBrQfegew+IiY50WG0rqUTllpjgk/Und+t4uJJQbiOFItv0Xf817JW7x+aj2WETSR55o9hqPcq3hoj97e74PTIdyOhGFzU4LHa8KZJWby1C2bZUoqePXY+n5X2e1W/2+apl+/sKl6NY4fkwK2BlL1GX43bkgomf3
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 22:55:43.4207
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d86be983-2d97-4675-cb82-08de789ee904
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8af9722f-c226-4e7e-4af8-08de78aed584
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	CH3PEPF00000014.namprd21.prod.outlook.com
+	CY4PEPF0000EE3A.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR10MB4365
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR10MB8350
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 02 Mar 2026 21:02:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17181
+ <meta-arago@lists.yoctoproject.org>; Mon, 02 Mar 2026 22:55:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17182
 
-meta-arago / na / 20260302205436.1117890-1-t-lannynd
+On 3/2/26 2:54 PM, Thorsten Lannynd via lists.yoctoproject.org wrote:
+> Add curl-cffi and yt-dlp to the TI_TEST_EXTRAS packagegroup for additional
+> testing capabilities.
+> 
+> - curl-cffi: Python library for curl-impersonate functionality
+> - yt-dlp: Enhanced youtube-dl fork with additional features
+> 
 
-PRC Results: FAIL
+Didn't youtube-dl run into some legal issues.. Could you expand on what these
+"additionaltesting capabilities" will be?
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Patches
-----------------------------------------
-WARN - [meta-arago][master][PATCH 1/4] meta-arago-test: Add curl-cffi  reci=
-pe
-    WARN: Commit message does not include file/recipe name: meta-arago-test=
-: Add curl-cffi  recipe. (COMMIT-MESSAGE-2)
-        patch
-   =20
-    WARN: Commit message should not include directory path to recipe: meta-=
-arago-test: Add curl-cffi  recipe.
-              meta-arago-test (COMMIT-MESSAGE-3)
-        patch
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
-WARN - [meta-arago][master][PATCH 2/4] meta-arago-test: Add yt-dlp recipe
-    WARN: Commit message does not include file/recipe name: meta-arago-test=
-: Add yt-dlp recipe. (COMMIT-MESSAGE-2)
-        patch
-   =20
-    WARN: Commit message should not include directory path to recipe: meta-=
-arago-test: Add yt-dlp recipe.
-              meta-arago-test (COMMIT-MESSAGE-3)
-        patch
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
-WARN - [meta-arago][master][PATCH 3/4] meta-arago-test: Add curl-cffi and y=
-t-dlp to ti-test-extras
-    WARN: Commit message does not include file/recipe name: meta-arago-test=
-: Add curl-cffi and yt-dlp to ti-test-extras. (COMMIT-MESSAGE-2)
-        patch
-   =20
-    WARN: Commit message should not include directory path to recipe: meta-=
-arago-test: Add curl-cffi and yt-dlp to ti-test-extras.
-              meta-arago-test (COMMIT-MESSAGE-3)
-        patch
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
-WARN - [meta-arago][master][PATCH 4/4] meta-arago-distro: ffmpeg: Enable Op=
-enSSL support for HTTPS protocol
-    WARN: Commit message should not include directory path to recipe: meta-=
-arago-distro: ffmpeg: Enable OpenSSL support for HTTPS protocol.
-              meta-arago-distro (COMMIT-MESSAGE-3)
-        patch
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
+Andrew
 
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  apply-yocto-patch: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [meta-arago][master][PATCH 1/4] meta-arago-test: Add curl-c=
-ffi  recipe
-- Submitter: From: Thorsten Lannynd <t-lannynd@ti.com>
-- Date: Date: Mon, 2 Mar 2026 14:54:33 -0600
-- Num Patches: 4
-- Mailing List (public inbox) Commit SHA: 559233df8ad72371c06156f29f9be4953=
-3bfa577
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Ryan Eatmon <reatmon@ti.com>
-- Commit Subject: arago.conf: Remove temporary hack for DEFAULTTUNE on armv=
-7a
-- Commit SHA: 58966cd5a2d433b4c915e652f21f2e2b2475ec21
-
-Patches
-----------------------------------------
-All patches applied
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-repo: FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-FAIL
-    WARN: .bbappend files might need a guard to make them check-layer compl=
-iant. (GUARD-1)
-        meta-arago-distro/recipes-multimedia/ffmpeg/ffmpeg_%.bbappend
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
-
-
+> Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
+> ---
+>   meta-arago-test/recipes-core/packagegroups/ti-test.bb | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> index f2ae1aef..d1d049c2 100644
+> --- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> +++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> @@ -77,10 +77,12 @@ TI_TEST_EXTRAS_OPENCL = " \
+>   "
+>   
+>   TI_TEST_EXTRAS = " \
+> +    curl-cffi \
+>       python3-pillow \
+>       pytesseract \
+>       python3-numpy \
+>       wayland-utils \
+> +    yt-dlp \
+>       ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', '${TI_TEST_EXTRAS_OPENGL}', '', d)} \
+>       ${@bb.utils.contains('DISTRO_FEATURES', 'opencl', '${TI_TEST_EXTRAS_OPENCL}', '', d)} \
+>   "
 
 
