@@ -1,41 +1,41 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E967EEF8FF2
-	for <webhook@archiver.kernel.org>; Wed,  4 Mar 2026 14:53:05 +0000 (UTC)
-Received: from MW6PR02CU001.outbound.protection.outlook.com (MW6PR02CU001.outbound.protection.outlook.com [52.101.48.3])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.19994.1772635981192804197
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 368E2EF9002
+	for <webhook@archiver.kernel.org>; Wed,  4 Mar 2026 16:05:25 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com (BN1PR04CU002.outbound.protection.outlook.com [52.101.56.17])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.21832.1772640321986834488
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 04 Mar 2026 06:53:01 -0800
+ Wed, 04 Mar 2026 08:05:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=WLc/hgw0;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.48.3, mailfrom: reatmon@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=Kwxx9EZg;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.56.17, mailfrom: afd@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xM45qxvIUS/49MlG6ghigmYKpQRh0wcApsUkLmmTiBVnIec01iP5+GwBepxa491cAp0pEbfIY+OoPgwdM/YZpq9dKWM4rTgZMsfFUgVQaHWwvudkWwClcaqU7/UspJ6GmyrOI7wiIz4iuKD04dwyMBS7NMtqoTT0+KnuzSy2JCXNJ33wA8rHGbXdRiUDWtTcf4AKvu53/lNkcNU8UMadfkMTHx3tVK48+7L0CBwndma2XGNM/mFpX/lGpW/j1idngot77euAlBfWec8PjOp6Croonf9vaJJiUj1+vXON+6b70VYUKPicQLf4OxlnpbXic0FS0nNfFBSk2O23UO84NQ==
+ b=UmqbhB25vMXmodPLSEln3Kz+MDWM2ZYQ8h0QAV58ngJ1Y4tE7Y3WRsRfu4M/N6LDgCT8qBqgDm5MyaAXsYdlArHOWEQrmWNphorrs7YdZcPcy/hn30gqPK7QaMHsme3g9isUVzIgMMMzbAr5Y7jA+QRcKOeQI86xdfDoMn8x+ygpc8ARZPI4Zbs0xXcw8/jzKzRmY0TA5jslGtB+4Qewb18WO/q2YclxXPAXOVcN4C0esD5N3KCDFxoO5r4A4V2ANmNuY+N0R8Lf33tu7TWnNVgndAXzpouG+ZMUUUGofto7JiKfNHbbrHZCtcMbqIGw4Dm5oTp0E81tHTs/q4vL0A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GZUkjzH8c5A5T2N5ei41RuPWolQT8lYnsNCwRbnldCE=;
- b=mb3m8A0orzSNj7hnWNzYX/IobIA4Zqfjuu+nbTzHYFLZt/Ls6DcGwUEmQgssdDsVCeOClADYNj+QHf139v4KmCm5j7qhH9/HzYR1ytdWAt6oBpQh5AH8U9vtpKAbwjT/O9d7NMdpzTba/Gwb75Sm+BGobzoj+gJRjs7UaD67udkq2WrOQMKvcd89L2wo1QglqldmtBkrGt9AWPAe/Ee9+yQ/l6tkN25/n6TTEh0G9GVnv3W3YLpMNBsSept1HIe+fnJkoWs9eSYB069tcAxqWJGr1sqGgzUsYkaAJgTpPabJBBcAAoL6nTEubO3Y/BWhvNkxvJUyt2+qBELbQca0SA==
+ bh=BqrEdPHJSg1OauIISRFZx27zxcuwJi74x4Ix3GNVo0c=;
+ b=g3O3MCDOfrt+Jn6NDKaxZN1ZE/7vBd4m/YfBto0V6o7Fd1deIHUdcrKgLSiWB7JGu0lfMTZp6SpEh5CTudRYvybDD6a0xPleuQjVWTk91BLt52+DHsz8Sws7JZcVC8ttmREeSKzjGeBheS1/bjELguRF7JvV/+eUw6kXAwDfpSClKg3T4ME4p1gqt9lvmolvM0z3rhyEF8oKhiG/mPQW8TIjVejvIWhKVU2ZsmPXJlSs6t+lff1G1YSgDlM+N6PMvw3Boa925NPtqqf4uuy22j30tEGJEym89bj7+Tt8p9hIVluaoTbWY7z3AGfyU+RyL472Q1VobonFta74AsKJHA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.23.195) smtp.rcpttodomain=konsulko.com smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GZUkjzH8c5A5T2N5ei41RuPWolQT8lYnsNCwRbnldCE=;
- b=WLc/hgw0pg6xAXXAnQOZH5oezUHXRBEm19cQop6uPcvR5/ORjW/HlVdGviIexyEkZhjcuil6o55PhP2hgQu8JiY8Pl/hKS3YsNqfP+SfoUxCyLG2NN0aplZydJNKqnGlf3IQckPrrsU/BFdoz478VyprSF957+5gZzOUHR6SfT4=
-Received: from BN9P221CA0029.NAMP221.PROD.OUTLOOK.COM (2603:10b6:408:10a::27)
- by CY8PR10MB7337.namprd10.prod.outlook.com (2603:10b6:930:7b::15) with
+ bh=BqrEdPHJSg1OauIISRFZx27zxcuwJi74x4Ix3GNVo0c=;
+ b=Kwxx9EZgTPDup1C3QHBasaEnH6xZJhy7g76pcqcRN32CMzz0awqqJ2sRjIkeY/MVT5I6V3qfzsr5ryiGHt0UuSG+XA/Eju2erEB+XoG8Fl9nrmfSWSJSMRG9ZN+oo55xDNWvKu6kNuU/HhNkhaQRiPBMXcP6UL7P/iQ6dwHfVAM=
+Received: from SJ0PR13CA0096.namprd13.prod.outlook.com (2603:10b6:a03:2c5::11)
+ by BLAPR10MB4914.namprd10.prod.outlook.com (2603:10b6:208:30d::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Wed, 4 Mar
- 2026 14:52:59 +0000
-Received: from BN3PEPF0000B36F.namprd21.prod.outlook.com
- (2603:10b6:408:10a:cafe::15) by BN9P221CA0029.outlook.office365.com
- (2603:10b6:408:10a::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.23 via Frontend Transport; Wed,
- 4 Mar 2026 14:52:38 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Wed, 4 Mar
+ 2026 16:05:19 +0000
+Received: from MWH0EPF000C618F.namprd02.prod.outlook.com
+ (2603:10b6:a03:2c5:cafe::43) by SJ0PR13CA0096.outlook.office365.com
+ (2603:10b6:a03:2c5::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.21 via Frontend Transport; Wed,
+ 4 Mar 2026 16:05:18 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
@@ -43,111 +43,195 @@ Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.23.195 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
 Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BN3PEPF0000B36F.mail.protection.outlook.com (10.167.243.166) with Microsoft
+ MWH0EPF000C618F.mail.protection.outlook.com (10.167.249.103) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.0 via Frontend Transport; Wed, 4 Mar 2026 14:52:58 +0000
-Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet201.ext.ti.com
+ 15.20.9678.18 via Frontend Transport; Wed, 4 Mar 2026 16:05:18 +0000
+Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet201.ext.ti.com
  (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Mar
- 2026 08:52:58 -0600
-Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE215.ent.ti.com
- (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 10:05:11 -0600
+Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE203.ent.ti.com
+ (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Mar
- 2026 08:52:57 -0600
+ 2026 10:05:10 -0600
 Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE213.ent.ti.com
  (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 4 Mar 2026 08:52:57 -0600
-Received: from [10.249.65.90] ([10.249.65.90])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 624EqvPr046410;
-	Wed, 4 Mar 2026 08:52:57 -0600
-Message-ID: <fdff0404-0fe7-440d-a214-7d4fd5db5437@ti.com>
-Date: Wed, 4 Mar 2026 08:52:57 -0600
+ Transport; Wed, 4 Mar 2026 10:05:10 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 624G5AZT153115;
+	Wed, 4 Mar 2026 10:05:10 -0600
+Message-ID: <bb0be488-4a09-45d8-b4c9-87739c6e7ec4@ti.com>
+Date: Wed, 4 Mar 2026 10:05:10 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH 0/4] Migrate GP AI Stacks
-To: Pratham Deshmukh <p-deshmukh@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, <afd@ti.com>, <c-shilwant@ti.com>,
-	<denys@ti.com>, <v-singh1@ti.com>, <khasim@ti.com>
-References: <20260304123221.1450993-1-p-deshmukh@ti.com>
- <20260304123522.3620841-1-prc@list.ti.com>
+Subject: Re: [meta-arago] [PATCH] tisdk-uenv: Add instructions to load
+ initramfs while booting linux
+To: Ryan Eatmon <reatmon@ti.com>, Moteen Shah <m-shah@ti.com>,
+	<meta-arago@lists.yoctoproject.org>
+CC: <a-limaye@ti.com>, <gehariprasath@ti.com>, <praneeth@ti.com>,
+	<denys@konsulko.com>, <vigneshr@ti.com>
+References: <20260303104930.889956-1-m-shah@ti.com>
+ <d27ccb3c-4f70-486b-baf7-2dfc0943e240@ti.com>
+ <565f34b6-b312-4dd1-a822-58cdc1bc7187@ti.com>
+ <b919fb23-6b17-405c-8883-64610218e604@ti.com>
 Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <20260304123522.3620841-1-prc@list.ti.com>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <b919fb23-6b17-405c-8883-64610218e604@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B36F:EE_|CY8PR10MB7337:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7a2fe101-c64f-43b2-a82e-08de79fdb9f1
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C618F:EE_|BLAPR10MB4914:EE_
+X-MS-Office365-Filtering-Correlation-Id: cd286da9-9475-4ae9-4840-08de7a07d4c8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|376014|1800799024|4022899009|36860700016|34020700016;
+	BCL:0;ARA:13230040|376014|34020700016|82310400026|36860700016|1800799024;
 X-Microsoft-Antispam-Message-Info: 
-	SdeP/OviEKXWW5mumd+6TY/M0gkP54GM8d7fyblYMP7MTG49nAyYHpKhuTW5t0A23MjGhRsU5dRmnlthS/ndz4jXUIX6eFbG0u9bhN/m8KX3TuLuo4AyoIUVY8u3ttC2TZm4MZzjFto/8vBws5H4+xBGc4xeP2K0G0iZdRB+DTg3J7x/KjY+Drvb6LA/yebLor9jtdhpINWA/ceQX5/Lgrm87qF+fjdcDzgqFn2pd/jR9vOdE40dXoboKx3fp7REMx9EUa5uDOuh8d7zisUZHKV4PJVTy6Pw8r4KxJpni4yStU45oMG90baOMyvtPk8WwzzZhlWHwjZHBbFpgQEpz6tULc1zjdnLXYzWtfoJinzOiAh7PCSX5puKa+mtAohulINIUawHwmhekanjM72OSdDrd5lGQYvlVMRqwbjRWMWTSWUN9oLHH8xr52drIKKEOuueilLRQwGTsxOmlKWRdGpVMBGp8eIsxeO7TeXt0EyYD/aXbVqL1cjYPBeowVLIIw9oTkb83hiv6SUwdc5/PdFwREKGUi16oUuGRQklKqdj0hzzaQH7hQ0lZaf/kwE7EHsfA5Oak+OaT2cPh6zy+aIxjXjjlL/WMouJddNHBOeg9SO+apDE7LvgxpFrg6aIv7MCtlNeNKx2iL2Q0T8/ZzceBI4yfcXnDMLI35D5oTQaB/Rp5WoV2+lFopSJ9NC/CYZAg1rKYRUFkGP9/1BR8Xi/o6GUKALZ/6tVmWEoosY=
+	+q465IxDG4L0zAyKDpQVfhWq7s4x2vvGxZF+i4TTMYl0Dn+savxRs3KBeBJzyeTn7fumsXSKjND/Id76QtT46yrvzFB4p/ZPZX7bNjGykQw4kKl7iCHzzRvqP2fGQr7n9iX8/KDm9xJP0UPEcU4m/zhEs5se5YW2sgYPUOAuel+bqiqjSH88LijFjDTpIAURghPtmPnjpumFOC9Il/VE4V5KpL7oZOAmHwMvq2m3TItt1gKJly7Rj5Zy+mugGfHVm0w2gRr9wzfLil6QRli6rBI6L/akwrjvN0XnNqECNV0nNN5+jqsQLL5+73+Pc6T4HP6qcNr/cdWod4XmOrJyEcO/RXyZxPdRUmtIWhvPJHRmp4WkQMx1ThT5HTM23+mSPmg6q4wcY274Vc1IWv9DBaxdqIPaXWeky1eoYltgNxlH69PxYfcFAbHIvHIvdwbxDyPzQ51MGOesWcbSjX/gAHaMGrdTCt0bMQnt19Cgo5zbjKQQ4RhdOiidGSJ0efASkJ9bCzm703h4M2yCwVDbEXmxIgxn8axbIBElnsbfFzJgQBHU4PRWthBvANPn+taGV5BDKtTGt01/iA14A8ca6dmFBmf8Wr19pxG++/ix+99e1Jx7aFdU7zypzjA7QctsKpfRPm1Yfdz08ojiewwD1SLS2c1spT/a37qChIrR5QIzhDJzYeCbQDGrULQEDWPM7e6yq2HHMdGk9N6J8dGt8khOe9bKyZ3CDCitnoxWTps=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(4022899009)(36860700016)(34020700016);DIR:OUT;SFP:1101;
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(34020700016)(82310400026)(36860700016)(1800799024);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	MLCZeefGmG95Js5cvShYaKozu8Q7CJXsvwP6azZD6aNWi7xcvp979lOLSQqEPLb+dOsvM+I/y3T062tQ/oeaBYt0Xe2VuqHwmCiXexU/KwUX/ne7nnXT/SiOFAGR7hfAEPqtHYJYsya7H6dsmgNtWnXDyqlXrt64DVPbt6O76vPRam35y1bVSZtjgN81B1WJ1kkbuDK5BYUlWEpCTG8ZCW+I4y1JIPmVnr0Bg+uGsHN0cwGHywYzs0uaAhZ3jIgZVq8dXrfZMP6keCVCN+NM9muXElMYL9/dtrInI1wLN4nnjxeDQ1CIb4E4Vnqr9p9/5Y5g/qzTB8PLeBjgxV3UDRmxeSMv62tjQhpoVESKSmy3eXB2x5db60zKuAvE1rD4SVVZYd2YwQ4BXp9fUBwgKdno69HQfbPGQU1nqJ4j1eqwpM4+bikCX9OTlVZcOCQF
+	UTkbQ7E/XylFieBMok9dBcL2vJkBfzQE7GYElKBeN304G7XVYSn1BrClbnmckfEe1iE820dhsbi915g23krl2oOlISr3EpQ6CzY78ypgBNHhXjHWnZfGdVVK+kwwx6CQwKACvGsC0v4J8HCXGApnSy3O5I+PnAALE2+k2hC1bJifKuYl57joU5nJSgx0VU8ftSWsHW9fo9BMap6d9x5Tqd8CSSyPb39ApQOrAwgZfgs7ZUqd1+zJE1xMDy6x1ZrfEJjqQO8QH3POM36/V03Xpq6/wHBgiIRHOUu1tkUSm4yPxiPRR5LvcQ9qfy5HccdHvYo6rMeNYq6QzGSMvQIhgIvPdywgxaAHHuEzsa3pq051I9PzaiCP+emYk2YII0k+/6IP99bwAJDQQs+XcAGSTKE6hufaQGQQaLjSHX5xuHv9zabF8hg52BKiodRZsBNC
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 14:52:58.5315
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 16:05:18.5180
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7a2fe101-c64f-43b2-a82e-08de79fdb9f1
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd286da9-9475-4ae9-4840-08de7a07d4c8
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BN3PEPF0000B36F.namprd21.prod.outlook.com
+	MWH0EPF000C618F.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR10MB7337
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR10MB4914
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 04 Mar 2026 14:53:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17219
+ <meta-arago@lists.yoctoproject.org>; Wed, 04 Mar 2026 16:05:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17220
 
+On 3/4/26 8:38 AM, Ryan Eatmon wrote:
+>=20
+>=20
+> On 3/4/2026 12:32 AM, Moteen Shah wrote:
+>>
+>> On 03/03/26 22:49, Andrew Davis wrote:
+>>> On 3/3/26 4:49 AM, Moteen Shah via lists.yoctoproject.org wrote:
+>>>> Add instructions to load initramfs image and update the boot command
+>>>> to use the image to boot the linux kernel.
+>>>>
+>>>> Signed-off-by: Moteen Shah <m-shah@ti.com>
+>>>> ---
+>>>> =C2=A0 .../recipes-tisdk/tisdk-uenv/tisdk-uenv/uEnv.txt=C2=A0 | 15 +++=
+++++++++++++
+>>>> =C2=A0 1 file changed, 15 insertions(+)
+>>>>
+>>>> diff --git a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/uEn=
+v.txt b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/uEnv.txt
+>>>> index 0af0eef3..5ac61b34 100644
+>>>> --- a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/uEnv.txt
+>>>> +++ b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/uEnv.txt
+>>>> @@ -7,3 +7,18 @@
+>>>> =C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default on all newer U-Bo=
+ot images.=C2=A0 This also means that some
+>>>> =C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 variables such as bootdel=
+ay cannot be changed by this file since
+>>>> =C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 it is not evaluated until=
+ the bootcmd is run.
+>>>> +
+>>>> +# Initramfs configuration
+>>>> +# Name of the initramfs file in the boot partition
+>>>> +name_initramfs=3Dti-core-initramfs.cpio.xz
+>>>> +
+>>>> +# Command to load initramfs from boot partition (mmc device:partition=
+)
+>>>> +# Adjust the device number (0 or 1) based on your setup
+>>>> +# mmcdev is set to 1 by default, partition 1 is the boot partition
+>>>> +get_initramfs_mmc=3Dfatload mmc ${mmcdev}:1 ${rdaddr} ${name_initramf=
+s}
+>>>> +
+>>>
+>>> This belongs in u-boot default env, it is basically the same as `get_fd=
+t_mmc`
+>>> and other helpers already there.
+>>>
+>>>> +# Load initramfs and set up variables
+>>>> +load_initramfs=3Dif run get_initramfs_mmc; then setenv _initramfs ${r=
+daddr}:${filesize}; setenv rd_spec ${_initramfs}; echo Initramfs loaded at =
+${rdaddr}, size ${filesize}; else echo WARNING: Initramfs not found, contin=
+uing without initramfs; setenv rd_spec -; fi
+>>>> +
+>>>
+>>> This should be part of `mmcloados` in u-boot also.
+>>
+>>
+>> mmcloados is only used by 'mmcboot' which is a differnt boot command oth=
+er than bootcmd_ti_mmc?
+>> We can consider adding the load_initramfs to 'get_kern_mmc' and we wont =
+need to override the init_mmc with the change.
+>>
 
+Adding to `get_kern_mmc` wouldn't make sense, that is for loading the kerne=
+l as the
+name suggests. If we don't go down the `mmcboot` path anymore then add it t=
+o whatever
+path we do go down these days.
 
-On 3/4/2026 6:35 AM, PRC Automation via lists.yoctoproject.org wrote:
-> meta-arago / na / 20260304123221.1450993-1-p-deshmukh
-> 
-> PRC Results: FAIL
-> 
-> =========================================================
->    check-yocto-patches: FAIL
-> =========================================================
-> Patches
-> ----------------------------------------
-> FAIL - [meta-arago][master][PATCH 1/4] arm-compute-library: upgrade 24.12 -> 52.07
->      ERROR: Missing License-Update for change in LIC_FILES_CHKSUM. (LICENSE-UPDATE-1)
->          patch
->      
->      For details on the above errors/warnings visit: https://lists.yoctoproject.org/g/meta-ti/wiki/40887
-> 
+>>>
+>>>> +# Custom boot command that loads initramfs before kernel
+>>>> +init_mmc=3Drun args_all args_mmc load_initramfs
+>>>
+>>> With the above added, you don't need to override `init_mmc` so
+>>> this line goes away too.
+>>>
+>>> That leaves one line left, `name_initramfs`. How about just
+>>> setting a sane default name in u-boot. We got away with something
+>>> like this for K2 plats:
+>>
+>> We don't expect the name of the cpio to be variable, as the name of the =
+cpio stays the same for all K3 platforms which is "ti-core-initramfs.cpio.x=
+z", I can remove the variable altogether maybe and directly use the image n=
+ame to load. Thoughts?
+>=20
+> That is a very Yocto centric take.=C2=A0 But we also support armbian and =
+other distros.=C2=A0 They may not want to name the file the same way we cho=
+se in meta-ti.=C2=A0 The question is, should we paint ourselves into a corn=
+er from the beginning or allow for some flexibility?
+>=20
+> Plus, even in Yocto, a user could choose to not use ti-core-initramfs and=
+ instead make their own with their own name.=C2=A0 Making this more flexibl=
+e feels more friendly in the long run.
+>=20
 
-Please fix this.
+And you don't have to look too far, that encrypted boot series posted the o=
+ther
+day would have made use of a new named ti-encrypted-boot-initramfs.cpio.gz
+(although the booting method would have been different)
 
-https://docs.yoctoproject.org/contributor-guide/recipe-style-guide.html#license-updates
+> Just my two cents.
+>=20
 
+Worth every penny :)
 
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#17217): https://lists.yoctoproject.org/g/meta-arago/message/17217
-> Mute This Topic: https://lists.yoctoproject.org/mt/118131006/6551054
-> Group Owner: meta-arago+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/meta-arago/unsub [reatmon@ti.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
-> 
+Andrew
 
--- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+>=20
+>> Regards,
+>> Moteen
+>>
+>>>
+>>> https://github.com/u-boot/u-boot/blob/master/board/ti/ks2_evm/k2e_evm.e=
+nv#L12
+>>>
+>>> although I'd recommend a more generic filename.
+>>>
+>>> Andrew
+>>>
+>>>> \ No newline at end of file
+>>>
+>=20
+
 
