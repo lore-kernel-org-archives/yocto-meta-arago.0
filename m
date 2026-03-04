@@ -1,147 +1,186 @@
-Return-Path: <afd@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9080CEF9011
-	for <webhook@archiver.kernel.org>; Wed,  4 Mar 2026 16:52:57 +0000 (UTC)
-Received: from CY3PR05CU001.outbound.protection.outlook.com (CY3PR05CU001.outbound.protection.outlook.com [40.93.201.59])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.23226.1772643167724897086
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D04F7EFCE52
+	for <webhook@archiver.kernel.org>; Wed,  4 Mar 2026 23:08:56 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.31811.1772665729198686823
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 04 Mar 2026 08:52:47 -0800
+ Wed, 04 Mar 2026 15:08:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=amzaQmcj;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.201.59, mailfrom: afd@ti.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lovIo0W7qFShMSxOqjYMX9xpMZX2g8yYRgVe+fg7JD4goqPhFZRxz6qNxsnSh0BCp7aRLzphXa9BBNrAAIX4YFYtCHI3C6ZreCSbqU4rC1XocyaoXUtaVuwlJ+4Rx03bUNsY6bxsYy5x44cHFg+h83FzaUJjtNIhpQZGtPbWAxQAtbvADtg5hYk84xt4n65jycaqueQUqxjzA35ywRnBMLxSwWHJnN+bpSPrHBo17jx105FZHYOftwGaHDzdlWgL2EDu7fUdK9wEt6Y2CGgJ+mQ7wgZn7tDpueQt1B48Jqcgc+eVe6+AkwtxyezEko9wxb8WayDEESjSbvKsBeiiZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qqxrTDfvm6eryBs9ClMBl5I81NjIm4B6XUL7tDuN1Oc=;
- b=Bx6dDqkdqwmLVWrF/dbwr5qRuVfQC0OVAttHDiggyVFsntsmREhmxE9+hJhMTbOdFKYULixHcsULmZZUYfTH0zgznUV1EX7lDfjY+2TGEVZlXxva+e7QUsdNvy/vmhc5uB9JSQwKWrl9wddqVVUGl1nYKhpUArytHLlXQRLmWG6dYU16oBFGkT4dTaoKE2AechXQVtOujLAR6N3dzcpU/YJEo4OG1ZxS2UrpL0A+2TjqQ5GXIZBLMWX9GQNCJ0Ww7r001y24tf+XB2wFfU7KiIZ9CvbMlB+GzPFC8SqitmLVRmcEyiaL5NjsfxjYm0ynxmWEHf28sGZs9jkR2GKdzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qqxrTDfvm6eryBs9ClMBl5I81NjIm4B6XUL7tDuN1Oc=;
- b=amzaQmcj0+k+0JldDb49AMoEbyiT2Z1BkttNNAFhCh4QM5jn4aveX+hniiTo1Np86UI/VRiudnUW+xjOMvmhlorar5257zIMqxaHnxiD8ORNb7BrmpB5akM9e0BO9ZkPE3lHMmqvPJzqeK6f3iyHBE6Vp6HuYF1z+r8uz13HjS4=
-Received: from BN9PR03CA0060.namprd03.prod.outlook.com (2603:10b6:408:fb::35)
- by SJ5PPF77807A52D.namprd10.prod.outlook.com (2603:10b6:a0f:fc02::7a9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Wed, 4 Mar
- 2026 16:52:45 +0000
-Received: from BN2PEPF000055E0.namprd21.prod.outlook.com
- (2603:10b6:408:fb:cafe::b9) by BN9PR03CA0060.outlook.office365.com
- (2603:10b6:408:fb::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.23 via Frontend Transport; Wed,
- 4 Mar 2026 16:52:35 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- BN2PEPF000055E0.mail.protection.outlook.com (10.167.245.10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.0 via Frontend Transport; Wed, 4 Mar 2026 16:52:43 +0000
-Received: from DFLE203.ent.ti.com (10.64.6.61) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Mar
- 2026 10:52:35 -0600
-Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE203.ent.ti.com
- (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Mar
- 2026 10:52:35 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE213.ent.ti.com
- (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 4 Mar 2026 10:52:34 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 624GqYoq223148;
-	Wed, 4 Mar 2026 10:52:34 -0600
-Message-ID: <3b988aa3-970e-4c10-a075-4e2f62422375@ti.com>
-Date: Wed, 4 Mar 2026 10:52:34 -0600
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 99F5A40BD4;
+	Wed,  4 Mar 2026 23:08:48 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id zDzachJw2WIn; Wed,  4 Mar 2026 23:08:48 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4867740BA7;
+	Wed,  4 Mar 2026 23:08:44 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id DD6501796A3; Wed,  4 Mar 2026 18:08:43 -0500 (EST)
+Date: Wed, 4 Mar 2026 18:08:43 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: MD Danish Anwar <danishanwar@ti.com>
+Cc: meta-arago@lists.yoctoproject.org, reatmon@ti.com, denys@konsulko.com,
+	c-shilwant@ti.com
+Subject: Re: [meta-arago][master][PATCH v2] linuxptp: Add support for HSR
+ in Linux ptp
+Message-ID: <20260304230843.GK11121@denix.org>
+References: <20260302103515.848554-1-danishanwar@ti.com>
+ <20260302204051.GF11121@denix.org>
+ <f31cb559-5a0b-435b-b919-cbf637547343@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH 4/4] nnstreamer: upgrade 2.4.4 ->
- 2.6.0
-To: Pratham Deshmukh <p-deshmukh@ti.com>, <meta-arago@lists.yoctoproject.org>
-CC: <c-shilwant@ti.com>, <denys@ti.com>, <v-singh1@ti.com>, <khasim@ti.com>
-References: <20260304123221.1450993-1-p-deshmukh@ti.com>
- <20260304123221.1450993-5-p-deshmukh@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20260304123221.1450993-5-p-deshmukh@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000055E0:EE_|SJ5PPF77807A52D:EE_
-X-MS-Office365-Filtering-Correlation-Id: 92faa57c-e18a-4ba6-6a75-08de7a0e74a2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|34020700016|36860700016|82310400026|376014;
-X-Microsoft-Antispam-Message-Info: 
-	cF2IxethEQdMeJ+6Iwth4ZkiS38oDSsZIljJxrphwbbDFTBRvqBKpM9m0mahowRGGuAWlhRo4mDuBxNbTmu6hntECBqatXGVfhKbjZQ5coKTPNHok8jA3hLHa+hAMyGO0/Pnit+T2vl2jb97MNhZHu+4OPeJHgv6i91r3RPhRsbIoIrNHVNBy29iNw7OvphY9xvJ5Yzr9wQzZornMTyC/YdayhouRKZVsIAkC6xdx8nBo/fGSRVMEyDm9WhU32Zf8qGZgQiwEsbNb/wylQqjkLb1cNDN9st3ZHGVg1LQCmNkREwWAJZyZFbTU6IYSFqM94GX/4jEBHzB/jK23mDJMy7qA8xnCpUsewrgIoGXC7Rvqg7r2lyWJx18kxzY4YW+Ic1ViBua+YbtNkEW2g/SwGDQtb5q8DKJUKuN80GpSsmeMhDj+uEeSi7lI8oCPcGPmtGjw56oU04eR1INbcWWR/gq/hptIP9BmRKkFb4ZAZ/Y+7NMCpnai47pDrvud04xg8HD62cyEIAXlFNwELBhF8YUiSFO9pSPOKGStEiGJXX9gHuTB7NOcz4StGjOfTML0tGly8moy8M8zuhVGYqo+2rYOUVhtbxvpSG88Ub2E1sX7z5TXq2Vmnq9SnYmwNSFJXxFDcv2sAGTHfSj+2T0Zj+ddaCYClmpwve1N4x3lcm2iV+MXzThGkPxsXFSdMSA8crd2g9gYcznciLtsSYH+5b/0EC6Sng4ZckPhnhTfF3LZqsMKObA3zW/8TZcvoxkgkqRurHNpMbLcydSWIBE7Q==
-X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(34020700016)(36860700016)(82310400026)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	kALUT7n7NR0WEO8e+xhr7bx6ujIv2CKrKmEVuL2AOnjiXu8aQoOYoHvuO6Mf+vI2SZMtlNyaV9P8GD48+6m5tk35DYS5tKgQljgsL2jm+Di/NEauWlzGXgrBAbWFSxPyW5/8MTbRfm7z/fERGGa9XosYwMU/Ud45ltSrrXGPyeppSx2VpzQncOl1d+EU9O5zO21gVdpSKzMgxGQwbJCfP/DaDBC/6OqDys78c4QlaiPzWebwGK7lfAzQ5G20w00xrx56YQ8Ge/Ts8zbNrFmQhR0UZ8aV+HuXyhuxoWVJaRTbnGmJW/v7eJE4+7snYRSc6/BMSFgQ7U9D05YKeW++ZulJyFdLCzXedblnHg9Nh5bMcxjm7S+KV9OLOsIwU6MHYBOasQvE8hvtiUyp3FfG14NPh8ls1psJ9+IXNvINrtc+3Q86mqU+Lw1UDgzyCE8X
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 16:52:43.6991
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92faa57c-e18a-4ba6-6a75-08de7a0e74a2
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	BN2PEPF000055E0.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF77807A52D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f31cb559-5a0b-435b-b919-cbf637547343@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 04 Mar 2026 16:52:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17223
+ <meta-arago@lists.yoctoproject.org>; Wed, 04 Mar 2026 23:08:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17224
 
-On 3/4/26 6:32 AM, Pratham Deshmukh wrote:
-> We are migrating nnstreamer from v2.4.4 to the
-> stable release v2.6.0.
+On Tue, Mar 03, 2026 at 10:54:24AM +0530, MD Danish Anwar wrote:
+> Hi Denys,
 > 
-> Key Changes:
->   - Updated version from v2.4.4 to v2.6.0
+> On 03/03/26 2:10 am, Denys Dmytriyenko wrote:
+> > On Mon, Mar 02, 2026 at 04:05:15PM +0530, MD Danish Anwar via lists.yoctoproject.org wrote:
+> >> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> >> ---
+> >> These patches have been posted to upstream linuxptp mailing list.
+> >> https://lists.nwtime.org/sympa/arc/linuxptp-devel/2025-11/msg00013.html
+> >> They are currently under review.
+> >>
+> >> v1 -> v2:
+> >>   Added Upstream Status in each patch.
+> >>
+> >>  .../linuxptp/linuxptp-arago.inc               |  19 +
+> >>  ...age-of-non-PTP-packets-during-socket.patch |  81 +++
+> >>  ...d-dataset_comparison-type-IEC62439-3.patch | 217 +++++++
+> >>  .../0003-Add-PASSIVE_SLAVE-state.patch        | 275 +++++++++
+> >>  .../0004-rtnl-Add-rtnl_get_hsr_devices.patch  | 120 ++++
+> >>  .../0005-port-Add-paired_port-option.patch    | 175 ++++++
+> >>  ...-a-state-engine-for-redundant-master.patch | 519 ++++++++++++++++
+> >>  ...ouble-attached-clock-hybrid-clock-HC.patch | 444 ++++++++++++++
+> >>  ...orward-packets-both-ways-in-DAC-mode.patch |  37 ++
+> >>  ...guard-in-case-PASSIVE_SLAVE-attempts.patch |  37 ++
+> >>  ...w-to-forward-packets-in-LISTEN-state.patch |  61 ++
+> >>  .../linuxptp/0011-raw-Add-HSR-handling.patch  | 567 ++++++++++++++++++
+> >>  ...Add-sample-configs-for-the-HSR-setup.patch |  96 +++
+> >>  ...2p_dst_mac-to-avoid-IEEE-802.1-reser.patch |  47 ++
+> >>  .../linuxptp/linuxptp_%.bbappend              |   4 +
+> >>  15 files changed, 2699 insertions(+)
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp-arago.inc
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0001-raw-Prevent-leakage-of-non-PTP-packets-during-socket.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0002-port-Add-dataset_comparison-type-IEC62439-3.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0003-Add-PASSIVE_SLAVE-state.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0004-rtnl-Add-rtnl_get_hsr_devices.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0005-port-Add-paired_port-option.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0006-fsm-Add-a-state-engine-for-redundant-master.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0007-p2p_hc-Add-a-double-attached-clock-hybrid-clock-HC.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0008-tc-Allow-to-forward-packets-both-ways-in-DAC-mode.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0009-port-Add-a-safe-guard-in-case-PASSIVE_SLAVE-attempts.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0010-tc-Allow-to-forward-packets-in-LISTEN-state.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0011-raw-Add-HSR-handling.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0012-configs-Add-sample-configs-for-the-HSR-setup.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0013-configs-Change-p2p_dst_mac-to-avoid-IEEE-802.1-reser.patch
+> >>  create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_%.bbappend
+> >>
+> >> diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp-arago.inc b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp-arago.inc
+> >> new file mode 100644
+> >> index 00000000..17819cf3
+> >> --- /dev/null
+> >> +++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp-arago.inc
+> >> @@ -0,0 +1,19 @@
+> >> +PR:append = ".arago6"
+> > 
+> > This is the first submission, why is it .arago6?
+> > 
 > 
-> Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
-> ---
->   .../nnstreamer/{nnstreamer_2.4.4.bb => nnstreamer_2.6.0.bb}     | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->   rename meta-arago-extras/recipes-multimedia/nnstreamer/{nnstreamer_2.4.4.bb => nnstreamer_2.6.0.bb} (97%)
+> This is my first time submitting patch to meta-arago. I am not aware 6
+> mean in `.arago6`.
 > 
-> diff --git a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.4.4.bb b/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6.0.bb
-> similarity index 97%
-> rename from meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.4.4.bb
-> rename to meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6.0.bb
-> index 3419e5a3..c62589ac 100644
-> --- a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.4.4.bb
-> +++ b/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6.0.bb
-> @@ -4,7 +4,7 @@ LICENSE = "LGPL-2.1-only"
->   LIC_FILES_CHKSUM = "file://LICENSE;md5=c25e5c1949624d71896127788f1ba590"
->   
->   SRC_URI = "git://github.com/nnstreamer/nnstreamer.git;branch=main;protocol=https"
-> -SRCREV = "3b32573bc104b4708af44837466b8b6c73f94869"
-> +SRCREV = "b970e9eff6bfb4e915463842422fe14bb2e53f84"
->   
+> I just looked at the code for iproute2 [1] (as there also custom patches
+> are being applied) and followed the same syntax for linuxptp.
+> 
+> Can you please let me know what should I use here?
 
-If only all recipe updates could be this easy :)
+https://docs.yoctoproject.org/ref-manual/variables.html#term-PR
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+It extends the regular PR var, hence should start from 0, i.e. ".arago0"
+But in general, updating PR manually is no longer required any more.
 
->   # Only compatible with armv7a, armv7ve, and aarch64
->   COMPATIBLE_MACHINE = "(^$)"
 
+> >> +FILESEXTRAPATHS:prepend := "${THISDIR}/linuxptp:"
+> >> +
+> >> +SRC_URI:append = " \
+> > 
+> > There's absolutely no reason to suee :append here vs. a simple +=
+> > 
+> > 
+> >> +    file://0001-raw-Prevent-leakage-of-non-PTP-packets-during-socket.patch \
+> >> +    file://0002-port-Add-dataset_comparison-type-IEC62439-3.patch \
+> >> +    file://0003-Add-PASSIVE_SLAVE-state.patch \
+> >> +    file://0004-rtnl-Add-rtnl_get_hsr_devices.patch \
+> >> +    file://0005-port-Add-paired_port-option.patch \
+> >> +    file://0006-fsm-Add-a-state-engine-for-redundant-master.patch \
+> >> +    file://0007-p2p_hc-Add-a-double-attached-clock-hybrid-clock-HC.patch \
+> >> +    file://0008-tc-Allow-to-forward-packets-both-ways-in-DAC-mode.patch \
+> >> +    file://0009-port-Add-a-safe-guard-in-case-PASSIVE_SLAVE-attempts.patch \
+> >> +    file://0010-tc-Allow-to-forward-packets-in-LISTEN-state.patch \
+> >> +    file://0011-raw-Add-HSR-handling.patch \
+> >> +    file://0012-configs-Add-sample-configs-for-the-HSR-setup.patch \
+> >> +    file://0013-configs-Change-p2p_dst_mac-to-avoid-IEEE-802.1-reser.patch \
+> >> +"
+> >> diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0001-raw-Prevent-leakage-of-non-PTP-packets-during-socket.patch b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0001-raw-Prevent-leakage-of-non-PTP-packets-during-socket.patch
+> >> new file mode 100644
+> >> index 00000000..ea0f968c
+> >> --- /dev/null
+> >> +++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/0001-raw-Prevent-leakage-of-non-PTP-packets-during-socket.patch
+> >> @@ -0,0 +1,81 @@
+> >> +From 5afe386619bfcded393fd5a9ea5d7c9bbcf05823 Mon Sep 17 00:00:00 2001
+> >> +From: Cliff Spradlin <cspradlin@google.com>
+> >> +Date: Thu, 2 Oct 2025 18:37:54 -0700
+> >> +Subject: [PATCH 01/13] raw: Prevent leakage of non-PTP packets during socket
+> >> + init
+> >> +
+> >> +There were two problems with the socket configuration sequencing:
+> >> +
+> >> +1) Calling socket(PF_PACKET, SOCK_RAW, htons(ETH_P_ALL)) causes all
+> >> +ethernet frames from -all- interfaces to be queued to the socket,
+> >> +until bind() is later called.
+> >> +
+> >> +2) The BPF filter is installed -after- bind() is called, so ethernet
+> >> +frames that should be rejected could be queued before the BPF filter
+> >> +is installed.
+> >> +
+> >> +This patch reorders the raw socket initialization so that all
+> >> +configuration happens before bind() is called.
+> >> +
+> >> +Signed-off-by: Cliff Spradlin <cspradlin@google.com>
+> >> +Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+> >> +Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> >> +---
+> >> +Upstream-Status:
+> >> +Submitted
+> >> +  Submitted to upstream, waiting approval
+> >> +  https://lists.nwtime.org/sympa/arc/linuxptp-devel/2025-11/msg00007.html
+> > 
+> > While there's no specific requirement to have this before the --- line, it 
+> > still must be in a single line. Same comment to all patches.
+> > 
+> 
+> Sure. I will address this in v3.
+> 
+> > 
+> >> +
+> >> + raw.c | 22 +++++++++++-----------
+> 
+> [1]
+> https://git.ti.com/cgit/arago-project/meta-arago/tree/meta-arago-distro/recipes-connectivity/iproute2/iproute2_%25.bbappend?h=scarthgap-next&id=ee4d898485d9474abacf8ec092e61fdfc0efa348
 
