@@ -2,649 +2,1967 @@ Return-Path: <p-deshmukh@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AF1D4F47CBF
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 91A82F47CBD
 	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 19:31:47 +0000 (UTC)
-Received: from CH5PR02CU005.outbound.protection.outlook.com (CH5PR02CU005.outbound.protection.outlook.com [40.107.200.21])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.52700.1772739105329767818
+Received: from CH5PR02CU005.outbound.protection.outlook.com (CH5PR02CU005.outbound.protection.outlook.com [40.107.200.46])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.52873.1772739101510350522
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 05 Mar 2026 11:31:45 -0800
+ Thu, 05 Mar 2026 11:31:41 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=c+4yux0P;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.200.21, mailfrom: p-deshmukh@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=hVuatdd7;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.200.46, mailfrom: p-deshmukh@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pDScFbfBQTLnVlbNPs9/PM7Zpil/+DhTQHjLovgZyo3iFcOfLci/YGm9NncvHZoTeC2zvtMp0wV2l2NjDokpTVxEd8t6XLgvytXFa/8Pemf9JKZH8dLmXWUV6vz4qczDV26byvnaSVzl5Ru9KsyTWnlZr3ferdcJztzAVyXw+xIO5c9DeV5Bpx0DoNxIfVJzdCj74YHYlWPjUkCEZm3v0KRRDbYqJ7gJF41C2EjCRhu72+5exmVdPU8/eYHeBgFGC2br4z5+50Nsd4xoPvTYjNYXieGL+mhMifCs4jvuPiSe+QkRpyGfta+8Vb2yg0Fo7/e7IEZwzPvg0mFSS2twUQ==
+ b=s4ieRuHkk4LsB11tfOhuVv+HE7T52Q5eujyZ0iVj65FdfvYk4gksOW3cWPO0JxNvJKOLX0AElmttns9tumTulwm+7I1avf9J4oDSxyoJB68t1IzIc0WmC8gOHTpXYTtXx31ScJfg7wsmECsg7SAqIEj7wZPiVyZQ5nSVy9WjK/ZseXWTMWumWqg3Zta9tHApFI92ya+SXLhHcMduqAHsDuOkn4xylLFH68lNO/JmZa9wpi+HIOTcO7Jjv3/7PmLU/5s9xzXiq641/tlfiq7qdCOrlh3UHCEP2QuXJaRXVDjCb+QvCUAahbzjBptRmVEOLzE3rfk6fIGwoOOktdzhzg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0PLkWRvq7YQFybYkBhTMsAyAi3tDBpAxAw+CNGS+0R4=;
- b=HfMyPjJe3K+lcougtc2KV1VBwLJibBlHlKhEeaRorQm6uK6+Fm/t1PfWyD3FWvhRIZc+5t4knf7tdtQsC+ljLrGwOSGCcyUDElTf368AhiC/lJD74OhukEOJwxZfByafy8PtGSUICk9/HeplubHj827gmTxxn2sRgrTkJzxHmpEGXWWPXToDxf+WGPPZs5WyvH1SpdAM3vArP7P52MtPuP5zGMUzGSxF81FDZCIcr0fzHaYXBng8q7c5KffSgPiR4m3Uhj/XLUL0ghPuaHm08y+qEWZdUbeZFbhOqNfaN7LS7CEYpmgPiH0q+JzSJU3MybdsS8abOr34pJv3lT86Fg==
+ bh=wGaCeGWdEQQldqF0djPSmU+TPHl41YSTqgOsX8M4YUE=;
+ b=UmMvLpz5Io3oWzuDuMLJjmwzPTyJnvQO8JOq5mh+C0W6rngQ47zRZ7WIlDDbaD2HczL4eYOPUf6/EOeNF/f49aWB/6jVHlH+XwskzlShZry2demfj/ou6588L8NTPq0YbWi0KN699uin4er0TrXMl455Z9K/fq2VpMy6miedXpPr5fNg0GwpSQ8Hyd3gr+gioNXOcHzmpg3kGUFVxaMvtiajEd/ZeaRo5VTfX4i4tDz3sRi/saJhg4+Hv7WetADX2I5mfwGupl+I9WlJKshrn/MT6NTE6sOXHIB7xEr9GJ2HCi0R4YUENCZGeo4muP54/LVQxWvtXOUoZYmSn6pJFg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0PLkWRvq7YQFybYkBhTMsAyAi3tDBpAxAw+CNGS+0R4=;
- b=c+4yux0P2N7xbZBKgeXaT2QBWzShcPv/BT0tElIp60i2C0NuYn6Iw2lc6QZefBxhIowS/nd9odYKoRGjI7dACjL4/mXYL6Kveu/fXp+Qd2EEXCWOkDgCjvUDFTQwsZ9YBqja/HAVCyt3/lNkHo1ipJN+WrELejOYutJq6GVAgDU=
-Received: from SJ0PR05CA0113.namprd05.prod.outlook.com (2603:10b6:a03:334::28)
- by SJ0PR10MB5801.namprd10.prod.outlook.com (2603:10b6:a03:423::5) with
+ bh=wGaCeGWdEQQldqF0djPSmU+TPHl41YSTqgOsX8M4YUE=;
+ b=hVuatdd7oW7MVE9eFoju04XvzXmwAy3S6QT9No3LEpFmAbd8uwn0dccyOInF7f60XlLRKRpINGj9oZmbXr4iofL6ZAf4pkKiitZxyOLI/8dZlIS5vGhzTqhXRpSpFBNqMCxbudn9uPtxWh3+pU/KmbMtpjFP+KtKGiOJ5awqgl0=
+Received: from DS7PR05CA0107.namprd05.prod.outlook.com (2603:10b6:8:56::25) by
+ SA1PR10MB6520.namprd10.prod.outlook.com (2603:10b6:806:2b2::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Thu, 5 Mar
- 2026 19:31:40 +0000
-Received: from SJ1PEPF00002320.namprd03.prod.outlook.com
- (2603:10b6:a03:334:cafe::e6) by SJ0PR05CA0113.outlook.office365.com
- (2603:10b6:a03:334::28) with Microsoft SMTP Server (version=TLS1_3,
+ 2026 19:31:37 +0000
+Received: from CY4PEPF0000EDD4.namprd03.prod.outlook.com
+ (2603:10b6:8:56:cafe::ba) by DS7PR05CA0107.outlook.office365.com
+ (2603:10b6:8:56::25) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.18 via Frontend Transport; Thu,
- 5 Mar 2026 19:31:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ 5 Mar 2026 19:31:36 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- SJ1PEPF00002320.mail.protection.outlook.com (10.167.242.86) with Microsoft
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ CY4PEPF0000EDD4.mail.protection.outlook.com (10.167.241.200) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Thu, 5 Mar 2026 19:31:40 +0000
-Received: from DLEE207.ent.ti.com (157.170.170.95) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9678.18 via Frontend Transport; Thu, 5 Mar 2026 19:31:36 +0000
+Received: from DLEE205.ent.ti.com (157.170.170.85) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 13:31:38 -0600
-Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE207.ent.ti.com
- (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 13:31:33 -0600
+Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 13:31:38 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 13:31:32 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 5 Mar 2026 13:31:38 -0600
+ Transport; Thu, 5 Mar 2026 13:31:32 -0600
 Received: from pratham-TI.dhcp.ti.com (pratham-ti.dhcp.ti.com [172.24.233.101])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 625JVQ322427052;
-	Thu, 5 Mar 2026 13:31:36 -0600
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 625JVQ302427052;
+	Thu, 5 Mar 2026 13:31:30 -0600
 From: Pratham Deshmukh <p-deshmukh@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
 CC: <afd@ti.com>, <c-shilwant@ti.com>, <denys@ti.com>, <v-singh1@ti.com>,
 	<khasim@ti.com>, Pratham Deshmukh <p-deshmukh@ti.com>
-Subject: [meta-arago][master][PATCH v3 3/4] tensorflow-lite: upgrade 2.18.0 -> 2.20.0
-Date: Fri, 6 Mar 2026 01:01:24 +0530
-Message-ID: <20260305193125.2045659-4-p-deshmukh@ti.com>
+Subject: [meta-arago][master][PATCH v3 1/4] arm-compute-library: upgrade 24.12 -> 52.07
+Date: Fri, 6 Mar 2026 01:01:22 +0530
+Message-ID: <20260305193125.2045659-2-p-deshmukh@ti.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260305193125.2045659-1-p-deshmukh@ti.com>
 References: <20260305193125.2045659-1-p-deshmukh@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00002320:EE_|SJ0PR10MB5801:EE_
-X-MS-Office365-Filtering-Correlation-Id: d55cc041-93b0-4562-b330-08de7aedd343
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD4:EE_|SA1PR10MB6520:EE_
+X-MS-Office365-Filtering-Correlation-Id: f3cf957c-8f49-47ea-cc35-08de7aedd13b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|36860700016|34020700016|376014|1800799024|7142099003;
+	BCL:0;ARA:13230040|36860700016|82310400026|376014|1800799024|34020700016;
 X-Microsoft-Antispam-Message-Info: 
-	jpIbV7buD1MkrwYvTS/tZMnedp+EGhKbaTpiLuqr7Z2Xe95/YZajpZ8czOeqU5Z/3xqTwHU5izAnIUvFFqjSfOHCsheZGiuvl3EgjGq8k05fB3avnosJ8U4BAWJanJM+1p7leksBfo08cBBe3wxJmEYMGBZCfnkSJSnB5bS75CiLqMiSdXVCqi+dUYA2hjn8J0t4gTTZTRQy1mxP6zLyomGoZuKv2NOOBC3yJtXVsE6A/n3GmJ5fdvBYjyUwfBWf+SJE4y/FpUv0iVJTrefmMXPeKoTc6iYPQSEVpAWhyv6eHBT8kHGaWcTtf3Zmk0uEULPK1KDWgaa1XMqHFX0qWx5D0kQ4h6B7agjmXKWUVgxehkVOJLGWvHqwzoZP6nefM7L0NkxwTIqunIQv3KEjul/52PlEWNMQcbcKpGKHrp1Kggu0Ea9HrceQeELTkW/OE5e8GzhauSfCiqlkq5GT/usi70j6WnCbgueLBZhtM8HghDwmqXo3nU2zwnK1089xBEneKGBJyJ7eO1OnMFqGfTPoyI5QRQR+Hi2tk6kM5seaZudjgJi8df4yf3uT/X26O/ODusYiZxISD4Us9eWb00OWpkWqBsgJM9Mx+NF9lSLW7j0WEcTjP2lSveMZllkGhYzmRCZepIvJq74lAbrvrqo3iidZS6Yjyk7ECdQ+XYOUSxF0aDZM/IQdXMhxbjXF0CUnhZoGwpORK4u7ff69DdY5YbiHMkZzOB+jFZ/etik=
+	qyFyCPfm291BjI8xhvgp22YNjEU/roV6l5IABcMAxLKVv+51JDt6b4gWnx0QHJYT6AChfol4IUFWLZM/ykxVXCEjQvm/64Ziz81TyqNU/Z7/FgOq/MNFGmQOoqh73NveC2MVGzb1jAONQQCarZPmiRSf+i4kybIvmz9OZS6q6j1sCzplGQrcvY9av6ASHcoknWAeikdv73VJ0McHB/u7sDGYDqEfPPi/p/8h4BTNUpAO3rCNjJLtUOg/P47GooQUuWVXCjQnFY8PVo8Rr8CSsAh/z3ioQX5QJAZT2xgqctGeSyZRHnVeF/vtCyDxWTcQatXFRl/7qS+1A8PJxDGiQpZEztmdltKeO8BdIjCkz0y8DGDg+Rpm4102/6+1CMK/kbjJzgumh5tVtR9xrmssnvJfB1h7eVIQeCaGN1peYmm3PjpJfvXazIfFWedtfBRrlTEGj1ytc7csqvtBxnRfVxZcUZ0KMTjnB6GM/IyPWrE1ZgfYm1tja+enPgiDuo/JVjgqPXV8aqKXPUs7WNfMeHikRWsXjqQV6ODmjUmei4G/CaBQn9NZmWfrv11vukTQo/m+HPnjVoG45hyl9DIpRC5t/EI0RBFbph6amZxot7geH3JIx3iJjt88uiOrzq1+QgtQIcTPOrsb9Vunw9vK8qKlNKmrF6qjP/0tDxGr6VNWY3tkle8vhd+PmqyUatlMpVW1IF7x1T44vZoEZKxDghPMdowsiHHMZV8eH7TTNcv3X1+rUGLSJp80UPrk4wdciPeb8TYm6hgMgTp+vhyozA==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(34020700016)(376014)(1800799024)(7142099003);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(34020700016);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	66VQRMdSmkrx+oCZ1RmXlywY+a3FVz92KXxm5yuKD2YPPNEFSxIJgXS1YjQutpbD4/46l9qPyDa/ekxSzn+TLtv4B6FOXjmLWBcY3fBYtIhQsJb84rpymjb/r3x5xuHo4w3SK8WyXz9JJwoWhEL1sK/WK4SCRnB69uuw5peTJ0r3BCfVDt9DxuvzYzSu84PCAM0cr5BGmDwWR+ZeKFiV9ceFa7yZqhD5wt9msmSsalJ7k0wsYAcneJNh6ucDua26A4NHw8g56UF1BrcmfUwPuuMQfPbSTD11I4srUs+5R88r1L1PhPhTGQelidA7kmH67kBcBIKr0NAkFbLY5lH+cOX4SP2WAqHfNDHTxQRhllqSDDEpW4NUsRehHDbwCtmrfnPEimRFYZoaIFwItoIcgFzypl5YCLNfBgstNwEvP5MLapdeFHcvyMtSpFmBpMIR
+	g6E+OySMRXM8QhqRa1BYfopm63+ZJO68CiagQkyOVqETYsrBNcG82FZzOMyJEmaee7xVcUi6y0R34B7gJ5n2o6aJBAXIBfaaxnF6gESCZjYu+aLH8NrYmElPrb0ku4VJJxHbhi4Cgelfv7Ubt+ZZKsEtSC+W/P9XTx1wJmORwIHEdWVCoy+OtVnYy5sbYWbZTCLPSxsmHmjLY3v+Y761mPD4AS12IawkQVVpRCl0X6CsL+6eY54uzEs9a/2wp4Nw4tike4E9V7F+HD2i+B8heFUldl4IrjF5viUsU/dutrmeODcTrDrHP/4Mc0lkSYn2SQw8V+p97iMRygQMuORa3VtGxhlTADqWZPU9h5KHdKxXLoHkH4u+iq4IvzkjYe/A3I7vh6j3f/xi0+AeBax/VCZg0NI1fkSDTMmemnlt8l9xbfmvmmit3PT929aDuzjC
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 19:31:40.2190
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 19:31:36.8504
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d55cc041-93b0-4562-b330-08de7aedd343
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3cf957c-8f49-47ea-cc35-08de7aedd13b
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	SJ1PEPF00002320.namprd03.prod.outlook.com
+	CY4PEPF0000EDD4.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB5801
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB6520
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 05 Mar 2026 19:31:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17259
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17258
 
-We are migrating Tensorflow-Lite from v2.18.0 to the
-stable release v2.20.0
-
-Key Changes:
- - Pin flatbuffers-native and protobuf-native to use the same version as
-   TensorFlow Lite 2.20.0 to avoid version mismatch
- - Updated SRCREV for all the dependencies
- - Updated recipe to meet the build compatibilty
+We are migrating ARM Compute Library from v24.12 to the
+latest version v52.07
 
 Removed Patches:
- - 0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patch
-   - This patch was TFLite v2.18 specific hence dropped in this version
-=20
+ =E2=80=A2 0001-fix-Fix-indention-in-cmake-generator-script.patch
+   - Upstream Link: https://github.com/ARM-software/ComputeLibrary/commit/e=
+0c42ef651709fd284da3bedd2c98d420bd6fd1a
+ =E2=80=A2 0005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.patch
+   - No need for this patch for v52.07 ACL.
+
 Rebased Patches:
- - Updated with new commits:
-   - 0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch
-   - 0002-lite-Update-CMakeLists-for-building-shared-object-li.patch
+ =E2=80=A2 Following patches are updated with new commits
+   - 0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+   - 0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patch
+   - 0004-Add-source-files-at-library-definition-time.patch
+   - 0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake.patch
+   - 0007-Allow-ARMv7-builds-using-CMake.patch
+   - 0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch
+
+License-Update: Updated LIC_FILES_CHKSUM for MIT.txt, just checksum update =
+due to minor
+formatting/year changes in the license file for version v52.07.
 
 Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
 ---
-Change Logs:
+Change Logs:=20
 
 v2 -> v3:
- - Added Authored-by signature in relevant patches
- - Link to v2:
+ - Added Authored-by signature in patches
+ - Link to v2
    - https://patchwork.yoctoproject.org/project/arago/cover/20260305173419.=
-1735480-1-p-deshmukh@ti.com/
+1735480-1-p-deshmukh@ti.com/=20
 
 v1 -> v2:
- - Added patches with new commits
- - Fixed recipe to handle proper versioned library file
- - Link to v1:
+ - Fixed arm-compute-library recipe name=20
+ - Fixed tabs/spacing issues
+ - Link to v1
    - https://patchwork.yoctoproject.org/project/arago/cover/20260304123221.=
 1450993-1-p-deshmukh@ti.com/
 
- .../flatbuffers/flatbuffers-arago.inc         |  8 +++
- .../flatbuffers/flatbuffers.bbappend          |  4 ++
- .../protobuf/protobuf-arago.inc               | 18 +++++++
- .../protobuf/protobuf_%.bbappend              |  5 ++
- ...0001-Update-CMakeLists-for-building.patch} | 20 +++----
- ...akeLists-for-building-shared-object.patch} | 54 ++++++++++++-------
- ...uild-issues-observed-in-TFlite-v2.18.patch | 35 ------------
- ...te_2.18.0.bb =3D> tensorflow-lite_2.20.0.bb} | 51 ++++++++++--------
- 8 files changed, 108 insertions(+), 87 deletions(-)
- create mode 100644 meta-arago-extras/recipes-devtools/flatbuffers/flatbuff=
-ers-arago.inc
- create mode 100644 meta-arago-extras/recipes-devtools/flatbuffers/flatbuff=
-ers.bbappend
- create mode 100644 meta-arago-extras/recipes-devtools/protobuf/protobuf-ar=
-ago.inc
- create mode 100644 meta-arago-extras/recipes-devtools/protobuf/protobuf_%.=
-bbappend
- rename meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite=
-/{0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch =3D> 0001=
--Update-CMakeLists-for-building.patch} (70%)
- rename meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite=
-/{0002-lite-Update-CMakeLists-for-building-shared-object-li.patch =3D> 0002=
--Update-CMakeLists-for-building-shared-object.patch} (49%)
- delete mode 100644 meta-arago-extras/recipes-framework/tensorflow-lite/ten=
-sorflow-lite/0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patc=
-h
- rename meta-arago-extras/recipes-framework/tensorflow-lite/{tensorflow-lit=
-e_2.18.0.bb =3D> tensorflow-lite_2.20.0.bb} (84%)
+ ...NABLE_NEON-in-code-for-checking-NEO.patch} |  73 ++----
+ ...-indention-in-cmake-generator-script.patch | 130 ---------
+ ...ENABLE_SVE-in-code-for-checking-SVE.patch} | 118 ++++-----
+ ...ce-files-at-library-definition-time.patch} | 247 ++++++++++--------
+ .../0004-Allow-ARMv7-builds-using-CMake.patch | 175 +++++++++++++
+ ...ptions-for-SVE-SVE2-and-BF16-support.patch | 112 --------
+ ...mbol-error-when-building-TensorInfo.patch} |  25 +-
+ ...SVE2-support-to-be-disabled-in-CMake.patch |  91 -------
+ .../0006-Remove-TARGET-dependency.patch       |  58 ++++
+ .../0007-Allow-ARMv7-builds-using-CMake.patch |  86 ------
+ ...rate-generic-library-name-instead-of.patch |  33 +++
+ .../0008-Add-FP16-source-path.patch           |  28 ++
+ ...24.12.bb =3D> arm-compute-library_52.7.0.bb} |  56 ++--
+ 13 files changed, 556 insertions(+), 676 deletions(-)
+ rename meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-=
+library/{0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch =
+=3D> 0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch} (58%)
+ delete mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/=
+arm-compute-library/0001-fix-Fix-indention-in-cmake-generator-script.patch
+ rename meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-=
+library/{0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patch =
+=3D> 0002-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE.patch} (67%)
+ rename meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-=
+library/{0004-Add-source-files-at-library-definition-time.patch =3D> 0003-A=
+dd-source-files-at-library-definition-time.patch} (24%)
+ create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/=
+arm-compute-library/0004-Allow-ARMv7-builds-using-CMake.patch
+ delete mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/=
+arm-compute-library/0005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.pa=
+tch
+ rename meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-=
+library/{0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch =3D=
+> 0005-Fix-undefined-symbol-error-when-building-TensorInfo.patch} (67%)
+ delete mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/=
+arm-compute-library/0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake=
+.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/=
+arm-compute-library/0006-Remove-TARGET-dependency.patch
+ delete mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/=
+arm-compute-library/0007-Allow-ARMv7-builds-using-CMake.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/=
+arm-compute-library/0007-cmake-Generate-generic-library-name-instead-of.pat=
+ch
+ create mode 100644 meta-arago-extras/recipes-devtools/arm-compute-library/=
+arm-compute-library/0008-Add-FP16-source-path.patch
+ rename meta-arago-extras/recipes-devtools/arm-compute-library/{arm-compute=
+-library_24.12.bb =3D> arm-compute-library_52.7.0.bb} (58%)
 
-diff --git a/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers-ara=
-go.inc b/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers-arago.i=
-nc
-new file mode 100644
-index 00000000..d85efc8b
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers-arago.inc
-@@ -0,0 +1,8 @@
-+# Pin flatbuffers-native to use the same version as TensorFlow Lite 2.20.0
-+# to avoid version mismatch errors
-+
-+# Override version to match
-+PV =3D "24.3.25"
-+
-+# Use specific commit hash that corresponds to v24.3.25 tag
-+SRCREV =3D "595bf0007ab1929570c7671f091313c8fc20644e"
-diff --git a/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers.bba=
-ppend b/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers.bbappend
-new file mode 100644
-index 00000000..2a627698
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers.bbappend
-@@ -0,0 +1,4 @@
-+# Conditionally include Arago-specific customizations for flatbuffers-nati=
-ve
-+FLATBUFFERS_ARAGO =3D ""
-+FLATBUFFERS_ARAGO:arago =3D "flatbuffers-arago.inc"
-+require ${FLATBUFFERS_ARAGO}
-diff --git a/meta-arago-extras/recipes-devtools/protobuf/protobuf-arago.inc=
- b/meta-arago-extras/recipes-devtools/protobuf/protobuf-arago.inc
-new file mode 100644
-index 00000000..489b1444
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/protobuf/protobuf-arago.inc
-@@ -0,0 +1,18 @@
-+# Pin protobuf-native to use the same version as TensorFlow Lite 2.20.0
-+# to avoid version mismatch errors
-+
-+# Override version to match
-+PV =3D "3.21.9"
-+
-+# Use specific commit hash that corresponds to v24.3.25 tag
-+SRCREV =3D "90b73ac3f0b10320315c2ca0d03a5a9b095d2f66"
-+
-+# Override SRC_URI to use 3.21.x branch and remove incompatible patches
-+SRC_URI =3D "git://github.com/protocolbuffers/protobuf.git;branch=3Dmain;p=
-rotocol=3Dhttps \
-+           file://run-ptest \
-+          "=20
-+
-+LIC_FILES_CHKSUM =3D " \
-+    file://LICENSE;md5=3D37b5762e07f0af8c74ce80a8bda4266b \
-+    file://third_party/utf8_range/LICENSE;md5=3Def460f31070fd7184bd9059de2=
-e4b132 \
-+"
-diff --git a/meta-arago-extras/recipes-devtools/protobuf/protobuf_%.bbappen=
-d b/meta-arago-extras/recipes-devtools/protobuf/protobuf_%.bbappend
-new file mode 100644
-index 00000000..51c679a5
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/protobuf/protobuf_%.bbappend
-@@ -0,0 +1,5 @@
-+# Conditionally include Arago-specific customizations for flatbuffers-nati=
-ve
-+PROTOBUF_ARAGO =3D ""
-+PROTOBUF_ARAGO:arago =3D "protobuf-arago.inc"
-+
-+require ${PROTOBUF_ARAGO}
-diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow=
--lite/0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch b/met=
-a-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0001-Updat=
-e-CMakeLists-for-building.patch
-similarity index 70%
-rename from meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-=
-lite/0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch
-rename to meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-li=
-te/0001-Update-CMakeLists-for-building.patch
-index 6c2b9155..308b029c 100644
---- a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0=
-001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch
-+++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0=
-001-Update-CMakeLists-for-building.patch
-@@ -1,7 +1,7 @@
--From 050127548d7f28464cbe5dc9caa83c8023676d80 Mon Sep 17 00:00:00 2001
--From: Chirag Shilwant <c-shilwant@ti.com>
--Date: Thu, 13 Feb 2025 14:33:50 +0530
--Subject: [PATCH 1/3] lite: Update CMakeLists for building
-+From b730b1086d715048f6e00c65dc6777f635df0428 Mon Sep 17 00:00:00 2001
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patc=
+h b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-libr=
+ary/0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+similarity index 58%
+rename from meta-arago-extras/recipes-devtools/arm-compute-library/arm-comp=
+ute-library/0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+rename to meta-arago-extras/recipes-devtools/arm-compute-library/arm-comput=
+e-library/0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+index 1c33ac3c..07327e50 100644
+--- a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
++++ b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+@@ -1,7 +1,8 @@
+-From 4350c56d14b7b68acd060d8331f3ade1fb74e167 Mon Sep 17 00:00:00 2001
+-From: Andrew Davis <afd@ti.com>
+-Date: Thu, 5 Dec 2024 09:21:23 -0600
+-Subject: [PATCH] Use ARM_COMPUTE_ENABLE_NEON in code for checking NEON sup=
+port
++From 6902148626781de2b4a2aec2c00fb6a13328209c Mon Sep 17 00:00:00 2001
 +From: Pratham Deshmukh <p-deshmukh@ti.com>
-+Date: Thu, 5 Mar 2026 19:19:20 +0530
-+Subject: [PATCH 1/2] Update CMakeLists for building=20
-  _pywrap_tensorflow_interpreter_wrapper
++Date: Wed, 4 Mar 2026 15:24:41 +0530
++Subject: [PATCH 1/8] Use ARM_COMPUTE_ENABLE_NEON in code for checking NEON
++ support
 =20
- - Update the CMakeLists.txt file for TensorFlow Lite to include the paths =
-for
-@@ -13,16 +13,17 @@ target that relies on these dependencies.
+ ENABLE_NEON is a flag used by the build systems. The flag is not used
+ in code, instead ARM_COMPUTE_ENABLE_NEON is used everywhere.
+@@ -11,19 +12,18 @@ use in code.
 =20
- Upstream-Status: Inappropriate [configuration]
+ Upstream-Status: Pending
 =20
--Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-+Authored-by: Chirag Shilwant <c-shilwant@ti.com>
+-Signed-off-by: Andrew Davis <afd@ti.com>
+-Change-Id: I65f5e7411c99280e2dd8c187140909cefd1c6892
++Authored-by: Andrew Davis <afd@ti.com>
 +Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
  ---
-  tensorflow/lite/CMakeLists.txt | 3 +++
-  1 file changed, 3 insertions(+)
+  Android.bp                     | 1 -
+  BUILD.bazel                    | 1 -
+  SConscript                     | 2 +-
+  SConstruct                     | 2 +-
+- cmake/Options.cmake            | 6 +-----
+  scripts/generate_android_bp.py | 1 -
+- 6 files changed, 3 insertions(+), 10 deletions(-)
++ 5 files changed, 2 insertions(+), 5 deletions(-)
 =20
- diff --git a/tensorflow/lite/CMakeLists.txt b/tensorflow/lite/CMakeLists.t=
-xt
--index bce9627fbd3..b7bb39869b5 100644
-+index 3198ec61..63801efb 100644
- --- a/tensorflow/lite/CMakeLists.txt
- +++ b/tensorflow/lite/CMakeLists.txt
--@@ -810,6 +810,9 @@ set_target_properties(_pywrap_tensorflow_interpreter_w=
-rapper PROPERTIES PREFIX "
-+@@ -827,6 +827,9 @@ set_target_properties(_pywrap_tensorflow_interpreter_w=
-rapper PROPERTIES PREFIX "
-  target_include_directories(_pywrap_tensorflow_interpreter_wrapper
-    PUBLIC
-      ${TENSORFLOW_SOURCE_DIR}
-@@ -30,7 +31,8 @@ index bce9627fbd3..b7bb39869b5 100644
- +    ${NUMPY_TARGET_INCLUDE}
- +    ${PYBIND11_TARGET_INCLUDE}
-  )
+ diff --git a/Android.bp b/Android.bp
+-index 69379472b0..9288bba2d4 100644
++index 9f659b2f6e..eec8366833 100644
+ --- a/Android.bp
+ +++ b/Android.bp
+ @@ -157,7 +157,6 @@ arm_compute_library_defaults {
+@@ -35,7 +35,7 @@ index 69379472b0..9288bba2d4 100644
+              "-Wno-unused-parameter",
+              "-DNO_DOT_IN_TOOLCHAIN",
+ diff --git a/BUILD.bazel b/BUILD.bazel
+-index f553b7bfad..2262a09655 100644
++index 3cbd582c2b..d555ccea45 100644
+ --- a/BUILD.bazel
+ +++ b/BUILD.bazel
+ @@ -170,7 +170,6 @@ config_setting(
+@@ -47,64 +47,36 @@ index f553b7bfad..2262a09655 100644
+                    "ARM_COMPUTE_ENABLE_NEON",
+                    "ARM_COMPUTE_ENABLE_I8MM",
+ diff --git a/SConscript b/SConscript
+-index 12e8fd1025..69a564873f 100644
++index d2f39c4a5b..45a9471d34 100644
+ --- a/SConscript
+ +++ b/SConscript
+ @@ -97,7 +97,7 @@ def build_multiisa_lib_objects():
 -
 +=20
-  target_link_libraries(_pywrap_tensorflow_interpreter_wrapper
----
+      # note that ARM_COMPUTE_ENABLE_FP16 is enabled in update_data_type_la=
+yout_flags() to make
+      # sure the environment is progated to the validation suite
+ -    arm_compute_env.Append(CPPDEFINES =3D ['ENABLE_NEON', 'ARM_COMPUTE_EN=
+ABLE_NEON',
+ +    arm_compute_env.Append(CPPDEFINES =3D ['ARM_COMPUTE_ENABLE_NEON',
+-                            'ENABLE_SVE', 'ARM_COMPUTE_ENABLE_SVE','ARM_CO=
+MPUTE_ENABLE_BF16',
+-                            'ARM_COMPUTE_ENABLE_I8MM', 'ARM_COMPUTE_ENABLE=
+_SVEF32MM'])
+-
++                            'ENABLE_SVE', 'ARM_COMPUTE_ENABLE_SVE','ARM_CO=
+MPUTE_ENABLE_SVE2',
++                            'ARM_COMPUTE_ENABLE_BF16', 'ARM_COMPUTE_ENABLE=
+_I8MM',
++                            'ARM_COMPUTE_ENABLE_SVEF32MM', 'ARM_COMPUTE_EN=
+ABLE_SME',
+ diff --git a/SConstruct b/SConstruct
+-index 8d7bd291e8..7381300fc8 100644
++index 39c0ffdea3..1fce556c8e 100644
+ --- a/SConstruct
+ +++ b/SConstruct
+-@@ -302,7 +302,7 @@ if 'v7a' in env['estate'] and env['estate'] =3D=3D '64=
+':
++@@ -334,7 +334,7 @@ if 'v7a' in env['arch'] and env['estate'] =3D=3D '64':
+      print("ERROR: armv7a architecture has only 32-bit execution state")
+      Exit(1)
+-
++=20
+ -env.Append(CPPDEFINES =3D ['ENABLE_NEON', 'ARM_COMPUTE_ENABLE_NEON'])
+ +env.Append(CPPDEFINES =3D ['ARM_COMPUTE_ENABLE_NEON'])
+-
++=20
+  if 'sve' in env['arch']:
+      env.Append(CPPDEFINES =3D ['ENABLE_SVE', 'ARM_COMPUTE_ENABLE_SVE'])
+-diff --git a/cmake/Options.cmake b/cmake/Options.cmake
+-index 5d685be48d..121d527718 100644
+---- a/cmake/Options.cmake
+-+++ b/cmake/Options.cmake
+-@@ -53,7 +53,6 @@ option(ARM_COMPUTE_ENABLE_SVE_VALIDATION "" OFF)
+-
+- option(ENABLE_NEON "Enable Arm=C2=AE Neon=E2=84=A2 support" ON)
+- option(ARM_COMPUTE_CPU_ENABLED "" ON)
+--option(ARM_COMPUTE_ENABLE_NEON "" ON)
+- option(ARM_COMPUTE_ENABLE_I8MM "" ON)
+- option(ENABLE_FP32_KERNELS "" ON)
+- option(ENABLE_QASYMM8_KERNELS "" ON)
+-@@ -70,14 +69,11 @@ option(ENABLE_FP16_KERNELS "" OFF)
+- option(ARM_COMPUTE_ENABLE_FP16 "" OFF)
+-
+- if(ENABLE_NEON)
+--  add_definitions(-DENABLE_NEON)
+-+  add_definitions(-DARM_COMPUTE_ENABLE_NEON)
+- endif()
+- if(ARM_COMPUTE_CPU_ENABLED)
+-   add_definitions(-DARM_COMPUTE_CPU_ENABLED)
+- endif()
+--if(ARM_COMPUTE_ENABLE_NEON)
+--  add_definitions(-DARM_COMPUTE_ENABLE_NEON)
+--endif()
+- if(ARM_COMPUTE_ENABLE_FP16)
+-   add_definitions(-DARM_COMPUTE_ENABLE_FP16)
+- endif()
+ diff --git a/scripts/generate_android_bp.py b/scripts/generate_android_bp.=
+py
+-index d5b268f522..99a04e7071 100755
++index f9dbd89228..ba2765900d 100755
+ --- a/scripts/generate_android_bp.py
+ +++ b/scripts/generate_android_bp.py
+-@@ -94,7 +94,6 @@ arm_compute_library_defaults {
++@@ -92,7 +92,6 @@ arm_compute_library_defaults {
+              "-DEMBEDDED_KERNELS",
+              "-DARM_COMPUTE_ASSERTS_ENABLED",
+              "-DARM_COMPUTE_CPP_SCHEDULER",
+@@ -112,3 +84,6 @@ index d5b268f522..99a04e7071 100755
+              "-DARM_COMPUTE_ENABLE_NEON",
+              "-Wno-unused-parameter",
+              "-DNO_DOT_IN_TOOLCHAIN",
 +--=20
- 2.34.1
++2.34.1
 +
-diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow=
--lite/0002-lite-Update-CMakeLists-for-building-shared-object-li.patch b/met=
-a-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0002-Updat=
-e-CMakeLists-for-building-shared-object.patch
-similarity index 49%
-rename from meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-=
-lite/0002-lite-Update-CMakeLists-for-building-shared-object-li.patch
-rename to meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-li=
-te/0002-Update-CMakeLists-for-building-shared-object.patch
-index 3450cf81..d1412cfa 100644
---- a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0=
-002-lite-Update-CMakeLists-for-building-shared-object-li.patch
-+++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0=
-002-Update-CMakeLists-for-building-shared-object.patch
-@@ -1,8 +1,7 @@
--From 339b5a7e5f17a60df1e3d6d2ffe607786ce34978 Mon Sep 17 00:00:00 2001
--From: Chirag Shilwant <c-shilwant@ti.com>
--Date: Thu, 13 Feb 2025 14:38:01 +0530
--Subject: [PATCH 2/3] lite: Update CMakeLists for building shared object
-- library
-+From 799d46ca08223b6f936093a790d510e9247249ae Mon Sep 17 00:00:00 2001
-+From: Pratham Deshmukh <p-deshmukh@ti.com>
-+Date: Thu, 5 Mar 2026 19:41:36 +0530
-+Subject: [PATCH 2/2] Update CMakeLists for building shared object library
-=20
- - When building TFLite with CMake, it builds static library
- (i.e. libtensorflow-lite.a) by default which isn't self-contained
-@@ -16,45 +15,60 @@ inorder to generate a shared object library (i.e. libte=
-nsorflow-lite.so)
- it ensures that the properties are set correctly to manage the shared
- object version.
-=20
-+- Implements conditional versioning using TF_MAJOR_VERSION, TF_MINOR_VERSI=
-ON,
-+and TF_PATCH_VERSION variables passed from the build system, replacing
-+the previous approach that used undefined TFLITE_VERSION_MAJOR variable
-+which caused malformed SONAME generation (libtensorflow-lite.so.)
-+
-+- The proper versioning ensures benchmark_model and other dependent binari=
-es
-+embed correct SONAME references for successful dynamic linking at runtime.
-+
- [1]: https://ai.google.dev/edge/litert/build/cmake#step_5_build_litert
-=20
- Upstream-Status: Inappropriate [enable feature]
-=20
--Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-+Authored-by: Chirag Shilwant <c-shilwant@ti.com>
-+Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
- ---
-- tensorflow/lite/CMakeLists.txt | 6 +++++-
-- 1 file changed, 5 insertions(+), 1 deletion(-)
-+ tensorflow/lite/CMakeLists.txt | 11 ++++++++++-
-+ 1 file changed, 10 insertions(+), 1 deletion(-)
-=20
- diff --git a/tensorflow/lite/CMakeLists.txt b/tensorflow/lite/CMakeLists.t=
-xt
--index b7bb39869b5..92b05e42446 100644
-+index 63801efb..7e0004ef 100644
- --- a/tensorflow/lite/CMakeLists.txt
- +++ b/tensorflow/lite/CMakeLists.txt
--@@ -671,6 +671,7 @@ set(_ALL_TFLITE_SRCS
-+@@ -684,6 +684,7 @@ set(_ALL_TFLITE_SRCS
-    ${TFLITE_SOURCE_DIR}/kernels/internal/utils/sparsity_format_converter.c=
-c
-    ${TFLITE_SOURCE_DIR}/schema/conversion_metadata_generated.h
-    ${TFLITE_SOURCE_DIR}/schema/schema_generated.h
- +  ${TFLITE_SOURCE_DIR}/schema/schema_conversion_utils.h
--   ${TF_SOURCE_DIR}/compiler/mlir/lite/schema/schema_utils.cc
--   ${TF_SOURCE_DIR}/compiler/mlir/lite/schema/schema_generated.h
--   ${TF_SOURCE_DIR}/compiler/mlir/lite/schema/conversion_metadata_generate=
-d.h
--@@ -697,7 +698,7 @@ else()
-+   ${TFLITE_SRCS}
-+   ${TF_SOURCE_DIR}/compiler/mlir/lite/allocation.cc
-+   ${TF_SOURCE_DIR}/compiler/mlir/lite/allocation.h
-+@@ -714,7 +715,7 @@ else()
-    list(FILTER _ALL_TFLITE_SRCS EXCLUDE REGEX ".*mmap_allocation\\.cc$")
-  endif()
--
-+=20
- -add_library(tensorflow-lite
- +add_library(tensorflow-lite SHARED EXCLUDE_FROM_ALL
-    ${_ALL_TFLITE_SRCS}
-  )
-  set(_ALL_TFLITE_HDRS ${_ALL_TFLITE_SRCS})
--@@ -773,6 +774,9 @@ if(TFLITE_ENABLE_INSTALL)
-+@@ -790,6 +791,14 @@ if(TFLITE_ENABLE_INSTALL)
-    )
-  endif()
--
--+# Manage version for shared object (dynamic) library
--+set_target_properties(tensorflow-lite PROPERTIES VERSION "${TFLITE_VERSIO=
-N_MAJOR}")
-+=20
-++# Set proper version properties for shared library
-++if(DEFINED TF_MAJOR_VERSION AND DEFINED TF_MINOR_VERSION AND DEFINED TF_P=
-ATCH_VERSION)
-++  set_target_properties(tensorflow-lite PROPERTIES
-++    VERSION "${TF_MAJOR_VERSION}.${TF_MINOR_VERSION}.${TF_PATCH_VERSION}"
-++    SOVERSION "${TF_MAJOR_VERSION}"
-++  )
-++endif()
- +
-  # The kernel tests.
-  if(TFLITE_KERNEL_TEST)
-    enable_testing()
----
-+--=20
- 2.34.1
-+
-diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow=
--lite/0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patch b/met=
-a-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0003-CMake=
-Lists-Fix-build-issues-observed-in-TFlite-v2.18.patch
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0001-fix-Fix-indention-in-cmake-generator-script.patch b/meta-=
+arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0001-=
+fix-Fix-indention-in-cmake-generator-script.patch
 deleted file mode 100644
-index 38cbf185..00000000
---- a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite/0=
-003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patch
+index f423c259..00000000
+--- a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0001-fix-Fix-indention-in-cmake-generator-script.patch
 +++ /dev/null
-@@ -1,35 +0,0 @@
--From 577192caa67660f857f2869896d01db3611b4128 Mon Sep 17 00:00:00 2001
--From: Chirag Shilwant <c-shilwant@ti.com>
--Date: Thu, 13 Feb 2025 14:45:46 +0530
--Subject: [PATCH 3/3] CMakeLists: Fix build issues observed in TFlite v2.18
+@@ -1,130 +0,0 @@
+-From 1e4c3016547b5f75e515d4b9a7202733c47f5a18 Mon Sep 17 00:00:00 2001
+-From: Andrew Davis <afd@ti.com>
+-Date: Wed, 4 Dec 2024 14:46:17 -0600
+-Subject: [PATCH] fix: Fix indention in cmake generator script
 -
--- Improve regular expression for filtering neon and sse
--related sources. The improved expression avoids missing files
--in case the absolute path contains the terms neon or sse.
+-All other items in these lists use tabs, the first couple
+-lines should match. Switch them to tabs then regenerate
+-the CMakeLists.txt file.
 -
--- Fixes [1]
+-While here fix the missing ending newline.
 -
--[1]: https://github.com/tensorflow/tensorflow/issues/70730
+-Upstream-Status: Pending
 -
--Upstream-Status: Backport from master
--
--Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
+-Signed-off-by: Andrew Davis <afd@ti.com>
+-Change-Id: Icab852fc43ae08e7858857881c996d233c835289
 ----
-- tensorflow/lite/CMakeLists.txt | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
+- scripts/generate_build_files.py | 27 ++++++++++++++-------------
+- src/CMakeLists.txt              | 26 +++++++++++++-------------
+- 2 files changed, 27 insertions(+), 26 deletions(-)
 -
--diff --git a/tensorflow/lite/CMakeLists.txt b/tensorflow/lite/CMakeLists.t=
-xt
--index 92b05e42446..737f754621f 100644
----- a/tensorflow/lite/CMakeLists.txt
--+++ b/tensorflow/lite/CMakeLists.txt
--@@ -605,7 +605,7 @@ populate_tflite_source_vars("kernels/internal/referenc=
-e/sparse_ops"
+-diff --git a/scripts/generate_build_files.py b/scripts/generate_build_file=
+s.py
+-index f88cf1af44..52a8cc14da 100644
+---- a/scripts/generate_build_files.py
+-+++ b/scripts/generate_build_files.py
+-@@ -168,28 +168,29 @@ def build_from_template_cmake(srcs_graph, srcs_sve, =
+srcs_sve2, srcs_core):
+-     template =3D f"""{get_template_header()}
+-
+- target_sources(
+--    arm_compute_graph
+--    PRIVATE
+--    {line_separator.join(srcs_graph)}
+-+	arm_compute_graph
+-+	PRIVATE
+-+	{line_separator.join(srcs_graph)}
 - )
-- populate_tflite_source_vars("kernels/internal/optimized/4bit"
--   TFLITE_KERNEL_INTERNAL_OPT_4BIT_SRCS
---  FILTER "(.*neon.*|.*sse.*)\\.(cc|h)"
--+  FILTER "(.*neon_.*|.*sse_.*)\\.(cc|h)"
+-
+- target_sources(
+--    arm_compute_sve
+--    PRIVATE
+--    {line_separator.join(srcs_sve)}
+-+	arm_compute_sve
+-+	PRIVATE
+-+	{line_separator.join(srcs_sve)}
 - )
-- set(TFLITE_PROFILER_SRCS
--   ${TFLITE_SOURCE_DIR}/profiling/platform_profiler.cc
----
--2.34.1
-diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow=
--lite_2.18.0.bb b/meta-arago-extras/recipes-framework/tensorflow-lite/tenso=
-rflow-lite_2.20.0.bb
-similarity index 84%
-rename from meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-=
-lite_2.18.0.bb
-rename to meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-li=
-te_2.20.0.bb
-index c76939ac..43562303 100644
---- a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite_2=
-.18.0.bb
-+++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-lite_2=
-.20.0.bb
-@@ -8,18 +8,19 @@ LICENSE =3D "Apache-2.0"
- LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D4158a261ca7f2525513e31ba9c50ae9=
-8"
+-
+- target_sources(
+--    arm_compute_sve2
+--    PRIVATE
+--    {line_separator.join(srcs_sve2)}
+-+	arm_compute_sve2
+-+	PRIVATE
+-+	{line_separator.join(srcs_sve2)}
+- )
+-
+- target_sources(
+--    arm_compute
+--    PRIVATE
+--    {line_separator.join(srcs_core)}
+--)"""
+-+	arm_compute
+-+	PRIVATE
+-+	{line_separator.join(srcs_core)}
+-+)
+-+"""
+-     return template
+-
+-
+-diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+-index ff3bed96df..f1b275532a 100644
+---- a/src/CMakeLists.txt
+-+++ b/src/CMakeLists.txt
+-@@ -21,9 +21,9 @@
+- # SOFTWARE.
+-
+- target_sources(
+--    arm_compute_graph
+--    PRIVATE
+--    graph/DataLayerVisitor.cpp
+-+	arm_compute_graph
+-+	PRIVATE
+-+	graph/DataLayerVisitor.cpp
+-	graph/Graph.cpp
+-	graph/GraphBuilder.cpp
+-	graph/GraphContext.cpp
+-@@ -101,9 +101,9 @@ target_sources(
+- )
+-
+- target_sources(
+--    arm_compute_sve
+--    PRIVATE
+--    core/NEON/kernels/arm_conv/depthwise/interleaves/sve_s8q_3x3_dot.cpp
+-+	arm_compute_sve
+-+	PRIVATE
+-+	core/NEON/kernels/arm_conv/depthwise/interleaves/sve_s8q_3x3_dot.cpp
+-	core/NEON/kernels/arm_conv/depthwise/interleaves/sve_u8q_3x3_dot.cpp
+-	core/NEON/kernels/arm_conv/depthwise/kernels/sme2_fp16_nhwc_3x3_s1_output=
+2x2_mla_depthfirst/generic_direct.cpp
+-	core/NEON/kernels/arm_conv/depthwise/kernels/sme2_fp16_nhwc_3x3_s1_output=
+2x2_mla_depthfirst/generic_indirect.cpp
+-@@ -332,9 +332,9 @@ target_sources(
+- )
+-
+- target_sources(
+--    arm_compute_sve2
+--    PRIVATE
+--    cpu/kernels/activation/generic/sve2/lut.cpp
+-+	arm_compute_sve2
+-+	PRIVATE
+-+	cpu/kernels/activation/generic/sve2/lut.cpp
+-	cpu/kernels/activation/generic/sve2/qasymm8.cpp
+-	cpu/kernels/activation/generic/sve2/qasymm8_signed.cpp
+-	cpu/kernels/activation/generic/sve2/qsymm16.cpp
+-@@ -357,9 +357,9 @@ target_sources(
+- )
+-
+- target_sources(
+--    arm_compute
+--    PRIVATE
+--    c/AclContext.cpp
+-+	arm_compute
+-+	PRIVATE
+-+	c/AclContext.cpp
+-	c/AclOperator.cpp
+-	c/AclQueue.cpp
+-	c/AclTensor.cpp
+-@@ -1049,4 +1049,4 @@ target_sources(
+-	runtime/experimental/operators/CpuSub.cpp
+-	runtime/experimental/operators/CpuTranspose.cpp
+-	runtime/experimental/operators/CpuWinogradConv2d.cpp
+--)
+-\ No newline at end of file
+-+)
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patc=
+h b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-libr=
+ary/0002-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE.patch
+similarity index 67%
+rename from meta-arago-extras/recipes-devtools/arm-compute-library/arm-comp=
+ute-library/0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patch
+rename to meta-arago-extras/recipes-devtools/arm-compute-library/arm-comput=
+e-library/0002-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE.patch
+index d766f2e3..4b4ec65c 100644
+--- a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patch
++++ b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0002-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE.patch
+@@ -1,7 +1,8 @@
+-From 92a881cebfee5504b188a046a96d39dd9361ddb1 Mon Sep 17 00:00:00 2001
+-From: Andrew Davis <afd@ti.com>
+-Date: Thu, 5 Dec 2024 08:57:38 -0600
+-Subject: [PATCH] Use ARM_COMPUTE_ENABLE_SVE in code for checking SVE suppo=
+rt
++From efaf2a32cefa5096eeb560cb28f3d4987ac3ca18 Mon Sep 17 00:00:00 2001
++From: Pratham Deshmukh <p-deshmukh@ti.com>
++Date: Wed, 4 Mar 2026 15:30:57 +0530
++Subject: [PATCH 2/8] Use ARM_COMPUTE_ENABLE_SVE in code for checking SVE
++ support
 =20
- # Get major of the PV variable
--MAJOR =3D "${@d.getVar('PV').split('.')[0]}"
-+TF_MAJOR =3D "${@d.getVar('PV').split('.')[0]}"
-+TF_MINOR =3D "${@d.getVar('PV').split('.')[1]}"
-+TF_PATCH =3D "${@(d.getVar('PV').split('.') + ['0', '0'])[2]}"
+ ENABLE_SVE is a flag used by the build systems. The flag used in code
+ is ARM_COMPUTE_ENABLE_SVE. There are just a couple spots where the
+@@ -13,21 +14,20 @@ being added in the future.
+=20
+ Upstream-Status: Pending
+=20
+-Signed-off-by: Andrew Davis <afd@ti.com>
+-Change-Id: I00da7580c4520647b62c6989bc7fbdd5efc7935e
++Authored-by: Andrew Davis <afd@ti.com>
++Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
+ ---
+  BUILD.bazel                                   |  3 ---
+  SConscript                                    |  2 +-
+  SConstruct                                    |  2 +-
+  .../batchnormalization/impl/SVE/fp16.cpp      |  2 +-
+  .../batchnormalization/impl/SVE/fp32.cpp      |  2 +-
+- tests/BUILD.bazel                             |  1 -
+- tests/validation/NEON/ActivationLayer.cpp     | 24 +++++++++----------
+  tests/validation/NEON/ArithmeticAddition.cpp  |  6 ++---
+- 8 files changed, 19 insertions(+), 23 deletions(-)
++ .../validation/helpers/ActivationHelpers.cpp  | 24 +++++++++----------
++ 7 files changed, 19 insertions(+), 22 deletions(-)
+=20
+ diff --git a/BUILD.bazel b/BUILD.bazel
+-index 2262a09655..c04a52e084 100644
++index d555ccea45..28f39d64d9 100644
+ --- a/BUILD.bazel
+ +++ b/BUILD.bazel
+ @@ -297,7 +297,6 @@ cc_library(
+@@ -55,31 +55,31 @@ index 2262a09655..c04a52e084 100644
+          "ARM_COMPUTE_ENABLE_BF16",
+      ],
+ diff --git a/SConscript b/SConscript
+-index 69a564873f..c2ca549b71 100644
++index 45a9471d34..0fee195ecf 100644
+ --- a/SConscript
+ +++ b/SConscript
+ @@ -98,7 +98,7 @@ def build_multiisa_lib_objects():
+      # note that ARM_COMPUTE_ENABLE_FP16 is enabled in update_data_type_la=
+yout_flags() to make
+      # sure the environment is progated to the validation suite
+      arm_compute_env.Append(CPPDEFINES =3D ['ARM_COMPUTE_ENABLE_NEON',
+--                           'ENABLE_SVE', 'ARM_COMPUTE_ENABLE_SVE','ARM_CO=
+MPUTE_ENABLE_BF16',
+-+                                         'ARM_COMPUTE_ENABLE_SVE','ARM_CO=
+MPUTE_ENABLE_BF16',
+-                            'ARM_COMPUTE_ENABLE_I8MM', 'ARM_COMPUTE_ENABLE=
+_SVEF32MM'])
+-
+-     # Build all the common files for the base architecture
++-                           'ENABLE_SVE', 'ARM_COMPUTE_ENABLE_SVE','ARM_CO=
+MPUTE_ENABLE_SVE2',
+++                           'ARM_COMPUTE_ENABLE_SVE','ARM_COMPUTE_ENABLE_S=
+VE2',
++                            'ARM_COMPUTE_ENABLE_BF16', 'ARM_COMPUTE_ENABLE=
+_I8MM',
++                            'ARM_COMPUTE_ENABLE_SVEF32MM', 'ARM_COMPUTE_EN=
+ABLE_SME',
++                            'ARM_COMPUTE_ENABLE_SME2', 'ENABLE_SME'])
+ diff --git a/SConstruct b/SConstruct
+-index 7381300fc8..17f5615acf 100644
++index 1fce556c8e..22a30f3eb2 100644
+ --- a/SConstruct
+ +++ b/SConstruct
+-@@ -305,7 +305,7 @@ if 'v7a' in env['estate'] and env['estate'] =3D=3D '64=
+':
++@@ -337,7 +337,7 @@ if 'v7a' in env['arch'] and env['estate'] =3D=3D '64':
+  env.Append(CPPDEFINES =3D ['ARM_COMPUTE_ENABLE_NEON'])
+-
++=20
+  if 'sve' in env['arch']:
+ -    env.Append(CPPDEFINES =3D ['ENABLE_SVE', 'ARM_COMPUTE_ENABLE_SVE'])
+ +    env.Append(CPPDEFINES =3D ['ARM_COMPUTE_ENABLE_SVE'])
+      if 'sve2' in env['arch']:
+          env.Append(CPPDEFINES =3D ['ARM_COMPUTE_ENABLE_SVE2'])
+-
++=20
+ diff --git a/src/core/NEON/kernels/batchnormalization/impl/SVE/fp16.cpp b/=
+src/core/NEON/kernels/batchnormalization/impl/SVE/fp16.cpp
+ index 48caaa3e63..e07593312c 100644
+ --- a/src/core/NEON/kernels/batchnormalization/impl/SVE/fp16.cpp
+@@ -100,24 +100,32 @@ index df4fbfe607..0d52d2c3c0 100644
+  } // namespace arm_compute
+ -#endif // ENABLE_SVE
+ +#endif // ARM_COMPUTE_ENABLE_SVE
+-diff --git a/tests/BUILD.bazel b/tests/BUILD.bazel
+-index 7085f1facc..4b4be8b257 100644
+---- a/tests/BUILD.bazel
+-+++ b/tests/BUILD.bazel
+-@@ -114,7 +114,6 @@ cc_binary(
+-               }) +
+-         select({
+-                 "//:sve_validation_flag": [
+--                "ENABLE_SVE",
+-                 "ARM_COMPUTE_ENABLE_SVE",
+-                 ],
+-                 "//conditions:default": [],
+-diff --git a/tests/validation/NEON/ActivationLayer.cpp b/tests/validation/=
+NEON/ActivationLayer.cpp
+-index 119d51808a..69a8b52354 100644
+---- a/tests/validation/NEON/ActivationLayer.cpp
+-+++ b/tests/validation/NEON/ActivationLayer.cpp
+-@@ -73,11 +73,11 @@ RelativeTolerance<float> relative_tolerance(DataType d=
+ata_type, ActivationLayerI
+-             switch(data_type)
++diff --git a/tests/validation/NEON/ArithmeticAddition.cpp b/tests/validati=
+on/NEON/ArithmeticAddition.cpp
++index 94a24cffd4..b51ff77fd3 100644
++--- a/tests/validation/NEON/ArithmeticAddition.cpp
+++++ b/tests/validation/NEON/ArithmeticAddition.cpp
++@@ -49,12 +49,12 @@ namespace validation
++ using framework::dataset::make;
++ namespace
++ {
++-#if !defined(__aarch64__) || defined(ENABLE_SVE)
+++#if !defined(__aarch64__) || defined(ARM_COMPUTE_ENABLE_SVE)
++ constexpr AbsoluteTolerance<float> tolerance_quant(
++     1); /**< Tolerance value for comparing reference's output against imp=
+lementation's output for quantized data types */
++-#else   // !defined(__aarch64__) || defined(ENABLE_SVE)
+++#else   // !defined(__aarch64__) || defined(ARM_COMPUTE_ENABLE_SVE)
++ constexpr AbsoluteTolerance<float> tolerance_quant(1);
++-#endif  // !defined(__aarch64__) || defined(ENABLE_SVE)
+++#endif  // !defined(__aarch64__) || defined(ARM_COMPUTE_ENABLE_SVE)
++ const auto InPlaceDataSet    =3D make("InPlace", {false, true});
++ const auto OutOfPlaceDataSet =3D make("InPlace", {false});
++ } // namespace
++diff --git a/tests/validation/helpers/ActivationHelpers.cpp b/tests/valida=
+tion/helpers/ActivationHelpers.cpp
++index a432482623..fe86d784eb 100644
++--- a/tests/validation/helpers/ActivationHelpers.cpp
+++++ b/tests/validation/helpers/ActivationHelpers.cpp
++@@ -52,11 +52,11 @@ RelativeTolerance<float> relative_tolerance(DataType d=
+ata_type, ActivationLayerI
++             switch (data_type)
+              {
+                  case DataType::F16:
+ -#if defined(ENABLE_SVE)
+@@ -131,8 +139,8 @@ index 119d51808a..69a8b52354 100644
+                  default:
+                      return RelativeTolerance<float>(0.05f);
+              }
+-@@ -85,11 +85,11 @@ RelativeTolerance<float> relative_tolerance(DataType d=
+ata_type, ActivationLayerI
+-             switch(data_type)
++@@ -64,11 +64,11 @@ RelativeTolerance<float> relative_tolerance(DataType d=
+ata_type, ActivationLayerI
++             switch (data_type)
+              {
+                  case DataType::F16:
+ -#if defined(ENABLE_SVE)
+@@ -146,8 +154,8 @@ index 119d51808a..69a8b52354 100644
+                  default:
+                      return RelativeTolerance<float>(0.00001f);
+              }
+-@@ -117,11 +117,11 @@ AbsoluteTolerance<float> absolute_tolerance(DataType=
+ data_type, ActivationLayerI
+-             switch(data_type)
++@@ -89,11 +89,11 @@ AbsoluteTolerance<float> absolute_tolerance(DataType d=
+ata_type, ActivationLayerI
++             switch (data_type)
+              {
+                  case DataType::F16:
+ -#if defined(ENABLE_SVE)
+@@ -161,8 +169,8 @@ index 119d51808a..69a8b52354 100644
+                  default:
+                      return AbsoluteTolerance<float>(0.00001f);
+              }
+-@@ -129,11 +129,11 @@ AbsoluteTolerance<float> absolute_tolerance(DataType=
+ data_type, ActivationLayerI
+-             switch(data_type)
++@@ -101,11 +101,11 @@ AbsoluteTolerance<float> absolute_tolerance(DataType=
+ data_type, ActivationLayerI
++             switch (data_type)
+              {
+                  case DataType::F16:
+ -#if defined(ENABLE_SVE)
+@@ -176,22 +184,6 @@ index 119d51808a..69a8b52354 100644
+                  default:
+                      return AbsoluteTolerance<float>(0.00001f);
+              }
+-diff --git a/tests/validation/NEON/ArithmeticAddition.cpp b/tests/validati=
+on/NEON/ArithmeticAddition.cpp
+-index c0033daab0..bae8535ff3 100644
+---- a/tests/validation/NEON/ArithmeticAddition.cpp
+-+++ b/tests/validation/NEON/ArithmeticAddition.cpp
+-@@ -48,11 +48,11 @@ namespace validation
+- using framework::dataset::make;
+- namespace
+- {
+--#if !defined(__aarch64__) || defined(ENABLE_SVE)
+-+#if !defined(__aarch64__) || defined(ARM_COMPUTE_ENABLE_SVE)
+- constexpr AbsoluteTolerance<float> tolerance_quant(1); /**< Tolerance val=
+ue for comparing reference's output against implementation's output for qua=
+ntized data types */
+--#else                                                  // !defined(__aarc=
+h64__) || defined(ENABLE_SVE)
+-+#else                                                  // !defined(__aarc=
+h64__) || defined(ARM_COMPUTE_ENABLE_SVE)
+- constexpr AbsoluteTolerance<float> tolerance_quant(1);
+--#endif                                                 // !defined(__aarc=
+h64__) || defined(ENABLE_SVE)
+-+#endif                                                 // !defined(__aarc=
+h64__) || defined(ARM_COMPUTE_ENABLE_SVE)
+- const auto InPlaceDataSet    =3D framework::dataset::make("InPlace", { fa=
+lse, true });
+- const auto OutOfPlaceDataSet =3D framework::dataset::make("InPlace", { fa=
+lse });
+- } // namespace
++--=20
++2.34.1
++
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0004-Add-source-files-at-library-definition-time.patch b/meta-=
+arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0003-=
+Add-source-files-at-library-definition-time.patch
+similarity index 24%
+rename from meta-arago-extras/recipes-devtools/arm-compute-library/arm-comp=
+ute-library/0004-Add-source-files-at-library-definition-time.patch
+rename to meta-arago-extras/recipes-devtools/arm-compute-library/arm-comput=
+e-library/0003-Add-source-files-at-library-definition-time.patch
+index 462215a2..6ee18903 100644
+--- a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0004-Add-source-files-at-library-definition-time.patch
++++ b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0003-Add-source-files-at-library-definition-time.patch
+@@ -1,167 +1,186 @@
+-From a3c7d6aefc289dcce6656fc6d9f9c8c9b1af8f0b Mon Sep 17 00:00:00 2001
+-From: Andrew Davis <afd@ti.com>
+-Date: Thu, 5 Dec 2024 09:38:26 -0600
+-Subject: [PATCH] Add source files at library definition time
++From 167dd1485ec1396e4b92c623ad7106ca15f420a0 Mon Sep 17 00:00:00 2001
++From: Pratham Deshmukh <p-deshmukh@ti.com>
++Date: Wed, 4 Mar 2026 15:38:50 +0530
++Subject: [PATCH 3/8] Add source files at library definition time
+=20
+ This allows for easier conditional disabling of these libraries.
+=20
+ Upstream-Status: Pending
+=20
+-Signed-off-by: Andrew Davis <afd@ti.com>
+-Change-Id: I442aaa03060f2cb7db4ed0c1d93e64dbc223fdc6
++Authored-by: Andrew Davis <afd@ti.com>
++Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
+ ---
+- CMakeLists.txt                  | 20 ++++++++++----------
+- scripts/generate_build_files.py | 16 ++++------------
+- src/CMakeLists.txt              | 16 ++++------------
+- 3 files changed, 18 insertions(+), 34 deletions(-)
++ CMakeLists.txt                  | 18 +++++++++++-------
++ scripts/generate_build_files.py | 20 +++++---------------
++ src/CMakeLists.txt              | 20 +++++---------------
++ 3 files changed, 21 insertions(+), 37 deletions(-)
+=20
+ diff --git a/CMakeLists.txt b/CMakeLists.txt
+-index e8bdf2af1a..4073e06b17 100644
++index 7dc4102e62..fc9c88a8af 100644
+ --- a/CMakeLists.txt
+ +++ b/CMakeLists.txt
+-@@ -46,6 +46,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
+- list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+- include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Options.cmake)
+- include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Version.cmake)
++@@ -84,6 +84,13 @@ endif()
++ include(${CMAKE_CURRENT_LIST_DIR}/cmake/configurations.cmake)
++ include(${CMAKE_CURRENT_LIST_DIR}/cmake/compilers/setup.cmake)
++ include(${CMAKE_CURRENT_LIST_DIR}/cmake/version.cmake)
+ +include(${CMAKE_CURRENT_SOURCE_DIR}/src/CMakeLists.txt)
+ +
+ +list(TRANSFORM ARM_COMPUTE_GRAPH_SOURCES PREPEND "src/")
+ +list(TRANSFORM ARM_COMPUTE_SVE_SOURCES PREPEND "src/")
+ +list(TRANSFORM ARM_COMPUTE_SVE2_SOURCES PREPEND "src/")
+ +list(TRANSFORM ARM_COMPUTE_SOURCES PREPEND "src/")
+-
+- # Require at least gcc/g++ 11) CMAKE_CXX_COMPILER_VERSION OR
+- if(CMAKE_C_COMPILER_VERSION VERSION_LESS 10.2 OR CMAKE_CXX_COMPILER_VERSI=
+ON
+-@@ -139,8 +145,7 @@ endif()
+-
+- # ---------------------------------------------------------------------
+- # SVE Object Library
+--
+--add_library(arm_compute_sve OBJECT "")
+-+add_library(arm_compute_sve OBJECT ${ARM_COMPUTE_SVE_SOURCES})
+- target_compile_options(arm_compute_sve
+-                        PRIVATE "-march=3Darmv8.2-a+sve+fp16+dotprod"
+-                        PRIVATE "-fPIC")
+-@@ -162,8 +167,7 @@ target_include_directories(
+-
+- # ---------------------------------------------------------------------
+- # SVE2 Object Library
+--
+--add_library(arm_compute_sve2 OBJECT "")
+-+add_library(arm_compute_sve2 OBJECT ${ARM_COMPUTE_SVE2_SOURCES})
+- target_compile_options(arm_compute_sve2
+-                        PRIVATE "-march=3Darmv8.6-a+sve2+fp16+dotprod"
+-                        PRIVATE "-fPIC")
+-@@ -187,7 +191,7 @@ target_include_directories(
+- # ---------------------------------------------------------------------
+- # Core Library
+-
+--add_library(arm_compute "")
+-+add_library(arm_compute ${ARM_COMPUTE_SOURCES})
+- target_compile_options(arm_compute PRIVATE "-march=3D${ARM_COMPUTE_ARCH}"=
+)
+- target_compile_definitions(arm_compute PRIVATE ARM_COMPUTE_ENABLE_BF16)
+- target_compile_definitions(arm_compute PRIVATE ENABLE_SVE)
+-@@ -216,7 +220,7 @@ target_link_libraries(
+- # ---------------------------------------------------------------------
+- # Graph Library
+-
+--add_library(arm_compute_graph "")
+-+add_library(arm_compute_graph ${ARM_COMPUTE_GRAPH_SOURCES})
+- target_compile_options(arm_compute_graph PRIVATE "-march=3D${ARM_COMPUTE_=
+ARCH}")
+- target_compile_definitions(arm_compute_graph PRIVATE ENABLE_SVE)
+- target_compile_definitions(arm_compute_graph PRIVATE ARM_COMPUTE_ENABLE_S=
+VE)
+-@@ -238,10 +242,6 @@ target_compile_options(arm_compute_graph PUBLIC ${COM=
+MON_CXX_FLAGS})
+-
+- add_library(ArmCompute::Graph ALIAS arm_compute_graph)
+-
+--# ---------------------------------------------------------------------
+--# Library Target Sources
+++list(TRANSFORM ARM_COMPUTE_FP16 PREPEND "src/")
++=20
++ if(ACL_ARCH_ISA STREQUAL "armv8-a" AND (ACL_MULTI_ISA OR ACL_BUILD_SVE OR=
+ ACL_BUILD_SVE2 OR ACL_BUILD_SME2))
++   message(FATAL_ERROR
++@@ -191,7 +198,7 @@ set(
++ )
++=20
++ if(ACL_MULTI_ISA OR ACL_BUILD_SVE)
++-  add_library(arm_compute_sve OBJECT)
+++  add_library(arm_compute_sve OBJECT ${ARM_COMPUTE_SVE_SOURCES})
++   set_target_properties(
++     arm_compute_sve
++     PROPERTIES
++@@ -205,7 +212,7 @@ else()
++ endif()
++=20
++ if(ACL_MULTI_ISA OR ACL_BUILD_SVE2)
++-  add_library(arm_compute_sve2 OBJECT)
+++  add_library(arm_compute_sve2 OBJECT ${ARM_COMPUTE_SVE2_SOURCES})
++   set_target_properties(
++     arm_compute_sve2
++     PROPERTIES
++@@ -218,7 +225,7 @@ else()
++   add_library(arm_compute_sve2 OBJECT EXCLUDE_FROM_ALL)
++ endif()
++=20
++-add_library(arm_compute_core OBJECT)
+++add_library(arm_compute_core OBJECT ${ARM_COMPUTE_SOURCES})
++ set_target_properties(
++   arm_compute_core
++   PROPERTIES
++@@ -242,7 +249,7 @@ else()
++   add_library(arm_compute_core_fp16 OBJECT EXCLUDE_FROM_ALL)
++ endif()
++=20
++-add_library(arm_compute_graph ${ARM_COMPUTE_LIB_BUILD_TYPE})
+++add_library(arm_compute_graph ${ARM_COMPUTE_LIB_BUILD_TYPE} ${ARM_COMPUTE=
+_GRAPH_SOURCES})
++ set_target_properties(
++     arm_compute_graph
++     PROPERTIES
++@@ -329,9 +336,6 @@ endif()
++ add_library(${PROJECT_NAME}::Core ALIAS arm_compute)
++ add_library(${PROJECT_NAME}::Graph ALIAS arm_compute_graph)
++=20
++-# Library target sources.
+ -add_subdirectory(src)
+ -
+  if(ARM_COMPUTE_BUILD_TESTING)
+-   # ---------------------------------------------------------------------
+-   # Validation Framework Library
++   add_library(arm_compute_validation_framework OBJECT)
++   add_subdirectory(tests)
+ diff --git a/scripts/generate_build_files.py b/scripts/generate_build_file=
+s.py
+-index 52a8cc14da..4c4a14623f 100644
++index 913c73e991..bf0573a332 100644
+ --- a/scripts/generate_build_files.py
+ +++ b/scripts/generate_build_files.py
+-@@ -167,27 +167,19 @@ def build_from_template_cmake(srcs_graph, srcs_sve, =
+srcs_sve2, srcs_core):
+-
++@@ -171,33 +171,23 @@ def build_from_template_cmake(srcs_graph, srcs_sve, =
+srcs_sve2, srcs_core, srcs_c
++=20
+      template =3D f"""{get_template_header()}
+-
++=20
+ -target_sources(
+--	arm_compute_graph
+--	PRIVATE
++-    arm_compute_graph
++-    PRIVATE
+ +set(ARM_COMPUTE_GRAPH_SOURCES
+-	{line_separator.join(srcs_graph)}
++     {line_separator.join(srcs_graph)}
+  )
+-
++=20
+ -target_sources(
+--	arm_compute_sve
+--	PRIVATE
++-    arm_compute_sve
++-    PRIVATE
+ +set(ARM_COMPUTE_SVE_SOURCES
+-	{line_separator.join(srcs_sve)}
++     {line_separator.join(srcs_sve)}
+  )
+-
++=20
+ -target_sources(
+--	arm_compute_sve2
+--	PRIVATE
++-    arm_compute_sve2
++-    PRIVATE
+ +set(ARM_COMPUTE_SVE2_SOURCES
+-	{line_separator.join(srcs_sve2)}
++     {line_separator.join(srcs_sve2)}
+  )
+-
++=20
+ -target_sources(
+--	arm_compute
+--	PRIVATE
++-    arm_compute_core
++-    PRIVATE
+ +set(ARM_COMPUTE_SOURCES
+-	{line_separator.join(srcs_core)}
++     {line_separator.join(srcs_core)}
+  )
+- """
++=20
++-target_sources(
++-    arm_compute_core_fp16
++-    PRIVATE
+++set(ARM_COMPUTE_FP16
++     {line_separator.join(srcs_core_fp16)}
++ )"""
++     return template
+ diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+-index f1b275532a..73871563e1 100644
++index fe70114490..0867ba81ad 100644
+ --- a/src/CMakeLists.txt
+ +++ b/src/CMakeLists.txt
+ @@ -20,9 +20,7 @@
+  # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS =
+IN THE
+  # SOFTWARE.
+-
++=20
+ -target_sources(
+--	arm_compute_graph
+--	PRIVATE
++-    arm_compute_graph
++-    PRIVATE
+ +set(ARM_COMPUTE_GRAPH_SOURCES
+-	graph/DataLayerVisitor.cpp
+-	graph/Graph.cpp
+-	graph/GraphBuilder.cpp
++     graph/DataLayerVisitor.cpp
++ 	graph/Graph.cpp
++ 	graph/GraphBuilder.cpp
+ @@ -100,9 +98,7 @@ target_sources(
+-	graph/printers/DotGraphPrinter.cpp
++ 	graph/printers/DotGraphPrinter.cpp
+  )
+-
++=20
+ -target_sources(
+--	arm_compute_sve
+--	PRIVATE
++-    arm_compute_sve
++-    PRIVATE
+ +set(ARM_COMPUTE_SVE_SOURCES
+-	core/NEON/kernels/arm_conv/depthwise/interleaves/sve_s8q_3x3_dot.cpp
+-	core/NEON/kernels/arm_conv/depthwise/interleaves/sve_u8q_3x3_dot.cpp
+-	core/NEON/kernels/arm_conv/depthwise/kernels/sme2_fp16_nhwc_3x3_s1_output=
+2x2_mla_depthfirst/generic_direct.cpp
+-@@ -331,9 +327,7 @@ target_sources(
+-	cpu/kernels/softmax/generic/sve/impl_bf16.cpp
++     core/NEON/kernels/arm_conv/depthwise/interleaves/sve_s8q_3x3_dot.cpp
++ 	core/NEON/kernels/arm_conv/depthwise/interleaves/sve_u8q_3x3_dot.cpp
++ 	core/NEON/kernels/arm_conv/depthwise/kernels/sme2_fp16_nhwc_3x3_s1_outpu=
+t2x2_mla_depthfirst/generic_direct.cpp
++@@ -341,9 +337,7 @@ target_sources(
++ 	cpu/kernels/softmax/generic/sve/impl_bf16.cpp
+  )
+-
++=20
+ -target_sources(
+--	arm_compute_sve2
+--	PRIVATE
++-    arm_compute_sve2
++-    PRIVATE
+ +set(ARM_COMPUTE_SVE2_SOURCES
+-	cpu/kernels/activation/generic/sve2/lut.cpp
+-	cpu/kernels/activation/generic/sve2/qasymm8.cpp
+-	cpu/kernels/activation/generic/sve2/qasymm8_signed.cpp
+-@@ -356,9 +350,7 @@ target_sources(
+-	cpu/kernels/softmax/generic/sve2/impl.cpp
++     cpu/kernels/activation/generic/sve2/lut.cpp
++ 	cpu/kernels/activation/generic/sve2/qasymm8.cpp
++ 	cpu/kernels/activation/generic/sve2/qasymm8_signed.cpp
++@@ -366,9 +360,7 @@ target_sources(
++ 	cpu/kernels/softmax/generic/sve2/impl.cpp
+  )
+-
++=20
+ -target_sources(
+--	arm_compute
+--	PRIVATE
++-    arm_compute_core
++-    PRIVATE
+ +set(ARM_COMPUTE_SOURCES
+-	c/AclContext.cpp
+-	c/AclOperator.cpp
+-	c/AclQueue.cpp
++     ../third_party/kleidiai/kai/ukernels/matmul/matmul_clamp_f32_f32_f32p=
+/kai_matmul_clamp_f32_f32_f32p8x1biasf32_6x8x4_neon_mla.c
++ 	../third_party/kleidiai/kai/ukernels/matmul/pack/kai_rhs_pack_kxn_f32p8x=
+1biasf32_f32_f32_neon.c
++ 	c/AclContext.cpp
++@@ -1000,9 +992,7 @@ target_sources(
++ 	runtime/experimental/operators/CpuWinogradConv2d.cpp
++ )
++=20
++-target_sources(
++-    arm_compute_core_fp16
++-    PRIVATE
+++set(ARM_COMPUTE_FP16
++     core/NEON/kernels/arm_conv/depthwise/depthwise_fp16.cpp
++ 	core/NEON/kernels/arm_conv/depthwise/kernels/a64_fp16_nhwc_3x3_s1_output=
+2x2_mla_depthfirst/generic_direct.cpp
++ 	core/NEON/kernels/arm_conv/depthwise/kernels/a64_fp16_nhwc_3x3_s1_output=
+2x2_mla_depthfirst/generic_indirect.cpp
++--=20
++2.34.1
++
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0004-Allow-ARMv7-builds-using-CMake.patch b/meta-arago-extras/=
+recipes-devtools/arm-compute-library/arm-compute-library/0004-Allow-ARMv7-b=
+uilds-using-CMake.patch
+new file mode 100644
+index 00000000..068e78d7
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0004-Allow-ARMv7-builds-using-CMake.patch
+@@ -0,0 +1,175 @@
++From ddd1ad96efbe900853b64daf94549b4e3bc5bad6 Mon Sep 17 00:00:00 2001
++From: Pratham Deshmukh <p-deshmukh@ti.com>
++Date: Wed, 4 Mar 2026 15:55:49 +0530
++Subject: [PATCH 4/8] Allow-ARMv7-builds-using-CMake
++
++Upstream-Status: Pending
++
++Authored-by: Andrew Davis <afd@ti.com>
++Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
++---
++ CMakeLists.txt                                | 41 +++++++++++++++----
++ cmake/compilers/setup.cmake                   |  6 ++-
++ .../fixtures/CpuGemmAssemblyDispatchFixture.h |  2 +
++ 3 files changed, 38 insertions(+), 11 deletions(-)
++
++diff --git a/CMakeLists.txt b/CMakeLists.txt
++index fc9c88a8af..521132917d 100644
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -51,8 +51,8 @@ option(ARM_COMPUTE_USE_LIBCXX "Use libcxx instead of the=
+ default stdlib." OFF)
++=20
++ # * Build mode: multi-ISA (default) or single-ISA
++ option(ACL_MULTI_ISA "Build Multi-ISA as default" ON)
++-set(ACL_ARCH_ISA "armv8.6-a" CACHE STRING "Architecture (armv8-a, armv8.2=
+-a, armv8.6-a)")
++-set_property(CACHE ACL_ARCH_ISA PROPERTY STRINGS armv8-a armv8.2-a armv8.=
+6-a)
+++set(ACL_ARCH_ISA "armv8.6-a" CACHE STRING "Architecture (armv7, armv8-a, =
+armv8.2-a, armv8.6-a)")
+++set_property(CACHE ACL_ARCH_ISA PROPERTY STRINGS armv7 armv8-a armv8.2-a =
+armv8.6-a)
++ set(ACL_ARCH_FEATURES "" CACHE STRING "Comma separated features list (sve=
+,sve2,sme2)")
++=20
++ # * Arch features
++@@ -92,7 +92,7 @@ list(TRANSFORM ARM_COMPUTE_SVE2_SOURCES PREPEND "src/")
++ list(TRANSFORM ARM_COMPUTE_SOURCES PREPEND "src/")
++ list(TRANSFORM ARM_COMPUTE_FP16 PREPEND "src/")
++=20
++-if(ACL_ARCH_ISA STREQUAL "armv8-a" AND (ACL_MULTI_ISA OR ACL_BUILD_SVE OR=
+ ACL_BUILD_SVE2 OR ACL_BUILD_SME2))
+++if(ACL_ARCH_ISA STREQUAL "armv7" OR ACL_ARCH_ISA STREQUAL "armv8-a" AND (=
+ACL_MULTI_ISA OR ACL_BUILD_SVE OR ACL_BUILD_SVE2 OR ACL_BUILD_SME2))
++   message(FATAL_ERROR
++     "Invalid configuration: '${ACL_ARCH_ISA}' does not support requested =
+features"
++   )
++@@ -108,7 +108,7 @@ else()
++     message(STATUS "Requested features: ${ACL_ARCH_FEATURES}")
++   endif()
++   set(libs "core")
++-  if(NOT (ACL_ARCH_ISA STREQUAL "armv8-a"))
+++  if(NOT (ACL_ARCH_ISA STREQUAL "armv7" OR ACL_ARCH_ISA STREQUAL "armv8-a=
+"))
++     string(APPEND libs ", core_fp16")
++   endif()
++   if(ACL_BUILD_SVE)
++@@ -132,11 +132,18 @@ else()
++     set(ACL_MARCH  "+sve2+fp16+dotprod+i8mm")
++   elseif(ACL_BUILD_SVE)
++     set(ACL_MARCH "+sve+fp16+dotprod")
+++  elseif(ACL_ARCH_ISA STREQUAL "armv7")
+++    set(ACL_MARCH "+neon")
++   elseif(ACL_ARCH_ISA STREQUAL "armv8.2-a" OR ACL_ARCH_ISA STREQUAL "armv=
+8.6-a")
++     set(ACL_MARCH "+fp16+dotprod")
++   endif()
++=20
++-  set(ARM_COMPUTE_ARCH           "-march=3D${ACL_ARCH_ISA}${ACL_MARCH}" C=
+ACHE STRING "Architecture (march) for core library.")
+++  # Handle armv7 -> armv7-a mapping for compiler compatibility
+++  if(ACL_ARCH_ISA STREQUAL "armv7")
+++    set(ARM_COMPUTE_ARCH "-march=3Darmv7-a${ACL_MARCH}" CACHE STRING "Arc=
+hitecture (march) for core library.")
+++  else()
+++    set(ARM_COMPUTE_ARCH "-march=3D${ACL_ARCH_ISA}${ACL_MARCH}" CACHE STR=
+ING "Architecture (march) for core library.")
+++  endif()
++   set(ARM_COMPUTE_CORE_FP16_ARCH "-march=3D${ACL_ARCH_ISA}${ACL_MARCH}" C=
+ACHE STRING "Architecture (march) for core library with fp16 support.")
++   set(ARM_COMPUTE_SVE_ARCH       "-march=3D${ACL_ARCH_ISA}${ACL_MARCH}" C=
+ACHE STRING "Architecture (march) for SVE library.")
++   set(ARM_COMPUTE_SVE2_ARCH      "-march=3D${ACL_ARCH_ISA}${ACL_MARCH}" C=
+ACHE STRING "Architecture (march) for SVE2 library.")
++@@ -235,7 +242,7 @@ set_target_properties(
++   LINK_LIBRARIES "${ARM_COMPUTE_LINK_LIBS}"
++ )
++=20
++-if(NOT (ACL_ARCH_ISA STREQUAL "armv8-a"))
+++if(NOT (ACL_ARCH_ISA STREQUAL "armv7" OR ACL_ARCH_ISA STREQUAL "armv8-a")=
+)
++   add_library(arm_compute_core_fp16 OBJECT)
++   set_target_properties(
++     arm_compute_core_fp16
++@@ -246,7 +253,7 @@ if(NOT (ACL_ARCH_ISA STREQUAL "armv8-a"))
++       LINK_LIBRARIES "${ARM_COMPUTE_LINK_LIBS}"
++   )
++ else()
++-  add_library(arm_compute_core_fp16 OBJECT EXCLUDE_FROM_ALL)
+++  add_library(arm_compute_core_fp16 INTERFACE)
++ endif()
++=20
++ add_library(arm_compute_graph ${ARM_COMPUTE_LIB_BUILD_TYPE} ${ARM_COMPUTE=
+_GRAPH_SOURCES})
++@@ -271,7 +278,8 @@ else()
++=20
++   if(ACL_ARCH_ISA STREQUAL "armv8-a")
++     # base
++-
+++  elseif(ACL_ARCH_ISA STREQUAL "armv7")
+++    # base only - no fp16, sve, or sve2 support
++   elseif(ACL_ARCH_ISA STREQUAL "armv8.2-a")
++     list(APPEND lib_objs $<TARGET_OBJECTS:arm_compute_core_fp16>)
++     if(ACL_BUILD_SVE)
++@@ -298,6 +306,15 @@ else()
++   set_target_properties(arm_compute PROPERTIES OUTPUT_NAME "arm_compute_$=
+{ACL_ARCH_ISA}")
++ endif()
++=20
+++if(ACL_ARCH_ISA STREQUAL "armv7")
+++  target_sources(
+++    arm_compute
+++    PRIVATE
+++      src/core/NEON/kernels/arm_gemm/kernels/a32_sgemm_8x6/a53.cpp
+++      src/core/NEON/kernels/arm_gemm/kernels/a32_sgemm_8x6/a55r1.cpp
+++      src/core/NEON/kernels/arm_gemm/kernels/a32_sgemm_8x6/generic.cpp)
+++endif()
+++
++ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
++   target_compile_options(arm_compute_core PRIVATE -arch arm64)
++   if(TARGET arm_compute_core_fp16)
++@@ -341,6 +358,12 @@ if(ARM_COMPUTE_BUILD_TESTING)
++   add_subdirectory(tests)
++   add_executable(arm_compute_validation $<TARGET_OBJECTS:arm_compute_vali=
+dation_framework>)
++   add_subdirectory(tests/validation)
+++  target_include_directories(arm_compute_validation
+++    PRIVATE
+++      $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+++      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+++      ${CMAKE_CURRENT_LIST_DIR}
+++  )
++   add_executable(arm_compute_benchmark $<TARGET_OBJECTS:arm_compute_valid=
+ation_framework>)
++   add_subdirectory(tests/benchmark)
++=20
++@@ -348,7 +371,7 @@ if(ARM_COMPUTE_BUILD_TESTING)
++     arm_compute_benchmark arm_compute_validation_framework arm_compute_va=
+lidation
++     PROPERTIES
++     COMPILE_OPTIONS "${ARM_COMPUTE_ARCH};${ARM_COMPUTE_COMMON_CCXX_FLAGS}=
+"
++-    INCLUDE_DIRECTORIES "${ARM_COMPUTE_PUBLIC_INCLUDE};${ARM_COMPUTE_COMM=
+ON_INCLUDE}"
+++    INCLUDE_DIRECTORIES "${ARM_COMPUTE_GRAPH_INCLUDE};${CMAKE_CURRENT_LIS=
+T_DIR}/src"
++     COMPILE_DEFINITIONS "${ARM_COMPUTE_DEFINES}"
++     LINK_LIBRARIES "arm_compute;arm_compute_graph"
++=20
++diff --git a/cmake/compilers/setup.cmake b/cmake/compilers/setup.cmake
++index 642a9a2a5f..4756dc6149 100644
++--- a/cmake/compilers/setup.cmake
+++++ b/cmake/compilers/setup.cmake
++@@ -68,7 +68,9 @@ if(ACL_MULTI_ISA)
++     ENABLE_SME
++   )
++ else()
++-  if(ACL_ARCH_ISA STREQUAL "armv8-a")
+++  if(ACL_ARCH_ISA STREQUAL "armv7")
+++    message(STATUS "Configuring for armv7, NEON enabled")
+++  elseif(ACL_ARCH_ISA STREQUAL "armv8-a")
++     message(STATUS "Configuring for armv8-a, no FP16/SVE features")
++=20
++   elseif(ACL_ARCH_ISA STREQUAL "armv8.2-a")
++@@ -86,7 +88,7 @@ else()
++     )
++   else()
++     message(FATAL_ERROR
++-      "Unsupported ACL_ARCH_ISA=3D'${ACL_ARCH_ISA}'. Allowed presets: arm=
+v8-a, armv8.2-a, armv8.6-a"
+++      "Unsupported ACL_ARCH_ISA=3D'${ACL_ARCH_ISA}'. Allowed presets: arm=
+v7, armv8-a, armv8.2-a, armv8.6-a"
++     )
++   endif()
++=20
++diff --git a/tests/validation/fixtures/CpuGemmAssemblyDispatchFixture.h b/=
+tests/validation/fixtures/CpuGemmAssemblyDispatchFixture.h
++index 65df3e1c0e..85c9e8c06a 100644
++--- a/tests/validation/fixtures/CpuGemmAssemblyDispatchFixture.h
+++++ b/tests/validation/fixtures/CpuGemmAssemblyDispatchFixture.h
++@@ -28,7 +28,9 @@
++ #include "arm_compute/core/CoreTypes.h"
++ #include "arm_compute/core/experimental/Types.h"
++ #include "arm_compute/core/Helpers.h"
+++#ifdef ARM_COMPUTE_ENABLE_FIXED_FORMAT_KERNELS
++ #include "arm_compute/runtime/NEON/functions/NEReorderLayer.h"
+++#endif ARM_COMPUTE_ENABLE_FIXED_FORMAT_KERNELS
++ #include "arm_compute/runtime/NEON/functions/NETranspose.h"
++=20
++ #include "src/core/helpers/MemoryHelpers.h"
++--=20
++2.34.1
++
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.patch b/m=
+eta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0=
+005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.patch
+deleted file mode 100644
+index 55b3d4ee..00000000
+--- a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.patch
++++ /dev/null
+@@ -1,112 +0,0 @@
+-From cdb765df59d8ce5f388ac2a820b5da76eb8d610c Mon Sep 17 00:00:00 2001
+-From: Andrew Davis <afd@ti.com>
+-Date: Thu, 5 Dec 2024 09:47:25 -0600
+-Subject: [PATCH] Add CMake options for SVE, SVE2, and BF16 support
+-
+-These should be optional, add options for these. Remove the hard-coded
+-definitions of these for the libraries. This also makes it so validation
+-options are not needed, if SVE is enabled it will be validated.
+-
+-Upstream-Status: Pending
+-
+-Signed-off-by: Andrew Davis <afd@ti.com>
+-Change-Id: I03182ac6ece843e813c027ef6a573cbba254dee9
+----
+- CMakeLists.txt      | 19 -------------------
+- cmake/Options.cmake | 16 +++++++++++++---
+- 2 files changed, 13 insertions(+), 22 deletions(-)
+-
+-diff --git a/CMakeLists.txt b/CMakeLists.txt
+-index 4073e06b17..4d95fb1bfd 100644
+---- a/CMakeLists.txt
+-+++ b/CMakeLists.txt
+-@@ -149,9 +149,6 @@ add_library(arm_compute_sve OBJECT ${ARM_COMPUTE_SVE_S=
+OURCES})
+- target_compile_options(arm_compute_sve
+-                        PRIVATE "-march=3Darmv8.2-a+sve+fp16+dotprod"
+-                        PRIVATE "-fPIC")
+--target_compile_definitions(arm_compute_sve PRIVATE ARM_COMPUTE_ENABLE_BF1=
+6)
+--target_compile_definitions(arm_compute_sve PRIVATE ENABLE_SVE)
+--target_compile_definitions(arm_compute_sve PRIVATE ARM_COMPUTE_ENABLE_SVE=
+)
+- target_include_directories(
+-   arm_compute_sve
+-   PUBLIC $<INSTALL_INTERFACE:include>
+-@@ -171,10 +168,6 @@ add_library(arm_compute_sve2 OBJECT ${ARM_COMPUTE_SVE=
+2_SOURCES})
+- target_compile_options(arm_compute_sve2
+-                        PRIVATE "-march=3Darmv8.6-a+sve2+fp16+dotprod"
+-                        PRIVATE "-fPIC")
+--target_compile_definitions(arm_compute_sve2 PRIVATE ARM_COMPUTE_ENABLE_SV=
+E2)
+--target_compile_definitions(arm_compute_sve2 PRIVATE ARM_COMPUTE_ENABLE_BF=
+16)
+--target_compile_definitions(arm_compute_sve2 PRIVATE ENABLE_SVE)
+--target_compile_definitions(arm_compute_sve2 PRIVATE ARM_COMPUTE_ENABLE_SV=
+E)
+- target_include_directories(
+-   arm_compute_sve2
+-   PUBLIC $<INSTALL_INTERFACE:include>
+-@@ -193,9 +186,6 @@ target_include_directories(
+-
+- add_library(arm_compute ${ARM_COMPUTE_SOURCES})
+- target_compile_options(arm_compute PRIVATE "-march=3D${ARM_COMPUTE_ARCH}"=
+)
+--target_compile_definitions(arm_compute PRIVATE ARM_COMPUTE_ENABLE_BF16)
+--target_compile_definitions(arm_compute PRIVATE ENABLE_SVE)
+--target_compile_definitions(arm_compute PRIVATE ARM_COMPUTE_ENABLE_SVE)
+- target_include_directories(
+-   arm_compute
+-   PUBLIC $<INSTALL_INTERFACE:include>
+-@@ -222,8 +212,6 @@ target_link_libraries(
+-
+- add_library(arm_compute_graph ${ARM_COMPUTE_GRAPH_SOURCES})
+- target_compile_options(arm_compute_graph PRIVATE "-march=3D${ARM_COMPUTE_=
+ARCH}")
+--target_compile_definitions(arm_compute_graph PRIVATE ENABLE_SVE)
+--target_compile_definitions(arm_compute_graph PRIVATE ARM_COMPUTE_ENABLE_S=
+VE)
+- # add_subdirectory(src/graph)
+-
+- target_include_directories(
+-@@ -268,13 +256,6 @@ if(ARM_COMPUTE_BUILD_TESTING)
+-
+-   add_executable(arm_compute_validation "")
+-   target_compile_options(arm_compute_validation PRIVATE "-march=3D${ARM_C=
+OMPUTE_ARCH}")
+--  if(ARM_COMPUTE_ENABLE_BF16_VALIDATION)
+--    target_compile_definitions(arm_compute_validation PRIVATE ARM_COMPUTE=
+_ENABLE_BF16)
+--  endif()
+--  if(ARM_COMPUTE_ENABLE_SVE_VALIDATION)
+--    target_compile_definitions(arm_compute_validation PRIVATE ENABLE_SVE)
+--    target_compile_definitions(arm_compute_validation PRIVATE ARM_COMPUTE=
+_ENABLE_SVE)
+--  endif()
+-   add_subdirectory(tests/validation)
+-   target_compile_options(arm_compute_validation PUBLIC ${COMMON_CXX_FLAGS=
+})
+-   set_target_properties(
+-diff --git a/cmake/Options.cmake b/cmake/Options.cmake
+-index 121d527718..5c23fcb490 100644
+---- a/cmake/Options.cmake
+-+++ b/cmake/Options.cmake
+-@@ -48,11 +48,12 @@ set(ARM_COMPUTE_ARCH armv8-a CACHE STRING "Architectur=
+e to use")
+- # ---------------------------------------------------------------------
+- # Backends
+-
+--option(ARM_COMPUTE_ENABLE_BF16_VALIDATION "" ON)
+--option(ARM_COMPUTE_ENABLE_SVE_VALIDATION "" OFF)
+--
+- option(ENABLE_NEON "Enable Arm=C2=AE Neon=E2=84=A2 support" ON)
+-+option(ENABLE_SVE "Enable Arm=C2=AE SVE support" ON)
+-+option(ENABLE_SVE2 "Enable Arm=C2=AE SVE2 support" ON)
+-+
+- option(ARM_COMPUTE_CPU_ENABLED "" ON)
+-+option(ARM_COMPUTE_ENABLE_BF16 "" ON)
+- option(ARM_COMPUTE_ENABLE_I8MM "" ON)
+- option(ENABLE_FP32_KERNELS "" ON)
+- option(ENABLE_QASYMM8_KERNELS "" ON)
+-@@ -74,6 +75,15 @@ endif()
+- if(ARM_COMPUTE_CPU_ENABLED)
+-   add_definitions(-DARM_COMPUTE_CPU_ENABLED)
+- endif()
+-+if(ENABLE_SVE)
+-+  add_definitions(-DARM_COMPUTE_ENABLE_SVE)
+-+endif()
+-+if(ENABLE_SVE2)
+-+  add_definitions(-DARM_COMPUTE_ENABLE_SVE2)
+-+endif()
+-+if(ARM_COMPUTE_ENABLE_BF16)
+-+  add_definitions(-DARM_COMPUTE_ENABLE_BF16)
+-+endif()
+- if(ARM_COMPUTE_ENABLE_FP16)
+-   add_definitions(-DARM_COMPUTE_ENABLE_FP16)
+- endif()
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch=
+ b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-libra=
+ry/0005-Fix-undefined-symbol-error-when-building-TensorInfo.patch
+similarity index 67%
+rename from meta-arago-extras/recipes-devtools/arm-compute-library/arm-comp=
+ute-library/0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch
+rename to meta-arago-extras/recipes-devtools/arm-compute-library/arm-comput=
+e-library/0005-Fix-undefined-symbol-error-when-building-TensorInfo.patch
+index b1be6a76..0c9cfe01 100644
+--- a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch
++++ b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0005-Fix-undefined-symbol-error-when-building-TensorInfo.patch
+@@ -1,22 +1,22 @@
+-From 58698788adaeb2f74cf9fcddf06f3e9a2e78b984 Mon Sep 17 00:00:00 2001
+-From: Andrew Davis <afd@ti.com>
+-Date: Mon, 16 Dec 2024 09:42:22 -0600
+-Subject: [PATCH] Fix undefined symbol error when building TensorInfo
++From 5b2cac4c7261b0313bef70248213a952a2cd96fa Mon Sep 17 00:00:00 2001
++From: Pratham Deshmukh <p-deshmukh@ti.com>
++Date: Wed, 4 Mar 2026 15:58:06 +0530
++Subject: [PATCH 5/8] Fix undefined symbol error when building TensorInfo
+=20
+ Upstream-Status: Pending
+=20
+-Signed-off-by: Andrew Davis <afd@ti.com>
+-Change-Id: I657d1b7faaad94147c685c4826916d3c21da82e1
++Authored-by: Andrew Davis <afd@ti.com>
++Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
+ ---
+  arm_compute/core/TensorInfo.h | 5 +----
+  src/core/TensorInfo.cpp       | 5 +++++
+  2 files changed, 6 insertions(+), 4 deletions(-)
+=20
+ diff --git a/arm_compute/core/TensorInfo.h b/arm_compute/core/TensorInfo.h
+-index e4c9cbe879..2bfe83c4b1 100644
++index 629139fddd..a49e7b4099 100644
+ --- a/arm_compute/core/TensorInfo.h
+ +++ b/arm_compute/core/TensorInfo.h
+-@@ -242,10 +242,7 @@ public:
++@@ -246,10 +246,7 @@ public:
+      {
+          return _num_channels;
+      }
+@@ -29,13 +29,13 @@ index e4c9cbe879..2bfe83c4b1 100644
+      {
+          return _dims_state;
+ diff --git a/src/core/TensorInfo.cpp b/src/core/TensorInfo.cpp
+-index 31bddbde40..884203fd7c 100644
++index 36e2772514..ea3afdc9db 100644
+ --- a/src/core/TensorInfo.cpp
+ +++ b/src/core/TensorInfo.cpp
+-@@ -395,6 +395,11 @@ ITensorInfo &TensorInfo::set_tensor_dims_state(const =
+TensorDimsState &state)
++@@ -406,6 +406,11 @@ ITensorInfo &TensorInfo::set_tensor_dims_state(const =
+TensorDimsState &state)
+      return *this;
+  }
+-
++=20
+ +const TensorShape &TensorInfo::tensor_shape() const
+ +{
+ +    return _tensor_shape;
+@@ -44,3 +44,6 @@ index 31bddbde40..884203fd7c 100644
+  ITensorInfo &TensorInfo::set_quantization_info(const QuantizationInfo &qu=
+antization_info)
+  {
+      _quantization_info =3D quantization_info;
++--=20
++2.34.1
++
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake.patch =
+b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-librar=
+y/0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake.patch
+deleted file mode 100644
+index fc135a18..00000000
+--- a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake.patch
++++ /dev/null
+@@ -1,91 +0,0 @@
+-From ab5bf5b8f86337a31bfd48277650f583a040e658 Mon Sep 17 00:00:00 2001
+-From: Andrew Davis <afd@ti.com>
+-Date: Thu, 5 Dec 2024 09:59:48 -0600
+-Subject: [PATCH] Allow SVE and SVE2 support to be disabled in CMake
+-
+-Currently these are hard-coded as enabled. The SVE and SVE2 libraries
+-are built unconditionally. These should only be built when SVE or
+-SVE2 is available.
+-
+-Upstream-Status: Pending
+-
+-Signed-off-by: Andrew Davis <afd@ti.com>
+-Change-Id: I176259f872a84f736028622694d65d4c5b57e379
+----
+- CMakeLists.txt | 25 ++++++++++++++++++-------
+- 1 file changed, 18 insertions(+), 7 deletions(-)
+-
+-diff --git a/CMakeLists.txt b/CMakeLists.txt
+-index 4d95fb1bfd..d233d6bc67 100644
+---- a/CMakeLists.txt
+-+++ b/CMakeLists.txt
+-@@ -145,6 +145,7 @@ endif()
+-
+- # ---------------------------------------------------------------------
+- # SVE Object Library
+-+if(ENABLE_SVE)
+- add_library(arm_compute_sve OBJECT ${ARM_COMPUTE_SVE_SOURCES})
+- target_compile_options(arm_compute_sve
+-                        PRIVATE "-march=3Darmv8.2-a+sve+fp16+dotprod"
+-@@ -161,9 +162,11 @@ target_include_directories(
+-          src/core/cpu/kernels/assembly
+-          src/cpu/kernels/assembly
+-          src/core/NEON/kernels/arm_gemm/merges)
+-+endif() # ENABLE_SVE
+-
+- # ---------------------------------------------------------------------
+- # SVE2 Object Library
+-+if(ENABLE_SVE2)
+- add_library(arm_compute_sve2 OBJECT ${ARM_COMPUTE_SVE2_SOURCES})
+- target_compile_options(arm_compute_sve2
+-                        PRIVATE "-march=3Darmv8.6-a+sve2+fp16+dotprod"
+-@@ -180,6 +183,7 @@ target_include_directories(
+-          src/core/cpu/kernels/assembly
+-          src/cpu/kernels/assembly
+-          src/core/NEON/kernels/arm_gemm/merges)
+-+endif() # ENABLE_SVE2
+-
+- # ---------------------------------------------------------------------
+- # Core Library
+-@@ -203,9 +207,12 @@ target_compile_options(arm_compute PUBLIC ${COMMON_CX=
+X_FLAGS})
+- add_library(ArmCompute::Core ALIAS arm_compute)
+-
+- # arm_compute_sve and arm_compute_sve2 obj files will not be public in th=
+e arm_compute.so
+--target_link_libraries(
+--  arm_compute PRIVATE $<TARGET_OBJECTS:arm_compute_sve>
+--              PRIVATE $<TARGET_OBJECTS:arm_compute_sve2>)
+-+if(ENABLE_SVE)
+-+  target_link_libraries(arm_compute PRIVATE $<TARGET_OBJECTS:arm_compute_=
+sve>)
+-+endif()
+-+if(ENABLE_SVE2)
+-+  target_link_libraries(arm_compute PRIVATE $<TARGET_OBJECTS:arm_compute_=
+sve2>)
+-+endif()
+-
+- # ---------------------------------------------------------------------
+- # Graph Library
+-@@ -263,8 +270,10 @@ if(ARM_COMPUTE_BUILD_TESTING)
+-                                       "${CMAKE_BINARY_DIR}/validation")
+-   target_link_libraries(
+-     arm_compute_validation
+--    PUBLIC arm_compute arm_compute_graph arm_compute_validation_framework
+--           arm_compute_sve)
+-+    PUBLIC arm_compute arm_compute_graph arm_compute_validation_framework=
+)
+-+    if(ENABLE_SVE)
+-+      target_link_libraries(arm_compute_validation PUBLIC arm_compute_sve=
+)
+-+    endif()
+-   target_link_directories(arm_compute_validation PUBLIC tests)
+-
+-   # ---------------------------------------------------------------------
+-@@ -299,8 +308,10 @@ if(ARM_COMPUTE_BUILD_EXAMPLES)
+-     set_target_properties(
+-       ${test_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+-                               "${CMAKE_BINARY_DIR}/examples")
+--    target_link_libraries(${test_name} PUBLIC arm_compute
+--                                              arm_compute_graph arm_compu=
+te_sve)
+-+    target_link_libraries(${test_name} PUBLIC arm_compute arm_compute_gra=
+ph)
+-+    if(ENABLE_SVE)
+-+      target_link_libraries(${test_name} PUBLIC arm_compute_sve)
+-+    endif()
+-   endforeach()
+-
+-   # NEON Examples
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0006-Remove-TARGET-dependency.patch b/meta-arago-extras/recipe=
+s-devtools/arm-compute-library/arm-compute-library/0006-Remove-TARGET-depen=
+dency.patch
+new file mode 100644
+index 00000000..e508b6e2
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0006-Remove-TARGET-dependency.patch
+@@ -0,0 +1,58 @@
++From d10cbce3985b70270a61cb96a12768ce9adfea1e Mon Sep 17 00:00:00 2001
++From: Pratham Deshmukh <p-deshmukh@ti.com>
++Date: Wed, 4 Mar 2026 16:02:44 +0530
++Subject: [PATCH 6/8] Remove TARGET dependency
++
++Upstream-Status: Pending
++
++Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
++---
++ CMakeLists.txt | 11 +++++++----
++ 1 file changed, 7 insertions(+), 4 deletions(-)
++
++diff --git a/CMakeLists.txt b/CMakeLists.txt
++index 521132917d..87bf38781b 100644
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -215,7 +215,7 @@ if(ACL_MULTI_ISA OR ACL_BUILD_SVE)
++       LINK_LIBRARIES "${ARM_COMPUTE_LINK_LIBS}"
++   )
++ else()
++-  add_library(arm_compute_sve OBJECT EXCLUDE_FROM_ALL)
+++  add_library(arm_compute_sve INTERFACE)
++ endif()
++=20
++ if(ACL_MULTI_ISA OR ACL_BUILD_SVE2)
++@@ -229,7 +229,7 @@ if(ACL_MULTI_ISA OR ACL_BUILD_SVE2)
++       LINK_LIBRARIES "${ARM_COMPUTE_LINK_LIBS}"
++   )
++ else()
++-  add_library(arm_compute_sve2 OBJECT EXCLUDE_FROM_ALL)
+++  add_library(arm_compute_sve2 INTERFACE)
++ endif()
++=20
++ add_library(arm_compute_core OBJECT ${ARM_COMPUTE_SOURCES})
++@@ -243,7 +243,7 @@ set_target_properties(
++ )
++=20
++ if(NOT (ACL_ARCH_ISA STREQUAL "armv7" OR ACL_ARCH_ISA STREQUAL "armv8-a")=
+)
++-  add_library(arm_compute_core_fp16 OBJECT)
+++  add_library(arm_compute_core_fp16 OBJECT )
++   set_target_properties(
++     arm_compute_core_fp16
++     PROPERTIES
++@@ -253,7 +253,10 @@ if(NOT (ACL_ARCH_ISA STREQUAL "armv7" OR ACL_ARCH_ISA=
+ STREQUAL "armv8-a"))
++       LINK_LIBRARIES "${ARM_COMPUTE_LINK_LIBS}"
++   )
++ else()
++-  add_library(arm_compute_core_fp16 INTERFACE)
+++  # For armv7 and armv8-a: create library with sources if they exist
+++  if(ARM_COMPUTE_CORE_FP16_SOURCES)
+++    add_library(arm_compute_core_fp16 OBJECT ${ARM_COMPUTE_CORE_FP16_SOUR=
+CES})
+++  endif()
++ endif()
++=20
++ add_library(arm_compute_graph ${ARM_COMPUTE_LIB_BUILD_TYPE} ${ARM_COMPUTE=
+_GRAPH_SOURCES})
++--=20
++2.34.1
++
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0007-Allow-ARMv7-builds-using-CMake.patch b/meta-arago-extras/=
+recipes-devtools/arm-compute-library/arm-compute-library/0007-Allow-ARMv7-b=
+uilds-using-CMake.patch
+deleted file mode 100644
+index 1ff36d16..00000000
+--- a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0007-Allow-ARMv7-builds-using-CMake.patch
++++ /dev/null
+@@ -1,86 +0,0 @@
+-From 416cffe2a75a4ec66a75e00bc00297f2f0187e0f Mon Sep 17 00:00:00 2001
+-From: Andrew Davis <afd@ti.com>
+-Date: Thu, 5 Dec 2024 10:05:03 -0600
+-Subject: [PATCH] Allow ARMv7 builds using CMake
+-
+-Upstream-Status: Pending
+-
+-Signed-off-by: Andrew Davis <afd@ti.com>
+-Change-Id: Ib6bae5820569a8eadd53afdfe31e611a3089140e
+----
+- CMakeLists.txt                                | 25 +++++++++++++++++--
+- .../fixtures/CpuGemmAssemblyDispatchFixture.h |  3 +++
+- 2 files changed, 26 insertions(+), 2 deletions(-)
+-
+-diff --git a/CMakeLists.txt b/CMakeLists.txt
+-index d233d6bc67..4fc27553f3 100644
+---- a/CMakeLists.txt
+-+++ b/CMakeLists.txt
+-@@ -148,7 +148,7 @@ endif()
+- if(ENABLE_SVE)
+- add_library(arm_compute_sve OBJECT ${ARM_COMPUTE_SVE_SOURCES})
+- target_compile_options(arm_compute_sve
+--                       PRIVATE "-march=3Darmv8.2-a+sve+fp16+dotprod"
+-+                       PRIVATE "-march=3D${ARM_COMPUTE_ARCH}"
+-                        PRIVATE "-fPIC")
+- target_include_directories(
+-   arm_compute_sve
+-@@ -169,7 +169,7 @@ endif() # ENABLE_SVE
+- if(ENABLE_SVE2)
+- add_library(arm_compute_sve2 OBJECT ${ARM_COMPUTE_SVE2_SOURCES})
+- target_compile_options(arm_compute_sve2
+--                       PRIVATE "-march=3Darmv8.6-a+sve2+fp16+dotprod"
+-+                       PRIVATE "-march=3D${ARM_COMPUTE_ARCH}"
+-                        PRIVATE "-fPIC")
+- target_include_directories(
+-   arm_compute_sve2
+-@@ -204,6 +204,15 @@ target_include_directories(
+-           src/core/NEON/kernels/convolution/winograd)
+- target_compile_options(arm_compute PUBLIC ${COMMON_CXX_FLAGS})
+-
+-+if(ARM_COMPUTE_ARCH MATCHES "armv7")
+-+  target_sources(
+-+    arm_compute
+-+    PRIVATE
+-+      src/core/NEON/kernels/arm_gemm/kernels/a32_sgemm_8x6/a53.cpp
+-+      src/core/NEON/kernels/arm_gemm/kernels/a32_sgemm_8x6/a55r1.cpp
+-+      src/core/NEON/kernels/arm_gemm/kernels/a32_sgemm_8x6/generic.cpp)
+-+endif()
+-+
+- add_library(ArmCompute::Core ALIAS arm_compute)
+-
+- # arm_compute_sve and arm_compute_sve2 obj files will not be public in th=
+e arm_compute.so
+-@@ -264,6 +273,18 @@ if(ARM_COMPUTE_BUILD_TESTING)
+-   add_executable(arm_compute_validation "")
+-   target_compile_options(arm_compute_validation PRIVATE "-march=3D${ARM_C=
+OMPUTE_ARCH}")
+-   add_subdirectory(tests/validation)
+-+  target_include_directories(
+-+    arm_compute_validation
+-+    PUBLIC $<INSTALL_INTERFACE:include>
+-+          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+-+          ${CMAKE_CURRENT_SOURCE_DIR}
+-+    PRIVATE src
+-+          src/cpu/kernels/assembly
+-+          src/core/NEON/kernels/arm_gemm
+-+          src/core/NEON/kernels/assembly
+-+          src/core/NEON/kernels/convolution/common
+-+          src/core/NEON/kernels/arm_conv/depthwise
+-+          src/core/NEON/kernels/convolution/winograd)
+-   target_compile_options(arm_compute_validation PUBLIC ${COMMON_CXX_FLAGS=
+})
+-   set_target_properties(
+-     arm_compute_validation PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+-diff --git a/tests/validation/fixtures/CpuGemmAssemblyDispatchFixture.h b/=
+tests/validation/fixtures/CpuGemmAssemblyDispatchFixture.h
+-index 5d74e210d5..0b45cdf356 100644
+---- a/tests/validation/fixtures/CpuGemmAssemblyDispatchFixture.h
+-+++ b/tests/validation/fixtures/CpuGemmAssemblyDispatchFixture.h
+-@@ -25,7 +25,10 @@
+- #define ACL_TESTS_VALIDATION_FIXTURES_CPUGEMMASSEMBLYDISPATCHFIXTURE_H
+-
+- #include "arm_compute/core/Helpers.h"
+-+
+-+#ifdef ARM_COMPUTE_ENABLE_FIXED_FORMAT_KERNELS
+- #include "arm_compute/runtime/NEON/functions/NEReorderLayer.h"
+-+#endif //ARM_COMPUTE_ENABLE_FIXED_FORMAT_KERNELS
+- #include "arm_compute/runtime/NEON/functions/NETranspose.h"
+-
+- #include "src/core/NEON/kernels/arm_gemm/utils.hpp"
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0007-cmake-Generate-generic-library-name-instead-of.patch b/me=
+ta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/00=
+07-cmake-Generate-generic-library-name-instead-of.patch
+new file mode 100644
+index 00000000..6da1dc6b
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0007-cmake-Generate-generic-library-name-instead-of.patch
+@@ -0,0 +1,33 @@
++From 7dea25d8e77a66a6f867027c1d78d4940d28b09e Mon Sep 17 00:00:00 2001
++From: Pratham Deshmukh <p-deshmukh@ti.com>
++Date: Wed, 4 Mar 2026 16:04:25 +0530
++Subject: [PATCH 7/8] cmake: Generate generic library name instead of
++ architecture-specific
++
++Generate libarm_compute.so instead of libarm_compute_${ACL_ARCH_ISA}.so
++to improve compatibility with downstream projects that expect the
++generic library name.
++
++Upstream-Status: Pending
++
++Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
++---
++ CMakeLists.txt | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/CMakeLists.txt b/CMakeLists.txt
++index 87bf38781b..2df5622d47 100644
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -306,7 +306,7 @@ else()
++   endif()
++=20
++   add_library(arm_compute ${ARM_COMPUTE_LIB_BUILD_TYPE} ${lib_objs})
++-  set_target_properties(arm_compute PROPERTIES OUTPUT_NAME "arm_compute_$=
+{ACL_ARCH_ISA}")
+++  set_target_properties(arm_compute PROPERTIES OUTPUT_NAME "arm_compute")
++ endif()
++=20
++ if(ACL_ARCH_ISA STREQUAL "armv7")
++--=20
++2.34.1
++
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library/0008-Add-FP16-source-path.patch b/meta-arago-extras/recipes-de=
+vtools/arm-compute-library/arm-compute-library/0008-Add-FP16-source-path.pa=
+tch
+new file mode 100644
+index 00000000..19a41eac
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary/0008-Add-FP16-source-path.patch
+@@ -0,0 +1,28 @@
++From d22f14236ca6217b10ce64e64bdf91038234cfb3 Mon Sep 17 00:00:00 2001
++From: Pratham Deshmukh <p-deshmukh@ti.com>
++Date: Wed, 4 Mar 2026 16:06:24 +0530
++Subject: [PATCH 8/8] Add FP16 source path
++
++Upstream-Status: Pending
++
++Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
++---
++ CMakeLists.txt | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/CMakeLists.txt b/CMakeLists.txt
++index 2df5622d47..a09bb27387 100644
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -243,7 +243,7 @@ set_target_properties(
++ )
++=20
++ if(NOT (ACL_ARCH_ISA STREQUAL "armv7" OR ACL_ARCH_ISA STREQUAL "armv8-a")=
+)
++-  add_library(arm_compute_core_fp16 OBJECT )
+++  add_library(arm_compute_core_fp16 OBJECT ${ARM_COMPUTE_CORE_FP16_SOURCE=
+S})
++   set_target_properties(
++     arm_compute_core_fp16
++     PROPERTIES
++--=20
++2.34.1
++
+diff --git a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-com=
+pute-library_24.12.bb b/meta-arago-extras/recipes-devtools/arm-compute-libr=
+ary/arm-compute-library_52.7.0.bb
+similarity index 58%
+rename from meta-arago-extras/recipes-devtools/arm-compute-library/arm-comp=
+ute-library_24.12.bb
+rename to meta-arago-extras/recipes-devtools/arm-compute-library/arm-comput=
+e-library_52.7.0.bb
+index 42e2f343..02155d20 100644
+--- a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary_24.12.bb
++++ b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-li=
+brary_52.7.0.bb
+@@ -1,20 +1,20 @@
+ SUMMARY =3D "The ARM Computer Vision and Machine Learning library"
+ DESCRIPTION =3D "The ARM Computer Vision and Machine Learning library is a=
+ set of functions optimised for both ARM CPUs and GPUs."
+ LICENSE =3D "MIT"
+-LIC_FILES_CHKSUM =3D "file://LICENSES/MIT.txt;md5=3D35f8944fae972976691f34=
+83b0ac9dba"
++LIC_FILES_CHKSUM =3D "file://LICENSES/MIT.txt;md5=3D3912d958d00bac4a6b550f=
+75d7c806bb"
 =20
  SRC_URI =3D " \
--    git://github.com/tensorflow/tensorflow.git;protocol=3Dhttps;branch=3Dr=
-2.18 \
--    file://0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch=
+-    git://github.com/ARM-software/ComputeLibrary.git;branch=3Darchived-rel=
+eases;protocol=3Dhttps \
+-    file://0001-fix-Fix-indention-in-cmake-generator-script.patch \
+-    file://0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch=
  \
--    file://0002-lite-Update-CMakeLists-for-building-shared-object-li.patch=
+-    file://0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patch=
  \
--    file://0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patch=
+-    file://0004-Add-source-files-at-library-definition-time.patch \
+-    file://0005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.patch \
+-    file://0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake.patch \
+-    file://0007-Allow-ARMv7-builds-using-CMake.patch \
+-    file://0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch =
+\
++    git://github.com/ARM-software/ComputeLibrary.git;branch=3Dreleases/arm=
+_compute_52_7_0;protocol=3Dhttps \
++    file://0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch=
  \
-+    git://github.com/tensorflow/tensorflow.git;protocol=3Dhttps;branch=3Dr=
-2.20 \
-+    file://0001-Update-CMakeLists-for-building.patch \
-+    file://0002-Update-CMakeLists-for-building-shared-object.patch \
-     file://tensorflow2-lite.pc.in \
++    file://0002-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE.patch =
+\
++    file://0003-Add-source-files-at-library-definition-time.patch \
++    file://0004-Allow-ARMv7-builds-using-CMake.patch \
++    file://0005-Fix-undefined-symbol-error-when-building-TensorInfo.patch =
+\
++    file://0006-Remove-TARGET-dependency.patch \
++    file://0007-cmake-Generate-generic-library-name-instead-of.patch \
++    file://0008-Add-FP16-source-path.patch \
+ "
+-SRCREV =3D "32bcced2af7feea6969dd1d22e58d0718dc488e3"
++SRCREV =3D "c9a1fff898abd5109b759e8e16616519dc758fdd"
+=20
+ # Only compatible with armv7a, armv7ve, and aarch64
+ COMPATIBLE_MACHINE =3D "(^$)"
+@@ -33,17 +33,26 @@ PACKAGECONFIG[cppthreads] =3D "-DARM_COMPUTE_CPPTHREADS=
+=3DON,-DARM_COMPUTE_CPPTHREAD
+ PACKAGECONFIG[openmp] =3D "-DARM_COMPUTE_OPENMP=3DON,-DARM_COMPUTE_OPENMP=
+=3DOFF"
+=20
+ EXTRA_OECMAKE:append:aarch64 =3D " \
+-	-DARM_COMPUTE_ARCH=3Darmv8-a \
+-	-DENABLE_NEON=3DON \
+-	-DENABLE_SVE=3DOFF \
+-	-DENABLE_SVE2=3DOFF \
++	-DACL_MULTI_ISA=3DOFF \
++	-DACL_ARCH_ISA=3Darmv8-a \
++	-DACL_BUILD_SVE=3DOFF \
++	-DACL_BUILD_SVE2=3DOFF \
++	-DCMAKE_BUILD_TYPE=3DRelease \
++	-DARM_COMPUTE_ENABLE_BF16=3DOFF \
++	-DARM_COMPUTE_ENABLE_FP16=3DOFF \
++	-DARM_COMPUTE_ENABLE_I8MM=3DOFF \
++	-DARM_COMPUTE_ASSERTS_ENABLED=3DON \
++	-DARM_COMPUTE_ENABLE_FIXED_FORMAT_KERNELS=3DOFF \
+ "
+ EXTRA_OECMAKE:append:arm =3D " \
+-	-DARM_COMPUTE_ARCH=3Darmv7-a \
+-	-DENABLE_NEON=3DON \
+-	-DENABLE_SVE=3DOFF \
+-	-DENABLE_SVE2=3DOFF \
++	-DACL_MULTI_ISA=3DOFF \
++	-DACL_ARCH_ISA=3Darmv7 \
++	-DACL_BUILD_SVE=3DOFF \
++	-DACL_BUILD_SVE2=3DOFF \
++	-DCMAKE_BUILD_TYPE=3DRelease \
+ 	-DARM_COMPUTE_ENABLE_BF16=3DOFF \
++	-DARM_COMPUTE_ENABLE_FP16=3DOFF \
++	-DARM_COMPUTE_ASSERTS_ENABLED=3DON \
+ 	-DARM_COMPUTE_ENABLE_FIXED_FORMAT_KERNELS=3DOFF \
  "
 =20
- SRC_URI +=3D " \
--    git://github.com/abseil/abseil-cpp.git;protocol=3Dhttps;branch=3Dlts_2=
-023_08_02;name=3Dabseil-cpp;destsuffix=3D${S}/external/abseil-cpp \
-+    git://github.com/abseil/abseil-cpp.git;protocol=3Dhttps;branch=3Dlts_2=
-025_01_27;name=3Dabseil-cpp;destsuffix=3D${S}/external/abseil-cpp \
-     git://gitlab.com/libeigen/eigen.git;protocol=3Dhttps;branch=3Dmaster;n=
-ame=3Deigen;destsuffix=3D${S}/external/eigen \
-     git://github.com/google/farmhash.git;protocol=3Dhttps;branch=3Dmaster;=
-name=3Dfarmhash;destsuffix=3D${S}/external/farmhash \
-     git://github.com/petewarden/OouraFFT.git;protocol=3Dhttps;branch=3Dmas=
-ter;name=3Dfft2d;destsuffix=3D${S}/external/fft2d \
-@@ -28,35 +29,35 @@ SRC_URI +=3D " \
-     git://github.com/jax-ml/ml_dtypes.git;branch=3Dmain;protocol=3Dhttps;n=
-ame=3Dml_dtypes;destsuffix=3D${S}/external/ml_dtypes \
-     git://github.com/google/ruy.git;branch=3Dmaster;protocol=3Dhttps;name=
-=3Druy;destsuffix=3D${S}/external/ruy \
-     git://github.com/google/flatbuffers;branch=3Dmaster;protocol=3Dhttps;n=
-ame=3Dflatbuffers;destsuffix=3D${S}/external/flatbuffers \
--    git://github.com/Maratyszcza/pthreadpool.git;branch=3Dmaster;protocol=
-=3Dhttps;name=3Dpthreadpool-source;destsuffix=3D${S}/external/pthreadpool-s=
-ource \
-+    git://github.com/google/pthreadpool.git;branch=3Dmain;protocol=3Dhttps=
-;name=3Dpthreadpool-source;destsuffix=3D${S}/external/pthreadpool-source \
-     git://github.com/google/XNNPACK.git;branch=3Dmaster;protocol=3Dhttps;n=
-ame=3Dxnnpack;destsuffix=3D${S}/external/xnnpack \
-     git://github.com/Maratyszcza/FXdiv.git;branch=3Dmaster;protocol=3Dhttp=
-s;name=3DFXdiv-source;destsuffix=3D${S}/external/FXdiv-source \
-     git://github.com/Maratyszcza/FP16.git;branch=3Dmaster;protocol=3Dhttps=
-;name=3DFP16-source;destsuffix=3D${S}/external/FP16-source \
-     git://git.gitlab.arm.com/kleidi/kleidiai.git;branch=3Dmain;protocol=3D=
-https;name=3Dkleidiai;destsuffix=3D${S}/external/kleidiai \
-     git://github.com/Maratyszcza/psimd.git;branch=3Dmaster;protocol=3Dhttp=
-s;name=3Dpsimd;destsuffix=3D${S}/external/psimd \
--    git://github.com/protocolbuffers/protobuf.git;branch=3D25.x;protocol=
-=3Dhttps;name=3Dprotobuf;destsuffix=3D${S}/external/protobuf \
-+    git://github.com/protocolbuffers/protobuf.git;branch=3Dmain;protocol=
-=3Dhttps;name=3Dprotobuf;destsuffix=3D${S}/external/protobuf \
- "
+@@ -80,8 +89,15 @@ do_install:append() {
+ 			install -m 0555 $example ${D}${bindir}/${PN}-${PV}/examples
+ 		done
+ 	fi
++
++	if ${@bb.utils.contains('PACKAGECONFIG', 'tests', 'true', 'false', d)}; t=
+hen
++		install -d ${D}${bindir}/${PN}-${PV}/tests
++		# Copy the validation and benchmark binaries from the build directory
++		install -m 0555 ${B}/arm_compute_validation ${D}${bindir}/${PN}-${PV}/te=
+sts
++		install -m 0555 ${B}/arm_compute_benchmark ${D}${bindir}/${PN}-${PV}/tes=
+ts
++	fi
+ }
 =20
- SRCREV_FORMAT =3D "default"
-=20
- # Matches v${PV} tag
--SRCREV =3D "6550e4bd80223cdb8be6c3afd1f81e86a4d433c3"
--SRCREV_abseil-cpp =3D "fb3621f4f897824c0dbe0615fa94543df6192f30"
-+SRCREV =3D "72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa"
-+SRCREV_abseil-cpp =3D "d9e4955c65cd4367dd6bf46f4ccb8cd3d100540b"
- SRCREV_eigen =3D "33d0937c6bdf5ec999939fb17f2a553183d14a74"
- SRCREV_farmhash =3D "0d859a811870d10f53a594927d0d0b97573ad06d"
- SRCREV_fft2d =3D "c6fd2dd6d21397baa6653139d31d84540d5449a2"
- SRCREV_gemmlowp =3D "16e8662c34917be0065110bfcd9cc27d30f52fdf"
--SRCREV_cpuinfo =3D "b73ae6ce38d5dd0b7fe46dbe0a4b5f4bab91c7ea"
-+SRCREV_cpuinfo =3D "de0ce7c7251372892e53ce9bc891750d2c9a4fd8"
- SRCREV_ml_dtypes =3D "24084d9ed2c3d45bf83b7a9bff833aa185bf9172"
- SRCREV_ruy =3D "3286a34cc8de6149ac6844107dfdffac91531e72"
- SRCREV_flatbuffers =3D "e6463926479bd6b330cbcf673f7e917803fd5831"
--SRCREV_pthreadpool-source =3D "4fe0e1e183925bf8cfa6aae24237e724a96479b8"
--SRCREV_xnnpack =3D "6b83f69d4938da4dc9ad63c00bd13e9695659a51"
-+SRCREV_pthreadpool-source =3D "c2ba5c50bb58d1397b693740cf75fad836a0d1bf"
-+SRCREV_xnnpack =3D "585e73e63cb35c8a416c83a48ca9ab79f7f7d45e"
- SRCREV_FXdiv-source =3D "63058eff77e11aa15bf531df5dd34395ec3017c8"
--SRCREV_FP16-source =3D "0a92994d729ff76a58f692d3028ca1b64b145d91"
--SRCREV_kleidiai =3D "cddf991af5de49fd34949fa39690e4e906e04074"
-+SRCREV_FP16-source =3D "4dfe081cf6bcd15db339cf2680b9281b8451eeb3"
-+SRCREV_kleidiai =3D "dc69e899945c412a8ce39ccafd25139f743c60b1"
- SRCREV_psimd =3D "072586a71b55b7f8c584153d223e95687148a900"
--SRCREV_protobuf =3D "4a2aef570deb2bfb8927426558701e8bfc26f2a4"
-+SRCREV_protobuf =3D "90b73ac3f0b10320315c2ca0d03a5a9b095d2f66"
-=20
- inherit setuptools3 cmake
-=20
-@@ -91,7 +92,7 @@ OECMAKE_SOURCEPATH =3D "${S}/tensorflow/lite"
- # to further optimize the build for production use.
- # Hence, activate -O3 optimization and disable debug symbols.
- OECMAKE_C_FLAGS_RELEASE =3D "-O3 -DNDEBUG"
--OECMAKE_CXX_FLAGS_RELEASE =3D "-O3 -DNDEBUG -flax-vector-conversions"
-+OECMAKE_CXX_FLAGS_RELEASE =3D "-O3 -DNDEBUG -flax-vector-conversions -DTF_=
-MAJOR_VERSION=3D${TF_MAJOR} -DTF_MINOR_VERSION=3D${TF_MINOR} -DTF_PATCH_VER=
-SION=3D${TF_PATCH} -DTF_VERSION_SUFFIX=3D\"\""
-=20
- OECMAKE_C_FLAGS_RELEASE:append:arm =3D " -march=3Darmv7-a -mfpu=3Dneon"
- OECMAKE_CXX_FLAGS_RELEASE:append:arm =3D " -march=3Darmv7-a -mfpu=3Dneon"
-@@ -112,9 +113,8 @@ EXTRA_OECMAKE:append =3D " \
-     -DCMAKE_SYSTEM_PROCESSOR=3D${TENSORFLOW_TARGET_ARCH} \
-     -DCMAKE_VERBOSE_MAKEFILE:BOOL=3DON \
-     -DPYTHON_TARGET_INCLUDE=3D${RECIPE_SYSROOT}${includedir}/${PYTHON_DIR}=
- \
--    -DNUMPY_TARGET_INCLUDE=3D${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR}/n=
-umpy/core/include \
-+    -DNUMPY_TARGET_INCLUDE=3D${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR}/n=
-umpy/_core/include \
-     -DPYBIND11_TARGET_INCLUDE=3D${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR=
-}/pybind11/include \
--    -DTFLITE_VERSION_MAJOR=3D${MAJOR}  \
-     -DTFLITE_HOST_TOOLS_DIR=3D${STAGING_BINDIR_NATIVE} \
-     -DPTHREADPOOL_SOURCE_DIR=3D${S}/external/pthreadpool-source \
-     -DFXDIV_SOURCE_DIR=3D${S}/external/FXdiv-source \
-@@ -122,6 +122,11 @@ EXTRA_OECMAKE:append =3D " \
-     -DCPUINFO_SOURCE_DIR=3D${S}/external/cpuinfo \
-     -DKLEIDIAI_SOURCE_DIR=3D${S}/external/kleidiai \
-     -DPSIMD_SOURCE_DIR=3D${S}/external/psimd \
-+    -DCMAKE_CXX_STANDARD=3D17 \
-+    -DCMAKE_CXX_STANDARD_REQUIRED=3DON \
-+    -DTF_MAJOR_VERSION=3D${TF_MAJOR} \
-+    -DTF_MINOR_VERSION=3D${TF_MINOR} \
-+    -DTF_PATCH_VERSION=3D${TF_PATCH} \
-     --compile-no-warning-as-error \
-     --log-level=3DVERBOSE \
- "
-@@ -143,7 +148,7 @@ do_compile:append() {
-     BUILD_DIR=3D${B}
-     TENSORFLOW_DIR=3D${S}
-     TENSORFLOW_LITE_DIR=3D"${TENSORFLOW_DIR}/tensorflow/lite"
--    TENSORFLOW_VERSION=3D$(grep "_VERSION =3D " "${TENSORFLOW_DIR}/tensorf=
-low/tools/pip_package/setup.py" | cut -d=3D -f2 | sed "s/[ '-]//g")
-+    TENSORFLOW_VERSION=3D$(grep "_VERSION =3D " "${TENSORFLOW_DIR}/tensorf=
-low/tools/pip_package/setup.py.tpl" | cut -d=3D -f2 | sed "s/[ '-]//g")
-     mkdir -p "${B}/tflite_runtime"
-     cp -r "${TENSORFLOW_LITE_DIR}/tools/pip_package/debian" \
-           "${TENSORFLOW_LITE_DIR}/tools/pip_package/MANIFEST.in" \
-@@ -167,9 +172,9 @@ do_compile:append() {
- do_install() {
-     # Install tensorflow-lite dynamic library
-     install -d ${D}${libdir}
--    install -m 0644 ${B}/libtensorflow-lite.so.${MAJOR} ${D}${libdir}/libt=
-ensorflow-lite.so.${PV}
-+    install -m 0644 ${B}/libtensorflow-lite.so.${TF_MAJOR} ${D}${libdir}/l=
-ibtensorflow-lite.so.${PV}
-=20
--    ln -sf libtensorflow-lite.so.${PV} ${D}${libdir}/libtensorflow-lite.so=
-.${MAJOR}
-+    ln -sf libtensorflow-lite.so.${PV} ${D}${libdir}/libtensorflow-lite.so=
-.${TF_MAJOR}
-     ln -sf libtensorflow-lite.so.${PV} ${D}${libdir}/libtensorflow-lite.so
-=20
-     # armnn expects the the dynamic library of tensorflow lite to be named=
- as "libtensorflowlite.so"
-@@ -197,7 +202,7 @@ do_install() {
-=20
-     # Install pkgconfig file required for NNstreamer build
-     install -d ${D}${libdir}/pkgconfig
--    install -m 0644 ${WORKDIR}/tensorflow2-lite.pc.in ${D}${libdir}/pkgcon=
-fig/tensorflow2-lite.pc
-+    install -m 0644 ${WORKDIR}/sources/tensorflow2-lite.pc.in ${D}${libdir=
-}/pkgconfig/tensorflow2-lite.pc
-     sed -i 's:@version@:${PV}:g
-             s:@libdir@:${libdir}:g
-             s:@includedir@:${includedir}:g' \
+ PACKAGES =3D+ "${PN}-tests ${PN}-examples"
+-FILES:${PN}-tests +=3D "${libdir}/tests"
++FILES:${PN}-tests +=3D "${bindir}/*/tests"
+ FILES:${PN}-examples +=3D "${bindir}/*/examples"
 --=20
 2.34.1
 
