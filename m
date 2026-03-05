@@ -1,200 +1,1098 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CC6EBF47CD9
-	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 21:05:48 +0000 (UTC)
-Received: from BN8PR05CU002.outbound.protection.outlook.com (BN8PR05CU002.outbound.protection.outlook.com [52.101.57.56])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.54746.1772744741651436606
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D82A5F47CDB
+	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 21:14:48 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.55156.1772745282833150304
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 05 Mar 2026 13:05:41 -0800
+ Thu, 05 Mar 2026 13:14:43 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=I6lWzn/M;
- spf=pass (domain: list.ti.com, ip: 52.101.57.56, mailfrom: prc@list.ti.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Mor/InTyWPhsaatQwWZ8h+5AxY3RsDVhTc1i13O8P9EO+v9pNZUovI8CmTtO5kqZyRk9ogZ04p+3RWZ20Okj5TueHBfX09RPoojfhud0r7xkJCJzlL47gQKoP0+J5gEDrKbhMirDemcjGFyAxS6ojWX3uh6dfyOJs/t+gBBmG5mUK7RbrDy20h/dWKik+IFp5adCb26te81T5nEQq/yyTPTpERaA0V+8h+37TwCZ+TJHzByClVzdblIUBf/eJgBtEFlqSN8H11ZDiGuDIu+yfh2xOA9RWXdG9kxoX74q20r3aaH+Q6B6i8fNawRnmyQrHUKzk/ZWnSXSiodDlwH9YA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tAZ2ka9dSEojoDFMCjIZrehP46t5HT7pdo2gKyfAiuQ=;
- b=UOJQwYcoFFbuCTSL5nRN31jvDf3xT//yvFrdwbF0nV71kbGiSPsdNdxvueN8nMSKOPEiKpEvZ2zupyPCpSaPuNeLUHE0mQZL6URVFuUnr6WyEY97BeiLgJl8FpbxOSIdgIlHgeoqBkDB1wkVSIhHFnmSffQnXrDoBIUxWuDPtiOS31ujc/ETVLOYssawsBWbZTp5JcGjibxUh6rzchsSpvKj13o7ntjfxRmNjmJJODVIs+Qrr1RLMlsy39QwttneIcAd6hhpNZGodM+wod1VHx+965m4dzrX5zzqZEKS0+p170sbPYRvrqUAnozA5IOT5roaGgCBeVJTI3WX/rIYYQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tAZ2ka9dSEojoDFMCjIZrehP46t5HT7pdo2gKyfAiuQ=;
- b=I6lWzn/MgsxuaVUg1eJbovMszIC2o/9nR4IaCirzDqqzMxfWzJvzjFybR9aB+JuzdRDewWAdJlTDMCW8yzW6bxPHRKQTXcgtXyXwzCd2kAUPgYH26jUW+YRG93LRUjsfYDHlBSKv1a0SpoF9t/sWKApSDOP0Ge4s6Lu/mDRP/vOXywghoqZIsD5ll4Mv5RZRz8JlSSwgM8iXNHN/egy8Lp81CW2vIh6ZKIk3C4Wjrc4UTC/Ozu3vKvLzrCzsy2CFJo4SCyUlzSEJivxxvzrj6/nlEf5gTSzZ8SXHAp5gWitsxfDa8gFIrLAXaV1Lb80vGTIxa3BYl2v4DGs/AbfP0g==
-Received: from DS7PR03CA0019.namprd03.prod.outlook.com (2603:10b6:5:3b8::24)
- by IA3PR10MB8186.namprd10.prod.outlook.com (2603:10b6:208:511::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
- 2026 21:05:38 +0000
-Received: from DM2PEPF00003FC9.namprd04.prod.outlook.com
- (2603:10b6:5:3b8:cafe::c7) by DS7PR03CA0019.outlook.office365.com
- (2603:10b6:5:3b8::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.22 via Frontend Transport; Thu,
- 5 Mar 2026 21:05:09 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=list.ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=list.ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- DM2PEPF00003FC9.mail.protection.outlook.com (10.167.23.27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Thu, 5 Mar 2026 21:05:37 +0000
-Received: from DFLE200.ent.ti.com (10.64.6.58) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 15:05:34 -0600
-Received: from DFLE210.ent.ti.com (10.64.6.68) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 15:05:33 -0600
-Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 5 Mar 2026 15:05:33 -0600
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 625L5XnX2050988;
-	Thu, 5 Mar 2026 15:05:33 -0600
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id D5E08138B5A; Thu,  5 Mar 2026 15:05:33 -0600 (CST)
-From: PRC Automation <prc@list.ti.com>
-To: <a-christidis@ti.com>
-CC: <denys@konsulko.com>, <reatmon@ti.com>,
-	<meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago][master][PATCH v2] emptty: add version 0.15.0
-Date: Thu, 5 Mar 2026 15:05:33 -0600
-Message-ID: <20260305210533.3509911-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20260305210232.268113-1-a-christidis@ti.com>
-References: <20260305210232.268113-1-a-christidis@ti.com>
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 38EC140C7B;
+	Thu,  5 Mar 2026 21:14:42 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id qSww0y6Jmtcf; Thu,  5 Mar 2026 21:14:42 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DA54140A2F;
+	Thu,  5 Mar 2026 21:14:38 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 8A6281798C4; Thu,  5 Mar 2026 16:14:38 -0500 (EST)
+Date: Thu, 5 Mar 2026 16:14:38 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: a-christidis@ti.com
+Cc: denys@konsulko.com, reatmon@ti.com, meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][master][PATCH] emptty: add version 0.15.0
+Message-ID: <20260305211438.GN11121@denix.org>
+References: <20260305205455.267385-1-a-christidis@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM2PEPF00003FC9:EE_|IA3PR10MB8186:EE_
-X-MS-Office365-Filtering-Correlation-Id: 849e04df-470f-4f6f-e4f2-08de7afaf327
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|36860700016|34020700016|82310400026;
-X-Microsoft-Antispam-Message-Info: 
-	isY1tEFyEzILdjSt6hndxfrcPdxjd4jj+vZjCasWjFbf7rR8xPBZFofreLV6G1VF9gFo8p3GPaMmanbQY1gKGHQZr2B90w+L7PnEel4hXx7CXdLaViUxdwzBTb8mhzs4IU1IRVelB+8druGDpBz6WLvvUakSG4NUTALxjLO+2c2QZVRAnkvbUV3i7oumOL0AMW77SKl2Q4qvdD21HssBhjUEZ5sXiC+F5nKRtfAz1YcZhty4lilvtKMNH6Ns9Uqx+MNATjDUfUjFsa6BXqyYeB7iZoQRKQBh/Fd5NSZFHZhSJe014o3Qd7VbSx053sc3JIyFxk41gVeisCqTPcwFEZefOakH+ze91WcpU7tcEIaHyTwhzla1fHKagelO6N4jLQ6jTaOlsoeVkirWbN3NhPrEeem/SE4XJpS5hXSHplQx/z7s+nH7MUpbZ0p+3iJtvJzlSp5l2wKNmt/YA3znaxfYmsyDucJ+xrO5IjWUaY1CW6tVG6V9z+OTGwvXOC5qAg5mv9CArace9QyezpAQjvhxogcO4JahYuhZQIkJPoVIM5aYkz3wsMNjTpmAhJFJ0TiglCuu1o/FicsR/XZ9alIAFMTBk4rsCCdXjjYz9gRJdpD2166gv5G2HiVoNFEYqJlN5bb86Ay51a/zcvYhntjr/QJ69EDGdrHtCl/XZvDI1b1wDuOEv1RMujNm12nL0DizKbqCxaWAyg3KR+fT9Yl07emb4kTxKKztPokuiTKLenU3Vz+txKo+FF6mZx+bYjbw6IMmcPHo/xSB7QAwhw==
-X-Forefront-Antispam-Report: 
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700016)(34020700016)(82310400026);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	HVhFHAgcnIE61nbNizPlUY6Uk66RPWnToXOd7R0cQHPpXOjDZGVsmpHgSZ798a9PsMoEGfBCrMW9X8CmCwOYT+N7XViwk3zEeSLz1aL/Z+Q0l/gj4fqwUqevO3PP11rufS6cNm9UnYHIedRzQOAtlZ8igPKwTSIQrYQVVmsvuBtS3UTl1/HKxktkwMSgmbA7bVYZgakTAfYXhXSUwtB1EJ0fY3NSZr/PJEq2Bo2MU9EHhSIsT4w7xX3YpdAQT+0cCJkcLqavoD9SK29vKsN9yGx/pJhl4JLLVgowGrjh1/46vsp4sErAUyN8AsoQkB/KhfT61Uc3sRkRG2+hpIZPHsKRxTT54qnANI+wiwlMe7632KZ63im+BzNBFnWYDp6ZNhQtV++b56Uv9YGQyR0B04jr4SHTmgdnvJypCAm64VpcankYyHsT+g+VPbwY0Qxl
-X-OriginatorOrg: list.ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 21:05:37.2119
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 849e04df-470f-4f6f-e4f2-08de7afaf327
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	DM2PEPF00003FC9.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8186
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260305205455.267385-1-a-christidis@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 05 Mar 2026 21:05:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17270
+ <meta-arago@lists.yoctoproject.org>; Thu, 05 Mar 2026 21:14:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17271
 
-meta-arago / na / 20260305210232.268113-1-a-christidis
-
-PRC Results: FAIL
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Patches
-----------------------------------------
-All patches passed
+How is it different from Randolph's continued efforts to push it to OE-Core 
+for many months?
 
 
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  apply-yocto-patch: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [meta-arago][master][PATCH v2] emptty: add version 0.15.0
-- Submitter: From: <a-christidis@ti.com>
-From: Antonios Christidis <a-christidis@ti.com>
-- Date: Date: Thu, 5 Mar 2026 15:02:32 -0600
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: f49e738c7e3ec0c5e9512deefb41f99f0=
-5f4756d
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Pratham Deshmukh <p-deshmukh@ti.com>
-- Commit Subject: onnxruntime: upgrade 1.20.1 -> 1.23.2
-- Commit SHA: 01e5f5f001cf661a241cb79186c2152b25ce34d2
-
-Patches
-----------------------------------------
-All patches applied
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-repo: FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-FAIL
-    WARN: Are you missing a PV =3D "...". (PV-1)
-        meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
-   =20
-    WARN: You might need a " " as the first character for the :append. (APP=
-END-2)
-        meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb:10
-            GO_TAGS:append =3D "${@bb.utils.contains('PACKAGECONFIG', 'pam'=
-, '', ',nopam', d)}"
-   =20
-    WARN: You might need a " " as the first character for the :append. (APP=
-END-2)
-        meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb:11
-            GO_TAGS:append =3D "${@bb.utils.contains('PACKAGECONFIG', 'x11'=
-, '', ',noxlib', d)}"
-   =20
-    WARN: The use of :append with other overrides needs to be manually chec=
-ked. (APPEND-1)
-        meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb:68
-            RPROVIDES:${PN}:append =3D " virtual-emptty-conf weston-init"
-   =20
-    WARN: Are you missing a PV =3D "...". (PV-1)
-        meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
-
-
+On Thu, Mar 05, 2026 at 02:54:55PM -0600, Antonios Christidis via lists.yoctoproject.org wrote:
+> From: Antonios Christidis <a-christidis@ti.com>
+> 
+> Add emptty, a "Dead simple CLI Display Manager on TTY". This is a
+> relatively lightweight display manager that supports x11 as well as
+> wayland through both a CLI and an automatic login mechanism.
+> 
+> This can effectively replace the custom init scripts for both x11
+> (xserver-nodm-init) and wayland (weston-init) with a single tool with
+> more verbose logging capabilities.
+> 
+> This is split into two recipes. The emptty package provides the binary
+> and various agnostic configs while the emptty-conf package provides the
+> default configuration for the application itself. This RPROVIDES
+> virtual-emptty-conf, allowing other recipes to provide their own
+> configurations to override the default behavior.
+> 
+> Signed-off-by: Antonios Christidis <a-christidis@ti.com>
+> ---
+>  0001-emptty-add-version-0.15.0.patch          | 522 ++++++++++++++++++
+>  .../classes/tisdk-bundle.bbclass              |  14 +-
+>  meta-arago-distro/conf/distro/arago.conf      |   2 +
+>  .../recipes-graphics/emptty/emptty-conf.bb    |  14 +
+>  .../recipes-graphics/emptty/emptty.inc        |  27 +
+>  .../recipes-graphics/emptty/emptty/pamconf    |  11 +
+>  .../recipes-graphics/emptty/emptty_0.15.0.bb  |  57 ++
+>  .../wayland/weston-init-arago.bb              |  72 +++
+>  .../weston-init-arago/beaglebone/weston.ini   |  85 +++
+>  .../wayland/weston-init-arago/emptty.conf     |  77 +++
+>  .../weston-launch-calibrator.sh               |  13 +
+>  .../wayland/weston-init-arago/weston.ini      |  21 +
+>  12 files changed, 914 insertions(+), 1 deletion(-)
+>  create mode 100644 0001-emptty-add-version-0.15.0.patch
+>  create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
+>  create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty.inc
+>  create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
+>  create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
+>  create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
+>  create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
+>  create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
+>  create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
+>  create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
+> 
+> diff --git a/0001-emptty-add-version-0.15.0.patch b/0001-emptty-add-version-0.15.0.patch
+> new file mode 100644
+> index 00000000..dba3013d
+> --- /dev/null
+> +++ b/0001-emptty-add-version-0.15.0.patch
+> @@ -0,0 +1,522 @@
+> +From d41ec048882b955124d7dbeee1c2bf1351a0aba4 Mon Sep 17 00:00:00 2001
+> +From: Antonios Christidis <a-christidis@ti.com>
+> +Date: Thu, 5 Mar 2026 13:12:08 -0600
+> +Subject: [PATCH] emptty: add version 0.15.0
+> +
+> +Add emptty, a "Dead simple CLI Display Manager on TTY". This is a
+> +relatively lightweight display manager that supports x11 as well as
+> +wayland through both a CLI and an automatic login mechanism.
+> +
+> +This can effectively replace the custom init scripts for both x11
+> +(xserver-nodm-init) and wayland (weston-init) with a single tool with
+> +more verbose logging capabilities.
+> +
+> +This is split into two recipes. The emptty package provides the binary
+> +and various agnostic configs while the emptty-conf package provides the
+> +default configuration for the application itself. This RPROVIDES
+> +virtual-emptty-conf, allowing other recipes to provide their own
+> +configurations to override the default behavior.
+> +
+> +Signed-off-by: Antonios Christidis <a-christidis@ti.com>
+> +---
+> + .../classes/tisdk-bundle.bbclass              | 14 ++-
+> + meta-arago-distro/conf/distro/arago.conf      |  2 +
+> + .../recipes-graphics/emptty/emptty-conf.bb    | 14 +++
+> + .../recipes-graphics/emptty/emptty.inc        | 27 ++++++
+> + .../recipes-graphics/emptty/emptty/pamconf    | 11 +++
+> + .../recipes-graphics/emptty/emptty_0.15.0.bb  | 57 +++++++++++++
+> + .../wayland/weston-init-arago.bb              | 72 ++++++++++++++++
+> + .../weston-init-arago/beaglebone/weston.ini   | 85 +++++++++++++++++++
+> + .../wayland/weston-init-arago/emptty.conf     | 77 +++++++++++++++++
+> + .../weston-launch-calibrator.sh               | 13 +++
+> + .../wayland/weston-init-arago/weston.ini      | 21 +++++
+> + 11 files changed, 392 insertions(+), 1 deletion(-)
+> + create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
+> + create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty.inc
+> + create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
+> + create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
+> + create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
+> + create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
+> + create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
+> + create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
+> + create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
+> +
+> +diff --git a/meta-arago-distro/classes/tisdk-bundle.bbclass b/meta-arago-distro/classes/tisdk-bundle.bbclass
+> +index cc5d1481..24146529 100644
+> +--- a/meta-arago-distro/classes/tisdk-bundle.bbclass
+> ++++ b/meta-arago-distro/classes/tisdk-bundle.bbclass
+> +@@ -106,7 +106,7 @@ cleanup_host_packages() {
+> + }
+> + 
+> + ROOTFS_PREPROCESS_COMMAND += "tisdk_image_setup; "
+> +-ROOTFS_POSTPROCESS_COMMAND += "tisdk_image_build; "
+> ++ROOTFS_POSTPROCESS_COMMAND += "tisdk_image_build; add_emptty_inittab; "
+> + IMAGE_PREPROCESS_COMMAND:append = "tisdk_image_cleanup; "
+> + 
+> + # Create the SDK image.  We will re-use the rootfs_ipk_do_rootfs functionality
+> +@@ -304,6 +304,18 @@ tisdk_image_build () {
+> +     cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
+> + }
+> + 
+> ++
+> ++add_emptty_inittab() {
+> ++    [ -f ${IMAGE_ROOTFS}${sysconfdir}/inittab ] || return 0
+> ++
+> ++    if ${@bb.utils.contains_any("IMAGE_FEATURES", [ "x11-base", "weston" ], "true", "false", d)}
+> ++    then
+> ++	echo "7:5:respawn:${bindir}/emptty -t 7 -d" >> ${IMAGE_ROOTFS}${sysconfdir}/inittab
+> ++    fi
+> ++}
+> ++
+> ++
+> ++
+> + TISDK_IMAGE_CLEANUP_DIRS ?= "var etc lib boot dev home media mnt proc run sbin sys tmp usr"
+> + TISDK_IMAGE_CLEANUP_FILES ?= "bin/bash bin/bash.bash bin/sh"
+> + 
+> +diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+> +index fb5c703f..43d4db53 100644
+> +--- a/meta-arago-distro/conf/distro/arago.conf
+> ++++ b/meta-arago-distro/conf/distro/arago.conf
+> +@@ -68,6 +68,8 @@ PACKAGECONFIG:pn-glmark2 = "drm-gles2 wayland-gles2"
+> + 
+> + # Set this to empty string to prevent xwayland config from being added
+> + PACKAGECONFIG:pn-weston-init = ""
+> ++PREFERRED_RPROVIDER_virtual-emptty-conf = "weston-init-arago"
+> ++PREFERRED_RPROVIDER_weston-init = "weston-init-arago"
+> + 
+> + # Enable testing for opencl and vulkan with piglit
+> + PACKAGECONFIG:append:pn-piglit = " \
+> +diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb b/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
+> +new file mode 100644
+> +index 00000000..0b98e2e1
+> +--- /dev/null
+> ++++ b/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
+> +@@ -0,0 +1,14 @@
+> ++require emptty.inc
+> ++
+> ++SUMMARY += " (Default config)"
+> ++
+> ++do_configure[noexec] = "1"
+> ++do_compile[noexec] = "1"
+> ++
+> ++do_install () {
+> ++    oe_runmake -C ${S}/src/${GO_IMPORT} DESTDIR=${D} install-config
+> ++}
+> ++
+> ++FILES:${PN} = "${sysconfdir}/emptty/conf"
+> ++CONFFILES:${PN} = "${sysconfdir}/emptty/conf"
+> ++RPROVIDES:${PN} += "virtual-emptty-conf"
+> +diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty.inc b/meta-arago-distro/recipes-graphics/emptty/emptty.inc
+> +new file mode 100644
+> +index 00000000..d99c4d8c
+> +--- /dev/null
+> ++++ b/meta-arago-distro/recipes-graphics/emptty/emptty.inc
+> +@@ -0,0 +1,27 @@
+> ++SUMMARY = "Dead simple CLI Display Manager on TTY"
+> ++DESCRIPTION = "Emptty is a simple display manager with a command line greeter \
+> ++It supports both X11 and Wayland sessions, exporting required variables and \
+> ++creating user paths as necessary."
+> ++
+> ++HOMEPAGE = "https://github.com/tvrzna/emptty"
+> ++BUGTRACKER = "https://github.com/tvrzna/emptty/issues"
+> ++LICENSE = "MIT"
+> ++LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=d1e4d12c7d1d17367ba5668706a405ba"
+> ++
+> ++S = "${UNPACKDIR}"
+> ++
+> ++FILESEXTRAPATHS:append = ":${THISDIR}/emptty"
+> ++
+> ++GO_IMPORT = "github.com/tvrzna/emptty"
+> ++GO_IMPORT_pam = "github.com/msteinert/pam"
+> ++SRC_URI = "\
+> ++    git://${GO_IMPORT}.git;protocol=https;branch=master;destsuffix=src/${GO_IMPORT} \
+> ++    git://${GO_IMPORT_pam}.git;protocol=https;branch=master;name=pam;destsuffix=src/${GO_IMPORT_pam} \
+> ++    file://pamconf \
+> ++    "
+> ++SRCREV = "bb203ad0a224731a7a2ff50deeb342ab79c4af09"
+> ++SRCREV_pam = "50ded1b0e7864b9bf75005eb945a8ec826bcf69d"
+> ++
+> ++SRCREV_FORMAT .= "_pam"
+> ++
+> ++PR = "r1"
+> +diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf b/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
+> +new file mode 100644
+> +index 00000000..5c82d46b
+> +--- /dev/null
+> ++++ b/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
+> +@@ -0,0 +1,11 @@
+> ++#%PAM-1.0
+> ++auth            sufficient      pam_succeed_if.so user ingroup nopasswdlogin
+> ++auth            include         common-auth
+> ++-auth           optional        pam_gnome_keyring.so
+> ++-auth           optional        pam_kwallet5.so
+> ++account         include         common-account
+> ++session         include         common-session
+> ++-session        optional        pam_gnome_keyring.so auto_start
+> ++-session        optional        pam_kwallet5.so auto_start force_run
+> ++password        include         common-password
+> ++
+> +diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb b/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
+> +new file mode 100644
+> +index 00000000..415c5ea5
+> +--- /dev/null
+> ++++ b/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
+> +@@ -0,0 +1,57 @@
+> ++require emptty.inc
+> ++
+> ++PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pam x11', d)}"
+> ++PACKAGECONFIG[pam] = ",,libpam,pam-plugin-succeed-if"
+> ++PACKAGECONFIG[x11] = ",,virtual/libx11,util-linux-mcookie"
+> ++
+> ++DEPENDS += "${@bb.utils.contains('PACKAGECONFIG', 'pam', '', 'virtual/crypt', d)}"
+> ++
+> ++GO_TAGS = ""
+> ++GO_TAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'pam', '', ',nopam', d)}"
+> ++GO_TAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', ',noxlib', d)}"
+> ++
+> ++GOBUILDFLAGS:append = " -tags=${GO_TAGS}"
+> ++
+> ++export GO111MODULE = "off"
+> ++
+> ++inherit go
+> ++
+> ++DEPENDS += "gzip"
+> ++
+> ++do_install () {
+> ++    # general collateral
+> ++    install -Dm755 ${B}/${GO_BUILD_BINDIR}/emptty ${D}${bindir}/emptty
+> ++    install -d ${D}${mandir}/man1
+> ++    gzip -cn ${S}/src/${GO_IMPORT}/res/emptty.1 > ${D}${mandir}/man1/emptty.1.gz
+> ++
+> ++    # pam config
+> ++    if "${@bb.utils.contains('PACKAGECONFIG','pam','true','false',d)}"
+> ++    then
+> ++        install -Dm644 ${S}/pamconf ${D}${sysconfdir}/pam.d/emptty
+> ++    fi
+> ++
+> ++    # systemd init service
+> ++    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}
+> ++    then
+> ++        oe_runmake -C ${S}/src/${GO_IMPORT} DESTDIR=${D} install-systemd
+> ++    fi
+> ++}
+> ++
+> ++FILES:${PN} = "\
+> ++    ${systemd_system_unitdir}/emptty.service \
+> ++    ${bindir}/emptty \
+> ++    ${mandir}/man1/emptty.1.gz \
+> ++    ${sysconfdir}/pam.d/emptty \
+> ++"
+> ++
+> ++RDEPENDS:${PN} += "virtual-emptty-conf"
+> ++SYSTEMD_SERVICE:${PN} = "emptty.service"
+> ++
+> ++inherit systemd
+> ++
+> ++USERADD_PACKAGES = "${PN}"
+> ++GROUPADD_PARAM:${PN} = "-r nopasswdlogin"
+> ++
+> ++inherit useradd
+> ++
+> ++
+> +diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
+> +new file mode 100644
+> +index 00000000..484d25e1
+> +--- /dev/null
+> ++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
+> +@@ -0,0 +1,72 @@
+> ++SUMMARY = "Configuration files for the Weston Wayland compositor"
+> ++LICENSE = "MIT"
+> ++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> ++
+> ++PACKAGE_ARCH = "${MACHINE_ARCH}"
+> ++
+> ++SRC_URI:append = " \
+> ++    file://weston.ini \
+> ++    file://weston-launch-calibrator.sh \
+> ++    file://emptty.conf \
+> ++"
+> ++
+> ++S = "${UNPACKDIR}"
+> ++
+> ++PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xwayland', '', d)}"
+> ++PACKAGECONFIG:append:qemuriscv64 = " use-pixman"
+> ++PACKAGECONFIG:append:qemuppc64 = " use-pixman"
+> ++
+> ++PACKAGECONFIG[xwayland] = ",,"
+> ++PACKAGECONFIG[no-idle-timeout] = ",,"
+> ++PACKAGECONFIG[use-pixman] = ",,"
+> ++
+> ++DEFAULTBACKEND ??= ""
+> ++DEFAULTBACKEND:qemuall ?= "drm"
+> ++
+> ++do_install() {
+> ++	install -D -p -m0644 weston.ini ${D}${sysconfdir}/xdg/weston/weston.ini
+> ++	install -D -p -m0644 emptty.conf ${D}${sysconfdir}/emptty/conf
+> ++
+> ++	if [ -n "${DEFAULTBACKEND}" ]; then
+> ++		sed -i -e "/^\[core\]/a backend=${DEFAULTBACKEND}-backend.so" ${D}${sysconfdir}/xdg/weston/weston.ini
+> ++	fi
+> ++
+> ++	if [ "${@bb.utils.contains('PACKAGECONFIG', 'xwayland', 'yes', 'no', d)}" = "yes" ]; then
+> ++		sed -i -e "/^\[core\]/a xwayland=true" ${D}${sysconfdir}/xdg/weston/weston.ini
+> ++	fi
+> ++
+> ++	if [ "${@bb.utils.contains('PACKAGECONFIG', 'no-idle-timeout', 'yes', 'no', d)}" = "yes" ]; then
+> ++		sed -i -e "/^\[core\]/a idle-time=0" ${D}${sysconfdir}/xdg/weston/weston.ini
+> ++	fi
+> ++
+> ++	if [ "${@bb.utils.contains('PACKAGECONFIG', 'use-pixman', 'yes', 'no', d)}" = "yes" ]; then
+> ++		sed -i -e "/^\[core\]/a use-pixman=true" ${D}${sysconfdir}/xdg/weston/weston.ini
+> ++	fi
+> ++
+> ++	install -dm 755 -o weston -g weston ${D}/home/weston
+> ++	install -Dm755 weston-launch-calibrator.sh ${D}/${bindir}/weston-launch-calibrator
+> ++}
+> ++
+> ++inherit useradd
+> ++
+> ++USERADD_PACKAGES = "${PN}"
+> ++
+> ++# rdepends on weston which depends on virtual/egl
+> ++#
+> ++require ${COREBASE}/meta/recipes-graphics/wayland/required-distro-features.inc
+> ++
+> ++RDEPENDS:${PN} = "weston kbd ${@bb.utils.contains('PACKAGECONFIG', 'xwayland', 'weston-xwayland', '', d)} emptty"
+> ++
+> ++FILES:${PN} += "\
+> ++    ${sysconfdir}/xdg/weston/weston.ini \
+> ++    ${sysconfdir}/emptty/conf \
+> ++    /home/weston \
+> ++    ${bindir}/weston-launch-calibrator \
+> ++    "
+> ++
+> ++CONFFILES:${PN} += "${sysconfdir}/xdg/weston/weston.ini ${sysconfdir}/emptty/conf"
+> ++RPROVIDES:${PN}:append = " virtual-emptty-conf weston-init"
+> ++RCONFLICTS:${PN} += "weston-init"
+> ++
+> ++USERADD_PARAM:${PN} = "--home /home/weston --shell /bin/sh --user-group -G video,input,render,nopasswdlogin weston"
+> ++GROUPADD_PARAM:${PN} = "-r wayland; -r render; -r nopasswdlogin"
+> +diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
+> +new file mode 100644
+> +index 00000000..9fd9851d
+> +--- /dev/null
+> ++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
+> +@@ -0,0 +1,85 @@
+> ++# configuration file for Weston
+> ++
+> ++[core]
+> ++idle-time=0
+> ++#modules=xwayland.so,cms-colord.so
+> ++#shell=desktop-shell.so
+> ++gbm-format=rgb565
+> ++require-input=false
+> ++
+> ++[shell]
+> ++locking=false
+> ++animation=zoom
+> ++panel-position=top
+> ++startup-animation=fade
+> ++#background-image=/usr/share/backgrounds/gnome/Aqua.jpg
+> ++#background-color=0xff002244
+> ++#background-type=tile
+> ++#clock-format=minutes
+> ++#panel-color=0x90ff0000
+> ++#locking=true
+> ++#animation=zoom
+> ++#startup-animation=fade
+> ++#binding-modifier=ctrl
+> ++#num-workspaces=6
+> ++#cursor-theme=whiteglass
+> ++#cursor-size=24
+> ++
+> ++#lockscreen-icon=/usr/share/icons/gnome/256x256/actions/lock.png
+> ++#lockscreen=/usr/share/backgrounds/gnome/Garden.jpg
+> ++#homescreen=/usr/share/backgrounds/gnome/Blinds.jpg
+> ++#animation=fade
+> ++
+> ++#[launcher]
+> ++#icon=/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
+> ++#path=/usr/bin/gnome-terminal
+> ++
+> ++#[launcher]
+> ++#icon=/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
+> ++#path=/usr/bin/weston-terminal
+> ++
+> ++#[launcher]
+> ++#icon=/usr/share/icons/hicolor/24x24/apps/google-chrome.png
+> ++#path=/usr/bin/google-chrome
+> ++
+> ++#[launcher]
+> ++#icon=/usr/share/icons/gnome/24x24/apps/arts.png
+> ++#path=/build/weston-0lEgCh/weston-1.11.0/weston-flower
+> ++
+> ++#[input-method]
+> ++#path=/usr/libexec/weston-keyboard
+> ++
+> ++[output]
+> ++name=HDMI-A-1
+> ++#mode=1680x1050
+> ++#transform=90
+> ++#icc_profile=/usr/share/color/icc/colord/Bluish.icc
+> ++
+> ++#[output]
+> ++#name=VGA1
+> ++#mode=173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+> ++#transform=flipped
+> ++
+> ++#[output]
+> ++#name=X1
+> ++#mode=1024x768
+> ++#transform=flipped-90
+> ++
+> ++[libinput]
+> ++touchscreen_calibrator=true
+> ++#enable_tap=true
+> ++
+> ++#[touchpad]
+> ++#constant_accel_factor = 50
+> ++#min_accel_factor = 0.16
+> ++#max_accel_factor = 1.0
+> ++
+> ++[screen-share]
+> ++command=/usr/bin/weston --backend=rdp-backend.so --shell=fullscreen-shell.so --no-clients-resize
+> ++
+> ++#[xwayland]
+> ++#path=/usr/bin/Xwayland
+> ++
+> ++[autolaunch]
+> ++# launch the calibrator on startup if a touchscreen is detected
+> ++path=/usr/bin/weston-launch-calibrator
+> +diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
+> +new file mode 100644
+> +index 00000000..ffe1a3c2
+> +--- /dev/null
+> ++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
+> +@@ -0,0 +1,77 @@
+> ++# TTY, where emptty will start.
+> ++TTY_NUMBER=7
+> ++
+> ++# Enables switching to defined TTY number.
+> ++SWITCH_TTY=true
+> ++
+> ++# Enables printing of /etc/issue in daemon mode.
+> ++PRINT_ISSUE=true
+> ++
+> ++# Enables printing of default motd, /etc/emptty/motd or /etc/emptty/motd-gen.sh.
+> ++PRINT_MOTD=true
+> ++
+> ++# Preselected user, if AUTOLOGIN is enabled, this user is logged in.
+> ++DEFAULT_USER=weston
+> ++
+> ++# Enables Autologin, if DEFAULT_USER is defined and part of nopasswdlogin group. Possible values are "true" or "false".
+> ++AUTOLOGIN=true
+> ++
+> ++# The default session used, if Autologin is enabled. If session is not found in list of session, it proceeds to manual selection.
+> ++AUTOLOGIN_SESSION=Weston
+> ++
+> ++# If Autologin is enabled and session does not start correctly, the number of retries in short period is kept to eventually stop the infinite loop of restarts. -1 is for infinite retries, 0 is for no retry.
+> ++AUTOLOGIN_MAX_RETRY=-1
+> ++
+> ++# Default LANG, if user does not have set own in init script.
+> ++#LANG=en_US.UTF-8
+> ++
+> ++# Starts desktop with calling "dbus-launch".
+> ++DBUS_LAUNCH=true
+> ++
+> ++# Starts Xorg desktop with calling "~/.xinitrc" script, if is true, file exists and selected WM/DE is Xorg session, it overrides DBUS_LAUNCH.
+> ++XINITRC_LAUNCH=false
+> ++
+> ++# Prints available WM/DE each on new line instead of printing on single line.
+> ++VERTICAL_SELECTION=false
+> ++
+> ++# Defines the way, how is logging handled. Possible values are "rotate", "appending" or "disabled".
+> ++#LOGGING=rotate
+> ++
+> ++# Overrides path of log file
+> ++#LOGGING_FILE=/var/log/emptty/[TTY_NUMBER].log
+> ++
+> ++# Arguments passed to Xorg server.
+> ++#XORG_ARGS=
+> ++
+> ++# Allows to use dynamic motd script to generate custom MOTD.
+> ++#DYNAMIC_MOTD=false
+> ++
+> ++# Allows to override default path to dynamic motd.
+> ++#DYNAMIC_MOTD_PATH=/etc/emptty/motd-gen.sh
+> ++
+> ++# Allows to override default path to static motd.
+> ++#MOTD_PATH=/etc/emptty/motd
+> ++
+> ++# Foreground color, available only in daemon mode.
+> ++#FG_COLOR=LIGHT_BLACK
+> ++
+> ++# Background color, available only in daemon mode.
+> ++#BG_COLOR=BLACK
+> ++
+> ++# Enables numlock in daemon mode. Possible values are "true" or "false".
+> ++#ENABLE_NUMLOCK=false
+> ++
+> ++# Defines the way, how is logging of session errors handled. Possible values are "rotate", "appending" or "disabled".
+> ++SESSION_ERROR_LOGGING=rotate
+> ++
+> ++# Overrides path of session errors log file
+> ++#SESSION_ERROR_LOGGING_FILE=/var/log/emptty/session-errors.[TTY_NUMBER].log
+> ++
+> ++# If set true, it will not use `.emptty-xauth` file, but the standard `~/.Xauthority` file. This allows to handle xauth issues.
+> ++#DEFAULT_XAUTHORITY=false
+> ++
+> ++#If set true, Xorg will be started as rootless, if system allows and emptty is running in daemon mode.
+> ++#ROOTLESS_XORG=false
+> ++
+> ++#If set true, environmental groups are printed to differ Xorg/Wayland/Custom/UserCustom desktops.
+> ++IDENTIFY_ENVS=false
+> +diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
+> +new file mode 100644
+> +index 00000000..45863ecd
+> +--- /dev/null
+> ++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
+> +@@ -0,0 +1,13 @@
+> ++#!/bin/sh
+> ++
+> ++if [ -e /dev/input/touchscreen0 ]; then
+> ++	echo "Touch screen detected..."
+> ++	if [ -n "$LIBINPUT_CALIBRATION_MATRIX" ]; then
+> ++		echo "Calibration matrix already present, skipping calibration..."
+> ++	else
+> ++		echo "Calibrating touchscreen..."
+> ++		exec weston-calibrator
+> ++	fi
+> ++else
+> ++	echo "Touch screen not detected, skipping calibration..."
+> ++fi
+> +diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
+> +new file mode 100644
+> +index 00000000..1bc7a010
+> +--- /dev/null
+> ++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
+> +@@ -0,0 +1,21 @@
+> ++[core]
+> ++idle-time=0
+> ++require-input=false
+> ++require-outputs=none
+> ++
+> ++[shell]
+> ++locking=false
+> ++animation=zoom
+> ++panel-position=top
+> ++startup-animation=fade
+> ++
+> ++[libinput]
+> ++touchscreen_calibrator=true
+> ++
+> ++[autolaunch]
+> ++# launch the calibrator on startup if a touchscreen is detected
+> ++path=/usr/bin/weston-launch-calibrator
+> ++
+> ++[screensaver]
+> ++# Uncomment path to disable screensaver
+> ++#path=@libexecdir@/weston-screensaver
+> +-- 
+> +2.34.1
+> +
+> diff --git a/meta-arago-distro/classes/tisdk-bundle.bbclass b/meta-arago-distro/classes/tisdk-bundle.bbclass
+> index cc5d1481..24146529 100644
+> --- a/meta-arago-distro/classes/tisdk-bundle.bbclass
+> +++ b/meta-arago-distro/classes/tisdk-bundle.bbclass
+> @@ -106,7 +106,7 @@ cleanup_host_packages() {
+>  }
+>  
+>  ROOTFS_PREPROCESS_COMMAND += "tisdk_image_setup; "
+> -ROOTFS_POSTPROCESS_COMMAND += "tisdk_image_build; "
+> +ROOTFS_POSTPROCESS_COMMAND += "tisdk_image_build; add_emptty_inittab; "
+>  IMAGE_PREPROCESS_COMMAND:append = "tisdk_image_cleanup; "
+>  
+>  # Create the SDK image.  We will re-use the rootfs_ipk_do_rootfs functionality
+> @@ -304,6 +304,18 @@ tisdk_image_build () {
+>      cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
+>  }
+>  
+> +
+> +add_emptty_inittab() {
+> +    [ -f ${IMAGE_ROOTFS}${sysconfdir}/inittab ] || return 0
+> +
+> +    if ${@bb.utils.contains_any("IMAGE_FEATURES", [ "x11-base", "weston" ], "true", "false", d)}
+> +    then
+> +	echo "7:5:respawn:${bindir}/emptty -t 7 -d" >> ${IMAGE_ROOTFS}${sysconfdir}/inittab
+> +    fi
+> +}
+> +
+> +
+> +
+>  TISDK_IMAGE_CLEANUP_DIRS ?= "var etc lib boot dev home media mnt proc run sbin sys tmp usr"
+>  TISDK_IMAGE_CLEANUP_FILES ?= "bin/bash bin/bash.bash bin/sh"
+>  
+> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+> index fb5c703f..43d4db53 100644
+> --- a/meta-arago-distro/conf/distro/arago.conf
+> +++ b/meta-arago-distro/conf/distro/arago.conf
+> @@ -68,6 +68,8 @@ PACKAGECONFIG:pn-glmark2 = "drm-gles2 wayland-gles2"
+>  
+>  # Set this to empty string to prevent xwayland config from being added
+>  PACKAGECONFIG:pn-weston-init = ""
+> +PREFERRED_RPROVIDER_virtual-emptty-conf = "weston-init-arago"
+> +PREFERRED_RPROVIDER_weston-init = "weston-init-arago"
+>  
+>  # Enable testing for opencl and vulkan with piglit
+>  PACKAGECONFIG:append:pn-piglit = " \
+> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb b/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
+> new file mode 100644
+> index 00000000..0b98e2e1
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
+> @@ -0,0 +1,14 @@
+> +require emptty.inc
+> +
+> +SUMMARY += " (Default config)"
+> +
+> +do_configure[noexec] = "1"
+> +do_compile[noexec] = "1"
+> +
+> +do_install () {
+> +    oe_runmake -C ${S}/src/${GO_IMPORT} DESTDIR=${D} install-config
+> +}
+> +
+> +FILES:${PN} = "${sysconfdir}/emptty/conf"
+> +CONFFILES:${PN} = "${sysconfdir}/emptty/conf"
+> +RPROVIDES:${PN} += "virtual-emptty-conf"
+> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty.inc b/meta-arago-distro/recipes-graphics/emptty/emptty.inc
+> new file mode 100644
+> index 00000000..d99c4d8c
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty.inc
+> @@ -0,0 +1,27 @@
+> +SUMMARY = "Dead simple CLI Display Manager on TTY"
+> +DESCRIPTION = "Emptty is a simple display manager with a command line greeter \
+> +It supports both X11 and Wayland sessions, exporting required variables and \
+> +creating user paths as necessary."
+> +
+> +HOMEPAGE = "https://github.com/tvrzna/emptty"
+> +BUGTRACKER = "https://github.com/tvrzna/emptty/issues"
+> +LICENSE = "MIT"
+> +LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=d1e4d12c7d1d17367ba5668706a405ba"
+> +
+> +S = "${UNPACKDIR}"
+> +
+> +FILESEXTRAPATHS:append = ":${THISDIR}/emptty"
+> +
+> +GO_IMPORT = "github.com/tvrzna/emptty"
+> +GO_IMPORT_pam = "github.com/msteinert/pam"
+> +SRC_URI = "\
+> +    git://${GO_IMPORT}.git;protocol=https;branch=master;destsuffix=src/${GO_IMPORT} \
+> +    git://${GO_IMPORT_pam}.git;protocol=https;branch=master;name=pam;destsuffix=src/${GO_IMPORT_pam} \
+> +    file://pamconf \
+> +    "
+> +SRCREV = "bb203ad0a224731a7a2ff50deeb342ab79c4af09"
+> +SRCREV_pam = "50ded1b0e7864b9bf75005eb945a8ec826bcf69d"
+> +
+> +SRCREV_FORMAT .= "_pam"
+> +
+> +PR = "r1"
+> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf b/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
+> new file mode 100644
+> index 00000000..5c82d46b
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
+> @@ -0,0 +1,11 @@
+> +#%PAM-1.0
+> +auth            sufficient      pam_succeed_if.so user ingroup nopasswdlogin
+> +auth            include         common-auth
+> +-auth           optional        pam_gnome_keyring.so
+> +-auth           optional        pam_kwallet5.so
+> +account         include         common-account
+> +session         include         common-session
+> +-session        optional        pam_gnome_keyring.so auto_start
+> +-session        optional        pam_kwallet5.so auto_start force_run
+> +password        include         common-password
+> +
+> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb b/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
+> new file mode 100644
+> index 00000000..415c5ea5
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
+> @@ -0,0 +1,57 @@
+> +require emptty.inc
+> +
+> +PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pam x11', d)}"
+> +PACKAGECONFIG[pam] = ",,libpam,pam-plugin-succeed-if"
+> +PACKAGECONFIG[x11] = ",,virtual/libx11,util-linux-mcookie"
+> +
+> +DEPENDS += "${@bb.utils.contains('PACKAGECONFIG', 'pam', '', 'virtual/crypt', d)}"
+> +
+> +GO_TAGS = ""
+> +GO_TAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'pam', '', ',nopam', d)}"
+> +GO_TAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', ',noxlib', d)}"
+> +
+> +GOBUILDFLAGS:append = " -tags=${GO_TAGS}"
+> +
+> +export GO111MODULE = "off"
+> +
+> +inherit go
+> +
+> +DEPENDS += "gzip"
+> +
+> +do_install () {
+> +    # general collateral
+> +    install -Dm755 ${B}/${GO_BUILD_BINDIR}/emptty ${D}${bindir}/emptty
+> +    install -d ${D}${mandir}/man1
+> +    gzip -cn ${S}/src/${GO_IMPORT}/res/emptty.1 > ${D}${mandir}/man1/emptty.1.gz
+> +
+> +    # pam config
+> +    if "${@bb.utils.contains('PACKAGECONFIG','pam','true','false',d)}"
+> +    then
+> +        install -Dm644 ${S}/pamconf ${D}${sysconfdir}/pam.d/emptty
+> +    fi
+> +
+> +    # systemd init service
+> +    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}
+> +    then
+> +        oe_runmake -C ${S}/src/${GO_IMPORT} DESTDIR=${D} install-systemd
+> +    fi
+> +}
+> +
+> +FILES:${PN} = "\
+> +    ${systemd_system_unitdir}/emptty.service \
+> +    ${bindir}/emptty \
+> +    ${mandir}/man1/emptty.1.gz \
+> +    ${sysconfdir}/pam.d/emptty \
+> +"
+> +
+> +RDEPENDS:${PN} += "virtual-emptty-conf"
+> +SYSTEMD_SERVICE:${PN} = "emptty.service"
+> +
+> +inherit systemd
+> +
+> +USERADD_PACKAGES = "${PN}"
+> +GROUPADD_PARAM:${PN} = "-r nopasswdlogin"
+> +
+> +inherit useradd
+> +
+> +
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
+> new file mode 100644
+> index 00000000..484d25e1
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
+> @@ -0,0 +1,72 @@
+> +SUMMARY = "Configuration files for the Weston Wayland compositor"
+> +LICENSE = "MIT"
+> +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> +
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+> +
+> +SRC_URI:append = " \
+> +    file://weston.ini \
+> +    file://weston-launch-calibrator.sh \
+> +    file://emptty.conf \
+> +"
+> +
+> +S = "${UNPACKDIR}"
+> +
+> +PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xwayland', '', d)}"
+> +PACKAGECONFIG:append:qemuriscv64 = " use-pixman"
+> +PACKAGECONFIG:append:qemuppc64 = " use-pixman"
+> +
+> +PACKAGECONFIG[xwayland] = ",,"
+> +PACKAGECONFIG[no-idle-timeout] = ",,"
+> +PACKAGECONFIG[use-pixman] = ",,"
+> +
+> +DEFAULTBACKEND ??= ""
+> +DEFAULTBACKEND:qemuall ?= "drm"
+> +
+> +do_install() {
+> +	install -D -p -m0644 weston.ini ${D}${sysconfdir}/xdg/weston/weston.ini
+> +	install -D -p -m0644 emptty.conf ${D}${sysconfdir}/emptty/conf
+> +
+> +	if [ -n "${DEFAULTBACKEND}" ]; then
+> +		sed -i -e "/^\[core\]/a backend=${DEFAULTBACKEND}-backend.so" ${D}${sysconfdir}/xdg/weston/weston.ini
+> +	fi
+> +
+> +	if [ "${@bb.utils.contains('PACKAGECONFIG', 'xwayland', 'yes', 'no', d)}" = "yes" ]; then
+> +		sed -i -e "/^\[core\]/a xwayland=true" ${D}${sysconfdir}/xdg/weston/weston.ini
+> +	fi
+> +
+> +	if [ "${@bb.utils.contains('PACKAGECONFIG', 'no-idle-timeout', 'yes', 'no', d)}" = "yes" ]; then
+> +		sed -i -e "/^\[core\]/a idle-time=0" ${D}${sysconfdir}/xdg/weston/weston.ini
+> +	fi
+> +
+> +	if [ "${@bb.utils.contains('PACKAGECONFIG', 'use-pixman', 'yes', 'no', d)}" = "yes" ]; then
+> +		sed -i -e "/^\[core\]/a use-pixman=true" ${D}${sysconfdir}/xdg/weston/weston.ini
+> +	fi
+> +
+> +	install -dm 755 -o weston -g weston ${D}/home/weston
+> +	install -Dm755 weston-launch-calibrator.sh ${D}/${bindir}/weston-launch-calibrator
+> +}
+> +
+> +inherit useradd
+> +
+> +USERADD_PACKAGES = "${PN}"
+> +
+> +# rdepends on weston which depends on virtual/egl
+> +#
+> +require ${COREBASE}/meta/recipes-graphics/wayland/required-distro-features.inc
+> +
+> +RDEPENDS:${PN} = "weston kbd ${@bb.utils.contains('PACKAGECONFIG', 'xwayland', 'weston-xwayland', '', d)} emptty"
+> +
+> +FILES:${PN} += "\
+> +    ${sysconfdir}/xdg/weston/weston.ini \
+> +    ${sysconfdir}/emptty/conf \
+> +    /home/weston \
+> +    ${bindir}/weston-launch-calibrator \
+> +    "
+> +
+> +CONFFILES:${PN} += "${sysconfdir}/xdg/weston/weston.ini ${sysconfdir}/emptty/conf"
+> +RPROVIDES:${PN}:append = " virtual-emptty-conf weston-init"
+> +RCONFLICTS:${PN} += "weston-init"
+> +
+> +USERADD_PARAM:${PN} = "--home /home/weston --shell /bin/sh --user-group -G video,input,render,nopasswdlogin weston"
+> +GROUPADD_PARAM:${PN} = "-r wayland; -r render; -r nopasswdlogin"
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
+> new file mode 100644
+> index 00000000..9fd9851d
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
+> @@ -0,0 +1,85 @@
+> +# configuration file for Weston
+> +
+> +[core]
+> +idle-time=0
+> +#modules=xwayland.so,cms-colord.so
+> +#shell=desktop-shell.so
+> +gbm-format=rgb565
+> +require-input=false
+> +
+> +[shell]
+> +locking=false
+> +animation=zoom
+> +panel-position=top
+> +startup-animation=fade
+> +#background-image=/usr/share/backgrounds/gnome/Aqua.jpg
+> +#background-color=0xff002244
+> +#background-type=tile
+> +#clock-format=minutes
+> +#panel-color=0x90ff0000
+> +#locking=true
+> +#animation=zoom
+> +#startup-animation=fade
+> +#binding-modifier=ctrl
+> +#num-workspaces=6
+> +#cursor-theme=whiteglass
+> +#cursor-size=24
+> +
+> +#lockscreen-icon=/usr/share/icons/gnome/256x256/actions/lock.png
+> +#lockscreen=/usr/share/backgrounds/gnome/Garden.jpg
+> +#homescreen=/usr/share/backgrounds/gnome/Blinds.jpg
+> +#animation=fade
+> +
+> +#[launcher]
+> +#icon=/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
+> +#path=/usr/bin/gnome-terminal
+> +
+> +#[launcher]
+> +#icon=/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
+> +#path=/usr/bin/weston-terminal
+> +
+> +#[launcher]
+> +#icon=/usr/share/icons/hicolor/24x24/apps/google-chrome.png
+> +#path=/usr/bin/google-chrome
+> +
+> +#[launcher]
+> +#icon=/usr/share/icons/gnome/24x24/apps/arts.png
+> +#path=/build/weston-0lEgCh/weston-1.11.0/weston-flower
+> +
+> +#[input-method]
+> +#path=/usr/libexec/weston-keyboard
+> +
+> +[output]
+> +name=HDMI-A-1
+> +#mode=1680x1050
+> +#transform=90
+> +#icc_profile=/usr/share/color/icc/colord/Bluish.icc
+> +
+> +#[output]
+> +#name=VGA1
+> +#mode=173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+> +#transform=flipped
+> +
+> +#[output]
+> +#name=X1
+> +#mode=1024x768
+> +#transform=flipped-90
+> +
+> +[libinput]
+> +touchscreen_calibrator=true
+> +#enable_tap=true
+> +
+> +#[touchpad]
+> +#constant_accel_factor = 50
+> +#min_accel_factor = 0.16
+> +#max_accel_factor = 1.0
+> +
+> +[screen-share]
+> +command=/usr/bin/weston --backend=rdp-backend.so --shell=fullscreen-shell.so --no-clients-resize
+> +
+> +#[xwayland]
+> +#path=/usr/bin/Xwayland
+> +
+> +[autolaunch]
+> +# launch the calibrator on startup if a touchscreen is detected
+> +path=/usr/bin/weston-launch-calibrator
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
+> new file mode 100644
+> index 00000000..ffe1a3c2
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
+> @@ -0,0 +1,77 @@
+> +# TTY, where emptty will start.
+> +TTY_NUMBER=7
+> +
+> +# Enables switching to defined TTY number.
+> +SWITCH_TTY=true
+> +
+> +# Enables printing of /etc/issue in daemon mode.
+> +PRINT_ISSUE=true
+> +
+> +# Enables printing of default motd, /etc/emptty/motd or /etc/emptty/motd-gen.sh.
+> +PRINT_MOTD=true
+> +
+> +# Preselected user, if AUTOLOGIN is enabled, this user is logged in.
+> +DEFAULT_USER=weston
+> +
+> +# Enables Autologin, if DEFAULT_USER is defined and part of nopasswdlogin group. Possible values are "true" or "false".
+> +AUTOLOGIN=true
+> +
+> +# The default session used, if Autologin is enabled. If session is not found in list of session, it proceeds to manual selection.
+> +AUTOLOGIN_SESSION=Weston
+> +
+> +# If Autologin is enabled and session does not start correctly, the number of retries in short period is kept to eventually stop the infinite loop of restarts. -1 is for infinite retries, 0 is for no retry.
+> +AUTOLOGIN_MAX_RETRY=-1
+> +
+> +# Default LANG, if user does not have set own in init script.
+> +#LANG=en_US.UTF-8
+> +
+> +# Starts desktop with calling "dbus-launch".
+> +DBUS_LAUNCH=true
+> +
+> +# Starts Xorg desktop with calling "~/.xinitrc" script, if is true, file exists and selected WM/DE is Xorg session, it overrides DBUS_LAUNCH.
+> +XINITRC_LAUNCH=false
+> +
+> +# Prints available WM/DE each on new line instead of printing on single line.
+> +VERTICAL_SELECTION=false
+> +
+> +# Defines the way, how is logging handled. Possible values are "rotate", "appending" or "disabled".
+> +#LOGGING=rotate
+> +
+> +# Overrides path of log file
+> +#LOGGING_FILE=/var/log/emptty/[TTY_NUMBER].log
+> +
+> +# Arguments passed to Xorg server.
+> +#XORG_ARGS=
+> +
+> +# Allows to use dynamic motd script to generate custom MOTD.
+> +#DYNAMIC_MOTD=false
+> +
+> +# Allows to override default path to dynamic motd.
+> +#DYNAMIC_MOTD_PATH=/etc/emptty/motd-gen.sh
+> +
+> +# Allows to override default path to static motd.
+> +#MOTD_PATH=/etc/emptty/motd
+> +
+> +# Foreground color, available only in daemon mode.
+> +#FG_COLOR=LIGHT_BLACK
+> +
+> +# Background color, available only in daemon mode.
+> +#BG_COLOR=BLACK
+> +
+> +# Enables numlock in daemon mode. Possible values are "true" or "false".
+> +#ENABLE_NUMLOCK=false
+> +
+> +# Defines the way, how is logging of session errors handled. Possible values are "rotate", "appending" or "disabled".
+> +SESSION_ERROR_LOGGING=rotate
+> +
+> +# Overrides path of session errors log file
+> +#SESSION_ERROR_LOGGING_FILE=/var/log/emptty/session-errors.[TTY_NUMBER].log
+> +
+> +# If set true, it will not use `.emptty-xauth` file, but the standard `~/.Xauthority` file. This allows to handle xauth issues.
+> +#DEFAULT_XAUTHORITY=false
+> +
+> +#If set true, Xorg will be started as rootless, if system allows and emptty is running in daemon mode.
+> +#ROOTLESS_XORG=false
+> +
+> +#If set true, environmental groups are printed to differ Xorg/Wayland/Custom/UserCustom desktops.
+> +IDENTIFY_ENVS=false
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
+> new file mode 100644
+> index 00000000..45863ecd
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
+> @@ -0,0 +1,13 @@
+> +#!/bin/sh
+> +
+> +if [ -e /dev/input/touchscreen0 ]; then
+> +	echo "Touch screen detected..."
+> +	if [ -n "$LIBINPUT_CALIBRATION_MATRIX" ]; then
+> +		echo "Calibration matrix already present, skipping calibration..."
+> +	else
+> +		echo "Calibrating touchscreen..."
+> +		exec weston-calibrator
+> +	fi
+> +else
+> +	echo "Touch screen not detected, skipping calibration..."
+> +fi
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
+> new file mode 100644
+> index 00000000..1bc7a010
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
+> @@ -0,0 +1,21 @@
+> +[core]
+> +idle-time=0
+> +require-input=false
+> +require-outputs=none
+> +
+> +[shell]
+> +locking=false
+> +animation=zoom
+> +panel-position=top
+> +startup-animation=fade
+> +
+> +[libinput]
+> +touchscreen_calibrator=true
+> +
+> +[autolaunch]
+> +# launch the calibrator on startup if a touchscreen is detected
+> +path=/usr/bin/weston-launch-calibrator
+> +
+> +[screensaver]
+> +# Uncomment path to disable screensaver
+> +#path=@libexecdir@/weston-screensaver
+> -- 
+> 2.34.1
 
 
