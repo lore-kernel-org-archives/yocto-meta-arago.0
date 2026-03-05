@@ -1,209 +1,189 @@
-Return-Path: <p-deshmukh@ti.com>
+Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 97A0DF47CC0
-	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 19:44:07 +0000 (UTC)
-Received: from BL2PR02CU003.outbound.protection.outlook.com (BL2PR02CU003.outbound.protection.outlook.com [52.101.52.49])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.52958.1772739841193952747
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B217BF47CC6
+	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 19:49:37 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (SN4PR2101CU001.outbound.protection.outlook.com [40.93.195.44])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.53091.1772740174558336549
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 05 Mar 2026 11:44:01 -0800
+ Thu, 05 Mar 2026 11:49:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=A14UDgoL;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.52.49, mailfrom: p-deshmukh@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=hJzOq7l6;
+ spf=pass (domain: list.ti.com, ip: 40.93.195.44, mailfrom: prc@list.ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mSSBXwvfrXH+cL/9XQsUosQv916L/S6Wri6NAloMp/9yQ6tPBHQggsdXVanA9hp7cHgkhDTkujjgaVuxLj/YPKmZVVE2d5DIyZrtq2vpdQE2B1zkgacqE2KYtRBGAZXX3+vgXa1uFkK7WiAI5BWHrHBrA5Kb+GLNxSSkcBm1l01zlN3gBqmW0xaxAAq0m0pl/ile8u93FZnfJbHcg0QF/83iSggczyfnFk9D5HQ+v43H2mrz645SnPQFBsWXfnBWMWSypjOnXbhwaWzipw5pLGQrwVUU8et2I6A3T8qahmKoGx+svZfeRe4wV7Aj0fGSc0y77srqfomxPuzpc1GH8A==
+ b=SLC7plEBPslfSR7RZ9wrvGWyXxKyxo8NstWFnaX87h5oRqTZkLz02JRstxijfCzchhViPw/4/B/E6EaLqRbMNL433bfjUWUU3kGYPZ3jP104NzvnL+U5RelCQeg27oPUjaDPxC2kec/QH7YG2V3Pfhn8Ax801OVCKJJyJwy4HyCeT7uecQOI05HZ7+gX2ERI4TTEuyD+H6/wmD1HZj4q2B80cN9dWbZTCVlknnOiEhmQhrn5RqwlfTmDMT8tyF2bZdDkubhDQsEP6jSyNUmYNzKQLpBk2rktdM3QrZRw9DfJ8fg/8uS71ZlqyoHXhxsxlNrMLzPGVzvcq4KzQnbkUg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Oie/8FRPfNiVQgs40qlRa/i2qbjG7pjQIFd0B4wdxYU=;
- b=cGm7vZltP5SZ/GOv855f/RcTATDFLeNyrXCXB+K2UAcDZBUnyXMv9xqlOr/gWau8oYYFtZkVjuNsYewxS40FLSK7OoKHq+YINKT+iz8Kvv0OujrGaPcxM2KyYtGURvouPvzwTlCf8ZPjN1IcfYhyfAU8ypo+LvsT3oDm828dMXh5EdMgU61dozs2w8So1GuhPRkDwbhUtCsi2JA70liiCUtvEfcYHFpSXOn6lEldbOEOktAqBYTf/V2ZtQDsRK4xFpXpn3cUPxeSHrg4VmIxZcokp+J8GpNy9xZP7lQdu1EeolBnhxz/ckLat3WvBOHENUxPq3dtbJpZPW7bO3N4MQ==
+ bh=iQPiza0yTxKG12t4zGXyDh3FWOuXEBGFE0b6UyEQI1Y=;
+ b=knubcfILP9Lu6xMvtQyEucemxPu7SNb1wOtBa8+N71xldTMyWVbFtlUWnVvWeUzzyAS5ZZ+Q21WLH3Ky9VLu6677ofx8/SyP2ocMsR7Yau1/wngT/5CTpFxJWej7PFjLmoS5OxIdxxwP5xRuPNtjqr7zWrL2+sQJ3beL68UcCcHKJAjiahMVt2Fbriyca8k0Dht4FbdGpJQFUoRit1RaVHjGwQ1FSc/Wnpx8O014wY5QP2M2W47RsL0o4K7a1ciJBXrRdzIYmA0v9pFzFCT2vPVSnCOdpG+DsIRAeUgWZ3C83Zy8ir6LwHByJL8bYdJ6Wc/5CzXtxjGTdRVDghr5Vw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
+ action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Oie/8FRPfNiVQgs40qlRa/i2qbjG7pjQIFd0B4wdxYU=;
- b=A14UDgoL7N15pus/zFFF4pSWF+Khv84VQG9EFVzX274jxsZit1YwJqfwbhmglDY0fKv4ywELxXh6EkF0TuQ+fT+wWN83gLXXMjuYS6mDSeLrtahh1jv6Xzqx82JAK+Xt4oPtX7vdvptl1Za7NXCKvyDCvWl3nJcvbFKkUrtqr6U=
-Received: from BN9PR03CA0554.namprd03.prod.outlook.com (2603:10b6:408:138::19)
- by DS0PR10MB7245.namprd10.prod.outlook.com (2603:10b6:8:fd::6) with Microsoft
+ bh=iQPiza0yTxKG12t4zGXyDh3FWOuXEBGFE0b6UyEQI1Y=;
+ b=hJzOq7l6itvGoxokseBSQuRwFIiOZ2AT524QUIgcYKZg6Kc6iT3ppWVe6istXf44sMoMQeTb/P7vzF2J6WdIuaV1tuLebn54YMH4ff486a5Vv8G00xlH3b5yGJ0u2p33LnzQJfznI1xRMnZb8N1Hw3A/R5tIdeDfXzIbO/zFtPyM4uSx85niecUgktB1foBN8Wdaq4h2qR9vc8c4+Y7OIsiYTbRWAeUfBbrrBvduRdDfI0UEXQB+6pSnVNt1ql/zDeKpoTxU0hezJFClYU/xbGc49umiUTdl4/2k6xaHfHjK/qUW2vNL1Tg44dFxwnTb4ymHvTE5tlg/X5aGFPVyWA==
+Received: from PH7PR10CA0019.namprd10.prod.outlook.com (2603:10b6:510:23d::27)
+ by IA3PR10MB8372.namprd10.prod.outlook.com (2603:10b6:208:575::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.14; Thu, 5 Mar
+ 2026 19:49:28 +0000
+Received: from SJ1PEPF000023D9.namprd21.prod.outlook.com
+ (2603:10b6:510:23d:cafe::df) by PH7PR10CA0019.outlook.office365.com
+ (2603:10b6:510:23d::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.23 via Frontend Transport; Thu,
+ 5 Mar 2026 19:49:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=list.ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=list.ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ SJ1PEPF000023D9.mail.protection.outlook.com (10.167.244.74) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18; Thu, 5 Mar 2026 19:43:56 +0000
-Received: from MN1PEPF0000ECD4.namprd02.prod.outlook.com
- (2603:10b6:408:138:cafe::d2) by BN9PR03CA0554.outlook.office365.com
- (2603:10b6:408:138::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.21 via Frontend Transport; Thu,
- 5 Mar 2026 19:43:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- MN1PEPF0000ECD4.mail.protection.outlook.com (10.167.242.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Thu, 5 Mar 2026 19:43:54 +0000
-Received: from DFLE212.ent.ti.com (10.64.6.70) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9700.0 via Frontend Transport; Thu, 5 Mar 2026 19:49:27 +0000
+Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 13:43:43 -0600
-Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE212.ent.ti.com
- (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 13:49:27 -0600
+Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 13:43:43 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE208.ent.ti.com
- (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 13:49:27 -0600
+Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 5 Mar 2026 13:43:43 -0600
-Received: from pratham-TI.dhcp.ti.com (pratham-ti.dhcp.ti.com [172.24.233.101])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 625Jhe5b2933792;
-	Thu, 5 Mar 2026 13:43:41 -0600
-From: Pratham Deshmukh <p-deshmukh@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: <afd@ti.com>, <c-shilwant@ti.com>, <denys@ti.com>, <v-singh1@ti.com>,
-	<khasim@ti.com>, Pratham Deshmukh <p-deshmukh@ti.com>
-Subject: [meta-arago][master][PATCH v6 0/2] Migrate ONNX framework v1.16.1 to v1.18.0 and ONNXRuntime v1.20.1 to v1.23.2
-Date: Fri, 6 Mar 2026 01:13:37 +0530
-Message-ID: <20260305194339.2081304-1-p-deshmukh@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Transport; Thu, 5 Mar 2026 13:49:27 -0600
+Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
+	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 625JnR1m1989466;
+	Thu, 5 Mar 2026 13:49:27 -0600
+Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
+	id 0F71B136F37; Thu,  5 Mar 2026 13:49:27 -0600 (CST)
+From: PRC Automation <prc@list.ti.com>
+To: Pratham Deshmukh <p-deshmukh@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>, <afd@ti.com>, <c-shilwant@ti.com>,
+	<denys@ti.com>, <v-singh1@ti.com>, <khasim@ti.com>
+Subject: Re: [meta-arago][master][PATCH v3 0/4]Migrate GP AI Stacks
+Date: Thu, 5 Mar 2026 13:49:27 -0600
+Message-ID: <20260305194927.2830380-1-prc@list.ti.com>
+X-Mailer: git-send-email 2.43.5
+In-Reply-To: <20260305193125.2045659-1-p-deshmukh@ti.com>
+References: <20260305193125.2045659-1-p-deshmukh@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD4:EE_|DS0PR10MB7245:EE_
-X-MS-Office365-Filtering-Correlation-Id: 17370be6-8529-4106-5b31-08de7aef88f3
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D9:EE_|IA3PR10MB8372:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4c4c301e-8a5f-4196-407e-08de7af04fa2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|36860700016|1800799024|376014|82310400026|34020700016;
+	BCL:0;ARA:13230040|36860700016|82310400026|34020700016|376014|1800799024;
 X-Microsoft-Antispam-Message-Info: 
-	L6O5k+SIxLbHspsL1D81PtR84WFXdOsExaPKJ+MeWz41HRYx0UCzB4C4jsEJWxYHgZz/RaLQWor6CMoUjnF/x7ZcJUnLeUbDEpitw2Ic/U3VFrpgp2ID+hinIZdnmMnUbZqU9bFsUj1LUIqB03pU+rgM2U/6FAZYP5MtjQJUUBqd80ithwalKpRtZVHjqJyZ8EVWC3gs86OpJIpPiPo+AHTEPnuxMC3thoccm34U4100uic23LVKwegJh6GxIb5+LvjF/CGSiQDhgfG7eiB/H0ZsN6zdc1Scz7PJdhr3WPo4JT4etUHMZecKypGc7qtfyOq3JhofabQZDnRJgobuCFMaFZmW1X3c4PnV8Hk+r8WgXR5/9udMHIjoIp8kcsebINAel22E++qFHurlmOhBpBqVn5+0RpGLLhhFaB75Wg0mXDnvFnkfijc6JJeWlMR4x7mZdW+eBbCt2VzmRmXAyaUIS1r5Z/Ys9P6pxAlCwbQtmp39XSPJ5ExgXXqAz5gjY1twaetfb6pS1lhoQiUCpaQs+LGNy5WWbeU5V1IgxjFyjYUUIHQ7TGpzcvv4YW41RSLddoh8oqSjG7BWzvRzUks+f1uDUrHh6LBZ79YzKn4fmdUa0LkmraqQ1vofLrY7+mt5Yloj7zrwaozZFHviXBhdPrxXeddfWOCfe0VhAPhaC009VTYg4FKnUum49gKuhlwycAiO5vqpbiZd5QGs27aieWdGZD76WOLX1O9DSdY=
+	HlSbXaXMaxjluHWGni98YEdxBn0r50yLoeFx8jUEQrSL1un3qWGLn7fxEA7hGx3cE4tBUQWUVvSeiRrYSI/n7tDa/Vm38zmviEuJKTl53oPEYi+ws+M8JLv17l90QcUFIP4wNaRAuN/GofiNaHh5JTFDdo9w/z3Lx+atmiekaPBxz5TE86zYmiYX3B0kLzkREnN86zX0T/rSqovwYhSghQ/74TWJNlTln/oS9cuOg3Uuwmm0Fdq8g6RKs07ekw/xC3U4gy/hX+myxHXDdRW986Fb56UooiDZXW0P80oI4cH/jHxuw6kG7kbD7Oi+t3YBlEQFV8SiIomZ0XgwvSQpLyRG7cfdhJATYd4D2DUBgzUKOKYC177fmm9pnjHUzbDL+3xW2dredkNVJ9jl/BEtXh4RpfXT1xGvkbctmdXy3aQil9LhN6dt57G5HxD/JxI6vrH30FJCDnnJZAcHs/5WF2kLzCQjoNi73Axtuyy12X/mVh4kDLqyw/AJP5WH8JhttfHAG5cuA8CGWfA/OzOFoCxYpYMgZJnEDRG4eiuDawBGJsCccGdM3GkosC2WBc4T3yphfsJtDRv00MhfRsbVd01oe6bt1RiGSykTrD/1/jih5H3R95UBhWGbID9MUWxbzD8GrH5rx6KiFcn6EalC/I4duxa+cQG6WmQameF4aHCqZXdQex20bviP+HhWi1F4cr5tLfjldaLfh8e4EzZyXoZG1ci08kC0jZokzvwIGrCnmpv/a6P9ONBaGuA6JLNSF/bxvJnl88ADbQHCag24ow==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(376014)(82310400026)(34020700016);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(34020700016)(376014)(1800799024);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	xGM3LKmp8Bq0bvThp1JFTM1OJzhjbqM0p/LBD3oDHZJ9fRr82xzBLUV0ubMr4bIx0Z1m/DmeNOwrA54WaJ+eNafTfQ31XnStwzoRAAImAVdKguoksu7KZnjOliCeJe3vxw32sNfeIlHZnVLEBJ1rG93HZE/0e40rQsUcWogLivJh1Er+0sIiFTfQf7wPDeX+MQgI3+sLJKohPTsgV3b+i18c/x8UkOdQzCm4z0j7Upx5Z8otYy85dyjY1xruRCMywMJNqRiroMQmpGrEhEadjvgeYA7pfksHfea8YGUl04EesXBhpmj7lr3Wf3jpUdCNs3mdh8cBGVYp9z/piJnm9McVUXnzJdj9mAV9xMRz2UpDi3J23Z11bAhjox6VxUSuCoErHXTYl88popaRgQPSxbNOLur47oDlxFArGHwyfG/iclG3ycVJpRgo8zhdGvB5
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 19:43:54.5498
+	h6/cxA6pwPoqWShDuRzN3pIuuVQMb3ptEyhefkQlKxJQjrdn847uL7wfdJaAZ0G9X55HVWN5KBFuNqd6NC4zb4Q8t2LV9kCEnPziAPZm1qmo1RwiPODDzdGHWJCRrv2OJ8vB3EMPJragexCz9NW5+h8Z/lMcI7+dODstfPIKzkF3tvll9s95B/05FfnWZ2AAoDfI8mSCXBJvJwmGs9ehD67iGkrWmWgUAUTcpM3pzx7t9kgMIRIYWUNOEYVSIyvRB1mwaeRdgijI1/3rchC5tlYeKnSIK8duhQYjT8LBhXY31EA5u+8cZhVdo1u0zQXqt2Sj2qW/IfGQR8NFdSTQ0nD32IWPzIsxC1iW1DTUz0Zi31TUtsRtQ6iB3ZvMAsnlTciVe4nebEaRieYAoQPzTzRTWMd+FxkcYkXM5+GhXbCRAypp6cm5QWmS6q0CFXPO
+X-OriginatorOrg: list.ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 19:49:27.8723
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17370be6-8529-4106-5b31-08de7aef88f3
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c4c301e-8a5f-4196-407e-08de7af04fa2
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	MN1PEPF0000ECD4.namprd02.prod.outlook.com
+	SJ1PEPF000023D9.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7245
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8372
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 05 Mar 2026 19:44:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17264
+ <meta-arago@lists.yoctoproject.org>; Thu, 05 Mar 2026 19:49:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17265
 
-Hello Team,
+meta-arago / na / 20260305193125.2045659-1-p-deshmukh
 
-This series migrates ONNX and ONNXRUNTIME to the latest stable
-version ONNX v1.18.0 and ONNXRUNTIME v1.23.2.
+PRC Results: FAIL
 
-Benchmarking Results: https://gist.github.com/PrathamTI/e362321e3cb8eae86c7=
-22c41d9c27ae2
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-patches: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+Patches
+----------------------------------------
+All patches passed
 
-### Build Logs:
- - ONNX: https://gist.github.com/PrathamTI/e0dc24c07081c4fd76374ff36d781b22
- - ONNXRUNTIME: https://gist.github.com/PrathamTI/ddb5b6e3f8f9d7434af4c4262=
-45b7993
 
-### Change Logs:
 
-V5 -> V6:
- - Added Authored-by signature in patches
- - Link to V5:
-   https://patchwork.yoctoproject.org/project/arago/cover/20260305180824.18=
-23814-1-p-deshmukh@ti.com/
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  apply-yocto-patch: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Summary:
+- Patch Series: [meta-arago][master][PATCH v3 0/4]Migrate GP AI Stacks
+- Submitter: From: Pratham Deshmukh <p-deshmukh@ti.com>
+- Date: Date: Fri, 6 Mar 2026 01:01:21 +0530
+- Num Patches: 4
+- Mailing List (public inbox) Commit SHA: 7a14ff08b69a63fa89d2efd1794bcb8b6=
+07edb89
 
-V4 -> V5:
- - Fixed incorrect patch version in v4
- - Clean indentation issues
- - Link to V4:
-   https://patchwork.yoctoproject.org/project/arago/cover/20260305154820.14=
-61983-1-p-deshmukh@ti.com/
+Applied to:
+- Repository: lcpd-prc-meta-arago
+- Base Branch: master-wip
+- Commit Author: Ryan Eatmon <reatmon@ti.com>
+- Commit Subject: ti-test: Add iproute2-bridge
+- Commit SHA: 538a04f7f91be5e391fe5613f298d6689ac3a2c0
 
-V3 -> V4:
- - Removed redundant google-nsync dependency
- - Fixed improper tabs/spacing issue
- - Link to V3:=20
-   https://patchwork.yoctoproject.org/project/arago/cover/20260303135623.25=
-64012-1-p-deshmukh@ti.com/
+Patches
+----------------------------------------
+All patches applied
 
-V2 -> V3:
- - Fixed recipe file patch filename references (REPO-1 fix)
- - Link to V2:
-   https://patchwork.yoctoproject.org/project/arago/cover/20260303081105.21=
-11463-1-p-deshmukh@ti.com/
 
-V1 -> V2:
- - Fixed commit message format to follow meta-arago standards
- - Added proper [meta-arago][master] tags to all patch subjects
- - Fixed upstream commit links to point to actual commits instead of file l=
-ines
- - Improved rename detection for better diff readability (-M20)
- - Addressed review feedback from Andrew Davis
- - Link to V1:
-   https://patchwork.yoctoproject.org/project/arago/cover/20260302145846.82=
-8106-1-p-deshmukh@ti.com/
 
-Pratham Deshmukh (2):
-  onnx: upgrade 1.16.1 -> 1.18.0
-  onnxruntime: upgrade 1.20.1 -> 1.23.2
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-repo: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PASS
 
- .../onnx/onnx/0001-Apply-onnx-patch.patch     | 197 ++++++++++++++++++
- ...f-target-check-by-calling-find_pack.patch} |  30 ++-
- ...obuf-directory-exports-from-config-.patch} |  30 ++-
- ...en-trying-to-create-the-final-onnx_g.patch |  34 +++
- ...ol-visibility-when-tests-are-enabled.patch |  36 ++++
- .../onnx/{onnx_1.16.1.bb =3D> onnx_1.18.0.bb}   |  11 +-
- ...g-header-to-fix-uint32_t-compilation.patch |  27 +++
- ...ble-permission-bit-from-source-files.patch |  72 -------
- ...-in-option-text-s-buildings-bindings.patch |  25 ---
- ...D_LIBRARY_PATH-to-search-path-when-n.patch |  32 ---
- ...MAKE_CXX_FLAGS-in-build-information-.patch |  30 ---
- ...ake-Print-out-result-of-find_package.patch |  37 ----
- ...untime_1.20.1.bb =3D> onnxruntime_1.23.2.bb} |  53 ++---
- 13 files changed, 370 insertions(+), 244 deletions(-)
- create mode 100644 meta-arago-extras/recipes-framework/onnx/onnx/0001-Appl=
-y-onnx-patch.patch
- rename meta-arago-extras/recipes-framework/onnx/onnx/{0001-Try-to-find-pac=
-kage-Protobuf-before-checking-if-it-w.patch =3D> 0002-cmake-Fix-Protobuf-ta=
-rget-check-by-calling-find_pack.patch} (39%)
- rename meta-arago-extras/recipes-framework/onnx/onnx/{0002-Do-not-re-expor=
-t-internal-targets-directories.patch =3D> 0003-cmake-Remove-Protobuf-direct=
-ory-exports-from-config-.patch} (40%)
- create mode 100644 meta-arago-extras/recipes-framework/onnx/onnx/0004-Link=
-er-failed-when-trying-to-create-the-final-onnx_g.patch
- create mode 100644 meta-arago-extras/recipes-framework/onnx/onnx/0005-Fix-=
-symbol-visibility-when-tests-are-enabled.patch
- rename meta-arago-extras/recipes-framework/onnx/{onnx_1.16.1.bb =3D> onnx_=
-1.18.0.bb} (87%)
- create mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnxrun=
-time/0001-Added-the-missing-header-to-fix-uint32_t-compilation.patch
- delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnxrun=
-time/0001-Remove-executable-permission-bit-from-source-files.patch
- delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnxrun=
-time/0002-cmake-Fix-typo-in-option-text-s-buildings-bindings.patch
- delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnxrun=
-time/0003-ACL-Do-not-add-LD_LIBRARY_PATH-to-search-path-when-n.patch
- delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnxrun=
-time/0004-Do-not-include-CMAKE_CXX_FLAGS-in-build-information-.patch
- delete mode 100644 meta-arago-extras/recipes-framework/onnxruntime/onnxrun=
-time/0005-cmake-Print-out-result-of-find_package.patch
- rename meta-arago-extras/recipes-framework/onnxruntime/{onnxruntime_1.20.1=
-.bb =3D> onnxruntime_1.23.2.bb} (73%)
 
---=20
-2.34.1
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  yocto-check-layers: FAIL
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master - FAIL
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ERROR: Nothing PROVIDES 'xen-guest-image-minimal'
+ERROR: Required build target 'meta-world-pkgdata' has no buildable provider=
+s.
+
+
 
 
