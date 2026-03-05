@@ -1,783 +1,480 @@
-Return-Path: <p-deshmukh@ti.com>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30B1CF30953
-	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 11:59:23 +0000 (UTC)
-Received: from PH0PR06CU001.outbound.protection.outlook.com (PH0PR06CU001.outbound.protection.outlook.com [40.107.208.40])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.42498.1772711954836128296
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8FA07EEF33D
+	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 13:33:53 +0000 (UTC)
+Received: from BN8PR05CU002.outbound.protection.outlook.com (BN8PR05CU002.outbound.protection.outlook.com [52.101.57.26])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.44162.1772717632669717558
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 05 Mar 2026 03:59:15 -0800
+ Thu, 05 Mar 2026 05:33:53 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=H/NSW6ly;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.208.40, mailfrom: p-deshmukh@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=c2B/qx9/;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.57.26, mailfrom: afd@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=utUkdFn4PNxUFwr98AM9yB0hrS03cSMwUaffkC90UXYs1isqonNFng/K72ghrLL/1xqPz36oYT9/9q4hykgyKEqjel3LW7KQ7FxCRfFvyxPDSW18Sj0o3t69NOREram6+jrXoxLFeem/yBkHauDFrUuxNsSkRVo7qKB+1MKELXJ3gjkPbAueM85EfemwHW5MiCiUJC8c/+fPSjK06/AG857uOHnMGy0IqTYAw10zfDVdPuUNAVFMhTOs06xXWDVLGRMD5NPxHCL4/ebyeiFM3zFlfX0WUkOwMZvYwoUtK/T98qUojD7nMyiJZbcKZXlkbJLICyBz9nzGl+uP+tX1Kw==
+ b=ve6z8auVz6rMvLCMRMDkfonvommtbX6r1OJdu11GNZhriJOioTVUw49fw67qXDsKVpDtRaHS59QPLljOxKh7ILfb/cQ8S8k+DVMwkNHJe2rwvIZlPtoiF8OBbENqTelQcYX51qPL3bakXysK1HeDAfN6veeJCI7HRGJ2+r22WjVkA64JukrqiumrEOpUJUrFQoflD+MZezHglLEwQ/EneBY3ayPlITiBSjbOvMeGApUzoP3L8m4HmFYqL3zkaZg2W0hMY3BrZ5ed5AbXKpm/h3JhBU5m4A3qK950F4FLOU6/ez9QGHFIYtuY1p5BxGaY9NRvdkiIlhM9lVwkJb2pvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3c0rAB9F+APVojdgmbytQ7xEDGHh8Gt633RNXB5j8+A=;
- b=lYgWz5RKQ9R9iiCr1viEGA8KXYJgkCdcdAf0gFdZldkHRx0xgwC2BATsFLChBjW9b+KjR9TCosZIDyN0hizXZe+5615jcz4C1gh6r+eBwblIK+lluNYRJGbhM2AIi+JkKBoRLX0fpwEsaRMryprthr+TUEUhWNKh/+RKCNx9yXuRJVdGlkGutCwgmSzjW3b9d5w3PHorwLyuUtlhsr+tukcb4/8htbU3qfyGlOGgac4l77k649zBfBSBNSELrm1xZQi42HmPuEHDThbLfUHKSwV9fFf5mxfX4mh3zuExQ2IuOknAd69rd+BQ2rLl6fH1LZ8BDuQMc9rzuqrMgy6s4Q==
+ bh=+DVR2XWUyVCSLxWNfIG5OvvfDZ0dQTC8oYz9WZ2ZfVI=;
+ b=ntTk4+ojoIZeO0rSjurCSTHgXgpu2NBHaYSMNm7BqPzFAN6X5eUlp12fE/OYyPhovK/6m+Prv/0cazHsdYS1sdEKFj4K6eUc0eq25PfVnRT6yhXtuNW9y23nOF3/HxLWunfShL/N/NPTISQ3KlmmHFtEomgbaLSx1SSZDLBuV76GehwNWtjejYwXnTqBtw9fRerZls1IhO8tU6XF8ZbTTf8cBrnUA03K5YmkbaybMqwbjfcvB2EUZzKpzruu0vdlQk/QA3mBYhB5RSYV0uzA/0X2G9MAgi+Rau+QJNLVgvFUjf102UIU4aGUfQk+F8uX65LVy7yz0ayJfrv+R1We/g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=konsulko.com smtp.mailfrom=ti.com;
+ 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3c0rAB9F+APVojdgmbytQ7xEDGHh8Gt633RNXB5j8+A=;
- b=H/NSW6ly4lFHz4fObxuJMXBGXwamRZo1MCCGJt/OtLoqJhzo3FFPLNIqbWM3dn3zke4JkuehdWeFryDtihK9S6EXCjVerrInJwSN1Jl/TN8SLeht9y1KJ7b1ulxT3//CaFNaVt4jlQILxv5alJ4I8cGISMwprqmwdDXnP0E96jw=
-Received: from SA9PR13CA0047.namprd13.prod.outlook.com (2603:10b6:806:22::22)
- by PH0PR10MB5684.namprd10.prod.outlook.com (2603:10b6:510:149::13) with
+ bh=+DVR2XWUyVCSLxWNfIG5OvvfDZ0dQTC8oYz9WZ2ZfVI=;
+ b=c2B/qx9/FawU+dKvj6BFH0GTFOIsQIAge6ucGof3rTe9a/OEXIh2wXcCaFdXvM61g4zyhODMiuTewZY/DfTKhgZ7f+Rsr7Y5oLK500N+gAz+tBOlc44RKK+01cuew1bOHc1ZIR2QQ3hE+jJ0wNnvxyaX9G5lthYdZPmhi2ua29U=
+Received: from MW3PR05CA0024.namprd05.prod.outlook.com (2603:10b6:303:2b::29)
+ by IA0PR10MB7604.namprd10.prod.outlook.com (2603:10b6:208:48f::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Thu, 5 Mar
- 2026 11:59:11 +0000
-Received: from SA2PEPF00001504.namprd04.prod.outlook.com
- (2603:10b6:806:22:cafe::e6) by SA9PR13CA0047.outlook.office365.com
- (2603:10b6:806:22::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.17 via Frontend Transport; Thu,
- 5 Mar 2026 11:59:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
+ 2026 13:33:49 +0000
+Received: from MWH0EPF000A672E.namprd04.prod.outlook.com
+ (2603:10b6:303:2b:cafe::f1) by MW3PR05CA0024.outlook.office365.com
+ (2603:10b6:303:2b::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.13 via Frontend Transport; Thu,
+ 5 Mar 2026 13:33:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- SA2PEPF00001504.mail.protection.outlook.com (10.167.242.36) with Microsoft
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ MWH0EPF000A672E.mail.protection.outlook.com (10.167.249.20) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Thu, 5 Mar 2026 11:59:11 +0000
-Received: from DLEE207.ent.ti.com (157.170.170.95) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9678.18 via Frontend Transport; Thu, 5 Mar 2026 13:33:47 +0000
+Received: from DFLE211.ent.ti.com (10.64.6.69) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 05:59:10 -0600
-Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE207.ent.ti.com
- (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 07:33:47 -0600
+Received: from DFLE209.ent.ti.com (10.64.6.67) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 05:59:10 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE205.ent.ti.com
- (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 07:33:47 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE209.ent.ti.com
+ (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 5 Mar 2026 05:59:10 -0600
-Received: from [172.24.233.101] (pratham-ti.dhcp.ti.com [172.24.233.101])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 625Bx7hx1798505;
-	Thu, 5 Mar 2026 05:59:08 -0600
-Message-ID: <c3dec9df-48ea-439c-b88b-cefa04ffc81f@ti.com>
-Date: Thu, 5 Mar 2026 17:29:07 +0530
+ Transport; Thu, 5 Mar 2026 07:33:47 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 625DXkhB1919527;
+	Thu, 5 Mar 2026 07:33:46 -0600
+Message-ID: <63a70bec-83e8-4758-97f5-1acf1d30bf5e@ti.com>
+Date: Thu, 5 Mar 2026 07:33:46 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH v2 2/2] onnxruntime:upgrade 1.20.1 to
- 1.23.2
-To: Andrew Davis <afd@ti.com>, <meta-arago@lists.yoctoproject.org>
-CC: <reatmon@ti.com>, <c-shilwant@ti.com>, <denys@konsulko.com>,
-	<v-singh1@ti.com>, <khasim@ti.com>
-References: <20260303081105.2111463-1-p-deshmukh@ti.com>
- <20260303081105.2111463-3-p-deshmukh@ti.com>
- <15b3b1ca-3ae9-43b5-a531-5a51fdf30a6a@ti.com>
+Subject: Re: [meta-arago][master][PATCH 3/4] tensorflow-lite: upgrade 2.18.0
+ -> 2.20.0
+To: Pratham Deshmukh <p-deshmukh@ti.com>, <meta-arago@lists.yoctoproject.org>
+CC: <c-shilwant@ti.com>, <denys@ti.com>, <v-singh1@ti.com>, <khasim@ti.com>
+References: <20260304123221.1450993-1-p-deshmukh@ti.com>
+ <20260304123221.1450993-4-p-deshmukh@ti.com>
+ <192559e1-e712-4342-9a86-4cc8e54a402f@ti.com>
+ <6b2dc5af-505e-44a3-9c5f-a658c1c87b42@ti.com>
 Content-Language: en-US
-From: Pratham Deshmukh <p-deshmukh@ti.com>
-In-Reply-To: <15b3b1ca-3ae9-43b5-a531-5a51fdf30a6a@ti.com>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <6b2dc5af-505e-44a3-9c5f-a658c1c87b42@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001504:EE_|PH0PR10MB5684:EE_
-X-MS-Office365-Filtering-Correlation-Id: 19831e99-2d27-45cf-c5c1-08de7aae9d2a
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A672E:EE_|IA0PR10MB7604:EE_
+X-MS-Office365-Filtering-Correlation-Id: dbe36351-74a2-4593-3ed2-08de7abbd4c7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|34020700016|36860700016|376014|82310400026|1800799024;
+	BCL:0;ARA:13230040|82310400026|376014|36860700016|34020700016|1800799024|7142099003;
 X-Microsoft-Antispam-Message-Info: 
-	t5EZDDwTrU+ImGGDs/WCDPOi/hR2c9T+WZ8wa3wfm6Pars5/hf/o21GrolpnT+Yc7p/mi1beJAQcZNujrtntA2uoTSU5YUIU37BsHd9JaKowDl7w2AYRIC/bVVdQf6UNJdke2CoQOMTx9Eb5C6aglzG5xyoSqmDdO1r76HBgr9DvTS2ax49PZQ+G89m3aOBuvy1ng9wR+mw74+z/nq7fOoBAEpCjMjZCToHnbnZcw/TDIywEaumbxZHxuqZa2SsvzOwkmdWo3FW0DJ9bwfR0HatIvFxUOkiZRYs3veutVMjtULHATZnZ7U9F6uHeZzOY2HhlZQFXY/6NynDjsLEdM7ZpFG40an39cxuEGAj53AxMN0ihfQ+6Mfr+1wg7j4PiQTIVzeUVDEu/xw70r9IGY+i1vM7bhOEZFVoO+Ny1OtOOaDDyxZ5nSWInkPkrCKJVWHzQ48zGKPZawejYMAUCtGqKBjCgYw9R4d9VR/FzIgQiu6Dn+KREWNWTVdHSDCLns8fEZhxXmJP84YVGwKrZFOt2I9V8tIyzZj2WBVx5snfX7L2xkr+Vv8dnIdlSnfe3UxOE5FgPQN199/+adASB1OgzKdx1gXHB2WOoOajuYbNdqFdLK1mVP1P0cJxNVeKKksZXKylo22oKfYi0ws2/IrtwWnl+ez3ctWzVNkuoTSdq5kpse0HVkKeGkIrxZ+5xJiifnwJJF0LfEQkuRda68aC0kU9uTcFCbp7ngGRohOs=
+	lIODEKSBkG4cjVVc/vHuFKGu/E/xEbgLJ84GJ+uFWfmCkq4yJKAMb6l/p+ZH9aAceEwjSkQ3Z0uPncZfmf5qXGRRkRIxDsghqLTKhgBSyqQ/YfFIB8T82Rt1p4GCLEl5JbJ7PPeq4nilR83U12kraVk8IZxuhQzsmhGUr0DCsni7WXQEQPBoRYs1WA+4kmOoTWKBj9mtaI6ihdd/jiZLNndWMEbWZhpaYHwtmx8t9raNNZ8EcwIT7Pq/hYLymqgJ/vRCyiGPhEKYJm5vJdy5kmGAIhayZv2j87iHWM0Nh7Biv3JjSKyzjUSgwp0CyovR1ouxmc+fzW4TDOqw05D/Eq+kBrsf8byYM4vSI348NSj+yWx8eT5WJrTVdnL7KQQrvbj9/CnUbJ30wHPYFLoJEpY9+83I81Vh/UQpdFxyM4n+PyYCS2dzLpdqU8Y/4YVLq7q92RFZq0ZcrIxaMSsNNdUyTOd38H9Goa7N67Ef91xiuFPXTFunaX7z3SrKBzPeCb/5jLhhRreXxdx7wqVJ1IowW/O7cpG8Cjuwrt/ErrsL5/uTPtyM7sbLKoc/gVgexoEspLCjxo+M/yACs+zC/Wq8/v3mZ0TD8/C6Ua5lRc8sxm0sDs1vnEi5dP07wyJahmMMVFG9wxN1LOiQ/XT4XXloBpt7XBbnrR9lFWB6j6/HKXs+jBon9MTCeGC4d5G7wBgi96/IncGZ52WrlNF65GMDI+S0Kvl/CXXYnltrzi8=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(34020700016)(36860700016)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700016)(34020700016)(1800799024)(7142099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	0zqoqALN7AoZ+hLREJesqzktMT0Az5uT5mBbm57TiW44QelHQ8/S5XI5rjT0Y8oDcK9wyEx/ye8sKknKbyxGbNH1KKz5WTqT6e34S4fWi8t15xRJ5QnTwOMFlrjMFJzay6PQqpoxX9jfWEoU4YrISCNRhMU5Hy/89kMjwbcyPCqWAxHTrTC+krpbsN5NAxB6pzKF/hslj9Xr4xCra6bw40LaP89uS0ivZFFVKLXscAf8ePU0Kgkoxl4e2aKPeDnxfygyiMkoIYxRkiznnxyEUfJfktQsSm1E7mxPRLzXGTs7IGhgpkunsULCtPryBZqaxYmvj3IGNPI/kxF7QuH2Tax4XfrKMOI99rW6M+jtIg49NgVCuP2tfhZRtXiZPxZDX42lIpL+6/SQuJNmpfU37ToEPiOmHeAxOFPeeqfb89qkX4uiOPHILZiNFdhaYM/B
+	+cM22KT7Hb3rOCPmjcFpJpr5n6DJVYqqCEDKAIfHvZa8joE6e+z8Jk8JT5khiSEKYq8xkFWQ9P0zEC7DtYFskUPzm4l7OGO+ti0xi1shi1UEsDCXmpR/fkdP/K3uCVAXDG3k5fvxd2cikRSd0Lo5i2FwDMERLP7fCrx38bz9S7+D8pvJxDJSX5kGZWknBmyW9Jc0UvvoLprBpEU1Fnv+LtkUM9smf+gfsLlDSzLJPKxbVsNh/LWkZzH5FDv2JYeIuluz9gE7clmsorpDsJTdh597/HT3gQ9vhUqCH/f435TLbBlJFoXJPdlSWXdXltfivRVa0YljfuQ099vMHeMM6nHU1wMQPF6CdmhDhCd7x2ADbdBGZTtcpfmGp9CFQeQ3PvaEzK3WhrPBk5x6DFQ7CBMCC3ASnWRvlGJJeSNfGDgB38TsWVLEspO1THL1ID9/
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 11:59:11.2150
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 13:33:47.9126
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19831e99-2d27-45cf-c5c1-08de7aae9d2a
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbe36351-74a2-4593-3ed2-08de7abbd4c7
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	SA2PEPF00001504.namprd04.prod.outlook.com
+	MWH0EPF000A672E.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB5684
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR10MB7604
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 05 Mar 2026 11:59:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17228
+ <meta-arago@lists.yoctoproject.org>; Thu, 05 Mar 2026 13:33:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17229
 
-
-On 03/03/26 7:59 pm, Andrew Davis wrote:
-> On 3/3/26 2:11 AM, Pratham Deshmukh wrote:
->> We are migrating ONNXRuntime from v1.20.1 to the latest
->> stable version v1.23.2.
->>
->> Removed Patches (Fixed Upstream):
->> =C2=A0=C2=A0 =E2=80=A2 0001-Remove-executable-permission-bit-from-source=
--files.patch
->> =C2=A0=C2=A0=C2=A0=C2=A0 - Commit Link:=20
->> https://github.com/microsoft/onnxruntime/commit/392961ffaef52f5a51c230e2=
-6df8c16492580160
->> =C2=A0=C2=A0 =E2=80=A2 0002-cmake-Fix-typo-in-option-text-s-buildings-bi=
-ndings.patch
->> =C2=A0=C2=A0=C2=A0=C2=A0 - Commit Link:=20
->> https://github.com/microsoft/onnxruntime/commit/fd22509e3645a23e62c51680=
-b534201c324d3342
->> =C2=A0=C2=A0 =E2=80=A2 0003-ACL-Do-not-add-LD_LIBRARY_PATH-to-search-pat=
-h-when-n.patch
->> =C2=A0=C2=A0=C2=A0=C2=A0 - Commit Link:=20
->> https://github.com/microsoft/onnxruntime/commit/49e94da68244fa51c28396d0=
-642707121eacc527
->> =C2=A0=C2=A0 =E2=80=A2 0004-Do-not-include-CMAKE_CXX_FLAGS-in-build-info=
-rmation-.patch
->> =C2=A0=C2=A0=C2=A0=C2=A0 - Commit Link:=20
->> https://github.com/microsoft/onnxruntime/commit/3fb2dc73f53b84b3df81639e=
-b6340c1bb5ec774d
->> =C2=A0=C2=A0 =E2=80=A2 0005-cmake-Print-out-result-of-find_package.patch
->> =C2=A0=C2=A0=C2=A0=C2=A0 - With the updated helper_functions.cmake this =
-patch is no=20
->> longer needed.
->>
->> Added Patches (New Requirements):
->> =C2=A0=C2=A0 =E2=80=A2 0001-Added-the-missing-header-to-fix-uint32_t-com=
-pilation.patch
->> =C2=A0=C2=A0=C2=A0=C2=A0 - Fixes missing stdint.h include causing uint32=
-_t compilation=20
->> errors
->>
->> Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
->> ---
->> =C2=A0 ...g-header-to-fix-uint32_t-compilation.patch | 27 +++++++
->> =C2=A0 ...ble-permission-bit-from-source-files.patch | 72 --------------=
------
->> =C2=A0 ...-in-option-text-s-buildings-bindings.patch | 25 -------
->> =C2=A0 ...D_LIBRARY_PATH-to-search-path-when-n.patch | 32 ---------
->> =C2=A0 ...MAKE_CXX_FLAGS-in-build-information-.patch | 30 --------
->> =C2=A0 ...ake-Print-out-result-of-find_package.patch | 37 ----------
->> =C2=A0 ...untime_1.20.1.bb =3D> onnxruntime_1.23.2.bb} | 68 ++++++++++--=
-------
->> =C2=A0 7 files changed, 64 insertions(+), 227 deletions(-)
->> =C2=A0 create mode 100644=20
->> meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0001-Added-t=
-he-missing-header-to-fix-uint32_t-compilation.patch
->> =C2=A0 delete mode 100644=20
->> meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0001-Remove-=
-executable-permission-bit-from-source-files.patch
->> =C2=A0 delete mode 100644=20
->> meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0002-cmake-F=
-ix-typo-in-option-text-s-buildings-bindings.patch
->> =C2=A0 delete mode 100644=20
->> meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0003-ACL-Do-=
-not-add-LD_LIBRARY_PATH-to-search-path-when-n.patch
->> =C2=A0 delete mode 100644=20
->> meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0004-Do-not-=
-include-CMAKE_CXX_FLAGS-in-build-information-.patch
->> =C2=A0 delete mode 100644=20
->> meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0005-cmake-P=
-rint-out-result-of-find_package.patch
->> =C2=A0 rename=20
->> meta-arago-extras/recipes-framework/onnxruntime/{onnxruntime_1.20.1.bb=20
->> =3D> onnxruntime_1.23.2.bb} (46%)
->>
->> diff --git=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0001-Added=
--the-missing-header-to-fix-uint32_t-compilation.patch=20
->> b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0001-Added=
--the-missing-header-to-fix-uint32_t-compilation.patch=20
->>
->> new file mode 100644
->> index 00000000..21e0a301
->> --- /dev/null
->> +++=20
->> b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0001-Added=
--the-missing-header-to-fix-uint32_t-compilation.patch
->> @@ -0,0 +1,27 @@
->> +From cb67823df8cfa19cf1c0c0ddd1b9aa29ee7773ba Mon Sep 17 00:00:00 2001
->> +From: Pratham Deshmukh <p-deshmukh@ti.com>
->> +Date: Thu, 12 Feb 2026 16:02:40 +0530
->> +Subject: [PATCH] Added the missing header to fix uint32_t=20
->> compilation error.
->> +
->> +Upstream-Status: Backport=20
->> [https://github.com/microsoft/onnxruntime/commit/d6e712c]
->> +
->> +Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
->> +---
->> + onnxruntime/core/common/semver.h | 1 +
->> + 1 file changed, 1 insertion(+)
->> +
->> +diff --git a/onnxruntime/core/common/semver.h=20
->> b/onnxruntime/core/common/semver.h
->> +index a07c24f016..98bb6a2cef 100644
->> +--- a/onnxruntime/core/common/semver.h
->> ++++ b/onnxruntime/core/common/semver.h
->> +@@ -3,6 +3,7 @@
->> +
->> + #pragma once
->> +
->> ++#include <cstdint>
->> + #include <optional>
->> + #include <string_view>
->> +
->> +--
->> +2.34.1
->> +
->> diff --git=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0001-Remov=
-e-executable-permission-bit-from-source-files.patch=20
->> b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0001-Remov=
-e-executable-permission-bit-from-source-files.patch=20
->>
->> deleted file mode 100644
->> index b64e32ca..00000000
->> ---=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0001-Remov=
-e-executable-permission-bit-from-source-files.patch
->> +++ /dev/null
->> @@ -1,72 +0,0 @@
->> -From 626066499c34c524924302342fc071f32442caae Mon Sep 17 00:00:00 2001
->> -From: Andrew Davis <afd@ti.com>
->> -Date: Sun, 12 Jan 2025 12:48:49 -0600
->> -Subject: [PATCH] Remove executable permission bit from source files
->> -
->> -These are source files, not executables, do not set the executable
->> -permission bit on these files.
->> -
->> -Upstream-Status: Pending
->> -
->> -Signed-off-by: Andrew Davis <afd@ti.com>
->> ----
->> - onnxruntime/contrib_ops/cpu/utils/console_dumper.h=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
->> - onnxruntime/core/optimizer/bias_softmax_fusion.cc=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 0
->> - onnxruntime/core/providers/acl/acl_execution_provider.h=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 0
->> - onnxruntime/core/providers/acl/acl_fwd.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 0
->> - onnxruntime/core/providers/acl/acl_provider_factory.cc=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 | 0
->> - onnxruntime/core/providers/acl/math/gemm.cc=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- | 0
->> - onnxruntime/core/providers/acl/nn/batch_norm.cc=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 0
->> - onnxruntime/core/providers/acl/nn/batch_norm.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 0
->> - onnxruntime/test/optimizer/graph_transform_test.cc=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 0
->> - onnxruntime/test/optimizer/graph_transform_test_layernorm.cc | 0
->> - 10 files changed, 1 insertion(+)
->> - mode change 100755 =3D> 100644=20
->> onnxruntime/core/optimizer/bias_softmax_fusion.cc
->> - mode change 100755 =3D> 100644=20
->> onnxruntime/core/providers/acl/acl_execution_provider.h
->> - mode change 100755 =3D> 100644 onnxruntime/core/providers/acl/acl_fwd.=
-h
->> - mode change 100755 =3D> 100644=20
->> onnxruntime/core/providers/acl/acl_provider_factory.cc
->> - mode change 100755 =3D> 100644=20
->> onnxruntime/core/providers/acl/math/gemm.cc
->> - mode change 100755 =3D> 100644=20
->> onnxruntime/core/providers/acl/nn/batch_norm.cc
->> - mode change 100755 =3D> 100644=20
->> onnxruntime/core/providers/acl/nn/batch_norm.h
->> - mode change 100755 =3D> 100644=20
->> onnxruntime/test/optimizer/graph_transform_test.cc
->> - mode change 100755 =3D> 100644=20
->> onnxruntime/test/optimizer/graph_transform_test_layernorm.cc
->> -
->> -diff --git a/onnxruntime/contrib_ops/cpu/utils/console_dumper.h=20
->> b/onnxruntime/contrib_ops/cpu/utils/console_dumper.h
->> -index 9ebc44f441..64bd2b7b18 100644
->> ---- a/onnxruntime/contrib_ops/cpu/utils/console_dumper.h
->> -+++ b/onnxruntime/contrib_ops/cpu/utils/console_dumper.h
->> -@@ -3,6 +3,7 @@
->> -
->> - #pragma once
->> - #include <string>
->> -+#include <iostream>
->> - #include "core/framework/ort_value.h"
->> - #include "core/framework/float16.h"
->> - #include "contrib_ops/cpu/utils/debug_macros.h"
->> -diff --git a/onnxruntime/core/optimizer/bias_softmax_fusion.cc=20
->> b/onnxruntime/core/optimizer/bias_softmax_fusion.cc
->> -old mode 100755
->> -new mode 100644
->> -diff --git a/onnxruntime/core/providers/acl/acl_execution_provider.h=20
->> b/onnxruntime/core/providers/acl/acl_execution_provider.h
->> -old mode 100755
->> -new mode 100644
->> -diff --git a/onnxruntime/core/providers/acl/acl_fwd.h=20
->> b/onnxruntime/core/providers/acl/acl_fwd.h
->> -old mode 100755
->> -new mode 100644
->> -diff --git a/onnxruntime/core/providers/acl/acl_provider_factory.cc=20
->> b/onnxruntime/core/providers/acl/acl_provider_factory.cc
->> -old mode 100755
->> -new mode 100644
->> -diff --git a/onnxruntime/core/providers/acl/math/gemm.cc=20
->> b/onnxruntime/core/providers/acl/math/gemm.cc
->> -old mode 100755
->> -new mode 100644
->> -diff --git a/onnxruntime/core/providers/acl/nn/batch_norm.cc=20
->> b/onnxruntime/core/providers/acl/nn/batch_norm.cc
->> -old mode 100755
->> -new mode 100644
->> -diff --git a/onnxruntime/core/providers/acl/nn/batch_norm.h=20
->> b/onnxruntime/core/providers/acl/nn/batch_norm.h
->> -old mode 100755
->> -new mode 100644
->> -diff --git a/onnxruntime/test/optimizer/graph_transform_test.cc=20
->> b/onnxruntime/test/optimizer/graph_transform_test.cc
->> -old mode 100755
->> -new mode 100644
->> -diff --git=20
->> a/onnxruntime/test/optimizer/graph_transform_test_layernorm.cc=20
->> b/onnxruntime/test/optimizer/graph_transform_test_layernorm.cc
->> -old mode 100755
->> -new mode 100644
->> diff --git=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0002-cmake=
--Fix-typo-in-option-text-s-buildings-bindings.patch=20
->> b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0002-cmake=
--Fix-typo-in-option-text-s-buildings-bindings.patch=20
->>
->> deleted file mode 100644
->> index 88423190..00000000
->> ---=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0002-cmake=
--Fix-typo-in-option-text-s-buildings-bindings.patch
->> +++ /dev/null
->> @@ -1,25 +0,0 @@
->> -From be67663e9a44d146033aeb97804145a60b4032db Mon Sep 17 00:00:00 2001
->> -From: Andrew Davis <afd@ti.com>
->> -Date: Thu, 16 Jan 2025 12:35:03 -0600
->> -Subject: [PATCH] [cmake] Fix typo in option text s/buildings/bindings
->> -
->> -Upstream-Status: Pending
->> -
->> -Signed-off-by: Andrew Davis <afd@ti.com>
->> ----
->> - cmake/CMakeLists.txt | 2 +-
->> - 1 file changed, 1 insertion(+), 1 deletion(-)
->> -
->> -diff --git a/cmake/CMakeLists.txt b/cmake/CMakeLists.txt
->> -index d90a2a3550..e0cde678db 100644
->> ---- a/cmake/CMakeLists.txt
->> -+++ b/cmake/CMakeLists.txt
->> -@@ -77,7 +77,7 @@ option(onnxruntime_GENERATE_TEST_REPORTS "Enable=20
->> test report generation" OFF)
->> - option(onnxruntime_ENABLE_STATIC_ANALYSIS "Enable static analysis"=20
->> OFF)
->> - option(onnxruntime_USE_CUSTOM_STATIC_ANALYSIS_RULES "Use a custom=20
->> SDL Rule. It is mainly for our CI build" OFF)
->> - option(onnxruntime_REDIRECT_STATIC_ANALYSIS_OUTPUTS_TO_FILE "Use a=20
->> custom SDL Rule. It is mainly for our CI build" OFF)
->> --option(onnxruntime_ENABLE_PYTHON "Enable python buildings" OFF)
->> -+option(onnxruntime_ENABLE_PYTHON "Enable python bindings" OFF)
->> - # Enable it may cause LNK1169 error
->> - option(onnxruntime_ENABLE_MEMLEAK_CHECKER "Experimental: Enable=20
->> memory leak checker in Windows debug build" OFF)
->> - option(onnxruntime_USE_CUDA "Build with CUDA support" OFF)
->> diff --git=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0003-ACL-D=
-o-not-add-LD_LIBRARY_PATH-to-search-path-when-n.patch=20
->> b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0003-ACL-D=
-o-not-add-LD_LIBRARY_PATH-to-search-path-when-n.patch=20
->>
->> deleted file mode 100644
->> index 75cb9b18..00000000
->> ---=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0003-ACL-D=
-o-not-add-LD_LIBRARY_PATH-to-search-path-when-n.patch
->> +++ /dev/null
->> @@ -1,32 +0,0 @@
->> -From b1689f3f963f4c07d3329a838569ac4c2fa2bd5f Mon Sep 17 00:00:00 2001
->> -From: Andrew Davis <afd@ti.com>
->> -Date: Thu, 16 Jan 2025 12:38:13 -0600
->> -Subject: [PATCH] [ACL] Do not add LD_LIBRARY_PATH to search path=20
->> when not
->> - defined
->> -
->> -If LD_LIBRARY_PATH is not defined a blank "-L" is added to the
->> -link command. This causes the next object to be linked to get
->> -treated as if it was a search path and causes link failure.
->> -
->> -Upstream-Status: Pending
->> -
->> -Signed-off-by: Andrew Davis <afd@ti.com>
->> ----
->> - cmake/onnxruntime_providers_acl.cmake | 4 +++-
->> - 1 file changed, 3 insertions(+), 1 deletion(-)
->> -
->> -diff --git a/cmake/onnxruntime_providers_acl.cmake=20
->> b/cmake/onnxruntime_providers_acl.cmake
->> -index e23d289271..19d41dc73f 100644
->> ---- a/cmake/onnxruntime_providers_acl.cmake
->> -+++ b/cmake/onnxruntime_providers_acl.cmake
->> -@@ -13,7 +13,9 @@
->> -=C2=A0=C2=A0=C2=A0=C2=A0 onnxruntime_common onnxruntime_framework onnx =
-onnx_proto=20
->> ${PROTOBUF_LIB} flatbuffers::flatbuffers Boost::mp11 safeint_interface
->> -=C2=A0=C2=A0 )
->> -
->> --=C2=A0 target_link_libraries(onnxruntime_providers_acl=20
->> -L$ENV{LD_LIBRARY_PATH})
->> -+=C2=A0 if (DEFINED ENV{LD_LIBRARY_PATH})
->> -+=C2=A0=C2=A0=C2=A0 target_link_libraries(onnxruntime_providers_acl=20
->> -L$ENV{LD_LIBRARY_PATH})
->> -+=C2=A0 endif()
->> -=C2=A0=C2=A0 add_dependencies(onnxruntime_providers_acl=20
->> ${onnxruntime_EXTERNAL_DEPENDENCIES})
->> -=C2=A0=C2=A0 set_target_properties(onnxruntime_providers_acl PROPERTIES=
- FOLDER=20
->> "ONNXRuntime")
->> -=C2=A0=C2=A0 target_include_directories(onnxruntime_providers_acl
->> diff --git=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0004-Do-no=
-t-include-CMAKE_CXX_FLAGS-in-build-information-.patch=20
->> b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0004-Do-no=
-t-include-CMAKE_CXX_FLAGS-in-build-information-.patch=20
->>
->> deleted file mode 100644
->> index e8f086a8..00000000
->> ---=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0004-Do-no=
-t-include-CMAKE_CXX_FLAGS-in-build-information-.patch
->> +++ /dev/null
->> @@ -1,30 +0,0 @@
->> -From 7ea6e35d3630f8c19080a0cb5a4a4c55c242a36b Mon Sep 17 00:00:00 2001
->> -From: Andrew Davis <afd@ti.com>
->> -Date: Thu, 16 Jan 2025 12:40:57 -0600
->> -Subject: [PATCH] Do not include CMAKE_CXX_FLAGS in build information=20
->> string
->> -
->> -While this information can be useful, it often includes information
->> -that may be specific to the build machine (like include paths with
->> -usernames, e.g. -I /home/myname/externalproject/fakeroot/inlcude).
->> -
->> -This causes issues for reproducible builds (resulting binaries will
->> -be different between different build machines).
->> -
->> -Upstream-Status: Pending
->> -
->> -Signed-off-by: Andrew Davis <afd@ti.com>
->> ----
->> - cmake/CMakeLists.txt | 1 -
->> - 1 file changed, 1 deletion(-)
->> -
->> -diff --git a/cmake/CMakeLists.txt b/cmake/CMakeLists.txt
->> -index e0cde678db..e0d8fd0a17 100644
->> ---- a/cmake/CMakeLists.txt
->> -+++ b/cmake/CMakeLists.txt
->> -@@ -1439,7 +1439,6 @@ if (Git_FOUND)
->> -=C2=A0=C2=A0 string(APPEND ORT_BUILD_INFO "git-branch=3D${ORT_GIT_BRANC=
-H},=20
->> git-commit-id=3D${ORT_GIT_COMMIT}, ")
->> - endif()
->> - string(APPEND ORT_BUILD_INFO "build type=3D${CMAKE_BUILD_TYPE}")
->> --string(APPEND ORT_BUILD_INFO ", cmake cxx flags: ${CMAKE_CXX_FLAGS}")
->> - configure_file(onnxruntime_config.h.in=20
->> ${CMAKE_CURRENT_BINARY_DIR}/onnxruntime_config.h)
->> - get_property(onnxruntime_GENERATOR_IS_MULTI_CONFIG GLOBAL PROPERTY=20
->> GENERATOR_IS_MULTI_CONFIG)
->> diff --git=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0005-cmake=
--Print-out-result-of-find_package.patch=20
->> b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0005-cmake=
--Print-out-result-of-find_package.patch=20
->>
->> deleted file mode 100644
->> index 249aadee..00000000
->> ---=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime/0005-cmake=
--Print-out-result-of-find_package.patch
->> +++ /dev/null
->> @@ -1,37 +0,0 @@
->> -From a73d9b9f4dba6d164e128d6c768d1b0a04e969ab Mon Sep 17 00:00:00 2001
->> -From: Andrew Davis <afd@ti.com>
->> -Date: Thu, 16 Jan 2025 12:47:27 -0600
->> -Subject: [PATCH] [cmake] Print out result of find_package
->> -
->> -A verbose only message is already printed that states the CMake will
->> -attempt to find a package using find_package():
->> -
->> -> Trying find_package(...) before FetchContent
->> -
->> -But it never prints if the package was found this way or not.
->> -Add this result message.
->> -
->> -Upstream-Status: Pending
->> -
->> -Signed-off-by: Andrew Davis <afd@ti.com>
->> ----
->> - cmake/external/helper_functions.cmake | 3 +++
->> - 1 file changed, 3 insertions(+)
->> -
->> -diff --git a/cmake/external/helper_functions.cmake=20
->> b/cmake/external/helper_functions.cmake
->> -index e3f2211f96..9ca6a967da 100644
->> ---- a/cmake/external/helper_functions.cmake
->> -+++ b/cmake/external/helper_functions.cmake
->> -@@ -138,9 +138,12 @@ macro(onnxruntime_fetchcontent_makeavailable)
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unset(__cmake_fpArgs)
->> -
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if(${__cmake_contentNa=
-me}_FOUND)
->> -+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 message(VERBOSE=
- "Found ${__cmake_contentName} with=20
->> find_package()")
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 FetchConte=
-nt_SetPopulated(${__cmake_contentName})
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 FetchConte=
-nt_GetProperties(${__cmake_contentName})
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 continue()
->> -+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else()
->> -+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 message(VERBOSE=
- "Could not find ${__cmake_contentName}=20
->> with find_package()")
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 endif()
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 endif()
->> -=C2=A0=C2=A0=C2=A0=C2=A0 else()
->> diff --git=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_1.20.1.bb=
-=20
->> b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_1.23.2.bb
->> similarity index 46%
->> rename from=20
->> meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_1.20.1.bb
->> rename to=20
->> meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_1.23.2.bb
->> index a5026484..f47523ca 100644
->> ---=20
->> a/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_1.20.1.bb
->> +++=20
->> b/meta-arago-extras/recipes-framework/onnxruntime/onnxruntime_1.23.2.bb
->> @@ -4,33 +4,37 @@ HOMEPAGE =3D "https://www.onnxruntime.ai/"
->> =C2=A0 LICENSE =3D "MIT"
->> =C2=A0 LIC_FILES_CHKSUM =3D=20
->> "file://LICENSE;md5=3D0f7e3b1308cb5c00b372a6e78835732d"
->> =C2=A0 -SRC_URI =3D "\
->> -=20
->> git://github.com/microsoft/onnxruntime.git;protocol=3Dhttps;branch=3Drel=
--1.20.1=20
->> \
->> -=20
->> git://github.com/HowardHinnant/date.git;protocol=3Dhttps;branch=3Dmaster=
-;name=3Ddate;destsuffix=3D${S}/cmake/external/date=20
->> \
->> -=20
->> git://github.com/pytorch/cpuinfo.git;protocol=3Dhttps;branch=3Dmain;name=
-=3Dcpuinfo;destsuffix=3D${S}/cmake/external/cpuinfo=20
->> \
->> -=20
->> git://github.com/google/flatbuffers.git;protocol=3Dhttps;branch=3Dmaster=
-;name=3Dflatbuffers;destsuffix=3D${S}/cmake/external/flatbuffers=20
->> \
->> -=20
->> git://github.com/dcleblanc/SafeInt.git;protocol=3Dhttps;branch=3Dmaster;=
-name=3Dsafeint;destsuffix=3D${S}/cmake/external/safeint=20
->> \
->> -=20
->> git://gitlab.com/libeigen/eigen.git;protocol=3Dhttps;branch=3D3.4;name=
-=3Deigen;destsuffix=3D${S}/cmake/external/eigen=20
->> \
->> -=20
->> git://github.com/google/nsync.git;protocol=3Dhttps;branch=3Dmaster;name=
-=3Dnsync;destsuffix=3D${S}/cmake/external/nsync=20
->> \
->> -"
->> +SRC_URI =3D "\
->> +=20
->> git://github.com/microsoft/onnxruntime.git;protocol=3Dhttps;branch=3Drel=
--1.23.2=20
->> \
->> +=20
->> git://github.com/HowardHinnant/date.git;protocol=3Dhttps;branch=3Dmaster=
-;name=3Ddate;destsuffix=3D${S}/_deps/date-src=20
->> \
->
-> These used to be extracted to ${S}/cmake/external/x and now you=20
-> extract them to ${S}/_deps/x,
-> I do like the new location, but it might reduce the churn in this one=20
-> patch if you moved
-> their destination in a standalone patch first.
->
-This is something that I observed while building on my host. All these=20
-dependencies were extracted in ${S}/_deps/x so maintained the same in=20
-the recipe.
- >but it might reduce the churn in this one patch if you moved their=20
-destination in a standalone patch >first
-
-Are there any benefits in doing so?
-
->> +=20
->> git://github.com/pytorch/cpuinfo.git;protocol=3Dhttps;branch=3Dmain;name=
-=3Dcpuinfo;destsuffix=3D${S}/_deps/pytorch_cpuinfo-src=20
->> \
->> +=20
->> git://github.com/google/flatbuffers.git;protocol=3Dhttps;branch=3Dmaster=
-;name=3Dflatbuffers;destsuffix=3D${S}/_deps/flatbuffers-src=20
->> \
->> +=20
->> git://github.com/dcleblanc/SafeInt.git;protocol=3Dhttps;branch=3Dmaster;=
-name=3Dsafeint;destsuffix=3D${S}/_deps/safeint-src=20
->> \
->> +=20
->> git://github.com/eigen-mirror/eigen.git;protocol=3Dhttps;branch=3Dmaster=
-;name=3Deigen;destsuffix=3D${S}/_deps/eigen3-src=20
->> \
->> +=20
->> git://github.com/google/nsync.git;protocol=3Dhttps;branch=3Dmaster;name=
-=3Dnsync;destsuffix=3D${S}/_deps/google_nsync-src=20
->> \
->
-> I thought new versions of onnxruntime didn't need google-nsync anymore?
->
-Removed this. Will update in v3 series.
->> +=20
->> git://github.com/boostorg/mp11.git;protocol=3Dhttps;branch=3Dmaster;name=
-=3Dmp11;destsuffix=3D${S}/_deps/mp11-src=20
->> \
->> +=20
->> git://github.com/dmlc/dlpack.git;protocol=3Dhttps;branch=3Dmain;name=3Dd=
-lpack;destsuffix=3D${S}/_deps/dlpack-src=20
->> \
->> +=20
->> git://github.com/abseil/abseil-cpp.git;protocol=3Dhttps;branch=3Dlts_202=
-5_05_12;name=3Dabseil-cpp;destsuffix=3D${S}/_deps/abseil_cpp-src=20
->> \
->> +=20
->> git://github.com/google/re2.git;protocol=3Dhttps;branch=3Dmain;name=3Dre=
-2;destsuffix=3D${S}/_deps/re2-src=20
->> \
->
-> Tabs are used everywhere else in this file, use them for this list=20
-> too. (matches
-> how it was before also)
->
-ok
->> +"
->> =C2=A0 SRC_URI +=3D "\
->> - file://0002-cmake-Fix-typo-in-option-text-s-buildings-bindings.patch \
->> -=20
->> file://0003-ACL-Do-not-add-LD_LIBRARY_PATH-to-search-path-when-n.patch \
->> -=20
->> file://0004-Do-not-include-CMAKE_CXX_FLAGS-in-build-information-.patch \
->> -=C2=A0=C2=A0=C2=A0 file://0005-cmake-Print-out-result-of-find_package.p=
-atch \
->> - file://0001-Remove-executable-permission-bit-from-source-files.patch \
->> +=20
->> file://0001-Added-the-missing-header-to-fix-uint32_t-compilation.patch \
->> =C2=A0 "
->> =C2=A0 =C2=A0 SRCREV_FORMAT =3D "default"
->> -SRCREV =3D "5c1b7ccbff7e5141c1da7a9d963d660e5741c319"
->> +SRCREV =3D "a83fc4d58cb48eb68890dd689f94f28288cf2278"
->> =C2=A0 SRCREV_date =3D "6e921e1b1d21e84a5c82416ba7ecd98e33a436d0"
->> -SRCREV_cpuinfo =3D "ca678952a9a8eaa6de112d154e8e104b22f9ab3f"
->> +SRCREV_cpuinfo =3D "8a1772a0c5c447df2d18edf33ec4603a8c9c04a6"
->> =C2=A0 SRCREV_flatbuffers =3D "0100f6a5779831fa7a651e4b67ef389a8752bd9b"
->> =C2=A0 SRCREV_safeint =3D "4cafc9196c4da9c817992b20f5253ef967685bf8"
->> -SRCREV_eigen =3D "e7248b26a1ed53fa030c5c459f7ea095dfd276ac"
->> +SRCREV_eigen =3D "1d8b82b0740839c0de7f1242a3585e3390ff5f33"
->> =C2=A0 SRCREV_nsync =3D "13de152c2a1cd73ff4df97bd2c406b6d15d34af3"
->> +SRCREV_mp11 =3D "0a0b5fb001ce0233ae3a6f99d849c0649e5a7361"
->> +SRCREV_dlpack =3D "5c210da409e7f1e51ddf445134a4376fdbd70d7d"
->> +SRCREV_abseil-cpp =3D "bc257a88f7c1939f24e0379f14a3589e926c950c"
->> +SRCREV_re2 =3D "6dcd83d60f7944926bfd308cc13979fc53dd69ca"
->> =C2=A0 -# Only compatible with armv7a, armv7ve, and aarch64
->> +#Only compatible with armv7a, armv7ve, and aarch64
->
-> Unneeded change.
->
-Will fix this.
->> =C2=A0 COMPATIBLE_MACHINE =3D "(^$)"
->> =C2=A0 COMPATIBLE_MACHINE:aarch64 =3D "(.*)"
->> =C2=A0 COMPATIBLE_MACHINE:armv7a =3D=20
->> "${@bb.utils.contains("TUNE_FEATURES","neon","(.*)","(^$)",d)}"
->> @@ -38,11 +42,9 @@ COMPATIBLE_MACHINE:armv7ve =3D=20
->> "${@bb.utils.contains("TUNE_FEATURES","neon","(.*)"
->> =C2=A0 =C2=A0 DEPENDS +=3D "\
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 onnx \
->> -=C2=A0=C2=A0=C2=A0 abseil-cpp \
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 protobuf \
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 protobuf-native \
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 boost \
->> -=C2=A0=C2=A0=C2=A0 re2 \
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nlohmann-json \
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 microsoft-gsl \
->> =C2=A0 "
->> @@ -78,22 +80,26 @@ PACKAGECONFIG[armnn] =3D=20
->> "-Donnxruntime_USE_ARMNN=3DON, -Donnxruntime_USE_ARMNN=3DOFF,
->> =C2=A0 PACKAGECONFIG[armnn-relu] =3D "-Donnxruntime_ARMNN_RELU_USE_CPU=
-=3DON,=20
->> -Donnxruntime_ARMNN_RELU_USE_CPU=3DOFF"
->> =C2=A0 PACKAGECONFIG[armnn-bn] =3D "-Donnxruntime_ARMNN_BN_USE_CPU=3DON,=
-=20
->> -Donnxruntime_ARMNN_BN_USE_CPU=3DOFF"
->> =C2=A0 -EXTRA_OECMAKE:append =3D " \
->> -=C2=A0=C2=A0=C2=A0 -DFETCHCONTENT_FULLY_DISCONNECTED=3DON \
->> -=C2=A0=C2=A0=C2=A0 -DFETCHCONTENT_SOURCE_DIR_DATE=3D${S}/cmake/external=
-/date \
->> -=20
->> -DFETCHCONTENT_SOURCE_DIR_PYTORCH_CPUINFO=3D${S}/cmake/external/cpuinfo =
+On 3/5/26 3:08 AM, Pratham Deshmukh wrote:
+> On 04/03/26 10:21 pm, Andrew Davis wrote:
+>> On 3/4/26 6:32 AM, Pratham Deshmukh wrote:
+>>> We are migrating Tensorflow-Lite from v2.18.0 to the
+>>> stable release v2.20.0
+>>>
+>>> Key Changes:
+>>> =C2=A0 - Pin flatbuffers-native and protobuf-native to use the same ver=
+sion as
+>>> =C2=A0=C2=A0=C2=A0 TensorFlow Lite 2.20.0 to avoid version mismatch
+>>> =C2=A0 - Updated SRCREV for all the dependencies
+>>> =C2=A0 - Updated recipe to meet the build compatibilty
+>>>
+>>> Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
+>>> ---
+>>> =C2=A0 .../flatbuffers/flatbuffers-arago.inc=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 8 +++
+>>> =C2=A0 .../flatbuffers/flatbuffers.bbappend=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 ++
+>>> =C2=A0 .../protobuf/protobuf-arago.inc=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 18 +++++++
+>>> =C2=A0 .../protobuf/protobuf_%.bbappend=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 5 ++
+>>> =C2=A0 ...te_2.18.0.bb =3D> tensorflow-lite_2.20.0.bb} | 52 ++++++++++-=
+--------
+>>> =C2=A0 5 files changed, 62 insertions(+), 25 deletions(-)
+>>> =C2=A0 create mode 100644 meta-arago-extras/recipes-devtools/flatbuffer=
+s/flatbuffers-arago.inc
+>>> =C2=A0 create mode 100644 meta-arago-extras/recipes-devtools/flatbuffer=
+s/flatbuffers.bbappend
+>>> =C2=A0 create mode 100644 meta-arago-extras/recipes-devtools/protobuf/p=
+rotobuf-arago.inc
+>>> =C2=A0 create mode 100644 meta-arago-extras/recipes-devtools/protobuf/p=
+rotobuf_%.bbappend
+>>> =C2=A0 rename meta-arago-extras/recipes-framework/tensorflow-lite/{tens=
+orflow-lite_2.18.0.bb =3D> tensorflow-lite_2.20.0.bb} (86%)
+>>>
+>>> diff --git a/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers=
+-arago.inc b/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers-ara=
+go.inc
+>>> new file mode 100644
+>>> index 00000000..d85efc8b
+>>> --- /dev/null
+>>> +++ b/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers-arago.=
+inc
+>>> @@ -0,0 +1,8 @@
+>>> +# Pin flatbuffers-native to use the same version as TensorFlow Lite 2.=
+20.0
+>>> +# to avoid version mismatch errors
+>>> +
+>>> +# Override version to match
+>>> +PV =3D "24.3.25"
+>>> +
+>>> +# Use specific commit hash that corresponds to v24.3.25 tag
+>>> +SRCREV =3D "595bf0007ab1929570c7671f091313c8fc20644e"
+>>> diff --git a/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers=
+.bbappend b/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers.bbap=
+pend
+>>> new file mode 100644
+>>> index 00000000..2a627698
+>>> --- /dev/null
+>>> +++ b/meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers.bbappe=
+nd
+>>> @@ -0,0 +1,4 @@
+>>> +# Conditionally include Arago-specific customizations for flatbuffers-=
+native
+>>> +FLATBUFFERS_ARAGO =3D ""
+>>> +FLATBUFFERS_ARAGO:arago =3D "flatbuffers-arago.inc"
+>>> +require ${FLATBUFFERS_ARAGO}
+>>> diff --git a/meta-arago-extras/recipes-devtools/protobuf/protobuf-arago=
+.inc b/meta-arago-extras/recipes-devtools/protobuf/protobuf-arago.inc
+>>> new file mode 100644
+>>> index 00000000..489b1444
+>>> --- /dev/null
+>>> +++ b/meta-arago-extras/recipes-devtools/protobuf/protobuf-arago.inc
+>>> @@ -0,0 +1,18 @@
+>>> +# Pin protobuf-native to use the same version as TensorFlow Lite 2.20.=
+0
+>>> +# to avoid version mismatch errors
+>>> +
+>>> +# Override version to match
+>>> +PV =3D "3.21.9"
+>>> +
+>>> +# Use specific commit hash that corresponds to v24.3.25 tag
+>>> +SRCREV =3D "90b73ac3f0b10320315c2ca0d03a5a9b095d2f66"
+>>> +
+>>> +# Override SRC_URI to use 3.21.x branch and remove incompatible patche=
+s
+>>> +SRC_URI =3D "git://github.com/protocolbuffers/protobuf.git;branch=3Dma=
+in;protocol=3Dhttps \
+>>> + file://run-ptest \
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "
+>>> +
+>>> +LIC_FILES_CHKSUM =3D " \
+>>> + file://LICENSE;md5=3D37b5762e07f0af8c74ce80a8bda4266b \
+>>> + file://third_party/utf8_range/LICENSE;md5=3Def460f31070fd7184bd9059de=
+2e4b132 \
+>>> +"
+>>> diff --git a/meta-arago-extras/recipes-devtools/protobuf/protobuf_%.bba=
+ppend b/meta-arago-extras/recipes-devtools/protobuf/protobuf_%.bbappend
+>>> new file mode 100644
+>>> index 00000000..51c679a5
+>>> --- /dev/null
+>>> +++ b/meta-arago-extras/recipes-devtools/protobuf/protobuf_%.bbappend
+>>> @@ -0,0 +1,5 @@
+>>> +# Conditionally include Arago-specific customizations for flatbuffers-=
+native
+>>> +PROTOBUF_ARAGO =3D ""
+>>> +PROTOBUF_ARAGO:arago =3D "protobuf-arago.inc"
+>>> +
+>>> +require ${PROTOBUF_ARAGO}
+>>> diff --git a/meta-arago-extras/recipes-framework/tensorflow-lite/tensor=
+flow-lite_2.18.0.bb b/meta-arago-extras/recipes-framework/tensorflow-lite/t=
+ensorflow-lite_2.20.0.bb
+>>> similarity index 86%
+>>> rename from meta-arago-extras/recipes-framework/tensorflow-lite/tensorf=
+low-lite_2.18.0.bb
+>>> rename to meta-arago-extras/recipes-framework/tensorflow-lite/tensorflo=
+w-lite_2.20.0.bb
+>>> index c76939ac..57278f5b 100644
+>>> --- a/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-li=
+te_2.18.0.bb
+>>> +++ b/meta-arago-extras/recipes-framework/tensorflow-lite/tensorflow-li=
+te_2.20.0.bb
+>>> @@ -8,18 +8,19 @@ LICENSE =3D "Apache-2.0"
+>>> =C2=A0 LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D4158a261ca7f2525513e3=
+1ba9c50ae98"
+>>> =C2=A0 =C2=A0 # Get major of the PV variable
+>>> -MAJOR =3D "${@d.getVar('PV').split('.')[0]}"
+>>> +TF_MAJOR =3D "${@d.getVar('PV').split('.')[0]}"
+>>> +TF_MINOR =3D "${@d.getVar('PV').split('.')[1]}"
+>>> +TF_PATCH =3D "${@(d.getVar('PV').split('.') + ['0', '0'])[2]}"
+>>> =C2=A0 =C2=A0 SRC_URI =3D " \
+>>> - git://github.com/tensorflow/tensorflow.git;protocol=3Dhttps;branch=3D=
+r2.18 \
+>>> + git://github.com/tensorflow/tensorflow.git;protocol=3Dhttps;branch=3D=
+r2.20 \
+>>> file://0001-lite-Update-CMakeLists-for-building-_pywrap_tensorfl.patch =
 \
->> - -DFETCHCONTENT_SOURCE_DIR_PYTORCH_CLOG=3D${S}/cmake/external/cpuinfo \
->> -=20
->> -DFETCHCONTENT_SOURCE_DIR_FLATBUFFERS=3D${S}/cmake/external/flatbuffers =
+>>> file://0002-lite-Update-CMakeLists-for-building-shared-object-li.patch =
 \
->> - -DFETCHCONTENT_SOURCE_DIR_SAFEINT=3D${S}/cmake/external/safeint \
->> -=C2=A0=C2=A0=C2=A0 -DFETCHCONTENT_SOURCE_DIR_EIGEN=3D${S}/cmake/externa=
-l/eigen \
->> - -DFETCHCONTENT_SOURCE_DIR_GOOGLE_NSYNC=3D${S}/cmake/external/nsync \
->> -"
->> =C2=A0 +EXTRA_OECMAKE:append =3D " \
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DFETCHCONTENT_FULLY_DISCONNECTED=3DON \
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DFETCHCONTENT_SOURCE_DIR_DATE=3D${S}/_d=
-eps/date-src \
->> +=20
->> -DFETCHCONTENT_SOURCE_DIR_PYTORCH_CPUINFO=3D${S}/_deps/pytorch_cpuinfo-s=
-rc=20
->> \
->> +=20
->> -DFETCHCONTENT_SOURCE_DIR_PYTORCH_CLOG=3D${S}/_deps/pytorch_cpuinfo-src =
+>>> - file://0003-CMakeLists-Fix-build-issues-observed-in-TFlite-v2.18.patc=
+h \
+>>> file://tensorflow2-lite.pc.in \
+>>> =C2=A0 "
+>>> =C2=A0 =C2=A0 SRC_URI +=3D " \
+>>> - git://github.com/abseil/abseil-cpp.git;protocol=3Dhttps;branch=3Dlts_=
+2023_08_02;name=3Dabseil-cpp;destsuffix=3D${S}/external/abseil-cpp \
+>>> + git://github.com/abseil/abseil-cpp.git;protocol=3Dhttps;branch=3Dlts_=
+2025_01_27;name=3Dabseil-cpp;destsuffix=3D${S}/external/abseil-cpp \
+>>> git://gitlab.com/libeigen/eigen.git;protocol=3Dhttps;branch=3Dmaster;na=
+me=3Deigen;destsuffix=3D${S}/external/eigen \
+>>> git://github.com/google/farmhash.git;protocol=3Dhttps;branch=3Dmaster;n=
+ame=3Dfarmhash;destsuffix=3D${S}/external/farmhash \
+>>> git://github.com/petewarden/OouraFFT.git;protocol=3Dhttps;branch=3Dmast=
+er;name=3Dfft2d;destsuffix=3D${S}/external/fft2d \
+>>> @@ -28,35 +29,35 @@ SRC_URI +=3D " \
+>>> git://github.com/jax-ml/ml_dtypes.git;branch=3Dmain;protocol=3Dhttps;na=
+me=3Dml_dtypes;destsuffix=3D${S}/external/ml_dtypes \
+>>> git://github.com/google/ruy.git;branch=3Dmaster;protocol=3Dhttps;name=
+=3Druy;destsuffix=3D${S}/external/ruy \
+>>> git://github.com/google/flatbuffers;branch=3Dmaster;protocol=3Dhttps;na=
+me=3Dflatbuffers;destsuffix=3D${S}/external/flatbuffers \
+>>> - git://github.com/Maratyszcza/pthreadpool.git;branch=3Dmaster;protocol=
+=3Dhttps;name=3Dpthreadpool-source;destsuffix=3D${S}/external/pthreadpool-s=
+ource \
+>>> + git://github.com/google/pthreadpool.git;branch=3Dmain;protocol=3Dhttp=
+s;name=3Dpthreadpool-source;destsuffix=3D${S}/external/pthreadpool-source \
+>>> git://github.com/google/XNNPACK.git;branch=3Dmaster;protocol=3Dhttps;na=
+me=3Dxnnpack;destsuffix=3D${S}/external/xnnpack \
+>>> git://github.com/Maratyszcza/FXdiv.git;branch=3Dmaster;protocol=3Dhttps=
+;name=3DFXdiv-source;destsuffix=3D${S}/external/FXdiv-source \
+>>> git://github.com/Maratyszcza/FP16.git;branch=3Dmaster;protocol=3Dhttps;=
+name=3DFP16-source;destsuffix=3D${S}/external/FP16-source \
+>>> git://git.gitlab.arm.com/kleidi/kleidiai.git;branch=3Dmain;protocol=3Dh=
+ttps;name=3Dkleidiai;destsuffix=3D${S}/external/kleidiai \
+>>> git://github.com/Maratyszcza/psimd.git;branch=3Dmaster;protocol=3Dhttps=
+;name=3Dpsimd;destsuffix=3D${S}/external/psimd \
+>>> - git://github.com/protocolbuffers/protobuf.git;branch=3D25.x;protocol=
+=3Dhttps;name=3Dprotobuf;destsuffix=3D${S}/external/protobuf \
+>>> + git://github.com/protocolbuffers/protobuf.git;branch=3Dmain;protocol=
+=3Dhttps;name=3Dprotobuf;destsuffix=3D${S}/external/protobuf \
+>>> =C2=A0 "
+>>> =C2=A0 =C2=A0 SRCREV_FORMAT =3D "default"
+>>> =C2=A0 =C2=A0 # Matches v${PV} tag
+>>> -SRCREV =3D "6550e4bd80223cdb8be6c3afd1f81e86a4d433c3"
+>>> -SRCREV_abseil-cpp =3D "fb3621f4f897824c0dbe0615fa94543df6192f30"
+>>> +SRCREV =3D "72fbba3d20f4616d7312b5e2b7f79daf6e82f2fa"
+>>> +SRCREV_abseil-cpp =3D "d9e4955c65cd4367dd6bf46f4ccb8cd3d100540b"
+>>> =C2=A0 SRCREV_eigen =3D "33d0937c6bdf5ec999939fb17f2a553183d14a74"
+>>> =C2=A0 SRCREV_farmhash =3D "0d859a811870d10f53a594927d0d0b97573ad06d"
+>>> =C2=A0 SRCREV_fft2d =3D "c6fd2dd6d21397baa6653139d31d84540d5449a2"
+>>> =C2=A0 SRCREV_gemmlowp =3D "16e8662c34917be0065110bfcd9cc27d30f52fdf"
+>>> -SRCREV_cpuinfo =3D "b73ae6ce38d5dd0b7fe46dbe0a4b5f4bab91c7ea"
+>>> +SRCREV_cpuinfo =3D "de0ce7c7251372892e53ce9bc891750d2c9a4fd8"
+>>> =C2=A0 SRCREV_ml_dtypes =3D "24084d9ed2c3d45bf83b7a9bff833aa185bf9172"
+>>> =C2=A0 SRCREV_ruy =3D "3286a34cc8de6149ac6844107dfdffac91531e72"
+>>> =C2=A0 SRCREV_flatbuffers =3D "e6463926479bd6b330cbcf673f7e917803fd5831=
+"
+>>> -SRCREV_pthreadpool-source =3D "4fe0e1e183925bf8cfa6aae24237e724a96479b=
+8"
+>>> -SRCREV_xnnpack =3D "6b83f69d4938da4dc9ad63c00bd13e9695659a51"
+>>> +SRCREV_pthreadpool-source =3D "c2ba5c50bb58d1397b693740cf75fad836a0d1b=
+f"
+>>> +SRCREV_xnnpack =3D "585e73e63cb35c8a416c83a48ca9ab79f7f7d45e"
+>>> =C2=A0 SRCREV_FXdiv-source =3D "63058eff77e11aa15bf531df5dd34395ec3017c=
+8"
+>>> -SRCREV_FP16-source =3D "0a92994d729ff76a58f692d3028ca1b64b145d91"
+>>> -SRCREV_kleidiai =3D "cddf991af5de49fd34949fa39690e4e906e04074"
+>>> +SRCREV_FP16-source =3D "4dfe081cf6bcd15db339cf2680b9281b8451eeb3"
+>>> +SRCREV_kleidiai =3D "dc69e899945c412a8ce39ccafd25139f743c60b1"
+>>> =C2=A0 SRCREV_psimd =3D "072586a71b55b7f8c584153d223e95687148a900"
+>>> -SRCREV_protobuf =3D "4a2aef570deb2bfb8927426558701e8bfc26f2a4"
+>>> +SRCREV_protobuf =3D "90b73ac3f0b10320315c2ca0d03a5a9b095d2f66"
+>>> =C2=A0 =C2=A0 inherit setuptools3 cmake
+>>> =C2=A0 @@ -91,7 +92,7 @@ OECMAKE_SOURCEPATH =3D "${S}/tensorflow/lite"
+>>> =C2=A0 # to further optimize the build for production use.
+>>> =C2=A0 # Hence, activate -O3 optimization and disable debug symbols.
+>>> =C2=A0 OECMAKE_C_FLAGS_RELEASE =3D "-O3 -DNDEBUG"
+>>> -OECMAKE_CXX_FLAGS_RELEASE =3D "-O3 -DNDEBUG -flax-vector-conversions"
+>>> +OECMAKE_CXX_FLAGS_RELEASE =3D "-O3 -DNDEBUG -flax-vector-conversions -=
+DTF_MAJOR_VERSION=3D${TF_MAJOR} -DTF_MINOR_VERSION=3D${TF_MINOR} -DTF_PATCH=
+_VERSION=3D${TF_PATCH} -DTF_VERSION_SUFFIX=3D\"\""
+>>> =C2=A0 =C2=A0 OECMAKE_C_FLAGS_RELEASE:append:arm =3D " -march=3Darmv7-a=
+ -mfpu=3Dneon"
+>>> =C2=A0 OECMAKE_CXX_FLAGS_RELEASE:append:arm =3D " -march=3Darmv7-a -mfp=
+u=3Dneon"
+>>> @@ -112,9 +113,8 @@ EXTRA_OECMAKE:append =3D " \
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DCMAKE_SYSTEM_PROCESSOR=3D${TENSORFLOW_=
+TARGET_ARCH} \
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DCMAKE_VERBOSE_MAKEFILE:BOOL=3DON \
+>>> -DPYTHON_TARGET_INCLUDE=3D${RECIPE_SYSROOT}${includedir}/${PYTHON_DIR} =
 \
->> + -DFETCHCONTENT_SOURCE_DIR_FLATBUFFERS=3D${S}/_deps/flatbuffers-src \
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DFETCHCONTENT_SOURCE_DIR_SAFEINT=3D${S}=
-/_deps/safeint-src \
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DFETCHCONTENT_SOURCE_DIR_EIGEN3=3D${S}/=
-_deps/eigen3-src \
->> + -DFETCHCONTENT_SOURCE_DIR_GOOGLE_NSYNC=3D${S}/_deps/google_nsync-src \
->> + -DFETCHCONTENT_SOURCE_DIR_ABSEIL_CPP=3D${S}/_deps/abseil_cpp-src \
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DFETCHCONTENT_SOURCE_DIR_MP11=3D${S}/_d=
-eps/mp11-src \
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DFETCHCONTENT_SOURCE_DIR_DLPACK=3D${S}/=
-_deps/dlpack-src \
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DFETCHCONTENT_SOURCE_DIR_RE2=3D${S}/_de=
-ps/re2-src \
->> +"
->> =C2=A0 EXTRA_OECMAKE:append =3D " \
->> -DONNX_CUSTOM_PROTOC_EXECUTABLE=3D${STAGING_BINDIR_NATIVE}/protoc \
->> -Donnx_SOURCE_DIR=3D${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR} \
->> -DPython_INCLUDE_DIR=3D${STAGING_INCDIR}/${PYTHON_DIR}${PYTHON_ABI} \
->> -=C2=A0=C2=A0=C2=A0 --compile-no-warning-as-error \
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --compile-no-warning-as-erro=
-r \
->
-> Random incorrect whitespace change. Please review your commits for these
-> in the future before sending.
->
-> Andrew
->
-Thanks Andrew. I'll make the changes in v3.
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --log-level=3DVERBOSE \
->> =C2=A0 "
->
+>>> - -DNUMPY_TARGET_INCLUDE=3D${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR}/=
+numpy/core/include \
+>>> + -DNUMPY_TARGET_INCLUDE=3D${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR}/=
+numpy/_core/include \
+>>> -DPYBIND11_TARGET_INCLUDE=3D${RECIPE_SYSROOT}${PYTHON_SITEPACKAGES_DIR}=
+/pybind11/include \
+>>> -=C2=A0=C2=A0=C2=A0 -DTFLITE_VERSION_MAJOR=3D${MAJOR}=C2=A0 \
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DTFLITE_HOST_TOOLS_DIR=3D${STAGING_BIND=
+IR_NATIVE} \
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DPTHREADPOOL_SOURCE_DIR=3D${S}/external=
+/pthreadpool-source \
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DFXDIV_SOURCE_DIR=3D${S}/external/FXdiv=
+-source \
+>>> @@ -122,6 +122,8 @@ EXTRA_OECMAKE:append =3D " \
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DCPUINFO_SOURCE_DIR=3D${S}/external/cpu=
+info \
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DKLEIDIAI_SOURCE_DIR=3D${S}/external/kl=
+eidiai \
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -DPSIMD_SOURCE_DIR=3D${S}/external/psimd=
+ \
+>>> +=C2=A0=C2=A0=C2=A0 -DCMAKE_CXX_STANDARD=3D17 \
+>>> +=C2=A0=C2=A0=C2=A0 -DCMAKE_CXX_STANDARD_REQUIRED=3DON \
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --compile-no-warning-as-error \
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --log-level=3DVERBOSE \
+>>> =C2=A0 "
+>>> @@ -130,7 +132,6 @@ do_configure:prepend() {
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for i in abseil-cpp cpuinfo eigen farmha=
+sh fft2d flatbuffers FP16-source FXdiv-source gemmlowp kleidiai ml_dtypes p=
+simd protobuf pthreadpool-source ruy xnnpack; do
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cp -ra ${S}/exte=
+rnal/$i ${B}/$i
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 done
+>>> -
+>>
+>> Random whitespace change
+>>
+> I'll fix this.
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # There is no Fortran compiler in the to=
+olchain, but bitbake sets this variable anyway with unavailable
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # binary & it leads to "CMake Error: Cou=
+ld not find compiler set in environment variable FC:"
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unset FC
+>>> @@ -143,7 +144,7 @@ do_compile:append() {
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BUILD_DIR=3D${B}
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TENSORFLOW_DIR=3D${S}
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TENSORFLOW_LITE_DIR=3D"${TENSORFLOW_DIR}=
+/tensorflow/lite"
+>>> -=C2=A0=C2=A0=C2=A0 TENSORFLOW_VERSION=3D$(grep "_VERSION =3D " "${TENS=
+ORFLOW_DIR}/tensorflow/tools/pip_package/setup.py" | cut -d=3D -f2 | sed "s=
+/[ '-]//g")
+>>> +=C2=A0=C2=A0=C2=A0 TENSORFLOW_VERSION=3D$(grep "_VERSION =3D " "${TENS=
+ORFLOW_DIR}/tensorflow/tools/pip_package/setup.py.tpl" | cut -d=3D -f2 | se=
+d "s/[ '-]//g")
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mkdir -p "${B}/tflite_runtime"
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cp -r "${TENSORFLOW_LITE_DIR}/tools/pip_=
+package/debian" \
+>>> "${TENSORFLOW_LITE_DIR}/tools/pip_package/MANIFEST.in" \
+>>> @@ -156,22 +157,23 @@ do_compile:append() {
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "${B}/tflite_runtime"
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 echo "__version__ =3D '${TENSORFLOW_VERS=
+ION}'" >> "${BUILD_DIR}/tflite_runtime/__init__.py"
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 echo "__git_version__ =3D '$(git -C "${T=
+ENSORFLOW_DIR}" describe)'" >> "${BUILD_DIR}/tflite_runtime/__init__.py"
+>>> -
+>>> +
+>>
+>> ?
+>>
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 export PACKAGE_VERSION=3D"${TENSORFLOW_V=
+ERSION}"
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 export PROJECT_NAME=3D"tflite_runtime"
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cp "${B}/_pywrap_tensorflow_interpreter_=
+wrapper.so" "tflite_runtime"
+>>> -
+>>> +
+>>
+>> ?
+>>
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 setuptools3_do_compile
+>>> =C2=A0 }
+>>> =C2=A0 =C2=A0 do_install() {
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Install tensorflow-lite dynamic librar=
+y
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}${libdir}
+>>> -=C2=A0=C2=A0=C2=A0 install -m 0644 ${B}/libtensorflow-lite.so.${MAJOR}=
+ ${D}${libdir}/libtensorflow-lite.so.${PV}
+>>> +=C2=A0=C2=A0=C2=A0 install -m 0644 ${B}/libtensorflow-lite.so. ${D}${l=
+ibdir}/libtensorflow-lite.so.${PV}
+>>> =C2=A0 -=C2=A0=C2=A0=C2=A0 ln -sf libtensorflow-lite.so.${PV} ${D}${lib=
+dir}/libtensorflow-lite.so.${MAJOR}
+>>> +=C2=A0=C2=A0=C2=A0 ln -sf libtensorflow-lite.so.${PV} ${D}${libdir}/li=
+btensorflow-lite.so.${TF_MAJOR}
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ln -sf libtensorflow-lite.so.${PV} ${D}$=
+{libdir}/libtensorflow-lite.so
+>>> -
+>>> +=C2=A0=C2=A0=C2=A0 ln -sf libtensorflow-lite.so.${PV} ${D}${libdir}/li=
+btensorflow-lite.so.
+>>> +
+>>
+>> What is a symline with the name same as the above but with a "." at the =
+end doing for us?
+>>
+> benchmark_model needs libtensorflow-lite.so. for benchmarking purpose. Wi=
+thout this the benchmarking fails when executing /opt/tensorflow-lite/tools=
+/benchmark_model
+
+It needs a library that ends in "."? Not sure I beleive that, and if so the=
+n that is a
+bug you should fix and add a patch.
+
+Andrew
+
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # armnn expects the the dynamic library =
+of tensorflow lite to be named as "libtensorflowlite.so"
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Eg - https://github.com/ARM-software/a=
+rmnn/blob/branches/armnn_24_11/delegate/cmake/Modules/FindTfLite.cmake#L19
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Hence, create a symbolic link to handl=
+e the same
+>>> @@ -197,7 +199,7 @@ do_install() {
+>>> =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Install pkgconfig file required=
+ for NNstreamer build
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}${libdir}/pkgconfig
+>>> -=C2=A0=C2=A0=C2=A0 install -m 0644 ${WORKDIR}/tensorflow2-lite.pc.in $=
+{D}${libdir}/pkgconfig/tensorflow2-lite.pc
+>>> +=C2=A0=C2=A0=C2=A0 install -m 0644 ${WORKDIR}/sources/tensorflow2-lite=
+.pc.in ${D}${libdir}/pkgconfig/tensorflow2-lite.pc
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sed -i 's:@version@:${PV}:g
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 s:@libdir@:${libdir}:g
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 s:@includedir@:${includedir}:g' \
+>>
+
 
