@@ -1,190 +1,550 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <p-deshmukh@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A31DF47CAF
-	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 18:24:27 +0000 (UTC)
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (SN4PR0501CU005.outbound.protection.outlook.com [40.93.194.17])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.51188.1772735064827563942
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50B8EF47CB0
+	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 18:31:27 +0000 (UTC)
+Received: from PH8PR06CU001.outbound.protection.outlook.com (PH8PR06CU001.outbound.protection.outlook.com [40.107.209.61])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.51491.1772735477116292832
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 05 Mar 2026 10:24:25 -0800
+ Thu, 05 Mar 2026 10:31:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=iAnWvh4h;
- spf=pass (domain: list.ti.com, ip: 40.93.194.17, mailfrom: prc@list.ti.com)
+ dkim=pass header.i=@ti.com header.s=selector1 header.b=eMqUeq+g;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.209.61, mailfrom: p-deshmukh@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QaIx2DKCZbAXTmAOf5JVaoQQA8Onbp6gE1NwNckGvcRB7rthH8fzFmDDHhcV9OcM5WzJIbM0Yh8PPldcaXvwBgw0e2ih3j/A/jYtcCIk0cfr11ixsn65p/R8VeVpsD80gGdiaFp7AFlyrEqs2Jm9VY43vLZa1Fm9l4X5aVZ/DuONmGZ1PwEia0y+JQF89CkxmrpOGgo4ez371YJ/1Wr6IfkB79YrIbCv2lXlDPraTK9HZ6uGMbnR54yr4GU18RdaDuujmOg1sQ8tZH5x26Z5abvQ6gG7J6oi5iruwbWcyZCzmTzLo6QGlVjmGcqvK20josJVgJ5E8lFwmmzUL/lYEw==
+ b=egyqQG506zXQzAkiDeWtJiA8lIoBhV2Xv+Ck9rM/yNl2sD09Mh425nZnrdCVf3gbgImajHSEYM5XP2xeOlwvpqcDiC0i2JpY5IyFDFyNXJcK6CRwuqSDsHYU3jr9XhXNTBeSavr5UB65Xdvttt0xaGtC69n71RGLBAeCDTogBRDfpHljH4m7lT1MX6fP8+JbsIkkL2+6v/BysVQ/PiCsylOnIh5pbv/zwRlK2VVVaOEn1uUaqOpNrpX+te14zjh3hq9E39waRHgjRmCFQD7OTiqZxxxMJ1Y4O+ZcTx1WaQHLmhV2PvaRxzrPMP8iGSxsyB/RZ+LXGg19pmSTZxis+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B9RooEMOT+4kBiBVQu11t1/fL7a/RekMCZ/PFuFMK2k=;
- b=GpoZoldSgezhvCcvKJoC6mCHYNRIxGAlUhzbOeRG/fFlCYNWnwv2zaa48qsnlBwIPBBhxwcaYFCZ3c+lOmbCYsNSn9Te/45b7kKi7HrGFw5fn+2jiJmxl3bYEOGPSx75ZsfaNppyMxQrxoK5Zb2/DdAd/VsxPAMdwxo7Z4Q+9keuv3ijxissahKwfrLC6+nypAP2ekWz1a/Zj1SuiZ2DHcRMYoqrqNrt9A31MotAEd1fAj1SjAXNlT90Fw1Z2pQCC2fw1C+JGutg45QhZCVaaoDcgy0hEAE59Lzaagywq4lCH80t+ZYCwhkS7d02hThMjG9e2/C5N2viar1dCauNmQ==
+ bh=5HaewlTIGNnj/kFEX1xkPmPV1SH7NsZ7FgOaX0kRIKY=;
+ b=qrmQIwnsz191EjtNz84rCh/INIHFl6WS+y+WM/zsC6FZKSxlxzRzbkttaGiJ5KosNb/kja5DRJN/xNaH5Yo/j7e1EjoxYgeC7GLGe8fm5ISukOHfLOxP8FrWJxwRQlGcQTyiun7SilyBTW30xYTtVYeW0BwGQ7cUSzv07/ndyyih0Z5QzKdEbzH3SD49MC+MSNEvvVT2YS0ie45iU/JMjOrjwzvro5u3zYRjqHzGFPLK3pzcXEbrvPpBy4qceyZnW9zssdkxCYbIh4gk+/zxuc2jLk7y4HOMbRwadNbQ42JvlgXYtv5+araChpP2a8ZZ0IdPuEVBDGPl2wGLfhxXNQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
- s=selector1;
+ 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B9RooEMOT+4kBiBVQu11t1/fL7a/RekMCZ/PFuFMK2k=;
- b=iAnWvh4hbajYIBY6tthgeuK0VFTEGtDVnb1OuksYNuiB++YzhdSmzoH0/TOn6zXMHkDaDZ12mFkhWCE3rCcrnKchwf63XtG/Jat5j8eNQTzmbX3G/1Pm/VowRgIVsYCvdZasa2y2AvH6ftgGAelkN8K1Y7uib5ug3jSskdf9fkgEYY2tew0xRRyUKq7LCySfKVGxShw3lIF5Fs1sOKOR1jwqly3CwJpUNxDczsD9EoaIcOWA3B5QU81BvyZxHH/3eQVtB71NWEsDEVWcH6kcfpCMxMKzkPV2KN91f9MnwwdaNvKH2zYH2SGN2H3+pOBTjaWF/8g4YAqA2SI1RYsCsw==
-Received: from MN2PR15CA0037.namprd15.prod.outlook.com (2603:10b6:208:237::6)
- by CY5PR10MB6141.namprd10.prod.outlook.com (2603:10b6:930:37::21) with
+ bh=5HaewlTIGNnj/kFEX1xkPmPV1SH7NsZ7FgOaX0kRIKY=;
+ b=eMqUeq+gfXOHrAg4Qh1H5JkKzaJ+kVdGcwMVCCmEGSi5qJL9snKRo/HVCPc6vEV5ALsqY6uYdUl8OrbOXZivysfoGnXqetkXl+TTOD04EekLIbI7ASIZE2uj0yo5ip+myWPMz+dX/lyUkdQ/6jOYzBq7pxN/AjlI3KMXMfqA0G0=
+Received: from SJ0PR05CA0181.namprd05.prod.outlook.com (2603:10b6:a03:330::6)
+ by DM6PR10MB4138.namprd10.prod.outlook.com (2603:10b6:5:218::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
- 2026 18:24:19 +0000
-Received: from BL02EPF0001A0FE.namprd03.prod.outlook.com
- (2603:10b6:208:237:cafe::2f) by MN2PR15CA0037.outlook.office365.com
- (2603:10b6:208:237::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.18 via Frontend Transport; Thu,
- 5 Mar 2026 18:24:19 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Thu, 5 Mar
+ 2026 18:31:12 +0000
+Received: from SJ1PEPF000023CB.namprd02.prod.outlook.com
+ (2603:10b6:a03:330:cafe::12) by SJ0PR05CA0181.outlook.office365.com
+ (2603:10b6:a03:330::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.21 via Frontend Transport; Thu,
+ 5 Mar 2026 18:31:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=list.ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=list.ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.23.195 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
 Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BL02EPF0001A0FE.mail.protection.outlook.com (10.167.242.105) with Microsoft
+ SJ1PEPF000023CB.mail.protection.outlook.com (10.167.244.5) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Thu, 5 Mar 2026 18:24:19 +0000
-Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet201.ext.ti.com
+ 15.20.9678.18 via Frontend Transport; Thu, 5 Mar 2026 18:31:12 +0000
+Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet201.ext.ti.com
  (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 12:24:18 -0600
-Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 12:31:09 -0600
+Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 12:24:18 -0600
-Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 12:31:09 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 5 Mar 2026 12:24:18 -0600
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 625IOIq12060162;
-	Thu, 5 Mar 2026 12:24:18 -0600
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id 663D613F522; Thu,  5 Mar 2026 12:24:18 -0600 (CST)
-From: PRC Automation <prc@list.ti.com>
-To: Pratham Deshmukh <p-deshmukh@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, <afd@ti.com>, <c-shilwant@ti.com>,
-	<denys@ti.com>, <v-singh1@ti.com>, <khasim@ti.com>
-Subject: Re: [meta-arago][master][PATCH v5 0/2] Migrate ONNX framework v1.16.1 to v1.18.0 and ONNXRuntime v1.20.1 to v1.23.2
-Date: Thu, 5 Mar 2026 12:24:18 -0600
-Message-ID: <20260305182418.2759884-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20260305180824.1823814-1-p-deshmukh@ti.com>
-References: <20260305180824.1823814-1-p-deshmukh@ti.com>
+ Transport; Thu, 5 Mar 2026 12:31:09 -0600
+Received: from [172.24.233.101] (pratham-ti.dhcp.ti.com [172.24.233.101])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 625IV6go2840206;
+	Thu, 5 Mar 2026 12:31:07 -0600
+Content-Type: multipart/alternative;
+	boundary="------------4N7eeej25XvCP005O7E9TZCw"
+Message-ID: <62c09add-4c40-46c1-b7bb-4fcefea6edbc@ti.com>
+Date: Fri, 6 Mar 2026 00:01:06 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][master][PATCH v2 1/4] arm-compute-library: upgrade
+ 24.12 -> 52.07
+To: Andrew Davis <afd@ti.com>, <meta-arago@lists.yoctoproject.org>
+CC: <c-shilwant@ti.com>, <denys@ti.com>, <v-singh1@ti.com>, <khasim@ti.com>
+References: <20260305173419.1735480-1-p-deshmukh@ti.com>
+ <20260305173419.1735480-2-p-deshmukh@ti.com>
+ <5b1800bf-669f-4a66-9d2a-c07be1fa0036@ti.com>
+Content-Language: en-US
+From: Pratham Deshmukh <p-deshmukh@ti.com>
+In-Reply-To: <5b1800bf-669f-4a66-9d2a-c07be1fa0036@ti.com>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FE:EE_|CY5PR10MB6141:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32cc6f74-296c-4680-621a-08de7ae46a99
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023CB:EE_|DM6PR10MB4138:EE_
+X-MS-Office365-Filtering-Correlation-Id: 225495c6-41c4-4cc2-602c-08de7ae560c0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|34020700016|36860700016|376014|82310400026;
+	BCL:0;ARA:13230040|1800799024|82310400026|34020700016|376014|36860700016|13003099007|8096899003;
 X-Microsoft-Antispam-Message-Info: 
-	Tu38Z/SpoAn0Omm8cSvfvvxBkiKXjMPHPkW2i58ZiJytZhPFCrU346z7+j9FcVZLKu0Q0zDhtEqOq2nl8Bnjwm1vP+Rj/+Z3XWXmsdGD0f6EMccyr1oRRYTklAUcjxmjZNQN+d9lnYqMIloDeyqM+OILjcjee5Jit829Qj+4X9iuK0QqZvQhuwfO3iZibZ7QdlQJWyqbCfbHHr/L4Y5lACekZg8DW29Ik4UT7ozEjy9s4UF66uOeXJXx5BDU25LF1SftwTkirfsH1Zc5zmklHT2ToK1nijFcYDkxY3MVyQZI8iu5dy5JfigjMcah6WzH5nCAj2yoCEHtR+5z74lU/PY+c1ZB+QTTN6/jVfhgmYWAl3zxu9zc2INupvsmOrKqc6caimz2zzHNHT9Zkl2Ki7ln9knVcCAjq1qfj0jBtHYZ9LuStz2COQcFUKzN/31l7Xu3PFL9edP79cXJhXjrX0PUZJbiW1AsH/Zpc3r8hxjXviqsh1wlxuiILj08EQP1LvD2YtST12AmMxGlYh5s5397CMw4GoLfjvNK+MtfncLgVewqi94bRO9T++HHh45agcnFECseXi6VVTk2BhrtERUbsjXYNnTaztKhvjO3Ku+7dEfmEdBekRs7ohbtEnPTv4mHYwxTg8w6RhrgIghS0yXP59w7jwq0djaoxxMbdC7yKZCOJyhEtyFXDV0Utc/pRssdsy6bDBC8E4NVvlh8egpd2seVWnUUZAX9oh/LHqrefm0pN49JNbfuCD9vkgo67Lnm+QzQZjC5I24miPiR5g==
+	DpnmNp4x6T4bzehMmHBah113kuxO5/EpdlWlCPUhsjCQDPBTk9ZjgDQinb/7fB5aBSGMjgGDiIRFPcTOpXDgUGIaPwk4XuNmYKS3Fl8xgqCxzDtKN9Tdnc6a61s+gafysbn57rqvFLI8V5ayt2pn+05LWU18Lm6jgsLQQ82/jdWeVJJoaUhoe88ltdPLZQ7iO78t77T0XogY4cU0ryRAKlH0pShZTmQPGhQTzQzKFiTqXTd39bjp69ysVedTsUaVK4P4OEWCm9y4TMR91oej0s7jASoSi92rAUTPSeC1MCq7pr/3CLpReF2bS+5xWl5IlkuI60uNJH9JqSxNZ2JQk7LYEX6hMfmEJSO2Mw61hn8ecFvCmRI7w0wdoHewvi3klUUMgdYiNXTpgmzKVXu2mySouV3Oij5gVY7vFaBTnd4Jk53uDoXa0LFafxe4GpHIvsr+IzfaPlk309kb00XtNrxLn8W4ssYzBU7e08tPavs3BGca6twGTy+zgwJiU7W2ZFrcBA4OlZ06yFrlXdLwz/85qw0sVoxyZlTD/B6uTrmzmFHz5U+gcgFFCatvwjVjcF1Uid3spCqXxoXURb7M2l0f1DYJKaW9JvlUJA+ouxXNw6j4XEMctWvDc0XqBcZNBTRwRt4QrDY4zztnJUBIOssdrA48Yb44Cwoas3o6WrIqQCNqUbw9G/XDUXD7IQnmd/Bw3GO42K7W0KLQxPTPlhozlVCMFIByfJxwwjkBlCvapKtHAEO4ln+sxVvJA5Anv/K/uDlOXf7+hvBlRBCtow==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(34020700016)(36860700016)(376014)(82310400026);DIR:OUT;SFP:1101;
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(34020700016)(376014)(36860700016)(13003099007)(8096899003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	u5IdnkSQK/m0EGancoNCQkHE/N0GQgMpgEvxllV+56RXStDJKAlmVqXrPjlaBmnFXg1+gWYHjKj5sU+rjgelOJcofPLfA66aq4fofRblVVZWr1LfWjVHtfkog6+15yU4KtJmD9CaA2Q11LQl+39n0oEzipymP/UEibGusocguI7yxd6MtZZx+F42sOgec2ZZAagetX3pCAGxMMhS68PWIn/HXYKbQITyquPPu32yLs9cs8u07UvGRGkPDwwvn5n6nd9aC8Xsg/t1jKgcQ48w2tWSox5D3S/lIHp5rdkXYmzt1aa+GwSP++a4Y7Nkhf9bmHpv0MKHwmH5Sralfdk/LFdEXM2jITfbanILPgA2EYcjyZqBZImKdB2YZ240/jzqG4G32c6YFOWaB+1IYpxcG1YRE4w9N45bxkgYQK1HK6H/XtCHHHKacX8gpXy0BGxy
-X-OriginatorOrg: list.ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 18:24:19.1628
+	vhQOFAQZn41nBdLDLtKcRDewJcKKZNEN9zh1EZE5eGzXOp7EA8pqo8wG5l17Sj5mcTNSEV0KFewGIP9y9hv5mOHYo0zgGGc1n8+qml1MIPA1O89QRQqs3/zp7NoAT5rmrvdpnRXUTwMAWss0av6fBmGpixPW3fVTxCHPmOiZSu+2mOER7IF0e2bh2mXRHQMBsphYUqQU8DqJUbcdD3qZpBaaMOsCH2H4F80ZoQv338BcbRjdP81HbkInbrcHiULdWtkBCX4VfgXdTzZsiuC6byH+8BL0v9geD5eJhSjj+0XLww7uTtDrrscKm5g4kj/yd0FsJQX/D/E73I+U4PGSfcaAbz97pjYTpcbkD6nfMFXNtSGSs+l2Q+twyyTrkTiDF3/io4ezgCvHDZugg+7L32XIJipTvmoUOjqzaV0F/JhG+5PS2uUmmuE1Ekh+XM94
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 18:31:12.1214
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32cc6f74-296c-4680-621a-08de7ae46a99
+X-MS-Exchange-CrossTenant-Network-Message-Id: 225495c6-41c4-4cc2-602c-08de7ae560c0
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BL02EPF0001A0FE.namprd03.prod.outlook.com
+	SJ1PEPF000023CB.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR10MB6141
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR10MB4138
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 05 Mar 2026 18:24:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17254
+ <meta-arago@lists.yoctoproject.org>; Thu, 05 Mar 2026 18:31:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17255
 
-meta-arago / na / 20260305180824.1823814-1-p-deshmukh
-
-PRC Results: FAIL
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Patches
-----------------------------------------
-All patches passed
+--------------4N7eeej25XvCP005O7E9TZCw
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
+On 05/03/26 11:50 pm, Andrew Davis wrote:
+> On 3/5/26 11:34 AM, Pratham Deshmukh wrote:
+>> We are migrating ARM Compute Library from v24.12 to the
+>> latest version v52.07
+>>
+>> Removed Patches:
+>>   • 0001-fix-Fix-indention-in-cmake-generator-script.patch
+>>     - Upstream Link: 
+>> https://github.com/ARM-software/ComputeLibrary/commit/e0c42ef651709fd284da3bedd2c98d420bd6fd1a
+>>   • 0005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.patch
+>>     - No need for this patch for v52.07 ACL.
+>>
+>> Rebased Patches:
+>>   • Following patches are updated with new commits
+>>     - 0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+>>     - 0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patch
+>>     - 0004-Add-source-files-at-library-definition-time.patch
+>>     - 0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake.patch
+>>     - 0007-Allow-ARMv7-builds-using-CMake.patch
+>>     - 0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch
+>>
+>> License-Update: Updated LIC_FILES_CHKSUM for MIT.txt, just checksum 
+>> update due to minor
+>> formatting/year changes in the license file for version v52.07.
+>>
+>> Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
+>> ---
+>> Change Logs:
+>>
+>> v1 -> v2:
+>>   - Fixed arm-compute-library recipe name
+>>   - Fixed tabs/spacing issues
+>>
+>>   ...NABLE_NEON-in-code-for-checking-NEO.patch} |  72 ++---
+>>   ...-indention-in-cmake-generator-script.patch | 130 ---------
+>>   ...ENABLE_SVE-in-code-for-checking-SVE.patch} | 117 ++++-----
+>>   ...ce-files-at-library-definition-time.patch} | 246 ++++++++++--------
+>>   .../0004-Allow-ARMv7-builds-using-CMake.patch | 174 +++++++++++++
+>>   ...ptions-for-SVE-SVE2-and-BF16-support.patch | 112 --------
+>>   ...mbol-error-when-building-TensorInfo.patch} |  24 +-
+>>   ...SVE2-support-to-be-disabled-in-CMake.patch |  91 -------
+>>   .../0006-Remove-TARGET-dependency.patch       |  58 +++++
+>>   .../0007-Allow-ARMv7-builds-using-CMake.patch |  86 ------
+>>   ...rate-generic-library-name-instead-of.patch |  33 +++
+>>   .../0008-Add-FP16-source-path.patch           |  28 ++
+>>   ...24.12.bb => arm-compute-library_52.7.0.bb} |  56 ++--
+>>   13 files changed, 551 insertions(+), 676 deletions(-)
+>>   rename 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/{0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch 
+>> => 0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch} 
+>> (58%)
+>>   delete mode 100644 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0001-fix-Fix-indention-in-cmake-generator-script.patch
+>>   rename 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/{0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patch 
+>> => 0002-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE.patch} (67%)
+>>   rename 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/{0004-Add-source-files-at-library-definition-time.patch 
+>> => 0003-Add-source-files-at-library-definition-time.patch} (24%)
+>>   create mode 100644 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0004-Allow-ARMv7-builds-using-CMake.patch
+>>   delete mode 100644 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.patch
+>>   rename 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/{0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch 
+>> => 0005-Fix-undefined-symbol-error-when-building-TensorInfo.patch} (68%)
+>>   delete mode 100644 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake.patch
+>>   create mode 100644 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0006-Remove-TARGET-dependency.patch
+>>   delete mode 100644 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0007-Allow-ARMv7-builds-using-CMake.patch
+>>   create mode 100644 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0007-cmake-Generate-generic-library-name-instead-of.patch
+>>   create mode 100644 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0008-Add-FP16-source-path.patch
+>>   rename 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/{arm-compute-library_24.12.bb 
+>> => arm-compute-library_52.7.0.bb} (58%)
+>>
+>> diff --git 
+>> a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch 
+>> b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch 
+>>
+>> similarity index 58%
+>> rename from 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+>> rename to 
+>> meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+>> index 1c33ac3c..b7dfa7b2 100644
+>> --- 
+>> a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+>> +++ 
+>> b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+>> @@ -1,7 +1,8 @@
+>> -From 4350c56d14b7b68acd060d8331f3ade1fb74e167 Mon Sep 17 00:00:00 2001
+>> -From: Andrew Davis <afd@ti.com>
+>> -Date: Thu, 5 Dec 2024 09:21:23 -0600
+>> -Subject: [PATCH] Use ARM_COMPUTE_ENABLE_NEON in code for checking 
+>> NEON support
+>> +From 6902148626781de2b4a2aec2c00fb6a13328209c Mon Sep 17 00:00:00 2001
+>> +From: Pratham Deshmukh <p-deshmukh@ti.com>
+>> +Date: Wed, 4 Mar 2026 15:24:41 +0530
+>> +Subject: [PATCH 1/8] Use ARM_COMPUTE_ENABLE_NEON in code for 
+>> checking NEON
+>> + support
+>>     ENABLE_NEON is a flag used by the build systems. The flag is not 
+>> used
+>>   in code, instead ARM_COMPUTE_ENABLE_NEON is used everywhere.
+>> @@ -11,19 +12,17 @@ use in code.
+>>     Upstream-Status: Pending
+>>   -Signed-off-by: Andrew Davis <afd@ti.com>
+>> -Change-Id: I65f5e7411c99280e2dd8c187140909cefd1c6892
+>> +Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
+>
+> You take the signoff line and authorship for yourself, even in
+> patches that you made little change to other than what was needed
+> for rebasing them.
+>
+> Maybe some tools you are using are doing that automatically, but
+> some might take issue with claiming their work as your own. I don't
+> really care too much in this case, but under one condition: you
+> should work these upstream so we don't have to carry them here in
+> Arago for next LTS.
+>
+> Andrew
+>
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  apply-yocto-patch: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [meta-arago][master][PATCH v5 0/2] Migrate ONNX framework v=
-1.16.1 to v1.18.0 and ONNXRuntime v1.20.1 to v1.23.2
-- Submitter: From: Pratham Deshmukh <p-deshmukh@ti.com>
-- Date: Date: Thu, 5 Mar 2026 23:38:22 +0530
-- Num Patches: 2
-- Mailing List (public inbox) Commit SHA: be7fb577ca7205de14cf9fc0d3f5b9bd7=
-e0c0add
+Hi Andrew,
+Thank you for pointing this out. I sincerely apologize for the oversight;
+I am still learning the nuances of patch authorship and attribution, and
+it certainly wasn't my intention to claim your work as my own. I was simply
+focused on getting the rebase working and wasn't aware of the protocol for
+maintaining the original "From" line.
 
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Ryan Eatmon <reatmon@ti.com>
-- Commit Subject: ti-test: Add iproute2-bridge
-- Commit SHA: 538a04f7f91be5e391fe5613f298d6689ac3a2c0
+I will update the series to ensure you are credited as the author for 
+these patches,
+and I'll include my sign-off below yours.
 
-Patches
-----------------------------------------
-All patches applied
+I’ll take the lead on pushing these upstream so they don't have to be 
+carried in
+Arago indefinitely.
 
+Pratham
+--------------4N7eeej25XvCP005O7E9TZCw
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 05/03/26 11:50 pm, Andrew Davis
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:5b1800bf-669f-4a66-9d2a-c07be1fa0036@ti.com">On 3/5/26
+      11:34 AM, Pratham Deshmukh wrote:
+      <br>
+      <blockquote type="cite">We are migrating ARM Compute Library from
+        v24.12 to the
+        <br>
+        latest version v52.07
+        <br>
+        <br>
+        Removed Patches:
+        <br>
+          • 0001-fix-Fix-indention-in-cmake-generator-script.patch
+        <br>
+            - Upstream Link:
+<a class="moz-txt-link-freetext" href="https://github.com/ARM-software/ComputeLibrary/commit/e0c42ef651709fd284da3bedd2c98d420bd6fd1a">https://github.com/ARM-software/ComputeLibrary/commit/e0c42ef651709fd284da3bedd2c98d420bd6fd1a</a><br>
+          • 0005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.patch
+        <br>
+            - No need for this patch for v52.07 ACL.
+        <br>
+        <br>
+        Rebased Patches:
+        <br>
+          • Following patches are updated with new commits
+        <br>
+            -
+        0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+        <br>
+            -
+        0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patch
+        <br>
+            - 0004-Add-source-files-at-library-definition-time.patch
+        <br>
+            -
+        0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake.patch
+        <br>
+            - 0007-Allow-ARMv7-builds-using-CMake.patch
+        <br>
+            -
+        0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch
+        <br>
+        <br>
+        License-Update: Updated LIC_FILES_CHKSUM for MIT.txt, just
+        checksum update due to minor
+        <br>
+        formatting/year changes in the license file for version v52.07.
+        <br>
+        <br>
+        Signed-off-by: Pratham Deshmukh <a class="moz-txt-link-rfc2396E" href="mailto:p-deshmukh@ti.com">&lt;p-deshmukh@ti.com&gt;</a>
+        <br>
+        ---
+        <br>
+        Change Logs:
+        <br>
+        <br>
+        v1 -&gt; v2:
+        <br>
+          - Fixed arm-compute-library recipe name
+        <br>
+          - Fixed tabs/spacing issues
+        <br>
+        <br>
+          ...NABLE_NEON-in-code-for-checking-NEO.patch} |  72 ++---
+        <br>
+          ...-indention-in-cmake-generator-script.patch | 130 ---------
+        <br>
+          ...ENABLE_SVE-in-code-for-checking-SVE.patch} | 117 ++++-----
+        <br>
+          ...ce-files-at-library-definition-time.patch} | 246
+        ++++++++++--------
+        <br>
+          .../0004-Allow-ARMv7-builds-using-CMake.patch | 174
+        +++++++++++++
+        <br>
+          ...ptions-for-SVE-SVE2-and-BF16-support.patch | 112 --------
+        <br>
+          ...mbol-error-when-building-TensorInfo.patch} |  24 +-
+        <br>
+          ...SVE2-support-to-be-disabled-in-CMake.patch |  91 -------
+        <br>
+          .../0006-Remove-TARGET-dependency.patch       |  58 +++++
+        <br>
+          .../0007-Allow-ARMv7-builds-using-CMake.patch |  86 ------
+        <br>
+          ...rate-generic-library-name-instead-of.patch |  33 +++
+        <br>
+          .../0008-Add-FP16-source-path.patch           |  28 ++
+        <br>
+          ...24.12.bb =&gt; arm-compute-library_52.7.0.bb} |  56 ++--
+        <br>
+          13 files changed, 551 insertions(+), 676 deletions(-)
+        <br>
+          rename
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/{0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+        =&gt;
+        0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch}
+        (58%)
+        <br>
+          delete mode 100644
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0001-fix-Fix-indention-in-cmake-generator-script.patch<br>
+          rename
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/{0003-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE-.patch
+        =&gt;
+        0002-Use-ARM_COMPUTE_ENABLE_SVE-in-code-for-checking-SVE.patch}
+        (67%)
+        <br>
+          rename
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/{0004-Add-source-files-at-library-definition-time.patch
+        =&gt; 0003-Add-source-files-at-library-definition-time.patch}
+        (24%)
+        <br>
+          create mode 100644
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0004-Allow-ARMv7-builds-using-CMake.patch<br>
+          delete mode 100644
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0005-Add-CMake-options-for-SVE-SVE2-and-BF16-support.patch<br>
+          rename
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/{0008-Fix-undefined-symbol-error-when-building-TensorInfo.patch
+        =&gt;
+        0005-Fix-undefined-symbol-error-when-building-TensorInfo.patch}
+        (68%)
+        <br>
+          delete mode 100644
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0006-Allow-SVE-and-SVE2-support-to-be-disabled-in-CMake.patch<br>
+          create mode 100644
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0006-Remove-TARGET-dependency.patch<br>
+          delete mode 100644
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0007-Allow-ARMv7-builds-using-CMake.patch<br>
+          create mode 100644
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0007-cmake-Generate-generic-library-name-instead-of.patch<br>
+          create mode 100644
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0008-Add-FP16-source-path.patch<br>
+          rename
+meta-arago-extras/recipes-devtools/arm-compute-library/{arm-compute-library_24.12.bb
+        =&gt; arm-compute-library_52.7.0.bb} (58%)
+        <br>
+        <br>
+        diff --git
+a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch
+        <br>
+        similarity index 58%
+        <br>
+        rename from
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch<br>
+        rename to
+meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch<br>
+        index 1c33ac3c..b7dfa7b2 100644
+        <br>
+        ---
+a/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0002-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch<br>
+        +++
+b/meta-arago-extras/recipes-devtools/arm-compute-library/arm-compute-library/0001-Use-ARM_COMPUTE_ENABLE_NEON-in-code-for-checking-NEO.patch<br>
+        @@ -1,7 +1,8 @@
+        <br>
+        -From 4350c56d14b7b68acd060d8331f3ade1fb74e167 Mon Sep 17
+        00:00:00 2001
+        <br>
+        -From: Andrew Davis <a class="moz-txt-link-rfc2396E" href="mailto:afd@ti.com">&lt;afd@ti.com&gt;</a>
+        <br>
+        -Date: Thu, 5 Dec 2024 09:21:23 -0600
+        <br>
+        -Subject: [PATCH] Use ARM_COMPUTE_ENABLE_NEON in code for
+        checking NEON support
+        <br>
+        +From 6902148626781de2b4a2aec2c00fb6a13328209c Mon Sep 17
+        00:00:00 2001
+        <br>
+        +From: Pratham Deshmukh <a class="moz-txt-link-rfc2396E" href="mailto:p-deshmukh@ti.com">&lt;p-deshmukh@ti.com&gt;</a>
+        <br>
+        +Date: Wed, 4 Mar 2026 15:24:41 +0530
+        <br>
+        +Subject: [PATCH 1/8] Use ARM_COMPUTE_ENABLE_NEON in code for
+        checking NEON
+        <br>
+        + support
+        <br>
+            ENABLE_NEON is a flag used by the build systems. The flag is
+        not used
+        <br>
+          in code, instead ARM_COMPUTE_ENABLE_NEON is used everywhere.
+        <br>
+        @@ -11,19 +12,17 @@ use in code.
+        <br>
+            Upstream-Status: Pending
+        <br>
+          -Signed-off-by: Andrew Davis <a class="moz-txt-link-rfc2396E" href="mailto:afd@ti.com">&lt;afd@ti.com&gt;</a>
+        <br>
+        -Change-Id: I65f5e7411c99280e2dd8c187140909cefd1c6892
+        <br>
+        +Signed-off-by: Pratham Deshmukh <a class="moz-txt-link-rfc2396E" href="mailto:p-deshmukh@ti.com">&lt;p-deshmukh@ti.com&gt;</a>
+        <br>
+      </blockquote>
+      <br>
+      You take the signoff line and authorship for yourself, even in
+      <br>
+      patches that you made little change to other than what was needed
+      <br>
+      for rebasing them.
+      <br>
+      <br>
+      Maybe some tools you are using are doing that automatically, but
+      <br>
+      some might take issue with claiming their work as your own. I
+      don't
+      <br>
+      really care too much in this case, but under one condition: you
+      <br>
+      should work these upstream so we don't have to carry them here in
+      <br>
+      Arago for next LTS.
+      <br>
+      <br>
+      Andrew <br>
+      <br>
+    </blockquote>
+    <br>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBBAA" data-complete="true" data-processed="true">Hi
+      Andrew,</div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container">Thank you for pointing
+      this out. I sincerely apologize for the oversight;</div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container">I am still learning the
+      nuances of patch authorship and attribution, and </div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container">it certainly wasn't my
+      intention to claim your work as my own. I was simply</div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container">focused on getting the
+      rebase working and wasn't aware of the protocol for</div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container">maintaining the original
+      "From" line.</div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container"><br>
+    </div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container">I will update the series
+      to ensure you are credited as the author for these patches, </div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container">and I'll include my
+      sign-off below yours.</div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container"><br>
+    </div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container">I’ll take the lead on
+      pushing these upstream so they don't have to be carried in </div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container">Arago indefinitely.</div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container"><br>
+    </div>
+    <div class="Y3BBE" data-sfc-cp="" data-sfc-cb=""
+      data-hveid="CAEIBRAA" data-complete="true" data-processed="true"
+      aria-owns="action-menu-parent-container">Pratham</div>
+  </body>
+</html>
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-repo: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-PASS
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  yocto-check-layers: FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master - FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-ERROR: Nothing PROVIDES 'xen-guest-image-minimal'
-ERROR: Required build target 'meta-world-pkgdata' has no buildable provider=
-s.
-
-
-
+--------------4N7eeej25XvCP005O7E9TZCw--
 
