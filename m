@@ -1,41 +1,41 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <t-lannynd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A90C3F513E7
-	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 22:40:53 +0000 (UTC)
-Received: from CH5PR02CU005.outbound.protection.outlook.com (CH5PR02CU005.outbound.protection.outlook.com [40.107.200.63])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.56858.1772750445803043819
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E3EAF513FE
+	for <webhook@archiver.kernel.org>; Fri,  6 Mar 2026 05:54:48 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (SN4PR0501CU005.outbound.protection.outlook.com [40.93.194.54])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.63671.1772776479274051025
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 05 Mar 2026 14:40:46 -0800
+ Thu, 05 Mar 2026 21:54:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=aL34tv0l;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.200.63, mailfrom: reatmon@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=vJK8ZnNu;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.93.194.54, mailfrom: t-lannynd@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sg6YxwB/ZVFOce9PdjBBDe6IutlYGf3lfrZ/a9fxjUVd6n8SB8Oq9bOd0n08aOQ9RBS0WhihAx+GKwOssZWdKIoVMHbhIOFC8aDyDZqUq+6Sd5+yIDoSXA9THNBLbjsa/jJhrSPUCXuRYK3OQNWwkZo4ui9vUZnwEKADr3XN2kSedVbg9NeBgQj0cLxtX3bOBzDsf20GfF9byJE0nsnF8ipaROU22uwKleBeGBysMELWgfLmdY9ldfjY0bNYjalQwPws55NJdjrAzj1tsm2lf9jDDRPhbXwG7roIKm8GWW7Ln35D5MWyjr/3XbBoOHg5Ls8fzU3SxqUMdPzXlTP/mg==
+ b=PkG2Jnq6ApSdF7DnTl7wUw0QGaZtEWpyMuB6TVqR59QUiA/UuV3VlOGfcSUypmuq3rpq/tK9utjuZAZO37sztHIxgp2YTwnjoLRm8d7V2illmpIss1QAbYywHQo1RjdJn1q7qK4hv3VS3BRo/l+rlqswPB8CA5gVVAwpo8vq5W/czuJhXYbueewH29PKCp93u2eEyjuZJmuEuY+Xht3F1hc0hm6l33oaxIHXwrnH42IXOskp4QQ+2isuzYKAUra2c0+Z1cLafSsYqdlz8FrxSQJcHTRlPEpede7yGRwi4sfJLIGf9PCzhI7mENUO5BJdKNBOZfxPZSc0BMNH0WQP0w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nZZgNjlr/YyegikgJozs2E06CF73PqnpxfWSxmuf7f8=;
- b=HfgWie76zC9PVX+BqZAKMyJ3tsKycY7kg1HSqhvBYb1XO7EOJSibS2HhbUsNRLg+6dL+27WxWJVbJ3Dubr+2/UhoP74MZsuWHSrsdPKhk2136UuKQ3cGKso9c8fmS9rLqsA9t8BpyjSiVGKIkTB0lpJVgUQCwrOe0AhirOy8tNdYcF+I5Lwbya/oukUMPg4v8YAp2hb2jzrBYJbyhf4U2L2WyHMwkVVjrw42Qjm2kpgMbzbqiM24uvRAE4elL/OPRZV9IL6ePo/SjB0NyRo4AUeCSejKUTRF5Fqlv04TMkMT6ngfqlXzGJHgpWcHp6bSDq3T0NN0qC2GdlR9pQxZ8A==
+ bh=8qksQT0fi/Qkd1619ggH6KQh2TN+1n0JPgY3Dv5Gy/A=;
+ b=ClgtJ73+tcv+axXWBkzo9s4qiyfLW465xdexCG6LGLG3ObR9+v45kKLdwp+twRzdy12egldPmv31qksrPfrfMMYQX1lGvaF4Qbz9+kBTmQk9RLxq72Jz46cA/kwVknpr65+GunDIEJ/LGPXTDm1Wyq8SdHWuFWcikfb2ALQUpNHt0nCn47qBZ8p/Je4d/t4Vw3SNzgwIQ/Lf1U4cOG/Sg8t3jlRfEYVjTjUNv04/zVLdkyUKCbtwyi6744AfCd1F0lDxepEbEuat80WxDccGsH4dhFaTLYl4MsvL0GyWqw1Eg5TZEu+3HK+9D2INlMJOikbEkz1tV94hd7quNMur4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nZZgNjlr/YyegikgJozs2E06CF73PqnpxfWSxmuf7f8=;
- b=aL34tv0lkOOonzYkzgjQ0QHyVlVe7V8/PlCWOW99YI228tDBSmjPkrx1ygfW1C+4mzbV9v0LdNi0cZstrHbbHWkgsArVx7AbC/PRhZF7QDicJh3nGetzkkU/PXx0aZaDbB9dvCO9ApRPeyfjn9lKqVEPYE2AAJS0cyEaa0UIwuQ=
-Received: from PH8P222CA0012.NAMP222.PROD.OUTLOOK.COM (2603:10b6:510:2d7::25)
- by DS7PR10MB7346.namprd10.prod.outlook.com (2603:10b6:8:eb::16) with
+ bh=8qksQT0fi/Qkd1619ggH6KQh2TN+1n0JPgY3Dv5Gy/A=;
+ b=vJK8ZnNuvn+s7oDBXclH1nnxXg1VE8xxGZedaRToqqEv34HezTd64UlrwKI+YxUNKPAv1rz0scapbqwfYS4h2/daz7E+bhFli9K8LARbwAWaNbTiwkfDfZOTFMf9lJKYASEG70I2mN7O1AOcG/muNGP4CnLFcUguHW43lTP2X0Q=
+Received: from IA4P220CA0010.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:558::15)
+ by MW4PR10MB6677.namprd10.prod.outlook.com (2603:10b6:303:22f::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Thu, 5 Mar
- 2026 22:40:39 +0000
-Received: from CY4PEPF0000E9D8.namprd05.prod.outlook.com
- (2603:10b6:510:2d7:cafe::bf) by PH8P222CA0012.outlook.office365.com
- (2603:10b6:510:2d7::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.22 via Frontend Transport; Thu,
- 5 Mar 2026 22:40:39 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Fri, 6 Mar
+ 2026 05:54:35 +0000
+Received: from BL02EPF0002992B.namprd02.prod.outlook.com
+ (2603:10b6:208:558:cafe::7d) by IA4P220CA0010.outlook.office365.com
+ (2603:10b6:208:558::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.19 via Frontend Transport; Fri,
+ 6 Mar 2026 05:54:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
@@ -43,1135 +43,686 @@ Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.23.194 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
 Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- CY4PEPF0000E9D8.mail.protection.outlook.com (10.167.241.71) with Microsoft
+ BL02EPF0002992B.mail.protection.outlook.com (10.167.249.56) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Thu, 5 Mar 2026 22:40:38 +0000
-Received: from DLEE201.ent.ti.com (157.170.170.76) by lewvzet200.ext.ti.com
+ 15.20.9678.18 via Frontend Transport; Fri, 6 Mar 2026 05:54:35 +0000
+Received: from DLEE205.ent.ti.com (157.170.170.85) by lewvzet200.ext.ti.com
  (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 16:40:38 -0600
-Received: from DLEE207.ent.ti.com (157.170.170.95) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 23:54:34 -0600
+Received: from DLEE214.ent.ti.com (157.170.170.117) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 5 Mar
- 2026 16:40:38 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE207.ent.ti.com
- (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 23:54:34 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE214.ent.ti.com
+ (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 5 Mar 2026 16:40:38 -0600
-Received: from [10.249.65.90] ([10.249.65.90])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 625MecIL3154191;
-	Thu, 5 Mar 2026 16:40:38 -0600
-Message-ID: <27c4440c-1ead-41ba-9a44-bde221ef1848@ti.com>
-Date: Thu, 5 Mar 2026 16:40:38 -0600
+ Transport; Thu, 5 Mar 2026 23:54:34 -0600
+Received: from udba0500997.dhcp.ti.com (udba0500997.dhcp.ti.com [128.247.81.190])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6265sYEY3737966;
+	Thu, 5 Mar 2026 23:54:34 -0600
+From: Thorsten Lannynd <t-lannynd@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: <detheridge@ti.com>, <b-brnich@ti.com>, <a-christidis@ti.com>
+Subject: [meta-arago][master][PATCH] chromium: Upgrade to v142.0.7444.175
+Date: Thu, 5 Mar 2026 23:53:48 -0600
+Message-ID: <20260306055348.1760322-1-t-lannynd@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH] emptty: add version 0.15.0
-To: Denys Dmytriyenko <denis@denix.org>, <a-christidis@ti.com>
-CC: <denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
-References: <20260305205455.267385-1-a-christidis@ti.com>
- <20260305211438.GN11121@denix.org>
-Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <20260305211438.GN11121@denix.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D8:EE_|DS7PR10MB7346:EE_
-X-MS-Office365-Filtering-Correlation-Id: fd8171df-03ed-443e-e2db-08de7b0839ad
+X-MS-TrafficTypeDiagnostic: BL02EPF0002992B:EE_|MW4PR10MB6677:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41aa328f-7ca4-4902-5fdf-08de7b44d870
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|34020700016|36860700016|82310400026|376014|13003099007|7142099003;
+	BCL:0;ARA:13230040|82310400026|376014|34020700016|36860700016|1800799024;
 X-Microsoft-Antispam-Message-Info: 
-	AMoWRM27YywsiI3WO+6FdG1JjSv+Nr9dXNr5g1vd4wZxS+C5b299fEhX/uiDLnXlBNw0Q6M6Fz0dxbdDfv+yPEOMPIRAeUgrKkj+h99BjURm6l5Z/6nBNhUJTc9DBU5cei4v3+cZnU4vsR3dhLp+KuJTqkFNrKVfCoCNq5x8sRAoBE0t9ulE8+FFMDi04bGI4rer9RT0jbZLjDc278yyh7PQ4wOZBrC0v0REeg1SpujeRSoYiFiF3X0YsPztVQ6ms6U359oWeqYO1Q7Uf60vUyzFmPdWj+3qrNGW5Xeb//qcCGl0g6iHMAH78V5xyflOfE/JZxMFAJdSYrmZ44rS4LCnkxQ9w21PkLJrUcpgOJBNmC/r9r1NPeQKWXJWe9wUSknH+QSXEXDMtl46p3XUAP1tRuCjDT/iNI/7+x/BzzQAkblh9TfcatiwyZkoB6/Wq6wESBtu3TQSL/cjDSyGRaBpb8jlRp/csLIP5cpCKAptcXFZO0XM4VXX7uROCaTbtDQyiqet5l8rUmlhg87v6sD9BBoLI7mvAnZvaw1ro1fDv63KXhFMXWXOOnmZGamEYI/bbl27G3+DcgLMrUwoobRRXQxY93hr9mxHnCIMcxrTJft7kl4mCN0fmj2aTZNV8SDdlwTd+0o97+7KNaMOiDH9x6chGDoDWZdgocx93iw3ellkIPh/+qEjGP273T3hrXWpmJB9Je9mfEfZSLDKF2WUlxL3wtMCBHExgM9bkC4=
+	yrpICuGQ3xqKGCfjKIZBzX6mzWZF4SMOcL2NT0J4hYwvbYBAG91QJwipNo2E/9GhH4QM4ksdfswnspKgGX1u/s1stmLduSxxIdc8hdfYKHiGZ9dcDeXti4p92EiUuU9qv7/Nwl5wlQJWyG1Zi2q1rHSu2COTHYus0+XKWLhpEuQChJuwMBSQwRabwr+lX1CBxpW2a9KZOXTH2fxhMNRvaKHyNnA5SqtRTm81GeZZ6pcouqm88Yux0PuH3PkhE6W4KC3LvqcDS6vlJwxvDz17ZR0pzNK7tCbtPFD2A3Zwuk3Vq6POhCoWsdv2116nqB4/FCaapnIZFynrvFM1ZsfmHYTEOqYeOkqSD0vsKYl2lK2P7n2hqjk9Kb7llBTX98c+/YRWQ8JSomE2Nv0jAQuxmRqiSselWUCO6Ol1C9HwUABVbbmRvcNuraOb2ulg/TI1vQchudZfbU0ArEENZJV82044lWmIyYajoHghJG3nB0svAq56fzLblKnYU3q1UH4T589qEMXr9Mx6zSW5Ba+N80NgTLz+Or0s+NLCWg4/tuWk5dgYyr69hpXFwF0l7hRJtLvfWDeoa66PvrPFIpv4XB0uvw5g5/AqmA1XtUF9j6buIoHcgKRk8UZp8kr3Vk1eSd4xaMZMaJmiwNH4c1eEYNVupmAdlwXM/rD3wMXG64mY0nkdtA8pKIxU+VL15ZTeOPcVy4CheYup5bMi33bxMjkskebv+lZYAKEY5e5Pfm3uG/OdAdgbw1O9TJgCLsc7TKVrEm4F3ydWpR316b8Fpw==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(34020700016)(36860700016)(82310400026)(376014)(13003099007)(7142099003);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(34020700016)(36860700016)(1800799024);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	nDwlQoyhaDSk4Mj7aMTcVWKQrWzu+JJCO5jE4KQm+QgksSxF+RcWzrsreC61LCz6NjZuU4m8hYueVfxJAwkEilOOdliQxzEoVcJQ/wpXXrnSlDxARN/xGyh2PJwLWqawkOtL50MRMls0xiKoagSy7JFfROvHPCvFkst4UJhvJ9X53e3qZtLtGq3e58ILr9AOiP6jFyzslZMysncTLVDJp9IVdet6GrXfBrZKV0QlUwcAKSP7ZcJjJ3bFsui7DbucFZzUE3AtS6SocDiyEQTngiexCpIlDpyTmZV/Vn6bXo8ZuY8NoEGmo+au4wywBqQbMw5T0Hw9PHdj8tAtxc1c7ihsv67F+Kcz8k9BwbiR0+4QVAi4fmmomMKX2BuDR949ZQjLewlzLkk0w9VXEGnvJM3jZO8KLKc9z4+ql50UkjyYOMVDiCzsCxztFVaIKRxj
+	wU39Wyx6+WdelKlf4+++aA+DpXz6phA80QOP+y8P+NDb/ZP3ekMEkrr8kAc+Ny7kGf6QL30RqKaThf2hRNede0ArzYQk3VCddJu9ouJB2qQ7MF9OoNymQYn60ZM7vZS+taa0vVyvY6ytgcLV2mx8j1Z/PLRRULscJ2f0E9RywVjTvRpIxIIopLGp6DtwZdVuVDsS4kUdbVP+a661DQjRy9DECxcwsGTR6fY/G1ws8yUYW42zgVlJmARpjehJrMQEbsyVBb1oZ4/qDdXDnXIdVku+U/QVb8rnhPPWp95NbSjQ9BS9vK1t1Hiuzw4nX+FJNP+HaArDAzq5w+mJebQcImXfqMKtjQGCOJh/lXVK2G8Y4uMQaXDGj+7HnM+6vGP7ummezBKJDIwVx5f9nbcZbQ9ZcxkMA+viVVnaqMTq+WKTTRWZzzuwKX5o8Gjh1dSV
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 22:40:38.9968
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 05:54:35.0773
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd8171df-03ed-443e-e2db-08de7b0839ad
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41aa328f-7ca4-4902-5fdf-08de7b44d870
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	CY4PEPF0000E9D8.namprd05.prod.outlook.com
+	BL02EPF0002992B.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB7346
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR10MB6677
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 05 Mar 2026 22:40:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17272
+ <meta-arago@lists.yoctoproject.org>; Fri, 06 Mar 2026 05:54:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17273
 
+Changes:
+- Remove PowerVR-specific sandbox patch
+- Remove platform conditionals and use ChromeOS-style device paths
+  (/dev/video-dec, /dev/video-enc)
+- Disable ThinLTO to prevent linker OOM crashes
+- Fix clang library copying for both aarch64 and x86_64 architectures
+- Add NSS pkg-config detection
+- Rebase existing V4L2 patches to new Chromium version
+- Removed PACKAGECONFIG[use-v4l2] and v4l2 flags as they enabled by default
 
+Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
+---
+ ...dbox-allow-access-to-PowerVR-GPU-fro.patch | 76 ----------------
+ ...se-ChromeOS-style-dev-paths-for-all-.patch | 89 +++++++++++++++++++
+ ...dbox-Allow-GPU-sandbox-access-to-V4L.patch | 23 ++---
+ ...2-Fix-OUTPUT-queue-streaming-in-V4L2.patch | 44 ++-------
+ ...oid-placing-incomplete-H264-access-.patch} | 10 +--
+ .../chromium/chromium-ozone-wayland-arago.inc | 75 ++++++++++++++--
+ ...ium-ozone-wayland_142.0.7444.175.bbappend} |  0
+ 7 files changed, 183 insertions(+), 134 deletions(-)
+ delete mode 100644 meta-arago-distro/dynamic-layers/chromium-browser-layer=
+/recipes-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0001-chromiu=
+m-gpu-sandbox-allow-access-to-PowerVR-GPU-fro.patch
+ create mode 100644 meta-arago-distro/dynamic-layers/chromium-browser-layer=
+/recipes-browser/chromium/chromium-ozone-wayland-142.0.7444.175/0001-media-=
+gpu-v4l2-Use-ChromeOS-style-dev-paths-for-all-.patch
+ rename meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-bro=
+wser/chromium/{chromium-ozone-wayland-132.0.6834.83 =3D> chromium-ozone-way=
+land-142.0.7444.175}/0002-chromium-gpu-sandbox-Allow-GPU-sandbox-access-to-=
+V4L.patch (71%)
+ rename meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-bro=
+wser/chromium/{chromium-ozone-wayland-132.0.6834.83 =3D> chromium-ozone-way=
+land-142.0.7444.175}/0003-chromium-gpu-v4l2-Fix-OUTPUT-queue-streaming-in-V=
+4L2.patch (67%)
+ rename meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-bro=
+wser/chromium/{chromium-ozone-wayland-132.0.6834.83/0004-Avoid-placing-inco=
+mplete-H264-access-units-in-buffer.patch =3D> chromium-ozone-wayland-142.0.=
+7444.175/0004-media-gpu-v4l2-Avoid-placing-incomplete-H264-access-.patch} (=
+82%)
+ rename meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-bro=
+wser/chromium/{chromium-ozone-wayland_132.0.6834.83.bbappend =3D> chromium-=
+ozone-wayland_142.0.7444.175.bbappend} (100%)
 
-On 3/5/2026 3:14 PM, Denys Dmytriyenko wrote:
-> How is it different from Randolph's continued efforts to push it to OE-Core
-> for many months?
-> 
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
+s-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0001-chromium-gpu-s=
+andbox-allow-access-to-PowerVR-GPU-fro.patch b/meta-arago-distro/dynamic-la=
+yers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland=
+-132.0.6834.83/0001-chromium-gpu-sandbox-allow-access-to-PowerVR-GPU-fro.pa=
+tch
+deleted file mode 100644
+index a9a5a49b..00000000
+--- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-132.0.6834.83/0001-chromium-gpu-sandbox-=
+allow-access-to-PowerVR-GPU-fro.patch
++++ /dev/null
+@@ -1,76 +0,0 @@
+-From a27529b8808e2eaa18ae5a30d5fee8193969bde7 Mon Sep 17 00:00:00 2001
+-From: Darren Etheridge <a0867391@uda0393673-1.dhcp.ti.com>
+-Date: Mon, 20 May 2024 15:48:36 -0500
+-Subject: [PATCH] chromium: gpu: sandbox: allow access to PowerVR GPU from
+- sandbox
+-
+-Upstream-Status: Pending [not strictly necessary, but reduces
+-permissions warnings on console]
+-
+-Chromium runs in a sandbox to limit access to the system, however
+-the PowerVR drivers for the Imagination GPU used on TI hardware need
+-some extra libraries along with the DRM device nodes to be opened up.
+-This patch opens up the necessary pieces.
+-
+-Signed-off-by: Darren Etheridge <detheridge@ti.com>
+----
+- content/common/gpu_pre_sandbox_hook_linux.cc | 16 +++++++++++++++-
+- 1 file changed, 15 insertions(+), 1 deletion(-)
+-
+-diff --git a/content/common/gpu_pre_sandbox_hook_linux.cc b/content/common=
+/gpu_pre_sandbox_hook_linux.cc
+-index 28de3c7..7db0617 100644
+---- a/content/common/gpu_pre_sandbox_hook_linux.cc
+-+++ b/content/common/gpu_pre_sandbox_hook_linux.cc
+-@@ -67,6 +67,11 @@ inline bool UseChromecastSandboxAllowlist() {
+- #endif
+- }
+-
+-+inline bool IsGPUIMGRogue() {
+-+  return true;
+-+}
+-+
+-+
+- inline bool IsArchitectureArm() {
+- #if defined(ARCH_CPU_ARM_FAMILY)
+-   return true;
+-@@ -484,6 +489,11 @@ std::vector<BrokerFilePermission> FilePermissionsForG=
+pu(
+-
+-   AddVulkanICDPermissions(&permissions);
+-
+-+  if (IsGPUIMGRogue()) {
+-+      // Add standard DRM permissions for snapdragon/PowerVR:
+-+      AddDrmGpuPermissions(&permissions);
+-+  }
+-+
+-   if (IsChromeOS()) {
+-     // Permissions are additive, there can be multiple GPUs in the system=
+.
+-     AddStandardChromeOsPermissions(&permissions);
+-@@ -552,6 +562,8 @@ void LoadArmGpuLibraries() {
+-         DRI_DRIVER_DIR "/mediatek_dri.so",
+-         DRI_DRIVER_DIR "/rockchip_dri.so",
+-         DRI_DRIVER_DIR "/asahi_dri.so",
+-+        DRI_DRIVER_DIR "/pvr_dri.so",
+-+        DRI_DRIVER_DIR "/tidss_dri.so",
+- #else
+-         "/usr/lib64/dri/msm_dri.so",
+-         "/usr/lib64/dri/panfrost_dri.so",
+-@@ -559,6 +571,8 @@ void LoadArmGpuLibraries() {
+-         "/usr/lib64/dri/rockchip_dri.so",
+-         "/usr/lib64/dri/asahi_dri.so",
+-         "/usr/lib/dri/msm_dri.so",
+-+        "/usr/lib/dri/tidss_dri.so",
+-+        "/usr/lib/dri/pvr_dri.so",
+-         "/usr/lib/dri/panfrost_dri.so",
+-         "/usr/lib/dri/mediatek_dri.so",
+-         "/usr/lib/dri/rockchip_dri.so",
+-@@ -655,7 +669,7 @@ sandbox::syscall_broker::BrokerCommandSet CommandSetFo=
+rGPU(
+-   command_set.set(sandbox::syscall_broker::COMMAND_ACCESS);
+-   command_set.set(sandbox::syscall_broker::COMMAND_OPEN);
+-   command_set.set(sandbox::syscall_broker::COMMAND_STAT);
+--  if (IsChromeOS() &&
+-+  if ((IsGPUIMGRogue() || IsChromeOS()) &&
+-       (options.use_amd_specific_policies ||
+-        options.use_intel_specific_policies ||
+-        options.use_nvidia_specific_policies ||
+---
+-2.34.1
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
+s-browser/chromium/chromium-ozone-wayland-142.0.7444.175/0001-media-gpu-v4l=
+2-Use-ChromeOS-style-dev-paths-for-all-.patch b/meta-arago-distro/dynamic-l=
+ayers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-waylan=
+d-142.0.7444.175/0001-media-gpu-v4l2-Use-ChromeOS-style-dev-paths-for-all-.=
+patch
+new file mode 100644
+index 00000000..2089b8d2
+--- /dev/null
++++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-142.0.7444.175/0001-media-gpu-v4l2-Use-C=
+hromeOS-style-dev-paths-for-all-.patch
+@@ -0,0 +1,89 @@
++From 262a19d57fccf1b27ede283398278b52820f4aae Mon Sep 17 00:00:00 2001
++From: Thorsten Lannynd <t-lannynd@ti.com>
++Date: Fri, 5 Dec 2025 12:40:27 -0600
++Subject: [PATCH] media/gpu/v4l2: Use ChromeOS-style dev paths for all
++ platforms
++
++Upstream-Status: Inappropriate [embedded-specific,
++  requires custom udev rules]
++
++Remove platform-specific conditionals and standardize on ChromeOS device
++naming (/dev/video-dec, /dev/video-enc, etc) instead of generic /dev/video=
+*.
++Reduces device scanning from 256 to 10 devices for improved enumeration sp=
+eed.
++
++Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
++---
++ media/gpu/v4l2/v4l2_device.cc | 16 ----------------
++ media/gpu/v4l2/v4l2_utils.cc  | 10 ----------
++ 2 files changed, 26 deletions(-)
++
++diff --git a/media/gpu/v4l2/v4l2_device.cc b/media/gpu/v4l2/v4l2_device.cc
++index ea35d10be8..dee743ed48 100644
++--- a/media/gpu/v4l2/v4l2_device.cc
+++++ b/media/gpu/v4l2/v4l2_device.cc
++@@ -874,20 +874,11 @@ void V4L2Device::CloseDevice() {
++ }
++
++ void V4L2Device::EnumerateDevicesForType(Type type) {
++-#if BUILDFLAG(IS_CHROMEOS)
++   static const std::string kDecoderDevicePattern =3D "/dev/video-dec";
++   static const std::string kEncoderDevicePattern =3D "/dev/video-enc";
++   static const std::string kImageProcessorDevicePattern =3D "/dev/image-p=
+roc";
++   static const std::string kJpegDecoderDevicePattern =3D "/dev/jpeg-dec";
++   static const std::string kJpegEncoderDevicePattern =3D "/dev/jpeg-enc";
++-#else
++-  static const std::string kDecoderDevicePattern =3D "/dev/video";
++-  static const std::string kEncoderDevicePattern =3D "/dev/video";
++-  static const std::string kImageProcessorDevicePattern =3D "/dev/video";
++-  static const std::string kJpegDecoderDevicePattern =3D "/dev/video";
++-  static const std::string kJpegEncoderDevicePattern =3D "/dev/video";
++-#endif
++-
++   std::string device_pattern;
++   v4l2_buf_type input_buf_type;
++   v4l2_buf_type output_buf_type;
++@@ -924,19 +915,12 @@ void V4L2Device::EnumerateDevicesForType(Type type) =
+{
++   // We are sandboxed, so we can't query directory contents to check whic=
+h
++   // devices are actually available. Try to open the first 10; if not pre=
+sent,
++   // we will just fail to open immediately.
++-#if BUILDFLAG(IS_CHROMEOS)
++   constexpr int kMaxDevices =3D 10;
++   candidate_paths.reserve(kMaxDevices + 1);
++
++   // TODO(posciak): Remove this legacy unnumbered device once
++   // all platforms are updated to use numbered devices.
++   candidate_paths.push_back(device_pattern);
++-#else
++-  // On mainline Linux we need to check a much larger number of devices, =
+mainly
++-  // because the device pattern is shared with ISP devices.
++-  constexpr int kMaxDevices =3D 256;
++-  candidate_paths.reserve(kMaxDevices);
++-#endif
++   for (int i =3D 0; i < kMaxDevices; ++i) {
++     candidate_paths.push_back(
++         base::StringPrintf("%s%d", device_pattern.c_str(), i));
++diff --git a/media/gpu/v4l2/v4l2_utils.cc b/media/gpu/v4l2/v4l2_utils.cc
++index d4cac5573c..50d720a365 100644
++--- a/media/gpu/v4l2/v4l2_utils.cc
+++++ b/media/gpu/v4l2/v4l2_utils.cc
++@@ -583,18 +583,8 @@ std::optional<SupportedVideoDecoderConfigs> GetSuppor=
+tedV4L2DecoderConfigs() {
++   SupportedVideoDecoderConfigs supported_media_configs;
++   std::vector<std::string> candidate_paths;
++
++-#if BUILDFLAG(IS_CHROMEOS)
++   constexpr char kVideoDevicePattern[] =3D "/dev/video-dec0";
++   candidate_paths.push_back(kVideoDevicePattern);
++-#else
++-  constexpr char kVideoDevicePattern[] =3D "/dev/video";
++-  constexpr int kMaxDevices =3D 256;
++-  candidate_paths.reserve(kMaxDevices);
++-  for (int i =3D 0; i < kMaxDevices; ++i) {
++-    candidate_paths.push_back(
++-        base::StringPrintf("%s%d", kVideoDevicePattern, i));
++-  }
++-#endif
++
++   for (const auto& path : candidate_paths) {
++     base::ScopedFD device_fd(
++--
++2.34.1
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
+s-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0002-chromium-gpu-s=
+andbox-Allow-GPU-sandbox-access-to-V4L.patch b/meta-arago-distro/dynamic-la=
+yers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland=
+-142.0.7444.175/0002-chromium-gpu-sandbox-Allow-GPU-sandbox-access-to-V4L.p=
+atch
+similarity index 71%
+rename from meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes=
+-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0002-chromium-gpu-sa=
+ndbox-Allow-GPU-sandbox-access-to-V4L.patch
+rename to meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-b=
+rowser/chromium/chromium-ozone-wayland-142.0.7444.175/0002-chromium-gpu-san=
+dbox-Allow-GPU-sandbox-access-to-V4L.patch
+index 4ccb8fc1..a51fa322 100644
+--- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-132.0.6834.83/0002-chromium-gpu-sandbox-=
+Allow-GPU-sandbox-access-to-V4L.patch
++++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-142.0.7444.175/0002-chromium-gpu-sandbox=
+-Allow-GPU-sandbox-access-to-V4L.patch
+@@ -1,6 +1,6 @@
+-From 99c59368f9cdd43638dd30c2ea867a950a54b648 Mon Sep 17 00:00:00 2001
++From d6a8f091cebd265c0f7f681173d2aa218a0b89cd Mon Sep 17 00:00:00 2001
+ From: Thorsten Lannynd <t-lannynd@ti.com>
+-Date: Fri, 8 Aug 2025 23:05:18 -0500
++Date: Thu, 5 Mar 2026 12:02:31 -0600
+ Subject: [PATCH] chromium: gpu: sandbox: Allow GPU sandbox access to V4L2
+  devices
+=20
+@@ -13,27 +13,28 @@ Chromium with V4L2 for video processing.
+=20
+ Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
+ ---
+- content/common/gpu_pre_sandbox_hook_linux.cc | 12 ++++++++++--
+- 1 file changed, 10 insertions(+), 2 deletions(-)
++ content/common/gpu_pre_sandbox_hook_linux.cc | 7 ++++---
++ 1 file changed, 4 insertions(+), 3 deletions(-)
+=20
+ diff --git a/content/common/gpu_pre_sandbox_hook_linux.cc b/content/common=
+/gpu_pre_sandbox_hook_linux.cc
+-index 2a3abc9775..1865246fa8 100644
++index 2e53794fa3..9dec7fa08b 100644
+ --- a/content/common/gpu_pre_sandbox_hook_linux.cc
+ +++ b/content/common/gpu_pre_sandbox_hook_linux.cc
+-@@ -516,11 +521,14 @@ std::vector<BrokerFilePermission> FilePermissionsFor=
+Gpu(
+-       AddDrmGpuPermissions(&permissions);
+-   }
++@@ -627,13 +627,14 @@ std::vector<BrokerFilePermission> FilePermissionsFor=
+Gpu(
++       BrokerFilePermission::ReadOnly(kDriRcPath)};
+=20
++   AddVulkanICDPermissions(&permissions);
+++
+ +  if (UseV4L2Codec(options)) {
+-+      // Add V4L2 permissions for video decode/encode.
+ +      AddV4L2GpuPermissions(&permissions, options);
+ +  }
+-+
++
+    if (IsChromeOS()) {
+      // Permissions are additive, there can be multiple GPUs in the system=
+.
+      AddStandardChromeOsPermissions(&permissions);
+--    if (UseV4L2Codec(options))
++-    if (UseV4L2Codec(options)) {
+ -      AddV4L2GpuPermissions(&permissions, options);
++-    }
+      if (IsArchitectureArm()) {
+        AddImgPvrGpuPermissions(&permissions);
+        AddArmGpuPermissions(&permissions);
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
+s-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0003-chromium-gpu-v=
+4l2-Fix-OUTPUT-queue-streaming-in-V4L2.patch b/meta-arago-distro/dynamic-la=
+yers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland=
+-142.0.7444.175/0003-chromium-gpu-v4l2-Fix-OUTPUT-queue-streaming-in-V4L2.p=
+atch
+similarity index 67%
+rename from meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes=
+-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0003-chromium-gpu-v4=
+l2-Fix-OUTPUT-queue-streaming-in-V4L2.patch
+rename to meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-b=
+rowser/chromium/chromium-ozone-wayland-142.0.7444.175/0003-chromium-gpu-v4l=
+2-Fix-OUTPUT-queue-streaming-in-V4L2.patch
+index 55a630eb..0a6c0f95 100644
+--- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-132.0.6834.83/0003-chromium-gpu-v4l2-Fix=
+-OUTPUT-queue-streaming-in-V4L2.patch
++++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-142.0.7444.175/0003-chromium-gpu-v4l2-Fi=
+x-OUTPUT-queue-streaming-in-V4L2.patch
+@@ -1,7 +1,7 @@
+-From 3f5cdbc3b1871b6b8cdfa96eccd96f59d66a8afc Mon Sep 17 00:00:00 2001
++From d1d9bcefa8fd299049e6e51855f41b67b27823ed Mon Sep 17 00:00:00 2001
+ From: Thorsten Lannynd <t-lannynd@ti.com>
+ Date: Sat, 9 Aug 2025 01:46:14 -0500
+-Subject: [PATCH] chromium: gpu: v4l2: Fix OUTPUT queue streaming in
++Subject: [PATCH] media/gpu/v4l2: Fix OUTPUT queue streaming in
+  V4L2StatefulVideoDecoder
+=20
+ Upstream-Status: Inappropriate [this change is needed to satisfy
+@@ -24,15 +24,14 @@ Linux distribution to set the correct device node names=
+.
+=20
+ Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
+ ---
+- media/gpu/v4l2/v4l2_stateful_video_decoder.cc | 40 ++++++++++++++-----
+- media/gpu/v4l2/v4l2_utils.cc                  |  2 +-
+- 2 files changed, 32 insertions(+), 10 deletions(-)
++ media/gpu/v4l2/v4l2_stateful_video_decoder.cc | 32 +++++++++++++------
++ 1 file changed, 23 insertions(+), 9 deletions(-)
+=20
+ diff --git a/media/gpu/v4l2/v4l2_stateful_video_decoder.cc b/media/gpu/v4l=
+2/v4l2_stateful_video_decoder.cc
+-index e5069a3acf..6d11ea7e0f 100644
++index 359145244d..e3aeb060c2 100644
+ --- a/media/gpu/v4l2/v4l2_stateful_video_decoder.cc
+ +++ b/media/gpu/v4l2/v4l2_stateful_video_decoder.cc
+-@@ -410,10 +414,6 @@ void V4L2StatefulVideoDecoder::Initialize(const Video=
+DecoderConfig& config,
++@@ -417,10 +417,6 @@ void V4L2StatefulVideoDecoder::Initialize(const Video=
+DecoderConfig& config,
+      std::move(init_cb).Run(DecoderStatus::Codes::kFailedToCreateDecoder);
+      return;
+    }
+@@ -43,7 +42,7 @@ index e5069a3acf..6d11ea7e0f 100644
+    client_->NotifyEstimatedMaxDecodeRequests(base::checked_cast<int>(
+        std::min(static_cast<size_t>(4), num_input_buffers)));
+=20
+-@@ -518,10 +518,22 @@ void V4L2StatefulVideoDecoder::Decode(scoped_refptr<=
+DecoderBuffer> buffer,
++@@ -525,10 +521,22 @@ void V4L2StatefulVideoDecoder::Decode(scoped_refptr<=
+DecoderBuffer> buffer,
+                                            std::move(decode_cb));
+    }
+=20
+@@ -70,7 +69,7 @@ index e5069a3acf..6d11ea7e0f 100644
+    }
+=20
+    if (!event_task_runner_) {
+-@@ -729,7 +741,13 @@ bool V4L2StatefulVideoDecoder::InitializeCAPTUREQueue=
+() {
++@@ -743,7 +751,13 @@ bool V4L2StatefulVideoDecoder::InitializeCAPTUREQueue=
+() {
+    auto chosen_fourcc =3D output_format.fourcc;
+    const auto chosen_size =3D output_format.size;
+    const auto chosen_modifier =3D output_format.modifier;
+@@ -85,32 +84,5 @@ index e5069a3acf..6d11ea7e0f 100644
+    // If our |client_| has a VideoFramePool to allocate buffers for us, we=
+'ll
+    // use it, otherwise we have to ask the driver.
+    const bool use_v4l2_allocated_buffers =3D !client_->GetVideoFramePool()=
+;
+-diff --git a/media/gpu/v4l2/v4l2_utils.cc b/media/gpu/v4l2/v4l2_utils.cc
+-index 9646e8be73..6a7feb49c9 100644
+---- a/media/gpu/v4l2/v4l2_utils.cc
+-+++ b/media/gpu/v4l2/v4l2_utils.cc
+-@@ -572,18 +572,10 @@ std::optional<SupportedVideoDecoderConfigs> GetSuppo=
+rtedV4L2DecoderConfigs() {
+-   SupportedVideoDecoderConfigs supported_media_configs;
+-   std::vector<std::string> candidate_paths;
+-
+--#if BUILDFLAG(IS_CHROMEOS)
+--  constexpr char kVideoDevicePattern[] =3D "/dev/video-dec0";
+--  candidate_paths.push_back(kVideoDevicePattern);
+--#else
+--  constexpr char kVideoDevicePattern[] =3D "/dev/video";
+--  constexpr int kMaxDevices =3D 256;
+--  candidate_paths.reserve(kMaxDevices);
+--  for (int i =3D 0; i < kMaxDevices; ++i) {
+--    candidate_paths.push_back(
+--        base::StringPrintf("%s%d", kVideoDevicePattern, i));
+--  }
+--#endif
+-+  constexpr char kVideoDevicePattern0[] =3D "/dev/video-dec0";
+-+  constexpr char kVideoDevicePattern1[] =3D "/dev/video-dec1";
+-+  candidate_paths.push_back(kVideoDevicePattern0);
+-+  candidate_paths.push_back(kVideoDevicePattern1);
+-
+-   for (const auto& path : candidate_paths) {
+-     base::ScopedFD device_fd(
+ --
+ 2.34.1
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
+s-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0004-Avoid-placing-=
+incomplete-H264-access-units-in-buffer.patch b/meta-arago-distro/dynamic-la=
+yers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland=
+-142.0.7444.175/0004-media-gpu-v4l2-Avoid-placing-incomplete-H264-access-.p=
+atch
+similarity index 82%
+rename from meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes=
+-browser/chromium/chromium-ozone-wayland-132.0.6834.83/0004-Avoid-placing-i=
+ncomplete-H264-access-units-in-buffer.patch
+rename to meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-b=
+rowser/chromium/chromium-ozone-wayland-142.0.7444.175/0004-media-gpu-v4l2-A=
+void-placing-incomplete-H264-access-.patch
+index e0ca7dfd..caa61545 100644
+--- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-132.0.6834.83/0004-Avoid-placing-incompl=
+ete-H264-access-units-in-buffer.patch
++++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-142.0.7444.175/0004-media-gpu-v4l2-Avoid=
+-placing-incomplete-H264-access-.patch
+@@ -1,4 +1,4 @@
+-From 8542b683ca6a0774a452eb3d7cadc834d4f41436 Mon Sep 17 00:00:00 2001
++From 942c5f57d34c2d1b077240147bb29be84c773e62 Mon Sep 17 00:00:00 2001
+ From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
+ Date: Wed, 11 Jun 2025 11:07:05 +0300
+ Subject: [PATCH] media/gpu/v4l2: Avoid placing incomplete H264 access unit=
+s in
+@@ -14,10 +14,10 @@ and may confuse the decoder.
+  1 file changed, 3 insertions(+), 3 deletions(-)
+=20
+ diff --git a/media/gpu/v4l2/v4l2_stateful_video_decoder.cc b/media/gpu/v4l=
+2/v4l2_stateful_video_decoder.cc
+-index 422cc72a34a83..61ab2f5bf1ab2 100644
++index e3aeb060c2..3657bc1d36 100644
+ --- a/media/gpu/v4l2/v4l2_stateful_video_decoder.cc
+ +++ b/media/gpu/v4l2/v4l2_stateful_video_decoder.cc
+-@@ -1340,7 +1340,7 @@ H264FrameReassembler::FindFrameBoundary(const uint8_=
+t* const data,
++@@ -1342,7 +1342,7 @@ H264FrameReassembler::FindH264FrameBoundary(const ui=
+nt8_t* const data,
+            return std::nullopt;
+          }
+          previous_slice_header_.reset();
+@@ -26,7 +26,7 @@ index 422cc72a34a83..61ab2f5bf1ab2 100644
+                                   .is_start_of_new_frame =3D true,
+                                   .nalu_size =3D nalu_size};
+        case H264NALU::kPPS:
+-@@ -1350,7 +1350,7 @@ H264FrameReassembler::FindFrameBoundary(const uint8_=
+t* const data,
++@@ -1352,7 +1352,7 @@ H264FrameReassembler::FindH264FrameBoundary(const ui=
+nt8_t* const data,
+            return std::nullopt;
+          }
+          previous_slice_header_.reset();
+@@ -35,7 +35,7 @@ index 422cc72a34a83..61ab2f5bf1ab2 100644
+                                   .is_start_of_new_frame =3D true,
+                                   .nalu_size =3D nalu_size};
+        case H264NALU::kNonIDRSlice:
+-@@ -1389,7 +1389,7 @@ H264FrameReassembler::FindFrameBoundary(const uint8_=
+t* const data,
++@@ -1391,7 +1391,7 @@ H264FrameReassembler::FindH264FrameBoundary(const ui=
+nt8_t* const data,
+        case H264NALU::kReserved18:
+          // Anything else than SPS, PPS and Non/IDRs marks a new frame bou=
+ndary.
+          previous_slice_header_.reset();
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
+s-browser/chromium/chromium-ozone-wayland-arago.inc b/meta-arago-distro/dyn=
+amic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-=
+wayland-arago.inc
+index 53669cf5..e2d55180 100644
+--- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-arago.inc
++++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-arago.inc
+@@ -1,15 +1,78 @@
+ PR:append =3D ".arago0"
+=20
+-FILESEXTRAPATHS:prepend :=3D "${THISDIR}/chromium-ozone-wayland-132.0.6834=
+.83:"
++FILESEXTRAPATHS:prepend :=3D "${THISDIR}/chromium-ozone-wayland-142.0.7444=
+.175:"
+=20
+-PACKAGECONFIG[use-v4l2] =3D "use_v4l2_codec=3Dtrue,use_v4l2_codec=3Dfalse"
+-PACKAGECONFIG:append =3D " proprietary-codecs use-v4l2"
++PACKAGECONFIG:append =3D " proprietary-codecs"
+=20
+-CHROMIUM_EXTRA_ARGS:append =3D " ${@bb.utils.contains('PACKAGECONFIG', 'us=
+e-v4l2', '--ozone-platform-hint=3Dwayland --enable-features=3DAcceleratedVi=
+deoDecoder,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCop=
+yGL', '', d)}"
++# Remove incompatible Rust 1.8x patch (for Rust 1.93+)
++SRC_URI:remove =3D "file://chromium-142-crabbyavif-rust18x.patch"
+=20
+ SRC_URI:append =3D " \
+-                  file://0001-chromium-gpu-sandbox-allow-access-to-PowerVR=
+-GPU-fro.patch \
++                  file://0001-media-gpu-v4l2-Use-ChromeOS-style-dev-paths-=
+for-all-.patch \
+                   file://0002-chromium-gpu-sandbox-Allow-GPU-sandbox-acces=
+s-to-V4L.patch \
+                   file://0003-chromium-gpu-v4l2-Fix-OUTPUT-queue-streaming=
+-in-V4L2.patch \
+-                  file://0004-Avoid-placing-incomplete-H264-access-units-i=
+n-buffer.patch \
++                  file://0004-media-gpu-v4l2-Avoid-placing-incomplete-H264=
+-access-.patch \
+                   "
++
++# Disable ThinLTO to prevent linker OOM crashes
++GN_ARGS +=3D " use_thin_lto=3Dfalse"
++
++# Override do_copy_clang_library to handle both target and host architectu=
+res
++do_copy_clang_library() {
++    cp -r "${STAGING_LIBDIR_NATIVE}/clang/latest" "${STAGING_DIR_HOST}${no=
+narch_libdir}/clang/"
++    cd "${STAGING_DIR_HOST}${nonarch_libdir}/clang" || return
++
++    # Process both target arch (aarch64) and build arch (x86_64)
++    for ARCH in "${TARGET_ARCH}" "${BUILD_ARCH}"; do
++        echo "Processing clang libraries for architecture: $ARCH"
++        target_dir=3D"latest/lib/${ARCH}-unknown-linux-gnu"
++        mkdir -p "$target_dir"
++
++        # Determine source sysroot based on architecture
++        if [ "$ARCH" =3D "${TARGET_ARCH}" ]; then
++            search_path=3D"${STAGING_LIBDIR}"
++        else
++            search_path=3D"${STAGING_LIBDIR_NATIVE}"
++        fi
++
++        # Find and copy library files from the appropriate sysroot
++        for lib_pattern in "libclang_rt.builtins-${ARCH}.a" "liborc_rt-${A=
+RCH}.a"; do
++            lib_files=3D$(find "$search_path/clang" -name "$lib_pattern" 2=
+>/dev/null)
++            for lib_file in $lib_files; do
++                if [ -f "$lib_file" ]; then
++                    base_name=3D$(basename "$lib_file")
++                    echo "Copying $lib_file to $target_dir/"
++                    cp "$lib_file" "$target_dir/" 2>/dev/null || true
++                fi
++            done
++        done
++
++        # Create generic names without architecture suffix
++        if [ -d "$target_dir" ]; then
++            cd "$target_dir" || continue
++            for file in libclang_rt.builtins-*.a liborc_rt-*.a; do
++                if [ -f "$file" ]; then
++                    generic_name=3D$(echo "$file" | sed -E 's/-(x86_64|aar=
+ch64|arm|i686)\.a$/.a/')
++                    if [ "$file" !=3D "$generic_name" ] && [ ! -f "$generi=
+c_name" ]; then
++                        cp "$file" "$generic_name" 2>/dev/null || true
++                    fi
++                fi
++            done
++            cd "${STAGING_DIR_HOST}${nonarch_libdir}/clang" || return
++        fi
++
++        # Copy to native sysroot as well
++        native_arch_path=3D"${STAGING_LIBDIR_NATIVE}/clang/latest/lib/${AR=
+CH}-unknown-linux-gnu/"
++        if [ -d "$target_dir" ] && [ -n "$(ls -A "$target_dir" 2>/dev/null=
+)" ]; then
++            mkdir -p "$native_arch_path"
++            cp -n "$target_dir"/* "$native_arch_path/" 2>/dev/null || true
++        fi
++    done
++}
++
++# Add pkg-config setup for NSS detection
++do_configure:prepend() {
++    export PKG_CONFIG_PATH=3D"${STAGING_LIBDIR}/pkgconfig:${STAGING_DATADI=
+R}/pkgconfig"
++    export PKG_CONFIG_SYSROOT_DIR=3D"${STAGING_DIR_TARGET}"
++    export PKG_CONFIG_LIBDIR=3D"${STAGING_LIBDIR}/pkgconfig"
++}
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
+s-browser/chromium/chromium-ozone-wayland_132.0.6834.83.bbappend b/meta-ara=
+go-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/ch=
+romium-ozone-wayland_142.0.7444.175.bbappend
+similarity index 100%
+rename from meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes=
+-browser/chromium/chromium-ozone-wayland_132.0.6834.83.bbappend
+rename to meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-b=
+rowser/chromium/chromium-ozone-wayland_142.0.7444.175.bbappend
+--=20
+2.34.1
 
-It's not.  We just need it for our testing and they are still reviewing 
-it in the patch review meetings.  So this is hopefully temporary.
-
-
-> On Thu, Mar 05, 2026 at 02:54:55PM -0600, Antonios Christidis via lists.yoctoproject.org wrote:
->> From: Antonios Christidis <a-christidis@ti.com>
->>
->> Add emptty, a "Dead simple CLI Display Manager on TTY". This is a
->> relatively lightweight display manager that supports x11 as well as
->> wayland through both a CLI and an automatic login mechanism.
->>
->> This can effectively replace the custom init scripts for both x11
->> (xserver-nodm-init) and wayland (weston-init) with a single tool with
->> more verbose logging capabilities.
->>
->> This is split into two recipes. The emptty package provides the binary
->> and various agnostic configs while the emptty-conf package provides the
->> default configuration for the application itself. This RPROVIDES
->> virtual-emptty-conf, allowing other recipes to provide their own
->> configurations to override the default behavior.
->>
->> Signed-off-by: Antonios Christidis <a-christidis@ti.com>
->> ---
->>   0001-emptty-add-version-0.15.0.patch          | 522 ++++++++++++++++++
->>   .../classes/tisdk-bundle.bbclass              |  14 +-
->>   meta-arago-distro/conf/distro/arago.conf      |   2 +
->>   .../recipes-graphics/emptty/emptty-conf.bb    |  14 +
->>   .../recipes-graphics/emptty/emptty.inc        |  27 +
->>   .../recipes-graphics/emptty/emptty/pamconf    |  11 +
->>   .../recipes-graphics/emptty/emptty_0.15.0.bb  |  57 ++
->>   .../wayland/weston-init-arago.bb              |  72 +++
->>   .../weston-init-arago/beaglebone/weston.ini   |  85 +++
->>   .../wayland/weston-init-arago/emptty.conf     |  77 +++
->>   .../weston-launch-calibrator.sh               |  13 +
->>   .../wayland/weston-init-arago/weston.ini      |  21 +
->>   12 files changed, 914 insertions(+), 1 deletion(-)
->>   create mode 100644 0001-emptty-add-version-0.15.0.patch
->>   create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
->>   create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty.inc
->>   create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
->>   create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
->>   create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
->>   create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
->>   create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
->>   create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
->>   create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
->>
->> diff --git a/0001-emptty-add-version-0.15.0.patch b/0001-emptty-add-version-0.15.0.patch
->> new file mode 100644
->> index 00000000..dba3013d
->> --- /dev/null
->> +++ b/0001-emptty-add-version-0.15.0.patch
->> @@ -0,0 +1,522 @@
->> +From d41ec048882b955124d7dbeee1c2bf1351a0aba4 Mon Sep 17 00:00:00 2001
->> +From: Antonios Christidis <a-christidis@ti.com>
->> +Date: Thu, 5 Mar 2026 13:12:08 -0600
->> +Subject: [PATCH] emptty: add version 0.15.0
->> +
->> +Add emptty, a "Dead simple CLI Display Manager on TTY". This is a
->> +relatively lightweight display manager that supports x11 as well as
->> +wayland through both a CLI and an automatic login mechanism.
->> +
->> +This can effectively replace the custom init scripts for both x11
->> +(xserver-nodm-init) and wayland (weston-init) with a single tool with
->> +more verbose logging capabilities.
->> +
->> +This is split into two recipes. The emptty package provides the binary
->> +and various agnostic configs while the emptty-conf package provides the
->> +default configuration for the application itself. This RPROVIDES
->> +virtual-emptty-conf, allowing other recipes to provide their own
->> +configurations to override the default behavior.
->> +
->> +Signed-off-by: Antonios Christidis <a-christidis@ti.com>
->> +---
->> + .../classes/tisdk-bundle.bbclass              | 14 ++-
->> + meta-arago-distro/conf/distro/arago.conf      |  2 +
->> + .../recipes-graphics/emptty/emptty-conf.bb    | 14 +++
->> + .../recipes-graphics/emptty/emptty.inc        | 27 ++++++
->> + .../recipes-graphics/emptty/emptty/pamconf    | 11 +++
->> + .../recipes-graphics/emptty/emptty_0.15.0.bb  | 57 +++++++++++++
->> + .../wayland/weston-init-arago.bb              | 72 ++++++++++++++++
->> + .../weston-init-arago/beaglebone/weston.ini   | 85 +++++++++++++++++++
->> + .../wayland/weston-init-arago/emptty.conf     | 77 +++++++++++++++++
->> + .../weston-launch-calibrator.sh               | 13 +++
->> + .../wayland/weston-init-arago/weston.ini      | 21 +++++
->> + 11 files changed, 392 insertions(+), 1 deletion(-)
->> + create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
->> + create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty.inc
->> + create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
->> + create mode 100644 meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
->> + create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
->> + create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
->> + create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
->> + create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
->> + create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
->> +
->> +diff --git a/meta-arago-distro/classes/tisdk-bundle.bbclass b/meta-arago-distro/classes/tisdk-bundle.bbclass
->> +index cc5d1481..24146529 100644
->> +--- a/meta-arago-distro/classes/tisdk-bundle.bbclass
->> ++++ b/meta-arago-distro/classes/tisdk-bundle.bbclass
->> +@@ -106,7 +106,7 @@ cleanup_host_packages() {
->> + }
->> +
->> + ROOTFS_PREPROCESS_COMMAND += "tisdk_image_setup; "
->> +-ROOTFS_POSTPROCESS_COMMAND += "tisdk_image_build; "
->> ++ROOTFS_POSTPROCESS_COMMAND += "tisdk_image_build; add_emptty_inittab; "
->> + IMAGE_PREPROCESS_COMMAND:append = "tisdk_image_cleanup; "
->> +
->> + # Create the SDK image.  We will re-use the rootfs_ipk_do_rootfs functionality
->> +@@ -304,6 +304,18 @@ tisdk_image_build () {
->> +     cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
->> + }
->> +
->> ++
->> ++add_emptty_inittab() {
->> ++    [ -f ${IMAGE_ROOTFS}${sysconfdir}/inittab ] || return 0
->> ++
->> ++    if ${@bb.utils.contains_any("IMAGE_FEATURES", [ "x11-base", "weston" ], "true", "false", d)}
->> ++    then
->> ++	echo "7:5:respawn:${bindir}/emptty -t 7 -d" >> ${IMAGE_ROOTFS}${sysconfdir}/inittab
->> ++    fi
->> ++}
->> ++
->> ++
->> ++
->> + TISDK_IMAGE_CLEANUP_DIRS ?= "var etc lib boot dev home media mnt proc run sbin sys tmp usr"
->> + TISDK_IMAGE_CLEANUP_FILES ?= "bin/bash bin/bash.bash bin/sh"
->> +
->> +diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
->> +index fb5c703f..43d4db53 100644
->> +--- a/meta-arago-distro/conf/distro/arago.conf
->> ++++ b/meta-arago-distro/conf/distro/arago.conf
->> +@@ -68,6 +68,8 @@ PACKAGECONFIG:pn-glmark2 = "drm-gles2 wayland-gles2"
->> +
->> + # Set this to empty string to prevent xwayland config from being added
->> + PACKAGECONFIG:pn-weston-init = ""
->> ++PREFERRED_RPROVIDER_virtual-emptty-conf = "weston-init-arago"
->> ++PREFERRED_RPROVIDER_weston-init = "weston-init-arago"
->> +
->> + # Enable testing for opencl and vulkan with piglit
->> + PACKAGECONFIG:append:pn-piglit = " \
->> +diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb b/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
->> +new file mode 100644
->> +index 00000000..0b98e2e1
->> +--- /dev/null
->> ++++ b/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
->> +@@ -0,0 +1,14 @@
->> ++require emptty.inc
->> ++
->> ++SUMMARY += " (Default config)"
->> ++
->> ++do_configure[noexec] = "1"
->> ++do_compile[noexec] = "1"
->> ++
->> ++do_install () {
->> ++    oe_runmake -C ${S}/src/${GO_IMPORT} DESTDIR=${D} install-config
->> ++}
->> ++
->> ++FILES:${PN} = "${sysconfdir}/emptty/conf"
->> ++CONFFILES:${PN} = "${sysconfdir}/emptty/conf"
->> ++RPROVIDES:${PN} += "virtual-emptty-conf"
->> +diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty.inc b/meta-arago-distro/recipes-graphics/emptty/emptty.inc
->> +new file mode 100644
->> +index 00000000..d99c4d8c
->> +--- /dev/null
->> ++++ b/meta-arago-distro/recipes-graphics/emptty/emptty.inc
->> +@@ -0,0 +1,27 @@
->> ++SUMMARY = "Dead simple CLI Display Manager on TTY"
->> ++DESCRIPTION = "Emptty is a simple display manager with a command line greeter \
->> ++It supports both X11 and Wayland sessions, exporting required variables and \
->> ++creating user paths as necessary."
->> ++
->> ++HOMEPAGE = "https://github.com/tvrzna/emptty"
->> ++BUGTRACKER = "https://github.com/tvrzna/emptty/issues"
->> ++LICENSE = "MIT"
->> ++LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=d1e4d12c7d1d17367ba5668706a405ba"
->> ++
->> ++S = "${UNPACKDIR}"
->> ++
->> ++FILESEXTRAPATHS:append = ":${THISDIR}/emptty"
->> ++
->> ++GO_IMPORT = "github.com/tvrzna/emptty"
->> ++GO_IMPORT_pam = "github.com/msteinert/pam"
->> ++SRC_URI = "\
->> ++    git://${GO_IMPORT}.git;protocol=https;branch=master;destsuffix=src/${GO_IMPORT} \
->> ++    git://${GO_IMPORT_pam}.git;protocol=https;branch=master;name=pam;destsuffix=src/${GO_IMPORT_pam} \
->> ++    file://pamconf \
->> ++    "
->> ++SRCREV = "bb203ad0a224731a7a2ff50deeb342ab79c4af09"
->> ++SRCREV_pam = "50ded1b0e7864b9bf75005eb945a8ec826bcf69d"
->> ++
->> ++SRCREV_FORMAT .= "_pam"
->> ++
->> ++PR = "r1"
->> +diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf b/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
->> +new file mode 100644
->> +index 00000000..5c82d46b
->> +--- /dev/null
->> ++++ b/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
->> +@@ -0,0 +1,11 @@
->> ++#%PAM-1.0
->> ++auth            sufficient      pam_succeed_if.so user ingroup nopasswdlogin
->> ++auth            include         common-auth
->> ++-auth           optional        pam_gnome_keyring.so
->> ++-auth           optional        pam_kwallet5.so
->> ++account         include         common-account
->> ++session         include         common-session
->> ++-session        optional        pam_gnome_keyring.so auto_start
->> ++-session        optional        pam_kwallet5.so auto_start force_run
->> ++password        include         common-password
->> ++
->> +diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb b/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
->> +new file mode 100644
->> +index 00000000..415c5ea5
->> +--- /dev/null
->> ++++ b/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
->> +@@ -0,0 +1,57 @@
->> ++require emptty.inc
->> ++
->> ++PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pam x11', d)}"
->> ++PACKAGECONFIG[pam] = ",,libpam,pam-plugin-succeed-if"
->> ++PACKAGECONFIG[x11] = ",,virtual/libx11,util-linux-mcookie"
->> ++
->> ++DEPENDS += "${@bb.utils.contains('PACKAGECONFIG', 'pam', '', 'virtual/crypt', d)}"
->> ++
->> ++GO_TAGS = ""
->> ++GO_TAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'pam', '', ',nopam', d)}"
->> ++GO_TAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', ',noxlib', d)}"
->> ++
->> ++GOBUILDFLAGS:append = " -tags=${GO_TAGS}"
->> ++
->> ++export GO111MODULE = "off"
->> ++
->> ++inherit go
->> ++
->> ++DEPENDS += "gzip"
->> ++
->> ++do_install () {
->> ++    # general collateral
->> ++    install -Dm755 ${B}/${GO_BUILD_BINDIR}/emptty ${D}${bindir}/emptty
->> ++    install -d ${D}${mandir}/man1
->> ++    gzip -cn ${S}/src/${GO_IMPORT}/res/emptty.1 > ${D}${mandir}/man1/emptty.1.gz
->> ++
->> ++    # pam config
->> ++    if "${@bb.utils.contains('PACKAGECONFIG','pam','true','false',d)}"
->> ++    then
->> ++        install -Dm644 ${S}/pamconf ${D}${sysconfdir}/pam.d/emptty
->> ++    fi
->> ++
->> ++    # systemd init service
->> ++    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}
->> ++    then
->> ++        oe_runmake -C ${S}/src/${GO_IMPORT} DESTDIR=${D} install-systemd
->> ++    fi
->> ++}
->> ++
->> ++FILES:${PN} = "\
->> ++    ${systemd_system_unitdir}/emptty.service \
->> ++    ${bindir}/emptty \
->> ++    ${mandir}/man1/emptty.1.gz \
->> ++    ${sysconfdir}/pam.d/emptty \
->> ++"
->> ++
->> ++RDEPENDS:${PN} += "virtual-emptty-conf"
->> ++SYSTEMD_SERVICE:${PN} = "emptty.service"
->> ++
->> ++inherit systemd
->> ++
->> ++USERADD_PACKAGES = "${PN}"
->> ++GROUPADD_PARAM:${PN} = "-r nopasswdlogin"
->> ++
->> ++inherit useradd
->> ++
->> ++
->> +diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
->> +new file mode 100644
->> +index 00000000..484d25e1
->> +--- /dev/null
->> ++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
->> +@@ -0,0 +1,72 @@
->> ++SUMMARY = "Configuration files for the Weston Wayland compositor"
->> ++LICENSE = "MIT"
->> ++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->> ++
->> ++PACKAGE_ARCH = "${MACHINE_ARCH}"
->> ++
->> ++SRC_URI:append = " \
->> ++    file://weston.ini \
->> ++    file://weston-launch-calibrator.sh \
->> ++    file://emptty.conf \
->> ++"
->> ++
->> ++S = "${UNPACKDIR}"
->> ++
->> ++PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xwayland', '', d)}"
->> ++PACKAGECONFIG:append:qemuriscv64 = " use-pixman"
->> ++PACKAGECONFIG:append:qemuppc64 = " use-pixman"
->> ++
->> ++PACKAGECONFIG[xwayland] = ",,"
->> ++PACKAGECONFIG[no-idle-timeout] = ",,"
->> ++PACKAGECONFIG[use-pixman] = ",,"
->> ++
->> ++DEFAULTBACKEND ??= ""
->> ++DEFAULTBACKEND:qemuall ?= "drm"
->> ++
->> ++do_install() {
->> ++	install -D -p -m0644 weston.ini ${D}${sysconfdir}/xdg/weston/weston.ini
->> ++	install -D -p -m0644 emptty.conf ${D}${sysconfdir}/emptty/conf
->> ++
->> ++	if [ -n "${DEFAULTBACKEND}" ]; then
->> ++		sed -i -e "/^\[core\]/a backend=${DEFAULTBACKEND}-backend.so" ${D}${sysconfdir}/xdg/weston/weston.ini
->> ++	fi
->> ++
->> ++	if [ "${@bb.utils.contains('PACKAGECONFIG', 'xwayland', 'yes', 'no', d)}" = "yes" ]; then
->> ++		sed -i -e "/^\[core\]/a xwayland=true" ${D}${sysconfdir}/xdg/weston/weston.ini
->> ++	fi
->> ++
->> ++	if [ "${@bb.utils.contains('PACKAGECONFIG', 'no-idle-timeout', 'yes', 'no', d)}" = "yes" ]; then
->> ++		sed -i -e "/^\[core\]/a idle-time=0" ${D}${sysconfdir}/xdg/weston/weston.ini
->> ++	fi
->> ++
->> ++	if [ "${@bb.utils.contains('PACKAGECONFIG', 'use-pixman', 'yes', 'no', d)}" = "yes" ]; then
->> ++		sed -i -e "/^\[core\]/a use-pixman=true" ${D}${sysconfdir}/xdg/weston/weston.ini
->> ++	fi
->> ++
->> ++	install -dm 755 -o weston -g weston ${D}/home/weston
->> ++	install -Dm755 weston-launch-calibrator.sh ${D}/${bindir}/weston-launch-calibrator
->> ++}
->> ++
->> ++inherit useradd
->> ++
->> ++USERADD_PACKAGES = "${PN}"
->> ++
->> ++# rdepends on weston which depends on virtual/egl
->> ++#
->> ++require ${COREBASE}/meta/recipes-graphics/wayland/required-distro-features.inc
->> ++
->> ++RDEPENDS:${PN} = "weston kbd ${@bb.utils.contains('PACKAGECONFIG', 'xwayland', 'weston-xwayland', '', d)} emptty"
->> ++
->> ++FILES:${PN} += "\
->> ++    ${sysconfdir}/xdg/weston/weston.ini \
->> ++    ${sysconfdir}/emptty/conf \
->> ++    /home/weston \
->> ++    ${bindir}/weston-launch-calibrator \
->> ++    "
->> ++
->> ++CONFFILES:${PN} += "${sysconfdir}/xdg/weston/weston.ini ${sysconfdir}/emptty/conf"
->> ++RPROVIDES:${PN}:append = " virtual-emptty-conf weston-init"
->> ++RCONFLICTS:${PN} += "weston-init"
->> ++
->> ++USERADD_PARAM:${PN} = "--home /home/weston --shell /bin/sh --user-group -G video,input,render,nopasswdlogin weston"
->> ++GROUPADD_PARAM:${PN} = "-r wayland; -r render; -r nopasswdlogin"
->> +diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
->> +new file mode 100644
->> +index 00000000..9fd9851d
->> +--- /dev/null
->> ++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
->> +@@ -0,0 +1,85 @@
->> ++# configuration file for Weston
->> ++
->> ++[core]
->> ++idle-time=0
->> ++#modules=xwayland.so,cms-colord.so
->> ++#shell=desktop-shell.so
->> ++gbm-format=rgb565
->> ++require-input=false
->> ++
->> ++[shell]
->> ++locking=false
->> ++animation=zoom
->> ++panel-position=top
->> ++startup-animation=fade
->> ++#background-image=/usr/share/backgrounds/gnome/Aqua.jpg
->> ++#background-color=0xff002244
->> ++#background-type=tile
->> ++#clock-format=minutes
->> ++#panel-color=0x90ff0000
->> ++#locking=true
->> ++#animation=zoom
->> ++#startup-animation=fade
->> ++#binding-modifier=ctrl
->> ++#num-workspaces=6
->> ++#cursor-theme=whiteglass
->> ++#cursor-size=24
->> ++
->> ++#lockscreen-icon=/usr/share/icons/gnome/256x256/actions/lock.png
->> ++#lockscreen=/usr/share/backgrounds/gnome/Garden.jpg
->> ++#homescreen=/usr/share/backgrounds/gnome/Blinds.jpg
->> ++#animation=fade
->> ++
->> ++#[launcher]
->> ++#icon=/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
->> ++#path=/usr/bin/gnome-terminal
->> ++
->> ++#[launcher]
->> ++#icon=/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
->> ++#path=/usr/bin/weston-terminal
->> ++
->> ++#[launcher]
->> ++#icon=/usr/share/icons/hicolor/24x24/apps/google-chrome.png
->> ++#path=/usr/bin/google-chrome
->> ++
->> ++#[launcher]
->> ++#icon=/usr/share/icons/gnome/24x24/apps/arts.png
->> ++#path=/build/weston-0lEgCh/weston-1.11.0/weston-flower
->> ++
->> ++#[input-method]
->> ++#path=/usr/libexec/weston-keyboard
->> ++
->> ++[output]
->> ++name=HDMI-A-1
->> ++#mode=1680x1050
->> ++#transform=90
->> ++#icc_profile=/usr/share/color/icc/colord/Bluish.icc
->> ++
->> ++#[output]
->> ++#name=VGA1
->> ++#mode=173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
->> ++#transform=flipped
->> ++
->> ++#[output]
->> ++#name=X1
->> ++#mode=1024x768
->> ++#transform=flipped-90
->> ++
->> ++[libinput]
->> ++touchscreen_calibrator=true
->> ++#enable_tap=true
->> ++
->> ++#[touchpad]
->> ++#constant_accel_factor = 50
->> ++#min_accel_factor = 0.16
->> ++#max_accel_factor = 1.0
->> ++
->> ++[screen-share]
->> ++command=/usr/bin/weston --backend=rdp-backend.so --shell=fullscreen-shell.so --no-clients-resize
->> ++
->> ++#[xwayland]
->> ++#path=/usr/bin/Xwayland
->> ++
->> ++[autolaunch]
->> ++# launch the calibrator on startup if a touchscreen is detected
->> ++path=/usr/bin/weston-launch-calibrator
->> +diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
->> +new file mode 100644
->> +index 00000000..ffe1a3c2
->> +--- /dev/null
->> ++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
->> +@@ -0,0 +1,77 @@
->> ++# TTY, where emptty will start.
->> ++TTY_NUMBER=7
->> ++
->> ++# Enables switching to defined TTY number.
->> ++SWITCH_TTY=true
->> ++
->> ++# Enables printing of /etc/issue in daemon mode.
->> ++PRINT_ISSUE=true
->> ++
->> ++# Enables printing of default motd, /etc/emptty/motd or /etc/emptty/motd-gen.sh.
->> ++PRINT_MOTD=true
->> ++
->> ++# Preselected user, if AUTOLOGIN is enabled, this user is logged in.
->> ++DEFAULT_USER=weston
->> ++
->> ++# Enables Autologin, if DEFAULT_USER is defined and part of nopasswdlogin group. Possible values are "true" or "false".
->> ++AUTOLOGIN=true
->> ++
->> ++# The default session used, if Autologin is enabled. If session is not found in list of session, it proceeds to manual selection.
->> ++AUTOLOGIN_SESSION=Weston
->> ++
->> ++# If Autologin is enabled and session does not start correctly, the number of retries in short period is kept to eventually stop the infinite loop of restarts. -1 is for infinite retries, 0 is for no retry.
->> ++AUTOLOGIN_MAX_RETRY=-1
->> ++
->> ++# Default LANG, if user does not have set own in init script.
->> ++#LANG=en_US.UTF-8
->> ++
->> ++# Starts desktop with calling "dbus-launch".
->> ++DBUS_LAUNCH=true
->> ++
->> ++# Starts Xorg desktop with calling "~/.xinitrc" script, if is true, file exists and selected WM/DE is Xorg session, it overrides DBUS_LAUNCH.
->> ++XINITRC_LAUNCH=false
->> ++
->> ++# Prints available WM/DE each on new line instead of printing on single line.
->> ++VERTICAL_SELECTION=false
->> ++
->> ++# Defines the way, how is logging handled. Possible values are "rotate", "appending" or "disabled".
->> ++#LOGGING=rotate
->> ++
->> ++# Overrides path of log file
->> ++#LOGGING_FILE=/var/log/emptty/[TTY_NUMBER].log
->> ++
->> ++# Arguments passed to Xorg server.
->> ++#XORG_ARGS=
->> ++
->> ++# Allows to use dynamic motd script to generate custom MOTD.
->> ++#DYNAMIC_MOTD=false
->> ++
->> ++# Allows to override default path to dynamic motd.
->> ++#DYNAMIC_MOTD_PATH=/etc/emptty/motd-gen.sh
->> ++
->> ++# Allows to override default path to static motd.
->> ++#MOTD_PATH=/etc/emptty/motd
->> ++
->> ++# Foreground color, available only in daemon mode.
->> ++#FG_COLOR=LIGHT_BLACK
->> ++
->> ++# Background color, available only in daemon mode.
->> ++#BG_COLOR=BLACK
->> ++
->> ++# Enables numlock in daemon mode. Possible values are "true" or "false".
->> ++#ENABLE_NUMLOCK=false
->> ++
->> ++# Defines the way, how is logging of session errors handled. Possible values are "rotate", "appending" or "disabled".
->> ++SESSION_ERROR_LOGGING=rotate
->> ++
->> ++# Overrides path of session errors log file
->> ++#SESSION_ERROR_LOGGING_FILE=/var/log/emptty/session-errors.[TTY_NUMBER].log
->> ++
->> ++# If set true, it will not use `.emptty-xauth` file, but the standard `~/.Xauthority` file. This allows to handle xauth issues.
->> ++#DEFAULT_XAUTHORITY=false
->> ++
->> ++#If set true, Xorg will be started as rootless, if system allows and emptty is running in daemon mode.
->> ++#ROOTLESS_XORG=false
->> ++
->> ++#If set true, environmental groups are printed to differ Xorg/Wayland/Custom/UserCustom desktops.
->> ++IDENTIFY_ENVS=false
->> +diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
->> +new file mode 100644
->> +index 00000000..45863ecd
->> +--- /dev/null
->> ++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
->> +@@ -0,0 +1,13 @@
->> ++#!/bin/sh
->> ++
->> ++if [ -e /dev/input/touchscreen0 ]; then
->> ++	echo "Touch screen detected..."
->> ++	if [ -n "$LIBINPUT_CALIBRATION_MATRIX" ]; then
->> ++		echo "Calibration matrix already present, skipping calibration..."
->> ++	else
->> ++		echo "Calibrating touchscreen..."
->> ++		exec weston-calibrator
->> ++	fi
->> ++else
->> ++	echo "Touch screen not detected, skipping calibration..."
->> ++fi
->> +diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
->> +new file mode 100644
->> +index 00000000..1bc7a010
->> +--- /dev/null
->> ++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
->> +@@ -0,0 +1,21 @@
->> ++[core]
->> ++idle-time=0
->> ++require-input=false
->> ++require-outputs=none
->> ++
->> ++[shell]
->> ++locking=false
->> ++animation=zoom
->> ++panel-position=top
->> ++startup-animation=fade
->> ++
->> ++[libinput]
->> ++touchscreen_calibrator=true
->> ++
->> ++[autolaunch]
->> ++# launch the calibrator on startup if a touchscreen is detected
->> ++path=/usr/bin/weston-launch-calibrator
->> ++
->> ++[screensaver]
->> ++# Uncomment path to disable screensaver
->> ++#path=@libexecdir@/weston-screensaver
->> +--
->> +2.34.1
->> +
->> diff --git a/meta-arago-distro/classes/tisdk-bundle.bbclass b/meta-arago-distro/classes/tisdk-bundle.bbclass
->> index cc5d1481..24146529 100644
->> --- a/meta-arago-distro/classes/tisdk-bundle.bbclass
->> +++ b/meta-arago-distro/classes/tisdk-bundle.bbclass
->> @@ -106,7 +106,7 @@ cleanup_host_packages() {
->>   }
->>   
->>   ROOTFS_PREPROCESS_COMMAND += "tisdk_image_setup; "
->> -ROOTFS_POSTPROCESS_COMMAND += "tisdk_image_build; "
->> +ROOTFS_POSTPROCESS_COMMAND += "tisdk_image_build; add_emptty_inittab; "
->>   IMAGE_PREPROCESS_COMMAND:append = "tisdk_image_cleanup; "
->>   
->>   # Create the SDK image.  We will re-use the rootfs_ipk_do_rootfs functionality
->> @@ -304,6 +304,18 @@ tisdk_image_build () {
->>       cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
->>   }
->>   
->> +
->> +add_emptty_inittab() {
->> +    [ -f ${IMAGE_ROOTFS}${sysconfdir}/inittab ] || return 0
->> +
->> +    if ${@bb.utils.contains_any("IMAGE_FEATURES", [ "x11-base", "weston" ], "true", "false", d)}
->> +    then
->> +	echo "7:5:respawn:${bindir}/emptty -t 7 -d" >> ${IMAGE_ROOTFS}${sysconfdir}/inittab
->> +    fi
->> +}
->> +
->> +
->> +
->>   TISDK_IMAGE_CLEANUP_DIRS ?= "var etc lib boot dev home media mnt proc run sbin sys tmp usr"
->>   TISDK_IMAGE_CLEANUP_FILES ?= "bin/bash bin/bash.bash bin/sh"
->>   
->> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
->> index fb5c703f..43d4db53 100644
->> --- a/meta-arago-distro/conf/distro/arago.conf
->> +++ b/meta-arago-distro/conf/distro/arago.conf
->> @@ -68,6 +68,8 @@ PACKAGECONFIG:pn-glmark2 = "drm-gles2 wayland-gles2"
->>   
->>   # Set this to empty string to prevent xwayland config from being added
->>   PACKAGECONFIG:pn-weston-init = ""
->> +PREFERRED_RPROVIDER_virtual-emptty-conf = "weston-init-arago"
->> +PREFERRED_RPROVIDER_weston-init = "weston-init-arago"
->>   
->>   # Enable testing for opencl and vulkan with piglit
->>   PACKAGECONFIG:append:pn-piglit = " \
->> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb b/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
->> new file mode 100644
->> index 00000000..0b98e2e1
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty-conf.bb
->> @@ -0,0 +1,14 @@
->> +require emptty.inc
->> +
->> +SUMMARY += " (Default config)"
->> +
->> +do_configure[noexec] = "1"
->> +do_compile[noexec] = "1"
->> +
->> +do_install () {
->> +    oe_runmake -C ${S}/src/${GO_IMPORT} DESTDIR=${D} install-config
->> +}
->> +
->> +FILES:${PN} = "${sysconfdir}/emptty/conf"
->> +CONFFILES:${PN} = "${sysconfdir}/emptty/conf"
->> +RPROVIDES:${PN} += "virtual-emptty-conf"
->> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty.inc b/meta-arago-distro/recipes-graphics/emptty/emptty.inc
->> new file mode 100644
->> index 00000000..d99c4d8c
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty.inc
->> @@ -0,0 +1,27 @@
->> +SUMMARY = "Dead simple CLI Display Manager on TTY"
->> +DESCRIPTION = "Emptty is a simple display manager with a command line greeter \
->> +It supports both X11 and Wayland sessions, exporting required variables and \
->> +creating user paths as necessary."
->> +
->> +HOMEPAGE = "https://github.com/tvrzna/emptty"
->> +BUGTRACKER = "https://github.com/tvrzna/emptty/issues"
->> +LICENSE = "MIT"
->> +LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=d1e4d12c7d1d17367ba5668706a405ba"
->> +
->> +S = "${UNPACKDIR}"
->> +
->> +FILESEXTRAPATHS:append = ":${THISDIR}/emptty"
->> +
->> +GO_IMPORT = "github.com/tvrzna/emptty"
->> +GO_IMPORT_pam = "github.com/msteinert/pam"
->> +SRC_URI = "\
->> +    git://${GO_IMPORT}.git;protocol=https;branch=master;destsuffix=src/${GO_IMPORT} \
->> +    git://${GO_IMPORT_pam}.git;protocol=https;branch=master;name=pam;destsuffix=src/${GO_IMPORT_pam} \
->> +    file://pamconf \
->> +    "
->> +SRCREV = "bb203ad0a224731a7a2ff50deeb342ab79c4af09"
->> +SRCREV_pam = "50ded1b0e7864b9bf75005eb945a8ec826bcf69d"
->> +
->> +SRCREV_FORMAT .= "_pam"
->> +
->> +PR = "r1"
->> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf b/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
->> new file mode 100644
->> index 00000000..5c82d46b
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty/pamconf
->> @@ -0,0 +1,11 @@
->> +#%PAM-1.0
->> +auth            sufficient      pam_succeed_if.so user ingroup nopasswdlogin
->> +auth            include         common-auth
->> +-auth           optional        pam_gnome_keyring.so
->> +-auth           optional        pam_kwallet5.so
->> +account         include         common-account
->> +session         include         common-session
->> +-session        optional        pam_gnome_keyring.so auto_start
->> +-session        optional        pam_kwallet5.so auto_start force_run
->> +password        include         common-password
->> +
->> diff --git a/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb b/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
->> new file mode 100644
->> index 00000000..415c5ea5
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/emptty/emptty_0.15.0.bb
->> @@ -0,0 +1,57 @@
->> +require emptty.inc
->> +
->> +PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pam x11', d)}"
->> +PACKAGECONFIG[pam] = ",,libpam,pam-plugin-succeed-if"
->> +PACKAGECONFIG[x11] = ",,virtual/libx11,util-linux-mcookie"
->> +
->> +DEPENDS += "${@bb.utils.contains('PACKAGECONFIG', 'pam', '', 'virtual/crypt', d)}"
->> +
->> +GO_TAGS = ""
->> +GO_TAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'pam', '', ',nopam', d)}"
->> +GO_TAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', ',noxlib', d)}"
->> +
->> +GOBUILDFLAGS:append = " -tags=${GO_TAGS}"
->> +
->> +export GO111MODULE = "off"
->> +
->> +inherit go
->> +
->> +DEPENDS += "gzip"
->> +
->> +do_install () {
->> +    # general collateral
->> +    install -Dm755 ${B}/${GO_BUILD_BINDIR}/emptty ${D}${bindir}/emptty
->> +    install -d ${D}${mandir}/man1
->> +    gzip -cn ${S}/src/${GO_IMPORT}/res/emptty.1 > ${D}${mandir}/man1/emptty.1.gz
->> +
->> +    # pam config
->> +    if "${@bb.utils.contains('PACKAGECONFIG','pam','true','false',d)}"
->> +    then
->> +        install -Dm644 ${S}/pamconf ${D}${sysconfdir}/pam.d/emptty
->> +    fi
->> +
->> +    # systemd init service
->> +    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}
->> +    then
->> +        oe_runmake -C ${S}/src/${GO_IMPORT} DESTDIR=${D} install-systemd
->> +    fi
->> +}
->> +
->> +FILES:${PN} = "\
->> +    ${systemd_system_unitdir}/emptty.service \
->> +    ${bindir}/emptty \
->> +    ${mandir}/man1/emptty.1.gz \
->> +    ${sysconfdir}/pam.d/emptty \
->> +"
->> +
->> +RDEPENDS:${PN} += "virtual-emptty-conf"
->> +SYSTEMD_SERVICE:${PN} = "emptty.service"
->> +
->> +inherit systemd
->> +
->> +USERADD_PACKAGES = "${PN}"
->> +GROUPADD_PARAM:${PN} = "-r nopasswdlogin"
->> +
->> +inherit useradd
->> +
->> +
->> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
->> new file mode 100644
->> index 00000000..484d25e1
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago.bb
->> @@ -0,0 +1,72 @@
->> +SUMMARY = "Configuration files for the Weston Wayland compositor"
->> +LICENSE = "MIT"
->> +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->> +
->> +PACKAGE_ARCH = "${MACHINE_ARCH}"
->> +
->> +SRC_URI:append = " \
->> +    file://weston.ini \
->> +    file://weston-launch-calibrator.sh \
->> +    file://emptty.conf \
->> +"
->> +
->> +S = "${UNPACKDIR}"
->> +
->> +PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xwayland', '', d)}"
->> +PACKAGECONFIG:append:qemuriscv64 = " use-pixman"
->> +PACKAGECONFIG:append:qemuppc64 = " use-pixman"
->> +
->> +PACKAGECONFIG[xwayland] = ",,"
->> +PACKAGECONFIG[no-idle-timeout] = ",,"
->> +PACKAGECONFIG[use-pixman] = ",,"
->> +
->> +DEFAULTBACKEND ??= ""
->> +DEFAULTBACKEND:qemuall ?= "drm"
->> +
->> +do_install() {
->> +	install -D -p -m0644 weston.ini ${D}${sysconfdir}/xdg/weston/weston.ini
->> +	install -D -p -m0644 emptty.conf ${D}${sysconfdir}/emptty/conf
->> +
->> +	if [ -n "${DEFAULTBACKEND}" ]; then
->> +		sed -i -e "/^\[core\]/a backend=${DEFAULTBACKEND}-backend.so" ${D}${sysconfdir}/xdg/weston/weston.ini
->> +	fi
->> +
->> +	if [ "${@bb.utils.contains('PACKAGECONFIG', 'xwayland', 'yes', 'no', d)}" = "yes" ]; then
->> +		sed -i -e "/^\[core\]/a xwayland=true" ${D}${sysconfdir}/xdg/weston/weston.ini
->> +	fi
->> +
->> +	if [ "${@bb.utils.contains('PACKAGECONFIG', 'no-idle-timeout', 'yes', 'no', d)}" = "yes" ]; then
->> +		sed -i -e "/^\[core\]/a idle-time=0" ${D}${sysconfdir}/xdg/weston/weston.ini
->> +	fi
->> +
->> +	if [ "${@bb.utils.contains('PACKAGECONFIG', 'use-pixman', 'yes', 'no', d)}" = "yes" ]; then
->> +		sed -i -e "/^\[core\]/a use-pixman=true" ${D}${sysconfdir}/xdg/weston/weston.ini
->> +	fi
->> +
->> +	install -dm 755 -o weston -g weston ${D}/home/weston
->> +	install -Dm755 weston-launch-calibrator.sh ${D}/${bindir}/weston-launch-calibrator
->> +}
->> +
->> +inherit useradd
->> +
->> +USERADD_PACKAGES = "${PN}"
->> +
->> +# rdepends on weston which depends on virtual/egl
->> +#
->> +require ${COREBASE}/meta/recipes-graphics/wayland/required-distro-features.inc
->> +
->> +RDEPENDS:${PN} = "weston kbd ${@bb.utils.contains('PACKAGECONFIG', 'xwayland', 'weston-xwayland', '', d)} emptty"
->> +
->> +FILES:${PN} += "\
->> +    ${sysconfdir}/xdg/weston/weston.ini \
->> +    ${sysconfdir}/emptty/conf \
->> +    /home/weston \
->> +    ${bindir}/weston-launch-calibrator \
->> +    "
->> +
->> +CONFFILES:${PN} += "${sysconfdir}/xdg/weston/weston.ini ${sysconfdir}/emptty/conf"
->> +RPROVIDES:${PN}:append = " virtual-emptty-conf weston-init"
->> +RCONFLICTS:${PN} += "weston-init"
->> +
->> +USERADD_PARAM:${PN} = "--home /home/weston --shell /bin/sh --user-group -G video,input,render,nopasswdlogin weston"
->> +GROUPADD_PARAM:${PN} = "-r wayland; -r render; -r nopasswdlogin"
->> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
->> new file mode 100644
->> index 00000000..9fd9851d
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/beaglebone/weston.ini
->> @@ -0,0 +1,85 @@
->> +# configuration file for Weston
->> +
->> +[core]
->> +idle-time=0
->> +#modules=xwayland.so,cms-colord.so
->> +#shell=desktop-shell.so
->> +gbm-format=rgb565
->> +require-input=false
->> +
->> +[shell]
->> +locking=false
->> +animation=zoom
->> +panel-position=top
->> +startup-animation=fade
->> +#background-image=/usr/share/backgrounds/gnome/Aqua.jpg
->> +#background-color=0xff002244
->> +#background-type=tile
->> +#clock-format=minutes
->> +#panel-color=0x90ff0000
->> +#locking=true
->> +#animation=zoom
->> +#startup-animation=fade
->> +#binding-modifier=ctrl
->> +#num-workspaces=6
->> +#cursor-theme=whiteglass
->> +#cursor-size=24
->> +
->> +#lockscreen-icon=/usr/share/icons/gnome/256x256/actions/lock.png
->> +#lockscreen=/usr/share/backgrounds/gnome/Garden.jpg
->> +#homescreen=/usr/share/backgrounds/gnome/Blinds.jpg
->> +#animation=fade
->> +
->> +#[launcher]
->> +#icon=/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
->> +#path=/usr/bin/gnome-terminal
->> +
->> +#[launcher]
->> +#icon=/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
->> +#path=/usr/bin/weston-terminal
->> +
->> +#[launcher]
->> +#icon=/usr/share/icons/hicolor/24x24/apps/google-chrome.png
->> +#path=/usr/bin/google-chrome
->> +
->> +#[launcher]
->> +#icon=/usr/share/icons/gnome/24x24/apps/arts.png
->> +#path=/build/weston-0lEgCh/weston-1.11.0/weston-flower
->> +
->> +#[input-method]
->> +#path=/usr/libexec/weston-keyboard
->> +
->> +[output]
->> +name=HDMI-A-1
->> +#mode=1680x1050
->> +#transform=90
->> +#icc_profile=/usr/share/color/icc/colord/Bluish.icc
->> +
->> +#[output]
->> +#name=VGA1
->> +#mode=173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
->> +#transform=flipped
->> +
->> +#[output]
->> +#name=X1
->> +#mode=1024x768
->> +#transform=flipped-90
->> +
->> +[libinput]
->> +touchscreen_calibrator=true
->> +#enable_tap=true
->> +
->> +#[touchpad]
->> +#constant_accel_factor = 50
->> +#min_accel_factor = 0.16
->> +#max_accel_factor = 1.0
->> +
->> +[screen-share]
->> +command=/usr/bin/weston --backend=rdp-backend.so --shell=fullscreen-shell.so --no-clients-resize
->> +
->> +#[xwayland]
->> +#path=/usr/bin/Xwayland
->> +
->> +[autolaunch]
->> +# launch the calibrator on startup if a touchscreen is detected
->> +path=/usr/bin/weston-launch-calibrator
->> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
->> new file mode 100644
->> index 00000000..ffe1a3c2
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/emptty.conf
->> @@ -0,0 +1,77 @@
->> +# TTY, where emptty will start.
->> +TTY_NUMBER=7
->> +
->> +# Enables switching to defined TTY number.
->> +SWITCH_TTY=true
->> +
->> +# Enables printing of /etc/issue in daemon mode.
->> +PRINT_ISSUE=true
->> +
->> +# Enables printing of default motd, /etc/emptty/motd or /etc/emptty/motd-gen.sh.
->> +PRINT_MOTD=true
->> +
->> +# Preselected user, if AUTOLOGIN is enabled, this user is logged in.
->> +DEFAULT_USER=weston
->> +
->> +# Enables Autologin, if DEFAULT_USER is defined and part of nopasswdlogin group. Possible values are "true" or "false".
->> +AUTOLOGIN=true
->> +
->> +# The default session used, if Autologin is enabled. If session is not found in list of session, it proceeds to manual selection.
->> +AUTOLOGIN_SESSION=Weston
->> +
->> +# If Autologin is enabled and session does not start correctly, the number of retries in short period is kept to eventually stop the infinite loop of restarts. -1 is for infinite retries, 0 is for no retry.
->> +AUTOLOGIN_MAX_RETRY=-1
->> +
->> +# Default LANG, if user does not have set own in init script.
->> +#LANG=en_US.UTF-8
->> +
->> +# Starts desktop with calling "dbus-launch".
->> +DBUS_LAUNCH=true
->> +
->> +# Starts Xorg desktop with calling "~/.xinitrc" script, if is true, file exists and selected WM/DE is Xorg session, it overrides DBUS_LAUNCH.
->> +XINITRC_LAUNCH=false
->> +
->> +# Prints available WM/DE each on new line instead of printing on single line.
->> +VERTICAL_SELECTION=false
->> +
->> +# Defines the way, how is logging handled. Possible values are "rotate", "appending" or "disabled".
->> +#LOGGING=rotate
->> +
->> +# Overrides path of log file
->> +#LOGGING_FILE=/var/log/emptty/[TTY_NUMBER].log
->> +
->> +# Arguments passed to Xorg server.
->> +#XORG_ARGS=
->> +
->> +# Allows to use dynamic motd script to generate custom MOTD.
->> +#DYNAMIC_MOTD=false
->> +
->> +# Allows to override default path to dynamic motd.
->> +#DYNAMIC_MOTD_PATH=/etc/emptty/motd-gen.sh
->> +
->> +# Allows to override default path to static motd.
->> +#MOTD_PATH=/etc/emptty/motd
->> +
->> +# Foreground color, available only in daemon mode.
->> +#FG_COLOR=LIGHT_BLACK
->> +
->> +# Background color, available only in daemon mode.
->> +#BG_COLOR=BLACK
->> +
->> +# Enables numlock in daemon mode. Possible values are "true" or "false".
->> +#ENABLE_NUMLOCK=false
->> +
->> +# Defines the way, how is logging of session errors handled. Possible values are "rotate", "appending" or "disabled".
->> +SESSION_ERROR_LOGGING=rotate
->> +
->> +# Overrides path of session errors log file
->> +#SESSION_ERROR_LOGGING_FILE=/var/log/emptty/session-errors.[TTY_NUMBER].log
->> +
->> +# If set true, it will not use `.emptty-xauth` file, but the standard `~/.Xauthority` file. This allows to handle xauth issues.
->> +#DEFAULT_XAUTHORITY=false
->> +
->> +#If set true, Xorg will be started as rootless, if system allows and emptty is running in daemon mode.
->> +#ROOTLESS_XORG=false
->> +
->> +#If set true, environmental groups are printed to differ Xorg/Wayland/Custom/UserCustom desktops.
->> +IDENTIFY_ENVS=false
->> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
->> new file mode 100644
->> index 00000000..45863ecd
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston-launch-calibrator.sh
->> @@ -0,0 +1,13 @@
->> +#!/bin/sh
->> +
->> +if [ -e /dev/input/touchscreen0 ]; then
->> +	echo "Touch screen detected..."
->> +	if [ -n "$LIBINPUT_CALIBRATION_MATRIX" ]; then
->> +		echo "Calibration matrix already present, skipping calibration..."
->> +	else
->> +		echo "Calibrating touchscreen..."
->> +		exec weston-calibrator
->> +	fi
->> +else
->> +	echo "Touch screen not detected, skipping calibration..."
->> +fi
->> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
->> new file mode 100644
->> index 00000000..1bc7a010
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init-arago/weston.ini
->> @@ -0,0 +1,21 @@
->> +[core]
->> +idle-time=0
->> +require-input=false
->> +require-outputs=none
->> +
->> +[shell]
->> +locking=false
->> +animation=zoom
->> +panel-position=top
->> +startup-animation=fade
->> +
->> +[libinput]
->> +touchscreen_calibrator=true
->> +
->> +[autolaunch]
->> +# launch the calibrator on startup if a touchscreen is detected
->> +path=/usr/bin/weston-launch-calibrator
->> +
->> +[screensaver]
->> +# Uncomment path to disable screensaver
->> +#path=@libexecdir@/weston-screensaver
->> -- 
->> 2.34.1
-> 
-
--- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
 
