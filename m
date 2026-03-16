@@ -2,133 +2,136 @@ Return-Path: <p-deshmukh@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D596F55128
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BAC7F013FA
 	for <webhook@archiver.kernel.org>; Mon, 16 Mar 2026 09:27:08 +0000 (UTC)
-Received: from BL2PR02CU003.outbound.protection.outlook.com (BL2PR02CU003.outbound.protection.outlook.com [52.101.52.29])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.46571.1773653218031720763
+Received: from CO1PR03CU002.outbound.protection.outlook.com (CO1PR03CU002.outbound.protection.outlook.com [52.101.46.41])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.46574.1773653219370533452
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 16 Mar 2026 02:26:58 -0700
+ Mon, 16 Mar 2026 02:26:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=k7jDa5de;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.52.29, mailfrom: p-deshmukh@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=NmZCcKl8;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.46.41, mailfrom: p-deshmukh@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ujkMFNPOcYclFphz6CNsiZjb/M0xqGZZLHrFjcQDEAa6HsZOLK89kE+XD3clTNY/TiIIbBfOqv62f/bOf7163gae8kgfouXZlwwshi0mupO/sey2ME/viUna0k0g8H2X62rb1D0A2Mj49Vkk1xcmlkRfSoREBSDfQ2shU+Dh6UjH4GpFAz4Z/CuoIqZRGgh8sdOc4vIQEJxjrXLKYVpEr9vb+tuc3yHempri3YfQ5YJq7z869X4i2WoAec65whBPxZ4603hJn/njBxD5DA4d+1x5pQ/GJquD7fQWDJs8uaOa9Vtb/b3gljJXy3x6FaBxWqvhCbWINbIYadAErFKReA==
+ b=qDwjmRe0pVzn+9WDldz+gGcVVn7DOdX4ZITCdrZjgO6LN3/E0ufh50UNvrudiy3XLx5CvaNXirOTZ31hMkUtlT1xs7Z3JCVZKfpdngQkuCzBokDwK3/0vmnF4V8jF/JypEgG2rHg7V+4Qswa4arxDlwOL1kWtQGsCOYSxIgH51EQ3RueA9AMlqpHrjdkBwhltduooIfMwi1ybG3lp/bA6Du/1p8KEhOBsjwCAEjwpEb2We/6pah0rbIY3Ph0Lw/OxvyWLkssaAv6dtGZ/2dHRh2Togddipt6JwdAryR4Uz5zyzaD2Gfljx+CDgivC17Et/X0ZNZdDwGwGdYmaGMi5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uGY7pxFMT/HWrIHA3nT2G4hG15BbtyG8bmwfX0+wK1s=;
- b=V1+hbddS6Z97/5XULwL9KWzNgKUlovyyd41JMIvpb/j3ldNoKHyoiZn+YLFboBe7HuLiEKMrqiNLK1nsKjDL71M6kfzICEmZLg4iOUR+PxbaAVIzcwEVM2ohcUHm7jIf/BQa0u7tsfHd6rtCQ8QJbTYnZgmLDGWkFRQC6x8Xtp0kK4fUWEvUM6nG/5QFz7yi8bKP9UHY9DS6Jp52gveGsufl7YI4kyFI5/C+1/r0K2Wusa7hoa/rKmuD/KqS8DTdlfOzBHPvsxN8+W1TmMZ5DaToq/qlbmsWppZEb9pQFybvaUB0CmOPKhld9IHPV7h6mrx67Joh78UC0rWVULu0zw==
+ bh=cg9BB+M40zigyEVNkuzSG+taOtaDcn4LGY+mJNh6k2M=;
+ b=SVRvhB3ghVGGvJZQWbb4tpj+uk0ruIu3g00UPeXqL+zxvyrT7ME0dtN52b7NFIESDZFa1KZesSbMz8Lhts9a+dJ3S7Q3Uv2RTPWmSLjNqrFon0Gvu7wVVlMkoWZ2ObAIdVxz3v5Ymo/RwBJVcRBEYoulaPjy622dNyQlQZWILN53NoV8N3l4pZXXxlzlzrX5Y9H9u6PLUidQ44cRX1Gkgigvun7crIAk4aPQPOSnLqhMLWns8eoPcpl3OROtJgCNlLgrsMif4Ak0NeREcYOQnDxseAvgp5RSqSdzEyOHaBs5cpiCct7U1jrDxamFmbGt1eH9pnesgE8LNBIi0bYzYw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uGY7pxFMT/HWrIHA3nT2G4hG15BbtyG8bmwfX0+wK1s=;
- b=k7jDa5detiqhjP63kPBShh2pFZaO56aaHFrjOkua0cACYSw8eKbkVs5e/GJq6hl255dGEe5Z053LxgG+DMAoVNzWPbsvkFYlL2fGoH4vPkVarHtNhF2+TiyqIpEEhm3numVF6mTOi3BO85zSBaaW/xt3Js9wC5GsikUE1HXYT2M=
-Received: from MW4PR04CA0101.namprd04.prod.outlook.com (2603:10b6:303:83::16)
- by DS0PR10MB7902.namprd10.prod.outlook.com (2603:10b6:8:1aa::7) with
+ bh=cg9BB+M40zigyEVNkuzSG+taOtaDcn4LGY+mJNh6k2M=;
+ b=NmZCcKl8RAuiyb/C/YkJyfV6nerY6d1E4dYSmJQY8jfpjFrLDri6OpaB0Q92Z5pyZysw6FDr87Yj4g4Po7nc+fZlhPQ+OTi1c3BGGev1IFjotwoBKWZLkXKJ1zrtaIBxBk8Ictc47BcBhm4j5tkc47Xp0pgzP0W2DxeE9RRTufA=
+Received: from SA1P222CA0107.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:3c5::28)
+ by PH0PR10MB5732.namprd10.prod.outlook.com (2603:10b6:510:14e::6) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.24; Mon, 16 Mar
- 2026 09:26:54 +0000
-Received: from CO1PEPF000075F1.namprd03.prod.outlook.com
- (2603:10b6:303:83:cafe::f0) by MW4PR04CA0101.outlook.office365.com
- (2603:10b6:303:83::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.21 via Frontend Transport; Mon,
- 16 Mar 2026 09:26:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ 2026 09:26:56 +0000
+Received: from SA2PEPF00003AE7.namprd02.prod.outlook.com
+ (2603:10b6:806:3c5:cafe::12) by SA1P222CA0107.outlook.office365.com
+ (2603:10b6:806:3c5::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.25 via Frontend Transport; Mon,
+ 16 Mar 2026 09:26:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- CO1PEPF000075F1.mail.protection.outlook.com (10.167.249.40) with Microsoft
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SA2PEPF00003AE7.mail.protection.outlook.com (10.167.248.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Mon, 16 Mar 2026 09:26:53 +0000
-Received: from DLEE200.ent.ti.com (157.170.170.75) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9700.17 via Frontend Transport; Mon, 16 Mar 2026 09:26:56 +0000
+Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 16 Mar
- 2026 04:26:52 -0500
-Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 04:26:55 -0500
+Received: from DLEE207.ent.ti.com (157.170.170.95) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 16 Mar
- 2026 04:26:52 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE202.ent.ti.com
- (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 04:26:55 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE207.ent.ti.com
+ (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 16 Mar 2026 04:26:52 -0500
+ Transport; Mon, 16 Mar 2026 04:26:55 -0500
 Received: from pratham-TI.dhcp.ti.com (pratham-ti.dhcp.ti.com [172.24.233.101])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62G9QnPV553169;
-	Mon, 16 Mar 2026 04:26:50 -0500
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62G9QnPW553169;
+	Mon, 16 Mar 2026 04:26:53 -0500
 From: Pratham Deshmukh <p-deshmukh@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
 CC: <afd@ti.com>, <c-shilwant@ti.com>, <denys@ti.com>, <v-singh1@ti.com>,
 	Pratham Deshmukh <p-deshmukh@ti.com>
-Subject: [meta-arago][master][PATCH v4 0/1] nnstreamer: Fix packaging and buildpaths issues
-Date: Mon, 16 Mar 2026 14:56:47 +0530
-Message-ID: <20260316092648.1377711-1-p-deshmukh@ti.com>
+Subject: [meta-arago][master][PATCH v4 1/1] nnstreamer: Add test package dependency and fix buildpaths QA issues
+Date: Mon, 16 Mar 2026 14:56:48 +0530
+Message-ID: <20260316092648.1377711-2-p-deshmukh@ti.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260316092648.1377711-1-p-deshmukh@ti.com>
+References: <20260316092648.1377711-1-p-deshmukh@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000075F1:EE_|DS0PR10MB7902:EE_
-X-MS-Office365-Filtering-Correlation-Id: b9b49aa7-3bc7-43c8-959d-08de833e291a
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003AE7:EE_|PH0PR10MB5732:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3bd858a2-16c7-4ccf-1863-08de833e2aec
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|36860700016|82310400026|1800799024|56012099003|18002099003;
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700016|18002099003|22082099003|56012099003;
 X-Microsoft-Antispam-Message-Info: 
-	LuANDYhGda8jkIOl7kXVwwi3vBhBlnxqmVOBEoAGlD2wDoTxy0MguJzwsVh2XCZkCBInD8x8M2yYoztYWOHMhlrOOnBKY02gogcXqxX0h2BjkhRKmxPIqgNaioTzeuHLLZBrmOFbUh+7uX5M5PA7m+B7BhkgFEbwObMMerpAlxS5CgsWi0ItFzIPh9ODfLt9r2vQWwufctu2+TmWqwLfbrCWjezEWaLWG6+2S8v5451EFy0VM7Nk4uqw8JlAClMLImyq/tWH/993mInFBdLxslaDPyywCLS7JRn5P191+2SYv77b0biGuL9/1u+34p03lVUHiWYpoE8Ays7Cj8OP96RR5p7It8+JaW1ZE7j+Ou1wdLyIkD/0ddUtFf9JaRGqv2qNEGw+mQK5QoG4foIkw6wIJbMCXLfoSSrsO1wQfaOL14xW1vPqGodv8OpgbI0eqUweUwmveeQEU+TJRETQ/S+qMwmOlz4HOQdflXmRLnpatkoE3Pc7c68lr3FBmwDwvOW/RM453z9XubxCrOWVu9Nw5EbLF8G1Xdhoft7GNd7XKyZGn9nNGoNXDluU9Pp7Asah77laGTgSo04/U2LZT3/OVFB7iH4yfoYyhgb5S1f6cjTpdsq6vwgBtuPm5euQz42tetO7Nq8pD+53da8adg4VoMKnETEraooYlAmTZ/BiTUcY4uYfJ+2K3pNpHMUCaG/Vyh8gAmZwox9EWVdSPgp6LXajDRVoA3daWiZxIKI=
+	bGfPzRAKb5B48wa+U7ue/UJ2VCMgt2bqh3BtNa+XlIhuXvTMcMLYvpXu5e+a3ihrMuhbZVriGbpUBa5WgpYqtgVzRkBpIMlxOigH45NX0BY1nIRdJ0Npel536kMSaxXGW9x1HyPaWfyT7qofe74vPquDiIoJk9eHRaSJPLJYSAonml1tA6ijLvwV3ZXxZZzqIiQihFsuIfA420R6MZxbZ0193USxOqzVRh5xZjvl6vsYZZ2YnwWhI+doqT0ryLXxi6fgBCXZP5Xs3PLF4ZVFcoTIjB3PQU4+tUzOzSMbWT3xiMMqAviY3BuI4rtsLbELl/Hset6m75a953NEjf6EwjDML5e1TyeQLjSuEmmmZpL1RNGHBZ7FTqNqHIuvt8Iga3f990JXy+6j6MipRb1RxGtIJEl5kprtvtqAeHqfxshofMXdKbFEadXsOD00zmt5rNYT0r4+LF8E96cuF7pIpP788jyj1n6QlJd6nvGVtmuCfrWKM/SUIPBghRgDjoQNkHQEKcCbs1DVDvHJ+kqCc/yI8hGTOIqtjpVUaOV8DeuHX2bGmovAniA7AQ40XjATUK92N2rDkjcYYUOF5isfqoZaOb2odeYLzX1rf7Z7+GCMEv0Q7LYBhQiJ7B8RTYyy3lRuwyqVQwNvC3lk9/GagNw5rGj6ntZUj8NlAlfKAj64dTornz+cPnS9SJv91oMJuA11Zw18XVgade2sr6W03cgpho60UlNAYXiY568pDA6dbj9R32suCfA7JUcVzZ1yrDlELzUVXfxhvlMZlQcKUw==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	M9jCU+O7Vu399nIdQy4CQrtLZkaw/uRz4e8SIupQnIWNi4rqmF69t5T44seQzaGVbHe8aPt7Cox39m9NySmmMtuDgj3IzBrAUNAQNE+tClacbDd1vL4W0rXPVsaJPV9UY7tkby3tBx3yLDPAapZ3QN+axuLMQmwMf5szyoaMpL4dwJPjNTDvWTZVG/NWc7c3XfYSOeoamHEnfxXvw4XGXwpODf20faGhRNFqIQze7vhTgoGal1dzrBboxNQFMUeihMqvhggMSH45WPzFanV8syjbFzpUW7zAqK6IbfsA4pVO1GhJHbldumlMcNBRT/nPC64RqksbNt2LIhYMrrf+KiWf1476n8VrmaleIwxGEQxERz+9XtN+teU5KrO3tjiq/L7eYAfMhLZmOcb69k9imD2q0w0GqMWb/heuMVFBnzbNetNklXqnVxJJ4Wpqsdzm
+	s0QQvcYf3CM6O95gzjoR3yvU+URjhda81xPA/1T3a/Ewi6KHoJdn1AzsStW7sH1kBLfdavQ5u7nmU79TBaADPOzufu8lqbB6OVbQ5yyjaxMD/pt8hzz2+6Y/Pa1/RHTPZJKIbyJhEi6oDgTGVmBYY82YXu64CYVGw5MNXnISJnSWqXWUqya6OfRwa6py9JINJg0tOu8UyAq1VnvoX2fUwzp9wQvKgE7yAEo9P8qjLLfHtPlwWqJjKXdp2WQ3aio2FNssdDND/+3SlfNbGNz6+TSK3LmT8aEsOC77tjYmReXCBR6GQt3MjF+e2Ca+wuoaBkBfyzorrZmxe2Noj0oxpvnAgzIrCmI2u12mgxJKON/fA90DPhG4FxnVCMo5lpFn/PuulCiRzRS6uJEktOJg8WA6axqSFGUhVF5R6iiZ+cpxcedSOLpY8U+htL66wbRI
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 09:26:53.2759
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 09:26:56.3752
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9b49aa7-3bc7-43c8-959d-08de833e291a
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3bd858a2-16c7-4ccf-1863-08de833e2aec
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	CO1PEPF000075F1.namprd03.prod.outlook.com
+	SA2PEPF00003AE7.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7902
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB5732
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Mon, 16 Mar 2026 09:27:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17345
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17346
 
-This patch series addresses two issues in the nnstreamer recipe:
+Add runtime dependency to automatically install
+nnstreamer-tests package when nnstreamer is installed,
+ensuring unittest_filter_onnxruntime is available for
+ONNX Runtime benchmarking.
 
-1. Missing unittest_filter_onnxruntime benchmark utility when only
-the main nnstreamer package is installed, preventing ONNX Runtime
-performance testing.
+Include buildpaths compliance patch that replaces
+absolute build paths(meson.build_root()) with relative
+paths in generated unittest files, resolving QA errors
+"contains reference to TMPDIR [buildpaths]" in unittest_tizen_custom.cc
+and unittest_tizen_custom-set.cc.
 
-2. Adds buildpaths QA compliance patch to replace absolute build paths
-with relative paths in generated unittest files, preventing Yocto
-contains reference to TMPDIR [buildpaths]" errors
+Fixes: 319271fe5fc8bc3016b1eb765784076af666b61b ("nnstreamer: upgrade 2.4.4=
+ -> 2.6.0")
 
-Link to v3:
- - https://patchwork.yoctoproject.org/project/arago/patch/20260312130928.88=
-9341-2-p-deshmukh@ti.com/
-
-Link to v2:
- - https://patchwork.yoctoproject.org/project/arago/patch/20260309061254.39=
-42533-2-p-deshmukh@ti.com/
-
-Link to v1:
- - https://patchwork.yoctoproject.org/project/arago/patch/20260309053346.38=
-27889-2-p-deshmukh@ti.com/
-
-Pratham Deshmukh (1):
-  nnstreamer: Add test package dependency and fix buildpaths QA issues
+Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
+---
+Change Logs:
+ v3 -> v4:
+ - Use RDEPENDS approach instead of package consolidation to maintain
+   clean separation between runtime and test components.
+ v2 -> v3:
+ - Fix runitme dependencies issue for unittest_filter_onnxruntime.
+ - Upgrade recipe to make it QA compliant.
+ v1 -> v2:
+ - Added fix commit hash in the commit message.
 
  ...ute-build-paths-from-generated-test-.patch | 42 +++++++++++++++++++
  .../nnstreamer/nnstreamer_2.6.0.bb            |  9 +++-
@@ -136,6 +139,102 @@ Pratham Deshmukh (1):
  create mode 100644 meta-arago-extras/recipes-multimedia/nnstreamer/nnstrea=
 mer/0001-fix-Remove-absolute-build-paths-from-generated-test-.patch
 
+diff --git a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer/000=
+1-fix-Remove-absolute-build-paths-from-generated-test-.patch b/meta-arago-e=
+xtras/recipes-multimedia/nnstreamer/nnstreamer/0001-fix-Remove-absolute-bui=
+ld-paths-from-generated-test-.patch
+new file mode 100644
+index 00000000..345b3eb2
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer/0001-fix-R=
+emove-absolute-build-paths-from-generated-test-.patch
+@@ -0,0 +1,42 @@
++From a5f962b51431ac19c264b8b9baa78ff283a77efe Mon Sep 17 00:00:00 2001
++From: Pratham Deshmukh <p-deshmukh@ti.com>
++Date: Tue, 10 Mar 2026 15:23:05 +0530
++Subject: [PATCH] fix: Remove absolute build paths from generated test file=
+s
++
++Replace meson.build_root() with relative paths in custom_filter_path
++to prevent Yocto buildpaths QA errors. The generated unittest files
++were embedding absolute build directory paths (e.g., /tmp/work/...)
++as string literals, which Yocto's QA system correctly flags as a
++build reproducibility issue.
++
++The runtime code already handles proper path resolution using
++NNSTREAMER_SOURCE_ROOT_PATH environment variable or relative
++fallbacks, so this change maintains full functionality
++while eliminating embedded build paths.
++
++Fixes: QA Issue "contains reference to TMPDIR [buildpaths]" in
++unittest_tizen_custom.cc and unittest_tizen_custom-set.cc
++
++Upstream-Status: Inappropriate [oe-specific]
++
++Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
++---
++ tests/nnstreamer_filter_extensions_common/meson.build | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/tests/nnstreamer_filter_extensions_common/meson.build b/tests=
+/nnstreamer_filter_extensions_common/meson.build
++index ecd1878b..ba72ee20 100644
++--- a/tests/nnstreamer_filter_extensions_common/meson.build
+++++ b/tests/nnstreamer_filter_extensions_common/meson.build
++@@ -9,7 +9,7 @@ tizen_apptest_deps =3D [
++ # Format for adding subplugin into extensions -
++ # [name, extension abbreviation, dependencies, model file name/folder pat=
+h/file path, test name]
++ extensions =3D []
++-custom_filter_path =3D join_paths(meson.build_root(), 'tests', 'nnstreame=
+r_example',
+++custom_filter_path =3D join_paths('tests', 'nnstreamer_example',
++     'libnnstreamer_customfilter_passthrough.' + so_ext)
++ extensions +=3D [['custom', 'custom', nnstreamer_unittest_deps, custom_fi=
+lter_path, 'custom']]
++ extensions +=3D [['custom', 'custom', nnstreamer_unittest_deps, custom_fi=
+lter_path, 'custom-set']]
++--=20
++2.34.1
++
+diff --git a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6=
+.0.bb b/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6.0.bb
+index c62589ac..fbfb887c 100644
+--- a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6.0.bb
++++ b/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6.0.bb
+@@ -3,7 +3,11 @@ DESCRIPTION =3D "NNStreamer is a set of Gstreamer plugins =
+that allow Gstreamer dev
+ LICENSE =3D "LGPL-2.1-only"
+ LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dc25e5c1949624d71896127788f1ba59=
+0"
+=20
+-SRC_URI =3D "git://github.com/nnstreamer/nnstreamer.git;branch=3Dmain;prot=
+ocol=3Dhttps"
++SRC_URI =3D " \
++	git://github.com/nnstreamer/nnstreamer.git;branch=3Dmain;protocol=3Dhttps=
+ \
++	file://0001-fix-Remove-absolute-build-paths-from-generated-test-.patch \
++"
++
+ SRCREV =3D "b970e9eff6bfb4e915463842422fe14bb2e53f84"
+=20
+ # Only compatible with armv7a, armv7ve, and aarch64
+@@ -56,13 +60,14 @@ FILES:${PN} +=3D "\
+ "
+ INSANE_SKIP:${PN} +=3D "dev-so"
+=20
++RDEPENDS:${PN} +=3D "nnstreamer-tests"
++
+ PACKAGES =3D+ "${PN}-tests"
+=20
+ FILES:${PN}-tests +=3D "\
+ 	${libdir}/nnstreamer/customfilters/* \
+ 	${bindir}/unittest-nnstreamer/* \
+ "
+-INSANE_SKIP:${PN}-tests +=3D "buildpaths"
+=20
+ FILES:${PN}-dev =3D "\
+ 	${includedir}/nnstreamer/* \
 --=20
 2.34.1
 
