@@ -1,517 +1,273 @@
-Return-Path: <p-deshmukh@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 79DACF506E4
-	for <webhook@archiver.kernel.org>; Mon, 16 Mar 2026 14:57:44 +0000 (UTC)
-Received: from DM1PR04CU001.outbound.protection.outlook.com (DM1PR04CU001.outbound.protection.outlook.com [52.101.61.35])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.52695.1773673055195448263
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 492CBF53D6E
+	for <webhook@archiver.kernel.org>; Mon, 16 Mar 2026 15:42:49 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com (CO1PR03CU002.outbound.protection.outlook.com [52.101.46.28])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.53854.1773675764689518206
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 16 Mar 2026 07:57:35 -0700
+ Mon, 16 Mar 2026 08:42:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=b+L/EU3o;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.61.35, mailfrom: p-deshmukh@ti.com)
+ dkim=pass header.i=@ti.com header.s=selector1 header.b=HF2WBlti;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.46.28, mailfrom: reatmon@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AuxfoXO7Y3M7/IN4B9/SSjRwXB+xdoTWWX55SLToIeVhQk4ROSFD1hM+/pacVYYvmFjakUiMgAwVsfAjwonewfv27oBkavvycYq2Pq0p2mdFk4udw3QvFTKWp0S5+pBOEM5Mj89UTVGcvrODvB7F7qMgPr+6Ieuk/+N45jv+TG4NYkmRHEcabqmpy89Gyv4ChUu57XKwSvPTtrWz+JB3LpU43gpvJGUE8Fhq2Xq/OBP9Psg85/7u7OUSDazH6ETg81dAyOcQ09z4UYKe2EYnFwnbHlJd9zyVXPFRv5TmgvoAbNMuUP9UHuitjYuLtLvQmGZAd1o7y01U92o4DZ141A==
+ b=bybPVWiLfaHARYn13ofVM1Dqp9GPgnJibZfl3A7XzCzn0wDmXuJtnvTRU9feyjY7HTo+Q1bP6Ww8sENDOgkR3Zl1VH6JL5VxuQ2PP/grJi/y6RprRQAumL+De3731h9Fu259FJiIZBRCOZyecVrqUL3n5fLgDXXLFJw8gaWwkOrsYcWTBxRzQVuw+BN54ZwMeDt5P7+HE06ONeQIP1kiURA9N4c0W/upA+WBqn4IJf50DOamUTozJHhjDbpjA8uEHsCj6NfweEZE9vlsCS4NeUIL+ZpKHwOSedTIlLb6WH1ffuG5xQaLrCr6DUuUO169RhoA47iVxCsvpzhTwJZF/Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pZ7CQ3qm+bSicdEMYm3kcGy/outPRc7yV3hL3Nxajns=;
- b=LX5+ADatiAVLu/+e8KYIH+nDWNhxiuE3zTVdxZvV8WyHqDw3hIMlkMJx3lJMhmb9kBXndlD3dOFQmZbAakO1fnD9BThWIJ+9xY1K0f1WH8z6b5vrlfDnyf9Wc8nQhrOhp5vZqSsyztNscJW8oZ7BYJfkatnmlgWXOByb5aItTaGZTzzaX1/5rQ3YkrqusjmClqDz6GiMxTEN+YN8xk2woJoUS8qyBTAXUPl2uJtHGYXPZxV1DyPf6t0HpPgPl/nIEwSKC1WtCKsEFga6HKBOXcBKVOY4KUiPNQuSO+QyvvDVoQJtZEI0fcBn2mCvodIGkWufGxZCaEo5nEVmPohccg==
+ bh=F4vvHLWJ7uUo4S0gMBQPSIq5c8pM/rehS9nh2xay5pQ=;
+ b=BteY3OVQBRq1U87StYJAOi43gHGIzLh8MfLy6GOXf9kGUsTiKM0TyqlLkqYlK9ePRTCnQ+jT8PZCZ0w54pgRc0SQJYImxgQV+AtjW/xfgOQeFZIDGLZpZyUuaIe689oQvxH2rrzI2h2zsAtmj9HC/eqC33OErfOUhure0ILriHyc+7n7AH5/TRChoBcmGxC5AwqkmRoq7kSQIkH+O3KmMOLfWjNqVNtT0oW94I3k1wIEjevRwHvjXrcpmHqyympPjUYnqQAXZRKut29Rff6MMMheSeC095HfWcleOLZEIMZvN1Wfv6RZWKBtpKw8W5Vw4Ot78RgHgijeJfLYrIqLvQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pZ7CQ3qm+bSicdEMYm3kcGy/outPRc7yV3hL3Nxajns=;
- b=b+L/EU3ov4eryyWSFXyjKUBMybcKhIcTm6gw8LPPMkamrdrBF2Um7BmNbZI/JvEukP/d/N9E9DWlkfadOiV89SoRjJTc/XEpoi0HMoJ8S0OjKeCfPgIA55Djfc9ywTfobj9HqulDz98Lw+0LHuXWRwc5YPMir21kHvLs5YH6tmU=
-Received: from BL1PR13CA0068.namprd13.prod.outlook.com (2603:10b6:208:2b8::13)
- by MW4PR10MB6559.namprd10.prod.outlook.com (2603:10b6:303:228::17) with
+ bh=F4vvHLWJ7uUo4S0gMBQPSIq5c8pM/rehS9nh2xay5pQ=;
+ b=HF2WBltiBd+oHO2v31bFxBgx68XmOwXymKAOCSvygJoovxzxuhdanSc7KI9RTzHZW6APsJoXIcIDoAyyF/rDnqpLvyaY+wnxWgKVp+5VY0jdZs360ZEv2vrEdcjz5Po+nZUHF9vvHrqb+h6cGUeaLmTZSh1r9eHwG7TpWzcjQ5k=
+Received: from BN9P223CA0019.NAMP223.PROD.OUTLOOK.COM (2603:10b6:408:10b::24)
+ by CH3PR10MB6737.namprd10.prod.outlook.com (2603:10b6:610:146::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.24; Mon, 16 Mar
- 2026 14:57:32 +0000
-Received: from BL02EPF0001A0FD.namprd03.prod.outlook.com
- (2603:10b6:208:2b8:cafe::90) by BL1PR13CA0068.outlook.office365.com
- (2603:10b6:208:2b8::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.25; Mon, 16 Mar
+ 2026 15:42:42 +0000
+Received: from BL02EPF0001A0FA.namprd03.prod.outlook.com
+ (2603:10b6:408:10b:cafe::db) by BN9P223CA0019.outlook.office365.com
+ (2603:10b6:408:10b::24) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.25 via Frontend Transport; Mon,
- 16 Mar 2026 14:57:32 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ 16 Mar 2026 15:42:39 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BL02EPF0001A0FD.mail.protection.outlook.com (10.167.242.104) with Microsoft
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ BL02EPF0001A0FA.mail.protection.outlook.com (10.167.242.101) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Mon, 16 Mar 2026 14:57:32 +0000
-Received: from DLEE211.ent.ti.com (157.170.170.113) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9700.17 via Frontend Transport; Mon, 16 Mar 2026 15:42:40 +0000
+Received: from DFLE212.ent.ti.com (10.64.6.70) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 16 Mar
- 2026 09:57:30 -0500
-Received: from DLEE206.ent.ti.com (157.170.170.90) by DLEE211.ent.ti.com
- (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 10:42:13 -0500
+Received: from DFLE215.ent.ti.com (10.64.6.73) by DFLE212.ent.ti.com
+ (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 16 Mar
- 2026 09:57:30 -0500
-Received: from DLEE206.ent.ti.com ([fe80::83f5:84c9:ae30:5a3e]) by
- DLEE206.ent.ti.com ([fe80::83f5:84c9:ae30:5a3e%6]) with mapi id
- 15.02.2562.020; Mon, 16 Mar 2026 09:57:30 -0500
-From: "Deshmukh, Pratham" <p-deshmukh@ti.com>
-To: "Eatmon, Ryan" <reatmon@ti.com>, "meta-arago@lists.yoctoproject.org"
-	<meta-arago@lists.yoctoproject.org>
-CC: "Davis, Andrew" <afd@ti.com>, "Shilwant, Chirag" <c-shilwant@ti.com>,
-	"Dmytriyenko, Denys" <denys@ti.com>, "Singh, Vishnu" <v-singh1@ti.com>
+ 2026 10:42:13 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE215.ent.ti.com
+ (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 16 Mar 2026 10:42:13 -0500
+Received: from [128.247.81.40] (dtmz023nlvx.dhcp.ti.com [128.247.81.40])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62GFgDHN1536198;
+	Mon, 16 Mar 2026 10:42:13 -0500
+Message-ID: <2ae9981e-be55-465e-9538-7b3fae130222@ti.com>
+Date: Mon, 16 Mar 2026 10:42:13 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [meta-arago][master][PATCH v4 1/1] nnstreamer: Add test package
  dependency and fix buildpaths QA issues
-Thread-Topic: [meta-arago][master][PATCH v4 1/1] nnstreamer: Add test package
- dependency and fix buildpaths QA issues
-Thread-Index: AQHctScQpDIfdzO/KUSD7sV8AHKoWLWxdgKA///IUJk=
-Date: Mon, 16 Mar 2026 14:57:30 +0000
-Message-ID: <7cb5cc3a5370464fa80ac543d871f7d3@ti.com>
+To: "Deshmukh, Pratham" <p-deshmukh@ti.com>,
+	"meta-arago@lists.yoctoproject.org" <meta-arago@lists.yoctoproject.org>
+CC: "Davis, Andrew" <afd@ti.com>, "Shilwant, Chirag" <c-shilwant@ti.com>,
+	"Dmytriyenko, Denys" <denys@ti.com>, "Singh, Vishnu" <v-singh1@ti.com>
 References: <20260316092648.1377711-1-p-deshmukh@ti.com>
- <20260316092648.1377711-2-p-deshmukh@ti.com>,<54b6b817-38de-4a2b-bc22-f54379ca78a6@ti.com>
-In-Reply-To: <54b6b817-38de-4a2b-bc22-f54379ca78a6@ti.com>
-Accept-Language: en-US
+ <20260316092648.1377711-2-p-deshmukh@ti.com>
+ <54b6b817-38de-4a2b-bc22-f54379ca78a6@ti.com>
+ <7cb5cc3a5370464fa80ac543d871f7d3@ti.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.249.130.53]
-x-c2processedorg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-Content-Type: multipart/alternative;
-	boundary="_000_7cb5cc3a5370464fa80ac543d871f7d3ticom_"
-MIME-Version: 1.0
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <7cb5cc3a5370464fa80ac543d871f7d3@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: base64
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FD:EE_|MW4PR10MB6559:EE_
-X-MS-Office365-Filtering-Correlation-Id: fae25cc4-0776-453a-a0b7-08de836c59fb
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FA:EE_|CH3PR10MB6737:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9b973ca-3a1b-405e-5094-08de8372a847
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|36860700016|82310400026|1800799024|376014|22082099003|56012099003|18002099003|7053199007|13003099007|8096899003;
+	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700016|13003099007|56012099003|22082099003|18002099003|7053199007;
 X-Microsoft-Antispam-Message-Info: 
-	+D49tEbKd0Vs8ZkPdZQj9aJkyxurANQt8UDZrvM2pWT51lgj3gZTLhZlVD2K2Sq8YiliT9zfGVlDL6rlrwJverm4egFrGY2oLkxkXePhjxMGHTAWrClTmK5dP7lRS3nrbEKupT2O+9In2NnXKEF7QTBcRkh+fCMQf4K5QA8tGYEXuM5lnrtVivS+4dpn7NauqN+mpBcj/rQfz4y0HtR0epW4Kjf6loHG7yG6+2a4PkzWJNMHIS1Jpux+8L2PcRj1J+U5TLavMfdA6T9WAjUccWl2x+o9TwFrbB4VKUEQ/KhbmIy6aiRwUPdWbqnOSQA8k5YA+pBIlFROcS7M03mNqlUbKaQtdFlyLR6fyYh39kRRss1If0/IdjE110FuFDB4cp5i12FdQHwt+jZC6fYD4oThx11n4TfnZda7zAbUdMbmvkN2pqqf4+uDKDFEyi2m8cPPpmXEvhr26dNhkmga9wKTcj7aBzYE5FLmZiTSBpOOF2Ol9i0v0Rw9HO7VfZMeIYlANH4wKGiLMUN+9x1AdIHkEyqGFEgh7iPu3LZkRqTOt5XBiuazG0TD/FFwU1I0jGoisTT5nX93FdNbGaSOJOL2Mz7UTFjPrYs08XrRItGja2Ajal9+A6dZdeJn0wzLPbDE0ib8A3lXeUX/4Yb/LbXaBHI3tPLc+6/czurtpIeGi6dwigPTZo7U94KXHjMetnzy4CVvo4qU3b2c8kW5cUenTbDFJQrDCf3IZZ4HYYQ=
+	dv3OQRMAJprHPIQjgxPrz0EyYfInqPod+9KY9KWGKKEyBOMW8MLQYX/0imu7dW4xgwsb9vmRaaJqd/CjpTHVM+AjQsmydV274/KjHwhcZ1d4RbPZ2aYpzFZTOWlykt6G6CX2JPT+IGEyJ0cIwmQru4JiauCG2/Nd8x+tBmKaVZD3U0bxBoMC00TqVLi2vche02iHDwwpGSfEm3zA+w3nAXrNea31xOeJF9HLqioLCV0uYiEkd1vT9G5E7vfKUc9BEXYlsXDGkgqopNjcxqxRAGrZu7Xm1OUBMHAWU5tEwXHNdnqtaTp2LghRZUDKjOKqNBcUNpe9MzXfI6bkLc3iZ6W+EW04MSnS9iqS2FKesr8DiWa67jqkRzhtkMAD1pDFIx2jJEVFpcjgjcvJTe8sr5JvF1RJsm6h/NEwNrvvSAUYhyYxWn6q8J7jf62ZWBabPXoW833uREq2VTFQiOPGWqHDJs7LC9IZnU6Hxe+sX1inV2hd1KNLM7xhB5Cf0ZgMjEGjnka/11hjAJz05+e69XI2VVea6iwDlzR93D+85VyQWa/w3JhIrro3vvpL4/N3/2H7lNkGIuPm8XN49JEemKyzl9L9+R5sLm7lhle7h1e0Kp0HBVxmfiK5+JzFM//SPKv4yX9lA4qhEZ5nBt78CvcmteL/x2/xkQwtNACdDC1Kp6OfEyfMQHrk3dh1F+Vx4alXgHu/Q27SWZKDIamVdI8DZhAE9Hby0CZchQru24EZvmSsGGRV5r55MhutDsXjhHLezXN9vQuoGLCql20JqQ==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(22082099003)(56012099003)(18002099003)(7053199007)(13003099007)(8096899003);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(13003099007)(56012099003)(22082099003)(18002099003)(7053199007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	LE1gKIWBNaH/mOxjrpHb2zpXpRWWfmYjRDKgjk80fZgZyx2s2C7DKY3bZsIzQOQ2IGXKQpu/VszDNaFxLLLpFNEJWK/2uLnANhqHiFmdDJ8kqKjJTaxap6I17mMX8rCVbo2O3h/aDi2EHqF5Tt7Wj0ZER20zzuG3EWIgpdOL/sHrEkwU3gMMkE+wMocnG9pMFFlQGaUTvYCG6ivM4/UUF/3zJ3KhzxlgY3R3axCqhRloOj6bIJVzqb9Avgw1yk1nUoi8hqw7erxTdOuKtTEf8VIndb3MvCyeY5qXegElT2KC3NhOHxLrY3U5oMwicKcy7uH1USjmFlKn2CbGY+ZQxtnKXUJxdm5t/JzbOyD+TzzVLF9/+pvnNqTwGBtq/2im77BumU3OuvLjAvp+4+Xx4kdH6LxklJ4Wky//C1w5luwQ+PdfjiJMvXfHHvhdt7wa
+	c8ziPTaIQrKekpPOnDgNT4uMtBZGkaNYxQendKjb7WIgQwCKBiBQMSrdYaXkL7xEZzly65Fl+wW9ZWP7gEP/HJ2d3dOQ4mTiONb/6h6yrbk3lX3wCTub++6FTqE1/1XUKiPGzCyiu9xk7JCDJ0zgcqWS3HDMKH7zndqf8+gKxsIoEtMLAzo4lkRY5ZM/aigREBZYgS/QLuvo3gkiNxVx6H+/m0nj28IbXBn9vkWovokvA+b49ur3FFiqW6njwu1Qb5XZXciGFaqenVa0XvvgyvUuHPTtaBKpPKs/4vZOUOy/fjjTDPdeSDN69x5GwZeTCU4QLfjw2R23ppCJlm/mv/u6Rbx6oJGXt4HChtGibhYPPZAQsQnwB3mD6D69gA6Q7gpDMb2trbYZUdyc8//h/VEOd50sAxIz4m4RFuQNch6f1WZWbMCn7dwLHEJuf++a
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 14:57:32.1385
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 15:42:40.4725
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fae25cc4-0776-453a-a0b7-08de836c59fb
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9b973ca-3a1b-405e-5094-08de8372a847
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BL02EPF0001A0FD.namprd03.prod.outlook.com
+	BL02EPF0001A0FA.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR10MB6559
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR10MB6737
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 16 Mar 2026 14:57:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17350
+ <meta-arago@lists.yoctoproject.org>; Mon, 16 Mar 2026 15:42:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17351
 
---_000_7cb5cc3a5370464fa80ac543d871f7d3ticom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-The intent here was not to force the tests into all images. The nnstreamer =
-components (like other stacks) are pulled in through the meta-tisdk:meta-ti=
--ml layer for a specific SDK images that require them, so the base arago-de=
-fault-image is not bloated.
-
-
-https://github.com/TexasInstruments/meta-tisdk/blob/master/meta-ti-ml/recip=
-es-core/images/tisdk-default-image.bbappend
-
-________________________________
-From: Eatmon, Ryan
-Sent: Monday, March 16, 2026 6:40:23 PM
-To: Deshmukh, Pratham; meta-arago@lists.yoctoproject.org
-Cc: Davis, Andrew; Shilwant, Chirag; Dmytriyenko, Denys; Singh, Vishnu
-Subject: Re: [meta-arago][master][PATCH v4 1/1] nnstreamer: Add test packag=
-e dependency and fix buildpaths QA issues
-
-
-
-On 3/16/2026 4:26 AM, Pratham Deshmukh via lists.yoctoproject.org wrote:
-> Add runtime dependency to automatically install
-> nnstreamer-tests package when nnstreamer is installed,
-> ensuring unittest_filter_onnxruntime is available for
-> ONNX Runtime benchmarking.
->
-> Include buildpaths compliance patch that replaces
-> absolute build paths(meson.build_root()) with relative
-> paths in generated unittest files, resolving QA errors
-> "contains reference to TMPDIR [buildpaths]" in unittest_tizen_custom.cc
-> and unittest_tizen_custom-set.cc.
->
-> Fixes: 319271fe5fc8bc3016b1eb765784076af666b61b ("nnstreamer: upgrade 2.4=
-.4 -> 2.6.0")
->
-> Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
-> ---
-> Change Logs:
->   v3 -> v4:
->   - Use RDEPENDS approach instead of package consolidation to maintain
->     clean separation between runtime and test components.
->   v2 -> v3:
->   - Fix runitme dependencies issue for unittest_filter_onnxruntime.
->   - Upgrade recipe to make it QA compliant.
->   v1 -> v2:
->   - Added fix commit hash in the commit message.
->
->   ...ute-build-paths-from-generated-test-.patch | 42 +++++++++++++++++++
->   .../nnstreamer/nnstreamer_2.6.0.bb            |  9 +++-
->   2 files changed, 49 insertions(+), 2 deletions(-)
->   create mode 100644 meta-arago-extras/recipes-multimedia/nnstreamer/nnst=
-reamer/0001-fix-Remove-absolute-build-paths-from-generated-test-.patch
->
-> diff --git a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer/0=
-001-fix-Remove-absolute-build-paths-from-generated-test-.patch b/meta-arago=
--extras/recipes-multimedia/nnstreamer/nnstreamer/0001-fix-Remove-absolute-b=
-uild-paths-from-generated-test-.patch
-> new file mode 100644
-> index 00000000..345b3eb2
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer/0001-fix=
--Remove-absolute-build-paths-from-generated-test-.patch
-> @@ -0,0 +1,42 @@
-> +From a5f962b51431ac19c264b8b9baa78ff283a77efe Mon Sep 17 00:00:00 2001
-> +From: Pratham Deshmukh <p-deshmukh@ti.com>
-> +Date: Tue, 10 Mar 2026 15:23:05 +0530
-> +Subject: [PATCH] fix: Remove absolute build paths from generated test fi=
-les
-> +
-> +Replace meson.build_root() with relative paths in custom_filter_path
-> +to prevent Yocto buildpaths QA errors. The generated unittest files
-> +were embedding absolute build directory paths (e.g., /tmp/work/...)
-> +as string literals, which Yocto's QA system correctly flags as a
-> +build reproducibility issue.
-> +
-> +The runtime code already handles proper path resolution using
-> +NNSTREAMER_SOURCE_ROOT_PATH environment variable or relative
-> +fallbacks, so this change maintains full functionality
-> +while eliminating embedded build paths.
-> +
-> +Fixes: QA Issue "contains reference to TMPDIR [buildpaths]" in
-> +unittest_tizen_custom.cc and unittest_tizen_custom-set.cc
-> +
-> +Upstream-Status: Inappropriate [oe-specific]
-> +
-> +Signed-off-by: Pratham Deshmukh <p-deshmukh@ti.com>
-> +---
-> + tests/nnstreamer_filter_extensions_common/meson.build | 2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/tests/nnstreamer_filter_extensions_common/meson.build b/tes=
-ts/nnstreamer_filter_extensions_common/meson.build
-> +index ecd1878b..ba72ee20 100644
-> +--- a/tests/nnstreamer_filter_extensions_common/meson.build
-> ++++ b/tests/nnstreamer_filter_extensions_common/meson.build
-> +@@ -9,7 +9,7 @@ tizen_apptest_deps =3D [
-> + # Format for adding subplugin into extensions -
-> + # [name, extension abbreviation, dependencies, model file name/folder p=
-ath/file path, test name]
-> + extensions =3D []
-> +-custom_filter_path =3D join_paths(meson.build_root(), 'tests', 'nnstrea=
-mer_example',
-> ++custom_filter_path =3D join_paths('tests', 'nnstreamer_example',
-> +     'libnnstreamer_customfilter_passthrough.' + so_ext)
-> + extensions +=3D [['custom', 'custom', nnstreamer_unittest_deps, custom_=
-filter_path, 'custom']]
-> + extensions +=3D [['custom', 'custom', nnstreamer_unittest_deps, custom_=
-filter_path, 'custom-set']]
-> +--
-> +2.34.1
-> +
-> diff --git a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2=
-.6.0.bb b/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6.0.=
-bb
-> index c62589ac..fbfb887c 100644
-> --- a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6.0.bb
-> +++ b/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6.0.bb
-> @@ -3,7 +3,11 @@ DESCRIPTION =3D "NNStreamer is a set of Gstreamer plugin=
-s that allow Gstreamer dev
->   LICENSE =3D "LGPL-2.1-only"
->   LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dc25e5c1949624d71896127788f1b=
-a590"
->
-> -SRC_URI =3D "git://github.com/nnstreamer/nnstreamer.git;branch=3Dmain;pr=
-otocol=3Dhttps"
-> +SRC_URI =3D " \
-> +     git://github.com/nnstreamer/nnstreamer.git;branch=3Dmain;protocol=
-=3Dhttps \
-> +     file://0001-fix-Remove-absolute-build-paths-from-generated-test-.pa=
-tch \
-> +"
-> +
->   SRCREV =3D "b970e9eff6bfb4e915463842422fe14bb2e53f84"
->
->   # Only compatible with armv7a, armv7ve, and aarch64
-> @@ -56,13 +60,14 @@ FILES:${PN} +=3D "\
->   "
->   INSANE_SKIP:${PN} +=3D "dev-so"
->
-> +RDEPENDS:${PN} +=3D "nnstreamer-tests"
-> +
-
-Why are we forcing the tests to be installed when nnstreamer is installed? =
- In fact, I cannot find any recipe that even refers to nnstreamer.  How is =
-this even begin included in builds?  In my mind, if you are wanting the tes=
-ts for use during our testing, then nnstreamer-tests should be included in =
-the ti-test package to ensure that the tests are present.
-
-
->   PACKAGES =3D+ "${PN}-tests"
->
->   FILES:${PN}-tests +=3D "\
->        ${libdir}/nnstreamer/customfilters/* \
->        ${bindir}/unittest-nnstreamer/* \
->   "
-> -INSANE_SKIP:${PN}-tests +=3D "buildpaths"
->
->   FILES:${PN}-dev =3D "\
->        ${includedir}/nnstreamer/* \
-
---
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
-
-
---_000_7cb5cc3a5370464fa80ac543d871f7d3ticom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style>
-</head>
-<body>
-<meta content=3D"text/html; charset=3DUTF-8">
-<style type=3D"text/css" style=3D"">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
-or:#000000; font-family:Calibri,Helvetica,sans-serif">
-<p>The intent here was not to force the tests into all images. The nnstream=
-er&nbsp;components&nbsp;(like other stacks)&nbsp;are pulled in through the =
-meta-tisdk:meta-ti-ml layer for a specific SDK images that require them, so=
- the base arago-default-image is not bloated.&nbsp;<br>
-<br>
-<br>
-<a href=3D"https://github.com/TexasInstruments/meta-tisdk/blob/master/meta-=
-ti-ml/recipes-core/images/tisdk-default-image.bbappend" class=3D"x_OWAAutoL=
-ink">https://github.com/TexasInstruments/meta-tisdk/blob/master/meta-ti-ml/=
-recipes-core/images/tisdk-default-image.bbappend</a><br>
-</p>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Eatmon, Ryan<br>
-<b>Sent:</b> Monday, March 16, 2026 6:40:23 PM<br>
-<b>To:</b> Deshmukh, Pratham; meta-arago@lists.yoctoproject.org<br>
-<b>Cc:</b> Davis, Andrew; Shilwant, Chirag; Dmytriyenko, Denys; Singh, Vish=
-nu<br>
-<b>Subject:</b> Re: [meta-arago][master][PATCH v4 1/1] nnstreamer: Add test=
- package dependency and fix buildpaths QA issues</font>
-<div>&nbsp;</div>
-</div>
-</div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
-<div class=3D"PlainText"><br>
-<br>
-On 3/16/2026 4:26 AM, Pratham Deshmukh via lists.yoctoproject.org wrote:<br=
->
-&gt; Add runtime dependency to automatically install<br>
-&gt; nnstreamer-tests package when nnstreamer is installed,<br>
-&gt; ensuring unittest_filter_onnxruntime is available for<br>
-&gt; ONNX Runtime benchmarking.<br>
-&gt; <br>
-&gt; Include buildpaths compliance patch that replaces<br>
-&gt; absolute build paths(meson.build_root()) with relative<br>
-&gt; paths in generated unittest files, resolving QA errors<br>
-&gt; &quot;contains reference to TMPDIR [buildpaths]&quot; in unittest_tize=
-n_custom.cc<br>
-&gt; and unittest_tizen_custom-set.cc.<br>
-&gt; <br>
-&gt; Fixes: 319271fe5fc8bc3016b1eb765784076af666b61b (&quot;nnstreamer: upg=
-rade 2.4.4 -&gt; 2.6.0&quot;)<br>
-&gt; <br>
-&gt; Signed-off-by: Pratham Deshmukh &lt;p-deshmukh@ti.com&gt;<br>
-&gt; ---<br>
-&gt; Change Logs:<br>
-&gt;&nbsp;&nbsp; v3 -&gt; v4:<br>
-&gt;&nbsp;&nbsp; - Use RDEPENDS approach instead of package consolidation t=
-o maintain<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp; clean separation between runtime and test comp=
-onents.<br>
-&gt;&nbsp;&nbsp; v2 -&gt; v3:<br>
-&gt;&nbsp;&nbsp; - Fix runitme dependencies issue for unittest_filter_onnxr=
-untime.<br>
-&gt;&nbsp;&nbsp; - Upgrade recipe to make it QA compliant.<br>
-&gt;&nbsp;&nbsp; v1 -&gt; v2:<br>
-&gt;&nbsp;&nbsp; - Added fix commit hash in the commit message.<br>
-&gt; <br>
-&gt;&nbsp;&nbsp; ...ute-build-paths-from-generated-test-.patch | 42 &#43;&#=
-43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#=
-43;&#43;&#43;<br>
-&gt;&nbsp;&nbsp; .../nnstreamer/nnstreamer_2.6.0.bb&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 9 &#43;&#43;&#43;-<br>
-&gt;&nbsp;&nbsp; 2 files changed, 49 insertions(&#43;), 2 deletions(-)<br>
-&gt;&nbsp;&nbsp; create mode 100644 meta-arago-extras/recipes-multimedia/nn=
-streamer/nnstreamer/0001-fix-Remove-absolute-build-paths-from-generated-tes=
-t-.patch<br>
-&gt; <br>
-&gt; diff --git a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreame=
-r/0001-fix-Remove-absolute-build-paths-from-generated-test-.patch b/meta-ar=
-ago-extras/recipes-multimedia/nnstreamer/nnstreamer/0001-fix-Remove-absolut=
-e-build-paths-from-generated-test-.patch<br>
-&gt; new file mode 100644<br>
-&gt; index 00000000..345b3eb2<br>
-&gt; --- /dev/null<br>
-&gt; &#43;&#43;&#43; b/meta-arago-extras/recipes-multimedia/nnstreamer/nnst=
-reamer/0001-fix-Remove-absolute-build-paths-from-generated-test-.patch<br>
-&gt; @@ -0,0 &#43;1,42 @@<br>
-&gt; &#43;From a5f962b51431ac19c264b8b9baa78ff283a77efe Mon Sep 17 00:00:00=
- 2001<br>
-&gt; &#43;From: Pratham Deshmukh &lt;p-deshmukh@ti.com&gt;<br>
-&gt; &#43;Date: Tue, 10 Mar 2026 15:23:05 &#43;0530<br>
-&gt; &#43;Subject: [PATCH] fix: Remove absolute build paths from generated =
-test files<br>
-&gt; &#43;<br>
-&gt; &#43;Replace meson.build_root() with relative paths in custom_filter_p=
-ath<br>
-&gt; &#43;to prevent Yocto buildpaths QA errors. The generated unittest fil=
-es<br>
-&gt; &#43;were embedding absolute build directory paths (e.g., /tmp/work/..=
-.)<br>
-&gt; &#43;as string literals, which Yocto's QA system correctly flags as a<=
-br>
-&gt; &#43;build reproducibility issue.<br>
-&gt; &#43;<br>
-&gt; &#43;The runtime code already handles proper path resolution using<br>
-&gt; &#43;NNSTREAMER_SOURCE_ROOT_PATH environment variable or relative<br>
-&gt; &#43;fallbacks, so this change maintains full functionality<br>
-&gt; &#43;while eliminating embedded build paths.<br>
-&gt; &#43;<br>
-&gt; &#43;Fixes: QA Issue &quot;contains reference to TMPDIR [buildpaths]&q=
-uot; in<br>
-&gt; &#43;unittest_tizen_custom.cc and unittest_tizen_custom-set.cc<br>
-&gt; &#43;<br>
-&gt; &#43;Upstream-Status: Inappropriate [oe-specific]<br>
-&gt; &#43;<br>
-&gt; &#43;Signed-off-by: Pratham Deshmukh &lt;p-deshmukh@ti.com&gt;<br>
-&gt; &#43;---<br>
-&gt; &#43; tests/nnstreamer_filter_extensions_common/meson.build | 2 &#43;-=
-<br>
-&gt; &#43; 1 file changed, 1 insertion(&#43;), 1 deletion(-)<br>
-&gt; &#43;<br>
-&gt; &#43;diff --git a/tests/nnstreamer_filter_extensions_common/meson.buil=
-d b/tests/nnstreamer_filter_extensions_common/meson.build<br>
-&gt; &#43;index ecd1878b..ba72ee20 100644<br>
-&gt; &#43;--- a/tests/nnstreamer_filter_extensions_common/meson.build<br>
-&gt; &#43;&#43;&#43;&#43; b/tests/nnstreamer_filter_extensions_common/meson=
-.build<br>
-&gt; &#43;@@ -9,7 &#43;9,7 @@ tizen_apptest_deps =3D [<br>
-&gt; &#43; # Format for adding subplugin into extensions -<br>
-&gt; &#43; # [name, extension abbreviation, dependencies, model file name/f=
-older path/file path, test name]<br>
-&gt; &#43; extensions =3D []<br>
-&gt; &#43;-custom_filter_path =3D join_paths(meson.build_root(), 'tests', '=
-nnstreamer_example',<br>
-&gt; &#43;&#43;custom_filter_path =3D join_paths('tests', 'nnstreamer_examp=
-le',<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; 'libnnstreamer_customfilter_passthrough.=
-' &#43; so_ext)<br>
-&gt; &#43; extensions &#43;=3D [['custom', 'custom', nnstreamer_unittest_de=
-ps, custom_filter_path, 'custom']]<br>
-&gt; &#43; extensions &#43;=3D [['custom', 'custom', nnstreamer_unittest_de=
-ps, custom_filter_path, 'custom-set']]<br>
-&gt; &#43;--<br>
-&gt; &#43;2.34.1<br>
-&gt; &#43;<br>
-&gt; diff --git a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreame=
-r_2.6.0.bb b/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6=
-.0.bb<br>
-&gt; index c62589ac..fbfb887c 100644<br>
-&gt; --- a/meta-arago-extras/recipes-multimedia/nnstreamer/nnstreamer_2.6.0=
-.bb<br>
-&gt; &#43;&#43;&#43; b/meta-arago-extras/recipes-multimedia/nnstreamer/nnst=
-reamer_2.6.0.bb<br>
-&gt; @@ -3,7 &#43;3,11 @@ DESCRIPTION =3D &quot;NNStreamer is a set of Gstr=
-eamer plugins that allow Gstreamer dev<br>
-&gt;&nbsp;&nbsp; LICENSE =3D &quot;LGPL-2.1-only&quot;<br>
-&gt;&nbsp;&nbsp; LIC_FILES_CHKSUM =3D &quot;<a href=3D"file://LICENSE;md5=
-=3Dc25e5c1949624d71896127788f1ba590">file://LICENSE;md5=3Dc25e5c1949624d718=
-96127788f1ba590</a>&quot;<br>
-&gt;&nbsp;&nbsp; <br>
-&gt; -SRC_URI =3D &quot;git://github.com/nnstreamer/nnstreamer.git;branch=
-=3Dmain;protocol=3Dhttps&quot;<br>
-&gt; &#43;SRC_URI =3D &quot; \<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; git://github.com/nnstreamer/nnstreamer.g=
-it;branch=3Dmain;protocol=3Dhttps \<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; <a href=3D"file://0001-fix-Remove-absolu=
-te-build-paths-from-generated-test-.patch">
-file://0001-fix-Remove-absolute-build-paths-from-generated-test-.patch</a> =
-\<br>
-&gt; &#43;&quot;<br>
-&gt; &#43;<br>
-&gt;&nbsp;&nbsp; SRCREV =3D &quot;b970e9eff6bfb4e915463842422fe14bb2e53f84&=
-quot;<br>
-&gt;&nbsp;&nbsp; <br>
-&gt;&nbsp;&nbsp; # Only compatible with armv7a, armv7ve, and aarch64<br>
-&gt; @@ -56,13 &#43;60,14 @@ FILES:${PN} &#43;=3D &quot;\<br>
-&gt;&nbsp;&nbsp; &quot;<br>
-&gt;&nbsp;&nbsp; INSANE_SKIP:${PN} &#43;=3D &quot;dev-so&quot;<br>
-&gt;&nbsp;&nbsp; <br>
-&gt; &#43;RDEPENDS:${PN} &#43;=3D &quot;nnstreamer-tests&quot;<br>
-&gt; &#43;<br>
-<br>
-Why are we forcing the tests to be installed when nnstreamer is installed?&=
-nbsp; In fact, I cannot find any recipe that even refers to nnstreamer.&nbs=
-p; How is this even begin included in builds?&nbsp; In my mind, if you are =
-wanting the tests for use during our testing, then
- nnstreamer-tests should be included in the ti-test package to ensure that =
-the tests are present.<br>
-<br>
-<br>
-&gt;&nbsp;&nbsp; PACKAGES =3D&#43; &quot;${PN}-tests&quot;<br>
-&gt;&nbsp;&nbsp; <br>
-&gt;&nbsp;&nbsp; FILES:${PN}-tests &#43;=3D &quot;\<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${libdir}/nnstreamer/customf=
-ilters/* \<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${bindir}/unittest-nnstreame=
-r/* \<br>
-&gt;&nbsp;&nbsp; &quot;<br>
-&gt; -INSANE_SKIP:${PN}-tests &#43;=3D &quot;buildpaths&quot;<br>
-&gt;&nbsp;&nbsp; <br>
-&gt;&nbsp;&nbsp; FILES:${PN}-dev =3D &quot;\<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${includedir}/nnstreamer/* \=
-<br>
-<br>
--- <br>
-Ryan Eatmon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; reatmon@ti.com<br>
------------------------------------------<br>
-Texas Instruments, Inc.&nbsp; -&nbsp; LCPD&nbsp; -&nbsp; MGTS<br>
-<br>
-</div>
-</span></font>
-</body>
-</html>
-
---_000_7cb5cc3a5370464fa80ac543d871f7d3ticom_--
+DQoNCk9uIDMvMTYvMjAyNiA5OjU3IEFNLCBEZXNobXVraCwgUHJhdGhhbSB3cm90ZToNCj4g
+VGhlIGludGVudCBoZXJlIHdhcyBub3QgdG8gZm9yY2UgdGhlIHRlc3RzIGludG8gYWxsIGlt
+YWdlcy4gVGhlIG5uc3RyZWFtZXLCoGNvbXBvbmVudHPCoChsaWtlIG90aGVyIHN0YWNrcynC
+oGFyZSBwdWxsZWQgaW4gdGhyb3VnaCB0aGUgbWV0YS10aXNkazptZXRhLXRpLW1sIGxheWVy
+IGZvciBhIHNwZWNpZmljIFNESyBpbWFnZXMgdGhhdCByZXF1aXJlIHRoZW0sIHNvIHRoZSBi
+YXNlIGFyYWdvLWRlZmF1bHQtaW1hZ2UgaXMgbm90IGJsb2F0ZWQuDQo+IA0KPiANCj4gaHR0
+cHM6Ly9naXRodWIuY29tL1RleGFzSW5zdHJ1bWVudHMvbWV0YS10aXNkay9ibG9iL21hc3Rl
+ci9tZXRhLXRpLW1sL3JlY2lwZXMtY29yZS9pbWFnZXMvdGlzZGstZGVmYXVsdC1pbWFnZS5i
+YmFwcGVuZCA8aHR0cHM6Ly9naXRodWIuY29tL1RleGFzSW5zdHJ1bWVudHMvbWV0YS10aXNk
+ay9ibG9iL21hc3Rlci9tZXRhLXRpLW1sL3JlY2lwZXMtY29yZS9pbWFnZXMvdGlzZGstZGVm
+YXVsdC1pbWFnZS5iYmFwcGVuZD4NCg0KVGhlbiB5b3Ugc2hvdWxkIGp1c3QgYWRkIG5uc3Ry
+ZWFtZXItdGVzdHMgdG8gdGhlIGFib3ZlIGFuZCBub3QgYXMgYW4gUkRFUEVORFMgaW4gdGhl
+IG1haW4gcmVjaXBlLg0KDQoNCg0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gKkZyb206KiBF
+YXRtb24sIFJ5YW4NCj4gKlNlbnQ6KiBNb25kYXksIE1hcmNoIDE2LCAyMDI2IDY6NDA6MjMg
+UE0NCj4gKlRvOiogRGVzaG11a2gsIFByYXRoYW07IG1ldGEtYXJhZ29AbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZw0KPiAqQ2M6KiBEYXZpcywgQW5kcmV3OyBTaGlsd2FudCwgQ2hpcmFnOyBE
+bXl0cml5ZW5rbywgRGVueXM7IFNpbmdoLCBWaXNobnUNCj4gKlN1YmplY3Q6KiBSZTogW21l
+dGEtYXJhZ29dW21hc3Rlcl1bUEFUQ0ggdjQgMS8xXSBubnN0cmVhbWVyOiBBZGQgdGVzdCBw
+YWNrYWdlIGRlcGVuZGVuY3kgYW5kIGZpeCBidWlsZHBhdGhzIFFBIGlzc3Vlcw0KPiANCj4g
+DQo+IE9uIDMvMTYvMjAyNiA0OjI2IEFNLCBQcmF0aGFtIERlc2htdWtoIHZpYSBsaXN0cy55
+b2N0b3Byb2plY3Qub3JnIHdyb3RlOg0KPj4gQWRkIHJ1bnRpbWUgZGVwZW5kZW5jeSB0byBh
+dXRvbWF0aWNhbGx5IGluc3RhbGwNCj4+IG5uc3RyZWFtZXItdGVzdHMgcGFja2FnZSB3aGVu
+IG5uc3RyZWFtZXIgaXMgaW5zdGFsbGVkLA0KPj4gZW5zdXJpbmcgdW5pdHRlc3RfZmlsdGVy
+X29ubnhydW50aW1lIGlzIGF2YWlsYWJsZSBmb3INCj4+IE9OTlggUnVudGltZSBiZW5jaG1h
+cmtpbmcuDQo+PiANCj4+IEluY2x1ZGUgYnVpbGRwYXRocyBjb21wbGlhbmNlIHBhdGNoIHRo
+YXQgcmVwbGFjZXMNCj4+IGFic29sdXRlIGJ1aWxkIHBhdGhzKG1lc29uLmJ1aWxkX3Jvb3Qo
+KSkgd2l0aCByZWxhdGl2ZQ0KPj4gcGF0aHMgaW4gZ2VuZXJhdGVkIHVuaXR0ZXN0IGZpbGVz
+LCByZXNvbHZpbmcgUUEgZXJyb3JzDQo+PiAiY29udGFpbnMgcmVmZXJlbmNlIHRvIFRNUERJ
+UiBbYnVpbGRwYXRoc10iIGluIHVuaXR0ZXN0X3RpemVuX2N1c3RvbS5jYw0KPj4gYW5kIHVu
+aXR0ZXN0X3RpemVuX2N1c3RvbS1zZXQuY2MuDQo+PiANCj4+IEZpeGVzOiAzMTkyNzFmZTVm
+YzhiYzMwMTZiMWViNzY1Nzg0MDc2YWY2NjZiNjFiICgibm5zdHJlYW1lcjogdXBncmFkZSAy
+LjQuNCAtPiAyLjYuMCIpDQo+PiANCj4+IFNpZ25lZC1vZmYtYnk6IFByYXRoYW0gRGVzaG11
+a2ggPHAtZGVzaG11a2hAdGkuY29tPg0KPj4gLS0tDQo+PiBDaGFuZ2UgTG9nczoNCj4+wqDC
+oCB2MyAtPiB2NDoNCj4+wqDCoCAtIFVzZSBSREVQRU5EUyBhcHByb2FjaCBpbnN0ZWFkIG9m
+IHBhY2thZ2UgY29uc29saWRhdGlvbiB0byBtYWludGFpbg0KPj7CoMKgwqDCoCBjbGVhbiBz
+ZXBhcmF0aW9uIGJldHdlZW4gcnVudGltZSBhbmQgdGVzdCBjb21wb25lbnRzLg0KPj7CoMKg
+IHYyIC0+IHYzOg0KPj7CoMKgIC0gRml4IHJ1bml0bWUgZGVwZW5kZW5jaWVzIGlzc3VlIGZv
+ciB1bml0dGVzdF9maWx0ZXJfb25ueHJ1bnRpbWUuDQo+PsKgwqAgLSBVcGdyYWRlIHJlY2lw
+ZSB0byBtYWtlIGl0IFFBIGNvbXBsaWFudC4NCj4+wqDCoCB2MSAtPiB2MjoNCj4+wqDCoCAt
+IEFkZGVkIGZpeCBjb21taXQgaGFzaCBpbiB0aGUgY29tbWl0IG1lc3NhZ2UuDQo+PiANCj4+
+wqDCoCAuLi51dGUtYnVpbGQtcGF0aHMtZnJvbS1nZW5lcmF0ZWQtdGVzdC0ucGF0Y2ggfCA0
+MiArKysrKysrKysrKysrKysrKysrDQo+PsKgwqAgLi4uL25uc3RyZWFtZXIvbm5zdHJlYW1l
+cl8yLjYuMC5iYsKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDkgKysrLQ0KPj7CoMKgIDIg
+ZmlsZXMgY2hhbmdlZCwgNDkgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4+wqDC
+oCBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1tdWx0aW1l
+ZGlhL25uc3RyZWFtZXIvbm5zdHJlYW1lci8wMDAxLWZpeC1SZW1vdmUtYWJzb2x1dGUtYnVp
+bGQtcGF0aHMtZnJvbS1nZW5lcmF0ZWQtdGVzdC0ucGF0Y2gNCj4+IA0KPj4gZGlmZiAtLWdp
+dCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtbXVsdGltZWRpYS9ubnN0cmVhbWVyL25u
+c3RyZWFtZXIvMDAwMS1maXgtUmVtb3ZlLWFic29sdXRlLWJ1aWxkLXBhdGhzLWZyb20tZ2Vu
+ZXJhdGVkLXRlc3QtLnBhdGNoIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1tdWx0aW1l
+ZGlhL25uc3RyZWFtZXIvbm5zdHJlYW1lci8wMDAxLWZpeC1SZW1vdmUtYWJzb2x1dGUtYnVp
+bGQtcGF0aHMtZnJvbS1nZW5lcmF0ZWQtdGVzdC0ucGF0Y2gNCj4+IG5ldyBmaWxlIG1vZGUg
+MTAwNjQ0DQo+PiBpbmRleCAwMDAwMDAwMC4uMzQ1YjNlYjINCj4+IC0tLSAvZGV2L251bGwN
+Cj4+ICsrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtbXVsdGltZWRpYS9ubnN0cmVh
+bWVyL25uc3RyZWFtZXIvMDAwMS1maXgtUmVtb3ZlLWFic29sdXRlLWJ1aWxkLXBhdGhzLWZy
+b20tZ2VuZXJhdGVkLXRlc3QtLnBhdGNoDQo+PiBAQCAtMCwwICsxLDQyIEBADQo+PiArRnJv
+bSBhNWY5NjJiNTE0MzFhYzE5YzI2NGI4YjliYWE3OGZmMjgzYTc3ZWZlIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQ0KPj4gK0Zyb206IFByYXRoYW0gRGVzaG11a2ggPHAtZGVzaG11a2hA
+dGkuY29tPg0KPj4gK0RhdGU6IFR1ZSwgMTAgTWFyIDIwMjYgMTU6MjM6MDUgKzA1MzANCj4+
+ICtTdWJqZWN0OiBbUEFUQ0hdIGZpeDogUmVtb3ZlIGFic29sdXRlIGJ1aWxkIHBhdGhzIGZy
+b20gZ2VuZXJhdGVkIHRlc3QgZmlsZXMNCj4+ICsNCj4+ICtSZXBsYWNlIG1lc29uLmJ1aWxk
+X3Jvb3QoKSB3aXRoIHJlbGF0aXZlIHBhdGhzIGluIGN1c3RvbV9maWx0ZXJfcGF0aA0KPj4g
+K3RvIHByZXZlbnQgWW9jdG8gYnVpbGRwYXRocyBRQSBlcnJvcnMuIFRoZSBnZW5lcmF0ZWQg
+dW5pdHRlc3QgZmlsZXMNCj4+ICt3ZXJlIGVtYmVkZGluZyBhYnNvbHV0ZSBidWlsZCBkaXJl
+Y3RvcnkgcGF0aHMgKGUuZy4sIC90bXAvd29yay8uLi4pDQo+PiArYXMgc3RyaW5nIGxpdGVy
+YWxzLCB3aGljaCBZb2N0bydzIFFBIHN5c3RlbSBjb3JyZWN0bHkgZmxhZ3MgYXMgYQ0KPj4g
+K2J1aWxkIHJlcHJvZHVjaWJpbGl0eSBpc3N1ZS4NCj4+ICsNCj4+ICtUaGUgcnVudGltZSBj
+b2RlIGFscmVhZHkgaGFuZGxlcyBwcm9wZXIgcGF0aCByZXNvbHV0aW9uIHVzaW5nDQo+PiAr
+Tk5TVFJFQU1FUl9TT1VSQ0VfUk9PVF9QQVRIIGVudmlyb25tZW50IHZhcmlhYmxlIG9yIHJl
+bGF0aXZlDQo+PiArZmFsbGJhY2tzLCBzbyB0aGlzIGNoYW5nZSBtYWludGFpbnMgZnVsbCBm
+dW5jdGlvbmFsaXR5DQo+PiArd2hpbGUgZWxpbWluYXRpbmcgZW1iZWRkZWQgYnVpbGQgcGF0
+aHMuDQo+PiArDQo+PiArRml4ZXM6IFFBIElzc3VlICJjb250YWlucyByZWZlcmVuY2UgdG8g
+VE1QRElSIFtidWlsZHBhdGhzXSIgaW4NCj4+ICt1bml0dGVzdF90aXplbl9jdXN0b20uY2Mg
+YW5kIHVuaXR0ZXN0X3RpemVuX2N1c3RvbS1zZXQuY2MNCj4+ICsNCj4+ICtVcHN0cmVhbS1T
+dGF0dXM6IEluYXBwcm9wcmlhdGUgW29lLXNwZWNpZmljXQ0KPj4gKw0KPj4gK1NpZ25lZC1v
+ZmYtYnk6IFByYXRoYW0gRGVzaG11a2ggPHAtZGVzaG11a2hAdGkuY29tPg0KPj4gKy0tLQ0K
+Pj4gKyB0ZXN0cy9ubnN0cmVhbWVyX2ZpbHRlcl9leHRlbnNpb25zX2NvbW1vbi9tZXNvbi5i
+dWlsZCB8IDIgKy0NCj4+ICsgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRl
+bGV0aW9uKC0pDQo+PiArDQo+PiArZGlmZiAtLWdpdCBhL3Rlc3RzL25uc3RyZWFtZXJfZmls
+dGVyX2V4dGVuc2lvbnNfY29tbW9uL21lc29uLmJ1aWxkIGIvdGVzdHMvbm5zdHJlYW1lcl9m
+aWx0ZXJfZXh0ZW5zaW9uc19jb21tb24vbWVzb24uYnVpbGQNCj4+ICtpbmRleCBlY2QxODc4
+Yi4uYmE3MmVlMjAgMTAwNjQ0DQo+PiArLS0tIGEvdGVzdHMvbm5zdHJlYW1lcl9maWx0ZXJf
+ZXh0ZW5zaW9uc19jb21tb24vbWVzb24uYnVpbGQNCj4+ICsrKysgYi90ZXN0cy9ubnN0cmVh
+bWVyX2ZpbHRlcl9leHRlbnNpb25zX2NvbW1vbi9tZXNvbi5idWlsZA0KPj4gK0BAIC05LDcg
+KzksNyBAQCB0aXplbl9hcHB0ZXN0X2RlcHMgPSBbDQo+PiArICMgRm9ybWF0IGZvciBhZGRp
+bmcgc3VicGx1Z2luIGludG8gZXh0ZW5zaW9ucyAtDQo+PiArICMgW25hbWUsIGV4dGVuc2lv
+biBhYmJyZXZpYXRpb24sIGRlcGVuZGVuY2llcywgbW9kZWwgZmlsZSBuYW1lL2ZvbGRlciBw
+YXRoL2ZpbGUgcGF0aCwgdGVzdCBuYW1lXQ0KPj4gKyBleHRlbnNpb25zID0gW10NCj4+ICst
+Y3VzdG9tX2ZpbHRlcl9wYXRoID0gam9pbl9wYXRocyhtZXNvbi5idWlsZF9yb290KCksICd0
+ZXN0cycsICdubnN0cmVhbWVyX2V4YW1wbGUnLA0KPj4gKytjdXN0b21fZmlsdGVyX3BhdGgg
+PSBqb2luX3BhdGhzKCd0ZXN0cycsICdubnN0cmVhbWVyX2V4YW1wbGUnLA0KPj4gK8KgwqDC
+oMKgICdsaWJubnN0cmVhbWVyX2N1c3RvbWZpbHRlcl9wYXNzdGhyb3VnaC4nICsgc29fZXh0
+KQ0KPj4gKyBleHRlbnNpb25zICs9IFtbJ2N1c3RvbScsICdjdXN0b20nLCBubnN0cmVhbWVy
+X3VuaXR0ZXN0X2RlcHMsIGN1c3RvbV9maWx0ZXJfcGF0aCwgJ2N1c3RvbSddXQ0KPj4gKyBl
+eHRlbnNpb25zICs9IFtbJ2N1c3RvbScsICdjdXN0b20nLCBubnN0cmVhbWVyX3VuaXR0ZXN0
+X2RlcHMsIGN1c3RvbV9maWx0ZXJfcGF0aCwgJ2N1c3RvbS1zZXQnXV0NCj4+ICstLQ0KPj4g
+KzIuMzQuMQ0KPj4gKw0KPj4gZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lw
+ZXMtbXVsdGltZWRpYS9ubnN0cmVhbWVyL25uc3RyZWFtZXJfMi42LjAuYmIgYi9tZXRhLWFy
+YWdvLWV4dHJhcy9yZWNpcGVzLW11bHRpbWVkaWEvbm5zdHJlYW1lci9ubnN0cmVhbWVyXzIu
+Ni4wLmJiDQo+PiBpbmRleCBjNjI1ODlhYy4uZmJmYjg4N2MgMTAwNjQ0DQo+PiAtLS0gYS9t
+ZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLW11bHRpbWVkaWEvbm5zdHJlYW1lci9ubnN0cmVh
+bWVyXzIuNi4wLmJiDQo+PiArKysgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLW11bHRp
+bWVkaWEvbm5zdHJlYW1lci9ubnN0cmVhbWVyXzIuNi4wLmJiDQo+PiBAQCAtMyw3ICszLDEx
+IEBAIERFU0NSSVBUSU9OID0gIk5OU3RyZWFtZXIgaXMgYSBzZXQgb2YgR3N0cmVhbWVyIHBs
+dWdpbnMgdGhhdCBhbGxvdyBHc3RyZWFtZXIgZGV2DQo+PsKgwqAgTElDRU5TRSA9ICJMR1BM
+LTIuMS1vbmx5Ig0KPj7CoMKgIExJQ19GSUxFU19DSEtTVU0gPSAiZmlsZTovL0xJQ0VOU0U7
+bWQ1PWMyNWU1YzE5NDk2MjRkNzE4OTYxMjc3ODhmMWJhNTkwIDxmaWxlOi8vTElDRU5TRTtt
+ZDU9YzI1ZTVjMTk0OTYyNGQ3MTg5NjEyNzc4OGYxYmE1OTA+Ig0KPj4gICANCj4+IC1TUkNf
+VVJJID0gImdpdDovL2dpdGh1Yi5jb20vbm5zdHJlYW1lci9ubnN0cmVhbWVyLmdpdDticmFu
+Y2g9bWFpbjtwcm90b2NvbD1odHRwcyINCj4+ICtTUkNfVVJJID0gIiBcDQo+PiArwqDCoMKg
+wqAgZ2l0Oi8vZ2l0aHViLmNvbS9ubnN0cmVhbWVyL25uc3RyZWFtZXIuZ2l0O2JyYW5jaD1t
+YWluO3Byb3RvY29sPWh0dHBzIFwNCj4+ICsgICAgIGZpbGU6Ly8wMDAxLWZpeC1SZW1vdmUt
+YWJzb2x1dGUtYnVpbGQtcGF0aHMtZnJvbS1nZW5lcmF0ZWQtdGVzdC0ucGF0Y2ggPGZpbGU6
+Ly8wMDAxLWZpeC1SZW1vdmUtYWJzb2x1dGUtYnVpbGQtcGF0aHMtZnJvbS1nZW5lcmF0ZWQt
+dGVzdC0ucGF0Y2g+IFwNCj4+ICsiDQo+PiArDQo+PsKgwqAgU1JDUkVWID0gImI5NzBlOWVm
+ZjZiZmI0ZTkxNTQ2Mzg0MjQyMmZlMTRiYjJlNTNmODQiDQo+PiAgIA0KPj7CoMKgICMgT25s
+eSBjb21wYXRpYmxlIHdpdGggYXJtdjdhLCBhcm12N3ZlLCBhbmQgYWFyY2g2NA0KPj4gQEAg
+LTU2LDEzICs2MCwxNCBAQCBGSUxFUzoke1BOfSArPSAiXA0KPj7CoMKgICINCj4+wqDCoCBJ
+TlNBTkVfU0tJUDoke1BOfSArPSAiZGV2LXNvIg0KPj4gICANCj4+ICtSREVQRU5EUzoke1BO
+fSArPSAibm5zdHJlYW1lci10ZXN0cyINCj4+ICsNCj4gDQo+IFdoeSBhcmUgd2UgZm9yY2lu
+ZyB0aGUgdGVzdHMgdG8gYmUgaW5zdGFsbGVkIHdoZW4gbm5zdHJlYW1lciBpcyBpbnN0YWxs
+ZWQ/wqAgSW4gZmFjdCwgSSBjYW5ub3QgZmluZCBhbnkgcmVjaXBlIHRoYXQgZXZlbiByZWZl
+cnMgdG8gbm5zdHJlYW1lci7CoCBIb3cgaXMgdGhpcyBldmVuIGJlZ2luIGluY2x1ZGVkIGlu
+IGJ1aWxkcz/CoCBJbiBteSBtaW5kLCBpZiB5b3UgYXJlIHdhbnRpbmcgdGhlIHRlc3RzIGZv
+ciB1c2UgZHVyaW5nIG91ciB0ZXN0aW5nLCB0aGVuIG5uc3RyZWFtZXItdGVzdHMgc2hvdWxk
+IGJlIGluY2x1ZGVkIGluIHRoZSB0aS10ZXN0IHBhY2thZ2UgdG8gZW5zdXJlIHRoYXQgdGhl
+IHRlc3RzIGFyZSBwcmVzZW50Lg0KPiANCj4gDQo+PsKgwqAgUEFDS0FHRVMgPSsgIiR7UE59
+LXRlc3RzIg0KPj4gICANCj4+wqDCoCBGSUxFUzoke1BOfS10ZXN0cyArPSAiXA0KPj7CoMKg
+wqDCoMKgwqDCoCAke2xpYmRpcn0vbm5zdHJlYW1lci9jdXN0b21maWx0ZXJzLyogXA0KPj7C
+oMKgwqDCoMKgwqDCoCAke2JpbmRpcn0vdW5pdHRlc3Qtbm5zdHJlYW1lci8qIFwNCj4+wqDC
+oCAiDQo+PiAtSU5TQU5FX1NLSVA6JHtQTn0tdGVzdHMgKz0gImJ1aWxkcGF0aHMiDQo+PiAg
+IA0KPj7CoMKgIEZJTEVTOiR7UE59LWRldiA9ICJcDQo+PsKgwqDCoMKgwqDCoMKgICR7aW5j
+bHVkZWRpcn0vbm5zdHJlYW1lci8qIFwNCj4gDQo+IC0tIA0KPiBSeWFuIEVhdG1vbsKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWF0bW9uQHRpLmNvbQ0KPiAtLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiBUZXhhcyBJbnN0cnVtZW50cywg
+SW5jLsKgIC3CoCBMQ1BEwqAgLcKgIE1HVFMNCj4gDQoNCi0tIA0KUnlhbiBFYXRtb24gICAg
+ICAgICAgICAgICAgcmVhdG1vbkB0aS5jb20NCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tDQpUZXhhcyBJbnN0cnVtZW50cywgSW5jLiAgLSAgTENQRCAgLSAg
+TUdUUw0KDQo=
 
