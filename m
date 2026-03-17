@@ -1,184 +1,106 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 57D4BFEDA0D
-	for <webhook@archiver.kernel.org>; Tue, 17 Mar 2026 19:56:13 +0000 (UTC)
-Received: from BN1PR04CU002.outbound.protection.outlook.com (BN1PR04CU002.outbound.protection.outlook.com [52.101.56.70])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.85313.1773777369863206612
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 42E03FEDA1F
+	for <webhook@archiver.kernel.org>; Tue, 17 Mar 2026 19:57:03 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.85323.1773777418981546982
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 17 Mar 2026 12:56:10 -0700
+ Tue, 17 Mar 2026 12:56:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=XAMq+7C4;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.56.70, mailfrom: reatmon@ti.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YwK6lPTcUPGqw5NKxK5YhnT9NcjnpiF22Y6ExC2CL9mJF5+3S2geyYp1joDhghz+u/4cIkR13e/O1apWBt3bwUzW1RlcpiXxbeVUu8ajLskXi6bjDwH4iJx745u2O7jwiCZdLwGZmeG0ja5tvzkzpylevqwwQ8m5AtWJ0LkiMMTDk52xl4oOxQ2V5eL5FGNISrVeQH4yjjzHrhcRHcqqAJoVq0yS2NctX+xWnDmPiKpfXmGpoYHY58lCKiI0tRBmeGh/8zHnj8iZx5GwLNtjGv92wEsD5UNKNtnfUIXxkpJHwUOArzzUlY1kfe49kLRdlLG2cONuZ7INwk+HzZltLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zEA7D6dfK9Fy/7ESgACJpXVAAER0VHPO1yRn6s5gV6w=;
- b=D4jJvqISwlAweW52uYfDOrdob/UuNjMiJiXyh3wOLBVvPesrcFjGgIHL53iOlPnKNwy+G5atCmo9yyEokl2pyRi2XY+JZOiI1pzVrxPMWIpCY/60sX6e1XjdxdH3pkmrCxZGsYu0CMS/izKcjX/GbV94QFBureCuJIp1MtlDarJI9ncOuVEFenqyL31fuhVw1Kndz5PCKUqi6rL4gwFTs2bMwEPf4Ga9wtXJuNqrYQO4tlG04zCckbYKWS2FvN6s12od+RYBySXuPoC7SXe4BhG+bCSYs/9YB8ID7YgYH4r5nqiZ+wxku3BQNDRDTZmTZUDyL7CNLVkS394H4a7rBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zEA7D6dfK9Fy/7ESgACJpXVAAER0VHPO1yRn6s5gV6w=;
- b=XAMq+7C4g3zUoeD3sU/XaMASW9QpWPvbDA5IpthmcZ2G4WZGNwZ578r5mVHKxRv8BlBeX8kAhVMRfK2q8VLvTwcxAnFpTQt3Jg1+wfn2CFwKJsh+Zy2RWbx+eus/YmA8ujAMN6IZ0+0E0Z+0bFBZKwEdhMibK8LtnNd6Y5Wv+xA=
-Received: from BN9PR03CA0757.namprd03.prod.outlook.com (2603:10b6:408:13a::12)
- by MW5PR10MB5826.namprd10.prod.outlook.com (2603:10b6:303:19b::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.19; Tue, 17 Mar
- 2026 19:56:05 +0000
-Received: from BN1PEPF00005FFF.namprd05.prod.outlook.com
- (2603:10b6:408:13a:cafe::dd) by BN9PR03CA0757.outlook.office365.com
- (2603:10b6:408:13a::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Tue,
- 17 Mar 2026 19:55:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- BN1PEPF00005FFF.mail.protection.outlook.com (10.167.243.231) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.17 via Frontend Transport; Tue, 17 Mar 2026 19:56:04 +0000
-Received: from DFLE205.ent.ti.com (10.64.6.63) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 17 Mar
- 2026 14:56:01 -0500
-Received: from DFLE205.ent.ti.com (10.64.6.63) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 17 Mar
- 2026 14:56:01 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE205.ent.ti.com
- (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 17 Mar 2026 14:56:01 -0500
-Received: from [10.249.32.142] ([10.249.32.142])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62HJu1j43753665;
-	Tue, 17 Mar 2026 14:56:01 -0500
-Message-ID: <3b8eb759-eeb0-4113-9873-504ecbca0db1@ti.com>
-Date: Tue, 17 Mar 2026 14:56:01 -0500
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6F12C40CCA;
+	Tue, 17 Mar 2026 19:56:58 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id EQhZkngTgQH7; Tue, 17 Mar 2026 19:56:58 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 34D8D40BEC;
+	Tue, 17 Mar 2026 19:56:55 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id EABE317A43D; Tue, 17 Mar 2026 15:56:54 -0400 (EDT)
+Date: Tue, 17 Mar 2026 15:56:54 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Antonios Christidis <a-christidis@ti.com>
+Cc: reatmon@ti.com, denys@konsulko.com, meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][master][PATCH 1/2] libsdl2: Add tests package
+Message-ID: <20260317195654.GC11121@denix.org>
+References: <20260317185724.34717-1-a-christidis@ti.com>
+ <20260317185724.34717-2-a-christidis@ti.com>
+ <20260317191426.GA11121@denix.org>
+ <b1bd0c0f-15c9-4f35-88fe-12e12e88ee22@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH] chromium: Add a patch to fix build
- against GLIBC 2.43
-To: <t-lannynd@ti.com>, <meta-arago@lists.yoctoproject.org>
-CC: <detheridge@ti.com>, <b-brnich@ti.com>, <a-christidis@ti.com>
-References: <20260317193808.343457-1-t-lannynd@ti.com>
-Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <20260317193808.343457-1-t-lannynd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00005FFF:EE_|MW5PR10MB5826:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d9d5961-3ea6-43f8-5bb6-08de845f38e0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|36860700016|4022899009|82310400026|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: 
-	VoDxV5EdzgkDrCJ+KuG6YFxJ7EuAb6xd2so6n36rjKrapPyTiyDTnGxtj5ZMhkSoYBnKcFSERdsY37fLfvQrXVYx41h3QDUljonGkVec5gZ1/CcfiKSEa+C//AwiCGg2odAY9KVC1UuBtsbSb8qIpK/dKGktCvct4azPsinIBz1Rx5vBhlBDoEMbgHRBvd+NLO74L5HfkTfWa1oGitseN+AhHT/e3WhEFuS8VxmEBNMAEWpHyzYJoO25Bn7M6NlRKuhfjazq8yGgPqrXumdy1LiVQaU6Pmc76ki9yCZqufX9+dZFWiXfc59+Lgv0cttbgU+GINYwucP7zZqJkWYmofXuRwDRwUVl+SxxIUXXYXEarXN5p56ZXAWEHYvvtmIGLeeyCpxXtj1MVPQoM6fQqnnBQH0jCR6S84o1Hvd81iJcGNvza+gAZV7WpwnTHEyiX7Y9mK8SizrK8/GdTKzE9i3SDy35ENWWlwW8zUkWE+AmA3kK7ekIIRi5KHUaEWo+S0/mj8k39vCQgf2udPsg/D2OPSqATmb6XnHfDF9s5vYJ2QWWwJyhVMJhHXCqlKQ8xyKrDNflvmtunQfmZRd1TY2Jqviaz4iPge8IH3lcXNgNjrPgi0hujM0KlE/ZZCtqwvpnqLifnyPOelLcpF8b18pDu9A4T3u27DBIKnYUt6LCHexYp43mNyaFq/Ld4zq0XBSstcRulYNuERknLq3IXlmbLjdmZ+ivW9DlIwR5n+k=
-X-Forefront-Antispam-Report: 
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700016)(4022899009)(82310400026)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	Fn//tu+0t4+hTubVCqOyXQnXUesPaHMxEQOejGmautd2JYPsezhtMm6XQnTLnKAZtE/BvP4zP8DEVslrgw/XP1zDujNrays/rYqeN+EFTWixyeZM2Qs+ejrTQsT9RV2K6n3TCjv7Ct5s82ddgnKa5JiDnz642QS7Jy3uLcNskHSSbYMGN2dM+Y/pXY9fM1tGbCDSyVQeNkpL4o46RHKrk030opNC8hdq03uiVe7rpCB3zB+JnjEmm4EAR5unKZ5Joa2jsg3Up9eFptRCx2PHD+xX7L7r5f3AoExSBvooIhp13uKF2LDG83PkSPFsmBP7BZxK+gQAIRc+k0Id/pbgkM7YPNsSINIocrGrB7c68vDgNHl92yOzvFzcbWCxoThN4PaSGNzd1E79dDr5RIa4t68ls0fCM3rQ7LV6o/RBhiBAi12KWGlgFyoUX5zNRw+4
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 19:56:04.2987
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d9d5961-3ea6-43f8-5bb6-08de845f38e0
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	BN1PEPF00005FFF.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR10MB5826
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b1bd0c0f-15c9-4f35-88fe-12e12e88ee22@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 17 Mar 2026 19:56:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17375
+ <meta-arago@lists.yoctoproject.org>; Tue, 17 Mar 2026 19:57:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17376
+
+On Tue, Mar 17, 2026 at 02:29:16PM -0500, Antonios Christidis wrote:
+> 
+> On 3/17/26 2:14 PM, Denys Dmytriyenko wrote:
+> >On Tue, Mar 17, 2026 at 01:57:23PM -0500, Antonios Christidis via lists.yoctoproject.org wrote:
+> >>From: Antonios Christidis <a-christidis@ti.com>
+> >>
+> >>The software provides tests, configure cmake to build and install them.
+> >>Package the tests in -tests package.
+> >This might be useful to get it upstreamed as a new PACKAGECONFIG to OE-Core...
+> 
+> Thank you for the idea, I'll keep that in mind.
+> 
+> >
+> >>Signed-off-by: Antonios Christidis <a-christidis@ti.com>
+> >>---
+> >>  meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc     | 6 ++++++
+> >>  meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend | 4 ++++
+> >>  2 files changed, 10 insertions(+)
+> >>  create mode 100644 meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
+> >>  create mode 100644 meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
+> >>
+> >>diff --git a/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc b/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
+> >>new file mode 100644
+> >>index 00000000..f33ff909
+> >>--- /dev/null
+> >>+++ b/meta-arago-test/recipes-graphics/libsdl2/libsdl2-ti.inc
+> >>@@ -0,0 +1,6 @@
+> >>+EXTRA_OECMAKE:append = " -DSDL_TESTS=ON \
+> >>+                         -DSDL_INSTALL_TESTS=ON \
+> >>+                       "
+> >There's no reason for :append here, while += could work just fine.
+> Do you want me to send a v2 for this ?
+> >>+PACKAGE_BEFORE_PN = "${PN}-tests"
+> >>+FILES:${PN}-tests += "${libexecdir} ${datadir}/installed-tests/SDL2"
+> >>+FILES:${PN}-tests:class-nativesdk += "${libexecdir} ${datadir}/installed-tests/SDL2"
+> >If the values for these 2 are identical, why do you need to set
+> >class-nativesdk variant explixitly?
+> 
+> Ryan observed an issue when class-nativesdk variant wasn't set
+> explicitly on scarthgap branch.
+> 
+> Link: https://patchwork.yoctoproject.org/project/arago/patch/20250917220826.2078836-2-a-christidis@ti.com/#31054
+
+Ah, right, we had that discussion back in September... Still not sure why it 
+was failing.
 
 
-
-On 3/17/2026 2:38 PM, Thorsten Lannynd via lists.yoctoproject.org wrote:
-> An update to oe-core leads to build failures with Chromium v142. This fix
-> is currently pending in meta-browser but is needed to get Chromium to build
-> succesfully.
-> 
-> https://github.com/OSSystems/meta-browser/pull/962/changes/4e450497be557fc4b5ff1397f78fa0f8381e281d
-> 
-> Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
-> ---
->   .../fix-SYS_SECCOMP-redefinition.patch           | 16 ++++++++++++++++
->   .../chromium/chromium-ozone-wayland-arago.inc    |  1 +
->   2 files changed, 17 insertions(+)
->   create mode 100644 meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-142.0.7444.175/fix-SYS_SECCOMP-redefinition.patch
-> 
-> diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-142.0.7444.175/fix-SYS_SECCOMP-redefinition.patch b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-142.0.7444.175/fix-SYS_SECCOMP-redefinition.patch
-> new file mode 100644
-> index 00000000..594729b3
-> --- /dev/null
-> +++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-142.0.7444.175/fix-SYS_SECCOMP-redefinition.patch
-> @@ -0,0 +1,16 @@
-> +Taken from:
-> +https://aur.archlinux.org/cgit/aur.git/tree/0007-qt5-webengine-glibc-2.43-SYS_SECCOMP-as-enum@chromium.patch?h=qt5-webengine
-> +
-> +Upstream-Status: Inappropriate [glibc 2.43 fix]
-
-I would argue that this is not "Inappropriate" as this is not an OE 
-specific kind of change.  This should either be a Backport of a patch 
-that is pending on meta-browser, or Pending if you have submitted this 
-patch to the chromium project itself.
-
-
-> +diff --git a/sandbox/linux/system_headers/linux_seccomp.h b/sandbox/linux/system_headers/linux_seccomp.h
-> +index 8690a96eb0..8988836508 100644
-> +--- a/sandbox/linux/system_headers/linux_seccomp.h
-> ++++ b/sandbox/linux/system_headers/linux_seccomp.h
-> +@@ -6,6 +6,7 @@
-> + #define SANDBOX_LINUX_SYSTEM_HEADERS_LINUX_SECCOMP_H_
-> +
-> + #include <stdint.h>
-> ++#include <signal.h>
-> + #include <sys/ioctl.h>
-> +
-> + #include "build/build_config.h"
-> diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-arago.inc b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-arago.inc
-> index 5b0f2703..3ec0610a 100644
-> --- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-arago.inc
-> +++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-wayland-arago.inc
-> @@ -9,6 +9,7 @@ SRC_URI:append = " \
->                     file://0002-chromium-gpu-sandbox-Allow-GPU-sandbox-access-to-V4L.patch \
->                     file://0003-chromium-gpu-v4l2-Fix-OUTPUT-queue-streaming-in-V4L2.patch \
->                     file://0004-media-gpu-v4l2-Avoid-placing-incomplete-H264-access-.patch \
-> +                  file://fix-SYS_SECCOMP-redefinition.patch \
->                     "
->   
->   # Override do_copy_clang_library to handle both target and host architectures
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#17372): https://lists.yoctoproject.org/g/meta-arago/message/17372
-> Mute This Topic: https://lists.yoctoproject.org/mt/118371153/6551054
-> Group Owner: meta-arago+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/meta-arago/unsub [reatmon@ti.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
-> 
-
--- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+> >>diff --git a/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend b/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
+> >>new file mode 100644
+> >>index 00000000..385aa801
+> >>--- /dev/null
+> >>+++ b/meta-arago-test/recipes-graphics/libsdl2/libsdl2_%.bbappend
+> >>@@ -0,0 +1,4 @@
+> >>+LIBSDL2_TI = ""
+> >>+LIBSDL2_TI:ti-soc = "libsdl2-ti.inc"
+> >>+
+> >>+require ${LIBSDL2_TI}
+> >>-- 
+> >>2.34.1
 
