@@ -1,189 +1,471 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60A1EFF6E88
-	for <webhook@archiver.kernel.org>; Wed, 18 Mar 2026 08:36:48 +0000 (UTC)
-Received: from MW6PR02CU001.outbound.protection.outlook.com (MW6PR02CU001.outbound.protection.outlook.com [52.101.48.32])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.9312.1773822994457128141
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D51BFCD0C4
+	for <webhook@archiver.kernel.org>; Wed, 18 Mar 2026 13:30:49 +0000 (UTC)
+Received: from BYAPR05CU005.outbound.protection.outlook.com (BYAPR05CU005.outbound.protection.outlook.com [52.101.85.22])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.14085.1773840647979212171
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 18 Mar 2026 01:36:35 -0700
+ Wed, 18 Mar 2026 06:30:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=RgNAhX9P;
- spf=pass (domain: list.ti.com, ip: 52.101.48.32, mailfrom: prc@list.ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=cyq9LVzB;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.85.22, mailfrom: reatmon@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yt36byP7R/73FoOezFskpuab3nQcS1f4OqK7HC+lPtf1CbyT8xprz/f5EGxINK0h0Xvo+KHTeRIDtK1m2O/C7JwWJIRdfcm3P8JHMssnzONB864DfChJ+xy0yGdgewxk2cntprbcFoiTKFWBCrVyksYOl8e99bmN2n0iqvZxfFSmqcSIFLzBH66r7PFMvR2V5HXkIfJovNdAEKQJZqJRPmFB3ilOJSbElmymZqY0l9mHRbj+BtlEQGqa7771PaoIAp+GcNlJG/3tHTuw1SOcQUXUuQQ3m+YmRvsghy7bDM4lvxAMEP+oYwMOrT/CnVKR0IZajoc+PNKszfcuv5Q6zQ==
+ b=f3CWx8DIXx0ZIsagAaI5WCVYLPG7UOTYxI9jvigRrrBT8HPOerVfTsyPQh2c25Nv2Dtt4FLj5ypLxbbff2KdtmALQmKTXnMr5cXJCJG45bXOpUTFFtbAyigAT3nIN1x7nxRevhmioiizRm2lQMEFpan1sDUzapG/5MAaFHUcSeUG/L1Kcjb5trRi13pvtLdYDdj7En2nWOc/eeShxs4aGLJyBkjhXB4aLODm0na+MAGaI4xmSrI/jJSrIyzWygIvKqfNTjQSck5VqCLkivaOuuQcKBSidZwmPH1OmL22oj4AnkSim5pdwYFu/ewZufSxJFD1aJc129T3xEhJXmC+3w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=w4T32YRCkkjQjIt14Kt29cTdZzrmHTvZdkRlGEvZC6c=;
- b=bn0syVV50TMibZxCi5IKZD/bac/j2VZWPhbzW+JlJbVu2BujQBXeOZxB+7726MNJ3m1ky6Z76tSmE1bt6hUHJJak/+JDdWKmdBi/7VLA/D7/lxiEEHFREG+6C+3zdxKRQyht+KQcD4cm7tVD0OhHNB8x2r67v0EUBmT/tq4wg3VeWG6pRhKohG1vekCC0dNTCmDFmoDgAsxnPsa7xe/AuD2IPTo/Ac3Z+SiC3PT24DGJg9UPl9T2UM1Tee/nQo4jW047orDC1vrC6siojNOfrJGjUBV8OEn12Q+GrNIDd+vZHQ+J9bF0QoGrOdQNMkGw+WouC3297+JTxaMP0tI9Sw==
+ bh=UQ+vznox0kZlh/z5j8QSMxq2ChOMIa9AA4CT+kBNQuc=;
+ b=mwHOHu6KvjYN/sArareX5vNgzL7j017pago9FJ2MwAs4hANd1nSQ0JQMSgE/bmJ8+qc30qDHiKd4nQDStJ/MnGTnB/hArH7ESpz6yUSCq5ppgdWfl54ezX0+UjFBtuPoyAoozJzKdGa7Vt585bHnzLG889pMbGx3nDrbQ6dh8E/V0H449asn1Boc5tIs9bpsnzVZnXwPPeqlRlycxINj4EBiGcsh/d8q4f7o1Qs9AVvPyyzkYJk/A1bC9sbZ4sGYzYTD1nU0763qqdN8sdvgRU5Qtz+b1SS72iTFtDa4I8PLN5yPRb3JhgjQlnMDXzQoYJG0IHmMhuTsAyURCdjd3g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
- s=selector1;
+ 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=w4T32YRCkkjQjIt14Kt29cTdZzrmHTvZdkRlGEvZC6c=;
- b=RgNAhX9PbdGVQrWYgSuNHwHxTgGYSK5Ds+rNPEKRAFQ55mb6qimO+7vJTTze/XAC42UNW6XkUycNiWP5VpcPBTJbPOZOB2nilxVnJ9X59hEI8JsgZR3BZ3Dv6YEqalr0wFwbdzT3tRf6FBnvVYHVaNwGFTKonQqxjChVittMVIcvF/KJdQjvXMnvDt2zqEPM2CIfC51/oIqG+sR+IbYAWJXfTujIy7Y59B/B04Uc9n4+UpYsEMPa/q9FSZ4ECzVU9+i+N56S8lgGNoOuiGgd1w4l8E/KFyoT8/FbBS7AYqvCSCpGpy3xJ1S64BG741FLSTIMSA3ZHGYLNKvMDwFSLA==
-Received: from MW4PR03CA0255.namprd03.prod.outlook.com (2603:10b6:303:b4::20)
- by PH8PR10MB6670.namprd10.prod.outlook.com (2603:10b6:510:220::15) with
+ bh=UQ+vznox0kZlh/z5j8QSMxq2ChOMIa9AA4CT+kBNQuc=;
+ b=cyq9LVzBGuffGcbvtW0x43cdfa80OMm8jydqrJBBQP3ua7qbyNFlBq+RSLo+TmgOGtIibtsgwYYGTn+btEVQEYWx7BRz8ik55vZrJUlcMMtOXOOiZyTCUwV4HoHJvv5M2/vwtrYacZeflNxM9ntQka9fSXY6MvMSG/uhGnIkQbo=
+Received: from SA1PR04CA0022.namprd04.prod.outlook.com (2603:10b6:806:2ce::17)
+ by IA4PR10MB8256.namprd10.prod.outlook.com (2603:10b6:208:56c::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.25; Wed, 18 Mar
- 2026 08:36:32 +0000
-Received: from MW1PEPF0001615F.namprd21.prod.outlook.com
- (2603:10b6:303:b4:cafe::90) by MW4PR03CA0255.outlook.office365.com
- (2603:10b6:303:b4::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.22; Wed, 18 Mar
+ 2026 13:30:44 +0000
+Received: from SA2PEPF00003AE4.namprd02.prod.outlook.com
+ (2603:10b6:806:2ce:cafe::b6) by SA1PR04CA0022.outlook.office365.com
+ (2603:10b6:806:2ce::17) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9700.27 via Frontend Transport; Wed,
- 18 Mar 2026 08:36:26 +0000
+ 18 Mar 2026 13:30:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=list.ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=list.ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.21.195 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
 Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- MW1PEPF0001615F.mail.protection.outlook.com (10.167.249.90) with Microsoft
+ SA2PEPF00003AE4.mail.protection.outlook.com (10.167.248.4) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.0 via Frontend Transport; Wed, 18 Mar 2026 08:36:30 +0000
+ 15.20.9723.19 via Frontend Transport; Wed, 18 Mar 2026 13:30:43 +0000
 Received: from DFLE214.ent.ti.com (10.64.6.72) by flwvzet201.ext.ti.com
  (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 18 Mar
- 2026 03:36:28 -0500
-Received: from DFLE210.ent.ti.com (10.64.6.68) by DFLE214.ent.ti.com
+ 2026 08:30:43 -0500
+Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE214.ent.ti.com
  (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 18 Mar
- 2026 03:36:27 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 08:30:42 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 18 Mar 2026 03:36:27 -0500
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62I8aRCO035739;
-	Wed, 18 Mar 2026 03:36:27 -0500
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id D1EDB9ACF4; Wed, 18 Mar 2026 03:36:27 -0500 (CDT)
-From: PRC Automation <prc@list.ti.com>
-To: Pratham Deshmukh <p-deshmukh@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, <afd@ti.com>, <c-shilwant@ti.com>,
-	<denys@ti.com>, <v-singh1@ti.com>
-Subject: Re: [meta-arago][master][PATCH v5 0/2] nnstreamer: Fix buildpaths QA error and establish test dependencies
-Date: Wed, 18 Mar 2026 03:36:27 -0500
-Message-ID: <20260318083627.3935169-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20260318083015.2295406-1-p-deshmukh@ti.com>
-References: <20260318083015.2295406-1-p-deshmukh@ti.com>
+ Transport; Wed, 18 Mar 2026 08:30:42 -0500
+Received: from grumpy (grumpy.dhcp.ti.com [128.247.81.229])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62IDUgQx411025;
+	Wed, 18 Mar 2026 08:30:42 -0500
+Received: from reatmon by grumpy with local (Exim 4.97)
+	(envelope-from <reatmon@ti.com>)
+	id 1w2qyw-00000008VUl-2xPg;
+	Wed, 18 Mar 2026 08:30:42 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
+	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
+Subject: [oe-layersetup][master][PATCH] TEMP: arago-master: lock into specific commit for meta-virtualization
+Date: Wed, 18 Mar 2026 08:30:42 -0500
+Message-ID: <20260318133042.2027684-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW1PEPF0001615F:EE_|PH8PR10MB6670:EE_
-X-MS-Office365-Filtering-Correlation-Id: f3de9af3-8f39-44fe-c394-08de84c9740b
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003AE4:EE_|IA4PR10MB8256:EE_
+X-MS-Office365-Filtering-Correlation-Id: e0dd088a-4190-4aea-dcab-08de84f28e1e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|36860700016|82310400026|22082099003|18002099003|56012099003;
+	BCL:0;ARA:13230040|376014|36860700016|82310400026|1800799024|13003099007|18002099003|56012099003;
 X-Microsoft-Antispam-Message-Info: 
-	clRXvoy28oHs2lIq2Nw+V1OnWFthAWfJLnylaYXm10FQzSUhQf70MZG9xkWDalzaxcU1XACwy/kYcbwVhL31hC8oQmS+Pal+UbxJwgGFzHGAgjWg6rIiQpxY4VRx6iAiCKJfWVu0P43aUfmwawXy8fDuQgEgmGZPSxokFio0v6GsG2Gr2yZMhmSbMnlhF25w6KtG3fd+c986Jh8nGWFE/aB2Xp3Qj0ASz1XnU8YSVV7XPAVvX/imVbu0g1T0/AsIJNc16o+kWFo6IQMIUbfXOeSkqjaoPjRPM0fGb4VC7OUwRHrb5KMIAPWoC0HdSK5ozlG77e9/RJFUfDpnHIyQstULP9Lbn1rCscaj6dTrZb8tu2POsbF09LuGA/WW/Y7E20yckYQSbFOc8zzn0+PwCp1KECmFh7kqIchMY8Nx2ubItqTlbioW/04tJuur7iBFyzfLZCMELvT80U/0f/3x7d+rFTQuPWVHJQK2J3y6Rr1aI9U3d5tvZfVYq9Kaw9kFYRDi6HplYYpVhMBH5wDmJHrt7R6oHbCV+Buew/JJaj5YR/J2Ro3dH/3Y3TkjfPn6qzGZPqxXJYiPpjAIY2FA0YG+C11dtM3u6BRcxAH3Te48R2qbFnVUwmoBmEp59BfZtMgTR0Tf22ejNbc7m0YEa2emm5uemCeycEFaMZerfhJDLozx+AcdzckAizf78q/Zd0NykqlDsPI3a6mWLqEPlOKnee0Zkdr8Oo8q6QjYeec=
+	BbQAV+p94tDnR0IarfBbbm6yS9deGbvV2dtjPDuKYWk/DO9KDZmQP9//84WNIFUC/gN8YQkOBheENxAD8ldGfPU3rgv8xz66H0BgS9MHqtaZ32g1QvW0wlIQ+nI669/1HhLatGgkD3wmEfGOHhMXH+mN+x8WU1x1oq7+8zG3YkGciKaSISxWUF2HExfEi5kF7h+N/6lJjOcdOzUGuoSiRdaoLgLWXmorT9sPbEha+5l6uV7tVZgdwzgITJGojn3RqDQVGSe2PEz34CyfiP6O22auOeNzxrWtmslZcfdvzSY8NRti/cmvLZ91tGLhwdNQA5Tor4PvMXXvM6eDSPfmAmiL432gSlJ42KX7TjHAIk9N3CrpOM2pde9KenAxU7x7lruORTQLuE9Vrme/DpHbtGoGQOCIRZ3fT0y7sieJUkH23DqaUeKB3lwX3nTfscIz9sxPCLnqVxRhBxX3Yp/yIjKhIQ+2K0qgDfQwJX7QlHFPB2bTCrow30Ut+l85gILur+ssR0XmtV1D2wI2H5siXZsj5VnYqQ9F5dYMo9t6NluHMKQw/F3BaIDcLNpQOvkQYaaDAuEk55KC0Kh25U5yW1fsJyvx2s1rDPIdOK8Z6oZjOp3hbzhPxFaXteBMrErJ8GG+6MU7H7wkQRVM4PAAFx1hvwDS71oEIuDXCok44V6eBUs4joPdGjQEIowrTJuJpK3AJozwMHK8Ch8+iy2LeA==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700016)(82310400026)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(13003099007)(18002099003)(56012099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	0QPhH7wkt07MP0dEaIpG+PkuGxScyr9yGwaF68ucmuVgf/e1B6NjWO9W4D/n02l24oXFWrbqQf7TmGzkJLynCOt/QTYtjKxB1+dLK4YIlyRW7Pgu2D0jD/pOnpLcjMsLHOvMo2fqdHsqiSN4hZtx3rJMwOTc25tCMozbKMQygIiIwwh/e9I3o0OrS5m0PX8N8LOG9B3IEkCKm3GIi0ZGnZY7W836PiOwjQkUqtJkFOXGvuI+ifYu8+lKrCLyVj4L82aeOzK6bTwCgyDF0/ww0Xoeu6T/7xDyO6RFo/W/BmGwTuxecYLl1jFhW75n7kIlUMSxpjr8r2pz8/eMOspGTO/cC65B+oJ7ZswnKp/qPaYGMFq7P+vl6wfON0jHgNP7D7467tJ4Nkd3BLZlGpm+06RlASWX1aJqpjtEqOSnH9qb+HyFFLEajrbP09wy4TdL
-X-OriginatorOrg: list.ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 08:36:30.2030
+	ReEGGUjhcuMY3RdzKKy0WuoEpTLYdMg1z1oz0JPNX2t6ApVMjKtDtrLY6C8I/omMlYATiWheubqd9bCwtRtS70XDOEBw+IARWz49Pw3Ne7UKSMSHCXjpgndshTFSSHkWhuOJbygmuzjLbal1m5/7y86hSoISFuVmPcU1Q17uBSRjS3o5HauISousaKzPPMMHBGio8ge60HQdT5LSMcsS3+DdQZKIm0iIfcICmpXUlXx5HuMc8oPoCDuWy8RXoGAQFTzqM+IRQ3xjKHnoi1MKXEsn1je9z1Ez6GAz0MzlgM1I66BdATmVMPexLHdDuDAElKtPpkXHPdJnSblaM1JR+znJUXF0nj3z/Lu1Ibnqx9nXt/q7Qemq3eDqGz2R3mBvWu3zS1tMyEn3T8TEn35Y9qw6ZfkIb3h0qfmFgfvhU8PKIVEBtoJw4Ng/9OKvuJfq
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 13:30:43.3715
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3de9af3-8f39-44fe-c394-08de84c9740b
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0dd088a-4190-4aea-dcab-08de84f28e1e
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	MW1PEPF0001615F.namprd21.prod.outlook.com
+	SA2PEPF00003AE4.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR10MB6670
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR10MB8256
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 18 Mar 2026 08:36:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17398
+ <meta-arago@lists.yoctoproject.org>; Wed, 18 Mar 2026 13:30:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17399
 
-meta-arago / na / 20260318083015.2295406-1-p-deshmukh
+meta-virtualization has bumped the supported layer to wrynose only.
+Since we have also locked down oe-core, we need to lock down
+meta-virtualization as well.
 
-PRC Results: FAIL
+Temporarily lock into a commit before the offending one.
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Patches
-----------------------------------------
-All patches passed
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ configs/arago-master-chromium-config.txt     | 2 +-
+ configs/arago-master-config.txt              | 2 +-
+ configs/arago-master-flutter-config.txt      | 2 +-
+ configs/arago-master-next-config.txt         | 2 +-
+ configs/arago-master-selinux-config.txt      | 2 +-
+ configs/arago-master-wip-config.txt          | 2 +-
+ kas/arago-master-chromium-config.yml         | 1 +
+ kas/arago-master-config.yml                  | 1 +
+ kas/arago-master-flutter-config.yml          | 1 +
+ kas/arago-master-next-config.yml             | 1 +
+ kas/arago-master-selinux-config.yml          | 1 +
+ kas/arago-master-wip-config.yml              | 1 +
+ src/configs/arago-master-chromium-config.xml | 2 +-
+ src/configs/arago-master-config.xml          | 2 +-
+ src/configs/arago-master-flutter-config.xml  | 2 +-
+ src/configs/arago-master-next-config.xml     | 2 +-
+ src/configs/arago-master-selinux-config.xml  | 2 +-
+ src/configs/arago-master-wip-config.xml      | 2 +-
+ 18 files changed, 18 insertions(+), 12 deletions(-)
 
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  apply-yocto-patch: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [meta-arago][master][PATCH v5 0/2] nnstreamer: Fix buildpat=
-hs QA error and establish test dependencies
-- Submitter: From: Pratham Deshmukh <p-deshmukh@ti.com>
-- Date: Date: Wed, 18 Mar 2026 14:00:13 +0530
-- Num Patches: 2
-- Mailing List (public inbox) Commit SHA: 2b7424b2fc6070f9b8ccca3101fb08e60=
-d0f1450
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Thorsten Lannynd <t-lannynd@ti.com>
-- Commit Subject: ti-test: Add request and websocket-client to packagegroup
-- Commit SHA: 9fad73b33f32eb9b48a3982a5e64d1ab3c8a3425
-
-Patches
-----------------------------------------
-All patches applied
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-repo: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-PASS
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  yocto-check-layers: FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master - FAIL
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-ERROR: Layer meta-arm is not compatible with the core layer which only supp=
-orts these series: wrynose (layer is compatible with whinlatter)
-
-
+diff --git a/configs/arago-master-chromium-config.txt b/configs/arago-maste=
+r-chromium-config.txt
+index d9bf7c9..fb4a7f7 100644
+--- a/configs/arago-master-chromium-config.txt
++++ b/configs/arago-master-chromium-config.txt
+@@ -7,7 +7,7 @@ meta-arago,https://git.yoctoproject.org/meta-arago,master,H=
+EAD,layers=3Dmeta-arago
+ meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f14862f=
+261623d48f412af0be94a6721ade3930,layers=3Dmeta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
+=3D
+ meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
+-meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,HEAD,layers=3D
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6,layers=3D
+ meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HE=
+AD,layers=3Dmeta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems=
+:meta-multimedia
+ meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
+extras:meta-beagle:meta-ti-bsp
+ meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=3Dmeta-a=
+rm:meta-arm-toolchain
+diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.=
+txt
+index 4b11575..9125011 100644
+--- a/configs/arago-master-config.txt
++++ b/configs/arago-master-config.txt
+@@ -7,7 +7,7 @@ meta-arago,https://git.yoctoproject.org/meta-arago,master,H=
+EAD,layers=3Dmeta-arago
+ #meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f14862=
+f261623d48f412af0be94a6721ade3930,layers=3Dmeta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
+=3D
+ meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
+-meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,HEAD,layers=3D
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6,layers=3D
+ meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HE=
+AD,layers=3Dmeta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems=
+:meta-multimedia
+ meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
+extras:meta-beagle:meta-ti-bsp
+ meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=3Dmeta-a=
+rm:meta-arm-toolchain
+diff --git a/configs/arago-master-flutter-config.txt b/configs/arago-master=
+-flutter-config.txt
+index da1ba5a..2d97a6b 100644
+--- a/configs/arago-master-flutter-config.txt
++++ b/configs/arago-master-flutter-config.txt
+@@ -6,7 +6,7 @@ meta-arago,https://git.yoctoproject.org/meta-arago,master,H=
+EAD,layers=3Dmeta-arago
+ meta-flutter,https://github.com/meta-flutter/meta-flutter.git,master,HEAD,=
+layers=3D.:meta-flutter-apps
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
+=3D
+ meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
+-meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,HEAD,layers=3D
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6,layers=3D
+ meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HE=
+AD,layers=3Dmeta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems=
+:meta-multimedia
+ meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
+extras:meta-beagle:meta-ti-bsp
+ meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=3Dmeta-a=
+rm:meta-arm-toolchain
+diff --git a/configs/arago-master-next-config.txt b/configs/arago-master-ne=
+xt-config.txt
+index 4f94621..b7be31b 100644
+--- a/configs/arago-master-next-config.txt
++++ b/configs/arago-master-next-config.txt
+@@ -15,7 +15,7 @@ meta-arago,https://git.yoctoproject.org/meta-arago,master=
+-next,HEAD,layers=3Dmeta-
+ #meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f14862=
+f261623d48f412af0be94a6721ade3930,layers=3Dmeta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
+=3D
+ meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
+-meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,HEAD,layers=3D
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6,layers=3D
+ meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HE=
+AD,layers=3Dmeta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems=
+:meta-multimedia
+ meta-ti,https://git.yoctoproject.org/meta-ti,master-next,HEAD,layers=3Dmet=
+a-ti-extras:meta-beagle:meta-ti-bsp
+ meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=3Dmeta-a=
+rm:meta-arm-toolchain
+diff --git a/configs/arago-master-selinux-config.txt b/configs/arago-master=
+-selinux-config.txt
+index c9b9aa7..6c43b61 100644
+--- a/configs/arago-master-selinux-config.txt
++++ b/configs/arago-master-selinux-config.txt
+@@ -7,7 +7,7 @@ meta-arago,https://git.yoctoproject.org/meta-arago,master,H=
+EAD,layers=3Dmeta-arago
+ #meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f14862=
+f261623d48f412af0be94a6721ade3930,layers=3Dmeta-chromium
+ meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
+=3D
+ meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
+-meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,HEAD,layers=3D
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6,layers=3D
+ meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HE=
+AD,layers=3Dmeta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems=
+:meta-multimedia
+ meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
+extras:meta-beagle:meta-ti-bsp
+ meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=3Dmeta-a=
+rm:meta-arm-toolchain
+diff --git a/configs/arago-master-wip-config.txt b/configs/arago-master-wip=
+-config.txt
+index 941dfdd..c6522b5 100644
+--- a/configs/arago-master-wip-config.txt
++++ b/configs/arago-master-wip-config.txt
+@@ -7,7 +7,7 @@ meta-arago,https://git.yoctoproject.org/meta-arago,master-w=
+ip,HEAD,layers=3Dmeta-a
+ #meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f14862=
+f261623d48f412af0be94a6721ade3930,layers=3Dmeta-chromium
+ #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
+=3D
+ meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
+-meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,HEAD,layers=3D
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6,layers=3D
+ meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HE=
+AD,layers=3Dmeta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems=
+:meta-multimedia
+ meta-ti,https://git.yoctoproject.org/meta-ti,master-wip,HEAD,layers=3Dmeta=
+-ti-extras:meta-beagle:meta-ti-bsp
+ meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=3Dmeta-a=
+rm:meta-arm-toolchain
+diff --git a/kas/arago-master-chromium-config.yml b/kas/arago-master-chromi=
+um-config.yml
+index f092547..38ad83b 100644
+--- a/kas/arago-master-chromium-config.yml
++++ b/kas/arago-master-chromium-config.yml
+@@ -40,6 +40,7 @@ repos:
+   meta-virtualization:
+     url: "https://git.yoctoproject.org/meta-virtualization"
+     branch: "master"
++    commit: "f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6"
+     path: "sources/meta-virtualization"
+=20
+   meta-openembedded:
+diff --git a/kas/arago-master-config.yml b/kas/arago-master-config.yml
+index 36c5a8f..fd87864 100644
+--- a/kas/arago-master-config.yml
++++ b/kas/arago-master-config.yml
+@@ -32,6 +32,7 @@ repos:
+   meta-virtualization:
+     url: "https://git.yoctoproject.org/meta-virtualization"
+     branch: "master"
++    commit: "f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6"
+     path: "sources/meta-virtualization"
+=20
+   meta-openembedded:
+diff --git a/kas/arago-master-flutter-config.yml b/kas/arago-master-flutter=
+-config.yml
+index 3a04874..8e40cd5 100644
+--- a/kas/arago-master-flutter-config.yml
++++ b/kas/arago-master-flutter-config.yml
+@@ -40,6 +40,7 @@ repos:
+   meta-virtualization:
+     url: "https://git.yoctoproject.org/meta-virtualization"
+     branch: "master"
++    commit: "f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6"
+     path: "sources/meta-virtualization"
+=20
+   meta-openembedded:
+diff --git a/kas/arago-master-next-config.yml b/kas/arago-master-next-confi=
+g.yml
+index 8a4ffcc..0c93282 100644
+--- a/kas/arago-master-next-config.yml
++++ b/kas/arago-master-next-config.yml
+@@ -32,6 +32,7 @@ repos:
+   meta-virtualization:
+     url: "https://git.yoctoproject.org/meta-virtualization"
+     branch: "master"
++    commit: "f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6"
+     path: "sources/meta-virtualization"
+=20
+   meta-openembedded:
+diff --git a/kas/arago-master-selinux-config.yml b/kas/arago-master-selinux=
+-config.yml
+index 7c59570..2c580a8 100644
+--- a/kas/arago-master-selinux-config.yml
++++ b/kas/arago-master-selinux-config.yml
+@@ -37,6 +37,7 @@ repos:
+   meta-virtualization:
+     url: "https://git.yoctoproject.org/meta-virtualization"
+     branch: "master"
++    commit: "f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6"
+     path: "sources/meta-virtualization"
+=20
+   meta-openembedded:
+diff --git a/kas/arago-master-wip-config.yml b/kas/arago-master-wip-config.=
+yml
+index 341d729..87001f5 100644
+--- a/kas/arago-master-wip-config.yml
++++ b/kas/arago-master-wip-config.yml
+@@ -32,6 +32,7 @@ repos:
+   meta-virtualization:
+     url: "https://git.yoctoproject.org/meta-virtualization"
+     branch: "master"
++    commit: "f505ae07df8d8350b715fe20bdacfe3bcf1bf8c6"
+     path: "sources/meta-virtualization"
+=20
+   meta-openembedded:
+diff --git a/src/configs/arago-master-chromium-config.xml b/src/configs/ara=
+go-master-chromium-config.xml
+index efd794d..79fd629 100644
+--- a/src/configs/arago-master-chromium-config.xml
++++ b/src/configs/arago-master-chromium-config.xml
+@@ -34,7 +34,7 @@
+         <repo name=3D'meta-qt6' url=3D'https://code.qt.io/yocto/meta-qt6.g=
+it' branch=3D'dev' commit=3D'HEAD'>
+             <layers/>
+         </repo>
+-        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'HEAD'>
++        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'f505ae07df8d8350b715f=
+e20bdacfe3bcf1bf8c6'>
+             <layers/>
+         </repo>
+         <repo name=3D'meta-openembedded' url=3D'https://git.openembedded.o=
+rg/meta-openembedded' branch=3D'master' commit=3D'HEAD'>
+diff --git a/src/configs/arago-master-config.xml b/src/configs/arago-master=
+-config.xml
+index 251f5f0..7a04b81 100644
+--- a/src/configs/arago-master-config.xml
++++ b/src/configs/arago-master-config.xml
+@@ -34,7 +34,7 @@
+         <repo name=3D'meta-qt6' url=3D'https://code.qt.io/yocto/meta-qt6.g=
+it' branch=3D'dev' commit=3D'HEAD'>
+             <layers/>
+         </repo>
+-        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'HEAD'>
++        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'f505ae07df8d8350b715f=
+e20bdacfe3bcf1bf8c6'>
+             <layers/>
+         </repo>
+         <repo name=3D'meta-openembedded' url=3D'https://git.openembedded.o=
+rg/meta-openembedded' branch=3D'master' commit=3D'HEAD'>
+diff --git a/src/configs/arago-master-flutter-config.xml b/src/configs/arag=
+o-master-flutter-config.xml
+index abc8665..e077cee 100644
+--- a/src/configs/arago-master-flutter-config.xml
++++ b/src/configs/arago-master-flutter-config.xml
+@@ -29,7 +29,7 @@
+         <repo name=3D'meta-qt6' url=3D'https://code.qt.io/yocto/meta-qt6.g=
+it' branch=3D'dev' commit=3D'HEAD'>
+             <layers/>
+         </repo>
+-        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'HEAD'>
++        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'f505ae07df8d8350b715f=
+e20bdacfe3bcf1bf8c6'>
+             <layers/>
+         </repo>
+         <repo name=3D'meta-openembedded' url=3D'https://git.openembedded.o=
+rg/meta-openembedded' branch=3D'master' commit=3D'HEAD'>
+diff --git a/src/configs/arago-master-next-config.xml b/src/configs/arago-m=
+aster-next-config.xml
+index f49b885..c450bf3 100644
+--- a/src/configs/arago-master-next-config.xml
++++ b/src/configs/arago-master-next-config.xml
+@@ -35,7 +35,7 @@
+         <repo name=3D'meta-qt6' url=3D'https://code.qt.io/yocto/meta-qt6.g=
+it' branch=3D'dev' commit=3D'HEAD'>
+             <layers/>
+         </repo>
+-        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'HEAD'>
++        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'f505ae07df8d8350b715f=
+e20bdacfe3bcf1bf8c6'>
+             <layers/>
+         </repo>
+         <repo name=3D'meta-openembedded' url=3D'https://git.openembedded.o=
+rg/meta-openembedded' branch=3D'master' commit=3D'HEAD'>
+diff --git a/src/configs/arago-master-selinux-config.xml b/src/configs/arag=
+o-master-selinux-config.xml
+index ba4bf57..52e25c9 100644
+--- a/src/configs/arago-master-selinux-config.xml
++++ b/src/configs/arago-master-selinux-config.xml
+@@ -34,7 +34,7 @@
+         <repo name=3D'meta-qt6' url=3D'https://code.qt.io/yocto/meta-qt6.g=
+it' branch=3D'dev' commit=3D'HEAD'>
+             <layers/>
+         </repo>
+-        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'HEAD'>
++        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'f505ae07df8d8350b715f=
+e20bdacfe3bcf1bf8c6'>
+             <layers/>
+         </repo>
+         <repo name=3D'meta-openembedded' url=3D'https://git.openembedded.o=
+rg/meta-openembedded' branch=3D'master' commit=3D'HEAD'>
+diff --git a/src/configs/arago-master-wip-config.xml b/src/configs/arago-ma=
+ster-wip-config.xml
+index e703e1c..1920dc4 100644
+--- a/src/configs/arago-master-wip-config.xml
++++ b/src/configs/arago-master-wip-config.xml
+@@ -34,7 +34,7 @@
+         <repo name=3D'meta-qt6' url=3D'https://code.qt.io/yocto/meta-qt6.g=
+it' branch=3D'dev' commit=3D'HEAD'>
+             <layers/>
+         </repo>
+-        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'HEAD'>
++        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'f505ae07df8d8350b715f=
+e20bdacfe3bcf1bf8c6'>
+             <layers/>
+         </repo>
+         <repo name=3D'meta-openembedded' url=3D'https://git.openembedded.o=
+rg/meta-openembedded' branch=3D'master' commit=3D'HEAD'>
+--=20
+2.43.0
 
 
