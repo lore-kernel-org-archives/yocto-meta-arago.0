@@ -1,177 +1,188 @@
-Return-Path: <denis@denix.org>
+Return-Path: <j-sahu@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 20889FC72DA
-	for <webhook@archiver.kernel.org>; Sun, 22 Mar 2026 19:26:48 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.1686.1774207599495145732
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92B22F46126
+	for <webhook@archiver.kernel.org>; Mon, 23 Mar 2026 14:01:56 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com (BL2PR02CU003.outbound.protection.outlook.com [52.101.52.29])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.18265.1774274509418290510
  for <meta-arago@lists.yoctoproject.org>;
- Sun, 22 Mar 2026 12:26:40 -0700
+ Mon, 23 Mar 2026 07:01:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id AF22E40CB1;
-	Sun, 22 Mar 2026 19:26:38 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id AqgL3EqcT1EG; Sun, 22 Mar 2026 19:26:38 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5D49240A30;
-	Sun, 22 Mar 2026 19:26:34 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id A522217A847; Sun, 22 Mar 2026 15:26:33 -0400 (EDT)
-Date: Sun, 22 Mar 2026 15:26:33 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: rs@ti.com
-Cc: reatmon@ti.com, Praneeth Bajjuri <praneeth@ti.com>,
-	Denys Dmytriyenko <denys@konsulko.com>,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][master][PATCH 3/4] mesa-demos: Flip to a bbappend
-Message-ID: <20260322192633.GS11121@denix.org>
-References: <20260320221404.3991734-1-reatmon@ti.com>
- <20260320221404.3991734-3-reatmon@ti.com>
- <DH7YLAZ0Q5JO.3DMH78OR4C8Y2@ti.com>
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=i4kZCinl;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.52.29, mailfrom: j-sahu@ti.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pdoLajhx09TOBl2fisUTYnX/9dr8a0CwQ6NdQhCZrFExt2IS2AR0AW4bEBpjrrQnT18AKULAaE59YaytzOurSNg9b8+sFCWi0ffytsFryls174sk+nxgteNiNzvwOM6urP89jA9y2e31QTwHi+yosJTCOptHh1CBdJtrHn38dOxj7Pj9HKtCLSZqjVDIcT691CDD8AokRJb8j7Q4BMAoI/iRYLYBy36ZDHyrapTFUNHozjJ1QD4zd1pUh9wBXFaPKzHqf0aB6JOfCFKEMrJHO+bc2G9ktgR57Qe76wAPQ51gN8oBez6juVI3W4BY4OhtLcASrIxnI8v7M42U4qD1sg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BxAXoRYT32CRuaw/5NHRnSf6WD/hz5Ze7QEbBgJm7TI=;
+ b=hY8fc6jBjnaX5GQcyzwVTOKJwtLVQqbRlVPkQW6RKMSB1wqIzjxE2FW8Wv9uMPaB1sN50ZK0rZYo0m+bY3neDK/wR7ejYQ+AOpnJME7bD10nW6ChVgmMaN2YHTQCP1iKihFh2jCChpJPTqEDFPuZpDP/zXkqDUs9iuJYQ2h1pdPECO1xNttUTmc4iK6WgpGuJSp3znAIwWRCRGBUqwI3il1lYeXqUkE5S65ZL+dTsy6igCgVeFnaVOWLg/mgnyy0j+32t4W4esk1/QIVM/z2wp4KGMT3Nceia4tnWZt+jaPE8iNL3FQJP6gmgv03LiK8eXJU77rTwyv4VMmzSXyKBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=konsulko.com smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BxAXoRYT32CRuaw/5NHRnSf6WD/hz5Ze7QEbBgJm7TI=;
+ b=i4kZCinlrDaRcZHYIDQ96c4EMeM+ENPRL2SghJ/loJLNNB9XugTV52+KFz4K9b0CC+gWacJNQ9HiIXAVzj2Xa8UX5vJUv1vBWA19/AW875AsSD6u2ndRcjF1v73AbJubEJlP3bqFak9ElmN2GxjOACHMwbGMEMZGQGssDfrynKM=
+Received: from BL1PR13CA0437.namprd13.prod.outlook.com (2603:10b6:208:2c3::22)
+ by DM3PPF83BEC1808.namprd10.prod.outlook.com (2603:10b6:f:fc00::c33) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.25; Mon, 23 Mar
+ 2026 14:01:47 +0000
+Received: from BL02EPF0002992A.namprd02.prod.outlook.com
+ (2603:10b6:208:2c3:cafe::f3) by BL1PR13CA0437.outlook.office365.com
+ (2603:10b6:208:2c3::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.31 via Frontend Transport; Mon,
+ 23 Mar 2026 14:01:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ BL02EPF0002992A.mail.protection.outlook.com (10.167.249.55) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.19 via Frontend Transport; Mon, 23 Mar 2026 14:01:45 +0000
+Received: from DFLE208.ent.ti.com (10.64.6.66) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Mar
+ 2026 09:01:22 -0500
+Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE208.ent.ti.com
+ (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Mar
+ 2026 09:01:21 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE206.ent.ti.com
+ (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 23 Mar 2026 09:01:21 -0500
+Received: from jeevan-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (jeevan-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.233.81])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62NE1Jqa380851;
+	Mon, 23 Mar 2026 09:01:20 -0500
+From: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denys@konsulko.com>
+Subject: [meta-arago][master][PATCH 1/2] tisdk-bundle: Improve quote handling and add K3 firmware directory support
+Date: Mon, 23 Mar 2026 19:24:41 +0530
+Message-ID: <20260323135442.2056179-1-j-sahu@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DH7YLAZ0Q5JO.3DMH78OR4C8Y2@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0002992A:EE_|DM3PPF83BEC1808:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31c7db5f-f673-4ed1-c866-08de88e4b838
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|376014|36860700016|82310400026|1800799024|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: 
+	ZecgmAdBu1TO6pDAMst4jxq4tmq7EOXR5W4XeEaPqcF/KS3ppXZRAHPVN9Gj3v8uVg80BFMJT3yppmxgXAaP5hBs5nFNFZUErhBCv90sPJe15JJH6bKXj9nLCPhcm4qqhN8/HCGTX3P8ZOpHLZ7RTFOSNJDiT0VA5xM9jGI4hkcuHvZ2hd65RPy97uMFEWKfpTKZAMFMR2KneJ5/c9jYRub3eavCovYg7ojgYbtQtKrZgzWeWE0wsaP+wVwKjwC0ybWmznpuNkVFCSH1pUkIOQGO+6bAAvwYv9gpRlcfuooB8vZ6eUaDBxEqR/fgCUNm8oCX0XahmivHanhlf0JcttW9Jqcpib16yP/7vrmBSYIILnpZfbHpT3aPp/po5pkYNFuNJ0rqe5IkMjAbNFgARxBL4k0oT9OjoCu3jAOv2uKLhpw3tWDMt5gfEydCIhhvHYYPUVNj0JQqRH0IRPyc/8kIHbEKvRVI9AsPdazJLo2tkLmTjZpSFBg4RWdxZNcI4jVCTxoRiWTn3+e7MYc0ekLVrYMmajy/WqSHyrCJcoz79r+R3Vmb8t5OnfyAJjR3m/ZSAix1dM/SSM72F0h2ywkOrOjQr1Pvorx2IGqLTI0hzZytiVrM5ESoqoICaOMBqlL1d2p+YwhOEoruYbVUPuN5YzmZkcFtHRQeAzx54d1JIIg2MRBkPg0VXWgmaOUe/kIow4VpTAc9ifrtPs3rrstzNazNRy5yxnFjHazPfVoSw8Eo5iVYFHTkMHp5634wjMyfOSPYDg6h98GsKv7PQA==
+X-Forefront-Antispam-Report: 
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	CQ6qXdTmUR6mZnKOqDlO7YD68jjiOFet6Sre93K/8ISKwzilCBvdJYmLVS2uyzhyCQk+0R7elO5XZEOnU1aeB+KaX4MWgVSj4ZP5gnCB9FXsNiYQjiW96/tnbDEmPViv+0tJTHyKoU5uu6bOxpRuTSAMObhVmjqA8E2pFBDNkRiY1AAVRGdQHElP0Rv259LuaEZsEJHGyUPluuC/l4E8CPkcOr99bHRqgKPRQJE90ayY/G23SuIBn5CYvKooDSQL8cRP6z9WO0XS/9zIOvv6bz3mZ0mhgsBD9qKuPfA4gvqpy63C7KEh1hH+iUo58pY//goeTvCy3MCUAKX0p6JiB8JDpgBHzvkD7f7n39zY5QNNtpS4C8UwpOxcb9qp+D7SBJS8z6101juND90Sd0xp6Gtr3adCr1CgerDmFSula1wOFkWeQAOA95YZHXYedOGH
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 14:01:45.6691
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31c7db5f-f673-4ed1-c866-08de88e4b838
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	BL02EPF0002992A.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF83BEC1808
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Sun, 22 Mar 2026 19:26:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17416
+ <meta-arago@lists.yoctoproject.org>; Mon, 23 Mar 2026 14:01:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17418
 
-On Fri, Mar 20, 2026 at 05:22:30PM -0500, Randolph Sapp via lists.yoctoproject.org wrote:
-> On Fri Mar 20, 2026 at 5:14 PM CDT, Ryan Eatmon via lists.yoctoproject.org wrote:
-> > Clean up a check layer error related to how this recipe was setup.
-> >
-> > Change the recipe to a bbappend instead of a new git version.  Apply all
-> > of the changes that were made in the new recipe to the bbappend, and
-> > remove the PREFERRED_VERSION in arago-prefs.inc.
-> >
-> > Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> > ---
-> >  .../conf/distro/include/arago-prefs.inc       |  3 --
-> >  .../mesa/mesa-demos-arago.inc                 | 17 ++++++++
-> >  .../mesa/mesa-demos_9.0.0.bbappend            |  4 ++
-> >  .../recipes-graphics/mesa/mesa-demos_git.bb   | 42 -------------------
-> >  4 files changed, 21 insertions(+), 45 deletions(-)
-> >  create mode 100644 meta-arago-distro/recipes-graphics/mesa/mesa-demos-arago.inc
-> >  create mode 100644 meta-arago-distro/recipes-graphics/mesa/mesa-demos_9.0.0.bbappend
-> >  delete mode 100644 meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb
-> >
-> > diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> > index 4d1a6006..6a2faa53 100644
-> > --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> > +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> > @@ -10,6 +10,3 @@ VIRTUAL-RUNTIME_dbus = "dbus-broker"
-> >  # application that does not have a GPLv3 license
-> >  PREFERRED_VERSION_crda = "3.18"
-> >  PREFERRED_VERSION_obex = "0.34"
-> > -
-> > -# Bump mesa-demos to include some patches not in a tagged release
-> > -PREFERRED_VERSION_mesa-demos = "9.0.0+git"
-> > diff --git a/meta-arago-distro/recipes-graphics/mesa/mesa-demos-arago.inc b/meta-arago-distro/recipes-graphics/mesa/mesa-demos-arago.inc
-> > new file mode 100644
-> > index 00000000..5a5412c2
-> > --- /dev/null
-> > +++ b/meta-arago-distro/recipes-graphics/mesa/mesa-demos-arago.inc
-> > @@ -0,0 +1,17 @@
-> > +SECTION = ""
-> > +
-> > +LIC_FILES_CHKSUM:remove = "file://src/xdemos/glxgears.c;beginline=1;endline=20;md5=914225785450eff644a86c871d3ae00e"
-> > +
-> > +LIC_FILES_CHKSUM:append = " file://src/xdemos/glxgears.c;beginline=1;endline=20;md5=a481fbdb2ac800ecb12405c33bcfacae"
-> > +
-> > +SRC_URI = "git://gitlab.freedesktop.org/mesa/demos.git;protocol=https;branch=main"
-> > +SRCREV = "02eae079cb0b8186064d5b194ca4cc2995f099ee"
-> > +
-> > +PV = "9.0.0+git"
-> > +
-> > +REQUIRED_DISTRO_FEATURES:remove = "x11"
-> > +
-> > +PACKAGECONFIG += "${@bb.utils.filter('DISTRO_FEATURES', 'wayland', d)}"
-> > +
-> > +PACKAGECONFIG[glut] = "-Dwith-glut=${STAGING_EXECPREFIXDIR},-Dglut=disabled,freeglut"
-> > +PACKAGECONFIG[osmesa] = "-Dosmesa=enabled,-Dosmesa=disabled,"
-> > diff --git a/meta-arago-distro/recipes-graphics/mesa/mesa-demos_9.0.0.bbappend b/meta-arago-distro/recipes-graphics/mesa/mesa-demos_9.0.0.bbappend
-> > new file mode 100644
-> > index 00000000..3b26e342
-> > --- /dev/null
-> > +++ b/meta-arago-distro/recipes-graphics/mesa/mesa-demos_9.0.0.bbappend
-> > @@ -0,0 +1,4 @@
-> > +MESA_DEMOS_ARAGO = ""
-> > +MESA_DEMOS_ARAGO:arago = "mesa-demos-arago.inc"
-> > +
-> > +require ${MESA_DEMOS_ARAGO}
-> > diff --git a/meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb b/meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb
-> > deleted file mode 100644
-> > index 2da3ceff..00000000
-> > --- a/meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb
-> > +++ /dev/null
-> > @@ -1,42 +0,0 @@
-> > -SUMMARY = "Mesa demo applications"
-> > -DESCRIPTION = "This package includes the demonstration application, such as glxgears. \
-> > -These applications can be used for Mesa validation and benchmarking."
-> > -HOMEPAGE = "http://mesa3d.org"
-> > -BUGTRACKER = "https://bugs.freedesktop.org"
-> > -
-> > -LICENSE = "MIT & PD"
-> > -LIC_FILES_CHKSUM = "file://src/xdemos/glxgears.c;beginline=1;endline=20;md5=a481fbdb2ac800ecb12405c33bcfacae \
-> > -                    file://src/xdemos/glxdemo.c;beginline=1;endline=8;md5=b01d5ab1aee94d35b7efaa2ef48e1a06"
-> > -
-> > -SRC_URI = "git://gitlab.freedesktop.org/mesa/demos.git;protocol=https;branch=main"
-> > -SRCREV = "02eae079cb0b8186064d5b194ca4cc2995f099ee"
-> > -
-> > -DEFAULT_PREFERENCE = "-1"
-> > -PV = "9.0.0+git"
-> > -
-> > -inherit meson pkgconfig features_check
-> > -REQUIRED_DISTRO_FEATURES = "opengl"
-> > -
-> > -EXTRA_OEMESON = "-Dwith-system-data-files=true"
-> > -
-> > -PACKAGECONFIG ?= "drm egl gles1 gles2 \
-> > -                  ${@bb.utils.filter('DISTRO_FEATURES', 'vulkan x11 wayland', d)}"
-> > -
-> > -PACKAGECONFIG[drm] = "-Dlibdrm=enabled,-Dlibdrm=disabled,libdrm"
-> > -PACKAGECONFIG[egl] = "-Degl=enabled,-Degl=disabled,virtual/egl"
-> > -PACKAGECONFIG[gles1] = "-Dgles1=enabled,-Dgles1=disabled,virtual/libgles1"
-> > -PACKAGECONFIG[gles2] = "-Dgles2=enabled,-Dgles2=disabled,virtual/libgles2"
-> > -PACKAGECONFIG[glut] = "-Dwith-glut=${STAGING_EXECPREFIXDIR},-Dglut=disabled,freeglut"
-> > -PACKAGECONFIG[osmesa] = "-Dosmesa=enabled,-Dosmesa=disabled,"
-> > -PACKAGECONFIG[vulkan] = "-Dvulkan=enabled,-Dvulkan=disabled,vulkan-loader glslang-native"
-> > -PACKAGECONFIG[wayland] = "-Dwayland=enabled,-Dwayland=disabled,virtual/libgl wayland wayland-native wayland-protocols libxkbcommon libdecor"
-> > -PACKAGECONFIG[x11] = "-Dx11=enabled,-Dx11=disabled,virtual/libx11 libglu libxkbcommon libxcb"
-> > -
-> > -do_install:append() {
-> > -	# it can be completely empty when all PACKAGECONFIG options are disabled
-> > -	rmdir --ignore-fail-on-non-empty ${D}${bindir}
-> > -
-> > -	if [ -f ${D}${bindir}/clear ]; then
-> > -		mv ${D}${bindir}/clear ${D}${bindir}/clear.mesa-demos
-> > -	fi
-> > -}
-> 
-> I still hate that layer conformance thinks this is the correct way to do what is
-> essentially adding a new *optional* package version. Feels really backwards and
-> gross, but I'm already picking other fights right now.
+Fix quote handling for wildcard pattern expansion in SPL and image copy loo=
+ps
+to properly handle filenames with spaces and glob patterns.
 
-In order for a new version of a recipe to be *optional*, it should not be 
-selected by bitbake by default.
+Also, add support for copying ti-sysfw, ti-dm, and ti-hsm directories neede=
+d
+by binman builds for K3 u-boot
 
-There are 2 ways to do this (besides making a bbappend):
+Signed-off-by: Telukula Jeevan Kumar Sahu <j-sahu@ti.com>
+---
+ .../classes/tisdk-bundle.bbclass              | 37 +++++++++++++++++--
+ 1 file changed, 33 insertions(+), 4 deletions(-)
 
-1. Use the same name, but lower the default preference DEFAULT_PREFERENCE="-1" 
-and still able to select it with PREFERRED_VERSION_mesa-demos="9.0.0+git"
+diff --git a/meta-arago-distro/classes/tisdk-bundle.bbclass b/meta-arago-di=
+stro/classes/tisdk-bundle.bbclass
+index 24146529..4033f9a2 100644
+--- a/meta-arago-distro/classes/tisdk-bundle.bbclass
++++ b/meta-arago-distro/classes/tisdk-bundle.bbclass
+@@ -221,9 +221,10 @@ tisdk_image_build () {
+     for spl_name in ${DEPLOY_SPL_NAME}
+     do
+         # Copy the SPL image if it exists
+-        if [ -e ${DEPLOY_DIR_IMAGE}/$spl_name ]
++        set -- ${DEPLOY_DIR_IMAGE}/$spl_name
++        if [ -e "$1" ]
+         then
+-            cp ${DEPLOY_DIR_IMAGE}/$spl_name ${prebuilt_dir}/
++            cp "$@" ${prebuilt_dir}/
+         else
+             echo "Could not find the SPL image \"$spl_name\""
+             return 1
+@@ -232,9 +233,10 @@ tisdk_image_build () {
+=20
+     for image_name in ${DEPLOY_IMAGES_NAME}
+     do
+-        if [ -e ${DEPLOY_DIR_IMAGE}/$image_name ]
++        set -- ${DEPLOY_DIR_IMAGE}/$image_name
++        if [ -e "$1" ]
+         then
+-            cp ${DEPLOY_DIR_IMAGE}/$image_name ${prebuilt_dir}/
++            cp "$@" ${prebuilt_dir}/
+         else
+             echo "Could not find image \"$image_name\""
+             return 1
+@@ -259,6 +261,33 @@ tisdk_image_build () {
+         fi
+     fi
+=20
++    # Copy ti-sysfw needed by binman builds for u-boot
++    if [ -d "${DEPLOY_DIR_IMAGE}/ti-sysfw" ] && [ -n "${SYSFW_BINARY}" ]
++    then
++        mkdir -p ${prebuilt_dir}/ti-sysfw/
++        for firmware_name in ${SYSFW_BINARY}
++        do
++            set -- ${DEPLOY_DIR_IMAGE}/ti-sysfw/$firmware_name
++            if [ -e "$1" ]
++            then
++                cp "$@" ${prebuilt_dir}/ti-sysfw/
++            fi
++        done
++    fi
++
++    # Copy ti-dm needed by binman builds for u-boot
++    if [ -d "${DEPLOY_DIR_IMAGE}/ti-dm" ]
++    then
++        cp -r ${DEPLOY_DIR_IMAGE}/ti-dm ${prebuilt_dir}/
++    fi
++
++    # Copy ti-hsm needed by binman builds for u-boot
++    if [ -d "${DEPLOY_DIR_IMAGE}/ti-hsm" ]
++    then
++        mkdir -p ${prebuilt_dir}/ti-hsm/
++        cp ${DEPLOY_DIR_IMAGE}/ti-hsm/* ${prebuilt_dir}/ti-hsm/
++    fi
++
+     # Add the EXTRA_TISDK_FILES contents if they exist
+     # Make sure EXTRA_TISDK_FILES is not empty so we don't accidentaly
+     # copy the root directory.
+--=20
+2.34.1
 
-2. Use a different name e.g. mesa-demos-arago and set PROVIDES="mesa-demos" - 
-allows selecting it with PREFERRED_PROVIDER_mesa-demos="mesa-demos-arago"
-
--- 
-Denys
 
