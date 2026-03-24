@@ -2,71 +2,71 @@ Return-Path: <t-lannynd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 795ADF54AAA
-	for <webhook@archiver.kernel.org>; Tue, 24 Mar 2026 13:01:57 +0000 (UTC)
-Received: from PH7PR06CU001.outbound.protection.outlook.com (PH7PR06CU001.outbound.protection.outlook.com [52.101.201.58])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.19125.1774357312000908147
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 57F14F54AAC
+	for <webhook@archiver.kernel.org>; Tue, 24 Mar 2026 13:02:37 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com (CO1PR03CU002.outbound.protection.outlook.com [52.101.46.30])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.19141.1774357353708129777
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 24 Mar 2026 06:01:52 -0700
+ Tue, 24 Mar 2026 06:02:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=BWGJ56f4;
- spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.201.58, mailfrom: t-lannynd@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=d1wum71r;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 52.101.46.30, mailfrom: t-lannynd@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u777Ii81Z2RA2dU4P36MxgtcUTMCs9EAHdD//nGbzIkM7kwZjRFtMygxmKYbrHwlUWiLPzrvam17Y+m6gs+IP1sO+1FMPYRTB/3xqCW0aLjbmmTqms2llskMILyjI9lsAI9yBxDDF3+R8RmL+JzWT04DIsV7YXnVfXDtZn45HgvgZGpi5y7Ztk4W4MYB+6jwkWVsYHGvTFIIp+ANjYwJeZ5pfqcg6CP4eugGP7by4bBItyPo68erhreJI9F40Gn7YZuP+nxC/gHadGM4anmlk23bQyv6noYi3mm4KVCBcUUKZ0gNoFQaP3JMku3jM2O1vLeV/wtfQ7vcxoNJfZ0feg==
+ b=u7dqkwZscdYmq8QFFOpR32Iabbh/Z23rG11x56AoIN0HjIHCbM4TdlL6/VLNOQ3N9iXdv+K36NXeafq2UHRkr/O20IPligm7FQj5Jhdoqe2NxfQEuvZniuZQgkADSlatPdUHfl8ZvYbSxUjvaTnbZutV7B7mW3BjJx9rXXNcEzACjLHa+QwA5E43duoHHg+QSMgS51+JvIW1o29JdOFZxZz7liQnPemdrr8iXmQ+6B9n1JBe67aN1UP99G+mNYrqdlvDqYwMdLwpHzgeE51s7vXSyIy6Lw+dBzFxS7y06eRQ46uLnAZnO2E77V1KTCZaow9rEnTMu4pkkdmx8CYRQA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6yke4wya1N0fEEndW/hRcg3nU2RxIPQ+O2jN9Ufwtbk=;
- b=vJLjTFOlKahvgxwnP7ZRftCEN1OlcxI/sObd692K+/DpRpmDwKExcAxGwYy0Bs0ynpty2pE/SH+ZqUUeyt+doqGMqao3DivCLhq8894VdbcNfkffguZsA3AMQdwK9vNGFaqY57DuZJ55FgPTop+B63SeSdFMPXr6CKbivYJIgQ3cRRJfdbtveJBgrX8HsFH1dk8H9w79PvlDivRke1smBkUWsU8v7fFV0qs1yAMrzQtGsuV4it3X+2htRhAFrpD9O9hVtGDkcdL2bbS+0IKB7I8wLCZEWSuI5nM4XmPwhQic8AYX8JKT2VB+K+GRMuo59ZXiVHlL8esdowb+tbPv3Q==
+ bh=GOIQ6OM9b+P3Qyjx2wLbSMu18G1OpE8RuCYMGq0lSJQ=;
+ b=FBvLW0DwZw3Avj2nn6paastzMNMG5Ejk+LalP4uu+3bxIwZrpWJ3cvzMJtqtP8kn/Q5wj8Iui3T/p/9HenLhDohFAUQT80jrKDWXR8CPZArIfdSMdjc/ohPEUjEeiEliX+sfPBjyaTl+/87EhwGKzsSPZ6Aq19aorz1BJ5KDRAjnkwfH+DmJuGgfq43BCxIKlYtuNMYgTW8DE804Zh39315mXzmnuFNLQbzLrt+v9G1Cpy9GcOS+csg0+jmu/02lsarFGhjXYYteFWi6RcgRnnHYn50Y3SYuneNpbydSdK5zNcAfsh/OLArdb0OWLMt8qssgGXBVqLSNz+8X46RM6w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6yke4wya1N0fEEndW/hRcg3nU2RxIPQ+O2jN9Ufwtbk=;
- b=BWGJ56f4U7i7yjwGrntnXx9MWM6s+GnyacKjzGdIHomIXbUIOyUzG7OZsNdVYAY4xftsugno0M89Eit/ckIgOew28CZgJL+TyT5gK+RsqQtIkI+ycZvDJ4YQlwPqibV0ap6uffmIaqxOtrM++S/OoeeGwYityWWNsnpmCFKqJvc=
-Received: from BL1PR13CA0197.namprd13.prod.outlook.com (2603:10b6:208:2be::22)
- by SA2PR10MB4651.namprd10.prod.outlook.com (2603:10b6:806:11e::22) with
+ bh=GOIQ6OM9b+P3Qyjx2wLbSMu18G1OpE8RuCYMGq0lSJQ=;
+ b=d1wum71rekBmazHfhXlr2psrXVIpwzoQArKmGbIASPL3XAuMNPMyf3lCC9Se//CXXVhlusLOEGb6nFomvkGGHawEloGDbbLl166H1CXB8S2/qpGkAjT1BJEN7mhFSKLIBFsiGEyagQ2oEg3eUBxuRWtj4icGStngR+B5RxBdvNw=
+Received: from CH2PR03CA0029.namprd03.prod.outlook.com (2603:10b6:610:59::39)
+ by DS0PR10MB7246.namprd10.prod.outlook.com (2603:10b6:8:fe::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.31; Tue, 24 Mar
- 2026 13:01:47 +0000
-Received: from BN3PEPF0000B075.namprd04.prod.outlook.com
- (2603:10b6:208:2be:cafe::c5) by BL1PR13CA0197.outlook.office365.com
- (2603:10b6:208:2be::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9723.31 via Frontend Transport; Tue,
- 24 Mar 2026 13:01:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ 2026 13:02:29 +0000
+Received: from CH2PEPF0000009D.namprd02.prod.outlook.com
+ (2603:10b6:610:59:cafe::12) by CH2PR03CA0029.outlook.office365.com
+ (2603:10b6:610:59::39) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.31 via Frontend
+ Transport; Tue, 24 Mar 2026 13:02:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
 Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BN3PEPF0000B075.mail.protection.outlook.com (10.167.243.120) with Microsoft
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ CH2PEPF0000009D.mail.protection.outlook.com (10.167.244.25) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.19 via Frontend Transport; Tue, 24 Mar 2026 13:01:46 +0000
-Received: from DLEE207.ent.ti.com (157.170.170.95) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9723.19 via Frontend Transport; Tue, 24 Mar 2026 13:02:25 +0000
+Received: from DFLE201.ent.ti.com (10.64.6.59) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 24 Mar
- 2026 08:01:45 -0500
-Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE207.ent.ti.com
- (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 08:02:23 -0500
+Received: from DFLE214.ent.ti.com (10.64.6.72) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 24 Mar
- 2026 08:01:44 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE205.ent.ti.com
- (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 08:02:23 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE214.ent.ti.com
+ (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 24 Mar 2026 08:01:44 -0500
+ Transport; Tue, 24 Mar 2026 08:02:23 -0500
 Received: from uda0867391-2.dhcp.ti.com (uda0867391-2.dhcp.ti.com [128.247.81.30])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62OD1iwu2659757;
-	Tue, 24 Mar 2026 08:01:44 -0500
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62OD2NYJ2189646;
+	Tue, 24 Mar 2026 08:02:23 -0500
 From: Thorsten Lannynd <t-lannynd@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
 CC: <detheridge@ti.com>, <b-brnich@ti.com>, <a-christidis@ti.com>
-Subject: [meta-arago][oe-layersetup][master][PATCH] arago-master: Update meta-browser commit SHA
-Date: Tue, 24 Mar 2026 08:01:18 -0500
-Message-ID: <20260324130118.551882-1-t-lannynd@ti.com>
+Subject: [meta-arago][master][PATCH] Revert "chromium: Add a patch to fix build against GLIBC 2.43"
+Date: Tue, 24 Mar 2026 08:02:21 -0500
+Message-ID: <20260324130221.560212-1-t-lannynd@ti.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -74,264 +74,103 @@ Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B075:EE_|SA2PR10MB4651:EE_
-X-MS-Office365-Filtering-Correlation-Id: 147425c5-0845-411f-5cf9-08de89a5816c
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000009D:EE_|DS0PR10MB7246:EE_
+X-MS-Office365-Filtering-Correlation-Id: adb6c6a2-9f9f-4206-bb78-08de89a59875
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700016|13003099007|18002099003|56012099003;
+	BCL:0;ARA:13230040|36860700016|82310400026|376014|1800799024|56012099003|18002099003;
 X-Microsoft-Antispam-Message-Info: 
-	EBIOC43sojNrBqprRCutNcqQulsTwuvJcYSi/g3GV7XuwRxq1F6MWyXu2ohEuYGTrR8JA9n80uc6iGxoShQG7YV/2tWUcaxART2DDkHP9rylgTrAI/kP/OT/RfuTzIPc9I6KYhuGXYFBpPxQbTjXq4U7J0pdG3jebHhJqiVbd/36HlSuPndXXn1tAzh/iG1seMPzAXxpZM5or8hOWq8T+zaZc0VBNHlnlVm/+YFxpvyzQqQpxlLBGtHOJgkwsEwAuphoVwnHPneNBKuYv/sQqgnGtTlABUwWGf/IuOaOnqbSOVyZvCLZhBQwzQ/Rmg3z2x+wRD5CpUMnykpTAlyCM7ZM7/Y6h3TzPZgExA14MLvqUMTtWucgJCnSbnVBwYTD6yYYctrUFJBduI5iCoMurcFwEpHEE2Fyitc1LhyOmjSmOAw/enug1GAG2DGn8l0OBH8fjG9QTGnWnG81LcC7Ni8EgBs8nhz9A53oESnl9p0aq0JY7infPWI+UL4/s0j+T5EbYom3A4Rt2DwLmZJVDxDHrC7eq2Zal6qp/JMjK9RUSf9r3kotDDhdzjmoN8ggvJ751MauMUl5gMn8dtdKuz2+lM+684PgUZNMI5EDVgPQs83ha/jN+WcdlDJAR0CsmJgynB3kVycvzsCSqLK63edbAEYHPwK1D2IrcP6R0+YJEpxpU2AhkFBFmVHmtD0jLVY6KDqKVBRq0lm0Yyde0EA7fzwpY/2JFzYao4oKUiM=
+	u+wlzTzsqsLJTH8IHFX2w04B/n0kIGRIWA0m0nIHmrJUudIY6SMyB3yqS3Z9gb6xaqGHQAkf8f4KjJ/tZRGVvovE4VX5PPiG9lFZHN8zwZimZm4JE3y4NEJoNYi0cI2wDvazwcTR/RFpwhjzu0mzWoScKKlruUIgmRFV5LSh9AEB9Ls/bc62hjOPTljvrs1tG71M3Drrp2oPIrD73xqw1r4Pe7mloCD45qiMyFIUqCt+G9mcvyiv5YyXLGT2rurXgks8+YNH9O5Oj0yxl7lxn1WBr/sIqiKji+UqpIb6mrT/n3T587OkWn8yXDSJncJ0WAliRFPxIbiKKgFza75uTjO4zc/SbNJQQSWCMV7iXDxuOHXzYSmCdGQu+ie2Tne3gCGfhGi+0vYGqP0rz00jSRr98R2Y/+6kldoECDSZ9f3P+YABtumiGxaHLU8yx1IKAfL0TdXVMXXZIlOm7wUJOlAPjO+ngEL4mtVSV2wLfKBYEcL5tRovCyOEVvKGxtI5U6+uv5dLlidOfBmbY2SMbNRux8tIfd/r8QQLhHWizQbHODIDKIYGI4kDndmNjw+CMysrAmfc9l4JCbYPAc+cbkxvTiVcWpdBBxteDr203LtQF8gY+W/nCNeeOITMfOWLzQ7WhGkocA+eXOwZHDwfjJFceTRkzPz7POhiEplXEunAlfDdq9UafVp0z8BBbojKnL6F2NPKWQ16H25YqFeUPQ==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(13003099007)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(56012099003)(18002099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	2noMRdWffmku5ffu1tSmoCl6H4BxsXlL9JGtJnt2XfyuYcqCxW8uHemp8TbqMYNTugyHgmV1AVCg2PINyAE7JKie7SmdXj3+ePf2Qegwv2luPoyT5NyX1XxuV62ZIDOupL4UjjT9IL3z4KFHGbDOfdtSfkSsAm0lRePjsb905dQRzn58k1uPc3R3djcbFxWQKk9XGmo0huhMAffJL90vHk43GHxTsiaBj32Nq14gT/row/T9qpKPF71twGDk4/+HqhI87p6l0qzCbJfCy6Tae3wPcoFRhc3QkFkJIxCTdsopYJO1teJOPswvs46JboPNbLf2xZbiamwfLz6+mbjYQVy5UG6lUBGQii1FJG+000jNxDEuzofkBCXdOHqxObrU7/DAwMeWY7YGdUcD3qOb6qOS2HrTq/Jq7z4vVc4hNmUlwR+cumbm4zsXmQsLLQEz
+	mkEPxZBSmhpV0VrajwspNCz3xCFHw9eviv0Jx0k2ikIPW10OMXIJTZ7pEeSvhRNk//A/ScWbcTwO6Hh+ubWAT038AAklLTWrZn9V1EvlC5GFS4Chyoi3RRIPhNIqsXGVH8EQJcZKStUCAipIpBqIDMU5nmF5Y0mNaoz7LmePKmfrBfyaZ45QApNyTTIsf21DQhIP8puH089NLWEDG/xanqFuJoS1AZZ+CzobxxD+zQs9DzF5M2Axr87ebYtwKRGcthNJSQbAgdAk5LZGLazsb/pfDCW1wk+zQoWFCZc1+pR2EcM2CE/dtyVv+BfleTQUP6gsGgCPVG29PK4T+mnWQsplofGgS7ElcNOJBHMSBYJxBQ1dSKX2Dyru4vMcMHN7OAjpyf8m11RoDk+9J2YNAKnauMLIM+ORlMw+UAqg+bAxIAFsjvf9Rnl+8XLLU00P
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2026 13:01:46.5833
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2026 13:02:25.2695
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 147425c5-0845-411f-5cf9-08de89a5816c
+X-MS-Exchange-CrossTenant-Network-Message-Id: adb6c6a2-9f9f-4206-bb78-08de89a59875
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BN3PEPF0000B075.namprd04.prod.outlook.com
+	CH2PEPF0000009D.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4651
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7246
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 24 Mar 2026 13:01:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17424
+ <meta-arago@lists.yoctoproject.org>; Tue, 24 Mar 2026 13:02:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17425
 
-Update meta-browser layer to commit e252b51f which fixes the layer.conf
-incompatibility with wrynose and adds multiple fixes for v142
-
-Patch Notes:
-https://github.com/OSSystems/meta-browser/commit/e252b51fd261a4cb05be932f01=
-43ac444693a1ea
+This reverts commit 929edd49fb48cecba4277a458980a2d0aa96f39b.
 
 Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
 ---
 
-This patch requires on meta-arago: `Revert: chromium: Add a patch to fix
-build against GLIBC 2.43` to build successfully
+This patch requires oe-layersetup: `arago-master: Update meta-browser
+commit SHA` to build successfully
 
- configs/arago-master-chromium-config.txt     | 2 +-
- configs/arago-master-config.txt              | 2 +-
- configs/arago-master-next-config.txt         | 2 +-
- configs/arago-master-selinux-config.txt      | 2 +-
- configs/arago-master-wip-config.txt          | 2 +-
- kas/arago-master-chromium-config.yml         | 2 +-
- src/configs/arago-master-chromium-config.xml | 2 +-
- src/configs/arago-master-config.xml          | 2 +-
- src/configs/arago-master-next-config.xml     | 2 +-
- src/configs/arago-master-selinux-config.xml  | 2 +-
- src/configs/arago-master-wip-config.xml      | 2 +-
- 11 files changed, 11 insertions(+), 11 deletions(-)
+ .../fix-SYS_SECCOMP-redefinition.patch           | 16 ----------------
+ .../chromium/chromium-ozone-wayland-arago.inc    |  1 -
+ 2 files changed, 17 deletions(-)
+ delete mode 100644 meta-arago-distro/dynamic-layers/chromium-browser-layer=
+/recipes-browser/chromium/chromium-ozone-wayland-142.0.7444.175/fix-SYS_SEC=
+COMP-redefinition.patch
 
-diff --git a/configs/arago-master-chromium-config.txt b/configs/arago-maste=
-r-chromium-config.txt
-index e1fda52..1a2a0f1 100644
---- a/configs/arago-master-chromium-config.txt
-+++ b/configs/arago-master-chromium-config.txt
-@@ -4,7 +4,7 @@
- bitbake,https://git.openembedded.org/bitbake,master,HEAD
- meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=3Dme=
-ta-arago-distro:meta-arago-extras:meta-arago-test
- #meta-flutter,https://github.com/meta-flutter/meta-flutter.git,master,HEAD=
-,layers=3D.:meta-flutter-apps
--meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f14862f=
-261623d48f412af0be94a6721ade3930,layers=3Dmeta-chromium
-+meta-browser,https://github.com/OSSystems/meta-browser.git,master,e252b51f=
-d261a4cb05be932f0143ac444693a1ea,layers=3Dmeta-chromium
- #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
-=3D
- meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
- meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
-r,HEAD,layers=3D
-diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.=
-txt
-index 53262bb..132a505 100644
---- a/configs/arago-master-config.txt
-+++ b/configs/arago-master-config.txt
-@@ -4,7 +4,7 @@
- bitbake,https://git.openembedded.org/bitbake,master,HEAD
- meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=3Dme=
-ta-arago-distro:meta-arago-extras:meta-arago-test
- #meta-flutter,https://github.com/meta-flutter/meta-flutter.git,master,HEAD=
-,layers=3D.:meta-flutter-apps
--#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f14862=
-f261623d48f412af0be94a6721ade3930,layers=3Dmeta-chromium
-+#meta-browser,https://github.com/OSSystems/meta-browser.git,master,e252b51=
-fd261a4cb05be932f0143ac444693a1ea,layers=3Dmeta-chromium
- #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
-=3D
- meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
- meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
-r,HEAD,layers=3D
-diff --git a/configs/arago-master-next-config.txt b/configs/arago-master-ne=
-xt-config.txt
-index 0644138..1744c2f 100644
---- a/configs/arago-master-next-config.txt
-+++ b/configs/arago-master-next-config.txt
-@@ -12,7 +12,7 @@ MOTD: NOTE:
- bitbake,https://git.openembedded.org/bitbake,master,HEAD
- meta-arago,https://git.yoctoproject.org/meta-arago,master-next,HEAD,layers=
-=3Dmeta-arago-distro:meta-arago-extras:meta-arago-test
- #meta-flutter,https://github.com/meta-flutter/meta-flutter.git,master,HEAD=
-,layers=3D.:meta-flutter-apps
--#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f14862=
-f261623d48f412af0be94a6721ade3930,layers=3Dmeta-chromium
-+#meta-browser,https://github.com/OSSystems/meta-browser.git,master,e252b51=
-fd261a4cb05be932f0143ac444693a1ea,layers=3Dmeta-chromium
- #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
-=3D
- meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
- meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
-r,HEAD,layers=3D
-diff --git a/configs/arago-master-selinux-config.txt b/configs/arago-master=
--selinux-config.txt
-index cd0ca0e..96c8dd5 100644
---- a/configs/arago-master-selinux-config.txt
-+++ b/configs/arago-master-selinux-config.txt
-@@ -4,7 +4,7 @@
- bitbake,https://git.openembedded.org/bitbake,master,HEAD
- meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=3Dme=
-ta-arago-distro:meta-arago-extras:meta-arago-test
- #meta-flutter,https://github.com/meta-flutter/meta-flutter.git,master,HEAD=
-,layers=3D.:meta-flutter-apps
--#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f14862=
-f261623d48f412af0be94a6721ade3930,layers=3Dmeta-chromium
-+#meta-browser,https://github.com/OSSystems/meta-browser.git,master,e252b51=
-fd261a4cb05be932f0143ac444693a1ea,layers=3Dmeta-chromium
- meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
-=3D
- meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
- meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
-r,HEAD,layers=3D
-diff --git a/configs/arago-master-wip-config.txt b/configs/arago-master-wip=
--config.txt
-index 1ad6f58..9f38a6d 100644
---- a/configs/arago-master-wip-config.txt
-+++ b/configs/arago-master-wip-config.txt
-@@ -4,7 +4,7 @@
- bitbake,https://git.openembedded.org/bitbake,master,HEAD
- meta-arago,https://git.yoctoproject.org/meta-arago,master-wip,HEAD,layers=
-=3Dmeta-arago-distro:meta-arago-extras:meta-arago-test
- #meta-flutter,https://github.com/meta-flutter/meta-flutter.git,master,HEAD=
-,layers=3D.:meta-flutter-apps
--#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f14862=
-f261623d48f412af0be94a6721ade3930,layers=3Dmeta-chromium
-+#meta-browser,https://github.com/OSSystems/meta-browser.git,master,e252b51=
-fd261a4cb05be932f0143ac444693a1ea,layers=3Dmeta-chromium
- #meta-selinux,https://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
-=3D
- meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,HEAD,layers=3D
- meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
-r,HEAD,layers=3D
-diff --git a/kas/arago-master-chromium-config.yml b/kas/arago-master-chromi=
-um-config.yml
-index b114247..3c83535 100644
---- a/kas/arago-master-chromium-config.yml
-+++ b/kas/arago-master-chromium-config.yml
-@@ -27,7 +27,7 @@ repos:
-   meta-browser:
-     url: "https://github.com/OSSystems/meta-browser.git"
-     branch: "master"
--    commit: "5f14862f261623d48f412af0be94a6721ade3930"
-+    commit: "e252b51fd261a4cb05be932f0143ac444693a1ea"
-     path: "sources/meta-browser"
-     layers:
-       meta-chromium:
-diff --git a/src/configs/arago-master-chromium-config.xml b/src/configs/ara=
-go-master-chromium-config.xml
-index c242124..ba8ff60 100644
---- a/src/configs/arago-master-chromium-config.xml
-+++ b/src/configs/arago-master-chromium-config.xml
-@@ -23,7 +23,7 @@
-                 <layer>meta-flutter-apps</layer>
-             </layers>
-         </repo>
--        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'5f14862f261623d48f412af0be94a67=
-21ade3930'>
-+        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'e252b51fd261a4cb05be932f0143ac4=
-44693a1ea'>
-             <layers>
-                 <layer>meta-chromium</layer>
-             </layers>
-diff --git a/src/configs/arago-master-config.xml b/src/configs/arago-master=
--config.xml
-index 28cd760..c058317 100644
---- a/src/configs/arago-master-config.xml
-+++ b/src/configs/arago-master-config.xml
-@@ -23,7 +23,7 @@
-                 <layer>meta-flutter-apps</layer>
-             </layers>
-         </repo>
--        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'5f14862f261623d48f412af0be94a67=
-21ade3930' disabled=3D'true'>
-+        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'e252b51fd261a4cb05be932f0143ac4=
-44693a1ea' disabled=3D'true'>
-             <layers>
-                 <layer>meta-chromium</layer>
-             </layers>
-diff --git a/src/configs/arago-master-next-config.xml b/src/configs/arago-m=
-aster-next-config.xml
-index 8a7e009..14b0e88 100644
---- a/src/configs/arago-master-next-config.xml
-+++ b/src/configs/arago-master-next-config.xml
-@@ -24,7 +24,7 @@
-                 <layer>meta-flutter-apps</layer>
-             </layers>
-         </repo>
--        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'5f14862f261623d48f412af0be94a67=
-21ade3930' disabled=3D'true'>
-+        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'e252b51fd261a4cb05be932f0143ac4=
-44693a1ea' disabled=3D'true'>
-             <layers>
-                 <layer>meta-chromium</layer>
-             </layers>
-diff --git a/src/configs/arago-master-selinux-config.xml b/src/configs/arag=
-o-master-selinux-config.xml
-index b09a45c..0ac2929 100644
---- a/src/configs/arago-master-selinux-config.xml
-+++ b/src/configs/arago-master-selinux-config.xml
-@@ -23,7 +23,7 @@
-                 <layer>meta-flutter-apps</layer>
-             </layers>
-         </repo>
--        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'5f14862f261623d48f412af0be94a67=
-21ade3930' disabled=3D'true'>
-+        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'e252b51fd261a4cb05be932f0143ac4=
-44693a1ea' disabled=3D'true'>
-             <layers>
-                 <layer>meta-chromium</layer>
-             </layers>
-diff --git a/src/configs/arago-master-wip-config.xml b/src/configs/arago-ma=
-ster-wip-config.xml
-index 497f431..6e401bd 100644
---- a/src/configs/arago-master-wip-config.xml
-+++ b/src/configs/arago-master-wip-config.xml
-@@ -23,7 +23,7 @@
-                 <layer>meta-flutter-apps</layer>
-             </layers>
-         </repo>
--        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'5f14862f261623d48f412af0be94a67=
-21ade3930' disabled=3D'true'>
-+        <repo name=3D'meta-browser' url=3D'https://github.com/OSSystems/me=
-ta-browser.git' branch=3D'master' commit=3D'e252b51fd261a4cb05be932f0143ac4=
-44693a1ea' disabled=3D'true'>
-             <layers>
-                 <layer>meta-chromium</layer>
-             </layers>
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
+s-browser/chromium/chromium-ozone-wayland-142.0.7444.175/fix-SYS_SECCOMP-re=
+definition.patch b/meta-arago-distro/dynamic-layers/chromium-browser-layer/=
+recipes-browser/chromium/chromium-ozone-wayland-142.0.7444.175/fix-SYS_SECC=
+OMP-redefinition.patch
+deleted file mode 100644
+index 999e5fd8..00000000
+--- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-142.0.7444.175/fix-SYS_SECCOMP-redefinit=
+ion.patch
++++ /dev/null
+@@ -1,16 +0,0 @@
+-Taken from:
+-https://aur.archlinux.org/cgit/aur.git/tree/0007-qt5-webengine-glibc-2.43-=
+SYS_SECCOMP-as-enum@chromium.patch?h=3Dqt5-webengine
+-
+-Upstream-Status: Submitted [https://github.com/OSSystems/meta-browser/pull=
+/962/changes/4e450497be557fc4b5ff1397f78fa0f8381e281d]
+-diff --git a/sandbox/linux/system_headers/linux_seccomp.h b/sandbox/linux/=
+system_headers/linux_seccomp.h
+-index 8690a96eb0..8988836508 100644
+---- a/sandbox/linux/system_headers/linux_seccomp.h	2026-03-13 17:54:03.000=
+000000 +0100
+-+++ b/sandbox/linux/system_headers/linux_seccomp.h	2026-03-16 08:52:25.509=
+439677 +0100
+-@@ -6,6 +6,7 @@
+- #define SANDBOX_LINUX_SYSTEM_HEADERS_LINUX_SECCOMP_H_
+-
+- #include <stdint.h>
+-+#include <signal.h>
+- #include <sys/ioctl.h>
+-
+- #include "build/build_config.h"
+diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
+s-browser/chromium/chromium-ozone-wayland-arago.inc b/meta-arago-distro/dyn=
+amic-layers/chromium-browser-layer/recipes-browser/chromium/chromium-ozone-=
+wayland-arago.inc
+index 3ec0610a..5b0f2703 100644
+--- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-arago.inc
++++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
+er/chromium/chromium-ozone-wayland-arago.inc
+@@ -9,7 +9,6 @@ SRC_URI:append =3D " \
+                   file://0002-chromium-gpu-sandbox-Allow-GPU-sandbox-acces=
+s-to-V4L.patch \
+                   file://0003-chromium-gpu-v4l2-Fix-OUTPUT-queue-streaming=
+-in-V4L2.patch \
+                   file://0004-media-gpu-v4l2-Avoid-placing-incomplete-H264=
+-access-.patch \
+-                  file://fix-SYS_SECCOMP-redefinition.patch \
+                   "
+=20
+ # Override do_copy_clang_library to handle both target and host architectu=
+res
 
