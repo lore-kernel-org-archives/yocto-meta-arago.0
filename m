@@ -1,207 +1,137 @@
-Return-Path: <denis@denix.org>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B48E4FEC0F3
-	for <webhook@archiver.kernel.org>; Tue, 24 Mar 2026 18:27:35 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.4285.1774376845885911250
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B590106B53C
+	for <webhook@archiver.kernel.org>; Wed, 25 Mar 2026 13:41:56 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com (CH5PR02CU005.outbound.protection.outlook.com [40.107.200.68])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.22507.1774446110404709104
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 24 Mar 2026 11:27:26 -0700
+ Wed, 25 Mar 2026 06:41:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 25B8340CB0;
-	Tue, 24 Mar 2026 18:27:25 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id LQTcWvh3YVKA; Tue, 24 Mar 2026 18:27:25 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C902E40A30;
-	Tue, 24 Mar 2026 18:27:20 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 7629C17ABB0; Tue, 24 Mar 2026 14:27:20 -0400 (EDT)
-Date: Tue, 24 Mar 2026 14:27:20 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: reatmon@ti.com
-Cc: Randolph Sapp <rs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-	Denys Dmytriyenko <denys@konsulko.com>,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][master][PATCH 3/4] mesa-demos: Flip to a bbappend
-Message-ID: <20260324182720.GW11121@denix.org>
-References: <20260320221404.3991734-1-reatmon@ti.com>
- <20260320221404.3991734-3-reatmon@ti.com>
- <DH7YLAZ0Q5JO.3DMH78OR4C8Y2@ti.com>
- <20260322192633.GS11121@denix.org>
- <DHABYNK6UHI3.38G28NSA7DBOQ@ti.com>
- <189FA0BA138E397B.1003@lists.yoctoproject.org>
- <20260324181432.GV11121@denix.org>
- <30965aea-5c51-41ee-b990-e856319aff90@ti.com>
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=Hd1HTTvi;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: ti.com, ip: 40.107.200.68, mailfrom: reatmon@ti.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nyKzDpzl9yDZy8Z7wGFdHfD2Jyo2eCKu6Pvlqmb7GI6bSTlDmd1N3NRV22DpZoCVTAbf5GtUZICYZCBXWRfAnBPgBoyAk+BwJaqGbmC4wDgGgx2OFSkJgBe+mW5Xqt5Y/jKtCVSkk8fZwNxVysrZQ6t/lY3V+hwxN+vB3jnTX1ju9i3KG92hKoSCkePTqRvyBO9cIhPqK136coY+/6z84AHt8JZuPJouBihrDI0jHHT9Bgngu1XBtIt5/lM4O3Mpm0NhpU/BdjF17iKr/htH74tgSsBCimDWIZb8dJTzU3Ehl3yXCUeG44qtlLwnKNh0QhMCEUqCZ1/FHme80wfW4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Slf9wZgVPYbowa4Z1oq1gf04MU7sgqw+gUCONy6L4Aw=;
+ b=vl5BBJw+jS7NOcRAaszpvLBvRFFUlk2ODnif+VKQ4QWxXNzAxP6MKfKBB1jfIoO7TzfUBkm0JV/klxUiRqocJ6UCbEwfVqqIN66AYj99nJysklinDGf1otmvQNAmsKxOJnhuiPwzZN/1fhrROl8z8r01m7seRxC1nNiq+pGNtif1+R7S5Jw6xjpgfWMYveJ3M4IVkMb0wr13qpVGK2ey1nHcbp6bYYfR2rJWFqbn6vX4RjFET4yimVyCGDTK720j4Mm1pw1AXmXRY4Fa2WOx7dItX+54udX9rS0556c8JHrxZkrcOgo2cQOhjQLKQI1Ji/uk4DOxfzQVNeb+5OIoEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Slf9wZgVPYbowa4Z1oq1gf04MU7sgqw+gUCONy6L4Aw=;
+ b=Hd1HTTvi2oBUqlr6/ynSCgUUxph3WvuYUXDkwcEzuuiw1P36py5M6yWh6Ahdpnp17uQLmHTySqNnnKepG89D7LcaHWuiRL6J3GNMZUdBHFFZLQixeOUk0vkh13LrIfdKFQG5CWlqqJatFj4ADEeWDXipSSd+H9O8VTYJzKwTV4s=
+Received: from BY5PR13CA0029.namprd13.prod.outlook.com (2603:10b6:a03:180::42)
+ by DS7PR10MB4943.namprd10.prod.outlook.com (2603:10b6:5:3ac::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.31; Wed, 25 Mar
+ 2026 13:41:47 +0000
+Received: from BY1PEPF0001AE18.namprd04.prod.outlook.com
+ (2603:10b6:a03:180:cafe::7a) by BY5PR13CA0029.outlook.office365.com
+ (2603:10b6:a03:180::42) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9745.20 via Frontend Transport; Wed,
+ 25 Mar 2026 13:41:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ BY1PEPF0001AE18.mail.protection.outlook.com (10.167.242.100) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9745.21 via Frontend Transport; Wed, 25 Mar 2026 13:41:46 +0000
+Received: from DLEE211.ent.ti.com (157.170.170.113) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 25 Mar
+ 2026 08:41:24 -0500
+Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE211.ent.ti.com
+ (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 25 Mar
+ 2026 08:41:24 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 25 Mar 2026 08:41:24 -0500
+Received: from grumpy (grumpy.dhcp.ti.com [128.247.81.229])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62PDfO7h368912;
+	Wed, 25 Mar 2026 08:41:24 -0500
+Received: from reatmon by grumpy with local (Exim 4.97)
+	(envelope-from <reatmon@ti.com>)
+	id 1w5OU8-0000000Djqt-18IQ;
+	Wed, 25 Mar 2026 08:41:24 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
+	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master][PATCH] arago-prefs: Remove old settings
+Date: Wed, 25 Mar 2026 08:41:24 -0500
+Message-ID: <20260325134124.3274512-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <30965aea-5c51-41ee-b990-e856319aff90@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE18:EE_|DS7PR10MB4943:EE_
+X-MS-Office365-Filtering-Correlation-Id: 411f2d7f-a262-46c9-36e1-08de8a744277
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|376014|36860700016|82310400026|1800799024|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 
+	QNgOIpPlOzwlArAdVPmuD0PO5dxLBQDPyz1fJihJ0D93EqGhfzoJLbssGZIfE0FfAGPecTvLapLEX1F5J+BMHHG+oYf+gZkXCDXM0VmsZsXdreFQCKfh/nFbqVIa4cGflDSZKwTUEf7/M2sHFsOs3m9fdP5Q9bn3bmef2a9Qt/bhbHAmqNC3C9o1Ip9dPfU8LwG4fmS5jfVbumkHv7Yvr5DeLR0HLyIC3E2uHByVfUELGMvQQIIs3D8X+4div0IN1T6sUhfgoofTk3ZPce/6aCmCGXHH7nSJpXCfS3IskHc7yM1YVmX1XayhY234O9GKkNbzXnZsLSunzGE1pzUvlJ+FnBKmhGFf4qHd5Db2Ez2PNP7P5KsqfLgaVqZE15Jf7zEO5wvaYsj/ONHp1SL6hvGSnv2rKcEbvFGnctA4u2BwkBAbQL2/FsrgqTr/6JPXDryY2XOKzN9IRxEY3B4kVX12rwWIocnSd7BtOOdcFmXaXirmdCc9EpzP6gWxJMH0GbFg49qAdRHJBuXEil9qSVWaxh82N9TRSZ16Yi3G7llNnHdpvb2/vRbJxSWOFYEKU35crES/h1fQFxkdrhCSynemOf5NOgnMK0XZwwRhHvPA59qLZ5+5bd1TbB8UfLr9CovlUDfuVAgj7sO9bzhQrqotFVqXTpylKFNyp1K7knG5W9gKAtnF2CSb81xKHg5zieDOLGN4aIUWNa7goyFzEmAICxDPMp7DVewUNX0sM2Io3c4FAbl3VBE/WbBNjznDGFRWTf+O0bTaJ2sTY+twxQ==
+X-Forefront-Antispam-Report: 
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	fKYOEAs8De6LKRTpAaZ9OuXIX2BWCMAuVkvlRwCASAqI3shBWS1GRZrZiLFwXG+LZJNTKsiBG58kG3/4w1AE5ao3scCPShIPhUmguO0U0xvhM2Qef6zFR1YRNMPvueHqw2Yxze/Y0hWDfSS/4/yeSNQs9FFn8cDV0hbYjw/btGRvhbCX78NOCv1Lrt2K2MbwJysSl99/WqnyCFFM3K7H996CXRa8UHIQ5l9uDEXRrxCQ1+t960Z8CgdPR96A/zvNqWKRjwlUHW8HncYFb1suYp8xnVIEsye0RAxpq4WZhimJleG1JcUNsfBIJs8ML5WiIB4g6VprgigVuHqZK3ivUhQsyEIYBR5pF6ysrsaHqHOM78ngenNLmwn2tQd7kBJH0gXciZNLmhD5DD/PZk92wN1PiEjHAd4diZphwmMa4bvaqL0gE9JIl/T0I8idM61P
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 13:41:46.7763
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 411f2d7f-a262-46c9-36e1-08de8a744277
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	BY1PEPF0001AE18.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB4943
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 24 Mar 2026 18:27:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17430
+ <meta-arago@lists.yoctoproject.org>; Wed, 25 Mar 2026 13:41:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17431
 
-On Tue, Mar 24, 2026 at 01:20:06PM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
-> 
-> 
-> On 3/24/2026 1:14 PM, Denys Dmytriyenko wrote:
-> >On Mon, Mar 23, 2026 at 08:51:31PM -0400, Denys Dmytriyenko wrote:
-> >>On Mon, Mar 23, 2026 at 12:16:30PM -0500, Randolph Sapp wrote:
-> >>>On Sun Mar 22, 2026 at 2:26 PM CDT, Denys Dmytriyenko wrote:
-> >>>>On Fri, Mar 20, 2026 at 05:22:30PM -0500, Randolph Sapp via lists.yoctoproject.org wrote:
-> >>>>>On Fri Mar 20, 2026 at 5:14 PM CDT, Ryan Eatmon via lists.yoctoproject.org wrote:
-> >>>>>>Clean up a check layer error related to how this recipe was setup.
-> >>>>>>
-> >>>>>>Change the recipe to a bbappend instead of a new git version.  Apply all
-> >>>>>>of the changes that were made in the new recipe to the bbappend, and
-> >>>>>>remove the PREFERRED_VERSION in arago-prefs.inc.
-> >>>>>>
-> >>>>>>Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> >>>>>>---
-> >>>>>>  .../conf/distro/include/arago-prefs.inc       |  3 --
-> >>>>>>  .../mesa/mesa-demos-arago.inc                 | 17 ++++++++
-> >>>>>>  .../mesa/mesa-demos_9.0.0.bbappend            |  4 ++
-> >>>>>>  .../recipes-graphics/mesa/mesa-demos_git.bb   | 42 -------------------
-> >>>>>>  4 files changed, 21 insertions(+), 45 deletions(-)
-> >>>>>>  create mode 100644 meta-arago-distro/recipes-graphics/mesa/mesa-demos-arago.inc
-> >>>>>>  create mode 100644 meta-arago-distro/recipes-graphics/mesa/mesa-demos_9.0.0.bbappend
-> >>>>>>  delete mode 100644 meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb
-> >>>>>>
-> >>>>>>diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> >>>>>>index 4d1a6006..6a2faa53 100644
-> >>>>>>--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> >>>>>>+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> >>>>>>@@ -10,6 +10,3 @@ VIRTUAL-RUNTIME_dbus = "dbus-broker"
-> >>>>>>  # application that does not have a GPLv3 license
-> >>>>>>  PREFERRED_VERSION_crda = "3.18"
-> >>>>>>  PREFERRED_VERSION_obex = "0.34"
-> >>>>>>-
-> >>>>>>-# Bump mesa-demos to include some patches not in a tagged release
-> >>>>>>-PREFERRED_VERSION_mesa-demos = "9.0.0+git"
-> >>>>>>diff --git a/meta-arago-distro/recipes-graphics/mesa/mesa-demos-arago.inc b/meta-arago-distro/recipes-graphics/mesa/mesa-demos-arago.inc
-> >>>>>>new file mode 100644
-> >>>>>>index 00000000..5a5412c2
-> >>>>>>--- /dev/null
-> >>>>>>+++ b/meta-arago-distro/recipes-graphics/mesa/mesa-demos-arago.inc
-> >>>>>>@@ -0,0 +1,17 @@
-> >>>>>>+SECTION = ""
-> >>>>>>+
-> >>>>>>+LIC_FILES_CHKSUM:remove = "file://src/xdemos/glxgears.c;beginline=1;endline=20;md5=914225785450eff644a86c871d3ae00e"
-> >>>>>>+
-> >>>>>>+LIC_FILES_CHKSUM:append = " file://src/xdemos/glxgears.c;beginline=1;endline=20;md5=a481fbdb2ac800ecb12405c33bcfacae"
-> >>>>>>+
-> >>>>>>+SRC_URI = "git://gitlab.freedesktop.org/mesa/demos.git;protocol=https;branch=main"
-> >>>>>>+SRCREV = "02eae079cb0b8186064d5b194ca4cc2995f099ee"
-> >>>>>>+
-> >>>>>>+PV = "9.0.0+git"
-> >>>>>>+
-> >>>>>>+REQUIRED_DISTRO_FEATURES:remove = "x11"
-> >>>>>>+
-> >>>>>>+PACKAGECONFIG += "${@bb.utils.filter('DISTRO_FEATURES', 'wayland', d)}"
-> >>>>>>+
-> >>>>>>+PACKAGECONFIG[glut] = "-Dwith-glut=${STAGING_EXECPREFIXDIR},-Dglut=disabled,freeglut"
-> >>>>>>+PACKAGECONFIG[osmesa] = "-Dosmesa=enabled,-Dosmesa=disabled,"
-> >>>>>>diff --git a/meta-arago-distro/recipes-graphics/mesa/mesa-demos_9.0.0.bbappend b/meta-arago-distro/recipes-graphics/mesa/mesa-demos_9.0.0.bbappend
-> >>>>>>new file mode 100644
-> >>>>>>index 00000000..3b26e342
-> >>>>>>--- /dev/null
-> >>>>>>+++ b/meta-arago-distro/recipes-graphics/mesa/mesa-demos_9.0.0.bbappend
-> >>>>>>@@ -0,0 +1,4 @@
-> >>>>>>+MESA_DEMOS_ARAGO = ""
-> >>>>>>+MESA_DEMOS_ARAGO:arago = "mesa-demos-arago.inc"
-> >>>>>>+
-> >>>>>>+require ${MESA_DEMOS_ARAGO}
-> >>>>>>diff --git a/meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb b/meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb
-> >>>>>>deleted file mode 100644
-> >>>>>>index 2da3ceff..00000000
-> >>>>>>--- a/meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb
-> >>>>>>+++ /dev/null
-> >>>>>>@@ -1,42 +0,0 @@
-> >>>>>>-SUMMARY = "Mesa demo applications"
-> >>>>>>-DESCRIPTION = "This package includes the demonstration application, such as glxgears. \
-> >>>>>>-These applications can be used for Mesa validation and benchmarking."
-> >>>>>>-HOMEPAGE = "http://mesa3d.org"
-> >>>>>>-BUGTRACKER = "https://bugs.freedesktop.org"
-> >>>>>>-
-> >>>>>>-LICENSE = "MIT & PD"
-> >>>>>>-LIC_FILES_CHKSUM = "file://src/xdemos/glxgears.c;beginline=1;endline=20;md5=a481fbdb2ac800ecb12405c33bcfacae \
-> >>>>>>-                    file://src/xdemos/glxdemo.c;beginline=1;endline=8;md5=b01d5ab1aee94d35b7efaa2ef48e1a06"
-> >>>>>>-
-> >>>>>>-SRC_URI = "git://gitlab.freedesktop.org/mesa/demos.git;protocol=https;branch=main"
-> >>>>>>-SRCREV = "02eae079cb0b8186064d5b194ca4cc2995f099ee"
-> >>>>>>-
-> >>>>>>-DEFAULT_PREFERENCE = "-1"
-> >>>>>>-PV = "9.0.0+git"
-> >>>>>>-
-> >>>>>>-inherit meson pkgconfig features_check
-> >>>>>>-REQUIRED_DISTRO_FEATURES = "opengl"
-> >>>>>>-
-> >>>>>>-EXTRA_OEMESON = "-Dwith-system-data-files=true"
-> >>>>>>-
-> >>>>>>-PACKAGECONFIG ?= "drm egl gles1 gles2 \
-> >>>>>>-                  ${@bb.utils.filter('DISTRO_FEATURES', 'vulkan x11 wayland', d)}"
-> >>>>>>-
-> >>>>>>-PACKAGECONFIG[drm] = "-Dlibdrm=enabled,-Dlibdrm=disabled,libdrm"
-> >>>>>>-PACKAGECONFIG[egl] = "-Degl=enabled,-Degl=disabled,virtual/egl"
-> >>>>>>-PACKAGECONFIG[gles1] = "-Dgles1=enabled,-Dgles1=disabled,virtual/libgles1"
-> >>>>>>-PACKAGECONFIG[gles2] = "-Dgles2=enabled,-Dgles2=disabled,virtual/libgles2"
-> >>>>>>-PACKAGECONFIG[glut] = "-Dwith-glut=${STAGING_EXECPREFIXDIR},-Dglut=disabled,freeglut"
-> >>>>>>-PACKAGECONFIG[osmesa] = "-Dosmesa=enabled,-Dosmesa=disabled,"
-> >>>>>>-PACKAGECONFIG[vulkan] = "-Dvulkan=enabled,-Dvulkan=disabled,vulkan-loader glslang-native"
-> >>>>>>-PACKAGECONFIG[wayland] = "-Dwayland=enabled,-Dwayland=disabled,virtual/libgl wayland wayland-native wayland-protocols libxkbcommon libdecor"
-> >>>>>>-PACKAGECONFIG[x11] = "-Dx11=enabled,-Dx11=disabled,virtual/libx11 libglu libxkbcommon libxcb"
-> >>>>>>-
-> >>>>>>-do_install:append() {
-> >>>>>>-	# it can be completely empty when all PACKAGECONFIG options are disabled
-> >>>>>>-	rmdir --ignore-fail-on-non-empty ${D}${bindir}
-> >>>>>>-
-> >>>>>>-	if [ -f ${D}${bindir}/clear ]; then
-> >>>>>>-		mv ${D}${bindir}/clear ${D}${bindir}/clear.mesa-demos
-> >>>>>>-	fi
-> >>>>>>-}
-> >>>>>
-> >>>>>I still hate that layer conformance thinks this is the correct way to do what is
-> >>>>>essentially adding a new *optional* package version. Feels really backwards and
-> >>>>>gross, but I'm already picking other fights right now.
-> >>>>
-> >>>>In order for a new version of a recipe to be *optional*, it should not be
-> >>>>selected by bitbake by default.
-> >>>>
-> >>>>There are 2 ways to do this (besides making a bbappend):
-> >>>>
-> >>>>1. Use the same name, but lower the default preference DEFAULT_PREFERENCE="-1"
-> >>>>and still able to select it with PREFERRED_VERSION_mesa-demos="9.0.0+git"
-> >>>
-> >>>Yeah, I did that. You can see it in the patch above, being removed. The
-> >>>conformance still thinks it's wrong.
-> >>
-> >>Ah, indeed, missed that.
-> >>
-> >>Still not sure why the yocto-check-layer fails for this case...
-> >
-> >FTR, in our discussions during early days of YP Compat and yocto-check-layer
-> >several years ago, this was one of the correct methods to deal with multiple
-> >versions - see the comments here:
-> >https://bugzilla.yoctoproject.org/show_bug.cgi?id=12688
-> >
-> >Do you have the exact error message that the tool now prints?
-> 
-> Of course not.  I was just fixing the issue not documenting things.
-> I'll have to revert the patch to get the message.  I'll try and do
-> that sometime this week... if I can remember to...
+These settings refer to recipes that no longer exist.  Remove them.
 
-No worries, I'll try to reproduce it locally...
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ meta-arago-distro/conf/distro/include/arago-prefs.inc | 5 -----
+ 1 file changed, 5 deletions(-)
 
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-a=
+rago-distro/conf/distro/include/arago-prefs.inc
+index 6a2faa53..0bc2e8ff 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -5,8 +5,3 @@ PREFERRED_PROVIDER_virtual/kernel:append =3D "${ARAGO_KERNE=
+L_SUFFIX}"
+ PREFERRED_RPROVIDER_libnss-mdns =3D "avahi-libnss-mdns"
+=20
+ VIRTUAL-RUNTIME_dbus =3D "dbus-broker"
+-
+-# Setting PREFERRED_VERSIONS due to selecting a specific version of a libr=
+ary or
+-# application that does not have a GPLv3 license
+-PREFERRED_VERSION_crda =3D "3.18"
+-PREFERRED_VERSION_obex =3D "0.34"
+--=20
+2.43.0
 
-> >>>>2. Use a different name e.g. mesa-demos-arago and set PROVIDES="mesa-demos" -
-> >>>>allows selecting it with PREFERRED_PROVIDER_mesa-demos="mesa-demos-arago"
 
