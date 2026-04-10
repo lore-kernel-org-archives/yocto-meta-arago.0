@@ -1,188 +1,275 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <a-christidis@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA175F44863
-	for <webhook@archiver.kernel.org>; Fri, 10 Apr 2026 13:08:32 +0000 (UTC)
-Received: from SA9PR02CU001.outbound.protection.outlook.com (SA9PR02CU001.outbound.protection.outlook.com [40.93.196.29])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.155698.1775826509394295630
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 17AB5F459F5
+	for <webhook@archiver.kernel.org>; Fri, 10 Apr 2026 15:21:07 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (SN4PR0501CU005.outbound.protection.outlook.com [40.93.194.14])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.159083.1775834460031564579
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 10 Apr 2026 06:08:29 -0700
+ Fri, 10 Apr 2026 08:21:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=GDzmWCgm;
- spf=pass (domain: list.ti.com, ip: 40.93.196.29, mailfrom: prc@list.ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=YXS/HrFI;
+ spf=pass (domain: ti.com, ip: 40.93.194.14, mailfrom: a-christidis@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dCbOsX/SrNyJXRwKf/R/L7+hg0oC1mAuHjUg8RiJulbb9ZtQTho//3jmRtaqlCgQQqdzZUTzc6RZH9vJVEoc5Uy3lDnyCnB7QbVj1P596AHCDVrZyOeRhmtcmcX/KtqJmSyyFbDtEukt0hs/KYzYRdfgGFWfPSZfzrekBIx5X+XutElsqV+B+gKbQpKNF40MwDpg4v8M4p9oyKNRuTJUZRPlk26Zox0jZfAgbr6xGWE2rytRbhlEhb1l3024DPR1jxQR0gGc/YVqUmt5Z4CU0gTiYV7OI4Ks1Do5qK7QpPz09CDZW4wofSdMYRwvZCMP6KKs4+Paq6FhFtSEOQbNYQ==
+ b=jG1tTdR6BU9llVSFLCRTjlQ2z5pqB1UzSm6qXNdHOZJapDf8+fqUHYqMv2YMGTzKHpiv67rYWNf1PxOkvqEZgjJGqWARIG7xFJXl81k2FMiV5D7HBz6c85T5H0qnrmtePuxoE5yjEVPQKODUVXqnzVA9nrAhEygcAPLT/SRuiih9hIo48xzbf4OB6HkIbimECZ3rjP9hkB5wSfERgpQDjPIG8GiAD2R1pMqajLZeBHzvWL1inVW72Wik9sesdeNsrSqWhTnjTAGU2ghuqTkgaa9XmnnpItJZT2cPnFIGcbbSm6QMbdSqjvM8X4iTDKNY5V5+RhwbeNpIQ68TZFEzaQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jcEe72sO9dAEWmVM0xDA1HT+UWaOiesxN8BaaaLoSgU=;
- b=ySFIaVJJ9LvtbpygxqjduZ2RAkIy6ys2OOXRbOF08vJm+2FcvN6xZVjbMn+T2vaJEYqL75Bqd/skqijs4dJewm3AjdNxrMv/2iWUYXJQkUlUZOCIi+JFhttu8vMa2FmR16Ep7Gzno7MiyVq4YxAZohqYsLp0wfO3SnUFyvht7y+HJbhD5KjUMgUGRGcyL/U40WBECSViG32binkfcGC926OLo2GoXjIvLao3OVtyvBXSLQ6WI25YdWblFyNwbkTNQiAtGehb27zz21zWGq1ZsKNt5TqOFWtJ3tKfVun/zjNFcXmaD0v6sHyEQvcRNrR2ogrWDl6tFx2PQt+dNVV54g==
+ bh=SP///meziT4jAkSmrhpjNC9FOI/woUH6rszqNHdxKHM=;
+ b=gBUhRs8S/xqj3wC79fK2d/y4uJ8CjgynQE6oQXSbrsMVIsNwDsPq84baCvx2bOn2RHrG+NoD9h0LIQtqWmJL3Wu3p3BV3nzkz0c/2NZfZcD2kmZZmWLxPn7jU2UidgvKQrv55dm1XP87uvvvn+DeoTiaftqAy9PgZcrAfzTRtgVw0svbbKPga7dOhJqtA5VrHBCK3cu+zQnvtb0vOOE7YljcovxQgWfk563+0J0SNh4Ermz5fNrYtjJ2Ic2fXnvPIerfUbK6+JF59moXH4bSgpcHRqQUoAxdPy7rrh1T8p3+DzRglBO0OUI0K1aW8MSmyaj7NL4UPYjaIIKzdOOysw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
- s=selector1;
+ 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jcEe72sO9dAEWmVM0xDA1HT+UWaOiesxN8BaaaLoSgU=;
- b=GDzmWCgm351W3S58A1AmXId7ihFKx/3KLhPYpgvyAQF7FTHHbnLkohissMgqNgdYvCiT7/oDsX27qthJ8L+nQ02p2H2FtxfY7nGahaK/MNAWYrCht/hxdGR4sp+xOavTZiNQjtZC4PFeUdoPBH3sYbYv0PlCjrPdj/Ev6Sy0aYyt5a7FVVZSPTyMPewaHXlei7Qj9P3xJ7sLX0q64dVzrXBLNMTCXye81bCDucq4trsfMN8y5kiJOb8ojzrwjIcz3nfjpnY6Iqktm+f6lJrvWaZKJZCQ5ktppUnIP9rGf4H2uZ3INNXTG2wySS4RHTAa6ejxJmOHM8wTJg3DQZrokA==
-Received: from DM6PR18CA0032.namprd18.prod.outlook.com (2603:10b6:5:15b::45)
- by SJ2PR10MB7785.namprd10.prod.outlook.com (2603:10b6:a03:56b::10) with
+ bh=SP///meziT4jAkSmrhpjNC9FOI/woUH6rszqNHdxKHM=;
+ b=YXS/HrFIDbhzvqMiDjxIYhWxwUAMob0+b+HAAyg/XV8LS34Kw0uGUrJmUV18Ec8z+l1pOS1yN9jGA2uXWQjIF1MREz5W20dgcVzVXFIOiokrlvIBvy+rWlvLvsEGayLuWVE2FUo4M93BsQ4rXK3AjkQA+zgjlchfzsDxgukpN+c=
+Received: from BYAPR05CA0073.namprd05.prod.outlook.com (2603:10b6:a03:e0::14)
+ by CO1PR10MB4404.namprd10.prod.outlook.com (2603:10b6:303:90::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Fri, 10 Apr
- 2026 13:08:26 +0000
-Received: from CH3PEPF00000011.namprd21.prod.outlook.com
- (2603:10b6:5:15b:cafe::78) by DM6PR18CA0032.outlook.office365.com
- (2603:10b6:5:15b::45) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.41 via Frontend Transport; Fri,
- 10 Apr 2026 13:08:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=list.ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=list.ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- CH3PEPF00000011.mail.protection.outlook.com (10.167.244.116) with Microsoft
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.42; Fri, 10 Apr
+ 2026 15:20:57 +0000
+Received: from CO1PEPF000075F3.namprd03.prod.outlook.com
+ (2603:10b6:a03:e0:cafe::6b) by BYAPR05CA0073.outlook.office365.com
+ (2603:10b6:a03:e0::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.40 via Frontend Transport; Fri,
+ 10 Apr 2026 15:20:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ CO1PEPF000075F3.mail.protection.outlook.com (10.167.249.42) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9818.0 via Frontend Transport; Fri, 10 Apr 2026 13:08:26 +0000
-Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9745.21 via Frontend Transport; Fri, 10 Apr 2026 15:20:55 +0000
+Received: from DFLE208.ent.ti.com (10.64.6.66) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 10 Apr
- 2026 08:08:20 -0500
-Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 10:20:31 -0500
+Received: from DFLE214.ent.ti.com (10.64.6.72) by DFLE208.ent.ti.com
+ (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 10 Apr
- 2026 08:08:20 -0500
-Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DLEE205.ent.ti.com
- (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 10:20:30 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE214.ent.ti.com
+ (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 10 Apr 2026 08:08:20 -0500
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 63AD8KIK3241977;
-	Fri, 10 Apr 2026 08:08:20 -0500
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id 5D5479ACF4; Fri, 10 Apr 2026 08:08:20 -0500 (CDT)
-From: PRC Automation <prc@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>
-CC: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko
-	<denys@konsulko.com>, <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago][master][PATCH] gstreamer1.0-plugins-good: Upgrade from 1.26 to 1.28
-Date: Fri, 10 Apr 2026 08:08:20 -0500
-Message-ID: <20260410130820.2766945-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20260410124117.1847885-1-reatmon@ti.com>
-References: <20260410124117.1847885-1-reatmon@ti.com>
+ Transport; Fri, 10 Apr 2026 10:20:30 -0500
+Received: from [128.247.81.216] (antonios-thinkstation-p3-tower.dhcp.ti.com [128.247.81.216])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 63AFKU241599177;
+	Fri, 10 Apr 2026 10:20:30 -0500
+Message-ID: <a651e6b1-ee4c-401c-a614-88a7310b2f0d@ti.com>
+Date: Fri, 10 Apr 2026 10:20:30 -0500
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][master][PATCH] gstreamer1.0-plugins-good: oe-core
+ v126->128 migrate bbappends
+To: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denis@denix.org>
+CC: <denys@konsulko.com>, <b-brnich@ti.com>,
+	<meta-arago@lists.yoctoproject.org>
+References: <20260409213918.1020996-1-a-christidis@ti.com>
+ <20260409222737.GC11121@denix.org>
+ <d2404ffd-61b0-4562-a383-9579cc8d01ab@ti.com>
+Content-Language: en-US
+From: Antonios Christidis <a-christidis@ti.com>
+In-Reply-To: <d2404ffd-61b0-4562-a383-9579cc8d01ab@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000011:EE_|SJ2PR10MB7785:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6bd1667d-5fd1-4bf4-44a6-08de970240c6
+X-MS-TrafficTypeDiagnostic: CO1PEPF000075F3:EE_|CO1PR10MB4404:EE_
+X-MS-Office365-Filtering-Correlation-Id: 23746747-5ab2-47e7-9e0b-08de9714c2a3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700016|56012099003|22082099003|18002099003;
+	BCL:0;ARA:13230040|1800799024|376014|36860700016|82310400026|56012099003|18002099003|22082099003;
 X-Microsoft-Antispam-Message-Info: 
-	hTUDv2bJ8fE0uIYzDPKWfJnXmZ46Cg7jcVkltnca1xu8ZUxc0yE8OvPBACagbQ7fNCPz4DPGDBbHSiP0kJJ5wNYT+MGWsHkhBZ/kpTmqUsWCmwBHdmxdfGHTr6nFy5To2uQyBwDHPeHKVd93Bb0OSe1Jsxamir4iCv5VrkwapXH88iL1sIOZZr5zgiJWCKn0M3CkKZGVwo7olVWryQcP9tGiyEv4lWvhgcX895bxv8NzkROpsJgbXzNHtgG+HCb/lXICm3CLS57SlQcKsimu30NmZCDmpFKvUNCyiz3z9mXv1f7RXWn9OVBatQ6Yyrk6zTP0F4WfhJLyQ0TrfxFHrj7Pmc8cYrXFS3vGbmFGFMOIUa9+V2YzXMPr/aHzgR1CQSM7UkgqBlGWmD2WpwFVs5cw72Gt4iIPPRp0mqv+PQnxmpGM9TYzgcDta95j3TfyvDPtkE5z9C3hM8YeY0EbwEepBEHdH2+W1ayWo4n7HB9sXX6USO17JOZTRq1TtQfpozrH4ibBhvp3r3xlgif2lgiwsTOOjZGLCUzSEkmOddd9nI2sdVO29JtWU0Luszxi+hx+M5k6yXnDXVzabZvPjqmln2adAnxdvMQKIGhtqHcuoIAqEaD/7ZRn+ZcSj8cBd2+0dIyTbbJRlp1ldVz5qRz5DZeKw+kd8pOQnp6D4H4SJlfLhM5kvRXKLYP71ux2OKARLUpWEePHxY+lh4AtLa+0sa1usWHJ+y1mDsKcTjG6fhKvhP5qLObzLx565Q9HGsYrJOAuPlWjgq6omJo8sw==
+	bm9TApeTZwJUT9xr0IIXuXuSVs/m46e80p/SeXGFiA5H7AkYxRJyBdLanzwP7V9/Vsvo9Ckj9kSxPLJ5pG49RdqDxPD152qPythcA4WJ84i+d35s4oL0TX/W5jc8slC5psCHIu0T/i0IPg6n2mTRL3VoRNvVUfy3mM6fVCdOjw35iwanr/claHp5jfd10J+EF5l0NrpYPuVjvwDgdvRIAx1jOtuJNZcFw7vQgyB+Vp9+c4Z3FWtgxuJCR/ImlRsfSAPrsjZiRWM07v9IVek/FdU39/wGrA1aOP26Uy9YBOUhMr9Z+leTxMm2QJORpsNsoe+V6oTC/IYdwAKRMwV05YDSlertM6RM6z8hdNpZZbgE1YscMWi5u9HFAnSnYACZL4S1S/dGVjlyssMcVP88YC1gbMFvHRVVzsgwi36AP4BRDvC+vbw+wjYJneLcoCcjQMikmVpNMqxtqVxyoRlbaIzhxCLZvdE6ica5hsl3ekc60by9zxFO1z91a5ydLnQ9qI4Wbyb/MA8MDpaMeBSJYNIdlNl/GypNC3dOwhTBlGV1NXKWM8TBPgqM5KLEKuOrN002C+51TEoz/R238BcgGYoJh+xtkjjs09MlvoPBMU4MxECosvNpzq5YWbiu3LnnwS0kF0rMF9C3sM+rZYfNJV7jv+IWHwwxapJbqHMnorjCM8fGxJEZ6Qnc5kGJgJ0yOqbb5lfm9dnHkUi7mJCBj786Hliz40bpXAnEttgD7+XQ1ACeXlhMW6u0jYDu71/7Rs8GnuYT6a3KtWQ2jz0xFQ==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700016)(82310400026)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	nrwdXw1SC5ABEUs/Bt2+8lD78owuAJBRJTskWBodzgBVzNnzXPIfBJsZ1D35oncnkNIVBwy5AJItMHkaWfgxs9XJt10uKV0QWd6ZIbEEDC7Ugmm3/31c3TfwI/YOi5D6o2Rjn463iMW/fow5fB4ZrhPkJjeCbLai0ZWE3qLmcuGq9yv8hNL1oom2J7lvevVHkYzrjj3PLld+ryuAtPdAMZvvRN60O7PMddypFqRMgX505xHWjeUi2CrSoBFATjK59dCwIprsudQULu1AL3tuVVgNiPDrjmqsXFTVnrZU2EY9Ojau/K+8MICR9eQRaZS8DMfC6Rt9NOO5Ex40AWCzZSs21C4mJbNigySBZwfquRMzFcSSxRRhiXhwvF32AJ+O6667jEDJASELYxal9tKiTR/qBuMBBTD5/9v7Z4pNjCXFa7AVtPC/oZRait1bFcWd
-X-OriginatorOrg: list.ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 13:08:26.4712
+	0B17RuECJ0g5zidfH7YvPABkP43CPhNXCpumbvcC05MjXSWate6qvl6utH2awqdfKtXCW7NfX7/N3OIq22juskiEgzHixobjGI3E0mFJfmidE+duFm3DNrGNIeTKVcHi59NlWahs30Gu1YpWlt6Y+1677rSbxTW3BpmrureHCCmP603ZpZvLzcAeqax73To/9TqMe0KyIP4naoKT9S95ttjqcesUVRFxgI73hd3lIT2Zos/Y0DjXBhICN3xdepaYmpjBHOZ+4JJrNq4FEa47zIl0HgPqcdnH+3NB/5xrzRXkHptgk/gelNR47dKLnFwoo+yWLFxyLaLdsztOxBwNBYB7C5ufdHmTbsqh6O9kDkxt9G3Q7Y/XgxTp4lbzRCcjBLFTJx83/TJ7EoBMEBIBFoQcl5lAX4ffv67zXFK0iHwhrVsfNy3eo8haje3hrWEL
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 15:20:55.2546
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6bd1667d-5fd1-4bf4-44a6-08de970240c6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23746747-5ab2-47e7-9e0b-08de9714c2a3
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	CH3PEPF00000011.namprd21.prod.outlook.com
+	CO1PEPF000075F3.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR10MB7785
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR10MB4404
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 10 Apr 2026 13:08:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17463
+ <meta-arago@lists.yoctoproject.org>; Fri, 10 Apr 2026 15:21:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17464
 
-meta-arago / na / 20260410124117.1847885-1-reatmon
+Ok make sense, cause I checked the mailing list and no patch was sent so=20
+I sent mine.
 
-PRC Results: PASS
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Patches
-----------------------------------------
-All patches passed
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  apply-yocto-patch: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [meta-arago][master][PATCH] gstreamer1.0-plugins-good: Upgr=
-ade from 1.26 to 1.28
-- Submitter: From: Ryan Eatmon <reatmon@ti.com>
-- Date: Date: Fri, 10 Apr 2026 07:41:17 -0500
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: a349641f71af545828b7f6d18fa166b9f=
-824d2fe
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Ryan Eatmon <reatmon@ti.com>
-- Commit Subject: mesa-demos: Flip to a bbappend
-- Commit SHA: bb4c958d05baacb1002163ed922196637d19f691
-
-Patches
-----------------------------------------
-All patches applied
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-repo: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-PASS
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  yocto-check-layers: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master - PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-All checks passed
-
-
-
+On 4/10/26 7:42 AM, Ryan Eatmon wrote:
+>
+>
+> On 4/9/2026 5:27 PM, Denys Dmytriyenko wrote:
+>> On Thu, Apr 09, 2026 at 04:39:18PM -0500, Antonios Christidis via=20
+>> lists.yoctoproject.org wrote:
+>>> From: Antonios Christidis <a-christidis@ti.com>
+>>>
+>>> Fix bbappend files to apply onto the new recipe from oe-core now
+>>> versioned at 128 instead of 126.
+>>
+>> https://git.yoctoproject.org/meta-arago/commit/?h=3Dmaster-wip&id=3Dc923=
+bf7b5b67b7261583f330dbe9ba22a2076b6f=20
+>>
+>
+> Yep.=C2=A0 I was testing the builds to make sure that the version change=
+=20
+> didn't require any patch changes.=C2=A0 So I didn't want to send the patc=
+h=20
+> until the builds were done.
+>
+> Just sent my patch.
+>
+>
+>>
+>>> Signed-off-by: Antonios Christidis <a-christidis@ti.com>
+>>> ---
+>>> .../gstreamer/gstreamer1.0-plugins-good_1.26.%.bbappend | 4 ----
+>>> =C2=A0 ....26-arago.inc =3D> gstreamer1.0-plugins-good_1.28-arago.inc} =
+| 0
+>>> .../gstreamer/gstreamer1.0-plugins-good_1.28.%.bbappend | 4 ++++
+>>> .../gstreamer/gstreamer1.0-plugins-good_1.26.%.bbappend | 4 ----
+>>> =C2=A0 ....26-arago.inc =3D> gstreamer1.0-plugins-good_1.28-arago.inc} =
+| 0
+>>> .../gstreamer/gstreamer1.0-plugins-good_1.28.%.bbappend | 4 ++++
+>>> =C2=A0 6 files changed, 8 insertions(+), 8 deletions(-)
+>>> =C2=A0 delete mode 100644=20
+>>> meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer=
+/gstreamer1.0-plugins-good_1.26.%.bbappend
+>>> =C2=A0 rename=20
+>>> meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer=
+/{gstreamer1.0-plugins-good_1.26-arago.inc=20
+>>> =3D> gstreamer1.0-plugins-good_1.28-arago.inc} (100%)
+>>> =C2=A0 create mode 100644=20
+>>> meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer=
+/gstreamer1.0-plugins-good_1.28.%.bbappend
+>>> =C2=A0 delete mode 100644=20
+>>> meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-goo=
+d_1.26.%.bbappend
+>>> =C2=A0 rename=20
+>>> meta-arago-extras/recipes-multimedia/gstreamer/{gstreamer1.0-plugins-go=
+od_1.26-arago.inc=20
+>>> =3D> gstreamer1.0-plugins-good_1.28-arago.inc} (100%)
+>>> =C2=A0 create mode 100644=20
+>>> meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-goo=
+d_1.28.%.bbappend
+>>>
+>>> diff --git=20
+>>> a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.26.%.bbappend=20
+>>> b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.26.%.bbappend=20
+>>>
+>>> deleted file mode 100644
+>>> index 0ceb558c..00000000
+>>> ---=20
+>>> a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.26.%.bbappend
+>>> +++ /dev/null
+>>> @@ -1,4 +0,0 @@
+>>> -GSTREAMER1p0_PLUGINS_GOOD_1p26_ARAGO =3D ""
+>>> -GSTREAMER1p0_PLUGINS_GOOD_1p26_ARAGO:arago =3D=20
+>>> "gstreamer1.0-plugins-good_1.26-arago.inc"
+>>> -
+>>> -require ${GSTREAMER1p0_PLUGINS_GOOD_1p26_ARAGO}
+>>> diff --git=20
+>>> a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.26-arago.inc=20
+>>> b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.28-arago.inc=20
+>>>
+>>> similarity index 100%
+>>> rename from=20
+>>> meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer=
+/gstreamer1.0-plugins-good_1.26-arago.inc
+>>> rename to=20
+>>> meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstreamer=
+/gstreamer1.0-plugins-good_1.28-arago.inc
+>>> diff --git=20
+>>> a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.28.%.bbappend=20
+>>> b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.28.%.bbappend=20
+>>>
+>>> new file mode 100644
+>>> index 00000000..e8392833
+>>> --- /dev/null
+>>> +++=20
+>>> b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.28.%.bbappend
+>>> @@ -0,0 +1,4 @@
+>>> +GSTREAMER1p0_PLUGINS_GOOD_1p28_ARAGO =3D ""
+>>> +GSTREAMER1p0_PLUGINS_GOOD_1p28_ARAGO:arago =3D=20
+>>> "gstreamer1.0-plugins-good_1.28-arago.inc"
+>>> +
+>>> +require ${GSTREAMER1p0_PLUGINS_GOOD_1p28_ARAGO}
+>>> diff --git=20
+>>> a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-g=
+ood_1.26.%.bbappend=20
+>>> b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-g=
+ood_1.26.%.bbappend=20
+>>>
+>>> deleted file mode 100644
+>>> index 0ceb558c..00000000
+>>> ---=20
+>>> a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-g=
+ood_1.26.%.bbappend
+>>> +++ /dev/null
+>>> @@ -1,4 +0,0 @@
+>>> -GSTREAMER1p0_PLUGINS_GOOD_1p26_ARAGO =3D ""
+>>> -GSTREAMER1p0_PLUGINS_GOOD_1p26_ARAGO:arago =3D=20
+>>> "gstreamer1.0-plugins-good_1.26-arago.inc"
+>>> -
+>>> -require ${GSTREAMER1p0_PLUGINS_GOOD_1p26_ARAGO}
+>>> diff --git=20
+>>> a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-g=
+ood_1.26-arago.inc=20
+>>> b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-g=
+ood_1.28-arago.inc=20
+>>>
+>>> similarity index 100%
+>>> rename from=20
+>>> meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-goo=
+d_1.26-arago.inc
+>>> rename to=20
+>>> meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-goo=
+d_1.28-arago.inc
+>>> diff --git=20
+>>> a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-g=
+ood_1.28.%.bbappend=20
+>>> b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-g=
+ood_1.28.%.bbappend=20
+>>>
+>>> new file mode 100644
+>>> index 00000000..e8392833
+>>> --- /dev/null
+>>> +++=20
+>>> b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-g=
+ood_1.28.%.bbappend
+>>> @@ -0,0 +1,4 @@
+>>> +GSTREAMER1p0_PLUGINS_GOOD_1p28_ARAGO =3D ""
+>>> +GSTREAMER1p0_PLUGINS_GOOD_1p28_ARAGO:arago =3D=20
+>>> "gstreamer1.0-plugins-good_1.28-arago.inc"
+>>> +
+>>> +require ${GSTREAMER1p0_PLUGINS_GOOD_1p28_ARAGO}
+>>> --=20
+>>> 2.34.1
+>
 
