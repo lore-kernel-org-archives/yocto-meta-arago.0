@@ -1,194 +1,585 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <s-tripathi1@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 909D4F5A8BC
-	for <webhook@archiver.kernel.org>; Mon, 20 Apr 2026 20:23:56 +0000 (UTC)
-Received: from DM5PR21CU001.outbound.protection.outlook.com (DM5PR21CU001.outbound.protection.outlook.com [52.101.62.52])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.3260.1776716631394169927
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C1C9AF327C5
+	for <webhook@archiver.kernel.org>; Tue, 21 Apr 2026 08:35:27 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (SN4PR0501CU005.outbound.protection.outlook.com [40.93.194.6])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.17153.1776760527266942526
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 20 Apr 2026 13:23:51 -0700
+ Tue, 21 Apr 2026 01:35:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=Zcfkixtl;
- spf=pass (domain: list.ti.com, ip: 52.101.62.52, mailfrom: prc@list.ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=ocdGyE05;
+ spf=pass (domain: ti.com, ip: 40.93.194.6, mailfrom: s-tripathi1@ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Jr4LHnfn4HjrAnt7eg/kJON9NFi2A1t21RIz+wDfkxN+Ng4w+sb/TKuoRHlJ6uOHRReCtMy1NYtL0wR4P31rGBbKnfXHN7d3v7GACqwMa9ViGF17CAyNdqc3Cd1PBRqJsyUaEaKSQ1PWwSFcXpY5RE3EXflaADk16QsJ04H/BVhUyZsDtgLesWeOavrYZyRNKYQGyTwtixdqiFietRv4bvt4JdaH1yAoH3dv2MI/0KtOpLCjm2JuHg0QW92sKOceZ77RuxMlq2PNXcsRowrfk+36snOSamtVuXW3PwHiu1lGsprdQyHmcZMFffpK0mai0XF4/ibbPETtDNkNUihXfQ==
+ b=jCYmmSehdGOsxnYmPz+96aFHW9nqI3B87a/ePv2Wdlp62a9xirq1fgEZmjK2UpKZgZJV+rAPnrmCuY+/rb0fzEuromIPMp5tTg3KVr6teWuRNzE7FmOcxXV1dwQKHbJOrbO6EXtkkBDvtBdXlOrl3I8yQ3j3ri5jU4M4SBZZB69E83kICgxifFXV3c7WEWI8B+IvQiDIrAkcbaO2Rd3clHPKE+/YtYX8IDqHYCT2cGVuy/yJqw37EkStSB++zHPJGTFL3IS+foU6yu4GDZIdowljcTLQoRlakhZjD07JTAo5xnf/d6ILdYxNrZz5elDEMjP0ZgcgwRvU+orjCOYVVw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2fS0X0m/qx+4mTpF7/P9FYfgb4qRyLDfpUbmAxhyiP4=;
- b=oRkMw+1Avo5aJAf3XOVvCK64IuTB/+AikN4+9TBo4XedWxK3FUeK6/XhW6slIUP2FNp0dxhWY3Z21dleWO0NRCb5S/uIM8b7wycHkh6P8GS1WKKTKmf9qLDh9vc4dr7suRaQBt4qMLXOn8SvUwxUVC5KzA9GoRcoof4Z72f4p3KAUppBedBwDJjs2t3hTub6ysViMSL9nRlIeXE/nZGOVfP4oYlHS4/iTjKBCUHay9ecFf9g44Rba49HhiVRaNnqvO7atSWufu9qIGKFen7mttsyyIET6SALk2i9LymK6XqYGw0+Q6jL28vJA3djZOWTDoY4HTxap1LlrarKt/BtaQ==
+ bh=LEbRBfAtvsjcg1OUzvlOG4wqhnfbPXLhRCilgrSDLrI=;
+ b=TzgCcJOxggzOG/APjb7l6acDybEXsfyUKLebbS3++juqRmNgSiJuPNKxxcJ4WmMVUEN1buuviPsk9iZezboEmD468sJXGVoHsGwsRH78xT3FmRNiN7jpiaYiLbbJqPmkwKyfqs9BvGMAgAQqRrWgms13PfHMM2F+pgTKVk3c4tApVShBj1g9vARxm/K8Jl86Y/pKSS/+19o9GHcRYG7E6kVPcaQwPErwJ+nVkvX7RjxwlIE/abofbAtgSZJPqZrGbxOz8hkn3G/UNsww93xG7iRyQ7djSG+laIgE9WALx7Xalu2Lt6281VeLbXolQdrdv5/bSX7ZxJXY2boB3kEM0g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
- s=selector1;
+ 198.47.23.194) smtp.rcpttodomain=konsulko.com smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2fS0X0m/qx+4mTpF7/P9FYfgb4qRyLDfpUbmAxhyiP4=;
- b=ZcfkixtlVwV1WU0VETzy3X14g5BzJyEgUZNJm1xtg5QGqgfZsw456XAjDcFPlC1rfQbcmQqT/oOaqVYXYpA/s5/E6WCrFclrjnOEksseR1aEkuMzi6jHCKSQLB4lUYSzgHSPQUztGdLOGAHMSk8hI08D3qCVvC3vk7O57MaaOS58q6saZp+cOJWloJVt3St5VVR95J+c39//Z6xAGsnHL9ljXYz2SnqEKATX+fBkBdM0R/qy2Poycp0ve3UnV7Y0lrqwVCvmyd2b2Oglw+EzKwZ4Xn8uaNlTzWF4k7zOfbGp0GKcGA4u1JXdQ9ossdYwsu9uJK885YavxXuedC+APg==
-Received: from CH5P222CA0006.NAMP222.PROD.OUTLOOK.COM (2603:10b6:610:1ee::27)
- by SJ0PR10MB4704.namprd10.prod.outlook.com (2603:10b6:a03:2db::12) with
+ bh=LEbRBfAtvsjcg1OUzvlOG4wqhnfbPXLhRCilgrSDLrI=;
+ b=ocdGyE05pH2V0IqBxFfG6KMJAvpt02y/dvQ2vDANm6mSRxX0kINO2tuuOv9YMRcnw9ikimTj1MBVxHu3/Z5CdQV1di6tZYn+tQ7JljFvbJF80qYpnnPqQC1AaPcZRziS9bqeFS/rPSlzTEEzap3XtqxIoH0mmhsZ0CqhEcMeZyk=
+Received: from DS7PR03CA0192.namprd03.prod.outlook.com (2603:10b6:5:3b6::17)
+ by DS0PR10MB7068.namprd10.prod.outlook.com (2603:10b6:8:144::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.32; Mon, 20 Apr
- 2026 20:23:44 +0000
-Received: from CH1PEPF0000AD77.namprd04.prod.outlook.com
- (2603:10b6:610:1ee:cafe::9b) by CH5P222CA0006.outlook.office365.com
- (2603:10b6:610:1ee::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9791.48 via Frontend Transport; Mon,
- 20 Apr 2026 20:23:43 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=list.ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=list.ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CH1PEPF0000AD77.mail.protection.outlook.com (10.167.244.55) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9791.48 via Frontend Transport; Mon, 20 Apr 2026 20:23:42 +0000
-Received: from DLEE210.ent.ti.com (157.170.170.112) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 20 Apr
- 2026 15:23:42 -0500
-Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE210.ent.ti.com
- (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 20 Apr
- 2026 15:23:41 -0500
-Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.33; Tue, 21 Apr
+ 2026 08:35:24 +0000
+Received: from DS3PEPF0000C37D.namprd04.prod.outlook.com
+ (2603:10b6:5:3b6:cafe::e9) by DS7PR03CA0192.outlook.office365.com
+ (2603:10b6:5:3b6::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9791.48 via Frontend Transport; Tue,
+ 21 Apr 2026 08:35:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ DS3PEPF0000C37D.mail.protection.outlook.com (10.167.23.7) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9791.48 via Frontend Transport; Tue, 21 Apr 2026 08:35:24 +0000
+Received: from DLEE211.ent.ti.com (157.170.170.113) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 21 Apr
+ 2026 03:35:23 -0500
+Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE211.ent.ti.com
+ (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 21 Apr
+ 2026 03:35:23 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 20 Apr 2026 15:23:41 -0500
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 63KKNfxf2688500;
-	Mon, 20 Apr 2026 15:23:41 -0500
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id B68F113F51C; Mon, 20 Apr 2026 15:23:41 -0500 (CDT)
-From: PRC Automation <prc@list.ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-CC: <meta-arago@lists.yoctoproject.org>, "Denys Dmytriyenko (TI)"
-	<denys@konsulko.com>
-Subject: Re: [master][PATCH] mesa-demos: set default PREFERRED_VERSION
-Date: Mon, 20 Apr 2026 15:23:41 -0500
-Message-ID: <20260420202341.851581-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20260420195557.22133-1-denis@denix.org>
-References: <20260420195557.22133-1-denis@denix.org>
+ Transport; Tue, 21 Apr 2026 03:35:23 -0500
+Received: from HP-Z2-Tower-G9.dhcp.ti.com (hp-z2-tower-g9.dhcp.ti.com [10.24.68.200])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 63L8ZKVQ4161974;
+	Tue, 21 Apr 2026 03:35:21 -0500
+From: Shiva Tripathi <s-tripathi1@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: <reatmon@ti.com>, <denys@konsulko.com>, <k-malarvizhi@ti.com>,
+	<vishalm@ti.com>, <j-sahu@ti.com>, <s-tripathi1@ti.com>
+Subject: [meta-arago][oe-layersetup][master][PATCH v2] processor-sdk: Add luks config for Sitara SDK 12.00.00 Release
+Date: Tue, 21 Apr 2026 14:04:47 +0530
+Message-ID: <20260421083447.1555153-1-s-tripathi1@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD77:EE_|SJ0PR10MB4704:EE_
-X-MS-Office365-Filtering-Correlation-Id: 78fadb76-a342-4420-8f7c-08de9f1ab748
+X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37D:EE_|DS0PR10MB7068:EE_
+X-MS-Office365-Filtering-Correlation-Id: 97f7d80d-4afc-41dc-9167-08de9f80eea6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|36860700016|1800799024|376014|82310400026|56012099003|22082099003|18002099003;
+	BCL:0;ARA:13230040|36860700016|1800799024|376014|82310400026|20052099010|13003099007|56012099003|18002099003;
 X-Microsoft-Antispam-Message-Info: 
-	QbKFLrv72N8aakRTunxKdSGtYsOW9wJ2PgLkHVS2uJHVuSGctyTIAy5gyaQ1ZU1gi3Ch4gKkIiPSW1OD0IDS+Wpq5RS1gMNCBa0KVNuAAxuOPBtjU6mesUKrmb2ewBWcOLXQ4QsGZoyFvfX7mOyhXMH0xPEtWJIJXxkV50vEGIxGF65KB5o2GYHUHIbfdeG4NlfFaV72RlFTlH2+tfLHzbe2r1o8+x+vc8BUIu7Y6wptR7DoCG9TDnGAAs8beqY7Eph8YriguHS1r3ULIwPs++ltoLHFxAGb6vXNtz1pwZF/5WbOnOt70LrDJ1XfK3oGvZH+4AqCXOH2yUXZO2bMbVXcrISRPsQ1ETj1yYm9/9QDx3a8rPh+UwFxlB2bUAMnR0OGRmLY8kkznQyJru0mqYgUvbQainsMnruQMPPieCH75FCs1h/ELjU4Telq4/LHcWpTsxKpk1AUYZoSeWeQVYt2PwNsONUSyShmso6UwiTcOu2bplSPmKny8OKS0FpV+zbzljOl+Z7tc+TAvmxzbU1q+scrolKqy1ofs5ejIfLryZwanGYRt40wkjF1W8/Vlq2Cz1SCUFpa7ZjyaeQI1fb+E5B7Sc5gGJca6ONLD8D0OSAXtL/iJZgBZ1fqa5sYRih6/UAxBuvDMJOBNM8qXIxeBcvEIME74wGYbsFN2Is2bzJgYaDQZVOg3HIEkykvjuUeTIvHTzjHyEr0fueKug==
+	WFlukY0m0VhxDsegE305RlM3WD1dRmbeQY2RxG6woZiONobqGImDrlH1wfvF9cpZE3fgdiPTPTsCigbWyWtrmy5lY05HVEhpURdpCtxHXXO2ittK0QnUmqyvZroVY8GDReghBeqQ4gG5iRE/onDo36L0lnov3jLJ+cRaEI1KRHSH/hb5Be/QbsjQnzNDvdrAi6kGJIL1tqp+Kf49URar3KYeaU0J9aM+ZqAzQ204iSpLsqRlxOc2961bs5bA3NZ4OUn4mDj/NZD+Jg261uz/N3d5UAJOmGvDj36te3yqoq8gLVOma/YbfYZO01zPKnGSGoePRNCnZvKFEnoDXUcTNbFBvL7yfGe5BWVsheh2vATWuAprPVv4KZ/xFZgXqS799qXJIm5z/b2CNY0l2vfX3v03hZhCnTATnBqnhByanAuf57n0Zd2Gfl/IB3fJgKWheyEHM27ctq3JiGxMux4iO9p8D1MCo25r1v6ui2DYJ8fIwvOCe7c9YyEt7qZm4ZRXmYIug3C7As49uP8f1kLNbFwzkKY9CAQSamqiyK2uUMdpjyqc279sHntgv1gUcRz3TrtZQzfMreh1LkiCbbrPHesl9OG1f2IKtunzFznLhIGOy3ATcarXGhTNEVxIm46sfvbXSb4F+KWi7i0npY5hMogQJoonZsK+tol0PM0QOFwrPZ2uwgONcskBw0Ozao6+dJlkin6o0zJlqiYzQbBELn4b88bgGdoCOz99pwJYP7Q=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(376014)(82310400026)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(376014)(82310400026)(20052099010)(13003099007)(56012099003)(18002099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	iaRzbrtVCd62YP+cDNPbazghGH8cRTAQvDaJyfahn9wCLLfThEA0xnzeNgdSTBkrIWMb1EfBNiuF7V3hZpfh2ZH5g9hy53lFcqO520fkw6xopsLTvduZauN4yr4K64FlAHJyw4GWP1s23af9s/4s16PoNxbJYZ0Edei4WI67+9yfSNm0jsOBbAv+s8x+PuqJouVdMu5b+R7Qd5d+7pd7xOkhoCazoqv++6INtm6UA+AbIk8pMYR95SiOBRG2pJnu4exfLn7QVacq5BPhCgSVcifJ8b4bosN0257zsfVq2KuJv/ePJdsHAMBVvAXelg4J647WRuErwVAyN+sItCqZAmia1CIUJqnGQJqYdH0D562VJL7Y774WaCMQiDBIOHKlWYnGGihc+EeUFJrLEVyy1+qYhWWP4RopbHTbVvXJ0LVVXnozwkqAcF2oZMbFkvDA
-X-OriginatorOrg: list.ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2026 20:23:42.5100
+	P3lpjXpX4gJL/Ow6PzxG0MV8h8EFCAH5ag7o0gfckvy3G9i1rRE6wR+rlgnrQm0JdK2C4FKtCLYwMF+MMfKh6o4yzxUwmvwfOaFDvqmUbdw6HK4Vj3Asjpv7mt4lWluen0Ry+hjZjE1R9noJRBe3CDhzdYLpgbNG6qyo6AeEyaQ/JfexwFZ1qgUf8wqKmNUMR0saTxf8oScu7CH407zS0+zLTvKstMrOYt8pdmb8d+jl/8Ad2atNrvTbtzQeS5cYdzEmavnQWT8EMGKs+1CDpx0KfCeTzixGAL6f/dGpUBKS320n7Mh2TVAc+Ef7Wd49g+/1W8em1w+4Sc534xPL7+IeHjBeo4VZi88TIy2ZtsRbyom4zXv2VVbvOaJ8T1nu0yXy1qLqT3i6YvFz1IATyZBtBS/728xj4puMmZEIKMEyb7D1e+N2WHxFEF4kl9ZX
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 08:35:24.0756
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78fadb76-a342-4420-8f7c-08de9f1ab748
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97f7d80d-4afc-41dc-9167-08de9f80eea6
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	CH1PEPF0000AD77.namprd04.prod.outlook.com
+	DS3PEPF0000C37D.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4704
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7068
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 20 Apr 2026 20:23:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17477
+ <meta-arago@lists.yoctoproject.org>; Tue, 21 Apr 2026 08:35:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17478
 
-meta-arago / na / 20260420195557.22133-1-denis
+Add processor-sdk-master-luks-12.00.00.07.04-config used for building
+SDK with the luks disk encryption, supported for AM62x, AM62P, AM62L
+and AM64x.
 
-PRC Results: PASS
+Signed-off-by: Shiva Tripathi <s-tripathi1@ti.com>
+---
+Changes in v2:
+- added meta-tisdk layer as suggested by Jeevan
+- removed disabled layers meta-flutter, meta-selinux present in v1
+- Link to v1: https://lore.kernel.org/all/20260414135825.1225171-1-s-tripat=
+hi1@ti.com/
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Patches
-----------------------------------------
-WARN - [master][PATCH] mesa-demos: set default PREFERRED_VERSION
-    WARN: Missing Signed-off-by by sender in commit message. (SIGNED-OFF-BY=
--2)
-        patch
-   =20
-    For details on the above errors/warnings visit: https://lists.yoctoproj=
-ect.org/g/meta-ti/wiki/40887
+---
+ ...aster-luks-12.00.00.07.04-config.conf.json | 147 ++++++++++++++++++
+ ...sdk-master-luks-12.00.00.07.04-config.conf |   4 +
+ ...-sdk-master-luks-12.00.00.07.04-config.txt |  19 +++
+ ...-sdk-master-luks-12.00.00.07.04-config.yml | 100 ++++++++++++
+ ...-sdk-master-luks-12.00.00.07.04-config.xml |  76 +++++++++
+ 5 files changed, 346 insertions(+)
+ create mode 100644 bitbake-setup/processor-sdk/processor-sdk-master-luks-1=
+2.00.00.07.04-config.conf.json
+ create mode 100644 conf/fragments/localconf/configs/processor-sdk/processo=
+r-sdk-master-luks-12.00.00.07.04-config.conf
+ create mode 100644 configs/processor-sdk/processor-sdk-master-luks-12.00.0=
+0.07.04-config.txt
+ create mode 100644 kas/processor-sdk/processor-sdk-master-luks-12.00.00.07=
+.04-config.yml
+ create mode 100644 src/configs/processor-sdk/processor-sdk-master-luks-12.=
+00.00.07.04-config.xml
 
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  apply-yocto-patch: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [master][PATCH] mesa-demos: set default PREFERRED_VERSION
-- Submitter: From: Denys Dmytriyenko <denis@denix.org>
-From: "Denys Dmytriyenko (TI)" <denys@konsulko.com>
-- Date: Date: Mon, 20 Apr 2026 15:55:57 -0400
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: e7fb78dca537389589264ca362112b4d8=
-bc89695
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-next
-- Commit Author: LCPD Automation Script <lcpdbld@list.ti.com>
-- Commit Subject: CI/CD Auto-Merger: cicd.master.202604201357
-- Commit SHA: c3de43f19b4d7918ebe43756e8a42fcf08383a96
-
-Patches
-----------------------------------------
-All patches applied
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-repo: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-PASS
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  yocto-check-layers: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master - PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-All checks passed
-
-
+diff --git a/bitbake-setup/processor-sdk/processor-sdk-master-luks-12.00.00=
+.07.04-config.conf.json b/bitbake-setup/processor-sdk/processor-sdk-master-=
+luks-12.00.00.07.04-config.conf.json
+new file mode 100644
+index 0000000..3619c1e
+--- /dev/null
++++ b/bitbake-setup/processor-sdk/processor-sdk-master-luks-12.00.00.07.04-=
+config.conf.json
+@@ -0,0 +1,147 @@
++{
++  "version": "1.0",
++  "description": "TI Processor SDK vmaster-luks-12.00.00.07.04",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git=
+"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "bitbake"
++    },
++    "meta-tisdk": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/TexasInstruments/meta-tisdk.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "meta-tisdk"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "meta-arago"
++    },
++    "meta-security": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-security"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "meta-security"
++    },
++    "meta-qt6": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://code.qt.io/yocto/meta-qt6.git"
++          }
++        },
++        "rev": "dev"
++      },
++      "path": "meta-qt6"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "meta-arm"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-core"
++    }
++  },
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-tisdk/meta-ti-foundational","meta-tisdk/meta-=
+ti-ml","meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-=
+arago/meta-arago-test","meta-security/meta-tpm","meta-qt6","meta-virtualiza=
+tion","meta-openembedded/meta-networking","meta-openembedded/meta-python","=
+meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedde=
+d/meta-filesystems","meta-openembedded/meta-multimedia","meta-ti/meta-ti-ex=
+tras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta=
+-arm/meta-arm-toolchain","oe-core/meta","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v3", "oe-=
+layersetup/localconf/configs/processor-sdk/processor-sdk-master-luks-12.00.=
+00.07.04-config.conf" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","mac=
+hine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57=
+xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-=
+evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","mac=
+hine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx=
+-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/=
+beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beaglep=
+lay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/=
+j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","m=
+achine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j7=
+84s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle=
+2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
++      }
++    ]
++  }
++}
+diff --git a/conf/fragments/localconf/configs/processor-sdk/processor-sdk-m=
+aster-luks-12.00.00.07.04-config.conf b/conf/fragments/localconf/configs/pr=
+ocessor-sdk/processor-sdk-master-luks-12.00.00.07.04-config.conf
+new file mode 100644
+index 0000000..21aae5d
+--- /dev/null
++++ b/conf/fragments/localconf/configs/processor-sdk/processor-sdk-master-l=
+uks-12.00.00.07.04-config.conf
+@@ -0,0 +1,4 @@
++BB_CONF_FRAGMENT_SUMMARY =3D "Config specific overrides for processor-sdk/=
+processor-sdk-master-luks-12.00.00.07.04-config"
++BB_CONF_FRAGMENT_DESCRIPTION =3D "Config specific overrides for processor-=
+sdk/processor-sdk-master-luks-12.00.00.07.04-config"
++
++DISTRO_FEATURES:append =3D " tpm luks"
+diff --git a/configs/processor-sdk/processor-sdk-master-luks-12.00.00.07.04=
+-config.txt b/configs/processor-sdk/processor-sdk-master-luks-12.00.00.07.0=
+4-config.txt
+new file mode 100644
+index 0000000..4e76cf2
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-master-luks-12.00.00.07.04-config=
+.txt
+@@ -0,0 +1,19 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:la=
+yern]
++
++bitbake,https://git.openembedded.org/bitbake,master,05a0ca339a6fee75f7979c=
+3ee95fc91b2bd9b92f
++meta-tisdk,https://github.com/TexasInstruments/meta-tisdk.git,master,12.00=
+.00.07.04,layers=3Dmeta-ti-foundational:meta-ti-ml
++meta-arago,https://git.yoctoproject.org/meta-arago,master,12.00.00.07,laye=
+rs=3Dmeta-arago-distro:meta-arago-extras:meta-arago-test
++meta-security,https://git.yoctoproject.org/meta-security,master,8028c573db=
+6923525c2918724f2bd36d4a420e0b,layers=3Dmeta-tpm
++meta-qt6,https://code.qt.io/yocto/meta-qt6.git,dev,f7961b2828fe5eba250d396=
+8bf1d135a2d28dcf8,layers=3D
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,maste=
+r,b8968685998a052e5bed0f68a546be800c6849ed,layers=3D
++meta-openembedded,https://git.openembedded.org/meta-openembedded,master,b5=
+bb24b356d8200e2f4b088bc052eb668502ce33,layers=3Dmeta-networking:meta-python=
+:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-ti,https://git.yoctoproject.org/meta-ti,master,12.00.00.07,layers=3Dm=
+eta-ti-extras:meta-beagle:meta-ti-bsp
++meta-arm,https://git.yoctoproject.org/meta-arm,master,37d31f41a8d5c47b1326=
+cd0ae48b0032eb6d5e88,layers=3Dmeta-arm:meta-arm-toolchain
++oe-core,https://git.openembedded.org/openembedded-core,master,ec113301d732=
+71d08bf4193c2509a34ad12385b6,layers=3Dmeta
++
++OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
++OECORELOCALCONF=3D./sample-files/local-arago64-v3.conf.sample
++BITBAKE_INCLUSIVE_VARS=3Dyes
++
++LOCALCONF:DISTRO_FEATURES:append =3D " tpm luks"
+diff --git a/kas/processor-sdk/processor-sdk-master-luks-12.00.00.07.04-con=
+fig.yml b/kas/processor-sdk/processor-sdk-master-luks-12.00.00.07.04-config=
+.yml
+new file mode 100644
+index 0000000..b8bc26f
+--- /dev/null
++++ b/kas/processor-sdk/processor-sdk-master-luks-12.00.00.07.04-config.yml
+@@ -0,0 +1,100 @@
++---
++header:
++  version: 17
++  includes:
++    - kas/templates/bblayers.conf.yml
++    - kas/templates/local-arago64-v3.conf.yml
++
++target: tisdk-default-image
++
++repos:
++  bitbake:
++    url: "https://git.openembedded.org/bitbake"
++    branch: "master"
++    commit: "05a0ca339a6fee75f7979c3ee95fc91b2bd9b92f"
++    path: "sources/bitbake"
++    layers:
++      .: disabled
++
++  meta-tisdk:
++    url: "https://github.com/TexasInstruments/meta-tisdk.git"
++    branch: "master"
++    commit: "12.00.00.07.04"
++    path: "sources/meta-tisdk"
++    layers:
++      meta-ti-foundational:
++      meta-ti-ml:
++
++  meta-arago:
++    url: "https://git.yoctoproject.org/meta-arago"
++    branch: "master"
++    commit: "12.00.00.07"
++    path: "sources/meta-arago"
++    layers:
++      meta-arago-distro:
++      meta-arago-extras:
++      meta-arago-test:
++
++  meta-security:
++    url: "https://git.yoctoproject.org/meta-security"
++    branch: "master"
++    commit: "8028c573db6923525c2918724f2bd36d4a420e0b"
++    path: "sources/meta-security"
++    layers:
++      meta-tpm:
++
++  meta-qt6:
++    url: "https://code.qt.io/yocto/meta-qt6.git"
++    branch: "dev"
++    commit: "f7961b2828fe5eba250d3968bf1d135a2d28dcf8"
++    path: "sources/meta-qt6"
++
++  meta-virtualization:
++    url: "https://git.yoctoproject.org/meta-virtualization"
++    branch: "master"
++    commit: "b8968685998a052e5bed0f68a546be800c6849ed"
++    path: "sources/meta-virtualization"
++
++  meta-openembedded:
++    url: "https://git.openembedded.org/meta-openembedded"
++    branch: "master"
++    commit: "b5bb24b356d8200e2f4b088bc052eb668502ce33"
++    path: "sources/meta-openembedded"
++    layers:
++      meta-networking:
++      meta-python:
++      meta-oe:
++      meta-gnome:
++      meta-filesystems:
++      meta-multimedia:
++
++  meta-ti:
++    url: "https://git.yoctoproject.org/meta-ti"
++    branch: "master"
++    commit: "12.00.00.07"
++    path: "sources/meta-ti"
++    layers:
++      meta-ti-extras:
++      meta-beagle:
++      meta-ti-bsp:
++
++  meta-arm:
++    url: "https://git.yoctoproject.org/meta-arm"
++    branch: "master"
++    commit: "37d31f41a8d5c47b1326cd0ae48b0032eb6d5e88"
++    path: "sources/meta-arm"
++    layers:
++      meta-arm:
++      meta-arm-toolchain:
++
++  oe-core:
++    url: "https://git.openembedded.org/openembedded-core"
++    branch: "master"
++    commit: "ec113301d73271d08bf4193c2509a34ad12385b6"
++    path: "sources/oe-core"
++    layers:
++      meta:
++
++local_conf_header:
++  oe-layersetup-local-conf-config-specific: |
++    DISTRO_FEATURES:append =3D " tpm luks"
+diff --git a/src/configs/processor-sdk/processor-sdk-master-luks-12.00.00.0=
+7.04-config.xml b/src/configs/processor-sdk/processor-sdk-master-luks-12.00=
+.00.07.04-config.xml
+new file mode 100644
+index 0000000..ecf49c4
+--- /dev/null
++++ b/src/configs/processor-sdk/processor-sdk-master-luks-12.00.00.07.04-co=
+nfig.xml
+@@ -0,0 +1,76 @@
++<?xml version=3D'1.0'?>
++<config>
++    <description>TI Processor SDK vmaster-luks-12.00.00.07.04</description=
+>
++
++    <xi:include href=3D'../../common/distro_arago.xml' xmlns:xi=3D'http://=
+www.w3.org/2001/XInclude'/>
++    <xi:include href=3D'../../common/machines.xml' xmlns:xi=3D'http://www.=
+w3.org/2001/XInclude'/>
++    <xi:include href=3D'../../templates/bblayers.conf.xml' xmlns:xi=3D'htt=
+p://www.w3.org/2001/XInclude'/>
++    <xi:include href=3D'../../templates/local-arago64-v3.conf.xml' xmlns:x=
+i=3D'http://www.w3.org/2001/XInclude'/>
++
++    <bitbake url=3D'https://git.openembedded.org/bitbake' branch=3D'master=
+' commit=3D'05a0ca339a6fee75f7979c3ee95fc91b2bd9b92f'/>
++
++    <repos>
++        <repo name=3D'meta-tisdk' url=3D'https://github.com/TexasInstrumen=
+ts/meta-tisdk.git' branch=3D'master' commit=3D'12.00.00.07.04'>
++            <layers>
++                <layer>meta-ti-foundational</layer>
++                <layer>meta-ti-ml</layer>
++            </layers>
++        </repo>
++        <repo name=3D'meta-arago' url=3D'https://git.yoctoproject.org/meta=
+-arago' branch=3D'master' commit=3D'12.00.00.07'>
++            <layers>
++                <layer>meta-arago-distro</layer>
++                <layer>meta-arago-extras</layer>
++                <layer>meta-arago-test</layer>
++            </layers>
++        </repo>
++        <repo name=3D'meta-security' url=3D'https://git.yoctoproject.org/m=
+eta-security' branch=3D'master' commit=3D'8028c573db6923525c2918724f2bd36d4=
+a420e0b'>
++            <layers>
++                <layer>meta-tpm</layer>
++            </layers>
++        </repo>
++        <repo name=3D'meta-qt6' url=3D'https://code.qt.io/yocto/meta-qt6.g=
+it' branch=3D'dev' commit=3D'f7961b2828fe5eba250d3968bf1d135a2d28dcf8'>
++            <layers/>
++        </repo>
++        <repo name=3D'meta-virtualization' url=3D'https://git.yoctoproject=
+.org/meta-virtualization' branch=3D'master' commit=3D'b8968685998a052e5bed0=
+f68a546be800c6849ed'>
++            <layers/>
++        </repo>
++        <repo name=3D'meta-openembedded' url=3D'https://git.openembedded.o=
+rg/meta-openembedded' branch=3D'master' commit=3D'b5bb24b356d8200e2f4b088bc=
+052eb668502ce33'>
++            <layers>
++                <layer>meta-networking</layer>
++                <layer>meta-python</layer>
++                <layer>meta-oe</layer>
++                <layer>meta-gnome</layer>
++                <layer>meta-filesystems</layer>
++                <layer>meta-multimedia</layer>
++            </layers>
++        </repo>
++        <repo name=3D'meta-ti' url=3D'https://git.yoctoproject.org/meta-ti=
+' branch=3D'master' commit=3D'12.00.00.07'>
++            <layers>
++                <layer>meta-ti-extras</layer>
++                <layer>meta-beagle</layer>
++                <layer>meta-ti-bsp</layer>
++            </layers>
++        </repo>
++        <repo name=3D'meta-arm' url=3D'https://git.yoctoproject.org/meta-a=
+rm' branch=3D'master' commit=3D'37d31f41a8d5c47b1326cd0ae48b0032eb6d5e88'>
++            <layers>
++                <layer>meta-arm</layer>
++                <layer>meta-arm-toolchain</layer>
++            </layers>
++        </repo>
++        <repo name=3D'oe-core' url=3D'https://git.openembedded.org/openemb=
+edded-core' branch=3D'master' commit=3D'ec113301d73271d08bf4193c2509a34ad12=
+385b6'>
++            <layers>
++                <layer>meta</layer>
++            </layers>
++        </repo>
++    </repos>
++
++    <local-conf>
++        <line>DISTRO_FEATURES:append =3D " tpm luks"</line>
++    </local-conf>
++
++    <tools>
++        <tool type=3D'oe-layersetup'>
++            <var name=3D'BITBAKE_INCLUSIVE_VARS' value=3D'yes'/>
++        </tool>
++    </tools>
++</config>
+--=20
+2.34.1
 
 
