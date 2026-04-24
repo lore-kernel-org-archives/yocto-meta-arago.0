@@ -1,217 +1,193 @@
-Return-Path: <rs@ti.com>
+Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C9850FF8850
-	for <webhook@archiver.kernel.org>; Fri, 24 Apr 2026 22:38:33 +0000 (UTC)
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (SN4PR0501CU005.outbound.protection.outlook.com [40.93.194.33])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.1391.1777070312559543324
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DB8CEFF8850
+	for <webhook@archiver.kernel.org>; Fri, 24 Apr 2026 22:55:13 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (SN4PR2101CU001.outbound.protection.outlook.com [40.93.195.15])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.1679.1777071303401782995
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 24 Apr 2026 15:38:32 -0700
+ Fri, 24 Apr 2026 15:55:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=WEJeRfP8;
- spf=pass (domain: ti.com, ip: 40.93.194.33, mailfrom: rs@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=g7fRakNu;
+ spf=pass (domain: list.ti.com, ip: 40.93.195.15, mailfrom: prc@list.ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XsEv4FehuOOuOzQYDnpoSTRZcz1xahNys905W8n1iDonWpRCYjOcb4/PNGf5xHb9KUhptc7kAQCJn6hD/uBgrqTpvQiUBo9oxDk3RTuTfYyASn8zGgOuWm5roVf2Mf1yzuNEQSr3GpsCzXzgMs+wGFGjSiC63r2Qu5SJr/5mwqS+Q8PgEA55S8g8RNFBqjdXu1hH2775Qs0IaOq9pBlRYdNulsAjy56i1XqdR+SfLCsrk99hzI/s8abykCCtMmwex0KZFPz16rwzLhyVQVuTpdQf2mdJMSUCRPqRvEamtO3jQhP3QoRtd0WMq6VpZZfQxG4EcPGwnB9pOp76JuvVfQ==
+ b=Jnzhm6v1333Fnip2VILtQ0v2BaJ83ZL5UvvVyLigYlGVAwrTQdRP86bTCZU64L4Dz2Qhi7hTwv42e1RYje90kgPfUiPL2Qy7rYv68Alv6T+Sj35krihCHTK2cscJFZpcixWlHu4LcswjxbpszGNMoRWMPtkZvhhr+DysyfF1jNzFxz7HXL4++12cerb2KyS+orbsCIPG3L6OAGnGynHyZxCvR1ZPlpzYx15zq1ka/xImZ4qXW2iBunTznk7KllRRGgtrTY0GV2R5wOdjLCAaaPKaqK2XUgHIi3+MBzWDo/iftVM5wSOCLGRUluz05K+K3RK1E+UEBvKXFQcs2l8PBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/Qr3twPxRYkfgQ5FebkP9LUasAcLEoKj7iG6O5eYnRM=;
- b=Y3Crr2pkxMDSthi/I0Czxj3klB3jDZW4iMwxbPvCgS2Uvfk95GtzD24lMjOA4T1m7r8f7a7IMk/Zl+/mae6xM47hzqH+WVcy0hznhJku9UT3KAeZA9R/vr+dQ7MS1yh4cGJNx+Uh0fSr+mM7Gxg9Ii2abWg2SixxBHgFahuPU8tgmkqQ6fQUbHsq7lrqAIFRr03j0H7FG/W0n3iRkIIucPek0GWeN0x6mTo24RH6OjqkG0g4CvKJiLvhQIW28rBUOb1qHnyrWVQFyIMvYWfVOwZl6pPz9c2yi45+s0tDw+z3lf/0iUzaCOt2SFY24hi+KSq/nuTDjfKgs1gLgZqoHg==
+ bh=KcmnB+D8t5gx2BUmLwDFYsW+SyAXRDDnHNxjMfApjXg=;
+ b=eXe1wfx1ecMaxrDeyov9w3g5Qv5VI64H1UuR0nEUni3Gfqvas9Z+usNHDo7W66bgzlqM7dL13olj8yiMogs9LliDPliEO49+QL+iSS7pfUMmgJLy/8oIPz9/WdeXka/uVSHOKUdg6J5iJKfLzGyqTw30Vi7jW4ZOY6VxEAopeZWXTuY4SqJ1uPHY9sjy1cW4KqWDdtRy+6GU6Wtjdub1cNhfN/9pgU2aL/5e4xFGD2bpGCNLtYupdl3WpkrpX73oiBjdwpzBU/44jbvUOlmO3C9+QPxn3phv3ZHPV2vVu0/97kE+lVUUkg1UW6VXDBdBHd3LuR6FKm6aPYHl5WZ+gQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
+ action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/Qr3twPxRYkfgQ5FebkP9LUasAcLEoKj7iG6O5eYnRM=;
- b=WEJeRfP8Srq4tldlOmpsqif1wUQbjChAVgFcauXNUeIWLDRIH3l9AmT4DsI81bMTIsNT9mXt/SHvKbVhs7OFfIKcAUMonp0XY2AzP/UKndymR8k60xGaFI6lZf3GgWHd5wl3kSSWVrJCG/2JSYKWgy6bcrWL+5jCFni1rJdf9wg=
-Received: from SA1P222CA0044.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:2d0::9)
- by DS0PR10MB7933.namprd10.prod.outlook.com (2603:10b6:8:1b8::15) with
+ bh=KcmnB+D8t5gx2BUmLwDFYsW+SyAXRDDnHNxjMfApjXg=;
+ b=g7fRakNu0sMJ/OIUd/GHPD6pzxPZqTOFqU5sf+171kXTBMSX5SaipeLqBGi5AAKeaSA9IDRzCFNox7WWUHze9X3hru9eiqJVPCDdd7AC1h7M+yml+JoB8bYlVxW71qm3W2P6FY0B9QI8KFtTYo19ohBNV0lnV+kg5a4tONwCvVwxOkE0Mqpc0HDSaY28+/33qR4nskNLD7OTVjWJTTlzEvoUAAjy3SakZMdD91eQE3eyCeN12WF28Nu1BwCtDmS2GkrYgmlQrhkKgrxH/SVkazbF6jme9IpaJ7jjo7Eutn+lSD1xBE9xf2YGf+QfQoS3q4vO8f1UBAXefFwci6wxIw==
+Received: from BY1P220CA0042.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:59e::17)
+ by DM4PR10MB6255.namprd10.prod.outlook.com (2603:10b6:8:8e::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.22; Fri, 24 Apr
- 2026 22:38:29 +0000
-Received: from SA2PEPF00003AE7.namprd02.prod.outlook.com
- (2603:10b6:806:2d0:cafe::3b) by SA1P222CA0044.outlook.office365.com
- (2603:10b6:806:2d0::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.22 via Frontend Transport; Fri,
- 24 Apr 2026 22:38:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- SA2PEPF00003AE7.mail.protection.outlook.com (10.167.248.7) with Microsoft
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.20; Fri, 24 Apr
+ 2026 22:55:00 +0000
+Received: from MWH0EPF000C6186.namprd02.prod.outlook.com
+ (2603:10b6:a03:59e:cafe::dd) by BY1P220CA0042.outlook.office365.com
+ (2603:10b6:a03:59e::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.23 via Frontend Transport; Fri,
+ 24 Apr 2026 22:54:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=list.ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=list.ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ MWH0EPF000C6186.mail.protection.outlook.com (10.167.249.118) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Fri, 24 Apr 2026 22:38:29 +0000
-Received: from DLEE204.ent.ti.com (157.170.170.84) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.9846.18 via Frontend Transport; Fri, 24 Apr 2026 22:54:58 +0000
+Received: from DFLE202.ent.ti.com (10.64.6.60) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 24 Apr
- 2026 17:38:29 -0500
-Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 17:54:57 -0500
+Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 24 Apr
- 2026 17:38:29 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE215.ent.ti.com
- (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 17:54:57 -0500
+Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 24 Apr 2026 17:38:29 -0500
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.39])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 63OMcSpM2530825;
-	Fri, 24 Apr 2026 17:38:28 -0500
-From: <rs@ti.com>
-To: <reatmon@ti.com>, <denis@denix.org>, <s-sadik@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCHv2] qtbase: remove serial event 0 handling
-Date: Fri, 24 Apr 2026 17:37:50 -0500
-Message-ID: <20260424223749.2643202-2-rs@ti.com>
-X-Mailer: git-send-email 2.53.0
+ Transport; Fri, 24 Apr 2026 17:54:57 -0500
+Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
+	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 63OMsvGH2278588;
+	Fri, 24 Apr 2026 17:54:57 -0500
+Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
+	id 916779ACF4; Fri, 24 Apr 2026 17:54:57 -0500 (CDT)
+From: PRC Automation <prc@list.ti.com>
+To: <rs@ti.com>
+CC: <reatmon@ti.com>, <denis@denix.org>, <s-sadik@ti.com>,
+	<meta-arago@lists.yoctoproject.org>
+Subject: Re: [meta-arago][master][PATCHv2] qtbase: remove serial event 0 handling
+Date: Fri, 24 Apr 2026 17:54:57 -0500
+Message-ID: <20260424225457.2810747-1-prc@list.ti.com>
+X-Mailer: git-send-email 2.43.5
+In-Reply-To: <20260424223749.2643202-2-rs@ti.com>
+References: <20260424223749.2643202-2-rs@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003AE7:EE_|DS0PR10MB7933:EE_
-X-MS-Office365-Filtering-Correlation-Id: 433e413c-0921-4449-6466-08dea2523520
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C6186:EE_|DM4PR10MB6255:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9823bd65-9c1a-42dc-47d6-08dea2548297
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700016|13003099007|56012099003|18002099003;
+	BCL:0;ARA:13230040|82310400026|1800799024|36860700016|376014|56012099003|18002099003|22082099003;
 X-Microsoft-Antispam-Message-Info: 
-	ITmdHlRG4Du6bKEl7ft8UbsnT0s1tUeBIwtKTy6KRIDtqwA4WbTVNJPS5tyWo5pU1RQLQOTzqlbVBu4uYD5psHZnK4qmT7G/ddFw7G4cGkM6Zn++REOFGUxZ5RjVJO8jNvgMvqjrUz679yJbuWcRsX1Bccoy3ILzAfXXjA2Qwo6lIGazr3JgBnNbWF6HNW+ARCkgsxGoHw155ihoGBOfTJEGggvSBWP4HM2MJNhGXVRip6It6gRUWkmxE1hkPBJUiPIOe1ckwkIBEOAfovgQN7oqm9wuhFpSfdz3WF5tSnFVAVBBq/D9YvErRIZBnf90VKqQ5PbYALvDEp2ng39PJYbybaVS0QIzEBeV7sp9XmYQT92etjhAEvaQdwfMbzJbZhBZVSmV2wTuqmUy8KkaWyzEKQ84byAj6ZR8PvHIIumAGvpJp/kqZVdaPWsi9OpyukoNFZd7qFg31vJ1+vPAz8ewVDDemR5a3P6CGK9VklSiB2zn1EqQHwl3BEN9t7vR1m6yxySrNvxiLY7XloUqtNtF2oTWRiyLDd3/KdwvO0YfSBznfIbhUNhWV46VyEQTz9e7vRR2lJEyFwc8t79UT/Fy31E2yOr+njZshwac+yf2dag7qfTuHZ3QiXxVgmEa4En++fCYtwwT6aY6jrCj0geBxi9XnWUzg5C8g1jZFXDZE2a3RCDSjMq4wLM8MUOeI03PxxlubdMXY608bh/yBpc+paJwtAeMMcqZ1Or/insPMDDPadRKd8Gy+TJ0H5O0Tv9UBjeY/wiFzCXuAdNiuA==
+	y/26gjEyFbPrTll7uwqTHzAz7E7Qf5m/G12vdRsumUiXanzdaJPgirra0fyXzK7baHA2+wvdfnnZZaG3CQ9wr5LmDbDUSjWZ/Q0dosARDMeon8agejZqUrkNUEWU2fnLufZDNHqFPYlHdLB6mmBCvn9KRysGSnZYmf1VGIkEodPrtRPeyo4g5cDohNgcTMa/TRU8hY2u8OQVEbY5fBjjdIRQ3aXf6XhaV5cqlMiPrmPQ9L0EQpymUoxGKlo011Vh13HM/4yrVZm0Yb4yQxhQonJuGc0/zAiXHpSNWQ8mu7nAquMj/AAObsOaud1BTK9zKMR2L1aNC1FiSDfyGXq6lL3WCSXQYID1ika+0E6sl35URUcM0W6w5bx89Lb3quEIVZHLE2CoN+wnTLl05pRxVlhhx1u11fBX62RiNDc6Ab2BlT8jY7LUHRQb8tbCq6PC8fEkuUTUWNIzmGJ+TpU7dc0mIoFJbTdzMKGKueA90DjlXPPGDdV7cLk5SX1Q+CKHXXdYOKc1kS4n69NxFJ5wH4RkqO/862kHv+B+tXNzJTN1rJfZeUq02N9P4LXOLO9N66GR7Kcv4cHsPPQusubHzwo+reYN1EepsJg3YndvP+g06QLLeIDrW407nRb5n7hlpGtXnfsv9D6+p/gB280Bd0c4+KlInQsV+4/e5AEc+AnFY7+WAn6a0KvwP+DSpbWuEsIRjo58N1y8OUrFTov2KU+Vu22/f9tpcP0KdSJ7D/kzJmM1+LnC+VV2G9mEydpo5i5RD41Pkz21UuV0BbWgCQ==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(13003099007)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	Z+oDwSgo0NVGCr0lHTnO+BQ3QQNsU091nPlTrFM3u5LyeTwqwl7tSzoTdCNwHwRG66qZGWtOiZGRC0YRKXBNtCRoL0xkGeW3JTFiHJTaHF+JrRTG0mSOMOIa793SzgFkD7zxV/ZvySlY+oki3p2pqHuk4jAZHIw1xlhjAGB25KXdtkdajmJq/TCijVHHozECjfJo0Q7Lf1ipoM75jvHSNU+SK4CuhMEy/tJVfefQ4p3CNVP9MsDUvFEB16ia6oY86lKmTLx4lNZ6W6ggEalQWiiya71XShCLPnhpfrMPhHV1LPpR23UzP8cVSCDzyglcKVcu2w09tBzdszQQ1UuAWYheNLXnkiqrK8WAY8NX2H0baLnsSotHdMyecEZI7Km2nUnhc6FNHrR/91K7EBHOnqXQL1G4Tcz33Vu+ll+sNB3SBfcpg6+dqiUq4+m42hUp
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2026 22:38:29.4818
+	Nb94MU79MKtgSae6ffftB7tLrxcdC153Q5/F1yqHT/UezivPvyOV26pxNmmdtiNLn2NbhhnWCADTQYRcoNCO5eEobXTI/Z5W+O+wPEkcOSQK9rSk3qodRK2pFdvMvkcsVdYtip13tYRfmHW2OyaQDbyjYY+N3r/dRYocQ9iJjXMwiN8nV2mk4Sa6wN6jB/NF94pgjJ6Xh0s9Gn+/xDrMHH3NQwTPs2iiGqpRbsr9Tg5ufot/tIYcs/Bthsvu0rdphuIsTTcVufJbYxpvzyk6lo3hWn8IzINJ8mctP2mCYyqXBrIywarwIf+9y+bl7iFBgF/lGcU44YRnNcfbVBZBasD5aJGMYcARzLHH7lPTSzVuuX5WR5UQ6IwUQiiMrhvNIqKS+KsKmSJ8oEDtyqGgIgTUNTfr9MjFIc6u9R3Hn4gvOOP63eJsZoIC8bpegv4j
+X-OriginatorOrg: list.ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2026 22:54:58.3753
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 433e413c-0921-4449-6466-08dea2523520
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9823bd65-9c1a-42dc-47d6-08dea2548297
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	SA2PEPF00003AE7.namprd02.prod.outlook.com
+	MWH0EPF000C6186.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7933
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR10MB6255
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 24 Apr 2026 22:38:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17489
+ <meta-arago@lists.yoctoproject.org>; Fri, 24 Apr 2026 22:55:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17490
 
+meta-arago / na / 20260424223749.2643202-2-rs
+
+PRC Results: FAIL
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-patches: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+Patches
+----------------------------------------
+All patches passed
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  apply-yocto-patch: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Summary:
+- Patch Series: [meta-arago][master][PATCHv2] qtbase: remove serial event 0=
+ handling
+- Submitter: From: <rs@ti.com>
 From: Randolph Sapp <rs@ti.com>
-
-Serial number 0 is perfectly valid, though maybe a little uncommon. It
-shouldn't be treated differently or used to indicate a special event.
-
-This project has a CLA that we haven't signed yet. Carry an local patch
-until the upstream bug is resolved.
-
-Bug: https://qt-project.atlassian.net/browse/QTBUG-146015
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
-
-v2: whitespace as usual
-
- .../qt6-layer/recipes-qt/qt6/qtbase-arago.inc |  6 +++
- ...tdevice.cpp-remove-serial-0-handling.patch | 42 +++++++++++++++++++
- .../recipes-qt/qt6/qtbase_git.bbappend        |  4 ++
- 3 files changed, 52 insertions(+)
- create mode 100644 meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/q=
-t6/qtbase-arago.inc
- create mode 100644 meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/q=
-t6/qtbase/0001-qwaylandinputdevice.cpp-remove-serial-0-handling.patch
- create mode 100644 meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/q=
-t6/qtbase_git.bbappend
-
-diff --git a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/qt6/qtba=
-se-arago.inc b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/qt6/qt=
-base-arago.inc
-new file mode 100644
-index 00000000..3ac24295
---- /dev/null
-+++ b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/qt6/qtbase-arag=
-o.inc
-@@ -0,0 +1,6 @@
-+FILESEXTRAPATHS:prepend :=3D "${THISDIR}/qtbase:"
-+
-+SRC_URI:append =3D " \
-+    file://0001-qwaylandinputdevice.cpp-remove-serial-0-handling.patch \
-+"
-+PR:append =3D ".arago0"
-diff --git a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/qt6/qtba=
-se/0001-qwaylandinputdevice.cpp-remove-serial-0-handling.patch b/meta-arago=
--extras/dynamic-layers/qt6-layer/recipes-qt/qt6/qtbase/0001-qwaylandinputde=
-vice.cpp-remove-serial-0-handling.patch
-new file mode 100644
-index 00000000..4c1a0d40
---- /dev/null
-+++ b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/qt6/qtbase/0001=
--qwaylandinputdevice.cpp-remove-serial-0-handling.patch
-@@ -0,0 +1,42 @@
-+From f10c63a7391adcf5c28c3378e9d72ee52b5bba97 Mon Sep 17 00:00:00 2001
 +From: Randolph Sapp <rs@ti.com>
+- Date: Date: Fri, 24 Apr 2026 17:37:50 -0500
 +Date: Fri, 24 Apr 2026 15:14:26 -0500
-+Subject: [PATCH] qwaylandinputdevice.cpp: remove serial 0 handling
-+
-+Serial number 0 is perfectly valid, though maybe a little uncommon. It
-+shouldn't be treated differently or used to indicate a special event.
-+
-+Signed-off-by: Randolph Sapp <rs@ti.com>
-+Upstream-Status: Denied
-+Bug: https://qt-project.atlassian.net/browse/QTBUG-146015
-+
-+Yet another CLA we won't sign.
-+---
-+ src/plugins/platforms/wayland/qwaylandinputdevice.cpp | 4 ----
-+ 1 file changed, 4 deletions(-)
-+
-+diff --git a/src/plugins/platforms/wayland/qwaylandinputdevice.cpp b/src/p=
-lugins/platforms/wayland/qwaylandinputdevice.cpp
-+index b9ca27e6f04..84b7457b0a1 100644
-+--- a/src/plugins/platforms/wayland/qwaylandinputdevice.cpp
-++++ b/src/plugins/platforms/wayland/qwaylandinputdevice.cpp
-+@@ -237,9 +237,6 @@ void QWaylandInputDevice::Pointer::updateCursorTheme()
-+
-+ void QWaylandInputDevice::Pointer::updateCursor()
-+ {
-+-    if (mEnterSerial =3D=3D 0)
-+-        return;
-+-
-+     auto shape =3D seat()->mCursor.shape;
-+
-+     if (shape =3D=3D Qt::BlankCursor) {
-+@@ -882,7 +879,6 @@ void QWaylandInputDevice::Pointer::invalidateFocus()
-+         disconnect(mFocus.data(), &QObject::destroyed, this, &Pointer::ha=
-ndleFocusDestroyed);
-+         mFocus =3D nullptr;
-+     }
-+-    mEnterSerial =3D 0;
-+ }
-+
-+ void QWaylandInputDevice::Pointer::releaseButtons()
-+--
-+2.53.0
-+
-diff --git a/meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/qt6/qtba=
-se_git.bbappend b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/qt6=
-/qtbase_git.bbappend
-new file mode 100644
-index 00000000..dcf0954f
---- /dev/null
-+++ b/meta-arago-extras/dynamic-layers/qt6-layer/recipes-qt/qt6/qtbase_git.=
-bbappend
-@@ -0,0 +1,4 @@
-+QTBASE_ARAGO =3D ""
-+QTBASE_ARAGO:arago =3D "qtbase-arago.inc"
-+
-+require ${QTBASE_ARAGO}
---=20
-2.53.0
+- Num Patches: 1
+- Mailing List (public inbox) Commit SHA: 1a4cda07c6ffd8e28770263becb9a7496=
+5e83ec8
+
+Applied to:
+- Repository: lcpd-prc-meta-arago
+- Base Branch: master-wip
+- Commit Author: Pratham Deshmukh <p-deshmukh@ti.com>
+- Commit Subject: tensorflow-lite: Fix file packaging for headers and symli=
+nks
+- Commit SHA: 480b57f06af61bc5ba01af73fc6d94463124e318
+
+Patches
+----------------------------------------
+All patches applied
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-repo: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PASS
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  yocto-check-layers: FAIL
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master - FAIL
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ERROR: ExpansionError during parsing <build-dir>/sources/oe-core/meta/recip=
+es-bsp/barebox/barebox-tools.bb
+
+
 
 
