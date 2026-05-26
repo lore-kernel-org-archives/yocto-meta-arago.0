@@ -1,551 +1,198 @@
-Return-Path: <t-lannynd@ti.com>
+Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 99F7CCD5BC8
-	for <webhook@archiver.kernel.org>; Tue, 26 May 2026 18:40:18 +0000 (UTC)
-Received: from DM5PR21CU001.outbound.protection.outlook.com (DM5PR21CU001.outbound.protection.outlook.com [52.101.62.56])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.3332.1779820808493367600
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0CC1CD5BB1
+	for <webhook@archiver.kernel.org>; Tue, 26 May 2026 18:48:48 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com (CO1PR03CU002.outbound.protection.outlook.com [52.101.46.39])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.3487.1779821320669794006
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 26 May 2026 11:40:08 -0700
+ Tue, 26 May 2026 11:48:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=hdbzlWWG;
- spf=pass (domain: ti.com, ip: 52.101.62.56, mailfrom: t-lannynd@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=vinDGfDY;
+ spf=pass (domain: list.ti.com, ip: 52.101.46.39, mailfrom: prc@list.ti.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zSmNXVJJqTnFYASL237cKVdDO46JmPe8T0V1xlGn1OjTJLaoplikyI6nMHFInjWVcAFHWJ+egNeFJQBWYfg2ZBSHZxipeaDtrZEx/39AtGCmpsOVSVJIRbeH/UHexi5U5vwGAZusL+2moCAenT3Qd3IlUbGFbddSGZPzgbkQ2yDiwi4U7/3NMe6maZUcNZtbYVu4q2crPU1UVwuMs+yHzoRBqtu6w5goGdMszaoEhJlXMi9NacZbXm+yQPp1emQ/DerBUzmH3+bh/HTB1LOrV1uAkQcEv1Mq5Wt1RGJvwSKkmUo32IosVUJeX1OPxdSfaUVgoS9plPnnWeRaHlGsoQ==
+ b=K7PcmWOjtmoB+swugqutp/uzptHe5s7JUq1oZ+oYnV1EWDvbBfEwoX97GzM41xoFQ2tcC8TWaF7pCj2laPl05+afQ7vqY7OwjzK35mG9zHyL5cKuBmwBsgFsMrmtCfKoan9af3GYzimQSu7UJyCl4pHy804w7wsAULf8bHmg0CZx2btWYlt0a7n/hUFBR9RKySiK8IR0UoxE3KVy07u1wwVD2FzJfDw1HpulbZ3aF0vr3w+JskIl8n8zU5kF+gSqzEvtsOjGgEa/hBylLnoKbRL+ShqJWVx3WPO8ESC31Ir9+74Mq//Fvu4Q1S/mYs+yJZijeJnyWLD2XBJsbCoWiQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pS/9bzwMcCln6vQdx+lF4TJeGApgOkZNweww0jlaXns=;
- b=GE589oSNnZ8OnX+3A8DIONRGRcwwLZtoydYMezeRvGHHc1U81NF35xiMIaUn92Arsq/2wVzGMyaZdzW++1cbHNDG5kd7+o9IsPkWj+NhZ2OOaIC6JNbhxQ3peU5fhbwkis0VVQvvmhPkerc1qauem7a7t4bKXgt+KsQfGxY/DAPm+mpg/4iNW5Bp6gek85wo3oZ3jBJdrt9Vg7ETfVicxzzbYe7CcxAdUfkdw0MnEYV4mwixhV562Ser0swq2FPoTk3YFYIz9c4V993iYTMmffi0o56REiq2Sf6aASxE2+1qujCsDrms9Qv7QCCWN+hwQ/JT0oMGjymER/Q+fV0N5A==
+ bh=R4jC9VVfh2QH/84nIKBGkWznWjLfp7cMezgL3g7NXfs=;
+ b=mfdgyrc2vveN6f9JuRXMYTnuldW0p/vMPVvXxJgDMRQcd9HEwNiyS6C42ah2BvcFNqmbhoY4zhSdZVFFiW9NHWkpXr6onOiQ5qUNki+JIXrqAfLJSxL5AKtAxP8AypA4rWO9RyJbr4uwBf7dMJS5JXYftNRS2dABGuEd1KFml4jf/ERxaDS5UWQ7po8hwsoT+zZQfln9Ba2WAnuHPbmOpyV80HisNAvy3v4dLQQV+xcL49WcZSL6tr7Z5Ws9ACLFYZRZiG275zVc6t+FpmUF4MSMHE3/KP1gn/uBXTbjGd8moL3eUemqnFuc7j2BDiqa0lCVGi0SGwAZCOMUgbFNFA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ 198.47.21.194) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
+ action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pS/9bzwMcCln6vQdx+lF4TJeGApgOkZNweww0jlaXns=;
- b=hdbzlWWGJ/HFkiGgKy0Wt7Q4cGO97cfhIos7umwTtWg4G4sKn/vw0DynEgTHN15UAVMEPFdTA/iJg56sdRNVPU00MDjubPqCM6x3Vui0YiS7CU3PG3n8FdcqMPgLiZRwvEImam+idYD3gwbF3S5rMD7hdBEbgEsovMG3s2Ion74=
-Received: from BY3PR05CA0006.namprd05.prod.outlook.com (2603:10b6:a03:254::11)
- by CYXPR10MB7950.namprd10.prod.outlook.com (2603:10b6:930:db::21) with
+ bh=R4jC9VVfh2QH/84nIKBGkWznWjLfp7cMezgL3g7NXfs=;
+ b=vinDGfDYcOsGMpuVn+3A9OGugxVBpukLgEHQhaaV4/GniL6td+B+BCj4evszAHR9EKM78vd/cBQSWOgrywc8HRV2aY/PXpeMFbEcNJqy64u9Jj6zwOW1kHfM8JkP+56VNdNfVcfcuDLgtEUPfiya/pFOkXJTxc6yGijcO6xGDgSt0WjaU+OMYiltCT3P0CAkroAMvs1igUSsKd3dzY0huneBJX9iU/A/NGoBupAt846ERdsCD0cfhWavdUX4u8oUwCX6XihlmqDL2DpJeut+oozfvIi1E7D3Lt+7fIGxtFow1UeI7SMMJvqA7aMuNl4rkxWw9kF9YNKzEpWYL4yvwg==
+Received: from SJ2PR07CA0017.namprd07.prod.outlook.com (2603:10b6:a03:505::17)
+ by SJ0PR10MB4462.namprd10.prod.outlook.com (2603:10b6:a03:2d7::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.12; Tue, 26 May
- 2026 18:40:06 +0000
-Received: from MWH0EPF000A6730.namprd04.prod.outlook.com
- (2603:10b6:a03:254:cafe::5a) by BY3PR05CA0006.outlook.office365.com
- (2603:10b6:a03:254::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.11; Tue, 26 May
+ 2026 18:48:38 +0000
+Received: from MWH0EPF000C6192.namprd02.prod.outlook.com
+ (2603:10b6:a03:505:cafe::3a) by SJ2PR07CA0017.outlook.office365.com
+ (2603:10b6:a03:505::17) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.11 via Frontend Transport; Tue, 26
- May 2026 18:40:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- MWH0EPF000A6730.mail.protection.outlook.com (10.167.249.22) with Microsoft
+ May 2026 18:48:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=list.ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=list.ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ MWH0EPF000C6192.mail.protection.outlook.com (10.167.249.102) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.71.7 via Frontend Transport; Tue, 26 May 2026 18:40:04 +0000
-Received: from DFLE207.ent.ti.com (10.64.6.65) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.71.7 via Frontend Transport; Tue, 26 May 2026 18:48:35 +0000
+Received: from DFLE212.ent.ti.com (10.64.6.70) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 26 May
- 2026 13:39:55 -0500
-Received: from DFLE214.ent.ti.com (10.64.6.72) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 13:47:59 -0500
+Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE212.ent.ti.com
+ (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 26 May
- 2026 13:39:55 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE214.ent.ti.com
- (10.64.6.72) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 13:47:59 -0500
+Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Tue, 26 May 2026 13:39:55 -0500
-Received: from uda0867391-2.dhcp.ti.com (uda0867391-2.dhcp.ti.com [128.247.81.30])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64QIdtdw1473823;
-	Tue, 26 May 2026 13:39:55 -0500
-From: Thorsten Lannynd <t-lannynd@ti.com>
-To: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>
-CC: <detheridge@ti.com>, <b-brnich@ti.com>, <a-christidis@ti.com>
-Subject: [meta-arago][master/wrynose][PATCH v2] meta-arago: chromium: clean up and simplify V4L2 patch series
-Date: Tue, 26 May 2026 13:39:38 -0500
-Message-ID: <20260526183938.378716-1-t-lannynd@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Transport; Tue, 26 May 2026 13:47:59 -0500
+Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
+	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64QIlxqa2628297;
+	Tue, 26 May 2026 13:47:59 -0500
+Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
+	id B365D9ACF4; Tue, 26 May 2026 13:47:59 -0500 (CDT)
+From: PRC Automation <prc@list.ti.com>
+To: Thorsten Lannynd <t-lannynd@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>,
+	<detheridge@ti.com>, <b-brnich@ti.com>, <a-christidis@ti.com>
+Subject: Re: [meta-arago][master][PATCH] meta-arago: chromium: clean up and simplify V4L2 patch series
+Date: Tue, 26 May 2026 13:47:59 -0500
+Message-ID: <20260526184759.2117359-1-prc@list.ti.com>
+X-Mailer: git-send-email 2.43.5
+In-Reply-To: <20260526182753.376138-1-t-lannynd@ti.com>
+References: <20260526182753.376138-1-t-lannynd@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000A6730:EE_|CYXPR10MB7950:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10bfcaef-ce65-44c7-f69d-08debb5633fb
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C6192:EE_|SJ0PR10MB4462:EE_
+X-MS-Office365-Filtering-Correlation-Id: 11cf5e45-346e-44f3-0cdd-08debb5764ba
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|36860700016|82310400026|1800799024|376014|6133799003|4133799003|3023799007|18002099003|56012099006;
+	BCL:0;ARA:13230040|376014|36860700016|82310400026|1800799024|18002099003|22082099003|56012099006;
 X-Microsoft-Antispam-Message-Info: 
-	ImP1Ht6Mju8/cuTXXObQmBl1wLiGHovCF+lN08ucgt96wY2mW2C19eT5cUT5yfjukfUTkQCB89JrU1ccCwSD4fGfDR8Ts/Ja7qCrmG6L6xwPTUzdA3rwmVHeNL0Ppf6a2RbFVJAe74d92nAFK8kyM2TNDIlSJ9DRg6Payvqb6zJnRvJ8+75cqs11mPhs0uH2yDZM8wWhul3qDf9kNbiftGN9f3A8YQqQcGVX5SCSe4LPGqkOPTvVEyEwEtefJG6zVNKnMNTSuB//0CnBfo5/amISrdBS/Rk/hWub2c/pw8qob6LAifAnCIamK6etyteyKcXe1wOidgkDzLQRnYKfbj4cwkp7JlK43UZ0JRi5kMwlRoHtIUisy2h/KuFsonQ3xS94eZ0fL8QUAInWhq3o3QzaCzVEh5a63gdIrkAabHXBb+DsHDkzOp545KfZ35zHO6qbDjYGftBLLnvBPljxTSRUpkMKqch1mKOxBED22icrIpY07TuxGof4A6fXbwUM5Ky5T00Mh2+yUaNoMflQykuKKETQDbkARtj/SxSQKG6yBK9VEmvgouygx0FvgX/30GUSTVQoNizrchLtHRCWnGBj5LRpsHFvuGPU8Ban2hW+j6Op6lsULiHb69Z1TpU3PDlGjJ2LQ2jiwJ4AmurfB9lVxE7W5PweZs/2o17redTds43fi/7CqRowdgNvYvLRbXOIePZkePG8mKL5XjtMX+SrlUPq1bERvTsmk3nkI/w=
+	p91IKFyDME3WnJSgpdqA2dxJ+fEC9Dv6gygbff1VY8oER42v7DFpy/wzLnjgDsRGDgZCNXJkBV9is2mryKSuCpJTSFxJFCOC9yLLg7SJ3z0v+Hl5kd9MD08TuqxWtEoeVVrQIn76IoGWRN8cpEuWecri5Dj5gjAkmP/1WxlqDepvh1cWIAYYe19irBjxw8NVp9WVHnKxQxUwe+KOJH1DeqtxhgcEhAdC6sqzl2uMCf9kQz7lhZ4FCjByvNOe4t+ilM9hUP9/6IR2SviIuivzJ28sWbwJiiChYTCQ7zi2svx2PzKdYhCqMn09kSrHXi63s4EBQRRGJCiSdiPDsnhFGD7u6gZnT2DYBtWi5tzaG06eSHe7mz4D9CD3E/JH0p8yWhCjnrqt7rnZrIEJESfHPdWzybe4gT6SlCrPIcxgV0ccwHeOYIOBkZ40jdkgz9Pa1WK4OnyD4aUzJmUZ23f7pTl+nV+B6LRkocQ8YUNS2j1uUMy+jydoS53nmFbNxEdQmNz26jEWszNAjmQ5AASf5EjJ3zVqn909P8RTkb/KNVz++MgHc8Ur1vduG5hzoMLPZI+FS6Kv1Af2HTS/JFMjIT6FXbrVn2O8lFa4Tkr5ry3BTYoIuNkaKZ6RkFVzD6tyH6wA8viXBrbQwm6NZJqjQPyECSD2rHshQFsVnw8OhQgLeFrqvStcxcN9bxYft6K+FE2M8BzzOy/yiUVHwGS7LNP76KUsBub3wQn69EU++UA=
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(6133799003)(4133799003)(3023799007)(18002099003)(56012099006);DIR:OUT;SFP:1101;
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(18002099003)(22082099003)(56012099006);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	TM42gSpgsXXotqjTIYGiE1BRpmg+RvrIYLrrO0Ak7pRH0KPqZWIJ14kKAh78z6GlxCbOZ1W3i867GtGUE/QfZAfziAssnLS/dlQv5CC8yjvffXejPZ9oV6Hyh8FLXPNKMEgi+65zBbD8GHHsEtwSirPaXPfHxMTNtz/HmOSReE91uk6/CSsgZj78h0zED2HVL3LCcM4Bs69pUB5+Y0sDkz6G44ci2vfklBu5fFqa/RygVv5XLik7MM5xToEeiHPucqAER3URch35M0P3IelSnAbeloJ3DQJ9iVRLdnJ4FINKxlwMLINIrgsumGDZRB7dYxvv23P9+tDfxoAwI5pR5FPRrM5BOrWMXK2wxRwbsFw/sNYwmBEDDLLLK9Uic2iAeulEx4uVCGe+ocGMRM6v3wjIZfA/RSaYFxmBUeI2F7XbNbelJ2ADk3zJeU7BTMG0
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 18:40:04.5581
+	yLMn/3hHjtUstKzjq5aK6Gh6GpYU0RwWbqRKswDi5n4KjFHG+vTyrzpe64ay1Wjz+VMaR+o4scMlnZ8eyTsJWbZPYxFMTYUYAsC3PgkM8jZ3jeYiqvtlMbUFPsKXGm8LHqAjx7k9jg2LW5DKWAEX/37UxJ/5NkBPZTBgoFadcoSCFvRmPTocM1wS32LdihsHlx6P+qtp4ZA4yFN9rhkt2QadxFiv+aGfYxdOkUKZxmXZhdP8cLVfkO0xjoKNuFzjMBUnjQfTV1O4IXhOkn7P4QcmjURfpa1kq0l6iZQRBoNQATjJ9W8Af0OyBhKx3L1mFdl6NyFLZItzGXCR+C/g01JjDN+8S9uaNmhIUGLDj8ntRJdKa0v8nL9uI+sVvNLZ1/yb0lpteTxaZt9Dk9QX29ZF1bqaq7EBtQ4D3P3Ytog7Te5kmiBXO4cMs1c+nSj0
+X-OriginatorOrg: list.ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 18:48:35.8394
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10bfcaef-ce65-44c7-f69d-08debb5633fb
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11cf5e45-346e-44f3-0cdd-08debb5764ba
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	MWH0EPF000A6730.namprd04.prod.outlook.com
+	MWH0EPF000C6192.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR10MB7950
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4462
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 26 May 2026 18:40:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17538
+ <meta-arago@lists.yoctoproject.org>; Tue, 26 May 2026 18:48:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17539
 
-0001: Replace unconditional removal of IS_CHROMEOS guards with targeted
-IS_LINUX extension. This keeps the guards intact and avoids diverging
-unnecessarily from upstream, while still enabling named device paths
-(/dev/video-dec, /dev/video-enc) on generic Linux.
+meta-arago / na / 20260526182753.376138-1-t-lannynd
 
-0002: Minor formatting fix only.
+PRC Results: PASS
 
-0003: Replace the previous OUTPUT queue approach (hardcoded NV12 format wit=
-h MiB-based size calculation)
-with two smaller,cleaner fixes:
-- Add an NV12 fallback in PickDecoderOutputFormat() for platforms where
-  renderable_fourccs_ contains only display formats (e.g. AR24) and none
-  match the decoder's CAPTURE candidates.
-- Call SetFormat() on the CAPTURE queue in InitializeCAPTUREQueue() using
-  the fourcc selected above with buffer_size=3D0, letting the driver comput=
-e
-  the correct buffer size.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-patches: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+Patches
+----------------------------------------
+All patches passed
 
-0004: Set is_start_of_new_frame=3Dfalse for SPS/PPS NALUs to combine them
-with the first frame for efficiency.
 
-Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
----
-v2:
-- Add wrynose branch to subject prefix
 
- ...se-ChromeOS-style-dev-paths-for-all-.patch | 71 +++++--------------
- ...dbox-Allow-GPU-sandbox-access-to-V4L.patch | 11 ++-
- ...2-Fix-OUTPUT-queue-streaming-in-V4L2.patch | 65 +++++++++--------
- ...void-placing-incomplete-H264-access-.patch | 30 ++++----
- 4 files changed, 79 insertions(+), 98 deletions(-)
-
-diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
-s-browser/chromium/chromium-ozone-wayland/0001-media-gpu-v4l2-Use-ChromeOS-=
-style-dev-paths-for-all-.patch b/meta-arago-distro/dynamic-layers/chromium-=
-browser-layer/recipes-browser/chromium/chromium-ozone-wayland/0001-media-gp=
-u-v4l2-Use-ChromeOS-style-dev-paths-for-all-.patch
-index 2089b8d2..c05ff63b 100644
---- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
-er/chromium/chromium-ozone-wayland/0001-media-gpu-v4l2-Use-ChromeOS-style-d=
-ev-paths-for-all-.patch
-+++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
-er/chromium/chromium-ozone-wayland/0001-media-gpu-v4l2-Use-ChromeOS-style-d=
-ev-paths-for-all-.patch
-@@ -1,89 +1,56 @@
--From 262a19d57fccf1b27ede283398278b52820f4aae Mon Sep 17 00:00:00 2001
-+From 7ccf158ac8742d3ffaaf9f39bc1b01108f4b88d4 Mon Sep 17 00:00:00 2001
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  apply-yocto-patch: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Summary:
+- Patch Series: [meta-arago][master][PATCH] meta-arago: chromium: clean up =
+and simplify V4L2 patch series
+- Submitter: From: Thorsten Lannynd <t-lannynd@ti.com>
  From: Thorsten Lannynd <t-lannynd@ti.com>
+ From: Thorsten Lannynd <t-lannynd@ti.com>
+ From: Thorsten Lannynd <t-lannynd@ti.com>
+ From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
+- Date: Date: Tue, 26 May 2026 13:27:53 -0500
 -Date: Fri, 5 Dec 2025 12:40:27 -0600
--Subject: [PATCH] media/gpu/v4l2: Use ChromeOS-style dev paths for all
-- platforms
 +Date: Sun, 17 May 2026 02:40:44 -0500
-+Subject: [PATCH] media/gpu/v4l2: Extend ChromeOS-style dev paths to Linux
-=20
- Upstream-Status: Inappropriate [embedded-specific,
-   requires custom udev rules]
-=20
--Remove platform-specific conditionals and standardize on ChromeOS device
--naming (/dev/video-dec, /dev/video-enc, etc) instead of generic /dev/video=
-*.
--Reduces device scanning from 256 to 10 devices for improved enumeration sp=
-eed.
-+Extend the IS_CHROMEOS guards for device enumeration to also cover
-+IS_LINUX. This standardizes on named device paths (/dev/video-dec,
-+/dev/video-enc, etc.) instead of scanning up to 256 /dev/video* nodes,
-+reducing enumeration from 256 to 10 candidates.
-=20
- Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
- ---
-- media/gpu/v4l2/v4l2_device.cc | 16 ----------------
-- media/gpu/v4l2/v4l2_utils.cc  | 10 ----------
-- 2 files changed, 26 deletions(-)
-+ media/gpu/v4l2/v4l2_device.cc | 4 ++--
-+ media/gpu/v4l2/v4l2_utils.cc  | 2 +-
-+ 2 files changed, 3 insertions(+), 3 deletions(-)
-=20
- diff --git a/media/gpu/v4l2/v4l2_device.cc b/media/gpu/v4l2/v4l2_device.cc
--index ea35d10be8..dee743ed48 100644
-+index fecd6a9a70..5b56c87397 100644
- --- a/media/gpu/v4l2/v4l2_device.cc
- +++ b/media/gpu/v4l2/v4l2_device.cc
--@@ -874,20 +874,11 @@ void V4L2Device::CloseDevice() {
-+@@ -861,7 +861,7 @@ void V4L2Device::CloseDevice() {
-  }
-=20
-  void V4L2Device::EnumerateDevicesForType(Type type) {
- -#if BUILDFLAG(IS_CHROMEOS)
-++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
-    static const std::string kDecoderDevicePattern =3D "/dev/video-dec";
-    static const std::string kEncoderDevicePattern =3D "/dev/video-enc";
-    static const std::string kImageProcessorDevicePattern =3D "/dev/image-p=
-roc";
--   static const std::string kJpegDecoderDevicePattern =3D "/dev/jpeg-dec";
--   static const std::string kJpegEncoderDevicePattern =3D "/dev/jpeg-enc";
---#else
---  static const std::string kDecoderDevicePattern =3D "/dev/video";
---  static const std::string kEncoderDevicePattern =3D "/dev/video";
---  static const std::string kImageProcessorDevicePattern =3D "/dev/video";
---  static const std::string kJpegDecoderDevicePattern =3D "/dev/video";
---  static const std::string kJpegEncoderDevicePattern =3D "/dev/video";
---#endif
---
--   std::string device_pattern;
--   v4l2_buf_type input_buf_type;
--   v4l2_buf_type output_buf_type;
--@@ -924,19 +915,12 @@ void V4L2Device::EnumerateDevicesForType(Type type) =
-{
-+@@ -911,7 +911,7 @@ void V4L2Device::EnumerateDevicesForType(Type type) {
-    // We are sandboxed, so we can't query directory contents to check whic=
-h
-    // devices are actually available. Try to open the first 10; if not pre=
-sent,
-    // we will just fail to open immediately.
- -#if BUILDFLAG(IS_CHROMEOS)
-++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
-    constexpr int kMaxDevices =3D 10;
-    candidate_paths.reserve(kMaxDevices + 1);
-=20
--   // TODO(posciak): Remove this legacy unnumbered device once
--   // all platforms are updated to use numbered devices.
--   candidate_paths.push_back(device_pattern);
---#else
---  // On mainline Linux we need to check a much larger number of devices, =
-mainly
---  // because the device pattern is shared with ISP devices.
---  constexpr int kMaxDevices =3D 256;
---  candidate_paths.reserve(kMaxDevices);
---#endif
--   for (int i =3D 0; i < kMaxDevices; ++i) {
--     candidate_paths.push_back(
--         base::StringPrintf("%s%d", device_pattern.c_str(), i));
- diff --git a/media/gpu/v4l2/v4l2_utils.cc b/media/gpu/v4l2/v4l2_utils.cc
--index d4cac5573c..50d720a365 100644
-+index 94b2e3cfe8..039851c5a2 100644
- --- a/media/gpu/v4l2/v4l2_utils.cc
- +++ b/media/gpu/v4l2/v4l2_utils.cc
--@@ -583,18 +583,8 @@ std::optional<SupportedVideoDecoderConfigs> GetSuppor=
-tedV4L2DecoderConfigs() {
-+@@ -577,7 +577,7 @@ std::optional<SupportedVideoDecoderConfigs> GetSupport=
-edV4L2DecoderConfigs() {
-    SupportedVideoDecoderConfigs supported_media_configs;
-    std::vector<std::string> candidate_paths;
-=20
- -#if BUILDFLAG(IS_CHROMEOS)
-++#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
-    constexpr char kVideoDevicePattern[] =3D "/dev/video-dec0";
-    candidate_paths.push_back(kVideoDevicePattern);
---#else
---  constexpr char kVideoDevicePattern[] =3D "/dev/video";
---  constexpr int kMaxDevices =3D 256;
---  candidate_paths.reserve(kMaxDevices);
---  for (int i =3D 0; i < kMaxDevices; ++i) {
---    candidate_paths.push_back(
---        base::StringPrintf("%s%d", kVideoDevicePattern, i));
---  }
---#endif
--
--   for (const auto& path : candidate_paths) {
--     base::ScopedFD device_fd(
-+ #else
- --
- 2.34.1
-diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
-s-browser/chromium/chromium-ozone-wayland/0002-chromium-gpu-sandbox-Allow-G=
-PU-sandbox-access-to-V4L.patch b/meta-arago-distro/dynamic-layers/chromium-=
-browser-layer/recipes-browser/chromium/chromium-ozone-wayland/0002-chromium=
--gpu-sandbox-Allow-GPU-sandbox-access-to-V4L.patch
-index a51fa322..b2490883 100644
---- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
-er/chromium/chromium-ozone-wayland/0002-chromium-gpu-sandbox-Allow-GPU-sand=
-box-access-to-V4L.patch
-+++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
-er/chromium/chromium-ozone-wayland/0002-chromium-gpu-sandbox-Allow-GPU-sand=
-box-access-to-V4L.patch
-@@ -1,4 +1,4 @@
--From d6a8f091cebd265c0f7f681173d2aa218a0b89cd Mon Sep 17 00:00:00 2001
-+From c31cb261202bc96d9a0581c3efdba5279acc04ef Mon Sep 17 00:00:00 2001
- From: Thorsten Lannynd <t-lannynd@ti.com>
  Date: Thu, 5 Mar 2026 12:02:31 -0600
- Subject: [PATCH] chromium: gpu: sandbox: Allow GPU sandbox access to V4L2
-@@ -17,18 +17,17 @@ Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
-  1 file changed, 4 insertions(+), 3 deletions(-)
-=20
- diff --git a/content/common/gpu_pre_sandbox_hook_linux.cc b/content/common=
-/gpu_pre_sandbox_hook_linux.cc
--index 2e53794fa3..9dec7fa08b 100644
-+index 2e53794fa3..e2facce9da 100644
- --- a/content/common/gpu_pre_sandbox_hook_linux.cc
- +++ b/content/common/gpu_pre_sandbox_hook_linux.cc
--@@ -627,13 +627,14 @@ std::vector<BrokerFilePermission> FilePermissionsFor=
-Gpu(
--       BrokerFilePermission::ReadOnly(kDriRcPath)};
-+@@ -628,12 +628,13 @@ std::vector<BrokerFilePermission> FilePermissionsFor=
-Gpu(
-=20
-    AddVulkanICDPermissions(&permissions);
--+
-+
- +  if (UseV4L2Codec(options)) {
- +      AddV4L2GpuPermissions(&permissions, options);
- +  }
--
-++
-    if (IsChromeOS()) {
-      // Permissions are additive, there can be multiple GPUs in the system=
-.
-      AddStandardChromeOsPermissions(&permissions);
-diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
-s-browser/chromium/chromium-ozone-wayland/0003-chromium-gpu-v4l2-Fix-OUTPUT=
--queue-streaming-in-V4L2.patch b/meta-arago-distro/dynamic-layers/chromium-=
-browser-layer/recipes-browser/chromium/chromium-ozone-wayland/0003-chromium=
--gpu-v4l2-Fix-OUTPUT-queue-streaming-in-V4L2.patch
-index 0a6c0f95..fe9e52ca 100644
---- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
-er/chromium/chromium-ozone-wayland/0003-chromium-gpu-v4l2-Fix-OUTPUT-queue-=
-streaming-in-V4L2.patch
-+++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
-er/chromium/chromium-ozone-wayland/0003-chromium-gpu-v4l2-Fix-OUTPUT-queue-=
-streaming-in-V4L2.patch
-@@ -1,12 +1,19 @@
--From d1d9bcefa8fd299049e6e51855f41b67b27823ed Mon Sep 17 00:00:00 2001
-+From dd6b0301aa61a2d1440f1edc7f836f2612f9270f Mon Sep 17 00:00:00 2001
- From: Thorsten Lannynd <t-lannynd@ti.com>
 -Date: Sat, 9 Aug 2025 01:46:14 -0500
 +Date: Sun, 17 May 2026 02:29:10 -0500
- Subject: [PATCH] media/gpu/v4l2: Fix OUTPUT queue streaming in
-  V4L2StatefulVideoDecoder
-=20
- Upstream-Status: Inappropriate [this change is needed to satisfy
- Wave5 conditions, which isn't applicable upstream]
-=20
-+PickDecoderOutputFormat: Fall back to NV12 when no renderable format
-+matches decoder candidates.
-+
-+InitializeCAPTUREQueue: Call SetFormat() on the CAPTURE queue using
-+the fourcc selected by PickDecoderOutputFormat. Pass buffer_size=3D0
-+so the driver calculates the correct size.
-+
- This patch ensures that the OUTPUT queue in `V4L2StatefulVideoDecoder`
- is properly checked and started before attempting to enqueue buffers.
- Wave5 requires buffers to be enqueued before streaming.
-@@ -15,23 +22,35 @@ It adds a check for `IsStreaming()` and attempts to sta=
-rt streaming
- with `Streamon()` if necessary. This prevents potential failures
- during video decoding initialization.
-=20
--`SetFormat()` needs to be called on the CAPTURE queue to ensure
--the raw output frames are in the correct pixel format and picture
--size.
--
- These changes rely on appropriate udev rules when running on a generic
- Linux distribution to set the correct device node names.
-=20
- Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
- ---
-- media/gpu/v4l2/v4l2_stateful_video_decoder.cc | 32 +++++++++++++------
-- 1 file changed, 23 insertions(+), 9 deletions(-)
-+ media/gpu/chromeos/video_decoder_pipeline.cc  |  4 ++++
-+ media/gpu/v4l2/v4l2_stateful_video_decoder.cc | 22 ++++++++++++-------
-+ 2 files changed, 18 insertions(+), 8 deletions(-)
-=20
-+diff --git a/media/gpu/chromeos/video_decoder_pipeline.cc b/media/gpu/chro=
-meos/video_decoder_pipeline.cc
-+index 742c94d7a0..b133147bc3 100644
-+--- a/media/gpu/chromeos/video_decoder_pipeline.cc
-++++ b/media/gpu/chromeos/video_decoder_pipeline.cc
-+@@ -1148,6 +1148,10 @@ VideoDecoderPipeline::PickDecoderOutputFormat(
-+   // Only tested with video_decode_accelerator_tests
-+   // TODO(wenst@) Test with full Chromium Browser
-+   CHECK(!allocator.has_value());
-++  if (!viable_candidate && !candidates.empty()) {
-++    viable_candidate =3D
-++        PixelLayoutCandidate{Fourcc(Fourcc::NV12), candidates.front().siz=
-e};
-++  }
-+   if (viable_candidate) {
-+     // Instead, let V4L2 allocate the buffers if it can decode directly
-+     // to the preferred formats. There's no need to allocate frames.
- diff --git a/media/gpu/v4l2/v4l2_stateful_video_decoder.cc b/media/gpu/v4l=
-2/v4l2_stateful_video_decoder.cc
--index 359145244d..e3aeb060c2 100644
-+index b5d28d9a86..79c880f365 100644
- --- a/media/gpu/v4l2/v4l2_stateful_video_decoder.cc
- +++ b/media/gpu/v4l2/v4l2_stateful_video_decoder.cc
--@@ -417,10 +417,6 @@ void V4L2StatefulVideoDecoder::Initialize(const Video=
-DecoderConfig& config,
-+@@ -412,10 +412,6 @@ void V4L2StatefulVideoDecoder::Initialize(const Video=
-DecoderConfig& config,
-      std::move(init_cb).Run(DecoderStatus::Codes::kFailedToCreateDecoder);
-      return;
-    }
-@@ -42,7 +61,7 @@ index 359145244d..e3aeb060c2 100644
-    client_->NotifyEstimatedMaxDecodeRequests(base::checked_cast<int>(
-        std::min(static_cast<size_t>(4), num_input_buffers)));
-=20
--@@ -525,10 +521,22 @@ void V4L2StatefulVideoDecoder::Decode(scoped_refptr<=
-DecoderBuffer> buffer,
-+@@ -520,10 +516,15 @@ void V4L2StatefulVideoDecoder::Decode(scoped_refptr<=
-DecoderBuffer> buffer,
-                                            std::move(decode_cb));
-    }
-=20
-@@ -54,33 +73,23 @@ index 359145244d..e3aeb060c2 100644
- +    TryAndEnqueueOUTPUTQueueBuffers();
- +    if(!OUTPUT_queue_->Streamon()) {
- +      VLOG(1) << "Failed to start OUTPUT queue streaming";
--+      while (!decoder_buffer_and_callbacks_.empty()) {
--+        auto cb =3D std::move(decoder_buffer_and_callbacks_.front().secon=
-d);
--+        decoder_buffer_and_callbacks_.pop();
--+        std::move(cb).Run(DecoderStatus::Codes::kFailed);
--+      }
- +      return;
- +    }
--+    client_->NotifyEstimatedMaxDecodeRequests(base::checked_cast<int>(
--+        std::min(static_cast<size_t>(4), OUTPUT_queue_->AllocatedBuffersC=
-ount())));
- +  }
- +  else {
- +    TryAndEnqueueOUTPUTQueueBuffers();
-    }
-=20
-    if (!event_task_runner_) {
--@@ -743,7 +751,13 @@ bool V4L2StatefulVideoDecoder::InitializeCAPTUREQueue=
-() {
--   auto chosen_fourcc =3D output_format.fourcc;
-+@@ -739,6 +740,11 @@ bool V4L2StatefulVideoDecoder::InitializeCAPTUREQueue=
-() {
-    const auto chosen_size =3D output_format.size;
-    const auto chosen_modifier =3D output_format.modifier;
---
--+  VLOG(1) << "Chosen |CAPTURE_queue_| format: " << chosen_fourcc.ToString=
-() << " " << chosen_size.ToString() << " (modifier: 0x" << std::hex << chos=
-en_modifier;
--+  constexpr size_t kMiB =3D 1024 * 1024;
--+  constexpr int kFullHDNumPixels =3D 1920 * 1080;
--+  const size_t kInputBufferInMBs =3D
--+      (chosen_size.GetArea() <=3D kFullHDNumPixels) ? 2 : 4;
--+  const auto capture_format =3D CAPTURE_queue_->SetFormat(
--+      V4L2_PIX_FMT_NV12, chosen_size, kInputBufferInMBs * kMiB);
-+
-++  if (!CAPTURE_queue_->SetFormat(chosen_fourcc.ToV4L2PixFmt(), chosen_siz=
-e, /*buffer_size=3D*/0)
-++           .has_value()) {
-++    return false;
-++  }
-++
-    // If our |client_| has a VideoFramePool to allocate buffers for us, we=
-'ll
-    // use it, otherwise we have to ask the driver.
-    const bool use_v4l2_allocated_buffers =3D !client_->GetVideoFramePool()=
-;
-diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipe=
-s-browser/chromium/chromium-ozone-wayland/0004-media-gpu-v4l2-Avoid-placing=
--incomplete-H264-access-.patch b/meta-arago-distro/dynamic-layers/chromium-=
-browser-layer/recipes-browser/chromium/chromium-ozone-wayland/0004-media-gp=
-u-v4l2-Avoid-placing-incomplete-H264-access-.patch
-index caa61545..85450547 100644
---- a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
-er/chromium/chromium-ozone-wayland/0004-media-gpu-v4l2-Avoid-placing-incomp=
-lete-H264-access-.patch
-+++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-brows=
-er/chromium/chromium-ozone-wayland/0004-media-gpu-v4l2-Avoid-placing-incomp=
-lete-H264-access-.patch
-@@ -1,8 +1,8 @@
--From 942c5f57d34c2d1b077240147bb29be84c773e62 Mon Sep 17 00:00:00 2001
-+From b6f490b43eebcc8aad7f9fecc01e4d59e827d547 Mon Sep 17 00:00:00 2001
- From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
  Date: Wed, 11 Jun 2025 11:07:05 +0300
--Subject: [PATCH] media/gpu/v4l2: Avoid placing incomplete H264 access unit=
-s in
-- buffers
-+Subject: [PATCH] media/gpu/v4l2: Avoid placing incomplete H264 access
-+ units in buffers
-=20
- Upstream-Status: Pending
-=20
-@@ -10,39 +10,45 @@ Don't place SPS, PPS, etc NALUs in their own separate b=
-uffers
- unconditionally, as they are not full access units by themselves,
- and may confuse the decoder.
- ---
-- media/gpu/v4l2/v4l2_stateful_video_decoder.cc | 6 +++---
-- 1 file changed, 3 insertions(+), 3 deletions(-)
-+ media/gpu/v4l2/v4l2_stateful_video_decoder.cc | 12 ++++++------
-+ 1 file changed, 6 insertions(+), 6 deletions(-)
-=20
- diff --git a/media/gpu/v4l2/v4l2_stateful_video_decoder.cc b/media/gpu/v4l=
-2/v4l2_stateful_video_decoder.cc
--index e3aeb060c2..3657bc1d36 100644
-+index 79c880f365..d29cef84d7 100644
- --- a/media/gpu/v4l2/v4l2_stateful_video_decoder.cc
- +++ b/media/gpu/v4l2/v4l2_stateful_video_decoder.cc
--@@ -1342,7 +1342,7 @@ H264FrameReassembler::FindH264FrameBoundary(const ui=
-nt8_t* const data,
-+@@ -1332,8 +1332,8 @@ H264FrameReassembler::FindH264FrameBoundary(const ui=
-nt8_t* const data,
-            return std::nullopt;
-          }
-          previous_slice_header_.reset();
- -        return FrameBoundaryInfo{.is_whole_frame =3D true,
-+-                                 .is_start_of_new_frame =3D true,
- +        return FrameBoundaryInfo{.is_whole_frame =3D false,
--                                  .is_start_of_new_frame =3D true,
-++                                 .is_start_of_new_frame =3D false,
-                                   .nalu_size =3D nalu_size};
-        case H264NALU::kPPS:
--@@ -1352,7 +1352,7 @@ H264FrameReassembler::FindH264FrameBoundary(const ui=
-nt8_t* const data,
-+         result =3D h264_parser_.ParsePPS(&pps_id_);
-+@@ -1342,8 +1342,8 @@ H264FrameReassembler::FindH264FrameBoundary(const ui=
-nt8_t* const data,
-            return std::nullopt;
-          }
-          previous_slice_header_.reset();
- -        return FrameBoundaryInfo{.is_whole_frame =3D true,
-+-                                 .is_start_of_new_frame =3D true,
- +        return FrameBoundaryInfo{.is_whole_frame =3D false,
--                                  .is_start_of_new_frame =3D true,
-++                                 .is_start_of_new_frame =3D false,
-                                   .nalu_size =3D nalu_size};
-        case H264NALU::kNonIDRSlice:
--@@ -1391,7 +1391,7 @@ H264FrameReassembler::FindH264FrameBoundary(const ui=
-nt8_t* const data,
-+       case H264NALU::kIDRSlice: {
-+@@ -1381,8 +1381,8 @@ H264FrameReassembler::FindH264FrameBoundary(const ui=
-nt8_t* const data,
-        case H264NALU::kReserved18:
-          // Anything else than SPS, PPS and Non/IDRs marks a new frame bou=
-ndary.
-          previous_slice_header_.reset();
- -        return FrameBoundaryInfo{.is_whole_frame =3D true,
-+-                                 .is_start_of_new_frame =3D true,
- +        return FrameBoundaryInfo{.is_whole_frame =3D false,
--                                  .is_start_of_new_frame =3D true,
-++                                 .is_start_of_new_frame =3D false,
-                                   .nalu_size =3D nalu_size};
-        default:
-+         VLOGF(4) << "Unsupported NALU "
- --
- GitLab
---=20
-2.34.1
+- Num Patches: 1
+- Mailing List (public inbox) Commit SHA: 38cb875ddeeb916512f31d2ce52023956=
+d1f4d3b
+
+Applied to:
+- Repository: lcpd-prc-meta-arago
+- Base Branch: master-wip
+- Commit Author: Thorsten Lannynd <t-lannynd@ti.com>
+- Commit Subject: chromium: Upgrade to v148.0.7778.167
+- Commit SHA: 7fc9c9be31c9337d695da43fc0cbbee1c842da27
+
+Patches
+----------------------------------------
+All patches applied
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-repo: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PASS
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  yocto-check-layers: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+master - PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+All checks passed
+
+
 
 
