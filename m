@@ -1,238 +1,161 @@
-Return-Path: <prc@list.ti.com>
+Return-Path: <romain.naour@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B540BCD5BC8
-	for <webhook@archiver.kernel.org>; Tue, 26 May 2026 19:03:28 +0000 (UTC)
-Received: from BL0PR03CU003.outbound.protection.outlook.com (BL0PR03CU003.outbound.protection.outlook.com [52.101.53.12])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.3753.1779822198260778713
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5091ECD6E4A
+	for <webhook@archiver.kernel.org>; Fri, 29 May 2026 12:33:16 +0000 (UTC)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.9210.1780057992034905612
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 26 May 2026 12:03:18 -0700
+ Fri, 29 May 2026 05:33:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=WFqbSLR3;
- spf=pass (domain: list.ti.com, ip: 52.101.53.12, mailfrom: prc@list.ti.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P5BXbxfCpAdeNGdJBxZ1ihcSLWSMtt+V9JpruKOenerKoTTyxtLOEnKPRpW0f5+lSewyKuisDxgcFJVlO11owEuoFb3WP1vG9ozYdK4t8hnF3B6UbDeRtv3MLANGbVbjKAXi4P2Oq45+TWDEB4cZ0qjnVoE2GEco+nuJVKEhw0Rg813ybw77qoIKsH6TbBfI3ub2pT6ZTVc6yytmQS1DIokYR/HgXplR2+4QYKsfnpfjQfdQAgMjqIFb4mxLW7HNe6muQaDtYjxDZwq0Gq3dH6IwsmBz+1DrJvnEkiFJManZMFSQJiXkt9wyJwdZDMZhVYMWSKqOvSI5p/2b+2Mm0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e53nPMwWGFaft+0LajOaTyoDjR1Z9SwI9WRlCc0NDeQ=;
- b=xDcdAtDE9LV6OWagiTVbwg1MmiSfNtDKsJ+PAZQsAfVWBtSkDmtfCMWNEHBWijXXekGDDMVF9834LXdDf1315iBb/uZAZxtj8sKDGxLfrQs9L+3kJdD6bNgIxmsFdZawbkbmiAzhqbS40HoNUVbT0B1tzItyD65Q1BbQf5vaaxIR4+Mc971maxhQb25tXxFRqak5wwf9DXV1piNf5Ezj4CUeN7whbrTg9hUOJSygtcVgvspxtbMe9/TpOvpeM5B7ly/wZn4WKv5scpckYiSpNCONoecS3tRf9vHAJLSXTnAuMshv21pgZvo7QR+AXLC1M182QwxnmuBT5YEfZZh8yA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org
- smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e53nPMwWGFaft+0LajOaTyoDjR1Z9SwI9WRlCc0NDeQ=;
- b=WFqbSLR3U8Icr3A3hjWQp0YIZ1NTjQyrzkpMIuC/ygBGPGE+RvSM5K76JunHo+rJPNV5qCrgnECVes0gFLj7p0s00gB54XalyXQBodtqcGQM+hUpNH7NXgFjYIessG6c8+kO4XfqsgEZG0jg7ig5pdZp1A/SzvA1faxzgUY8UnrpjXX96kfw2ELWkXoGcj5P++7JWy4oo29ymIzO15x+UK5J0PzfYbW4qeaBHFosPt9hcja8kOPxpqAN6146ZKG2itjPBUDIrhJumprF5NH5VY4B2V/BRXq4z2+jKnKBHLEVgrN4aCNyj57rpfpOi15KNq5EvLVecr1ioRhJBQuWwA==
-Received: from PH7PR17CA0028.namprd17.prod.outlook.com (2603:10b6:510:323::8)
- by DM3PPF70DB7B674.namprd10.prod.outlook.com (2603:10b6:f:fc00::c2e) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.11; Tue, 26 May
- 2026 19:03:13 +0000
-Received: from SA2PEPF00003F65.namprd04.prod.outlook.com
- (2603:10b6:510:323:cafe::38) by PH7PR17CA0028.outlook.office365.com
- (2603:10b6:510:323::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.12 via Frontend Transport; Tue, 26
- May 2026 19:03:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=list.ti.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=list.ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- SA2PEPF00003F65.mail.protection.outlook.com (10.167.248.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.71.7 via Frontend Transport; Tue, 26 May 2026 19:03:12 +0000
-Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 26 May
- 2026 14:03:12 -0500
-Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 26 May
- 2026 14:03:11 -0500
-Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Tue, 26 May 2026 14:03:11 -0500
-Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
-	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64QJ3B7G1704461;
-	Tue, 26 May 2026 14:03:11 -0500
-Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
-	id B398E9ACF4; Tue, 26 May 2026 14:03:11 -0500 (CDT)
-From: PRC Automation <prc@list.ti.com>
-To: Thorsten Lannynd <t-lannynd@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>,
-	<detheridge@ti.com>, <b-brnich@ti.com>, <a-christidis@ti.com>
-Subject: Re: [meta-arago][master/wrynose][PATCH v2] meta-arago: chromium: clean up and simplify V4L2 patch series
-Date: Tue, 26 May 2026 14:03:11 -0500
-Message-ID: <20260526190311.2131866-1-prc@list.ti.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <20260526183938.378716-1-t-lannynd@ti.com>
-References: <20260526183938.378716-1-t-lannynd@ti.com>
+ dkim=pass header.i=@smile.fr header.s=google header.b=pUJKJRxs;
+ spf=pass (domain: smile.fr, ip: 209.85.221.49, mailfrom: romain.naour@smile.fr)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-45eea68dd6fso889706f8f.2
+        for <meta-arago@lists.yoctoproject.org>; Fri, 29 May 2026 05:33:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=smile.fr; s=google; t=1780057990; x=1780662790; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TJplqCxnDw+5nWnqQvz80ivPTd2skxY4zkZToAFNs3w=;
+        b=pUJKJRxsR4tDhzEeGIZRTOq+Z1sudg49ub+2zv6Q2d4ztgSvizOFuS+pbDCtE7HOKt
+         keHVIHr/4SSIsfEnthG1iuOCTg5vTMZ5OuBcrcKZ3zBzII1QL30Q+jQUeIkLCALEyjI5
+         Sm26J9L7IwJotHV4YJGMF1rtbqiFMiNvmj1u8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780057990; x=1780662790;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TJplqCxnDw+5nWnqQvz80ivPTd2skxY4zkZToAFNs3w=;
+        b=Fg9kdM4f6tJeJiFw/m6Wi2iy/Q189e29ckRwjcB3TVBwiVkF6CoxR56/nYB2dszhiG
+         UyjAKVBqJrlaXueZim/WU6rAYJt2WfV0P5oUf6t7v9kQOhqrhfJe6Y6Lv7U+v73B1G+l
+         3la8fbSsHvrQgKPgMskazVBS1WxebiR/XEvsrtx88P95SkihHdYuXZsq86f8HHv1v/8p
+         mncDmGZFjqlaOdkzTFhL63Jk9OzJCxLKos/b/XFL2RFn2Q32K1nyrBXD2nKOVqw2k27D
+         Tmruf7m9D4Yzwh7uSL48B6RMCRfr4uGLcS1hxYOsBTMVfLvVVdIMTD7mt2ctoXp+3sCG
+         MnkQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8av1vdYiNj7x9FwwuBZhZDv7XFjaBhC39/G1X7ZUe/bOV0aiwkmMrqH50vBhkB6X5iCKRNtDcAvhW3@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yxb+iHfFUUKGQVr7MClrSbOCwToTRlv8BmjeRG4XUgLkKP0cSWs
+	32ZAydLwVHW0jCgbhi6qCoCi3VNFePHH4E0xXvXyrkMzjW0td0MpJkcObXRBv0O4hwU=
+X-Gm-Gg: Acq92OHIRqiRQNC2eWzTH44bOA9SQZ3RrXEliP0aPs70rIHzCuZEONQGa6TuHVvMEEL
+	5OPgiZKm5vQV0aeSbVm+s+2t/Z26P2c7wnMg/a61KX12+wP7a25zOmIMkimg1cYbEZkIJS1dkwD
+	GRp5mLLDDbA327+vadUklV6ndeVxcWdhEyQN+rYeUDe2fcvRyl6hSYwBDMjm9YbYXL0Y/DNXnMo
+	bamPgQJP9YvXY1hJVN/9lADenSQieNctrvKsq2VBo9QUp2InUB5uwmIqMWmEMZgezmrcFwhVE5/
+	okZLPZX4Ddf4ZM97267GOjXtkAa9xJwy99tqURmGnATBlepIe+OpuDr5MPmGzuTvC1U1yMbtI1X
+	7zCuRNyKIYJDd9jXR+FosIk7WEFPNzBn2lMbfYGl+X8Ut2Ird3qHT/acpVm55cS+gs7c1FAE/aU
+	VkhHwHsP/eJe478yk7MtnUE1K2ubOESTwnIam1JUYTv/qtwx4orhjNJ+r7HRAaIUrV4HdPiHiFA
+	YoYj8y9xh5vHUTqOhxmooEKtdJ7h3PGzzi1hWGtgiuKdbr+Kx5XSVjlMXvJIi/nxdor0mJ3T35G
+X-Received: by 2002:a05:6000:461b:b0:45e:e3ea:1101 with SMTP id ffacd0b85a97d-45ef143df69mr5458865f8f.17.1780057990362;
+        Fri, 29 May 2026 05:33:10 -0700 (PDT)
+Received: from ?IPV6:2a01:cb05:94a2:a200:2ad9:827a:59cb:148a? (2a01cb0594a2a2002ad9827a59cb148a.ipv6.abo.wanadoo.fr. [2a01:cb05:94a2:a200:2ad9:827a:59cb:148a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45ef354cf0dsm3314264f8f.17.2026.05.29.05.33.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 May 2026 05:33:10 -0700 (PDT)
+Message-ID: <10cfefe3-5340-4fd2-8bb3-5d92e9dc1011@smile.fr>
+Date: Fri, 29 May 2026 14:33:08 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F65:EE_|DM3PPF70DB7B674:EE_
-X-MS-Office365-Filtering-Correlation-Id: 830f68ce-9b53-4b3c-87d9-08debb596f1f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|36860700016|82310400026|1800799024|376014|18002099003|22082099003|56012099006;
-X-Microsoft-Antispam-Message-Info: 
-	YyyoedKx2gykFzqBcy0b24nZnoMG/wUdM6yNT8hkRcak4+tpi9kU8CfpM4cyZRIh8Lev0KIKm3592fDHLeB81tsVAM0KTuZkYnkeDwjF+3oTtGtYayHg5bbFT0mNXI5/HGhpXCesvpI1NZT2RZWqkTlx325YyDdmNXlsnfAKC7+iigqQa0JM30GB+detVTQRRYscTr7wkj+STJzmUczR1f0dZuPVdNzgrPN5joeIyy7jtAzD6RXS5rMBdIybS6td0mQnBKizDv7lMYKPIZzuewxL6ld/YFfEzsRj7VDF90KhtSEX3+iJTHkxIRwo9HXUEvECRYb6TF1Jk07t565FVvmy1lIwmfAzDe+OQcAFgWQ16HARUnLIYJ/mj5yk2K5sLzoAiQwbDty1Ik++EVQVVyRr7CgK9y5GCqsM9EgMXbCTyLqA6LIN1V+LnH/fG0vQeqz17sivsr4gvXSugPUeaJXoW66GQP2Z/kxYRxrUcLKsme98V/3BHzoCSZwW6FVhN5Lfjma02cJW8RqktiRSkI7uM6sYYu+96dIN5oPrc+ziinLol9E3EG8VIzyqJb9GPctzE6NG9GsklYJedM8TYUW3ix7eiREU7i8YYEd3XmFR/EvZb2BvzfhWhbpB1qfnUgYo6wChupwd3Ih+oUL8Shu2MHZ6ANf+wJwfTl3t/fIS+TttRrzcZnMNIUdd9ff+Ljfpp2/mNIpP1f/mbq7jRbjyrcfffqxnpzfNMU6dUEE=
-X-Forefront-Antispam-Report: 
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(18002099003)(22082099003)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	IFZevjtXT0LLo3vdDYwSag5iZOwkp2KR/drY0H00KQL+6H2s/O7XdlYAw+tz+9Bp0wNKhLUldCGMYubjwZ5+6s7WlPzbCJiyc9/Wb0rM0yQRyFoXDcbmmrN6IXQAZhFpCiVnW+cb13mlieLwC9OMkfX79Gde+esWf/RxrZwqMdWmx3VQeGlLTdJDPQldKcODLkfUyAW91QuZJcgK0eWLFdZv+PporkfI0ZLvKVGREt1HJhDvi8v4leE0SnFyT/B36ClLqOyo71P+tKpiEYi4v+Auf8nf5I8NFav1ogXmvnk2vK79YhW8elDf/MkNTzPpCGvA05QcJRt2r9xGPx8tNo8FedgwReX7sbnApTZf3ErXz7yfG62FYNujY5NCh8/VhrtP9KXDVCSzAygiBWWU2PP0UcrTKmMTw2h/AOmcikgGuSA7JeogtKh0wSK2vzbU
-X-OriginatorOrg: list.ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 19:03:12.3266
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 830f68ce-9b53-4b3c-87d9-08debb596f1f
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	SA2PEPF00003F65.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF70DB7B674
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][scarthgap][PATCH RFC 0/4] Add support for SWUpdate
+To: Anshul Dalal <anshuld@ti.com>, meta-arago@lists.yoctoproject.org
+Cc: vigneshr@ti.com, denys@konsulko.com, reatmon@ti.com,
+ Alban MOIZAN <alban.moizan@smile.fr>
+References: <20251202111603.1616989-1-anshuld@ti.com>
+Content-Language: en-US
+From: Romain Naour <romain.naour@smile.fr>
+In-Reply-To: <20251202111603.1616989-1-anshuld@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 26 May 2026 19:03:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17540
+ <meta-arago@lists.yoctoproject.org>; Fri, 29 May 2026 12:33:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17541
 
-meta-arago / na / 20260526183938.378716-1-t-lannynd
+Hello Anshul, All,
 
-PRC Results: PASS
+Le 02/12/2025 à 12:15, Anshul Dalal a écrit :
+> Hi all,
+> 
+> This RFC adds support for SWUpdate[1] to meta-arago, this provides us with OTA
+> updates with A/B redundancy for the rootfs.
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-patches: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Patches
-----------------------------------------
-All patches passed
+Do you have some recommendation when an upgrade should include a TI firmwares
+updates (TI SCI, DM)? On the rootfs we can have some remoteproc firmwares built
+with a specific TI SDK version that imply a specific TI SCI/DM firmware version
+being used.
 
+What if we want to update the system with OTA? It seems we have to update u-boot
+too.
 
+Example:
+The system is running with a Yocto kirkstone based image and we want to deploy a
+new Scarthgap based image. The kirkstone image will provide a DSP firmware build
+with the TI SDK 09.02.00.05 while the Scarthgap image will provide a DSP
+firmware build with the TI SDK 11.02.00.06.
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  apply-yocto-patch: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [meta-arago][master/wrynose][PATCH v2] meta-arago: chromium=
-: clean up and simplify V4L2 patch series
-- Submitter: From: Thorsten Lannynd <t-lannynd@ti.com>
- From: Thorsten Lannynd <t-lannynd@ti.com>
- From: Thorsten Lannynd <t-lannynd@ti.com>
- From: Thorsten Lannynd <t-lannynd@ti.com>
- From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
-- Date: Date: Tue, 26 May 2026 13:39:38 -0500
--Date: Fri, 5 Dec 2025 12:40:27 -0600
-+Date: Sun, 17 May 2026 02:40:44 -0500
- Date: Thu, 5 Mar 2026 12:02:31 -0600
--Date: Sat, 9 Aug 2025 01:46:14 -0500
-+Date: Sun, 17 May 2026 02:29:10 -0500
- Date: Wed, 11 Jun 2025 11:07:05 +0300
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: 5eb12bba00e1f2636f88b189235cc78d6=
-5509fa5
+On meta-ti kirkstone I had a regression with a DSP firmware at runtime due to a
+ti-linux-fw version bump: https://lists.yoctoproject.org/g/meta-ti/message/19322
+(It was probably due to an IPC/mailbox change between TI SDK 9 and 10).
 
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: master-wip
-- Commit Author: Thorsten Lannynd <t-lannynd@ti.com>
-- Commit Subject: chromium: Upgrade to v148.0.7778.167
-- Commit SHA: 7fc9c9be31c9337d695da43fc0cbbee1c842da27
+The K3 bootflow that is already complex doesn't seems to expect using A/B
+redundancy for the bootloader. One of the "safer" solution would to flash the
+eMMC with a new image after booting with an SD card.
 
-Patches
-----------------------------------------
-All patches applied
+Best regards,
+Romain
 
-wrynose
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Summary:
-- Patch Series: [meta-arago][master/wrynose][PATCH v2] meta-arago: chromium=
-: clean up and simplify V4L2 patch series
-- Submitter: From: Thorsten Lannynd <t-lannynd@ti.com>
- From: Thorsten Lannynd <t-lannynd@ti.com>
- From: Thorsten Lannynd <t-lannynd@ti.com>
- From: Thorsten Lannynd <t-lannynd@ti.com>
- From: Alexandros Frantzis <alexandros.frantzis@collabora.com>
-- Date: Date: Tue, 26 May 2026 13:39:38 -0500
--Date: Fri, 5 Dec 2025 12:40:27 -0600
-+Date: Sun, 17 May 2026 02:40:44 -0500
- Date: Thu, 5 Mar 2026 12:02:31 -0600
--Date: Sat, 9 Aug 2025 01:46:14 -0500
-+Date: Sun, 17 May 2026 02:29:10 -0500
- Date: Wed, 11 Jun 2025 11:07:05 +0300
-- Num Patches: 1
-- Mailing List (public inbox) Commit SHA: 5eb12bba00e1f2636f88b189235cc78d6=
-5509fa5
-
-Applied to:
-- Repository: lcpd-prc-meta-arago
-- Base Branch: wrynose-wip
-- Commit Author: Thorsten Lannynd <t-lannynd@ti.com>
-- Commit Subject: chromium: Upgrade to v148.0.7778.167
-- Commit SHA: dabf01e1446adc66f221d8152b2bf20157dd8bf1
-
-Patches
-----------------------------------------
-All patches applied
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  check-yocto-repo: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-PASS
-
-wrynose
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-PASS
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-  yocto-check-layers: PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-master - PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-All checks passed
-
-wrynose - PASS
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-All checks passed
-
-
+> 
+> For now the support is enabled for eMMC boot only based on the 'ti-swupdate'
+> override. The below steps can be used to test this RFC on an AM62x EVM:
+> 
+>  1. Add 'meta-swupdate' layer[2] to the SDK sources directory.
+> 
+>  2. Since the bootloader side changes have not been merged to ti-u-boot yet,
+>     make use of the 'swupdate' branch from my own U-Boot fork[3].
+> 
+>  3. Enable 'swupdate' support by setting the 'ti-swupdate' override in
+>     local.conf as follows:
+> 
+>       DISTROOVERRIDES:append = ":ti-swupdate"
+> 
+>  4. Flash the U-Boot binaries to the correct offsets on boot0 partition as
+>     per the docs[4] and run 'env save' on first boot to save the environment to
+>     eMMC's hw partition.
+> 
+> Regards,
+> Anshul
+> 
+> [1]: https://swupdate.org/
+> [2]: https://github.com/sbabic/meta-swupdate
+> [3]: https://github.com/ArchUsr64/u-boot/tree/swupdate
+> [4]: https://software-dl.ti.com/processor-sdk-linux-rt/esd/AM62X/latest/exports/docs/linux/How_to_Guides/Target/How_to_emmc_boot.html#how-to-emmc-boot
+> 
+> Anshul Dalal (4):
+>   swupdate: add systemd service to rootfs
+>   swupdate: add creation of update image
+>   swupdate: add bootloader support
+>   swupdate: enable authentication for update image
+> 
+>  meta-arago-distro/conf/distro/arago.conf      |  3 ++
+>  .../images/files/sw-description               | 46 +++++++++++++++++++
+>  .../recipes-swupdate/images/update-image.bb   | 27 +++++++++++
+>  .../libubootenv/files/fw_env.config           |  5 ++
+>  .../libubootenv/libubootenv_%.bbappend        | 10 ++++
+>  .../recipes-swupdate/swupdate/files/defconfig | 12 +++++
+>  .../swupdate/files/swupdate.cfg               | 13 ++++++
+>  .../swupdate/files/swupdate.sh                | 15 ++++++
+>  .../swupdate/swupdate_%.bbappend              | 35 ++++++++++++++
+>  .../wic/sdimage-2part-swupdate.wks            |  6 +++
+>  10 files changed, 172 insertions(+)
+>  create mode 100644 meta-arago-distro/recipes-swupdate/images/files/sw-description
+>  create mode 100644 meta-arago-distro/recipes-swupdate/images/update-image.bb
+>  create mode 100644 meta-arago-distro/recipes-swupdate/libubootenv/files/fw_env.config
+>  create mode 100644 meta-arago-distro/recipes-swupdate/libubootenv/libubootenv_%.bbappend
+>  create mode 100644 meta-arago-distro/recipes-swupdate/swupdate/files/defconfig
+>  create mode 100644 meta-arago-distro/recipes-swupdate/swupdate/files/swupdate.cfg
+>  create mode 100644 meta-arago-distro/recipes-swupdate/swupdate/files/swupdate.sh
+>  create mode 100644 meta-arago-distro/recipes-swupdate/swupdate/swupdate_%.bbappend
+>  create mode 100644 meta-arago-distro/wic/sdimage-2part-swupdate.wks
 
 
