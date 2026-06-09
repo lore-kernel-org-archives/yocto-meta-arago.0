@@ -1,156 +1,195 @@
-Return-Path: <denis@denix.org>
+Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E186CD8CB2
-	for <webhook@archiver.kernel.org>; Tue,  9 Jun 2026 18:52:57 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.3176.1781031169678460255
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9CB83CD8CAD
+	for <webhook@archiver.kernel.org>; Tue,  9 Jun 2026 18:56:07 +0000 (UTC)
+Received: from CY3PR05CU001.outbound.protection.outlook.com (CY3PR05CU001.outbound.protection.outlook.com [40.93.201.30])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.3262.1781031366968264949
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 09 Jun 2026 11:52:49 -0700
+ Tue, 09 Jun 2026 11:56:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 246BF40CB0;
-	Tue,  9 Jun 2026 18:52:49 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id LAwBLwqKj-tz; Tue,  9 Jun 2026 18:52:49 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 079B440C56;
-	Tue,  9 Jun 2026 18:52:47 +0000 (UTC)
-Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id B961317ED76;
-	Tue,  9 Jun 2026 14:52:47 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: "Denys Dmytriyenko (TI)" <denys@konsulko.com>
-Subject: [master][PATCH] README: update and clean up
-Date: Tue,  9 Jun 2026 14:52:47 -0400
-Message-Id: <20260609185247.2659774-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+ dkim=fail reason="dkim: body hash did not verify" header.i=@list.ti.com header.s=selector1 header.b=Qz7jGFee;
+ spf=pass (domain: list.ti.com, ip: 40.93.201.30, mailfrom: prc@list.ti.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Xm7ObCk+2cb3L1s6aZQrLgzqf/oG/xqhdVz7n6T/4oY1RidVAgLx+sL+Ke5PUOtVpzjBiql/p2S/PqVj5fJtyFBJ4JzuWgbTZwGcvX8uBOXiluWXfttgzoAAI8jmbdTp37vGGoR5+hr0MmNgGpRSWZjYsdmZo+jQKxZoEoWAN+69kh5GBxd4tFOfCu1HvaNfSFbBVHX6rKbmwE7fqdLWPjBz5AKtsWrGNizHCsKJLLu/aioR28nrDaL+COALlG7LmsbW6wDKkzRlNx+05vLMnejPrtnYCVSolM+HGxTsR0PKimSWfcuvMyA29qK88jP29M8RHabssStn3UlfNqu2Zg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vXQKyxsRFJTgz1gzcWDLu3+7X2PpM5rAWcHrDHro4gw=;
+ b=CTK7CJLaZuAAQvsDHV4feiPYChmcq+DsBtJ+EjAp+UsXybXb7T1qNszS/b+orIFRTIN/LAkxscea8blDgE2iG0jqaXYfZkmXoKHfP1k0ccrBUr/kbjup5rV6WLgiIEL1F43H55S5GTskVElU/3vmNsUSqOGmEfh+haw6dSUdqj1DCS5S47TeVPBWNB9A6JFeEQNSyZJC+WZ/cItN5shkjkwHn9WOUcmipDPF1IWAzs/jaQRfHq3J8t7oCLxgqSu96blXlZmu7VugXIEE2idcC3nBYR2/N7gmGwTuuSRZqJGE/gM1a7SPrn7s0Q9UzmZ61jycznWNr1ng9C38xXApwg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
+ action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vXQKyxsRFJTgz1gzcWDLu3+7X2PpM5rAWcHrDHro4gw=;
+ b=Qz7jGFeez1WRoWXCdz8FEKRP4o1fcwxHYnXV4xeV4h1WD/4KEYDmMTNy7xm/bFJOcDtS5AU+6IADvOKuTPbRPoCHXyJGvgK2K4h6QsKSdYqS1W1MOXFETdXQB2sBJ5apfVy83MN45oEl84UtlDCZt4Xh0ygtq6J801BrYF2mH/2NlNlph3IM71vG6EzspChWhAW7Ap0gr7HFvPmBaLjXPkYTVTjGYTaLdvUcDLNDVozZXKhrsNAkv6QrfhFA3okzMCXOoXRMny/hS1P2jTxobBTqtZY0d9cdaalmO4bcRBnGHpLGgR+Vakp9Bfx8V68Txu5LPN1daDNYk7qvQ1KC2A==
+Received: from BY1P220CA0024.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:5c3::9)
+ by PH0PR10MB997619.namprd10.prod.outlook.com (2603:10b6:510:380::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.14; Tue, 9 Jun 2026
+ 18:56:05 +0000
+Received: from SJ1PEPF000026C4.namprd04.prod.outlook.com
+ (2603:10b6:a03:5c3:cafe::8d) by BY1P220CA0024.outlook.office365.com
+ (2603:10b6:a03:5c3::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.10 via Frontend Transport; Tue, 9
+ Jun 2026 18:56:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=list.ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=list.ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SJ1PEPF000026C4.mail.protection.outlook.com (10.167.244.101) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.113.7 via Frontend Transport; Tue, 9 Jun 2026 18:56:04 +0000
+Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 9 Jun
+ 2026 13:56:04 -0500
+Received: from DLEE208.ent.ti.com (157.170.170.97) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 9 Jun
+ 2026 13:56:03 -0500
+Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DLEE208.ent.ti.com
+ (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Tue, 9 Jun 2026 13:56:03 -0500
+Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
+	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 659Iu3Js1830833;
+	Tue, 9 Jun 2026 13:56:03 -0500
+Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
+	id C0A199ACF4; Tue,  9 Jun 2026 13:56:03 -0500 (CDT)
+From: PRC Automation <prc@list.ti.com>
+To: Denys Dmytriyenko <denis@denix.org>
+CC: <meta-arago@lists.yoctoproject.org>, "Denys Dmytriyenko (TI)"
+	<denys@konsulko.com>
+Subject: Re: [wrynose][PATCH] README: update and clean up
+Date: Tue, 9 Jun 2026 13:56:03 -0500
+Message-ID: <20260609185603.2960380-1-prc@list.ti.com>
+X-Mailer: git-send-email 2.43.5
+In-Reply-To: <20260609185230.2659682-1-denis@denix.org>
+References: <20260609185230.2659682-1-denis@denix.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000026C4:EE_|PH0PR10MB997619:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7c67575f-8767-4306-d821-08dec658c1fa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700016|22082099003|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info: 
+	fCPXVBfzqoEcUOeSmlxE5qmoZFzQRcZQp8/hM/SRl+ItPmaJy5ACo3DtKbxa/vjhB57AKhtlabifoqHZUFLDZ0y8YdJ4f5+firjsLR97ZaXtOloV/SLsaWbJTUofLlBn9jbpwaGgt2Dni1Y/JleUWWaI4GUYe1UAz10qsrZ1WnOnk56BX57vMZg4Jvs7za7v2MIOFRIesr6FgysiEvUAT7xIzVCFyCaabu/Qv5jhH8v49/glNR0ZKggFj7JWoY45+clISf3GCX+LE+N1CIHROtws6VHaGBNCfmiNKneQsOQmYJiadXC4zx2lQLu7933DOI/0dvHdt03nvoB8CH+P3FCrRlzonsxphrTkYkeuwXx54XW5gO+MFSx/Pt2nc4dUT60sMGAqUhEWO2L7dCnOSFSAIubo/LFO9RssdqPKqfYwznD+8Qh9k4iaTnCbZWtHszTGmg8dLJ00IWY7BRTcrFvSWIudVwTnufVWYsZwISO2/W7ilBSXEmOjfZYgaH2gyGTda+6em2lKMdBEpCfZ5IKHnKAjAsqSfGyqFVb/e8C+aaslfwaSFlWWwZQqFDuSTAuW6+3BZmm+R1A6+58EWthKLY0IjQ//BiJJaTSJIh+4tAxXpVkGyqD2YkGEE24DB6wPNufnfRIZ3SOGijB8V2YieO7gwcspDgSxlDDfjXj7pO3QfF1qkH4dKvfDshgWrJlL92mKkVURq63Xsxny52sowZyNpqupaPC/KKPb/Cs=
+X-Forefront-Antispam-Report: 
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700016)(22082099003)(18002099003)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	mys0WTI/Pr/VCCd+fHowf8DvH30O9/yISzGurg9EP2fTIeOC78cJZrY4j5mApx/vbyyhDmPuvlB5xLVGhGBUmfYa5ACt65mB50iZufJGabzGSINxgAk3ZTxY119OZfHOCk4xp4btYClJPnnf+iv+9O8tUX7vGEo9sMIf/p+MDy8Se7CbhjQBKqLsP3TIOlaB4NInh/0RMYudMPoLAIsyVpV7kzMJltp8a6G4fNNpep96Do+/7iGfeNmmaoBDQ06PZ/OBHbX3ObQqOieLpptedUv+gOH+bSlSBYhcGBkGFfO19n06elTO27eOfzTVp7lIWHe6ybxMeyNNTbGo7qi4l43Ay5WqUm9IcXf4hDjIRdaUNfWXsbNT+Yj8KJ+ctuZx3coRua7i6XudfWPh0cSdx1VOlZI5F3DrPNa4TrqvHsMOPoj0TFgsuJxkCQJ7YYdc
+X-OriginatorOrg: list.ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2026 18:56:04.5686
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c67575f-8767-4306-d821-08dec658c1fa
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	SJ1PEPF000026C4.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB997619
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 09 Jun 2026 18:52:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17565
+ <meta-arago@lists.yoctoproject.org>; Tue, 09 Jun 2026 18:56:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17566
 
+meta-arago / na / 20260609185230.2659682-1-denis
+
+PRC Results: PASS
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-patches: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+Patches
+----------------------------------------
+WARN - [wrynose][PATCH] README: update and clean up
+    WARN: Missing Signed-off-by by sender in commit message. (SIGNED-OFF-BY=
+-2)
+        patch
+   =20
+    For details on the above errors/warnings visit: https://lists.yoctoproj=
+ect.org/g/meta-ti/wiki/40887
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  apply-yocto-patch: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+wrynose
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Summary:
+- Patch Series: [wrynose][PATCH] README: update and clean up
+- Submitter: From: Denys Dmytriyenko <denis@denix.org>
 From: "Denys Dmytriyenko (TI)" <denys@konsulko.com>
+- Date: Date: Tue,  9 Jun 2026 14:52:30 -0400
+- Num Patches: 1
+- Mailing List (public inbox) Commit SHA: ceb661bf8de91c1b76cd1eec0800d8deb=
+20b7ded
 
-Update READMEs as follows:
-* Use https:// instead of git:// protocol due to deprecation
-* Correct some sub-layer dependencies
+Applied to:
+- Repository: lcpd-prc-meta-arago
+- Base Branch: wrynose-wip
+- Commit Author: Thorsten Lannynd <t-lannynd@ti.com>
+- Commit Subject: meta-arago-distro: chromium: add force-h264-youtube exten=
+sion
+- Commit SHA: 829367ab4c8b3ba2f30935f0e57889c57afebb5f
 
-Signed-off-by: Denys Dmytriyenko (TI) <denys@konsulko.com>
----
- meta-arago-distro/README | 25 ++++++++++++++++---------
- meta-arago-extras/README | 16 +++++++++-------
- 2 files changed, 25 insertions(+), 16 deletions(-)
+Patches
+----------------------------------------
+All patches applied
 
-diff --git a/meta-arago-distro/README b/meta-arago-distro/README
-index d5ec23af..5fc196bb 100644
---- a/meta-arago-distro/README
-+++ b/meta-arago-distro/README
-@@ -1,29 +1,36 @@
- meta-arago-distro provides Arago distribution configuration for TI produ=
-cts
-=20
--This layer works with the latest Yocto Project release (currently 2.2+) =
-and tracks
--the stable/maintenance branches (currently "master") of the correspondin=
-g layers:
-+The source repository is hosted at https://git.yoctoproject.org/meta-ara=
-go
-=20
--URI: git://git.openembedded.org/openembedded-core
-+This layer works with the latest Yocto Project and tracks the "master"
-+branches of the corresponding layers:
-+
-+URI: https://git.openembedded.org/openembedded-core
- branch: master
- revision: HEAD
- layers: meta
-=20
--URI: git://git.yoctoproject.org/meta-ti
-+URI: https://git.yoctoproject.org/meta-ti
- branch: master
- revision: HEAD
--layers: meta-ti-bsp, meta-ti-extras
-+layers: meta-ti-bsp, meta-ti-extras, meta-ti-test
-=20
--URI: git://git.yoctoproject.org/meta-arm
-+URI: https://git.yoctoproject.org/meta-arm
- branch: master
- revision: HEAD
- layers: meta-arm, meta-arm-toolchain
-=20
--URI: git://git.openembedded.org/meta-openembedded
-+URI: https://git.openembedded.org/meta-openembedded
-+branch: master
-+revision: HEAD
-+layers: meta-oe, meta-multimedia, meta-networking, meta-python
-+
-+URI: https://git.yoctoproject.org/meta-virtualization
- branch: master
- revision: HEAD
--layers: meta-oe, meta-networking, meta-python
-+layers: meta-virtualization
-=20
--URI: git://git.yoctoproject.org/meta-arago
-+URI: https://git.yoctoproject.org/meta-arago
- branch: master
- revision: HEAD
- layers: meta-arago-extras
-diff --git a/meta-arago-extras/README b/meta-arago-extras/README
-index 9a4c5b25..cb9ee9a1 100644
---- a/meta-arago-extras/README
-+++ b/meta-arago-extras/README
-@@ -1,27 +1,29 @@
- meta-arago-extras provides additional TI applications that are distro-ag=
-nostic
-=20
--This layer works with the latest Yocto Project release (currently 2.2+) =
-and tracks
--the stable/maintenance branches (currently "master") of the correspondin=
-g layers:
-+The source repository is hosted at https://git.yoctoproject.org/meta-ara=
-go
-=20
--URI: git://git.openembedded.org/openembedded-core
-+This layer works with the latest Yocto Project and tracks the "master"
-+branches of the corresponding layers:
-+
-+URI: https://git.openembedded.org/openembedded-core
- branch: master
- revision: HEAD
- layers: meta
-=20
--URI: git://git.yoctoproject.org/meta-ti
-+URI: https://git.yoctoproject.org/meta-ti
- branch: master
- revision: HEAD
- layers: meta-ti-bsp, meta-ti-extras
-=20
--URI: git://git.yoctoproject.org/meta-arm
-+URI: https://git.yoctoproject.org/meta-arm
- branch: master
- revision: HEAD
- layers: meta-arm, meta-arm-toolchain
-=20
--URI: git://git.openembedded.org/meta-openembedded
-+URI: https://git.openembedded.org/meta-openembedded
- branch: master
- revision: HEAD
--layers: meta-oe, meta-networking, meta-python
-+layers: meta-oe, meta-networking
-=20
- Send pull requests, patches, comments or questions to:
- meta-arago@lists.yoctoproject.org
---=20
-2.25.1
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  check-yocto-repo: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+wrynose
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PASS
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+  yocto-check-layers: PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+wrynose - PASS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+All checks passed
+
+
 
 
