@@ -1,59 +1,58 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <p-gupta5@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ABCC9C43458
-	for <webhook@archiver.kernel.org>; Tue, 30 Jun 2026 11:49:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 269CDC43458
+	for <webhook@archiver.kernel.org>; Tue, 30 Jun 2026 13:31:53 +0000 (UTC)
 Received: from mx0a-0002e601.pphosted.com (mx0a-0002e601.pphosted.com [148.163.150.75])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.19112.1782820183725502960
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.21089.1782826310019122177
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 30 Jun 2026 04:49:43 -0700
+ Tue, 30 Jun 2026 06:31:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=proofpoint-05-2026 header.b=D45AN13A;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=selector1 header.b=otABt2TA;
- spf=pass (domain: ti.com, ip: 148.163.150.75, mailfrom: reatmon@ti.com)
-Received: from pps.filterd (m0380145.ppops.net [127.0.0.1])
-	by m0380145.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 65UBBQ8d657123
-	for <meta-arago@lists.yoctoproject.org>; Tue, 30 Jun 2026 06:49:43 -0500
+ dkim=pass header.i=@ti.com header.s=proofpoint-05-2026 header.b=OsT7Ki66;
+ dkim=pass header.i=@ti.com header.s=selector1 header.b=D8G+cppv;
+ spf=pass (domain: ti.com, ip: 148.163.150.75, mailfrom: p-gupta5@ti.com)
+Received: from pps.filterd (m0384305.ppops.net [127.0.0.1])
+	by m0384305.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 65UBCcH2401358
+	for <meta-arago@lists.yoctoproject.org>; Tue, 30 Jun 2026 08:31:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	proofpoint-05-2026; bh=y1EuCbSDxb9GLgEe12LWGatsWDnIwm6grOE3QqW4B
-	wE=; b=D45AN13AcJqd3pPTRdjkia2KF8x9ym9FXkKintOgmeqpHS+1QXfEoq3fn
-	YMjvb3SHmnOmQqV9FDGh9NqhN6SEBYaQjjwM9jNQcSQ+Dz2dGq3W5JHjSQcV8mKr
-	3KUgkaHiQnXQg9PVypEEu2LI0nfTwV/NOs8Bh2RWeTVKU9mqVnZxNYq4gn9PrRBt
-	yxcFlLWN6A1LGoogKfqIuaU+K88W+mfsDE+I9MDV/W+wQEpLwoZwYGHq56nVplSl
-	0Gq44bGiOCmacNcOXLfwHZ5sx4DygnEWw+XcJ9+EdHpq5Gl1V5kDjisD74YXu4pl
-	b3yVrdTpDg5ZKxluwrq2K5cWFvDhw==
-Received: from byapr05cu005.outbound.protection.outlook.com (mail-westusazon11010045.outbound.protection.outlook.com [52.101.85.45])
-	by m0380145.ppops.net (PPS) with ESMTPS id 4f4cq6r58u-1
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=proofpoint-05-2026; bh=urpgsSJYF7638
+	Kq6DtA5j2ylRqZ7wbEYwpB8rwSq5I4=; b=OsT7Ki66rfqOq1Rgw+dUR31057TXS
+	Cv4iHQdG6oft5RAPMyR02Gqt6dtC66KHyue3XmSiD9RwQ5qPc2UDXGUCM0Oe5KB5
+	HMSzuiMBMYLFCxsS5enCuAZ+JkBDvkakSy2AM5wdZ/IaeL9Y0UatQPuI6b2LBA7L
+	ed6osd0QkW0j3PoViFB8Rqe7KWTeSfDd2af4YfwD15Z1jNKPVlym4cEiG2lRrprb
+	xcgWRZcqzSChvW0MnknaL20lGvYwj/gobmKdx8HdSi0b4nKpPB0tVV7ix6VkUrm/
+	mrPD1N3bCs2jpODN00sl8MGALiO5Uedt/x49f5KC01hEd56Crc3+YvkYQ==
+Received: from sa9pr02cu001.outbound.protection.outlook.com (mail-southcentralusazon11013016.outbound.protection.outlook.com [40.93.196.16])
+	by m0384305.ppops.net (PPS) with ESMTPS id 4f4cqj8rw8-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT)
-	for <meta-arago@lists.yoctoproject.org>; Tue, 30 Jun 2026 06:49:43 -0500 (CDT)
+	for <meta-arago@lists.yoctoproject.org>; Tue, 30 Jun 2026 08:31:49 -0500 (CDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AeoR85fhROI6lTukvpwCUzaUVtHyaEGzp9YCjIeLLHHPZJo+Olrt6fZyV/XOxNzwbmtgF1VNkCog5ZWlPCXjwqi+1ollNRsNkzFVquGbzj1EPa2bRjgBr1kqM538tb29LtDX+2lY2lrK2BvgNKQANatHiftREcAj2NMUYX2Ilzb137iJUry33wF4F10Lxuyv42ANp+VOMQlF6jKAOpC8BHFAGwosoNct6fp3ZBBxFapM8V+FbtAOB7PqO8nLWTxO4Mj2q6KkK+TNtwWRRuvyy34VPO6iTy5M9hnDGFsV8LntcpPKA9KWYRObk6oqQS/mzLYzb96pY5oRW7bn+u3vzQ==
+ b=rI/nftmENw7+cy+4l46XFq3KiNiepfp9DPqoMR6xl8xCATPGjbRtDme76CN8MmElEO5+beMVJ1uPVi64/qmZ2tIYENpxQuQjvz465HjHIizveUsYushQEQo/YaIrfHFiNk1mTBtbeKa/RrllbR8iLNbBgWFgMu1vJJA5oLWSYrZ9GJVYdxuH55HIvM7pKgp497jlnhl5/Y4Yk440+vvbQ+sk7yuIlnhoI1DeCO7mDZw2YrCx9RPdHGR9QQtElaqncApvHbRW9Csy9odp4zlvD1tNRNsMZIDwpG0zSNHXTndMTur+lNYCjPJ2eDZd80ock/A1vH1iJsBy/9eIWuMZ+Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y1EuCbSDxb9GLgEe12LWGatsWDnIwm6grOE3QqW4BwE=;
- b=uz4c9sQOsOzoqlCW3idjxQyytgQj7YCIcS81xuRJlbkwhQQ5NQ1t5ANQ2dymoXSk5ifjsQfTR6H2xsD7qRGSYbkowQyCM4r0Y9bm/YA0mGC24V/DZGMEthH60f/vn7vCIxRZ8oqxyBUUWloMxhzT62XwTuAfVYC/LFBJSRiqe9oMg1csWbUjsgzscnehHTT3MqOurqoHZ8sPx5ta783iVN/JSp3yG0PDMaBZTpdwA/59rFWW52yjdmfeR9nxwGxDyiEC8JM6UytQ1sV88RgIMgzaxPkLfjhVah8r0rqtJdz26/sql+88SFz/lWP2lQGmdWLyg9acVRvQdGLGTzrCNw==
+ bh=urpgsSJYF7638Kq6DtA5j2ylRqZ7wbEYwpB8rwSq5I4=;
+ b=c0F2jPQDNfStrNQ5LbaOtw5HuRgeuJpA2hF+/0UahjmPcS+19kNOs4pVAXU7bEWEX0JuVN4sp8GlADchiMN9lPn8jt0JiDARUZDZN23C8xQ2jaJMYEffEWCIgx3e5egv8BnWurlEG9KFU8MTU2ZWPtEIBMI9G8V10qi/UXfQe5cmhhXTJNuDJTdK9lSc1OoOXkWrapBNR3wxS7u3FaSMtfp4vWa6Aun5uii7lofqkk10ltZFVP7xbDk4OXOFdB6VOllkGSYpEoonGff/+3rpqW8RwBrbZM0cLzr7sm8VtHEHuyhDAoRbiOQuPDO/GmENQM/Nei5bwLkQh3TJSwpLHg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  198.47.21.195) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y1EuCbSDxb9GLgEe12LWGatsWDnIwm6grOE3QqW4BwE=;
- b=otABt2TA43oXzp/sgL0cz/Oo6qbY2Pok5gp86UY4MGmO404v9s4eL92r1Z6+xZRc1Q7Sm6+LyTqcICuvbNu3JcFEAwANb0ghwW/hfofdtrTKLeB5qblNE8qIjDc1v/t+IFaV7Jec8Jsoz+T/YsDO2BUWrAsJUSGwcTVjgvSYeQ4=
-Received: from DS7PR03CA0300.namprd03.prod.outlook.com (2603:10b6:5:3ad::35)
- by DS7PR10MB5103.namprd10.prod.outlook.com (2603:10b6:5:3a8::22) with
+ bh=urpgsSJYF7638Kq6DtA5j2ylRqZ7wbEYwpB8rwSq5I4=;
+ b=D8G+cppvKKxlG4S3D+mb2Bz+bs1+QeIIw1SRpunIiOWRiIN0z3FI6URjNWJKBFrhvJ9Kp0glO2+6Q84b/yg9S+ov5s2EFIKE7r55skyIVwZdxRFnx/TzcRquRE6z28koYVUJCtl1APJfGjNf/pCw/ioibRdoTbuXcIdi+Y4YoOQ=
+Received: from BL1PR13CA0185.namprd13.prod.outlook.com (2603:10b6:208:2be::10)
+ by SA1PR10MB5735.namprd10.prod.outlook.com (2603:10b6:806:23e::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
- 2026 11:49:37 +0000
-Received: from CY4PEPF0000FCC3.namprd03.prod.outlook.com
- (2603:10b6:5:3ad:cafe::36) by DS7PR03CA0300.outlook.office365.com
- (2603:10b6:5:3ad::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.19 via Frontend Transport; Tue,
- 30 Jun 2026 11:49:37 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Tue, 30 Jun
+ 2026 13:31:46 +0000
+Received: from BL6PEPF0001AB75.namprd02.prod.outlook.com
+ (2603:10b6:208:2be:cafe::7f) by BL1PR13CA0185.outlook.office365.com
+ (2603:10b6:208:2be::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Tue, 30
+ Jun 2026 13:31:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
  smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
  action=none header.from=ti.com;
@@ -61,509 +60,499 @@ Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
  198.47.21.195 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
 Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- CY4PEPF0000FCC3.mail.protection.outlook.com (10.167.242.105) with Microsoft
+ BL6PEPF0001AB75.mail.protection.outlook.com (10.167.242.168) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Tue, 30 Jun 2026 11:49:35 +0000
-Received: from DFLE200.ent.ti.com (10.64.6.58) by flwvzet201.ext.ti.com
+ 15.21.181.6 via Frontend Transport; Tue, 30 Jun 2026 13:31:44 +0000
+Received: from DFLE213.ent.ti.com (10.64.6.71) by flwvzet201.ext.ti.com
  (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 30 Jun
- 2026 06:49:34 -0500
-Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 30 Jun
- 2026 06:49:34 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE213.ent.ti.com
+ 2026 08:30:59 -0500
+Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE213.ent.ti.com
  (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 30 Jun
+ 2026 08:30:59 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Tue, 30 Jun 2026 06:49:34 -0500
-Received: from [10.249.65.118] ([10.249.65.118])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 65UBnY4Q2416956;
-	Tue, 30 Jun 2026 06:49:34 -0500
-Message-ID: <10d10c8f-19bc-45e9-8731-a6ed3aa77616@ti.com>
-Date: Tue, 30 Jun 2026 06:49:34 -0500
+ Transport; Tue, 30 Jun 2026 08:30:59 -0500
+Received: from puyush-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (puyush-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.51.155])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 65UDUv8V2595081;
+	Tue, 30 Jun 2026 08:30:58 -0500
+From: Puyush Gupta <p-gupta5@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: <reatmon@ti.com>, <s-sinha@ti.com>, <s-kapoor@ti.com>
+Subject: [meta-arago][oe-layersetup][PATCH] configs: processor-sdk-gateway: Add 11.02.01 release config
+Date: Tue, 30 Jun 2026 19:00:56 +0530
+Message-ID: <20260630133056.1844921-1-p-gupta5@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][oe-layersetup][PATCH] configs:
- processor-sdk-gateway: Add 11.2 release config
-To: "Sinha, Shreyash" <s-sinha@ti.com>,
-        "meta-arago@lists.yoctoproject.org"
-	<meta-arago@lists.yoctoproject.org>
-CC: "Kapoor, Saurabh" <s-kapoor@ti.com>, "Gupta, Puyush" <p-gupta5@ti.com>
-References: <20260122145219.149872-1-p-gupta5@ti.com>
- <6a1d001000f84edcabf78998b27b883c@ti.com>
-Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <6a1d001000f84edcabf78998b27b883c@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC3:EE_|DS7PR10MB5103:EE_
-X-MS-Office365-Filtering-Correlation-Id: 93dcac27-0447-4e92-3136-08ded69da831
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB75:EE_|SA1PR10MB5735:EE_
+X-MS-Office365-Filtering-Correlation-Id: 69a73265-c92a-4c46-904d-08ded6abedb0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|36860700016|1800799024|82310400026|23010399003|3023799007|6133799003|4143699003|22082099003|18002099003|56012099006|20052099010|13003099007;
+	BCL:0;ARA:13230040|36860700016|376014|82310400026|1800799024|23010399003|56012099006|18002099003|6133799003|3023799007|20052099010|13003099007;
 X-Microsoft-Antispam-Message-Info: 
-	5SRb9rxsPEGfs3HJ8K90k5SG7AETVclS6hsGacPtPzl/cow8sAtbtnu22Uf8IVhtnO9Ow+rmzdvt/bSyEaGY+eUnK3OM+cOh1hksZ8P6tAWSCjWl19SZ/Bv2P8N93hpn1TnQwRmvcmi0N4CrMwts0AN8amJthq+7YUOZK07NEp2bzGddK8HfFDK1fx93SPIBOkH+eV3XcTySK5pQ6+p+Cy/GUFROID8fR3Xl63uw/reS1EeNKOI3+ZirF3cXN6NDlLXasb7xenTq4iUmJTVByDcxdtwHtE50APiIDSQVF2D6sLfYscH2Oty3R3h8Nx0w6SAIfd2iWgS6n9jSH57sIoUdO8Q5kSCtXqWramhdD/0PCx6WLtuUyTNmO23//mG4zUHj2faDUTqgS9UJLlPkz2PcFOeltYvh3ALWRT/wvtmbSsGCiPtnlMJVSlg440OEpjZ8YtnqPI4sFg293DseyrpYWC8jAvCPTAKx0+IAQRzmOmYd0dQnjhwKNvk/dL6TpYV2HB6Ja22BZ/ar27eg/2r+/5UJcdXOa97brXmdhJajqciNxcjSgmoejpcMULU7Ah81WgSvIUffjT/G8EjAxpa1zBLVBX1pJ6RqYIC71cyI3tlm6wqXXRp8MU7y4hgnmWNnX67wq2YlRG7z/qCzrg==
+	lEfp6fvdOG346KM/AVH/oyRYNdPTyWPX4XCg8+IZw9KrPjy+6kUlj2Y8QarNJPKRpqeuLzdbYZjdGKgi9T0p4ZZYCWaQaBdHGiyz5aYjXRbVhC9jGEhxXJib933N6Q68jDlCqJAygivxiRd4qk0ETCbCFBlAbWO11Sf4T1lxskyeMmRTdwR5zFbSRIo5Sfx/Wu2wwJEMWZQwdUSQ7tK8+mFl/OxoUin0C2R85m7PN7+6C0dGUtnOjbz2/4GZWAIKbT9NRyDqowz/o6WkqGqNaFu3hy6D1/vovvv1FEa5IPk3+DI6tFZiyxXFJw4thcnEGA0IDjgCQab+6ZmI7wedK0zcLu9bGlC2rolXgexa6wgTh5SZPN2dgpUmd/PXpxps6pl/naYqKhN+W1qQoT6F/qxGzn0Z+lBSjchy5ag92wXH1iZTJi8w37kQJjA74Nsj0iXYEcEkZwIAnlswFxaSTtjhojfO0XeLTKVvmqjh3d5CWJDjnp+JD/Mj8xAq+yO1sQvuzV9TcEraC/Q3H0kxVIetSEcIhSGtfgv8JuBACd3dT0eqI6EWOkCR/enJmWxJ8iOG+JGMkk3QBFDCi8C9tdgNv8xHWBvS1O6p8SkV1yufQUJFP4gHTwQlwNYwwc8FOt29uQbH2SrP2Rmz9Fnozw==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(376014)(36860700016)(1800799024)(82310400026)(23010399003)(3023799007)(6133799003)(4143699003)(22082099003)(18002099003)(56012099006)(20052099010)(13003099007);DIR:OUT;SFP:1101;
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700016)(376014)(82310400026)(1800799024)(23010399003)(56012099006)(18002099003)(6133799003)(3023799007)(20052099010)(13003099007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	kYEs2nBOczhPtQx1WtcR52WPkpPxza4kHO4sGpg8mSp/cxsnWJa2qe89mCIbQ2+E3OXlJLlyuCqNon4XMvD4jIz3IFo4LOGuHCNFP5e/abMHoOA0KkmbdRI78KI7PLbPIHtF10FPCut3WkIuCK0kOxGviYfYNekvjzai1X4r28RPoagmeZ/rKlss6MNH2hrmjXPLb14j5kBZQ+B+s7lUDAdzNTOF/Z3N+m67y8JsQtSZxxiTylpZF+MdiGlB3ZAvxSEMyRcm0cUV9MMcscU+vB8HMAJGceJCvY1YUQFmEUaV2as8JrGO4cl/KyKBS/TFKJVWfiS0iC5d6N0TGJP33WMmSur8lD6Q2Xs8nEocQNT6biK7K0rSqUgXEg1yfxcwHieDt5CABP/5Aj/fHYCdpNIdd5jX8VwKQO8NfH3+sgI1Qyll3Fln6AYRmNAZ0GcA
+	J9nidn5FBlaL+KWh3K1mNS224OUqNSnYU9CbXj0tnjM9IgmbsVKJEgSgdv+SuLeba2mtkS8aoWkJL+jnLz0w+lhuNWZoyANjMGUurE2iyAkXXbOZGyQsv4vmxcJUSgk0KFZ5Nvpb7/bnnadue4V735hNVn/Dt3hP/vCs64cYnHq1Gv74luRPnL27t1I/ozP0+MKjkqwoNLe5aqOGskkfeuezTG5FwN/sdMJcP9V2/cGb8gvjWRT36J1KgTEv6e7y1/ZcCWQOe4sm6JTLDilX02Vo//6Yk7bHI80xXjnrDHz1ufCABQ8Uq3MIW9luMiinAR5O1bb8wd6K3u+8aoynEQL4A93/yh7RgeiHf2BA+Pse7QR8Lr4e9tezMV2pM94y7zNVPNZ9Nff8XIVYcY6MiTcOiB3iZbbrtQc+dblMuzLX+GoLI48aorsD5RwhQkZy
 X-Exchange-RoutingPolicyChecked: 
-	Cpgkwiay4G/+kiauCal0t7Ggf+XAHg3fnN89reDlWWCfk2i6tXMv5WF0FAjU74nmRyxZ3gbZvotxfhLSnPYWZGhG0rDii28xdYsM2SbW5EbqOy1I58yIj+JyVO8EmRpsEycPyC91KpN1OKVyNW1SZ3+Kn7gr1FrRFJVxrJK5UCWp418Q+snM6xjf0WgTBTaFK4KPtLF8OlYq9PhD1yYlgOMybCsIKwS9L4vzRjymCg9Ywk9huSGTbOr++UVTtlzSIDZFry+wpPUotDSkPIET6vzwD30neL/4rs432tlj78NqIt51mabk5I5s4aHsMNSmFou81MOMFAke9s+zqixMfw==
+	rG8/AEoqitbV3ZEnQDfUgexbV6wiBv3XGcApHchl26fMfc/+LCnNFCZf4esN1bWGIctJyEzFW+ch5WovmYOeD3SiuykcgvzsrB/nRajuuLyEPhVkid582m3EtMTEAXKu0Lh87QbNrHVx6gPGPEIo09b1VO89f2JZz25aZ2Jn1o725hwV2SAMO2DcffHeI7fGlWNZHLnG8NzH0YQRGFAooeWBF91kMuA7mAXmKrYcnLal7cVNINA4kH7cuiC0UTav+o7eVEsOM2Y6wz6zN63Z5nTkEYUca8jUniO/1TeuBzp3U3ALZJWGBBsjUZdYxVfhTAaABQYJ4UyRfNYtC81+9A==
 X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 11:49:35.2223
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 13:31:44.7596
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93dcac27-0447-4e92-3136-08ded69da831
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69a73265-c92a-4c46-904d-08ded6abedb0
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	CY4PEPF0000FCC3.namprd03.prod.outlook.com
+	BL6PEPF0001AB75.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB5103
-X-Proofpoint-ORIG-GUID: fSkKnDSJ-JN53KMXcqu3O8_l5i3mV1pv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDEwOCBTYWx0ZWRfX/VfMo6pcuwVR
- /ru+8w+u/QEEUp+g4vyX8FX5LiB9DTpWLF8JtnXS0uEKRWBuKqzaOT26SWm/11RQvYv770DBE4+
- uf0DsJqUTVBlNvRiJ1IOAKLdvEjVTs/KNQY1vmisRXc13fAC36vb37sPusohpomuKgnLwISr6Ng
- 9HISGHffXNNyvCSIG2M9xArZGOz/ALBOJNLtGR0FQJsdQMUzxhHqhV2YwSan35iMrxrIqdw4rU2
- ToqsdyJV8KNhzLxUZOLeLR56PpO+orhZQckNOoX9P7vMjaoAPaBzqLjXApTau9ED6f+x9mR0TZo
- BCtr+4jfc4xCB/AGr8rxSY+GCM3UQ/oJSE+un2ItYEpWRlp56hXWfII3ZGLHnTCfmPuSUt/8mJo
- JkBDx7ZnHCW00Rlj79CkxfR8wZl7hiTvq1dK7Juk76zIj8SGrKYKR8sBFcv0DV3VblYFj5NEBzf
- ARkbYUo5tZ6/WjagLQQ==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDEwOCBTYWx0ZWRfX1uDFlPtSe2Bh
- Due4YWnTBxEbw3UfyfAsCJ9awcz4xsFNLgFWLDvyCcFk3EZyACXDhLuPYe1GQV6CXS/hsms9g76
- w+ZgtH8n4Gxb1XDHUdYgNrPz2SstIEI=
-X-Proofpoint-GUID: fSkKnDSJ-JN53KMXcqu3O8_l5i3mV1pv
-X-Authority-Analysis: v=2.4 cv=CYg4Irrl c=1 sm=1 tr=0 ts=6a43ad57 cx=c_pps
- a=n4Rd88MCvJemCXT3WVAnXw==:117 a=tJyPKKxUohctrY4NYmUjkA==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10
- a=V5UXEbMT0ywA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
- a=gO1vWkAQAl3rybz1DQOp:22 a=sozttTNsAAAA:8 a=Q4-j1AaZAAAA:8 a=iGHA9ds3AAAA:8
- a=WNDY76dxAAAA:8 a=NEAV23lmAAAA:8 a=SSmOFEACAAAA:8 a=JCVdeZvU7hIJWgXEYZgA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=9H3Qd4_ONW2Ztcrla5EB:22
- a=nM-MV4yxpKKO9kiQg6Ot:22 a=HFDSX3BADwN2sFIQuyTb:22
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB5735
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjMwMDEyNiBTYWx0ZWRfX61Ed/rbwX3cv
+ MocgJXfcYs2YTTjaGhkflTs8iRPPRRzwkqC6ZeDjXFudjvOjqUsTfYGpxgy2lSUSbTQRZdiEV4y
+ CvpWubl6khcmNym06YvrS4nWYFm/RdlB6x46NiFWAbciasGkbhSK6GOuU5v9xYEQZN0nOSbG6LQ
+ N+QQZ9mkWAMptll7IgaU9CD/4vTuJ9mZNNWLtCvacYfosBC4FWCUKA+8ZVj4p7QQTopb0ywaDs7
+ MhZMdazhxf0DbqZ+yid2mijefp7Txb8gmcPd2Wh+c6ULzfuG9ZuGyFCd+OOS+f2z8vYycazzKDu
+ hQa+floWYIBEP5CRxPR+lcvGKB+FUg4IrFc9P3gReNXDKMM/vETyXrhh1FU21xt2/OPZUhSPFrz
+ eoQ7RxL6Q3E2GZPDAGpFWS5c2o3O8cOwrjBKiqKaiqJ3lzlUN6i7DMo5MkRsgasiNAk2z+se77r
+ v9LaLGQ9ob8POqL9VTQ==
+X-Proofpoint-GUID: _41uS5bhf4R-5zNIZWiUcUsDDQopzNFF
+X-Proofpoint-ORIG-GUID: _41uS5bhf4R-5zNIZWiUcUsDDQopzNFF
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjMwMDEyNiBTYWx0ZWRfXz2yM7eozlnIR
+ 9JuyjF2r3JAWxaVRjBmxYvt7Pm9tYYddbhuwvWISNlneTCHsLo99YCyZvCsCXMg5aKJYpe/X0sF
+ abKrIKkb1PKyGoF3yakee6TNxn7Nufg=
+X-Authority-Analysis: v=2.4 cv=M5N97Sws c=1 sm=1 tr=0 ts=6a43c545 cx=c_pps
+ a=26rO91Bbw6QoawbNyte6AQ==:117 a=tJyPKKxUohctrY4NYmUjkA==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=FelO9ux0wxsA:10 a=V5UXEbMT0ywA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22 a=taLDd7a_hP9WKsMzeGRc:22
+ a=sozttTNsAAAA:8 a=Q4-j1AaZAAAA:8 a=iGHA9ds3AAAA:8 a=WNDY76dxAAAA:8
+ a=NEAV23lmAAAA:8 a=SSmOFEACAAAA:8 a=LJPH6ROh-ywWrxKlJU8A:9
+ a=9H3Qd4_ONW2Ztcrla5EB:22 a=nM-MV4yxpKKO9kiQg6Ot:22 a=HFDSX3BADwN2sFIQuyTb:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-30_03,2026-06-26_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 malwarescore=0 spamscore=0 lowpriorityscore=0
- adultscore=0 impostorscore=0 bulkscore=0 phishscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606300108
-Content-Transfer-Encoding: base64
-X-MIME-Autoconverted: from 8bit to base64 by m0380145.ppops.net id 65UBBQ8d657123
+ malwarescore=0 phishscore=0 bulkscore=0 clxscore=1015 suspectscore=0
+ impostorscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2606300126
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 30 Jun 2026 11:49:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17577
+ <meta-arago@lists.yoctoproject.org>; Tue, 30 Jun 2026 13:31:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17578
 
-DQpPb3BzLiAgSSB0aG91Z2h0IHdhcyBhIGR1cGxpY2F0ZSBwYXRjaC4gIEkgbWlzc2VkIHRo
-ZSBnYXRld2F5IGJlaW5nIA0KZGlmZmVyZW50IGZyb20gYW5hbHl0aWNzLiAgTXkgYmFkLg0K
-DQoNCk9uIDYvMzAvMjAyNiAzOjU5IEFNLCBTaW5oYSwgU2hyZXlhc2ggd3JvdGU6DQo+IEhp
-IFJ5YW4sDQo+IA0KPiANCj4gVGhpcyBwYXRjaCBpcyBsb25nIHBlbmRpbmcgdG8gYmUgbWVy
-Z2VkLiBDYW4gd2UgcGxlYXNlIGRvIGl0IG9uIHByaW9yaXR5IA0KPiBzaW5jZSB3ZSBhcmUg
-YWxyZWFkeSBwYXN0IDExLjAyIHJlbGVhc2UuDQo+IA0KPiANCj4gUmVnYXJkcw0KPiANCj4g
-U2hyZXlhc2gNCj4gDQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiAqRnJvbToqIEd1cHRhLCBQ
-dXl1c2gNCj4gKlNlbnQ6KiAyMiBKYW51YXJ5IDIwMjYgMjA6MjI6MTkNCj4gKlRvOiogbWV0
-YS1hcmFnb0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQo+ICpDYzoqIEVhdG1vbiwgUnlhbjsg
-U2luaGEsIFNocmV5YXNoDQo+ICpTdWJqZWN0OiogW21ldGEtYXJhZ29dW29lLWxheWVyc2V0
-dXBdW1BBVENIXSBjb25maWdzOiANCj4gcHJvY2Vzc29yLXNkay1nYXRld2F5OiBBZGQgMTEu
-MiByZWxlYXNlIGNvbmZpZw0KPiBTaWduZWQtb2ZmIEJ5OiBQdXl1c2ggR3VwdGEgPHAtZ3Vw
-dGE1QHRpLmNvbT4NCj4gLS0tDQo+ICDCoC4uLnNzb3Itc2RrLWdhdGV3YXktMTEuMDIuMDAt
-Y29uZmlnLmNvbmYuanNvbiB8IDE1OCArKysrKysrKysrKysrKysrKysNCj4gIMKgLi4uL3By
-b2Nlc3Nvci1zZGstZ2F0ZXdheS0xMS4wMi4wMC1jb25maWcudHh0IHzCoCAyMSArKysNCj4g
-IMKgLi4uL3Byb2Nlc3Nvci1zZGstZ2F0ZXdheS0xMS4wMi4wMC1jb25maWcueW1sIHzCoCA4
-OCArKysrKysrKysrDQo+ICDCoC4uLi9wcm9jZXNzb3Itc2RrLWdhdGV3YXktMTEuMDIuMDAt
-Y29uZmlnLnhtbCB8wqAgODYgKysrKysrKysrKw0KPiAgwqA0IGZpbGVzIGNoYW5nZWQsIDM1
-MyBpbnNlcnRpb25zKCspDQo+ICDCoGNyZWF0ZSBtb2RlIDEwMDY0NCANCj4gYml0YmFrZS1z
-ZXR1cC9wcm9jZXNzb3Itc2RrLWdhdGV3YXkvcHJvY2Vzc29yLXNkay1nYXRld2F5LTExLjAy
-LjAwLWNvbmZpZy5jb25mLmpzb24NCj4gIMKgY3JlYXRlIG1vZGUgMTAwNjQ0IA0KPiBjb25m
-aWdzL3Byb2Nlc3Nvci1zZGstZ2F0ZXdheS9wcm9jZXNzb3Itc2RrLWdhdGV3YXktMTEuMDIu
-MDAtY29uZmlnLnR4dA0KPiAgwqBjcmVhdGUgbW9kZSAxMDA2NDQgDQo+IGthcy9wcm9jZXNz
-b3Itc2RrLWdhdGV3YXkvcHJvY2Vzc29yLXNkay1nYXRld2F5LTExLjAyLjAwLWNvbmZpZy55
-bWwNCj4gIMKgY3JlYXRlIG1vZGUgMTAwNjQ0IA0KPiBzcmMvY29uZmlncy9wcm9jZXNzb3It
-c2RrLWdhdGV3YXkvcHJvY2Vzc29yLXNkay1nYXRld2F5LTExLjAyLjAwLWNvbmZpZy54bWwN
-Cj4gDQo+IGRpZmYgLS1naXQgDQo+IGEvYml0YmFrZS1zZXR1cC9wcm9jZXNzb3Itc2RrLWdh
-dGV3YXkvcHJvY2Vzc29yLXNkay1nYXRld2F5LTExLjAyLjAwLWNvbmZpZy5jb25mLmpzb24g
-Yi9iaXRiYWtlLXNldHVwL3Byb2Nlc3Nvci1zZGstZ2F0ZXdheS9wcm9jZXNzb3Itc2RrLWdh
-dGV3YXktMTEuMDIuMDAtY29uZmlnLmNvbmYuanNvbg0KPiBuZXcgZmlsZSBtb2RlIDEwMDY0
-NA0KPiBpbmRleCAwMDAwMDAwLi43MTE2NWQyDQo+IC0tLSAvZGV2L251bGwNCj4gKysrIA0K
-PiBiL2JpdGJha2Utc2V0dXAvcHJvY2Vzc29yLXNkay1nYXRld2F5L3Byb2Nlc3Nvci1zZGst
-Z2F0ZXdheS0xMS4wMi4wMC1jb25maWcuY29uZi5qc29uDQo+IEBAIC0wLDAgKzEsMTU4IEBA
-DQo+ICt7DQo+ICvCoCAidmVyc2lvbiI6ICIxLjAiLA0KPiArwqAgImRlc2NyaXB0aW9uIjog
-IiIsDQo+ICvCoCAic291cmNlcyI6IHsNCj4gK8KgwqDCoCAib2UtbGF5ZXJzZXR1cCI6IHsN
-Cj4gK8KgwqDCoMKgwqAgImdpdC1yZW1vdGUiOiB7DQo+ICvCoMKgwqDCoMKgwqDCoCAicmVt
-b3RlcyI6IHsNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoCAib3JpZ2luIjogew0KPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCAidXJpIjogDQo+ICJodHRwczovL2dpdC50aS5jb20vZ2l0L2Fy
-YWdvLXByb2plY3Qvb2UtbGF5ZXJzZXR1cC5naXQgDQo+IDxodHRwczovL2dpdC50aS5jb20v
-Z2l0L2FyYWdvLXByb2plY3Qvb2UtbGF5ZXJzZXR1cC5naXQ+Ig0KPiArwqDCoMKgwqDCoMKg
-wqDCoMKgIH0NCj4gK8KgwqDCoMKgwqDCoMKgIH0sDQo+ICvCoMKgwqDCoMKgwqDCoCAicmV2
-IjogIm1hc3RlciINCj4gK8KgwqDCoMKgwqAgfSwNCj4gK8KgwqDCoMKgwqAgInBhdGgiOiAi
-b2UtbGF5ZXJzZXR1cCINCj4gK8KgwqDCoCB9LA0KPiArwqDCoMKgICJiaXRiYWtlIjogew0K
-PiArwqDCoMKgwqDCoCAiZ2l0LXJlbW90ZSI6IHsNCj4gK8KgwqDCoMKgwqDCoMKgICJyZW1v
-dGVzIjogew0KPiArwqDCoMKgwqDCoMKgwqDCoMKgICJvcmlnaW4iOiB7DQo+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgICJ1cmkiOiAiaHR0cHM6Ly9naXQub3BlbmVtYmVkZGVkLm9yZy9i
-aXRiYWtlIA0KPiA8aHR0cHM6Ly9naXQub3BlbmVtYmVkZGVkLm9yZy9iaXRiYWtlPiINCj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoCB9DQo+ICvCoMKgwqDCoMKgwqDCoCB9LA0KPiArwqDCoMKg
-wqDCoMKgwqAgInJldiI6ICIyLjgiDQo+ICvCoMKgwqDCoMKgIH0sDQo+ICvCoMKgwqDCoMKg
-ICJwYXRoIjogImJpdGJha2UiDQo+ICvCoMKgwqAgfSwNCj4gK8KgwqDCoCAibWV0YS1hcmFn
-byI6IHsNCj4gK8KgwqDCoMKgwqAgImdpdC1yZW1vdGUiOiB7DQo+ICvCoMKgwqDCoMKgwqDC
-oCAicmVtb3RlcyI6IHsNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoCAib3JpZ2luIjogew0KPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAidXJpIjogImh0dHBzOi8vZ2l0LnlvY3RvcHJvamVj
-dC5vcmcvbWV0YS1hcmFnbyANCj4gPGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0
-YS1hcmFnbz4iDQo+ICvCoMKgwqDCoMKgwqDCoMKgwqAgfQ0KPiArwqDCoMKgwqDCoMKgwqAg
-fSwNCj4gK8KgwqDCoMKgwqDCoMKgICJyZXYiOiAic2NhcnRoZ2FwIg0KPiArwqDCoMKgwqDC
-oCB9LA0KPiArwqDCoMKgwqDCoCAicGF0aCI6ICJtZXRhLWFyYWdvIg0KPiArwqDCoMKgIH0s
-DQo+ICvCoMKgwqAgIm1ldGEtcXQ2Ijogew0KPiArwqDCoMKgwqDCoCAiZ2l0LXJlbW90ZSI6
-IHsNCj4gK8KgwqDCoMKgwqDCoMKgICJyZW1vdGVzIjogew0KPiArwqDCoMKgwqDCoMKgwqDC
-oMKgICJvcmlnaW4iOiB7DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJ1cmkiOiAiaHR0
-cHM6Ly9jb2RlLnF0LmlvL3lvY3RvL21ldGEtcXQ2LmdpdCANCj4gPGh0dHBzOi8vY29kZS5x
-dC5pby95b2N0by9tZXRhLXF0Ni5naXQ+Ig0KPiArwqDCoMKgwqDCoMKgwqDCoMKgIH0NCj4g
-K8KgwqDCoMKgwqDCoMKgIH0sDQo+ICvCoMKgwqDCoMKgwqDCoCAicmV2IjogIjYuOSINCj4g
-K8KgwqDCoMKgwqAgfSwNCj4gK8KgwqDCoMKgwqAgInBhdGgiOiAibWV0YS1xdDYiDQo+ICvC
-oMKgwqAgfSwNCj4gK8KgwqDCoCAibWV0YS12aXJ0dWFsaXphdGlvbiI6IHsNCj4gK8KgwqDC
-oMKgwqAgImdpdC1yZW1vdGUiOiB7DQo+ICvCoMKgwqDCoMKgwqDCoCAicmVtb3RlcyI6IHsN
-Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoCAib3JpZ2luIjogew0KPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAidXJpIjogImh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS12aXJ0
-dWFsaXphdGlvbiANCj4gPGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS12aXJ0
-dWFsaXphdGlvbj4iDQo+ICvCoMKgwqDCoMKgwqDCoMKgwqAgfQ0KPiArwqDCoMKgwqDCoMKg
-wqAgfSwNCj4gK8KgwqDCoMKgwqDCoMKgICJyZXYiOiAic2NhcnRoZ2FwIg0KPiArwqDCoMKg
-wqDCoCB9LA0KPiArwqDCoMKgwqDCoCAicGF0aCI6ICJtZXRhLXZpcnR1YWxpemF0aW9uIg0K
-PiArwqDCoMKgIH0sDQo+ICvCoMKgwqAgIm1ldGEtb3BlbmVtYmVkZGVkIjogew0KPiArwqDC
-oMKgwqDCoCAiZ2l0LXJlbW90ZSI6IHsNCj4gK8KgwqDCoMKgwqDCoMKgICJyZW1vdGVzIjog
-ew0KPiArwqDCoMKgwqDCoMKgwqDCoMKgICJvcmlnaW4iOiB7DQo+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgICJ1cmkiOiAiaHR0cHM6Ly9naXQub3BlbmVtYmVkZGVkLm9yZy9tZXRhLW9w
-ZW5lbWJlZGRlZCANCj4gPGh0dHBzOi8vZ2l0Lm9wZW5lbWJlZGRlZC5vcmcvbWV0YS1vcGVu
-ZW1iZWRkZWQ+Ig0KPiArwqDCoMKgwqDCoMKgwqDCoMKgIH0NCj4gK8KgwqDCoMKgwqDCoMKg
-IH0sDQo+ICvCoMKgwqDCoMKgwqDCoCAicmV2IjogInNjYXJ0aGdhcCINCj4gK8KgwqDCoMKg
-wqAgfSwNCj4gK8KgwqDCoMKgwqAgInBhdGgiOiAibWV0YS1vcGVuZW1iZWRkZWQiDQo+ICvC
-oMKgwqAgfSwNCj4gK8KgwqDCoCAibWV0YS1sdHMtbWl4aW5zIjogew0KPiArwqDCoMKgwqDC
-oCAiZ2l0LXJlbW90ZSI6IHsNCj4gK8KgwqDCoMKgwqDCoMKgICJyZW1vdGVzIjogew0KPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgICJvcmlnaW4iOiB7DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgICJ1cmkiOiAiaHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLWx0cy1taXhp
-bnMgDQo+IDxodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtbHRzLW1peGlucz4i
-DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqAgfQ0KPiArwqDCoMKgwqDCoMKgwqAgfSwNCj4gK8Kg
-wqDCoMKgwqDCoMKgICJyZXYiOiAic2NhcnRoZ2FwL3J1c3QiDQo+ICvCoMKgwqDCoMKgIH0s
-DQo+ICvCoMKgwqDCoMKgICJwYXRoIjogIm1ldGEtbHRzLW1peGlucyINCj4gK8KgwqDCoCB9
-LA0KPiArwqDCoMKgICJtZXRhLXRpIjogew0KPiArwqDCoMKgwqDCoCAiZ2l0LXJlbW90ZSI6
-IHsNCj4gK8KgwqDCoMKgwqDCoMKgICJyZW1vdGVzIjogew0KPiArwqDCoMKgwqDCoMKgwqDC
-oMKgICJvcmlnaW4iOiB7DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJ1cmkiOiAiaHR0
-cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLXRpIA0KPiA8aHR0cHM6Ly9naXQueW9j
-dG9wcm9qZWN0Lm9yZy9tZXRhLXRpPiINCj4gK8KgwqDCoMKgwqDCoMKgwqDCoCB9DQo+ICvC
-oMKgwqDCoMKgwqDCoCB9LA0KPiArwqDCoMKgwqDCoMKgwqAgInJldiI6ICJzY2FydGhnYXAi
-DQo+ICvCoMKgwqDCoMKgIH0sDQo+ICvCoMKgwqDCoMKgICJwYXRoIjogIm1ldGEtdGkiDQo+
-ICvCoMKgwqAgfSwNCj4gK8KgwqDCoCAibWV0YS1hcm0iOiB7DQo+ICvCoMKgwqDCoMKgICJn
-aXQtcmVtb3RlIjogew0KPiArwqDCoMKgwqDCoMKgwqAgInJlbW90ZXMiOiB7DQo+ICvCoMKg
-wqDCoMKgwqDCoMKgwqAgIm9yaWdpbiI6IHsNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-InVyaSI6ICJodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtYXJtIA0KPiA8aHR0
-cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLWFybT4iDQo+ICvCoMKgwqDCoMKgwqDC
-oMKgwqAgfQ0KPiArwqDCoMKgwqDCoMKgwqAgfSwNCj4gK8KgwqDCoMKgwqDCoMKgICJyZXYi
-OiAic2NhcnRoZ2FwIg0KPiArwqDCoMKgwqDCoCB9LA0KPiArwqDCoMKgwqDCoCAicGF0aCI6
-ICJtZXRhLWFybSINCj4gK8KgwqDCoCB9LA0KPiArwqDCoMKgICJtZXRhLWNsYW5nIjogew0K
-PiArwqDCoMKgwqDCoCAiZ2l0LXJlbW90ZSI6IHsNCj4gK8KgwqDCoMKgwqDCoMKgICJyZW1v
-dGVzIjogew0KPiArwqDCoMKgwqDCoMKgwqDCoMKgICJvcmlnaW4iOiB7DQo+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgICJ1cmkiOiAiaHR0cHM6Ly9naXRodWIuY29tL2tyYWovbWV0YS1j
-bGFuZyANCj4gPGh0dHBzOi8vZ2l0aHViLmNvbS9rcmFqL21ldGEtY2xhbmc+Ig0KPiArwqDC
-oMKgwqDCoMKgwqDCoMKgIH0NCj4gK8KgwqDCoMKgwqDCoMKgIH0sDQo+ICvCoMKgwqDCoMKg
-wqDCoCAicmV2IjogInNjYXJ0aGdhcCINCj4gK8KgwqDCoMKgwqAgfSwNCj4gK8KgwqDCoMKg
-wqAgInBhdGgiOiAibWV0YS1jbGFuZyINCj4gK8KgwqDCoCB9LA0KPiArwqDCoMKgICJvZS1j
-b3JlIjogew0KPiArwqDCoMKgwqDCoCAiZ2l0LXJlbW90ZSI6IHsNCj4gK8KgwqDCoMKgwqDC
-oMKgICJyZW1vdGVzIjogew0KPiArwqDCoMKgwqDCoMKgwqDCoMKgICJvcmlnaW4iOiB7DQo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJ1cmkiOiAiaHR0cHM6Ly9naXQub3BlbmVtYmVk
-ZGVkLm9yZy9vcGVuZW1iZWRkZWQtY29yZSANCj4gPGh0dHBzOi8vZ2l0Lm9wZW5lbWJlZGRl
-ZC5vcmcvb3BlbmVtYmVkZGVkLWNvcmU+Ig0KPiArwqDCoMKgwqDCoMKgwqDCoMKgIH0NCj4g
-K8KgwqDCoMKgwqDCoMKgIH0sDQo+ICvCoMKgwqDCoMKgwqDCoCAicmV2IjogInNjYXJ0aGdh
-cCINCj4gK8KgwqDCoMKgwqAgfSwNCj4gK8KgwqDCoMKgwqAgInBhdGgiOiAib2UtY29yZSIN
-Cj4gK8KgwqDCoCB9LA0KPiArwqDCoMKgICJtZXRhLXRpc2RrIjogew0KPiArwqDCoMKgwqDC
-oCAiZ2l0LXJlbW90ZSI6IHsNCj4gK8KgwqDCoMKgwqDCoMKgICJyZW1vdGVzIjogew0KPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgICJvcmlnaW4iOiB7DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgICJ1cmkiOiAiaHR0cHM6Ly9naXQudGkuY29tL2dpdC90aS1zZGstbGludXgvbWV0YS10
-aXNkay5naXQgDQo+IDxodHRwczovL2dpdC50aS5jb20vZ2l0L3RpLXNkay1saW51eC9tZXRh
-LXRpc2RrLmdpdD4iDQo+ICvCoMKgwqDCoMKgwqDCoMKgwqAgfQ0KPiArwqDCoMKgwqDCoMKg
-wqAgfSwNCj4gK8KgwqDCoMKgwqDCoMKgICJyZXYiOiAic2NhcnRoZ2FwIg0KPiArwqDCoMKg
-wqDCoCB9LA0KPiArwqDCoMKgwqDCoCAicGF0aCI6ICJtZXRhLXRpc2RrIg0KPiArwqDCoMKg
-IH0NCj4gK8KgIH0sDQo+ICvCoCAiYml0YmFrZS1zZXR1cCI6IHsNCj4gK8KgwqDCoCAiY29u
-ZmlndXJhdGlvbnMiOiBbDQo+ICvCoMKgwqDCoMKgIHsNCj4gK8KgwqDCoMKgwqDCoMKgICJu
-YW1lIjogImFyYWdvIiwNCj4gK8KgwqDCoMKgwqDCoMKgICJkZXNjcmlwdGlvbiI6ICJUSSBB
-cmFnbyBkaXN0cm8gYnVpbGQiLA0KPiArwqDCoMKgwqDCoMKgwqAgImJiLWxheWVycyI6IFsg
-DQo+ICJtZXRhLWFyYWdvL21ldGEtYXJhZ28tZGlzdHJvIiwibWV0YS1hcmFnby9tZXRhLWFy
-YWdvLWV4dHJhcyIsIm1ldGEtYXJhZ28vbWV0YS1hcmFnby10ZXN0IiwibWV0YS1xdDYiLCJt
-ZXRhLXZpcnR1YWxpemF0aW9uIiwibWV0YS1vcGVuZW1iZWRkZWQvbWV0YS1uZXR3b3JraW5n
-IiwibWV0YS1vcGVuZW1iZWRkZWQvbWV0YS1weXRob24iLCJtZXRhLW9wZW5lbWJlZGRlZC9t
-ZXRhLW9lIiwibWV0YS1vcGVuZW1iZWRkZWQvbWV0YS1nbm9tZSIsIm1ldGEtb3BlbmVtYmVk
-ZGVkL21ldGEtZmlsZXN5c3RlbXMiLCJtZXRhLW9wZW5lbWJlZGRlZC9tZXRhLW11bHRpbWVk
-aWEiLCJtZXRhLWx0cy1taXhpbnMiLCJtZXRhLXRpL21ldGEtdGktZXh0cmFzIiwibWV0YS10
-aS9tZXRhLWJlYWdsZSIsIm1ldGEtdGkvbWV0YS10aS1ic3AiLCJtZXRhLWFybS9tZXRhLWFy
-bSIsIm1ldGEtYXJtL21ldGEtYXJtLXRvb2xjaGFpbiIsIm1ldGEtY2xhbmciLCJvZS1jb3Jl
-L21ldGEiLCJtZXRhLXRpc2RrL21ldGEtdGktZm91bmRhdGlvbmFsIiwib2UtbGF5ZXJzZXR1
-cCIgXSwNCj4gK8KgwqDCoMKgwqDCoMKgICJvZS1mcmFnbWVudHMiOiBbICJvZS1sYXllcnNl
-dHVwL2xvY2FsY29uZi9sb2NhbC1hcmFnbzY0LXYyIiBdLA0KPiArwqDCoMKgwqDCoMKgwqAg
-Im9lLWZyYWdtZW50cy1vbmUtb2YiOiB7DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqAgIm1hY2hp
-bmUiOiB7DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJkZXNjcmlwdGlvbiI6ICJBdmFp
-bGFibGUgdGFyZ2V0IG1hY2hpbmVzIiwNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIm9w
-dGlvbnMiOiBbIA0KPiAibWFjaGluZS9hbTMzNXgtZXZtIiwibWFjaGluZS9hbTMzNXgtaHMt
-ZXZtIiwibWFjaGluZS9hbTQzN3gtZXZtIiwibWFjaGluZS9hbTQzN3gtaHMtZXZtIiwibWFj
-aGluZS9hbTU3eHgtZXZtIiwibWFjaGluZS9hbTU3eHgtaHMtZXZtIiwibWFjaGluZS9hbTYy
-eHgtZXZtIiwibWFjaGluZS9hbTYyeHgtbHAtZXZtIiwibWFjaGluZS9hbTYyeHhzaXAtZXZt
-IiwibWFjaGluZS9hbTYyYXh4LWV2bSIsIm1hY2hpbmUvYW02MmR4eC1ldm0iLCJtYWNoaW5l
-L2FtNjJseHgtZXZtIiwibWFjaGluZS9hbTYycHh4LWV2bSIsIm1hY2hpbmUvYW02NHh4LWV2
-bSIsIm1hY2hpbmUvYW02NXh4LWV2bSIsIm1hY2hpbmUvYW02NXh4LWhzLWV2bSIsIm1hY2hp
-bmUvYW02OC1zayIsIm1hY2hpbmUvYW02OS1zayIsIm1hY2hpbmUvYmVhZ2xlLXgxNSIsIm1h
-Y2hpbmUvYmVhZ2xlYm9uZSIsIm1hY2hpbmUvYmVhZ2xlYm9uZS1haTY0IiwibWFjaGluZS9i
-ZWFnbGVwbGF5IiwibWFjaGluZS9iZWFnbGVwbGF5LXRpIiwibWFjaGluZS9iZWFnbGV5LWFp
-IiwibWFjaGluZS9qNy1ldm0iLCJtYWNoaW5lL2o3LWhzLWV2bSIsIm1hY2hpbmUvajcyMWUt
-ZXZtIiwibWFjaGluZS9qNzIxZS1zayIsIm1hY2hpbmUvajcyMDAtZXZtIiwibWFjaGluZS9q
-NzIwMC1ocy1ldm0iLCJtYWNoaW5lL2o3MjFzMi1ldm0iLCJtYWNoaW5lL2o3MjFzMi1ocy1l
-dm0iLCJtYWNoaW5lL2o3NDJzMi1ldm0iLCJtYWNoaW5lL2o3ODRzNC1ldm0iLCJtYWNoaW5l
-L2o3ODRzNC1ocy1ldm0iLCJtYWNoaW5lL2o3MjJzLWV2bSIsIm1hY2hpbmUvcG9ja2V0YmVh
-Z2xlMiIgXQ0KPiArwqDCoMKgwqDCoMKgwqDCoMKgIH0sDQo+ICvCoMKgwqDCoMKgwqDCoMKg
-wqAgImRpc3RybyI6IHsNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgImRlc2NyaXB0aW9u
-IjogIkF2YWlsYWJsZSBkaXN0cmlidXRpb25zIiwNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgIm9wdGlvbnMiOiBbICJkaXN0cm8vYXJhZ28iIF0NCj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oCB9DQo+ICvCoMKgwqDCoMKgwqDCoCB9DQo+ICvCoMKgwqDCoMKgIH0NCj4gK8KgwqDCoCBd
-DQo+ICvCoCB9DQo+ICt9DQo+IGRpZmYgLS1naXQgDQo+IGEvY29uZmlncy9wcm9jZXNzb3It
-c2RrLWdhdGV3YXkvcHJvY2Vzc29yLXNkay1nYXRld2F5LTExLjAyLjAwLWNvbmZpZy50eHQg
-Yi9jb25maWdzL3Byb2Nlc3Nvci1zZGstZ2F0ZXdheS9wcm9jZXNzb3Itc2RrLWdhdGV3YXkt
-MTEuMDIuMDAtY29uZmlnLnR4dA0KPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAw
-MDAwMDAwLi45MjQ0N2FmDQo+IC0tLSAvZGV2L251bGwNCj4gKysrIA0KPiBiL2NvbmZpZ3Mv
-cHJvY2Vzc29yLXNkay1nYXRld2F5L3Byb2Nlc3Nvci1zZGstZ2F0ZXdheS0xMS4wMi4wMC1j
-b25maWcudHh0DQo+IEBAIC0wLDAgKzEsMjEgQEANCj4gKyMgVGhpcyBmaWxlIHRha2VzIHJl
-cG8gZW50cmllcyBpbiB0aGUgZm9ybWF0DQo+ICsjIHJlcG8gbmFtZSxyZXBvIHVyaSxyZXBv
-IGJyYW5jaCxyZXBvIA0KPiBjb21taXRbLGxheWVycz1sYXllcjE6bGF5ZXIyLi4uOmxheWVy
-bl0NCj4gKw0KPiArYml0YmFrZSxodHRwczovL2dpdC5vcGVuZW1iZWRkZWQub3JnL2JpdGJh
-a2UsMi44LDhkY2YwODQ1MjJiOWM2NmE2NjM5YjVmMTE3ZjU1NGZkZTliNmI0NWENCj4gK21l
-dGEtYXJhZ28saHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLWFyYWdvLHNjYXJ0
-aGdhcCwxNjQwZGY2MGIwZjc1NzIyYjllNTkyM2E1YmZiYTM3NjdlN2Q5N2E4LGxheWVycz1t
-ZXRhLWFyYWdvLWRpc3RybzptZXRhLWFyYWdvLWV4dHJhczptZXRhLWFyYWdvLXRlc3QNCj4g
-KyNtZXRhLWJyb3dzZXIsaHR0cHM6Ly9naXRodWIuY29tL09TU3lzdGVtcy9tZXRhLWJyb3dz
-ZXIuZ2l0LG1hc3RlciwyN2NhNTJmNjM1YTMxZjVmOTc2MjgxM2E4NTI3ZGQzMTMyMzU0OWI3
-LGxheWVycz1tZXRhLWNocm9taXVtDQo+ICsjbWV0YS1zZWxpbnV4LGh0dHBzOi8vZ2l0Lnlv
-Y3RvcHJvamVjdC5vcmcvbWV0YS1zZWxpbnV4LHNjYXJ0aGdhcCxIRUFELGxheWVycz0NCj4g
-K21ldGEtcXQ2LGh0dHBzOi8vY29kZS5xdC5pby95b2N0by9tZXRhLXF0Ni5naXQsNi45LGM3
-ZDcxZjRjZWNlNGQxZmUzMTEwYzk0NWI5YmQ0MGNhODI5NjBlMDUsbGF5ZXJzPQ0KPiArbWV0
-YS12aXJ0dWFsaXphdGlvbixodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtdmly
-dHVhbGl6YXRpb24sc2NhcnRoZ2FwLDE3YWMyMWU3ZDdmNmY0MGE4NzYxOGIyMjI3OGI2M2Jj
-ZmExNGRiZjIsbGF5ZXJzPQ0KPiArbWV0YS1vcGVuZW1iZWRkZWQsaHR0cHM6Ly9naXQub3Bl
-bmVtYmVkZGVkLm9yZy9tZXRhLW9wZW5lbWJlZGRlZCxzY2FydGhnYXAsZTc2YmY1MWE5MmI0
-MWQ0Y2IxODVmYzE2NGFlNDNhODYzOTEwY2NkMSxsYXllcnM9bWV0YS1uZXR3b3JraW5nOm1l
-dGEtcHl0aG9uOm1ldGEtb2U6bWV0YS1nbm9tZTptZXRhLWZpbGVzeXN0ZW1zOm1ldGEtbXVs
-dGltZWRpYQ0KPiArbWV0YS1sdHMtbWl4aW5zLGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5v
-cmcvbWV0YS1sdHMtbWl4aW5zLHNjYXJ0aGdhcC9ydXN0LGE4MDQ2ZDVlYzUzYjE4NTYxNjlh
-Yzc5NWFhODdjYjBkNWRiODRjMDQsbGF5ZXJzPQ0KPiArbWV0YS10aSxodHRwczovL2dpdC55
-b2N0b3Byb2plY3Qub3JnL21ldGEtdGksc2NhcnRoZ2FwLGVhOGMwYjFjZjFhYjhhMGIzMjdl
-M2ZlYjExNDRjMWNjZjA1YjgyNzgsbGF5ZXJzPW1ldGEtdGktZXh0cmFzOm1ldGEtYmVhZ2xl
-Om1ldGEtdGktYnNwDQo+ICttZXRhLWFybSxodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3Jn
-L21ldGEtYXJtLHNjYXJ0aGdhcCxhODFjMTk5MTViNWI5ZTcxZWQzOTQwMzJlOWE1MGZkMDY5
-MTllMWNkLGxheWVycz1tZXRhLWFybTptZXRhLWFybS10b29sY2hhaW4NCj4gK21ldGEtY2xh
-bmcsaHR0cHM6Ly9naXRodWIuY29tL2tyYWovbWV0YS1jbGFuZyxzY2FydGhnYXAsNWM2MDIz
-MzdlYTFhODBmYjcyMTdlZWRhMDRlMzk2Y2Y5MDU4N2RjYSxsYXllcnM9DQo+ICsjbWV0YS1m
-bHV0dGVyLGh0dHBzOi8vZ2l0aHViLmNvbS9tZXRhLWZsdXR0ZXIvbWV0YS1mbHV0dGVyLmdp
-dCxzY2FydGhnYXAsSEVBRCxsYXllcnM9LjptZXRhLWZsdXR0ZXItYXBwcw0KPiArb2UtY29y
-ZSxodHRwczovL2dpdC5vcGVuZW1iZWRkZWQub3JnL29wZW5lbWJlZGRlZC1jb3JlLHNjYXJ0
-aGdhcCwyYjNkMmI2NzFhMTQ5Y2JlZWEyYmRjOWJhNDIxOTJkYTIwMTVjM2I3LGxheWVycz1t
-ZXRhDQo+ICttZXRhLXRpc2RrLGh0dHBzOi8vZ2l0LnRpLmNvbS9naXQvdGktc2RrLWxpbnV4
-L21ldGEtdGlzZGsuZ2l0LHNjYXJ0aGdhcCwzMjQ4MmNhZDJmNjMwODkyYjczM2MxNDU3Yjll
-OWQ4MzViMDk4MTc0LGxheWVycz1tZXRhLXRpLWZvdW5kYXRpb25hbA0KPiArDQo+ICtPRUNP
-UkVMQVlFUkNPTkY9Li9zYW1wbGUtZmlsZXMvYmJsYXllcnMuY29uZi5zYW1wbGUNCj4gK09F
-Q09SRUxPQ0FMQ09ORj0uL3NhbXBsZS1maWxlcy9sb2NhbC1hcmFnbzY0LXYyLmNvbmYuc2Ft
-cGxlDQo+ICtCSVRCQUtFX0lOQ0xVU0lWRV9WQVJTPXllcw0KPiBkaWZmIC0tZ2l0IA0KPiBh
-L2thcy9wcm9jZXNzb3Itc2RrLWdhdGV3YXkvcHJvY2Vzc29yLXNkay1nYXRld2F5LTExLjAy
-LjAwLWNvbmZpZy55bWwgDQo+IGIva2FzL3Byb2Nlc3Nvci1zZGstZ2F0ZXdheS9wcm9jZXNz
-b3Itc2RrLWdhdGV3YXktMTEuMDIuMDAtY29uZmlnLnltbA0KPiBuZXcgZmlsZSBtb2RlIDEw
-MDY0NA0KPiBpbmRleCAwMDAwMDAwLi5mMDhlODE1DQo+IC0tLSAvZGV2L251bGwNCj4gKysr
-IGIva2FzL3Byb2Nlc3Nvci1zZGstZ2F0ZXdheS9wcm9jZXNzb3Itc2RrLWdhdGV3YXktMTEu
-MDIuMDAtY29uZmlnLnltbA0KPiBAQCAtMCwwICsxLDg4IEBADQo+ICstLS0NCj4gK2hlYWRl
-cjoNCj4gK8KgIHZlcnNpb246IDE3DQo+ICvCoCBpbmNsdWRlczoNCj4gK8KgwqDCoCAtIC4u
-L3RlbXBsYXRlcy9iYmxheWVycy5jb25mLnltbA0KPiArwqDCoMKgIC0gLi4vdGVtcGxhdGVz
-L2xvY2FsLWFyYWdvNjQtdjIuY29uZi55bWwNCj4gKw0KPiArdGFyZ2V0OiB0aXNkay1kZWZh
-dWx0LWltYWdlDQo+ICsNCj4gK3JlcG9zOg0KPiArwqAgYml0YmFrZToNCj4gK8KgwqDCoCB1
-cmw6ICJodHRwczovL2dpdC5vcGVuZW1iZWRkZWQub3JnL2JpdGJha2UgDQo+IDxodHRwczov
-L2dpdC5vcGVuZW1iZWRkZWQub3JnL2JpdGJha2U+Ig0KPiArwqDCoMKgIGJyYW5jaDogIjIu
-OCINCj4gK8KgwqDCoCBjb21taXQ6ICI4ZGNmMDg0NTIyYjljNjZhNjYzOWI1ZjExN2Y1NTRm
-ZGU5YjZiNDVhIg0KPiArwqDCoMKgIGxheWVyczoNCj4gK8KgwqDCoMKgwqAgLjogZGlzYWJs
-ZWQNCj4gKw0KPiArwqAgbWV0YS1hcmFnbzoNCj4gK8KgwqDCoCB1cmw6ICJodHRwczovL2dp
-dC55b2N0b3Byb2plY3Qub3JnL21ldGEtYXJhZ28gDQo+IDxodHRwczovL2dpdC55b2N0b3By
-b2plY3Qub3JnL21ldGEtYXJhZ28+Ig0KPiArwqDCoMKgIGJyYW5jaDogInNjYXJ0aGdhcCIN
-Cj4gK8KgwqDCoCBjb21taXQ6ICIxNjQwZGY2MGIwZjc1NzIyYjllNTkyM2E1YmZiYTM3Njdl
-N2Q5N2E4Ig0KPiArwqDCoMKgIGxheWVyczoNCj4gK8KgwqDCoMKgwqAgbWV0YS1hcmFnby1k
-aXN0cm86DQo+ICvCoMKgwqDCoMKgIG1ldGEtYXJhZ28tZXh0cmFzOg0KPiArwqDCoMKgwqDC
-oCBtZXRhLWFyYWdvLXRlc3Q6DQo+ICsNCj4gK8KgIG1ldGEtcXQ2Og0KPiArwqDCoMKgIHVy
-bDogImh0dHBzOi8vY29kZS5xdC5pby95b2N0by9tZXRhLXF0Ni5naXQgDQo+IDxodHRwczov
-L2NvZGUucXQuaW8veW9jdG8vbWV0YS1xdDYuZ2l0PiINCj4gK8KgwqDCoCBicmFuY2g6ICI2
-LjkiDQo+ICvCoMKgwqAgY29tbWl0OiAiYzdkNzFmNGNlY2U0ZDFmZTMxMTBjOTQ1YjliZDQw
-Y2E4Mjk2MGUwNSINCj4gKw0KPiArwqAgbWV0YS12aXJ0dWFsaXphdGlvbjoNCj4gK8KgwqDC
-oCB1cmw6ICJodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtdmlydHVhbGl6YXRp
-b24gDQo+IDxodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtdmlydHVhbGl6YXRp
-b24+Ig0KPiArwqDCoMKgIGJyYW5jaDogInNjYXJ0aGdhcCINCj4gK8KgwqDCoCBjb21taXQ6
-ICIxN2FjMjFlN2Q3ZjZmNDBhODc2MThiMjIyNzhiNjNiY2ZhMTRkYmYyIg0KPiArDQo+ICvC
-oCBtZXRhLW9wZW5lbWJlZGRlZDoNCj4gK8KgwqDCoCB1cmw6ICJodHRwczovL2dpdC5vcGVu
-ZW1iZWRkZWQub3JnL21ldGEtb3BlbmVtYmVkZGVkIA0KPiA8aHR0cHM6Ly9naXQub3BlbmVt
-YmVkZGVkLm9yZy9tZXRhLW9wZW5lbWJlZGRlZD4iDQo+ICvCoMKgwqAgYnJhbmNoOiAic2Nh
-cnRoZ2FwIg0KPiArwqDCoMKgIGNvbW1pdDogImU3NmJmNTFhOTJiNDFkNGNiMTg1ZmMxNjRh
-ZTQzYTg2MzkxMGNjZDEiDQo+ICvCoMKgwqAgbGF5ZXJzOg0KPiArwqDCoMKgwqDCoCBtZXRh
-LW5ldHdvcmtpbmc6DQo+ICvCoMKgwqDCoMKgIG1ldGEtcHl0aG9uOg0KPiArwqDCoMKgwqDC
-oCBtZXRhLW9lOg0KPiArwqDCoMKgwqDCoCBtZXRhLWdub21lOg0KPiArwqDCoMKgwqDCoCBt
-ZXRhLWZpbGVzeXN0ZW1zOg0KPiArwqDCoMKgwqDCoCBtZXRhLW11bHRpbWVkaWE6DQo+ICsN
-Cj4gK8KgIG1ldGEtbHRzLW1peGluczoNCj4gK8KgwqDCoCB1cmw6ICJodHRwczovL2dpdC55
-b2N0b3Byb2plY3Qub3JnL21ldGEtbHRzLW1peGlucyANCj4gPGh0dHBzOi8vZ2l0LnlvY3Rv
-cHJvamVjdC5vcmcvbWV0YS1sdHMtbWl4aW5zPiINCj4gK8KgwqDCoCBicmFuY2g6ICJzY2Fy
-dGhnYXAvcnVzdCINCj4gK8KgwqDCoCBjb21taXQ6ICJhODA0NmQ1ZWM1M2IxODU2MTY5YWM3
-OTVhYTg3Y2IwZDVkYjg0YzA0Ig0KPiArDQo+ICvCoCBtZXRhLXRpOg0KPiArwqDCoMKgIHVy
-bDogImh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS10aSANCj4gPGh0dHBzOi8v
-Z2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS10aT4iDQo+ICvCoMKgwqAgYnJhbmNoOiAic2Nh
-cnRoZ2FwIg0KPiArwqDCoMKgIGNvbW1pdDogImVhOGMwYjFjZjFhYjhhMGIzMjdlM2ZlYjEx
-NDRjMWNjZjA1YjgyNzgiDQo+ICvCoMKgwqAgbGF5ZXJzOg0KPiArwqDCoMKgwqDCoCBtZXRh
-LXRpLWV4dHJhczoNCj4gK8KgwqDCoMKgwqAgbWV0YS1iZWFnbGU6DQo+ICvCoMKgwqDCoMKg
-IG1ldGEtdGktYnNwOg0KPiArDQo+ICvCoCBtZXRhLWFybToNCj4gK8KgwqDCoCB1cmw6ICJo
-dHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtYXJtIA0KPiA8aHR0cHM6Ly9naXQu
-eW9jdG9wcm9qZWN0Lm9yZy9tZXRhLWFybT4iDQo+ICvCoMKgwqAgYnJhbmNoOiAic2NhcnRo
-Z2FwIg0KPiArwqDCoMKgIGNvbW1pdDogImE4MWMxOTkxNWI1YjllNzFlZDM5NDAzMmU5YTUw
-ZmQwNjkxOWUxY2QiDQo+ICvCoMKgwqAgbGF5ZXJzOg0KPiArwqDCoMKgwqDCoCBtZXRhLWFy
-bToNCj4gK8KgwqDCoMKgwqAgbWV0YS1hcm0tdG9vbGNoYWluOg0KPiArDQo+ICvCoCBtZXRh
-LWNsYW5nOg0KPiArwqDCoMKgIHVybDogImh0dHBzOi8vZ2l0aHViLmNvbS9rcmFqL21ldGEt
-Y2xhbmcgDQo+IDxodHRwczovL2dpdGh1Yi5jb20va3Jhai9tZXRhLWNsYW5nPiINCj4gK8Kg
-wqDCoCBicmFuY2g6ICJzY2FydGhnYXAiDQo+ICvCoMKgwqAgY29tbWl0OiAiNWM2MDIzMzdl
-YTFhODBmYjcyMTdlZWRhMDRlMzk2Y2Y5MDU4N2RjYSINCj4gKw0KPiArwqAgb2UtY29yZToN
-Cj4gK8KgwqDCoCB1cmw6ICJodHRwczovL2dpdC5vcGVuZW1iZWRkZWQub3JnL29wZW5lbWJl
-ZGRlZC1jb3JlIA0KPiA8aHR0cHM6Ly9naXQub3BlbmVtYmVkZGVkLm9yZy9vcGVuZW1iZWRk
-ZWQtY29yZT4iDQo+ICvCoMKgwqAgYnJhbmNoOiAic2NhcnRoZ2FwIg0KPiArwqDCoMKgIGNv
-bW1pdDogIjJiM2QyYjY3MWExNDljYmVlYTJiZGM5YmE0MjE5MmRhMjAxNWMzYjciDQo+ICvC
-oMKgwqAgbGF5ZXJzOg0KPiArwqDCoMKgwqDCoCBtZXRhOg0KPiArDQo+ICvCoCBtZXRhLXRp
-c2RrOg0KPiArwqDCoMKgIHVybDogImh0dHBzOi8vZ2l0LnRpLmNvbS9naXQvdGktc2RrLWxp
-bnV4L21ldGEtdGlzZGsuZ2l0IA0KPiA8aHR0cHM6Ly9naXQudGkuY29tL2dpdC90aS1zZGst
-bGludXgvbWV0YS10aXNkay5naXQ+Ig0KPiArwqDCoMKgIGJyYW5jaDogInNjYXJ0aGdhcCIN
-Cj4gK8KgwqDCoCBjb21taXQ6ICIzMjQ4MmNhZDJmNjMwODkyYjczM2MxNDU3YjllOWQ4MzVi
-MDk4MTc0Ig0KPiArwqDCoMKgIGxheWVyczoNCj4gK8KgwqDCoMKgwqAgbWV0YS10aS1mb3Vu
-ZGF0aW9uYWw6DQo+IGRpZmYgLS1naXQgDQo+IGEvc3JjL2NvbmZpZ3MvcHJvY2Vzc29yLXNk
-ay1nYXRld2F5L3Byb2Nlc3Nvci1zZGstZ2F0ZXdheS0xMS4wMi4wMC1jb25maWcueG1sIGIv
-c3JjL2NvbmZpZ3MvcHJvY2Vzc29yLXNkay1nYXRld2F5L3Byb2Nlc3Nvci1zZGstZ2F0ZXdh
-eS0xMS4wMi4wMC1jb25maWcueG1sDQo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4
-IDAwMDAwMDAuLjIzMzc4ZWYNCj4gLS0tIC9kZXYvbnVsbA0KPiArKysgDQo+IGIvc3JjL2Nv
-bmZpZ3MvcHJvY2Vzc29yLXNkay1nYXRld2F5L3Byb2Nlc3Nvci1zZGstZ2F0ZXdheS0xMS4w
-Mi4wMC1jb25maWcueG1sDQo+IEBAIC0wLDAgKzEsODYgQEANCj4gKzw/eG1sIHZlcnNpb249
-JzEuMCc/Pg0KPiArPGNvbmZpZz4NCj4gK8KgwqDCoCA8ZGVzY3JpcHRpb24+PC9kZXNjcmlw
-dGlvbj4NCj4gKw0KPiArwqDCoMKgIDx4aTppbmNsdWRlIGhyZWY9Jy4uLy4uL2NvbW1vbi9k
-aXN0cm9fYXJhZ28ueG1sJyANCj4geG1sbnM6eGk9J2h0dHA6Ly93d3cudzMub3JnLzIwMDEv
-WEluY2x1ZGUnLyANCj4gPGh0dHA6Ly93d3cudzMub3JnLzIwMDEvWEluY2x1ZGUnLz4+DQo+
-ICvCoMKgwqAgPHhpOmluY2x1ZGUgaHJlZj0nLi4vLi4vY29tbW9uL21hY2hpbmVzLnhtbCcg
-DQo+IHhtbG5zOnhpPSdodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hJbmNsdWRlJy8gDQo+IDxo
-dHRwOi8vd3d3LnczLm9yZy8yMDAxL1hJbmNsdWRlJy8+Pg0KPiArwqDCoMKgIDx4aTppbmNs
-dWRlIGhyZWY9Jy4uLy4uL3RlbXBsYXRlcy9iYmxheWVycy5jb25mLnhtbCcgDQo+IHhtbG5z
-OnhpPSdodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hJbmNsdWRlJy8gDQo+IDxodHRwOi8vd3d3
-LnczLm9yZy8yMDAxL1hJbmNsdWRlJy8+Pg0KPiArwqDCoMKgIDx4aTppbmNsdWRlIGhyZWY9
-Jy4uLy4uL3RlbXBsYXRlcy9sb2NhbC1hcmFnbzY0LXYyLmNvbmYueG1sJyANCj4geG1sbnM6
-eGk9J2h0dHA6Ly93d3cudzMub3JnLzIwMDEvWEluY2x1ZGUnLyANCj4gPGh0dHA6Ly93d3cu
-dzMub3JnLzIwMDEvWEluY2x1ZGUnLz4+DQo+ICsNCj4gK8KgwqDCoCA8Yml0YmFrZSB1cmw9
-J2h0dHBzOi8vZ2l0Lm9wZW5lbWJlZGRlZC5vcmcvYml0YmFrZSANCj4gPGh0dHBzOi8vZ2l0
-Lm9wZW5lbWJlZGRlZC5vcmcvYml0YmFrZT4nIGJyYW5jaD0nMi44JyANCj4gY29tbWl0PSc4
-ZGNmMDg0NTIyYjljNjZhNjYzOWI1ZjExN2Y1NTRmZGU5YjZiNDVhJy8+DQo+ICsNCj4gK8Kg
-wqDCoCA8cmVwb3M+DQo+ICvCoMKgwqDCoMKgwqDCoCA8cmVwbyBuYW1lPSdtZXRhLWFyYWdv
-JyANCj4gdXJsPSdodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtYXJhZ28gDQo+
-IDxodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtYXJhZ28+JyBicmFuY2g9J3Nj
-YXJ0aGdhcCcgDQo+IGNvbW1pdD0nMTY0MGRmNjBiMGY3NTcyMmI5ZTU5MjNhNWJmYmEzNzY3
-ZTdkOTdhOCc+DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDxsYXllcnM+DQo+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPGxheWVyPm1ldGEtYXJhZ28tZGlzdHJvPC9s
-YXllcj4NCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXI+bWV0YS1h
-cmFnby1leHRyYXM8L2xheWVyPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IDxsYXllcj5tZXRhLWFyYWdvLXRlc3Q8L2xheWVyPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCA8L2xheWVycz4NCj4gK8KgwqDCoMKgwqDCoMKgIDwvcmVwbz4NCj4gK8KgwqDCoMKg
-wqDCoMKgIDxyZXBvIG5hbWU9J21ldGEtYnJvd3NlcicgDQo+IHVybD0naHR0cHM6Ly9naXRo
-dWIuY29tL09TU3lzdGVtcy9tZXRhLWJyb3dzZXIuZ2l0IA0KPiA8aHR0cHM6Ly9naXRodWIu
-Y29tL09TU3lzdGVtcy9tZXRhLWJyb3dzZXIuZ2l0PicgYnJhbmNoPSdtYXN0ZXInIA0KPiBj
-b21taXQ9JzI3Y2E1MmY2MzVhMzFmNWY5NzYyODEzYTg1MjdkZDMxMzIzNTQ5YjcnIGRpc2Fi
-bGVkPSd0cnVlJz4NCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPGxheWVycz4NCj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXI+bWV0YS1jaHJvbWl1bTwvbGF5
-ZXI+DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDwvbGF5ZXJzPg0KPiArwqDCoMKgwqDC
-oMKgwqAgPC9yZXBvPg0KPiArwqDCoMKgwqDCoMKgwqAgPHJlcG8gbmFtZT0nbWV0YS1zZWxp
-bnV4JyANCj4gdXJsPSdodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtc2VsaW51
-eCANCj4gPGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS1zZWxpbnV4PicgYnJh
-bmNoPSdzY2FydGhnYXAnIA0KPiBjb21taXQ9J0hFQUQnIGRpc2FibGVkPSd0cnVlJz4NCj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPGxheWVycy8+DQo+ICvCoMKgwqDCoMKgwqDCoCA8
-L3JlcG8+DQo+ICvCoMKgwqDCoMKgwqDCoCA8cmVwbyBuYW1lPSdtZXRhLXF0NicgDQo+IHVy
-bD0naHR0cHM6Ly9jb2RlLnF0LmlvL3lvY3RvL21ldGEtcXQ2LmdpdCANCj4gPGh0dHBzOi8v
-Y29kZS5xdC5pby95b2N0by9tZXRhLXF0Ni5naXQ+JyBicmFuY2g9JzYuOScgDQo+IGNvbW1p
-dD0nYzdkNzFmNGNlY2U0ZDFmZTMxMTBjOTQ1YjliZDQwY2E4Mjk2MGUwNSc+DQo+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIDxsYXllcnMvPg0KPiArwqDCoMKgwqDCoMKgwqAgPC9yZXBv
-Pg0KPiArwqDCoMKgwqDCoMKgwqAgPHJlcG8gbmFtZT0nbWV0YS12aXJ0dWFsaXphdGlvbicg
-DQo+IHVybD0naHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLXZpcnR1YWxpemF0
-aW9uIA0KPiA8aHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLXZpcnR1YWxpemF0
-aW9uPicgYnJhbmNoPSdzY2FydGhnYXAnIA0KPiBjb21taXQ9JzE3YWMyMWU3ZDdmNmY0MGE4
-NzYxOGIyMjI3OGI2M2JjZmExNGRiZjInPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8
-bGF5ZXJzLz4NCj4gK8KgwqDCoMKgwqDCoMKgIDwvcmVwbz4NCj4gK8KgwqDCoMKgwqDCoMKg
-IDxyZXBvIG5hbWU9J21ldGEtb3BlbmVtYmVkZGVkJyANCj4gdXJsPSdodHRwczovL2dpdC5v
-cGVuZW1iZWRkZWQub3JnL21ldGEtb3BlbmVtYmVkZGVkIA0KPiA8aHR0cHM6Ly9naXQub3Bl
-bmVtYmVkZGVkLm9yZy9tZXRhLW9wZW5lbWJlZGRlZD4nIGJyYW5jaD0nc2NhcnRoZ2FwJyAN
-Cj4gY29tbWl0PSdlNzZiZjUxYTkyYjQxZDRjYjE4NWZjMTY0YWU0M2E4NjM5MTBjY2QxJz4N
-Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPGxheWVycz4NCj4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXI+bWV0YS1uZXR3b3JraW5nPC9sYXllcj4NCj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXI+bWV0YS1weXRob248L2xheWVy
-Pg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDxsYXllcj5tZXRhLW9lPC9s
-YXllcj4NCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXI+bWV0YS1n
-bm9tZTwvbGF5ZXI+DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPGxheWVy
-Pm1ldGEtZmlsZXN5c3RlbXM8L2xheWVyPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIDxsYXllcj5tZXRhLW11bHRpbWVkaWE8L2xheWVyPg0KPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCA8L2xheWVycz4NCj4gK8KgwqDCoMKgwqDCoMKgIDwvcmVwbz4NCj4gK8Kg
-wqDCoMKgwqDCoMKgIDxyZXBvIG5hbWU9J21ldGEtbHRzLW1peGlucycgDQo+IHVybD0naHR0
-cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLWx0cy1taXhpbnMgDQo+IDxodHRwczov
-L2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtbHRzLW1peGlucz4nIGJyYW5jaD0nc2NhcnRo
-Z2FwL3J1c3QnIA0KPiBjb21taXQ9J2E4MDQ2ZDVlYzUzYjE4NTYxNjlhYzc5NWFhODdjYjBk
-NWRiODRjMDQnPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXJzLz4NCj4gK8Kg
-wqDCoMKgwqDCoMKgIDwvcmVwbz4NCj4gK8KgwqDCoMKgwqDCoMKgIDxyZXBvIG5hbWU9J21l
-dGEtdGknIHVybD0naHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLXRpIA0KPiA8
-aHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLXRpPicgYnJhbmNoPSdzY2FydGhn
-YXAnIA0KPiBjb21taXQ9J2VhOGMwYjFjZjFhYjhhMGIzMjdlM2ZlYjExNDRjMWNjZjA1Yjgy
-NzgnPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXJzPg0KPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIDxsYXllcj5tZXRhLXRpLWV4dHJhczwvbGF5ZXI+DQo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPGxheWVyPm1ldGEtYmVhZ2xlPC9s
-YXllcj4NCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXI+bWV0YS10
-aS1ic3A8L2xheWVyPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8L2xheWVycz4NCj4g
-K8KgwqDCoMKgwqDCoMKgIDwvcmVwbz4NCj4gK8KgwqDCoMKgwqDCoMKgIDxyZXBvIG5hbWU9
-J21ldGEtYXJtJyANCj4gdXJsPSdodHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEt
-YXJtIA0KPiA8aHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLWFybT4nIGJyYW5j
-aD0nc2NhcnRoZ2FwJyANCj4gY29tbWl0PSdhODFjMTk5MTViNWI5ZTcxZWQzOTQwMzJlOWE1
-MGZkMDY5MTllMWNkJz4NCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPGxheWVycz4NCj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXI+bWV0YS1hcm08L2xheWVy
-Pg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDxsYXllcj5tZXRhLWFybS10
-b29sY2hhaW48L2xheWVyPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8L2xheWVycz4N
-Cj4gK8KgwqDCoMKgwqDCoMKgIDwvcmVwbz4NCj4gK8KgwqDCoMKgwqDCoMKgIDxyZXBvIG5h
-bWU9J21ldGEtY2xhbmcnIHVybD0naHR0cHM6Ly9naXRodWIuY29tL2tyYWovbWV0YS1jbGFu
-ZyANCj4gPGh0dHBzOi8vZ2l0aHViLmNvbS9rcmFqL21ldGEtY2xhbmc+JyBicmFuY2g9J3Nj
-YXJ0aGdhcCcgDQo+IGNvbW1pdD0nNWM2MDIzMzdlYTFhODBmYjcyMTdlZWRhMDRlMzk2Y2Y5
-MDU4N2RjYSc+DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDxsYXllcnMvPg0KPiArwqDC
-oMKgwqDCoMKgwqAgPC9yZXBvPg0KPiArwqDCoMKgwqDCoMKgwqAgPHJlcG8gbmFtZT0nbWV0
-YS1mbHV0dGVyJyANCj4gdXJsPSdodHRwczovL2dpdGh1Yi5jb20vbWV0YS1mbHV0dGVyL21l
-dGEtZmx1dHRlci5naXQgDQo+IDxodHRwczovL2dpdGh1Yi5jb20vbWV0YS1mbHV0dGVyL21l
-dGEtZmx1dHRlci5naXQ+JyBicmFuY2g9J3NjYXJ0aGdhcCcgDQo+IGNvbW1pdD0nSEVBRCcg
-ZGlzYWJsZWQ9J3RydWUnPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXJzPg0K
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDxsYXllcj4uPC9sYXllcj4NCj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8bGF5ZXI+bWV0YS1mbHV0dGVyLWFw
-cHM8L2xheWVyPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCA8L2xheWVycz4NCj4gK8Kg
-wqDCoMKgwqDCoMKgIDwvcmVwbz4NCj4gK8KgwqDCoMKgwqDCoMKgIDxyZXBvIG5hbWU9J29l
-LWNvcmUnIA0KPiB1cmw9J2h0dHBzOi8vZ2l0Lm9wZW5lbWJlZGRlZC5vcmcvb3BlbmVtYmVk
-ZGVkLWNvcmUgDQo+IDxodHRwczovL2dpdC5vcGVuZW1iZWRkZWQub3JnL29wZW5lbWJlZGRl
-ZC1jb3JlPicgYnJhbmNoPSdzY2FydGhnYXAnIA0KPiBjb21taXQ9JzJiM2QyYjY3MWExNDlj
-YmVlYTJiZGM5YmE0MjE5MmRhMjAxNWMzYjcnPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCA8bGF5ZXJzPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDxsYXllcj5t
-ZXRhPC9sYXllcj4NCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPC9sYXllcnM+DQo+ICvC
-oMKgwqDCoMKgwqDCoCA8L3JlcG8+DQo+ICvCoMKgwqDCoMKgwqDCoCA8cmVwbyBuYW1lPSdt
-ZXRhLXRpc2RrJyANCj4gdXJsPSdodHRwczovL2dpdC50aS5jb20vZ2l0L3RpLXNkay1saW51
-eC9tZXRhLXRpc2RrLmdpdCANCj4gPGh0dHBzOi8vZ2l0LnRpLmNvbS9naXQvdGktc2RrLWxp
-bnV4L21ldGEtdGlzZGsuZ2l0PicgYnJhbmNoPSdzY2FydGhnYXAnIA0KPiBjb21taXQ9JzMy
-NDgyY2FkMmY2MzA4OTJiNzMzYzE0NTdiOWU5ZDgzNWIwOTgxNzQnPg0KPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCA8bGF5ZXJzPg0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIDxsYXllcj5tZXRhLXRpLWZvdW5kYXRpb25hbDwvbGF5ZXI+DQo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIDwvbGF5ZXJzPg0KPiArwqDCoMKgwqDCoMKgwqAgPC9yZXBvPg0KPiAr
-wqDCoMKgIDwvcmVwb3M+DQo+ICsNCj4gK8KgwqDCoCA8dG9vbHM+DQo+ICvCoMKgwqDCoMKg
-wqDCoCA8dG9vbCB0eXBlPSdvZS1sYXllcnNldHVwJz4NCj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgPHZhciBuYW1lPSdCSVRCQUtFX0lOQ0xVU0lWRV9WQVJTJyB2YWx1ZT0neWVzJy8+
-DQo+ICvCoMKgwqDCoMKgwqDCoCA8L3Rvb2w+DQo+ICvCoMKgwqAgPC90b29scz4NCj4gKzwv
-Y29uZmlnPg0KPiAtLSANCj4gMi4zNC4xDQo+IA0KDQotLSANClJ5YW4gRWF0bW9uICAgICAg
-ICAgICAgICAgIHJlYXRtb25AdGkuY29tDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLQ0KVGV4YXMgSW5zdHJ1bWVudHMsIEluYy4gIC0gIExDUEQgIC0gIE1H
-VFMNCg==
+Signed-ff-by: Puyush Gupta <p-gupta5@ti.com>
+---
+ ...ssor-sdk-gateway-11.02.01-config.conf.json | 158 ++++++++++++++++++
+ .../processor-sdk-gateway-11.02.01-config.txt |  21 +++
+ .../processor-sdk-gateway-11.02.01-config.yml |  99 +++++++++++
+ .../processor-sdk-gateway-11.02.01-config.xml |  86 ++++++++++
+ 4 files changed, 364 insertions(+)
+ create mode 100644 bitbake-setup/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.conf.json
+ create mode 100644 configs/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.txt
+ create mode 100644 kas/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.yml
+ create mode 100644 src/configs/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.xml
+
+diff --git a/bitbake-setup/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.conf.json b/bitbake-setup/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.conf.json
+new file mode 100644
+index 0000000..71165d2
+--- /dev/null
++++ b/bitbake-setup/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.conf.json
+@@ -0,0 +1,158 @@
++{
++  "version": "1.0",
++  "description": "",
++  "sources": {
++    "oe-layersetup": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/arago-project/oe-layersetup.git"
++          }
++        },
++        "rev": "master"
++      },
++      "path": "oe-layersetup"
++    },
++    "bitbake": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/bitbake"
++          }
++        },
++        "rev": "2.8"
++      },
++      "path": "bitbake"
++    },
++    "meta-arago": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arago"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arago"
++    },
++    "meta-qt6": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://code.qt.io/yocto/meta-qt6.git"
++          }
++        },
++        "rev": "6.9"
++      },
++      "path": "meta-qt6"
++    },
++    "meta-virtualization": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-virtualization"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-virtualization"
++    },
++    "meta-openembedded": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/meta-openembedded"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-openembedded"
++    },
++    "meta-lts-mixins": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-lts-mixins"
++          }
++        },
++        "rev": "scarthgap/rust"
++      },
++      "path": "meta-lts-mixins"
++    },
++    "meta-ti": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-ti"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-ti"
++    },
++    "meta-arm": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.yoctoproject.org/meta-arm"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-arm"
++    },
++    "meta-clang": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://github.com/kraj/meta-clang"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-clang"
++    },
++    "oe-core": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.openembedded.org/openembedded-core"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "oe-core"
++    },
++    "meta-tisdk": {
++      "git-remote": {
++        "remotes": {
++          "origin": {
++            "uri": "https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git"
++          }
++        },
++        "rev": "scarthgap"
++      },
++      "path": "meta-tisdk"
++    }
++  },
++  "bitbake-setup": {
++    "configurations": [
++      {
++        "name": "arago",
++        "description": "TI Arago distro build",
++        "bb-layers": [ "meta-arago/meta-arago-distro","meta-arago/meta-arago-extras","meta-arago/meta-arago-test","meta-qt6","meta-virtualization","meta-openembedded/meta-networking","meta-openembedded/meta-python","meta-openembedded/meta-oe","meta-openembedded/meta-gnome","meta-openembedded/meta-filesystems","meta-openembedded/meta-multimedia","meta-lts-mixins","meta-ti/meta-ti-extras","meta-ti/meta-beagle","meta-ti/meta-ti-bsp","meta-arm/meta-arm","meta-arm/meta-arm-toolchain","meta-clang","oe-core/meta","meta-tisdk/meta-ti-foundational","oe-layersetup" ],
++        "oe-fragments": [ "oe-layersetup/localconf/local-arago64-v2" ],
++        "oe-fragments-one-of": {
++          "machine": {
++            "description": "Available target machines",
++            "options": [ "machine/am335x-evm","machine/am335x-hs-evm","machine/am437x-evm","machine/am437x-hs-evm","machine/am57xx-evm","machine/am57xx-hs-evm","machine/am62xx-evm","machine/am62xx-lp-evm","machine/am62xxsip-evm","machine/am62axx-evm","machine/am62dxx-evm","machine/am62lxx-evm","machine/am62pxx-evm","machine/am64xx-evm","machine/am65xx-evm","machine/am65xx-hs-evm","machine/am68-sk","machine/am69-sk","machine/beagle-x15","machine/beaglebone","machine/beaglebone-ai64","machine/beagleplay","machine/beagleplay-ti","machine/beagley-ai","machine/j7-evm","machine/j7-hs-evm","machine/j721e-evm","machine/j721e-sk","machine/j7200-evm","machine/j7200-hs-evm","machine/j721s2-evm","machine/j721s2-hs-evm","machine/j742s2-evm","machine/j784s4-evm","machine/j784s4-hs-evm","machine/j722s-evm","machine/pocketbeagle2" ]
++          },
++          "distro": {
++            "description": "Available distributions",
++            "options": [ "distro/arago" ]
++          }
++        }
++      }
++    ]
++  }
++}
+diff --git a/configs/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.txt b/configs/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.txt
+new file mode 100644
+index 0000000..709ce7d
+--- /dev/null
++++ b/configs/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.txt
+@@ -0,0 +1,21 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,https://git.openembedded.org/bitbake,2.8,a4daa14312d659333984aa1ae58ddfe0c96392f1
++meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,f6dc5e4817c6551ea5250ab1beed6ffc6fc235f2,layers=meta-arago-distro:meta-arago-extras:meta-arago-test
++#meta-browser,https://github.com/OSSystems/meta-browser.git,master,27ca52f635a31f5f9762813a8527dd31323549b7,layers=meta-chromium
++#meta-selinux,https://git.yoctoproject.org/meta-selinux,scarthgap,HEAD,layers=
++meta-qt6,https://code.qt.io/yocto/meta-qt6.git,6.9,c7d71f4cece4d1fe3110c945b9bd40ca82960e05,layers=
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,9d0007a369deb4a6346f5ab7a9e6d432a8ed14fe,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,d8cc4e44001c7257273d290ce8c4496e93d32841,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-lts-mixins,https://git.yoctoproject.org/meta-lts-mixins,scarthgap/rust,a8046d5ec53b1856169ac795aa87cb0d5db84c04,layers=
++meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,9859d582984a87b42db107127e829c976f315ee3,layers=meta-ti-extras:meta-beagle:meta-ti-bsp
++meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,c4fd56386ee30f8b46f8e4eb1220edaf510d2ac0,layers=meta-arm:meta-arm-toolchain
++meta-clang,https://github.com/kraj/meta-clang,scarthgap,5bce7e26a38a58bb52242494e54ab2af40009574,layers=
++#meta-flutter,https://github.com/meta-flutter/meta-flutter.git,scarthgap,HEAD,layers=.:meta-flutter-apps
++oe-core,https://git.openembedded.org/openembedded-core,scarthgap,e2864ea1ac022e43af92badc701fa1e2a9571f46,layers=meta
++meta-tisdk,https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git,scarthgap,4298b217a5049718241a0ad523b00c4390e62bfb,layers=meta-ti-foundational
++
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/kas/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.yml b/kas/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.yml
+new file mode 100644
+index 0000000..fdc037b
+--- /dev/null
++++ b/kas/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.yml
+@@ -0,0 +1,99 @@
++---
++header:
++  version: 17
++  includes:
++    - kas/templates/bblayers.conf.yml
++    - kas/templates/local-arago64-v2.conf.yml
++
++target: tisdk-default-image
++
++repos:
++  bitbake:
++    url: "https://git.openembedded.org/bitbake"
++    branch: "2.8"
++    commit: "a4daa14312d659333984aa1ae58ddfe0c96392f1"
++    path: "sources/bitbake"
++    layers:
++      .: disabled
++
++  meta-arago:
++    url: "https://git.yoctoproject.org/meta-arago"
++    branch: "scarthgap"
++    commit: "f6dc5e4817c6551ea5250ab1beed6ffc6fc235f2"
++    path: "sources/meta-arago"
++    layers:
++      meta-arago-distro:
++      meta-arago-extras:
++      meta-arago-test:
++
++  meta-qt6:
++    url: "https://code.qt.io/yocto/meta-qt6.git"
++    branch: "6.9"
++    commit: "c7d71f4cece4d1fe3110c945b9bd40ca82960e05"
++    path: "sources/meta-qt6"
++
++  meta-virtualization:
++    url: "https://git.yoctoproject.org/meta-virtualization"
++    branch: "scarthgap"
++    commit: "9d0007a369deb4a6346f5ab7a9e6d432a8ed14fe"
++    path: "sources/meta-virtualization"
++
++  meta-openembedded:
++    url: "https://git.openembedded.org/meta-openembedded"
++    branch: "scarthgap"
++    commit: "d8cc4e44001c7257273d290ce8c4496e93d32841"
++    path: "sources/meta-openembedded"
++    layers:
++      meta-networking:
++      meta-python:
++      meta-oe:
++      meta-gnome:
++      meta-filesystems:
++      meta-multimedia:
++
++  meta-lts-mixins:
++    url: "https://git.yoctoproject.org/meta-lts-mixins"
++    branch: "scarthgap/rust"
++    commit: "a8046d5ec53b1856169ac795aa87cb0d5db84c04"
++    path: "sources/meta-lts-mixins"
++
++  meta-ti:
++    url: "https://git.yoctoproject.org/meta-ti"
++    branch: "scarthgap"
++    commit: "9859d582984a87b42db107127e829c976f315ee3"
++    path: "sources/meta-ti"
++    layers:
++      meta-ti-extras:
++      meta-beagle:
++      meta-ti-bsp:
++
++  meta-arm:
++    url: "https://git.yoctoproject.org/meta-arm"
++    branch: "scarthgap"
++    commit: "c4fd56386ee30f8b46f8e4eb1220edaf510d2ac0"
++    path: "sources/meta-arm"
++    layers:
++      meta-arm:
++      meta-arm-toolchain:
++
++  meta-clang:
++    url: "https://github.com/kraj/meta-clang"
++    branch: "scarthgap"
++    commit: "5bce7e26a38a58bb52242494e54ab2af40009574"
++    path: "sources/meta-clang"
++
++  oe-core:
++    url: "https://git.openembedded.org/openembedded-core"
++    branch: "scarthgap"
++    commit: "e2864ea1ac022e43af92badc701fa1e2a9571f46"
++    path: "sources/oe-core"
++    layers:
++      meta:
++
++  meta-tisdk:
++    url: "https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git"
++    branch: "scarthgap"
++    commit: "4298b217a5049718241a0ad523b00c4390e62bfb"
++    path: "sources/meta-tisdk"
++    layers:
++      meta-ti-foundational:
+diff --git a/src/configs/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.xml b/src/configs/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.xml
+new file mode 100644
+index 0000000..8ae39fb
+--- /dev/null
++++ b/src/configs/processor-sdk-gateway/processor-sdk-gateway-11.02.01-config.xml
+@@ -0,0 +1,86 @@
++<?xml version='1.0'?>
++<config>
++    <description></description>
++
++    <xi:include href='../../common/distro_arago.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../common/machines.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/bblayers.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++    <xi:include href='../../templates/local-arago64-v2.conf.xml' xmlns:xi='http://www.w3.org/2001/XInclude'/>
++
++    <bitbake url='https://git.openembedded.org/bitbake' branch='2.8' commit='a4daa14312d659333984aa1ae58ddfe0c96392f1'/>
++
++    <repos>
++        <repo name='meta-arago' url='https://git.yoctoproject.org/meta-arago' branch='scarthgap' commit='f6dc5e4817c6551ea5250ab1beed6ffc6fc235f2'>
++            <layers>
++                <layer>meta-arago-distro</layer>
++                <layer>meta-arago-extras</layer>
++                <layer>meta-arago-test</layer>
++            </layers>
++        </repo>
++        <repo name='meta-browser' url='https://github.com/OSSystems/meta-browser.git' branch='master' commit='27ca52f635a31f5f9762813a8527dd31323549b7' disabled='true'>
++            <layers>
++                <layer>meta-chromium</layer>
++            </layers>
++        </repo>
++        <repo name='meta-selinux' url='https://git.yoctoproject.org/meta-selinux' branch='scarthgap' commit='HEAD' disabled='true'>
++            <layers/>
++        </repo>
++        <repo name='meta-qt6' url='https://code.qt.io/yocto/meta-qt6.git' branch='6.9' commit='c7d71f4cece4d1fe3110c945b9bd40ca82960e05'>
++            <layers/>
++        </repo>
++        <repo name='meta-virtualization' url='https://git.yoctoproject.org/meta-virtualization' branch='scarthgap' commit='9d0007a369deb4a6346f5ab7a9e6d432a8ed14fe'>
++            <layers/>
++        </repo>
++        <repo name='meta-openembedded' url='https://git.openembedded.org/meta-openembedded' branch='scarthgap' commit='d8cc4e44001c7257273d290ce8c4496e93d32841'>
++            <layers>
++                <layer>meta-networking</layer>
++                <layer>meta-python</layer>
++                <layer>meta-oe</layer>
++                <layer>meta-gnome</layer>
++                <layer>meta-filesystems</layer>
++                <layer>meta-multimedia</layer>
++            </layers>
++        </repo>
++        <repo name='meta-lts-mixins' url='https://git.yoctoproject.org/meta-lts-mixins' branch='scarthgap/rust' commit='a8046d5ec53b1856169ac795aa87cb0d5db84c04'>
++            <layers/>
++        </repo>
++        <repo name='meta-ti' url='https://git.yoctoproject.org/meta-ti' branch='scarthgap' commit='9859d582984a87b42db107127e829c976f315ee3'>
++            <layers>
++                <layer>meta-ti-extras</layer>
++                <layer>meta-beagle</layer>
++                <layer>meta-ti-bsp</layer>
++            </layers>
++        </repo>
++        <repo name='meta-arm' url='https://git.yoctoproject.org/meta-arm' branch='scarthgap' commit='c4fd56386ee30f8b46f8e4eb1220edaf510d2ac0'>
++            <layers>
++                <layer>meta-arm</layer>
++                <layer>meta-arm-toolchain</layer>
++            </layers>
++        </repo>
++        <repo name='meta-clang' url='https://github.com/kraj/meta-clang' branch='scarthgap' commit='5bce7e26a38a58bb52242494e54ab2af40009574'>
++            <layers/>
++        </repo>
++        <repo name='meta-flutter' url='https://github.com/meta-flutter/meta-flutter.git' branch='scarthgap' commit='HEAD' disabled='true'>
++            <layers>
++                <layer>.</layer>
++                <layer>meta-flutter-apps</layer>
++            </layers>
++        </repo>
++        <repo name='oe-core' url='https://git.openembedded.org/openembedded-core' branch='scarthgap' commit='e2864ea1ac022e43af92badc701fa1e2a9571f46'>
++            <layers>
++                <layer>meta</layer>
++            </layers>
++        </repo>
++        <repo name='meta-tisdk' url='https://git.ti.com/git/ti-sdk-linux/meta-tisdk.git' branch='scarthgap' commit='4298b217a5049718241a0ad523b00c4390e62bfb'>
++            <layers>
++                <layer>meta-ti-foundational</layer>
++            </layers>
++        </repo>
++    </repos>
++
++    <tools>
++        <tool type='oe-layersetup'>
++            <var name='BITBAKE_INCLUSIVE_VARS' value='yes'/>
++        </tool>
++    </tools>
++</config>
+-- 
+2.34.1
+
 
