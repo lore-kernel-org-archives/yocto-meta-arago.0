@@ -1,443 +1,234 @@
-Return-Path: <r-donadkar@ti.com>
+Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0219CC43458
-	for <webhook@archiver.kernel.org>; Wed,  8 Jul 2026 11:56:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 172E1C44501
+	for <webhook@archiver.kernel.org>; Wed,  8 Jul 2026 12:18:17 +0000 (UTC)
 Received: from mx0b-0002e601.pphosted.com (mx0b-0002e601.pphosted.com [148.163.154.28])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.6476.1783511764101045836
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.7066.1783513089865708506
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 08 Jul 2026 04:56:04 -0700
+ Wed, 08 Jul 2026 05:18:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=proofpoint-05-2026 header.b=VKiZGKEA;
- dkim=pass header.i=@ti.com header.s=selector1 header.b=NuxzaT44;
- spf=pass (domain: ti.com, ip: 148.163.154.28, mailfrom: r-donadkar@ti.com)
-Received: from pps.filterd (m0374955.ppops.net [127.0.0.1])
-	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 668BR6262186092
-	for <meta-arago@lists.yoctoproject.org>; Wed, 8 Jul 2026 06:56:03 -0500
+ dkim=pass header.i=@ti.com header.s=proofpoint-05-2026 header.b=ZfuHS48Y;
+ dkim=pass header.i=@list.ti.com header.s=selector1 header.b=i1ChNFNZ;
+ spf=pass (domain: list.ti.com, ip: 148.163.154.28, mailfrom: prc@list.ti.com)
+Received: from pps.filterd (m0374956.ppops.net [127.0.0.1])
+	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 668C4XPA2254818
+	for <meta-arago@lists.yoctoproject.org>; Wed, 8 Jul 2026 07:18:08 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
-	:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=proofpoint-05-2026; bh=gtrLWV+oX6a0d
-	uQouLhtakL6UnAyQcQbIgiOeYz2Gt0=; b=VKiZGKEAO5wKAU+74ApWhDdvuPpHc
-	xM7qbUo3USbr6oSRqUbtPB3dlO2Tr6TzC4KbGuCi3h7RvYUWXwPi0oXlJ+zNDAvW
-	9OOiBymkCnB9QrseJ/XpWdeNgAly29THXpvTDpSzPHxv63MQWCX5YX+H+gOtxErK
-	arKF6MTYC5+D5Nc44sZM2oAbxZPZa2Jxj+nwJL/3TlZ/7ADR15nxNGxRCFNVCIEy
-	GOFvzBJduFVu92kr90/t7nwIUK0TAQynr/LMLI8Xc2lF6bNPLXQegqmhxMpcYTZ2
-	euvZFmTHD7YC2KQCXdJLYLqvOWSldAr7zV0ez/B88OanOdt0RfP2gg0jQ==
-Received: from bl2pr02cu003.outbound.protection.outlook.com (mail-eastusazon11011049.outbound.protection.outlook.com [52.101.52.49])
-	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4f9kuarmfv-1
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	proofpoint-05-2026; bh=+Hxd3dLVwIWbD904ViaqtC4BnJ6qZog+IMVG2O+Jk
+	5c=; b=ZfuHS48Y4KFUQOk2pIGrJp6Hdqxoxlpq+Wd3QfK78M5/idoxFJk2pMSl4
+	Z5ZTb1Ihy7BggVUwDYANN79fDu3v7uoDwBtocIuw60VAHLFN6zCJXkfBxBxiyg6q
+	nOo1A3iRb0Cl5wzR8fPUXhgtx07b9UOvRaU+1PWfuMYR4MGwI+Eh46+1mwFr1DPx
+	GTEQDwBvr1/tQ73O4x5Fa4lXmjUrS2iZB6gOXSH4eZQxwTUM+WwL05va3gTaNLy3
+	aj7VEZ+dBkql0ghR4McukJ9UEzIVd/DCuzNrugSRlnIPCApo2/Qi0/5G58lvhG15
+	S9yX199lBvQzOm7CdKuDj7tqZAWmQ==
+Received: from byapr05cu005.outbound.protection.outlook.com (mail-westusazon11010041.outbound.protection.outlook.com [52.101.85.41])
+	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4f9kxk8rcf-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT)
-	for <meta-arago@lists.yoctoproject.org>; Wed, 08 Jul 2026 06:56:02 -0500 (CDT)
+	for <meta-arago@lists.yoctoproject.org>; Wed, 08 Jul 2026 07:18:08 -0500 (CDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ggt+tbEZiDoBQ+3J5UzbzAvLw60o7AMS7EqacfKJ2ex1oMmYPae3Xe6xKID4OrTqFz29jNOtBJijLhlIJolW/w9EJRcUpYMeqhuF1nvIxX89BbU6otH26yXwh8m44sCEtUFFzyildPlCFtAzQUdwV3JStyTQe+pQJfNvXzLUYbWslW7Z3TDZUtJnHLzqf0ISDpb6Svl+nUXL4/jjnaPa9vsbA85nyF11kEXTDSbSCbg6bNaG4JJ8ibbOWevY0YOOGBY4fGk4JFIBNQFTwz0qt/BDn8k/gTdyxFpGa9G7OH4CGHuNIaolBdOG1anQRviFLDE7UJAr+cNk9kaOqyzuVA==
+ b=vxvHn5QgEb3C6y0mjjfIM92hTk2nuy7om4jDCnQQpXm1/tWIeECWKHjzrqfNIlsSOpitHqUNWFlz/KllPYEi/Km35qgU/bYn2R1/ALsM4c011Xrr2E575crp+rqo204krqemjxB1PYDT8/+rx4MhWmCGHFJXh3bdYB+zoksK8Xf6Yi4g7wO0iKrEvpRHHA7H8sZpKpaul2bCuPtJfrhdmtb3DTvM4lRsudH1T9feUP7LjA4JjYtXgQC1zDyZ9vHTWvpoLRuy/+POmTL83GSgXyosJfCOsf0cMzFtzeoz04Gnpn4CEpB5zOt4BfJrKfEfTGJfPB5bl6pgh/tmkgILLQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gtrLWV+oX6a0duQouLhtakL6UnAyQcQbIgiOeYz2Gt0=;
- b=iRrFCrRAifLehSAWyc38nyR8+NW1q04cdvJaJeTQfZJy94tMIfKJtefms/JtWhVj8UEMjFsIwE3wAhwatr2MEUUSPTQjknnD2ynrjbvXuuJvOU6eQDVw16fnlBsWIWF4vJo2+zRSDjUabIgUdEMWGgh8CY3nptQpDCVg2Pc97lS9YgAY7ZlGuVlZV4mGF/k7dYLNfk5Q6tZGrrIfbDuGTZh+AFaxbyenNHbhTsyEDoKNPxc5ngtqIs2XlJNxb5vT0DpnNiCxlv0jaDQSGtUZ0oJeGYJHrkzTmkW5MZnsiH9KmR+CF32xK5cFlD/L34Qi+03krCslb6K0IW4VhQ0eaw==
+ bh=+Hxd3dLVwIWbD904ViaqtC4BnJ6qZog+IMVG2O+Jk5c=;
+ b=nysvC+mS1mx1go7m5YQuQsOQkCDTdl52LWp0X6ThbLnowa42caQ+YRrBasK3CI4mEftDRNHQQc753fygnz5UEmbabpXbcTF6UfGgWlTvmSYQBoIC/LUtE85XiTjUiJHo8mw6yt09tnuwQZOS6B6rFtY4P+pxPmGfk1vpAqa6f0rC9oDDBB9tDWhEzA/TYJ+iQvyWHODk5QzpKYtLa2ckwoc7ER992ipJV1rCsZl4obBMVNxfeTeB8XdUi756lFic9AE0ButDEPWZGg0XcuaBg2JvWf6qYkwaQW8G52V4WhdryVw0JC2/6vGLCWL0SPfrLdQ2kotmjCE2x/sU0Hjf2Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
+ action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gtrLWV+oX6a0duQouLhtakL6UnAyQcQbIgiOeYz2Gt0=;
- b=NuxzaT44bHUXUKFAqwdgBW8ycCUsLsS9XhgTNpqCjuQwnE1DeH6j3L3cZO3GgcT1KFFXddmDjrMK9UqdPx/khZxeYLJfhBjRb7ZMM+h3ZCSXS7EBb3VJV0hbc2EIikdX6U7SRIKQD6XICIQp/gE3o8Aokk87pbtHtfN4I16fuIU=
-Received: from BN0PR04CA0157.namprd04.prod.outlook.com (2603:10b6:408:eb::12)
- by CH4PR10MB8049.namprd10.prod.outlook.com (2603:10b6:610:240::13) with
+ bh=+Hxd3dLVwIWbD904ViaqtC4BnJ6qZog+IMVG2O+Jk5c=;
+ b=i1ChNFNZEZNh3W9jmQSNpHyo/4rxCrxAjd+na1iNXIKIVGLTlutegt6dXiDPT5X+BxAZJgne97vM/ahJnycoYZUTWf6f2xgasI68rkllCG7IJev1qXCdlOeLVaNH642SmJsKfNOInNRezHJnfM2vL5xunu1IAnIW6WrN2b1dJcZhcTRHLYS7CE9ahxOzsLVxewCFijtBc53B7+Z4QH+b9OqD2x5vWKo1NNldmhhaqL33+97QzzVZFJz1diCaBYuEp4nTJQ4kgEKlnZOQitFWLPbEzJTFCdddSJBp5fuwRvU/O2nXZRmVDG9HMbPSleyAaTPhKNpcOUiRQb09ROm5Dg==
+Received: from SJ0PR13CA0018.namprd13.prod.outlook.com (2603:10b6:a03:2c0::23)
+ by SJ5PPF07759F8B1.namprd10.prod.outlook.com (2603:10b6:a0f:fc02::787) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.11; Wed, 8 Jul
- 2026 11:55:55 +0000
-Received: from BN2PEPF000055DF.namprd21.prod.outlook.com
- (2603:10b6:408:eb:cafe::61) by BN0PR04CA0157.outlook.office365.com
- (2603:10b6:408:eb::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Wed, 8
- Jul 2026 11:55:55 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Wed, 8 Jul
+ 2026 12:18:00 +0000
+Received: from SJ5PEPF000001CF.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c0:cafe::5) by SJ0PR13CA0018.outlook.office365.com
+ (2603:10b6:a03:2c0::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.3 via Frontend Transport; Wed, 8
+ Jul 2026 12:18:00 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ smtp.mailfrom=list.ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=list.ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
  198.47.23.194 as permitted sender) receiver=protection.outlook.com;
  client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
 Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- BN2PEPF000055DF.mail.protection.outlook.com (10.167.245.9) with Microsoft
+ SJ5PEPF000001CF.mail.protection.outlook.com (10.167.242.43) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.0 via Frontend Transport; Wed, 8 Jul 2026 11:55:55 +0000
-Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet200.ext.ti.com
+ 15.21.181.6 via Frontend Transport; Wed, 8 Jul 2026 12:17:59 +0000
+Received: from DLEE208.ent.ti.com (157.170.170.97) by lewvzet200.ext.ti.com
  (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 8 Jul
- 2026 06:55:55 -0500
-Received: from DLEE212.ent.ti.com (157.170.170.114) by DLEE213.ent.ti.com
- (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 07:17:56 -0500
+Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE208.ent.ti.com
+ (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 8 Jul
- 2026 06:55:54 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE212.ent.ti.com
- (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 07:17:56 -0500
+Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DLEE204.ent.ti.com
+ (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Wed, 8 Jul 2026 06:55:54 -0500
-Received: from ws.dhcp.ti.com (ws.dhcp.ti.com [10.24.52.125])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 668BtqAa2105290;
-	Wed, 8 Jul 2026 06:55:53 -0500
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: Ryan Eatmon <reatmon@ti.com>, <devarsht@ti.com>
-Subject: [PATCH v2] yavta: Add patches form embedded metadata capture
-Date: Wed, 8 Jul 2026 17:25:52 +0530
-Message-ID: <20260708115552.2277504-1-r-donadkar@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Transport; Wed, 8 Jul 2026 07:17:56 -0500
+Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
+	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 668CHuOL2543052;
+	Wed, 8 Jul 2026 07:17:56 -0500
+Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
+	id 63F6A9ACF4; Wed,  8 Jul 2026 07:17:56 -0500 (CDT)
+From: PRC Automation <prc@list.ti.com>
+To: Rishikesh Donadkar <r-donadkar@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>, Ryan Eatmon <reatmon@ti.com>,
+        <devarsht@ti.com>
+Subject: Re: [PATCH v2] yavta: Add patches form embedded metadata capture
+Date: Wed, 8 Jul 2026 07:17:56 -0500
+Message-ID: <20260708121756.1950876-1-prc@list.ti.com>
+X-Mailer: git-send-email 2.43.5
+In-Reply-To: <20260708115552.2277504-1-r-donadkar@ti.com>
+References: <20260708115552.2277504-1-r-donadkar@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000055DF:EE_|CH4PR10MB8049:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5dd452cf-2d9a-4fdf-ca25-08dedce7de20
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CF:EE_|SJ5PPF07759F8B1:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31c47121-e048-4b0d-06f3-08dedceaf374
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|23010399003|82310400026|1800799024|376014|36860700016|10063799003|3023799007|56012099006|18002099003;
+	BCL:0;ARA:13230040|82310400026|36860700016|376014|1800799024|23010399003|13003099007|18002099003|22082099003|56012099006;
 X-Microsoft-Antispam-Message-Info: 
-	LmlwCuH1TpchqRd7x93s0qv+b+r8MzsPGNBqVl49Y896VEq484FMvFF6onfFgt29b2yXFFQi0ZmqrTTOh+RqX/lg0gSViIf3xbtQH9/sxPUGQd81qWKlFcVeQkTJnG4GEg2STYTVs64+LC1p1FAV/zynOJO4e9obYpkydr2fwuJJBNIDUXaui5pRU6/JgozYRaIHtNsrVzE2SO5+4O2aExiSTB28cfU2ewboDudXl9wbpzbGcmhq2crUSCL4pMauXeLmjr7ESrjHNAx38tnzeuEqMqDj5xpkUVDdZLy88vN69XgCM9oGmqJmoYoR3KGKNgFSGTdAJpSCtqVghmE+4BPWBktsdMZyr4zWoXgMHfpPvBTcnmq6JnwoIU2nic3asMG92CgaLLX5SVE3eljZu25AF3413r/sf/DOh0MJ8t1m+R4wl5VLB+Ng3U1GERCQ64MIgvUu1k6bQ3HNjYbvoAbCGUvoW4k+O1y4qGuKdca2mTsm3auE8/RyqO+pf9XEyJ3tVfb9wE3M6if1LG4ThkdDS/EekjdnBt90z+asOJZVP/yLC5yxfLxL0br2tFC1nOGUscmN0aGQdPOSjZVU0b2qeTmc/tGZ7tC4qGbA3XO/eRm/jXdwH1+Wx8o1wy4tevk31fxcz5dGdfGPdeqCHbUxtgBYxlQehbjvoHPc+fsrmXQONh5HE8wTbTu/hteFUN5FvOgbMiMENx/MwyJrdw==
+	03x8Kazeu03Ep/EUJ42j2H0dPBB9xgSrWPjuZTRBdMK9Bra4QfYdbWrCYwAvn/NBDUo4rbyDlm+9BwrXxtNGSeTK8gY2R4ibXxbwV2TLc7lAACwLWv6EsMnfcQW96Vb940msrazLShrQrPWfRZkPlUN0nfGjxQZuXeD2pPFiSzG4RIXXIXOTBWuChLxXVJ/NBr6OMmkAXtAH0N4+apPLfrJ/7fOYEcfhhlzoiKwrw4wYKcjVufMZwUD6ti9vQw4SDoeXt+E4twxNWhJlGpjt4fv6WyFOR7fouy0pod8M/3LUeQ4mlX8x36WMT7p1mJrpLSb4gZavHXC5gratLhmUQHuw931HN6Va5tzCutitaep+VBRekle/XSGjZ4YDrsOzoMSSUb5LKnpfnuRNQyLFJMrfgFpSMD490Z5deZWU8g4bEbRdT/eM6bY/Cicw7ZXrq5AuPAfGD1NGeXSANM9gH3tSEkiSSn7NV+kNG+yuOUC2ZcSGyaGWfK134cJ6AsjMorjY/xQ6GBoldiOf2zzamE8pG8BjfiQECSV9AWCPnEJlZLKt7uVwXV9PDFHGvgCNtz79KAdHFif7oGtS4yS5odUa87PDY9bgvwx9uSKS3Qe9gH3nV6llUixN178Tq/vz+aVBmN/qXz4iDCOBI+reR6YEwGft93VcmW0bKBBRm27CIoqXIn2EJQeAfHQ9ZWiwHcxwU01KBZtWpcgJ9N5KiQ==
 X-Forefront-Antispam-Report: 
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(82310400026)(1800799024)(376014)(36860700016)(10063799003)(3023799007)(56012099006)(18002099003);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(23010399003)(13003099007)(18002099003)(22082099003)(56012099006);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	YELItfRBrtcnWhur7ovHwj0qveAsvik0tKsrJ5xGLrRYp302HlNuL/oXV3pyk82DdlqiU2MI/gPPTr0uGOBFHmO0A6ByhvmtMJ5bJbRvSY8NyAFaT1Di82Hegbnj5RaRqjOo86rmCMF4Gx8L2GiAru0eFpVYVquPc9jSYvV7W6KpLQ6v/pTK3dDoeQs1DhHJFkUQMo8FGxvb7uL+lhehPJPGqa/0iDUcgqEzwQ2eRNIS8XPVzqfGJxo6Ihm8y0YyE58F2GU3T7BnV+Htk50QLkMWrRQEOfOAF+FP0Uns6rOJmTs5XD6M0iytpghHffb6RQkDo65kqAJcReIDfITth7qC5e5PDKDnJPjeH2ufa2d00nQ//bnPh4e91ZcdljjSb5FO6gmHTsEeVutn12jx3pm2+v5L40l2jaY4hyAyIt1U+F8ALPcvB4VKLiSl6Tiv
+	uwReP/YQygK5R2Jt1bcvcDwuPPJF8NzcNOM69zzAVeZ+683/82Fb3N6T1PvzomTm5GZbrHe4WM307WkGSsG3KnwFoWpP6o1hQbOVl/7x1BV5N+LOJisalr1cGC3hma/2PWwCU/X9Hr21CzCF3QwzX4+oCDfJeODAYYXGiZcNETQb0iwv0yKl/+btIXBq3Yaq0abPFzbpZ/iQMoVKlY8paf9pswR6N2lWcYhiYLyZFbye09a2TElNipxduwxXYH+dmcpviAp6prAl7ffjS0jtvg2+xJhv3G97pvwbIQZeGcdJZS1JQjOyQiff9ugyT7YCzzvIBH14cOzDbG39rYrnlTa6aNyzHK8+9CljPtNLB8H/MmZoGrFkaQ5isKUw1zUZZiPCtvLt8l5M6eN4joVFFQjb0l3+TSo4y00oiI1PjHqFZa19Wg3SOyFaw7QgTw5I
 X-Exchange-RoutingPolicyChecked: 
-	QhHUuy5bGPWbg+9Y0N0bkwvOE1+R0ij9TUanMQLf2VVJFqn6Bng8ZDBJhxSdxuIxduUgmFFK0S+2QSWv6hwd4hwwgKKpVXHm7uTWA1+nceobzy2d4Erme1/AXMtud15mloLWMP/5WLegZ2cgq3rM2SWsqidgpexhchRbntzCTr6AsIW/OZUQwb3zfc7EVo45o/sM2GWpjisP53WHhbwG5nQQfmvt19aTN6MNxr8MfyLVs0TemvbBBHQHq2LaTte13rKimZAivREzWJmJD9p6q8gbX7dZoJ+fpBGBc3n7W71fHMjynJh5EReTWCZEp3PeUhEaI39NudanJc0/bEYULw==
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 11:55:55.4261
+	AcuXoNnLoZyTRzvVedyRzvDlbS0BFZRrGkUDP7ZbEQTDTeE24rUlimLXo1pAbW+uViW/9Nf2zHcLWqhm3oCCHWjz7XGfHr81cqbKa981gRBbgENUeOd/iroquHePXFnS3Of4rIxKLCA5IeuSg3sjJYVr1U8b2CrBXrvinjShrXthoQJCJG+ZO9PZEenS0CtbGqAL109jAukZAiHmrUd3I7XotLppOCHVwO5MWkAHqwo+5yCn47T8ChiHlT7pNJpRjRWdTmiwcVbNZebnXEQ3vPjpfZtUNhv3XrjmWDN+nWECrPO9IsbaPVzBZLxKaZUsMhpi3v244G2qSaHiwAZUSw==
+X-OriginatorOrg: list.ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 12:17:59.6746
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5dd452cf-2d9a-4fdf-ca25-08dedce7de20
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31c47121-e048-4b0d-06f3-08dedceaf374
 X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	BN2PEPF000055DF.namprd21.prod.outlook.com
+	SJ5PEPF000001CF.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH4PR10MB8049
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA4MDExNiBTYWx0ZWRfX66X4wCmPLg+F
- IPWyp9pTmetnN3ZCbElNKEd/7KcgVy10S8bm+k25GeJvE+RgqRk235G3nGPQrzSa2F6PhAP0Y+F
- kHV1vo6pdtZCN7/Xpqs80ZTgaECh5JM=
-X-Proofpoint-ORIG-GUID: HlO2hYCrY8xhmOoGDt9n92nytai3FZkQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA4MDExNiBTYWx0ZWRfX/YNfKK3IAJm7
- v0vaHeGc4v5ARzi4oOJYfUyS8A/sft6vEe34zjtYACrdhOwnMUoFlukBC/Ns9ZeBqveNp16LMjp
- ny/5dtThpoFzd4FlOfSrCSgxeeozkiq+jZsLV8lwQKW64lXbGVjgamdUAsCSk3X6JlWyQ5hkbmx
- issZRwsBOgH0o0JbmeeXOnQD0rjCRjCdICXT+1YSwHpGZIQzDnVBqY5Kj07htc0ZOSEu5hDaL5E
- IePFPGPxbgGWye34cKACBHONEd5XzlYw5B6rMt6u7DjfC1ycUf7gvmUgoYNmRth8dHMxrAdvWsd
- KGgTl8xfFtEtAx6syTqXytqMcG7CA13ccJL0Y1tHPqKYb7BqgYZS+OXySX+DvxeKlm8r0qZLevM
- mr3jXqtbURBPeDTWaeAmDdRwp4Us51bvrPta2DslVmZbglyc9lRtkZAxkYYYjnVcYPAGHi++6E9
- Cqh8zHFnef1kaOeCQHA==
-X-Proofpoint-GUID: HlO2hYCrY8xhmOoGDt9n92nytai3FZkQ
-X-Authority-Analysis: v=2.4 cv=GtJyPE1C c=1 sm=1 tr=0 ts=6a4e3ad2 cx=c_pps
- a=23BBZRleo/1KOgyGqX6yRw==:117 a=WotqVVQAdb04rnGuttW3Kw==:17
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF07759F8B1
+X-Proofpoint-ORIG-GUID: QOr_sMuxtTPTvHnYIdk0sEeay53O-bER
+X-Authority-Analysis: v=2.4 cv=aYxRWxot c=1 sm=1 tr=0 ts=6a4e4000 cx=c_pps
+ a=duIt1iBHFgRvnGs5ekVepw==:117 a=WotqVVQAdb04rnGuttW3Kw==:17
  a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=RAioF0-LDSMA:10 a=s63m1ICgrNkA:10
- a=V5UXEbMT0ywA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
- a=fPAWb5peG099m5CrUpKH:22 a=sozttTNsAAAA:8 a=QyXUC8HyAAAA:8
- a=rkecna9rPX2fP1VOdTkA:9
+ a=Vs-ZokuVWRQA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
+ a=jwouBfj2j3NM8CExmVVE:22 a=iGHA9ds3AAAA:8 a=sozttTNsAAAA:8 a=QyXUC8HyAAAA:8
+ a=g2kLcKwOYA4aNGWnFMcA:9 a=nM-MV4yxpKKO9kiQg6Ot:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA4MDExOSBTYWx0ZWRfX1xeup+S1GWz0
+ 4GKJXUwY7mgfurwdSlL+XfOcXN1bT/SdMSpNH/g1S3+WtMQZh0nc9WeibzJRTGVxyxFgbON3T1P
+ pZtnRD44pOqYp/eNz0waAyS+vRd1a4WsVpu75tPLAkBVEKAbJDuGIuo72S4MZFNaNVpvb8BL2fr
+ G8QL6TCjH2ZUfQhCrjZHLjiH7WjlSLvqBZktYziSsvdw4rgoVdVCr/Oej175AQ5vmfiYRpWoJCS
+ kWuKhMiBahKpOvuMB2jBrQjvkbqX38qxosxpzzX9hiFMMWcjSS+nYIQ4/XgfAEfxZfH4789ACy/
+ BzOQh6ylx5eJbee9/m+Ptn7eqVoPn6JwZjqnvrtc0v+xeZCb7nrC06Gz2pmSc6zKlHdYiHdGfnx
+ 0vLsjLpoXa3lQ/EdC98DxYr1+JbNFkzJmwcIlIjXKxLyUia12KLTmVj76LVYZ5qdPfTvoVglYPb
+ HJLYclYZEXoRkzOkSiw==
+X-Proofpoint-GUID: QOr_sMuxtTPTvHnYIdk0sEeay53O-bER
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA4MDExOSBTYWx0ZWRfXzUazf4Ge97WM
+ uDE3QcwEIUa07K4p73FJ4TiTCkY6myTCwGSU3j09T++/hdnZOaAwWyP06bmzi3D7IR5WSOHPL6n
+ I5i1zPIgKBzkst88Fq/9H7YwF/ad2XA=
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-08_01,2026-07-08_01,2025-10-01_01
+ definitions=2026-07-08_02,2026-07-08_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 impostorscore=0 malwarescore=0 bulkscore=0
- lowpriorityscore=0 priorityscore=1501 adultscore=0 suspectscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607080116
+ clxscore=1015 malwarescore=0 bulkscore=0 suspectscore=0 spamscore=0
+ adultscore=0 phishscore=0 lowpriorityscore=0 impostorscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2607080119
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 08 Jul 2026 11:56:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17583
+ <meta-arago@lists.yoctoproject.org>; Wed, 08 Jul 2026 12:18:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17584
 
-Add patches on top of yavta to capture metadata from sensors
-like IMX219.
+meta-arago / na / 20260708115552.2277504-1-r-donadkar
 
-This patches are not added in upstream yavta yet because
-embedded data support is not yet functional in the mainline
-Linux kernel
+PRC Results: PASS
 
-Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
----
- .../v4l2apps/yavta-arago.inc                  | 10 +++
- .../yavta/0001-Update-kernel-headers.patch    | 89 +++++++++++++++++++
- ...et-and-get-metadata-width-and-height.patch | 52 +++++++++++
- ...support-for-generic-metadata-formats.patch | 42 +++++++++
- .../yavta/0004-Add-metadata-layout-ctrl.patch | 31 +++++++
- .../v4l2apps/yavta_%.bbappend                 |  4 +
- 6 files changed, 228 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/yavta-arago.inc
- create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0001-Update-kernel-headers.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0002-Set-and-get-metadata-width-and-height.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0003-Add-support-for-generic-metadata-formats.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0004-Add-metadata-layout-ctrl.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/yavta_%.bbappend
+=========================================================
+  check-yocto-patches: PASS
+=========================================================
+Patches
+----------------------------------------
+WARN - [PATCH v2] yavta: Add patches form embedded metadata capture
+    WARN: Missing branches specifier [master/scarthgap/XXXXX]. (META-2)
+        patch:84
+            Subject: [PATCH v2] yavta: Add patches form embedded metadata capture
+    
+    WARN: Revised patch missing a comment. (REVISION-1)
+        patch
+    
+    For details on the above errors/warnings visit: https://lists.yoctoproject.org/g/meta-ti/wiki/40887
 
-diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/yavta-arago.inc b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta-arago.inc
-new file mode 100644
-index 00000000..ca04b36d
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta-arago.inc
-@@ -0,0 +1,10 @@
-+FILESEXTRAPATHS:prepend := "${THISDIR}/yavta:"
-+
-+SRC_URI:append = " \
-+    file://0001-Update-kernel-headers.patch \
-+    file://0002-Set-and-get-metadata-width-and-height.patch \
-+    file://0003-Add-support-for-generic-metadata-formats.patch \
-+    file://0004-Add-metadata-layout-ctrl.patch \
-+"
-+
-+PR:append = ".arago0"
-diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0001-Update-kernel-headers.patch b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0001-Update-kernel-headers.patch
-new file mode 100644
-index 00000000..6e798577
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0001-Update-kernel-headers.patch
-@@ -0,0 +1,89 @@
-+From c4dd8eb96b5d6f6e791fc66752a97b362cd885f2 Mon Sep 17 00:00:00 2001
+
+
+=========================================================
+  apply-yocto-patch: PASS
+=========================================================
+master
+=====================
+Summary:
+- Patch Series: [PATCH v2] yavta: Add patches form embedded metadata capture
+- Submitter: From: Rishikesh Donadkar <r-donadkar@ti.com>
 +From: Sakari Ailus <sakari.ailus@linux.intel.com>
-+Date: Thu, 24 Aug 2023 10:57:07 +0300
-+Subject: [PATCH 1/4] Update kernel headers
-+
-+Update kernel headers to v6.5 media tree + metadata patches.
-+
-+Upstream-Status: Pending
-+Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-+Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-+---
-+ include/linux/v4l2-controls.h |  1 -
-+ include/linux/videodev2.h     | 23 ++++++++++++++++++++++-
-+ 2 files changed, 22 insertions(+), 2 deletions(-)
-+
-+diff --git a/include/linux/v4l2-controls.h b/include/linux/v4l2-controls.h
-+index 8a33537..150fa87 100644
-+--- a/include/linux/v4l2-controls.h
-++++ b/include/linux/v4l2-controls.h
-+@@ -1208,7 +1208,6 @@ enum v4l2_jpeg_chroma_subsampling {
-+ #define V4L2_CID_UNIT_CELL_SIZE			(V4L2_CID_IMAGE_SOURCE_CLASS_BASE + 8)
-+ #define V4L2_CID_NOTIFY_GAINS			(V4L2_CID_IMAGE_SOURCE_CLASS_BASE + 9)
-+ 
-+-
-+ /* Image processing controls */
-+ 
-+ #define V4L2_CID_IMAGE_PROC_CLASS_BASE		(V4L2_CTRL_CLASS_IMAGE_PROC | 0x900)
-+diff --git a/include/linux/videodev2.h b/include/linux/videodev2.h
-+index 397a99e..bb2d05b 100644
-+--- a/include/linux/videodev2.h
-++++ b/include/linux/videodev2.h
-+@@ -812,6 +812,18 @@ struct v4l2_pix_format {
-+ #define V4L2_META_FMT_RK_ISP1_PARAMS	v4l2_fourcc('R', 'K', '1', 'P') /* Rockchip ISP1 3A Parameters */
-+ #define V4L2_META_FMT_RK_ISP1_STAT_3A	v4l2_fourcc('R', 'K', '1', 'S') /* Rockchip ISP1 3A Statistics */
-+ 
-++/*
-++ * Line-based metadata formats. Remember to update v4l_fill_fmtdesc() when
-++ * adding new ones!
-++ */
-++#define V4L2_META_FMT_GENERIC_8		v4l2_fourcc('M', 'E', 'T', '8') /* Generic 8-bit metadata */
-++#define V4L2_META_FMT_GENERIC_CSI2_10	v4l2_fourcc('M', 'E', 'C', 'A') /* 10-bit CSI-2 packed 8-bit metadata */
-++#define V4L2_META_FMT_GENERIC_CSI2_12	v4l2_fourcc('M', 'E', 'C', 'C') /* 12-bit CSI-2 packed 8-bit metadata */
-++#define V4L2_META_FMT_GENERIC_CSI2_14	v4l2_fourcc('M', 'E', 'C', 'E') /* 14-bit CSI-2 packed 8-bit metadata */
-++#define V4L2_META_FMT_GENERIC_CSI2_16	v4l2_fourcc('M', 'E', 'C', 'G') /* 16-bit CSI-2 packed 8-bit metadata */
-++#define V4L2_META_FMT_GENERIC_CSI2_20	v4l2_fourcc('M', 'E', 'C', 'K') /* 20-bit CSI-2 packed 8-bit metadata */
-++#define V4L2_META_FMT_GENERIC_CSI2_24	v4l2_fourcc('M', 'E', 'C', 'O') /* 24-bit CSI-2 packed 8-bit metadata */
-++
-+ /* priv field value to indicates that subsequent fields are valid. */
-+ #define V4L2_PIX_FMT_PRIV_MAGIC		0xfeedcafe
-+ 
-+@@ -842,6 +854,7 @@ struct v4l2_fmtdesc {
-+ #define V4L2_FMT_FLAG_CSC_YCBCR_ENC		0x0080
-+ #define V4L2_FMT_FLAG_CSC_HSV_ENC		V4L2_FMT_FLAG_CSC_YCBCR_ENC
-+ #define V4L2_FMT_FLAG_CSC_QUANTIZATION		0x0100
-++#define V4L2_FMT_FLAG_META_LINE_BASED		0x0200
-+ 
-+ 	/* Frame Size and frame rate enumeration */
-+ /*
-+@@ -1005,7 +1018,6 @@ struct v4l2_requestbuffers {
-+  *			pointing to this plane
-+  * @fd:			when memory is V4L2_MEMORY_DMABUF, a userspace file
-+  *			descriptor associated with this plane
-+- * @m:			union of @mem_offset, @userptr and @fd
-+  * @data_offset:	offset in the plane to the start of data; usually 0,
-+  *			unless there is a header in front of the data
-+  * @reserved:		drivers and applications must zero this array
-+@@ -2359,10 +2371,19 @@ struct v4l2_sdr_format {
-+  * struct v4l2_meta_format - metadata format definition
-+  * @dataformat:		little endian four character code (fourcc)
-+  * @buffersize:		maximum size in bytes required for data
-++ * @width:		number of data units of data per line (valid for line
-++ *			based formats only, see format documentation)
-++ * @height:		number of lines of data per buffer (valid for line based
-++ *			formats only)
-++ * @bytesperline:	offset between the beginnings of two adjacent lines in
-++ *			bytes (valid for line based formats only)
-+  */
-+ struct v4l2_meta_format {
-+ 	__u32				dataformat;
-+ 	__u32				buffersize;
-++	__u32				width;
-++	__u32				height;
-++	__u32				bytesperline;
-+ } __attribute__ ((packed));
-+ 
-+ /**
-+-- 
-+2.34.1
-+
-diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0002-Set-and-get-metadata-width-and-height.patch b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0002-Set-and-get-metadata-width-and-height.patch
-new file mode 100644
-index 00000000..e08ff913
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0002-Set-and-get-metadata-width-and-height.patch
-@@ -0,0 +1,52 @@
-+From 94ea50843fa80fd91f8aa3ef3618310a53f40dc6 Mon Sep 17 00:00:00 2001
 +From: Sakari Ailus <sakari.ailus@linux.intel.com>
-+Date: Fri, 9 May 2025 18:43:38 +0300
-+Subject: [PATCH 2/4] Set and get metadata width and height
-+
-+Support getting and setting the width and height fields of the metadata
-+formats. This is required to capture line-based metadata e.g. from camera
-+sensors.
-+
-+Upstream-Status: Pending
-+Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-+Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-+---
-+ yavta.c | 13 ++++++++-----
-+ 1 file changed, 8 insertions(+), 5 deletions(-)
-+
-+diff --git a/yavta.c b/yavta.c
-+index ba94bfa..25b95e7 100644
-+--- a/yavta.c
-++++ b/yavta.c
-+@@ -889,13 +889,14 @@ static int video_get_format(struct device *dev)
-+ 				fmt.fmt.pix_mp.plane_fmt[i].sizeimage);
-+ 		}
-+ 	} else if (video_is_meta(dev)) {
-+-		dev->width = 0;
-+-		dev->height = 0;
-++		dev->width = fmt.fmt.meta.width;
-++		dev->height = fmt.fmt.meta.height;
-+ 		dev->num_planes = 1;
-+ 
-+-		printf("Meta-data format: %s (%08x) buffer size %u\n",
-+-			v4l2_format_name(fmt.fmt.meta.dataformat), fmt.fmt.meta.dataformat,
-+-					 fmt.fmt.meta.buffersize);
-++		printf("Meta-data format: %s (%08x) %ux%u buffer size %u\n",
-++		       v4l2_format_name(fmt.fmt.meta.dataformat),
-++		       fmt.fmt.meta.dataformat, fmt.fmt.meta.width,
-++		       fmt.fmt.meta.height, fmt.fmt.meta.buffersize);
-+ 	} else {
-+ 		dev->width = fmt.fmt.pix.width;
-+ 		dev->height = fmt.fmt.pix.height;
-+@@ -951,6 +952,8 @@ static int video_set_format(struct device *dev, unsigned int w, unsigned int h,
-+ 	} else if (video_is_meta(dev)) {
-+ 		fmt.fmt.meta.dataformat = format;
-+ 		fmt.fmt.meta.buffersize = buffer_size;
-++		fmt.fmt.meta.width = w;
-++		fmt.fmt.meta.height = h;
-+ 	} else {
-+ 		fmt.fmt.pix.width = w;
-+ 		fmt.fmt.pix.height = h;
-+-- 
-+2.34.1
-+
-diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0003-Add-support-for-generic-metadata-formats.patch b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0003-Add-support-for-generic-metadata-formats.patch
-new file mode 100644
-index 00000000..3728e5b5
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0003-Add-support-for-generic-metadata-formats.patch
-@@ -0,0 +1,42 @@
-+From a4f5a948d05827d95ff2f73a997fd3cdba46d2bf Mon Sep 17 00:00:00 2001
 +From: Sakari Ailus <sakari.ailus@linux.intel.com>
-+Date: Thu, 24 Aug 2023 11:08:56 +0300
-+Subject: [PATCH 3/4] Add support for generic metadata formats
-+
-+Upstream-Status: Pending
-+Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-+Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-+---
-+ yavta.c | 9 +++++++++
-+ 1 file changed, 9 insertions(+)
-+
-+diff --git a/yavta.c b/yavta.c
-+index 25b95e7..6a494da 100644
-+--- a/yavta.c
-++++ b/yavta.c
-+@@ -340,6 +340,7 @@ static const struct v4l2_format_info {
-+ 	unsigned int fourcc;
-+ 	unsigned char n_planes;
-+ } pixel_formats[] = {
-++	/* Pixel data formats */
-+ 	{ "RGB332", V4L2_PIX_FMT_RGB332, 1 },
-+ 	{ "RGB444", V4L2_PIX_FMT_RGB444, 1 },
-+ 	{ "ARGB444", V4L2_PIX_FMT_ARGB444, 1 },
-+@@ -424,6 +425,14 @@ static const struct v4l2_format_info {
-+ 	{ "DV", V4L2_PIX_FMT_DV, 1 },
-+ 	{ "MJPEG", V4L2_PIX_FMT_MJPEG, 1 },
-+ 	{ "MPEG", V4L2_PIX_FMT_MPEG, 1 },
-++	/* Metadata formats */
-++	{ "GENERIC_8", V4L2_META_FMT_GENERIC_8, 1 },
-++	{ "GENERIC_CSI2_10", V4L2_META_FMT_GENERIC_CSI2_10, 1 },
-++	{ "GENERIC_CSI2_12", V4L2_META_FMT_GENERIC_CSI2_12, 1 },
-++	{ "GENERIC_CSI2_14", V4L2_META_FMT_GENERIC_CSI2_14, 1 },
-++	{ "GENERIC_CSI2_16", V4L2_META_FMT_GENERIC_CSI2_16, 1 },
-++	{ "GENERIC_CSI2_20", V4L2_META_FMT_GENERIC_CSI2_20, 1 },
-++	{ "GENERIC_CSI2_24", V4L2_META_FMT_GENERIC_CSI2_24, 1 },
-+ };
-+ 
-+ static void list_formats(void)
-+-- 
-+2.34.1
-+
-diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0004-Add-metadata-layout-ctrl.patch b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0004-Add-metadata-layout-ctrl.patch
-new file mode 100644
-index 00000000..cf0a4bf9
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta/0004-Add-metadata-layout-ctrl.patch
-@@ -0,0 +1,31 @@
-+From 7d5fc4a3b0982fdc894c946d16fc7152d7da8b30 Mon Sep 17 00:00:00 2001
 +From: Rishikesh Donadkar <r-donadkar@ti.com>
+- Date: Date: Wed, 8 Jul 2026 17:25:52 +0530
++Date: Thu, 24 Aug 2023 10:57:07 +0300
++Date: Fri, 9 May 2025 18:43:38 +0300
++Date: Thu, 24 Aug 2023 11:08:56 +0300
 +Date: Tue, 7 Jul 2026 13:28:41 +0530
-+Subject: [PATCH 4/4] Add metadata layout ctrl
-+
-+Add V4L2_CID_METADATA_LAYOUT ctrl
-+
-+Upstream-Status: Pending
-+Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-+---
-+ include/linux/v4l2-controls.h | 4 ++++
-+ 1 file changed, 4 insertions(+)
-+
-+diff --git a/include/linux/v4l2-controls.h b/include/linux/v4l2-controls.h
-+index 150fa87..32291d3 100644
-+--- a/include/linux/v4l2-controls.h
-++++ b/include/linux/v4l2-controls.h
-+@@ -1208,6 +1208,10 @@ enum v4l2_jpeg_chroma_subsampling {
-+ #define V4L2_CID_UNIT_CELL_SIZE			(V4L2_CID_IMAGE_SOURCE_CLASS_BASE + 8)
-+ #define V4L2_CID_NOTIFY_GAINS			(V4L2_CID_IMAGE_SOURCE_CLASS_BASE + 9)
-+ 
-++#define V4L2_CID_METADATA_LAYOUT		(V4L2_CID_IMAGE_SOURCE_CLASS_BASE + 12)
-++#define V4L2_METADATA_LAYOUT_CCS		1U
-++
-++
-+ /* Image processing controls */
-+ 
-+ #define V4L2_CID_IMAGE_PROC_CLASS_BASE		(V4L2_CTRL_CLASS_IMAGE_PROC | 0x900)
-+-- 
-+2.34.1
-+
-diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/yavta_%.bbappend b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta_%.bbappend
-new file mode 100644
-index 00000000..602fd07f
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/v4l2apps/yavta_%.bbappend
-@@ -0,0 +1,4 @@
-+YAVTA_ARAGO = ""
-+YAVTA_ARAGO:arago = "yavta-arago.inc"
-+
-+require ${YAVTA_ARAGO}
--- 
-2.34.1
+- Num Patches: 1
+- Mailing List (public inbox) Commit SHA: f6873eaab9ebf1e6ffaff08ffcbd8a825bc0ae5d
+
+Applied to:
+- Repository: lcpd-prc-meta-arago
+- Base Branch: master-wip
+- Commit Author: Andrew Davis <afd@ti.com>
+- Commit Subject: linux-firmware: Move this to meta-ti-bsp
+- Commit SHA: 5665f4b52096b5229aa20d8bb9ce1defce94563f
+
+Patches
+----------------------------------------
+All patches applied
+
+
+
+=========================================================
+  check-yocto-repo: PASS
+=========================================================
+master
+=====================
+PASS
+
+
+
+=========================================================
+  yocto-check-layers: PASS
+=========================================================
+master - PASS
+=====================
+All checks passed
+
+
 
 
