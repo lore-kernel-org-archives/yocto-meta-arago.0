@@ -1,196 +1,225 @@
-Return-Path: <denis@denix.org>
+Return-Path: <prc@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BAF5CC61DD3
-	for <webhook@archiver.kernel.org>; Mon, 31 Aug 2026 21:09:27 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.6721.1788210558934853340
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0E90C624C6
+	for <webhook@archiver.kernel.org>; Mon, 31 Aug 2026 21:17:27 +0000 (UTC)
+Received: from mx0a-0002e601.pphosted.com (mx0a-0002e601.pphosted.com [148.163.150.75])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.6996.1788211045299874261
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 31 Aug 2026 14:09:19 -0700
+ Mon, 31 Aug 2026 14:17:25 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3CC2E40C3E;
-	Mon, 31 Aug 2026 21:09:18 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hpYBy2j2d6c4; Mon, 31 Aug 2026 21:09:18 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DFDE540B13;
-	Mon, 31 Aug 2026 21:09:14 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 0E60317C887; Mon, 31 Aug 2026 17:09:14 -0400 (EDT)
-Date: Mon, 31 Aug 2026 17:09:14 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: reatmon@ti.com
-Cc: Praneeth Bajjuri <praneeth@ti.com>,
-	Denys Dmytriyenko <denys@konsulko.com>,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][master][PATCH] gstreamer1.0-plugins-good: Drop
- unneeded patches
-Message-ID: <20260831210913.GQ19759@denix.org>
-References: <20260831205242.3284673-1-reatmon@ti.com>
- <20260831210522.GO19759@denix.org>
- <9ec6e99f-8374-4eda-8c42-43cf925b41cf@ti.com>
+ dkim=pass header.i=@ti.com header.s=proofpoint-05-2026 header.b=Pocc7GYX;
+ dkim=pass header.i=@list.ti.com header.s=selector1 header.b=OOD01vUp;
+ spf=pass (domain: list.ti.com, ip: 148.163.150.75, mailfrom: prc@list.ti.com)
+Received: from pps.filterd (m0384305.ppops.net [127.0.0.1])
+	by m0384305.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 67VIRmre430828;
+	Mon, 31 Aug 2026 16:17:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	proofpoint-05-2026; bh=iU/8tzf87X0JV1N0uAV8jt4nQ/76BVKXH0dKrUUi1
+	n4=; b=Pocc7GYXZqd+8qehJIMDTe/O1AHL+Os15/oJDocx0GaM2MswppKFiO5z3
+	+RA1f9rAHOghiK7YKMFfiX2wnInxkZXidpcCESbu5k3P0/mne5pEvJNcndnv/i8Q
+	ZSRk5QIUsDxerwDi/BTWHVjutsTzHHKD5O9txkRxLksUQ7vNs8aKt+PYeoxwQCJw
+	IZLap/z55YoLZ8qTdEBEyW0GkzW6G1OptsxPL458MWuQc0G3YoQgHUVQluxkF0/w
+	jd4NU5i5gqNzispCo3/bLlk8iISu+a5ExSeWwyvvuaae9AvNoVpdByWSVAlwCLI7
+	HRdgj9yjlPyUq0zEhMxT4GFVyq5MA==
+Received: from cy3pr05cu001.outbound.protection.outlook.com (mail-westcentralusazon11013009.outbound.protection.outlook.com [40.93.201.9])
+	by m0384305.ppops.net (PPS) with ESMTPS id 4gchcngj6u-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Mon, 31 Aug 2026 16:17:23 -0500 (CDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vi+D+swzVQXHpeXYGW8fD1HTQdPwgatsQo79iOmmDvSGVEkdB+P9v6wWazETAQSQdwWCCNp364NRUKTvBWgCvxYwNL/d47W9m2aadLf1+NSxYPcITz9MTRAerUVUK1610moGW31/yJg0I13HnZkIzXWajjs+d4bOLdZ8sOpfnGivN9PEcTPJHgg2d9nHogEntrXOdP7Jg1TDuVjPQmLWzj8T2lBdsbGtp6Hi4jMW7zS/tmlM8ystD9ZRTi+Q+amUoNSVD4rc+7TzZUrldq42+OizX1+8d0oqNcEbyQPj3xlIURF5a4/nPF1h1kN1fPdq7FFQ1NedKfnrlhQme2E8pg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iU/8tzf87X0JV1N0uAV8jt4nQ/76BVKXH0dKrUUi1n4=;
+ b=pcmTu40mWjM3rp7Jlr4tXkTJVCPtiRdyCKQzNKscLdeOzFqPq0UaaW4bXTANt9c5OxGVyhZWJ/8v250KN7OQdiN4txNz6JowB4zIKIIXL0RFE8dZuOO3uREbyfL3vVf7FlfTFSANnzLtoC2Cfg5lElEILreQhOMskFQELV3/OtvtVlmzIFrFDIjlnpkXyZqFdg3pDNRVHc9Tvj2Swdotak+YnnhsjqTaing3OS4Nd5w8sza1YvKoeAzugAyVvZ4+0LwoT7sDG0FRI+zjmsOHQP06aMU2tMDbUB4jARdMaWLZaFB98D3ZEKNaMbCG/lxgamvitf41mb5cjQTl3zSIyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=lists.yoctoproject.org
+ smtp.mailfrom=list.ti.com; dmarc=pass (p=quarantine sp=none pct=100)
+ action=none header.from=list.ti.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=list.ti.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iU/8tzf87X0JV1N0uAV8jt4nQ/76BVKXH0dKrUUi1n4=;
+ b=OOD01vUp8ecNSUuSCDUq85q920sG9JvEhOIQwvxwOJuIj8KeZnRePDdHMbLSuTWZWCsJ25wcPdifoUIeA6FzzvVETLMQVqKvjxpRy1MJfeHzR2sXyuaRp8RUrdcMROAwKl9fDaTgVuc4CVY1+CgJ/8OvSquaL0JYIU2gp7w+plRmKSi713+Vww0ZXX9w1aGx0jdxMvNvP/32OolhtrfOm6T2r5j6j4NmQftE0+U0Bk5IP1Ote8I0N9RLpg+456mFamzh6SCqEmeGGsaLaDamyVyEiJ5Ui4ly1QXLUG7JdHXUGpdVNSqw1vqCb6J4GZiNGhuGuVHhMwZ3462FS48Jtw==
+Received: from CH0PR03CA0204.namprd03.prod.outlook.com (2603:10b6:610:e4::29)
+ by SA2PR10MB4811.namprd10.prod.outlook.com (2603:10b6:806:11f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.10; Mon, 31 Aug
+ 2026 21:17:20 +0000
+Received: from CH3PEPF0000000D.namprd04.prod.outlook.com
+ (2603:10b6:610:e4:cafe::72) by CH0PR03CA0204.outlook.office365.com
+ (2603:10b6:610:e4::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.360.13 via Frontend Transport; Mon,
+ 31 Aug 2026 21:17:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=list.ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=list.ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of list.ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ CH3PEPF0000000D.mail.protection.outlook.com (10.167.244.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.382.8 via Frontend Transport; Mon, 31 Aug 2026 21:17:19 +0000
+Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Mon, 31 Aug
+ 2026 16:17:06 -0500
+Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Mon, 31 Aug
+ 2026 16:17:06 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45 via Frontend
+ Transport; Mon, 31 Aug 2026 16:17:06 -0500
+Received: from fllvdckhpci031.itg.ti.com (fllvdckhpci031.itg.ti.com [10.64.72.41])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 67VLH6Il498371;
+	Mon, 31 Aug 2026 16:17:06 -0500
+Received: by fllvdckhpci031.itg.ti.com (Postfix, from userid 60899)
+	id 01F6B9ACF4; Mon, 31 Aug 2026 16:17:05 -0500 (CDT)
+From: PRC Automation <prc@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>
+CC: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: Re: [meta-arago][master][PATCH] open62541: Bump to version 1.5.7
+Date: Mon, 31 Aug 2026 16:17:05 -0500
+Message-ID: <20260831211705.3370302-1-prc@list.ti.com>
+X-Mailer: git-send-email 2.43.5
+In-Reply-To: <20260831205233.3284636-1-reatmon@ti.com>
+References: <20260831205233.3284636-1-reatmon@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9ec6e99f-8374-4eda-8c42-43cf925b41cf@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF0000000D:EE_|SA2PR10MB4811:EE_
+X-MS-Office365-Filtering-Correlation-Id: ee7f006d-6c2c-4e14-9bdd-08df07a53def
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700016|23010399003|376014|22082099003|18002099003|13003099007|56012099006|10067099003;
+X-Microsoft-Antispam-Message-Info: 
+	iT1VYzuwSDzDEAEfbULGtsPX3TgtdjEMZF8MmVRTXn3+Lv7qnFYA21AaO4AaL4M9mXX2DNa7fgD4BqXHDAeXw3ZXjjkEve1kDVwS4f/ZamF98ZLChH0kZ56maCL3Y6/o7+vxoaEbhkEn+E5royHggVi/L4Bb1VbNDao4juC8tIPHfp8bL6e82Xmo1j/4E8zvJpEVhwUR5ejp4uv2rLihMrhM16efjC7FQbp3rH1XsC/HYtAe6bUViwUbKJ6cw502If9D2+GyLi+oJxYyZ8a/QRD2rj2xY3XfvPCAJa9pQpjxB02ljI2YT6URIL8QzU92I3r8aNMkNb9VoBuQk+BFPagIESLruyaF2jVuD35iY8XdzdH9s6NxwIf+RZaGOk+kzGPW21svqU33PxckHbUP+pYOjD9pp7m8PQ4AYCgsV96d25BTOQ61F543LhiZaW8z4+lpcKyQlv0b1AQrZIJf4qjJCOAWFtO9TPyY7OIdsixAbw4UXhpcqYVTvn3cYPko/r8cBJNEDV1Y1topxiqQXTRAME1L2SJE2YH2riekXF4whXMXEBL4QgNbbozslqZgE+rHLXGJ8hBepRyojul94E4HnLvwSRb+m060EiV3zpRfuYA3kgXqT4wa8C5SpdeR7m08Y1vYprZ0HjZywVzK0A==
+X-Forefront-Antispam-Report: 
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(23010399003)(376014)(22082099003)(18002099003)(13003099007)(56012099006)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	vD99fMimRFm9bMAbhgubdJHMV+84sbidB3T+FKBYc4RYkqZn6q2deL0FOH7yIBo7r2wzSJdGI2434WezgAq6UD7hQNkH8g97GArYFXicCNp9HoCUGaOtHSuq0q6d+g601IyHbg2OV8Wepko1K0ISKsYll7rVoVCP3+6YuesurxVhGNcgcJg+ip4UkskNaSgp0RQe9NlMWRofyNOKvtTdBScuptj4H0JDMuImcIg9MZuR8PSaworZe35oqXBlRg75GVJBqpd+wq5HapFN4nzHRd5MCxSNah/87SHULXkfSKI8Z+363oLqsmu9qSvpEd26NHbrL2OX/TVP/SWMeq2H6UaoQtR9Pd8/7hxi749V7KFDDBvxkRVA1zeVfBuH3TnIXCpnney3ugFdk2pc2PKN7bnRac3CrmUaL9MxtGazTboddY9cR8GA71tXDeY0+SOM
+X-Exchange-RoutingPolicyChecked: 
+	bKMj09dYCd/plBBvVv5t/8eBGviu3nWHJEuMCERSxe21GXDGgi56R7xc00L6oADFCln40g9ARiQzo3jX+Ho2VJz0bkJgjXjQzmv2wOBFbzgZV1DJ41UCQ/8R6ho6qfUq9SzFRUZJ7GQNbMgLQh32UoMwlZ4mgRnwMvGnkJXB42Nbx6jc1/jobToOtJ0SxAsGonU+DoN3VQc6Asu5zZvVbgxJIhRb/T42iD1Ynwt7pz6LktRhyv3TSGvGfhRSiDMDg2iWOrX+9FhWOM5oP9IiEJA5vmInF+TVVD3sqWqKCX0HlOCrGEXURtye+cOTA+F/fHREWFNw5Myyp4WkGAu9wQ==
+X-OriginatorOrg: list.ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2026 21:17:19.9072
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee7f006d-6c2c-4e14-9bdd-08df07a53def
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	CH3PEPF0000000D.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4811
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwODMxMDE4NCBTYWx0ZWRfX6rHLR2o3JOLH
+ tAVvVv/CaNsqcCrX4WySfvNaMtZZOOs3m6FsWVUGjoawHS4BlPTqp38X/S+gOMQHRHrXC532dyq
+ YDyFjB/ZqD3jFGSZhQEswjGMNU83myo7ayn9KVz3k3z470XB25tfM0TCE5ZB+xExxRTRcDyK/uc
+ bG5Dk1BgCf/k0SEYKbiDDBcS26MZsuIj5xk/xDOYb5TSlJCjAMCaiagbTr5w27RPnL1T8/DCJgn
+ UQ0CuzC+lnIO4KP1P97Kyvei/UEzPyzn8tKIOvLhBtuKstwSzNKLY+qLdJ+w+1NhgEm1ALFOcBu
+ BaRKcWnVc5G6d68mQ9gl2V+98FLZj5HV9+FV83uU2peeNBr9FGA6D7ae2osh94TLWvyNJMq8Ii+
+ UBJuycNQ3b6v7SdWTzskS0lUkD3tPX5QJ8ZQRACvkjBS5PxKCl81bdQsvSHk95x/JFhfcY4t4qa
+ s+8G26zAYWWKWc5c1Hg==
+X-Proofpoint-GUID: VbA7Gfg-1ZAf6aONP1cJyURNopvJ334a
+X-Authority-Analysis: v=2.4 cv=OpB/DS/t c=1 sm=1 tr=0 ts=6a95ef63 cx=c_pps
+ a=bo0f5OQ5EW/jR9k4kEC/jg==:117 a=WotqVVQAdb04rnGuttW3Kw==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=Sv0fKeRqtYgA:10 a=s63m1ICgrNkA:10
+ a=Vs-ZokuVWRQA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
+ a=taLDd7a_hP9WKsMzeGRc:22 a=iGHA9ds3AAAA:8 a=sozttTNsAAAA:8
+ a=gNeiw1iGy__L40MRSd4A:9 a=nM-MV4yxpKKO9kiQg6Ot:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwODMxMDE4NCBTYWx0ZWRfX41pUr242aOoU
+ s1igWqtmVr6PAtHNWkp9c6f44t+TOwMmS6aFbd69RlJlhC3UKAxPgLblj5KUSIM0TZ+bFPeI+hr
+ gWX0Y0Zpbgsy+Sv0WUA1lSZQsLa0U/k=
+X-Proofpoint-ORIG-GUID: VbA7Gfg-1ZAf6aONP1cJyURNopvJ334a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-08-31_06,2026-08-31_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 priorityscore=1501 adultscore=0 clxscore=1015
+ spamscore=0 lowpriorityscore=0 malwarescore=0 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2608310184
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 31 Aug 2026 21:09:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17634
+ <meta-arago@lists.yoctoproject.org>; Mon, 31 Aug 2026 21:17:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/17635
 
-On Mon, Aug 31, 2026 at 04:06:58PM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
-> 
-> 
-> On 8/31/2026 4:05 PM, Denys Dmytriyenko wrote:
-> >On Mon, Aug 31, 2026 at 03:52:42PM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
-> >>A recent version bump in oe-core [1] has moved to a version where these
-> >>two patches are no longer needed.  Drop them.
-> >
-> >I was looking into this as well and I don't believe the patches are no longer
-> >needed. They are definitely no longer apply, but I don't see they got accepted
-> >nor even submitted upstream. I see the code has changed around these 2 patches
-> >enough for them to no longer apply. I think someone needs to re-do them again
-> >for the new version...
-> 
-> I had someone look at the patches and they agree that the logic
-> change in upstream made our patches no longer needed.  It should be
-> more automatic now.
+meta-arago / na / 20260831205233.3284636-1-reatmon
 
-That's good to know, thanks for confirming!
+PRC Results: FAIL
+
+=========================================================
+  check-yocto-patches: PASS
+=========================================================
+Patches
+----------------------------------------
+WARN - [meta-arago][master][PATCH] open62541: Bump to version 1.5.7
+    WARN: Commit message does not include file/recipe name: open62541: Bump to version 1.5.7. (COMMIT-MESSAGE-2)
+        patch
+    
+    For details on the above errors/warnings visit: https://lists.yoctoproject.org/g/meta-ti/wiki/40887
 
 
-> >>[1] https://git.openembedded.org/openembedded-core/commit/?id=171b0ae0160d38e423c9447b883a4fd709808be8
-> >>
-> >>Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> >>---
-> >>  ...ence-to-contiguous-format-if-support.patch | 52 -------------------
-> >>  ...pt-non-contiguous-if-contiguous-form.patch | 35 -------------
-> >>  .../gstreamer1.0-plugins-good_1.28-arago.inc  |  2 -
-> >>  3 files changed, 89 deletions(-)
-> >>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0004-v4l2-Give-preference-to-contiguous-format-if-support.patch
-> >>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0007-v4l2object-Attempt-non-contiguous-if-contiguous-form.patch
-> >>
-> >>diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0004-v4l2-Give-preference-to-contiguous-format-if-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0004-v4l2-Give-preference-to-contiguous-format-if-support.patch
-> >>deleted file mode 100644
-> >>index ff617655..00000000
-> >>--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0004-v4l2-Give-preference-to-contiguous-format-if-support.patch
-> >>+++ /dev/null
-> >>@@ -1,52 +0,0 @@
-> >>-From 0238a430b19e5302dc924321225a3e24778bd2b0 Mon Sep 17 00:00:00 2001
-> >>-From: Devarsh Thakkar <devarsht@xilinx.com>
-> >>-Date: Fri, 9 Mar 2018 10:30:47 -0800
-> >>-Subject: [PATCH] v4l2: Give preference to contiguous format if supported
-> >>-
-> >>-Currently gstreamer uses single format GST_VIDEO_FORMAT_NV12 for both
-> >>-NV12 (which uses single contiguous buffer for luma and chroma)
-> >>-and NV12M (uses two non-contiguous buffers for luma and chroma )
-> >>-and if device supports both NV12M and NV12 then it gives preference
-> >>-to NV12M over NV12.
-> >>-
-> >>-The logic to give preference to NV12 before NV12M whenever GST_VIDEO_FORMAT_NV12
-> >>-is set.
-> >>-
-> >>-Upstream-Status: Pending
-> >>-
-> >>-Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> >>-Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
-> >>----
-> >>- sys/v4l2/gstv4l2object.c | 12 ++++++------
-> >>- 1 file changed, 6 insertions(+), 6 deletions(-)
-> >>-
-> >>-diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
-> >>-index e9026da..ad9f630 100644
-> >>---- a/sys/v4l2/gstv4l2object.c
-> >>-+++ b/sys/v4l2/gstv4l2object.c
-> >>-@@ -2013,17 +2013,17 @@ gst_v4l2_object_get_caps_info (GstV4l2Object * v4l2object, GstCaps * caps,
-> >>-   }
-> >>-
-> >>--  /* Prefer the non-contiguous if supported */
-> >>--  v4l2object->prefered_non_contiguous = TRUE;
-> >>-+  /* Prefer the contiguous if supported */
-> >>-+  v4l2object->prefered_non_contiguous = FALSE;
-> >>-
-> >>--  if (fourcc_nc)
-> >>--    fmt = gst_v4l2_object_get_format_from_fourcc (v4l2object, fourcc_nc);
-> >>-+  if (fourcc)
-> >>-+    fmt = gst_v4l2_object_get_format_from_fourcc (v4l2object, fourcc);
-> >>-   else if (fourcc == 0)
-> >>-     goto unhandled_format;
-> >>-
-> >>-   if (fmt == NULL) {
-> >>--    fmt = gst_v4l2_object_get_format_from_fourcc (v4l2object, fourcc);
-> >>--    v4l2object->prefered_non_contiguous = FALSE;
-> >>-+    fmt = gst_v4l2_object_get_format_from_fourcc (v4l2object, fourcc_nc);
-> >>-+    v4l2object->prefered_non_contiguous = TRUE;
-> >>-   }
-> >>-
-> >>-   if (fmt == NULL)
-> >>-     goto unsupported_format;
-> >>---
-> >>-2.39.0
-> >>diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0007-v4l2object-Attempt-non-contiguous-if-contiguous-form.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0007-v4l2object-Attempt-non-contiguous-if-contiguous-form.patch
-> >>deleted file mode 100644
-> >>index 4878ea49..00000000
-> >>--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0007-v4l2object-Attempt-non-contiguous-if-contiguous-form.patch
-> >>+++ /dev/null
-> >>@@ -1,35 +0,0 @@
-> >>-From 8d29018dd31be2045f6724db0942ae1a7da0a789 Mon Sep 17 00:00:00 2001
-> >>-From: Brandon Brnich <b-brnich@ti.com>
-> >>-Date: Tue, 10 Mar 2026 19:47:35 -0500
-> >>-Subject: [PATCH] v4l2object: Attempt non-contiguous if contiguous format isn't
-> >>- present
-> >>-
-> >>-Gstreamer previously had logic that would set fourcc even if the format
-> >>-being negotiated didn't have a contiguous option - YUYV for example. A fix
-> >>-was sent to properly set either forcc/forcc_nc properly. For formats that
-> >>-don't have contiguous formats, that would mean attempting non-contiguous
-> >>-options wouldn't happen. Attempt non-contiguous formats before erroring
-> >>-out if applicable.
-> >>-
-> >>-Upstream-Status: Inappropriate [TI-custom]
-> >>-
-> >>-Signed-off-by: Brandon Brnich <b-brnich@ti.com>
-> >>----
-> >>- sys/v4l2/gstv4l2object.c | 2 +-
-> >>- 1 file changed, 1 insertion(+), 1 deletion(-)
-> >>-
-> >>-diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
-> >>-index dbfe4992be..b4a7c32f31 100644
-> >>---- a/sys/v4l2/gstv4l2object.c
-> >>-+++ b/sys/v4l2/gstv4l2object.c
-> >>-@@ -2167,7 +2167,7 @@ gst_v4l2_object_get_caps_info (GstV4l2Object * v4l2object, GstCaps * caps,
-> >>-
-> >>-   if (fourcc)
-> >>-     fmt = gst_v4l2_object_get_format_from_fourcc (v4l2object, fourcc);
-> >>--  else if (fourcc == 0)
-> >>-+  else if (fourcc_nc == 0)
-> >>-     goto unhandled_format;
-> >>-
-> >>-   if (fmt == NULL) {
-> >>---
-> >>-2.43.0
-> >>diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.28-arago.inc b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.28-arago.inc
-> >>index a2204efb..d9e0df88 100644
-> >>--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.28-arago.inc
-> >>+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.28-arago.inc
-> >>@@ -4,10 +4,8 @@ SRC_URI:append = " \
-> >>      file://0001-v4l2jpegenc-Add-support-for-cropping-in-JPEG-Encoder.patch \
-> >>      file://0002-Adding-support-for-bayer-formats-with-IR-component.patch \
-> >>      file://0003-v4l2-Changes-for-DMA-Buf-import-j721s2.patch \
-> >>-    file://0004-v4l2-Give-preference-to-contiguous-format-if-support.patch \
-> >>      file://0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch \
-> >>      file://0006-v4l2object-use-actual-stream-resolution-for-encoded-.patch \
-> >>-    file://0007-v4l2object-Attempt-non-contiguous-if-contiguous-form.patch \
-> >>  "
-> >>  PR:append = ".arago0"
-> >>-- 
-> >>2.43.0
+
+=========================================================
+  apply-yocto-patch: PASS
+=========================================================
+master
+=====================
+Summary:
+- Patch Series: [meta-arago][master][PATCH] open62541: Bump to version 1.5.7
+- Submitter: From: Ryan Eatmon <reatmon@ti.com>
+- Date: Date: Mon, 31 Aug 2026 15:52:33 -0500
+- Num Patches: 1
+- Mailing List (public inbox) Commit SHA: c547cd6e0826e6c070df5f198635c61832c72965
+
+Applied to:
+- Repository: lcpd-prc-meta-arago
+- Base Branch: master-wip
+- Commit Author: Paresh Bhagat <p-bhagat@ti.com>
+- Commit Subject: recipes-core: arago-core-bundle: Simplify DTB filter for am62dxx
+- Commit SHA: 664e57be59c22fa01922444e2869d7cb71870900
+
+Patches
+----------------------------------------
+All patches applied
+
+
+
+=========================================================
+  check-yocto-repo: PASS
+=========================================================
+master
+=====================
+PASS
+
+
+
+=========================================================
+  yocto-check-layers: FAIL
+=========================================================
+master - FAIL
+=====================
+
+ERROR: Multiple recipes found for mesa-demos
+    oe-core/meta/recipes-graphics/mesa/mesa-demos_9.0.0.bb
+    meta-arago/meta-arago-distro/recipes-graphics/mesa/mesa-demos_git.bb
+
+
+
 
